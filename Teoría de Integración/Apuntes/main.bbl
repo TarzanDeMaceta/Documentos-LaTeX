@@ -1,0 +1,212 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{Analysis}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=04f98de5fcb9355680a09d6a4295e625}{%
+           family={Lieb},
+           familyi={L\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+        {{hash=7e27c8cc857fad92f54ad098c403355e}{%
+           family={Loss},
+           familyi={L\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=ec77358ae0f7d5d7f40ac8c96ed3e368}{%
+           family={Society},
+           familyi={S\bibinitperiod},
+           given={American\bibnamedelima Mathematical},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{ca52315eeb9c540a13956555a04fdc11}
+      \strng{fullhash}{ca52315eeb9c540a13956555a04fdc11}
+      \strng{fullhashraw}{ca52315eeb9c540a13956555a04fdc11}
+      \strng{bibnamehash}{ca52315eeb9c540a13956555a04fdc11}
+      \strng{authorbibnamehash}{ca52315eeb9c540a13956555a04fdc11}
+      \strng{authornamehash}{ca52315eeb9c540a13956555a04fdc11}
+      \strng{authorfullhash}{ca52315eeb9c540a13956555a04fdc11}
+      \strng{authorfullhashraw}{ca52315eeb9c540a13956555a04fdc11}
+      \strng{editorbibnamehash}{ec77358ae0f7d5d7f40ac8c96ed3e368}
+      \strng{editornamehash}{ec77358ae0f7d5d7f40ac8c96ed3e368}
+      \strng{editorfullhash}{ec77358ae0f7d5d7f40ac8c96ed3e368}
+      \strng{editorfullhashraw}{ec77358ae0f7d5d7f40ac8c96ed3e368}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Second edition}
+      \field{title}{Analysis}
+      \field{year}{2001}
+      \true{nocite}
+    \endentry
+    \entry{Rana}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=ba0050bc9fa6471de85e47d80d86a7d5}{%
+           family={Rana},
+           familyi={R\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=ec77358ae0f7d5d7f40ac8c96ed3e368}{%
+           family={Society},
+           familyi={S\bibinitperiod},
+           given={American\bibnamedelima Mathematical},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{ba0050bc9fa6471de85e47d80d86a7d5}
+      \strng{fullhash}{ba0050bc9fa6471de85e47d80d86a7d5}
+      \strng{fullhashraw}{ba0050bc9fa6471de85e47d80d86a7d5}
+      \strng{bibnamehash}{ba0050bc9fa6471de85e47d80d86a7d5}
+      \strng{authorbibnamehash}{ba0050bc9fa6471de85e47d80d86a7d5}
+      \strng{authornamehash}{ba0050bc9fa6471de85e47d80d86a7d5}
+      \strng{authorfullhash}{ba0050bc9fa6471de85e47d80d86a7d5}
+      \strng{authorfullhashraw}{ba0050bc9fa6471de85e47d80d86a7d5}
+      \strng{editorbibnamehash}{ec77358ae0f7d5d7f40ac8c96ed3e368}
+      \strng{editornamehash}{ec77358ae0f7d5d7f40ac8c96ed3e368}
+      \strng{editorfullhash}{ec77358ae0f7d5d7f40ac8c96ed3e368}
+      \strng{editorfullhashraw}{ec77358ae0f7d5d7f40ac8c96ed3e368}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Second edition}
+      \field{title}{An introduction to measure and integration}
+      \field{year}{2002}
+      \true{nocite}
+    \endentry
+    \entry{Rebolledo}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=b8553e32f76df86fd8ae63bce3a2aae0}{%
+           family={Rebolledo},
+           familyi={R\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=64acd7f1f3626e7bafd7f6df235ca6f8}{%
+           family={Chile},
+           familyi={C\bibinitperiod},
+           given={Pontificia\bibnamedelimb Universidad\bibnamedelima Católica},
+           giveni={P\bibinitperiod\bibinitdelim U\bibinitperiod\bibinitdelim C\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \strng{namehash}{b8553e32f76df86fd8ae63bce3a2aae0}
+      \strng{fullhash}{b8553e32f76df86fd8ae63bce3a2aae0}
+      \strng{fullhashraw}{b8553e32f76df86fd8ae63bce3a2aae0}
+      \strng{bibnamehash}{b8553e32f76df86fd8ae63bce3a2aae0}
+      \strng{authorbibnamehash}{b8553e32f76df86fd8ae63bce3a2aae0}
+      \strng{authornamehash}{b8553e32f76df86fd8ae63bce3a2aae0}
+      \strng{authorfullhash}{b8553e32f76df86fd8ae63bce3a2aae0}
+      \strng{authorfullhashraw}{b8553e32f76df86fd8ae63bce3a2aae0}
+      \strng{editorbibnamehash}{64acd7f1f3626e7bafd7f6df235ca6f8}
+      \strng{editornamehash}{64acd7f1f3626e7bafd7f6df235ca6f8}
+      \strng{editorfullhash}{64acd7f1f3626e7bafd7f6df235ca6f8}
+      \strng{editorfullhashraw}{64acd7f1f3626e7bafd7f6df235ca6f8}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Teoría de la medida e integración}
+      \field{year}{2016}
+      \true{nocite}
+    \endentry
+    \entry{RealAMain}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=b19afbea80ee8335212ffa7cd6b1040c}{%
+           family={Royden},
+           familyi={R\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=9a3b428d4746c7bb848c1cd689046a9c}{%
+           family={Fitzpatrick},
+           familyi={F\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=c80907b6d4b64a0bd9295e304bf1ac8a}{%
+           family={Pearson},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{3036c7fc275e5cffb52af4b4f381cc64}
+      \strng{fullhash}{3036c7fc275e5cffb52af4b4f381cc64}
+      \strng{fullhashraw}{3036c7fc275e5cffb52af4b4f381cc64}
+      \strng{bibnamehash}{3036c7fc275e5cffb52af4b4f381cc64}
+      \strng{authorbibnamehash}{3036c7fc275e5cffb52af4b4f381cc64}
+      \strng{authornamehash}{3036c7fc275e5cffb52af4b4f381cc64}
+      \strng{authorfullhash}{3036c7fc275e5cffb52af4b4f381cc64}
+      \strng{authorfullhashraw}{3036c7fc275e5cffb52af4b4f381cc64}
+      \strng{editorbibnamehash}{c80907b6d4b64a0bd9295e304bf1ac8a}
+      \strng{editornamehash}{c80907b6d4b64a0bd9295e304bf1ac8a}
+      \strng{editorfullhash}{c80907b6d4b64a0bd9295e304bf1ac8a}
+      \strng{editorfullhashraw}{c80907b6d4b64a0bd9295e304bf1ac8a}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Fourth edition}
+      \field{title}{Real Analysis}
+      \field{year}{2010}
+      \true{nocite}
+    \endentry
+    \entry{Ziemer}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=e18361cf517562bcb9a46525c855be97}{%
+           family={Ziemer},
+           familyi={Z\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=c79e6794d92b660604601937a9b1c766}{%
+           family={Springer},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{e18361cf517562bcb9a46525c855be97}
+      \strng{fullhash}{e18361cf517562bcb9a46525c855be97}
+      \strng{fullhashraw}{e18361cf517562bcb9a46525c855be97}
+      \strng{bibnamehash}{e18361cf517562bcb9a46525c855be97}
+      \strng{authorbibnamehash}{e18361cf517562bcb9a46525c855be97}
+      \strng{authornamehash}{e18361cf517562bcb9a46525c855be97}
+      \strng{authorfullhash}{e18361cf517562bcb9a46525c855be97}
+      \strng{authorfullhashraw}{e18361cf517562bcb9a46525c855be97}
+      \strng{editorbibnamehash}{c79e6794d92b660604601937a9b1c766}
+      \strng{editornamehash}{c79e6794d92b660604601937a9b1c766}
+      \strng{editorfullhash}{c79e6794d92b660604601937a9b1c766}
+      \strng{editorfullhashraw}{c79e6794d92b660604601937a9b1c766}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Second edition}
+      \field{title}{Modern real analysis}
+      \field{year}{2018}
+      \true{nocite}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
