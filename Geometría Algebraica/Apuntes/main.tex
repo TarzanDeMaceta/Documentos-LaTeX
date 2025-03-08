@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage{hyperref}
 \usepackage{Style}
 
 \nocite{*} % Comentar si quiero citar
@@ -13,15 +14,90 @@
     {\sc Pontificia Universidad Católica de Chile\\
     Facultad de Matemáticas\\
     Departamento de Matemática\\
-    Profesor: [?] -- Ayudante / Estudiante: Benjamín Mateluna}
+    Profesor: Giancarlo Urzúa -- Estudiante: Benjamín Mateluna}
 \end{minipage}
 \vspace{1ex}
 
-{\centerline{\bf [Ramo] - [Sigla]}
-\centerline{\bf [Título]}}
-\centerline{\bf [Fecha]}
+{\centerline{\bf Geometría Algebraica - MAT2824}
+\centerline{\bf Apuntes}}
+\centerline{\bf 06 de Marzo de 2025}
 
+\newpage
+\tableofcontents
 
+\newpage
+\section{Introducción}
+\noindent Habrán tres evaluaciones (I1, I2, I3) cada una vale un $20\%$ y un examen (EX) que vale 
+un $40\%$. Las fechas son, 9 de abril, 14 de Mayo, 11 de Junio y 1 de Julio respectivamente.
+
+\newpage
+\section{Preliminares Algebraicos}
+\noindent Sea $R$ un anillo conmutativo con $+,\cdot$ y con $1\neq0$. Si $R,R'$ son anillos, un 
+morfismo de anillos es una función $f:R\to R'$ que respeta $+,\cdot$ y $f(1_{R})=1_{R'}$. Un 
+dominio $R$ es un anillo en donde $xy=xz$ implica que $y=z$ para todo $x\neq0$.
+\vspace{4mm}
+
+\noindent\textbf{Ejemplo} $\Z$ es dominio, pero $\Z/6$ no lo es.
+\vspace{4mm}
+
+\noindent Un cuerpo es un dominio donde todo $x\neq0$ tiene un inverso. Dado $R$ dominio, existe el
+cuerpo de fracciones $K$ tal que $R\subseteq K$. Dado $R$ anillo, sea $R[x]$ el anillo de 
+polinomios con coeficientes en $R$, sus elementos tienen la forma
+
+\begin{equation*}
+    f(x)=a_{0}+a_{1}x+\cdots+a_{d}x^{d}\text{ , }a_{d}\neq0
+\end{equation*}
+
+\noindent y decimos que $f$ tiene grado $d$ denotado por $gr(f)$. Se define de manera recursiva
+$R[x_{1},\cdots,x_{n}]=R[x_{1},\cdots,x_{n-1}][x_{n}]$ el anillo de polinomios en $n$ variables.
+Dado $f=\alpha\cdot x_{1}^{\lambda_{1}}\cdots x_{n}^{\lambda_{n}}$ su grado se define como 
+$gr(f)=\sum_{i=1}^{n}\lambda_{i}$, para $f$ en general, definimos su grado como 
+$gr(f):=max\{\text{grados de monomios}\}$. Dado $f\in R[x_{1},\cdots,x_{n}]$ y $d=gr(f)$ entonces
+
+\begin{equation*}
+    f=F_{0}+F_{1}+\cdots+F_{d}\text{ , con }F_{i}\text{ homogeneos, esto es, }
+    F_{i}(\lambda x_{x_{1}},\cdots,\lambda x_{n})=\lambda^{i}F(x_{1},\cdots,x_{n})
+\end{equation*}
+
+\noindent Si $f\in R[x]$ una raíz (cero) de $f$ es un $r\in R$ tal que $f(r)=0$.
+
+\begin{teo}
+    Se tiene que $r$ es cero si y solo si $f(x)=(x-r)g(x)$ para algún $g\in R[x]$.
+\end{teo}
+
+\noindent Un cero de $f(x_{1},\cdots,x_{n})$ es un $(a_{1},\cdots,a_{n})\in\R^{n}$ tal que 
+$f(a_{1},\cdots,a_{n})=0$.
+\vspace{4mm}
+
+\noindent Decimos que $r\in R$ es irreductible si toda descomposición $r=ab$ con $a,b\in R$ se 
+tiene que $a$ o $b$ es una unidad. Un anillo $R$ se dice dominio de factorización unica si todo 
+elemento no nulo se puede factorizar de manera esencialmente unica en producto de irreductibles.
+
+\begin{lema}
+    Si $R$ es dominio de factorización unica entonces $R[x]$ es dominio de factorización unica.
+\end{lema}
+
+\begin{lema}
+    Si $R$ es un dominio de factorización unica y $K$ su cuerpo de fracciones. 
+Dado $f\in R[x]$ irreductible entonces $f$ es irreductible en $K[x]$.
+\end{lema}
+
+\noindent Sea $R$ un anillo. Un ideal $I\subset R$ es tal que si $a,b\in I$ entonces $a+b\in I$ y
+si $r\in R$ entonces $ra\in I$. Consideramos la función $\pi:R\to R/I$ donde $R/I$ es el anillo 
+cociente que es conmutativo. Un ideal es maximal si y solo si $R/I$ es cuerpo.
+
+\begin{teo}
+    Sea $R$ un dominio euclideano (se cumple algoritmo de la división) y $a,b\in R$, consideremos
+    $mcd(a,b)=d$. Entonces existen $c,e\in R$ tales que $ac+be=d$.
+\end{teo}
+
+\begin{teo}
+    Si $F$ es un polinomio homogeneo de grado $d$, entonces
+    \begin{equation*}
+        dF=x_{1}F_{x_{1}}+\cdots+x_{n}F_{x_{n}}
+    \end{equation*}
+    donde $F_{x_{i}}$ es la derivada formal con respecto a $x_{i}$.
+\end{teo}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 

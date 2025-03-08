@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage{hyperref}
 \usepackage{Style}
 
 \nocite{*} % Comentar si quiero citar
@@ -17,10 +18,86 @@
 \end{minipage}
 \vspace{1ex}
 
-{\centerline{\bf [Ramo] - [Sigla]}
-\centerline{\bf [Título]}}
-\centerline{\bf [Fecha]}
+{\centerline{\bf Geometría Diferencial - MAT2860}
+\centerline{\bf Apuntes}}
+\centerline{\bf 06 de Marzo de 2025}
 
+\newpage
+\tableofcontents
+
+\newpage
+\section{Introducción}
+\subsection{Evaluaciones}
+Habrán tres interrogaciones (I1, I2, I3) cada una vale un $25\%$ y un examen (EX) que vale un 
+$25\%$. Las fechas son 14 de abril, 19 de Mayo, 16 de Junio y 3 de Julio respectivamente.
+
+\newpage
+\section{Curvas en \texorpdfstring{$\R^{n}$}{}}
+\subsection{Curvas parametrizadas}
+\noindent Consideramos $\R^{n}:=\{v=(v_{1},\cdots,v_{n}):v_{i}\in\R\}$. Un espacio vectorial sobre 
+$\R$ de dimensión n, con el producto escalar dado por
+\begin{equation*}
+    \innp{v}{w}=\ds\sum_{i=1}^{n}v_{i}w_{i}\hspace{4mm}\text{con }v,w\in\R^{n}
+\end{equation*}
+
+\begin{dfn}
+    Una curva parametrizada en $\R^{n}$ es una función continua $\alpha:I\subseteq\R\to\R^{n}$ con 
+    $I$ un intervalo abierto. Escribimos $\alpha(t)=(\alpha_{1}(t),\cdots,\alpha_{n}(t))$.
+\end{dfn}
+
+\noindent Diremos que $\alpha$ es diferenciable si sus funciones coordenadas 
+$\alpha_{i}\in\mathcal{C}^{\infty}$. En tal caso, el vector 
+$\alpha'(t)=(\alpha_{1}'(t),\cdots,\alpha_{n}'(t))$ se llama vector tangente a la curva $\alpha$ en
+$t\in I$
+
+\begin{dfn}
+    La traza de una curva parametrizada $\alpha:I\subseteq\R\to\R^{n}$ es $\alpha(I)=im(\alpha)$.
+\end{dfn}
+
+\noindent\textbf{Ejemplos}
+\begin{enumerate}
+    \item Si $p,v\in\R^{n}$ con $v\neq0$, la curva parametrizada $\alpha(t)=tv+p$ con $t\in\R$ 
+    que describe una recta que pasa por $p=\alpha(0)$ con vector tangente $\alpha'(t)=v$.
+    \item Sea $\beta:\R\to\R^{3}$ dada por $b(t):=t^{3}\cdot\overrightarrow{e}_{1}$ es una curva
+    parametrizada diferenciable con $\beta'(t)=3t^{2}\cdot\overrightarrow{e}_{1}$.
+    \item Sea $p\in\R^{2}$ y $r>0$ consideramos $\alpha(t)=(rcos(t),rsen(t))+p$, una curva
+    parametrizada diferenciable cuya traza es $\alpha(\R)=\{(x,y)\in\R^{2}:\abs{(x,y)}{p}=r\}$
+    \item Sean $a,b\in\R\setminus{\{0\}}$. La curva parametrizada $\alpha:\R\to\R^{3}$ dada por
+    $\alpha(t)=(acos(t),asen(t),bt)$ con $t\in\R$ se llama una helice circular. 
+    Además $\alpha'(t)=(-asen(t),acos(t),b)$.
+    \item Sea $\alpha:\R\to\R^{2}$ dada por $\alpha(t)=(t^{3}-4t,t^{2}-4)$ es una curva 
+    parametrizada diferenciable con $\alpha(-2)=\alpha(2)=0$, pero $\alpha'(-2)\neq\alpha(2)$.
+\end{enumerate}
+
+\subsection{Longitud de curvas}
+\noindent Sea $\alpha:I\subseteq\R\to\R^{n}$ una curva parametrizada, consideremos $[a,b]\subseteq I$.
+Buscamos medir la longitud de $\alpha([a,b])$. Una estrategia, dada una partición $P:=\{a=t_{0}
+<t_{1}<\cdots<t_{n}=b\}$ de $[a,b]$ calculamos
+
+\begin{equation*}
+    \ds\sum_{i=1}^{k}\abs{\alpha(t_{i})-\alpha(t_{i-1})}=:L_{a}^{b}(\alpha,P)
+\end{equation*}
+
+\noindent esta suma corresponde a la longitudde una curva poligonal que pasa por los puntos $\alpha()t_{i}$.
+Si $Q\supseteq P$ es otra partición de $[s,b]$, entonces $L_{a}^{b}(\alpha,Q)\geq L_{a}^{b}
+(\alpha,P)$.
+
+\begin{dfn}
+    La longitud de una curva parametrizada $\alpha$ sobre $[a,b]\subseteq I$ es
+    \begin{equation*}
+        L_{a}^{b}(\alpha)=sup\{L_{a}^{b}(\alpha,P):P\text{ es partición de }[a,b]\}.
+    \end{equation*}
+\end{dfn}
+
+\noindent Si $\alpha$ es diferenciable sobre $[a,b]$ y hacemos $\abs{P}=max\{t_{i}-t_{i-1}\}$ muy
+pequeña, esperariamos que $\abs{\alpha(t_{i})-\alpha(t_{i-1})}\approx
+\abs{\alpha'(\overline{t_{i}})}(t_{i}-t_{i-1})$.
+
+\begin{prop}
+    Si $\alpha:I\subseteq\R\to\R^{n}$ es diferenciable sobre $[a,b]\subseteq I$, entonces
+    $L_{a}^{b}(\alpha)=\int_{a}^{b}\abs{\alpha'(t)}dt$. 
+    (Para la demostración revisar Montiel-Ros, página 5)
+\end{prop}
 
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
