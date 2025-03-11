@@ -14,7 +14,7 @@
     {\sc Pontificia Universidad Católica de Chile\\
     Facultad de Matemáticas\\
     Departamento de Matemática\\
-    Profesor: [?] -- Ayudante / Estudiante: Benjamín Mateluna}
+    Profesor: Pedro Gaspar -- Estudiante: Benjamín Mateluna}
 \end{minipage}
 \vspace{1ex}
 
@@ -94,11 +94,156 @@ pequeña, esperariamos que $\abs{\alpha(t_{i})-\alpha(t_{i-1})}\approx
 \abs{\alpha'(\overline{t_{i}})}(t_{i}-t_{i-1})$.
 
 \begin{prop}
-    Si $\alpha:I\subseteq\R\to\R^{n}$ es diferenciable sobre $[a,b]\subseteq I$, entonces
-    $L_{a}^{b}(\alpha)=\int_{a}^{b}\abs{\alpha'(t)}dt$. 
+    Si $\alpha:I\subseteq\R\to\R^{n}$ es una curva parametrizada diferenciable sobre $[a,b]
+    \subseteq I$, entonces 
+    \begin{equation*}
+        L_{a}^{b}(\alpha)=\int_{a}^{b}\abs{\alpha'(t)}dt
+    \end{equation*}
     (Para la demostración revisar Montiel-Ros, página 5)
 \end{prop}
 
+\begin{cor}
+    Tenemos que $\abs{\alpha(a)-\alpha(b)}\leq L_{a}^{b}(\alpha)$.
+\end{cor}
+
+\begin{cor}
+    Si $F:\R^{n}\to\R^{n}$ cumple $\abs{DF(p)v}=\abs{v}$ para todo $p,v\in\R^{n}$, entonces
+    $L_{a}^{b}(F\circ\alpha)=L_{a}^{b}(\alpha)$.
+\end{cor}
+
+\noindent De hecho, $F\circ\alpha: I\to\R^{n}$ es una curva parametrizada diferenciable, con
+
+\begin{equation*}
+    \abs{(F\circ\alpha)'(t)}=\abs{DF(\alpha(t))\alpha'(t)}=\abs{\alpha'(t)}
+\end{equation*}
+
+\noindent para todo $t\in I$, basta con integrar sobre $[a,b]$. Si $p_{0}\in\R^{n}$ y 
+$A:\R^{n}\to\R^{n}$ es una transformación lineal ortogonal , esto es, $\innp{Au}{Av}=\innp{u}{v}$ 
+para todo $u,v\in\R^{n}$, entonces $F:\R^{n}\to\R^{n}$ dada por $F(p)=Ap+p_{0}$ cumple
+
+\begin{equation*}
+    DF(p)v=\dv{}{t}F(p+tv)\big|_{t=0}=\dv{}{t}(A(p+tv)+p_{0})\big|_{t=0}=Av
+\end{equation*}
+
+\noindent Por lo tanto $\abs{DF(p)v}=\abs{Av}=\abs{v}$.
+
+\begin{cor}
+    Si $h:J\subseteq\R\to I\subseteq\R$ es un difeomorfismo y $\alpha: I\to\R$ es una curva 
+    parametrizada diferenciable, entonces
+    \begin{equation*}
+        L_{a}^{b}(\alpha\circ h)=L_{c}^{d}(\alpha)
+    \end{equation*}
+    donde $h([a,b])=[c,d]$ para todo $[a,b]\subseteq J$.
+\end{cor}
+
+\noindent Por regla de la cadena tenemos que $(\alpha\circ h')(t)=h'(t)\alpha'(h(t))$. La curva 
+$\alpha\circ h$ tiene la misma traza que $\alpha$, en efecto $(\alpha\circ h)(J)=\alpha(h(J))=
+\alpha(I)$. Decimos que $\alpha\circ h$ es una reparametrización de la curva $alpha$.
+
+\begin{dem}
+    Como $h$ y $h^{-1}$ son diferenciables, se tiene que $h'(t)\neq0$ para todo $t\in J$. Veamos
+    que
+    \begin{equation*}
+        1=\dv{}{t}(t)=(h^{-1}\circ h)'(t)=(h^{-1})'(h(t))h'(t)
+    \end{equation*}
+    Luego como J es un intervalo y $h'$ es continua, tenemos que $h'<0$ o $h>0$.
+    \begin{itemize}
+        
+        \item Si $h'<0$, entonces $h(a)=c$, $h(b)=d$,
+        \begin{equation*}
+            \int_{a}^{b}\abs{(\alpha\circ h)'(t)}dt=\int_{a}^{b}\abs{\alpha'(h(t))}\abs{h'(t)}dt=
+            \int_{c}^{d}\abs{\alpha'(s)}ds=L_{c}^{d}(\alpha)
+        \end{equation*}
+
+        \item Si $h'>0$, entonces $h(b)=c$, $h(a)=d$,
+        \begin{equation*}
+            \int_{a}^{b}\abs{(\alpha\circ h)'(t)}dt=\int_{a}^{b}\abs{\alpha'(h(t))}\abs{h'(t)}dt=
+            \int_{d}^{c}-\abs{\alpha'(s)}ds=\int_{c}^{d}\abs{\alpha'(s)}ds=L_{c}^{d}(\alpha)
+        \end{equation*}
+
+    \end{itemize}
+\end{dem}
+
+\begin{dfn}
+    Se dice que una curva parametrizada diferenciable $\alpha: I\subseteq\R\to\R^{n}$ es regular si
+    $\alpha'(t)\neq0$ para todo $t\in I$. Si además $\abs{\alpha'(t)}=1$ para todo $t\in I$ se dice
+    que $\alpha$ esta parametrizada por el arco.
+\end{dfn}
+
+\noindent Una curva $\alpha$ parametrizada por el arco tienen las siguientes propiedades
+
+\begin{itemize}
+    \item $\alpha'(t)$ es ortogonal a $\alpha''(t)$ para todo $t\in I$, en efecto
+    
+    \begin{equation*}
+        0=\dv{}{t}(\abs{\alpha'(t)}^{2})=\dv{}{t}(\innp{\alpha'(t)}{\alpha'(t)})=2\innp{\alpha'(t)}
+        {\alpha''(t)}
+    \end{equation*}
+
+    \item Se tiene que $L_{a}^{b}(\alpha)=\int_{a}^{b}\abs{\alpha'(t)}dt=b-a$.
+\end{itemize}
+
+\begin{teo}
+    Si $\alpha: I\to\R^{n}$ es una curva parametrizada diferenciable regular, entonces $\alpha$
+    admite una parametrización por arco. Concretamente , si $t_{0}\in I$ y definimos $s: I\to\R$ 
+    por
+    \begin{equation*}
+        s(t):=\int_{t_{0}}^{t}\abs{\alpha'(t)}dt
+    \end{equation*}
+    entonces $s$ es un difeomorfismo sobre $J\subseteq\R$ y $\alpha\circ s^{-1}:J\to\R^{n}$ esta
+    parametrizada por el arco.
+\end{teo}
+
+\begin{dem}
+    Por TFC, sabemos que $s$ es diferenciable, mas aun, $s'(t)=\abs{\alpha'(t)}$ para todo 
+    $t\in I$. Luego, $s'>0$, es decir, $s$ es creciente y $s(I)=J$ es un intervalo abierto. Además,
+    por teorema de la función inversa, vemos que
+
+    \begin{equation*}
+        (s^{-1})'(r)=\frac{1}{s'(s^{-1}(r))}=\frac{1}{\abs{\alpha'(s^{-1}(r))}}\hspace{4mm}
+        \forall r\in J
+    \end{equation*}
+
+    \noindent Por lo tanto $\abs{(\alpha\circ s^{-1})'(r)}=1$ para todo $r\in J$, luego 
+    $\alpha\circ s^{-1}$ esta parametrizada por el arco.
+\end{dem}
+
+\noindent\textbf{Ejemplos}
+\begin{enumerate}
+    \item Sea $\alpha(t)=tv+p_{0}$ con $p_{0},v\in\R^{n}$ y $v\neq0$. Como $\alpha'(t)=v$, tenemos
+    \begin{equation*}
+        s(t)=\int_{0}^{t}\abs{v}dx=t\abs{v}
+    \end{equation*}
+    entonces $\alpha\circ s^{-1}(x)=x\cdot\frac{v}{\abs{v}}+p_{0}$ es una parametrización por el
+    arco de $\alpha$.
+
+    \item Consideremos $\alpha(t)=(rcost,rsent)+p_{0}$ con $p_{0}\in\R^{2}$ y $r>0$. Como 
+    $\alpha'(t)=(-rsent,rcost)$ entonces $\abs{\alpha'(t)}=r$, tenemos que
+    \begin{equation*}
+        s(t)=\int_{0}^{t}rdx=rt
+    \end{equation*}
+    y $(\alpha\circ s^{-1})(x)=(rcos(\frac{x}{r}),rsen(\frac{x}{r}))+p_{0}$ es una curva 
+    parametrizada por el arco para $\alpha$.
+
+    \item Definimos $\alpha(t)=(acost,asent,bt)$ con $a,b\in\R\setminus\{0\}$. Como $\abs
+    {\alpha'(t)}=\sqrt{a^{2}+b^{2}}$ una curva parametrizada por el arco es
+    \begin{equation*}
+        (\alpha\circ s^{-1})(x)=\left(acos\left(\frac{x}{\sqrt{a^{2}+b^{2}}}\right),
+        asen\left(\frac{x}{\sqrt{a^{2}+b^{2}}}\right),\frac{bt}{\sqrt{a^{2}+b^{2}}}\right)
+    \end{equation*}
+\end{enumerate}
+
+\noindent\textbf{Notación:} Notamos por $\mathcal{J}$ a la función $\mathcal{J}:\R^{2}\to\R^{2}$
+dada por $\mathcal{J}(x,y)=(-y,x)$ que cumple lo siguientes
+
+\begin{itemize}
+    \item $\mathcal{J}$ es una transformación lineal ortogonal.
+    \item $\innp{u,\mathcal{J}u}=0$ y $\mathcal{J}(\mathcal{J}u)=-u$ para todo $u\in\R^{2}$.
+    \item Si $\abs{u}=1$, entonces $\{u,\mathcal{J}u\}$ es una base ortonormal positiva de 
+    $\R^{2}$.
+    \item Si $A:\R^{2}\to\R^{2}$ es una transformación lineal ortogonal, entonces 
+    $\mathcal{J}A=det(A)A\mathcal{J}$.
+\end{itemize}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
