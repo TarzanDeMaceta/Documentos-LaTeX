@@ -31,7 +31,8 @@
 un $40\%$. Las fechas son, 9 de abril, 14 de Mayo, 11 de Junio y 1 de Julio respectivamente.
 
 \newpage
-\section{Preliminares Algebraicos}
+\section{Conjuntos Algebraicos afines}
+\subsection{Preliminares algebraicos}
 \noindent Sea $R$ un anillo conmutativo con $+,\cdot$ y con $1\neq0$. Si $R,R'$ son anillos, un 
 morfismo de anillos es una función $f:R\to R'$ que respeta $+,\cdot$ y $f(1_{R})=1_{R'}$. Un 
 dominio $R$ es un anillo en donde $xy=xz$ implica que $y=z$ para todo $x\neq0$.
@@ -98,6 +99,83 @@ cociente que es conmutativo. Un ideal es maximal si y solo si $R/I$ es cuerpo.
     \end{equation*}
     donde $F_{x_{i}}$ es la derivada formal con respecto a $x_{i}$.
 \end{teo}
+
+\subsection{Espacio Afín y Conjuntos Algebraicos}
+\begin{dfn}
+Sea $\K$ un cuerpo. El espacio afín de dim $n$ es $\A_{\K}^{n}:=\K^{n}$ (generalmente se supondra
+que $\K=\overline{\K}$).
+\end{dfn}
+
+\begin{dfn}
+    Una hipersuperficie de $\A_{\K}^{n}$ es $V(F)=\{p\in\A_{\K}^{n}:F(p)=0\}$ para un 
+    $F\in\K[x_{1},\cdots,x_{n}]$.
+\end{dfn}
+
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Sea $\K=\R$ consideramos la hipersuperficie $V(y^{2}-x^{2}(x+1))\subseteq\A_{\R}^{2}$ 
+    (foto)
+
+    El punto $(0,0)$ se llama nodo.
+    \item Veamos la hipersuperficie $V((x^{3}-y^{3})(y^{3}-1)(x^{3}-1))\subseteq\A_{\C}^{2}$.
+    \item La hipersuperficie $V(x^{2}+y^{2}-z^{2})\subseteq\A_{\R}^{3}$ es conocida como cono
+    (foto)
+
+    Como en el primer ejemplo, el punto $(0,0)$ se llama nodo
+    \item Consideremos $V(y^{2}-x^{3})\subseteq\A_{\R}^{2}$ (foto)
+    
+    En este caso, el punto $(0,0)$ no es un nodo, en este caso se llama cuspide.
+    \item Veamos el caso de una hipersuperficie no parametrizable, esta es 
+    $V(y^{2}-x(x+1)(x+\lambda))$.
+\end{itemize}
+
+\begin{dfn}
+    Sea $S\subseteq\K[x_{1},\cdots,x_{n}]$ un conjunto arbitrario, se define 
+    \begin{equation*}
+        V(S):=\{p\in\A_{\K}^{n}:F(p)=0\hspace{4mm}\forall F\in S\}=\bigcap_{F\in S} V(F)
+    \end{equation*}
+    y se dice que es un conjunto algebraico afín.
+\end{dfn}
+
+\noindent Propiedades de un conjunto algebraico afín:
+\begin{enumerate}
+    \item Sea $I=\gen{S}=\left\{\ds\sum_{i=1}^{n}a_{i}s_{i},a_{i}\in\K\right\}$, entonces 
+    $V(I)=V(S)$.
+    \begin{dem}
+        Veamos que $V(I)\subseteq V(S)$, si $p\in V(I)$, como $S\subseteq I$ se sigue que 
+        $p\in V(S)$. Para $V(S)\subseteq V(I)$ notemos que dado $f\in I$ se tiene que 
+        $f=\sum a_{i}s_{i}$, luego si $p\in V(S)$ vemos que $f(p)=\sum a_{i}s_{i}(p)=0$.
+    \end{dem}
+
+    \item Sea $\{I_{\alpha}\}$ una colección de ideales, entonces 
+    $V(\bigcup_{\alpha}I_{\alpha})=\bigcap_{\alpha}V(I_{\alpha})$.
+    \item Si $I\subseteq J$ se sigue que $V(J)\subseteq V(I)$.
+    \item Sean $F,G\in\K[x_{1},\cdots,x_{n}]$, se tiene que $V(FG)=V(F)\cup V(G)$.
+    \item Tenemos las siguientes dos identidades $V(1)=\emptyset$ y $V(0)=\A_{\K}^{n}$.
+    
+    \textbf{observación:} Lo anterior es valido si $\K$ es algebraicamente cerrado, de lo 
+    contrario, si consideramos $\A_{\R}^{1}$ vemos que $V(x^{2}+1)=\emptyset$.
+\end{enumerate}
+
+\subsection{Ideal de un conjunto}
+\begin{dfn}
+    Sea $X\subseteq\A_{\K}^{n}$ un conjunto arbitrario. Se define el ideal de $X$ como
+    \begin{equation*}
+        I(X):=\left\{F\in\K[x_{1},\cdots,x_{n}]:F(p)=0\hspace{4mm}\forall p\in X\right\}
+    \end{equation*}
+\end{dfn}
+
+\noindent\textbf{observación:} Notemos que si $F^{m}\in I(X)$ entonces $F\in I(X)$. Un ideal con
+esta propiedad se dice radical.
+\vspace{4mm}
+
+\noindent Propiedades del ideal de un conjunto:
+\begin{enumerate}
+    \item Si $X\subseteq Y$ se tiene que $I(Y)\subseteq I(X)$.
+    \item Se tiene lo siguiente $I(\emptyset)=\K[x_{1},\cdots,x_{n}]$ y $I(\A_{\K}^{n})=\{0\}$.
+    Además, si $\K$ es un cuerpo infinito, se tiene que $I(\{a_{1},\cdots,a_{n}\})=
+    (x_{1}-a_{1},\cdots,x_{n}-a_{n})$.
+\end{enumerate}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
