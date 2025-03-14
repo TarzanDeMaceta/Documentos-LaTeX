@@ -102,18 +102,18 @@ cociente que es conmutativo. Un ideal es maximal si y solo si $R/I$ es cuerpo.
 
 \subsection{Espacio Afín y Conjuntos Algebraicos}
 \begin{dfn}
-Sea $\K$ un cuerpo. El espacio afín de dim $n$ es $\A_{\K}^{n}:=\K^{n}$ (generalmente se supondra
-que $\K=\overline{\K}$).
+Sea $k$ un cuerpo. El espacio afín de dim $n$ es $\A_{k}^{n}:=k^{n}$ (generalmente se supondra
+que $k=\overline{k}$).
 \end{dfn}
 
 \begin{dfn}
-    Una hipersuperficie de $\A_{\K}^{n}$ es $V(F)=\{p\in\A_{\K}^{n}:F(p)=0\}$ para un 
-    $F\in\K[x_{1},\cdots,x_{n}]$.
+    Una hipersuperficie de $\A_{k}^{n}$ es $V(F)=\{p\in\A_{k}^{n}:F(p)=0\}$ para un 
+    $F\in k[x_{1},\cdots,x_{n}]$.
 \end{dfn}
 
 \noindent\textbf{Ejemplos:}
 \begin{itemize}
-    \item Sea $\K=\R$ consideramos la hipersuperficie $V(y^{2}-x^{2}(x+1))\subseteq\A_{\R}^{2}$ 
+    \item Sea $k=\R$ consideramos la hipersuperficie $V(y^{2}-x^{2}(x+1))\subseteq\A_{\R}^{2}$ 
     (foto)
 
     El punto $(0,0)$ se llama nodo.
@@ -130,16 +130,16 @@ que $\K=\overline{\K}$).
 \end{itemize}
 
 \begin{dfn}
-    Sea $S\subseteq\K[x_{1},\cdots,x_{n}]$ un conjunto arbitrario, se define 
+    Sea $S\subseteq k[x_{1},\cdots,x_{n}]$ un conjunto arbitrario, se define 
     \begin{equation*}
-        V(S):=\{p\in\A_{\K}^{n}:F(p)=0\hspace{4mm}\forall F\in S\}=\bigcap_{F\in S} V(F)
+        V(S):=\{p\in\A_{k}^{n}:F(p)=0\hspace{4mm}\forall F\in S\}=\bigcap_{F\in S} V(F)
     \end{equation*}
     y se dice que es un conjunto algebraico afín.
 \end{dfn}
 
 \noindent Propiedades de un conjunto algebraico afín:
 \begin{enumerate}
-    \item Sea $I=\gen{S}=\left\{\ds\sum_{i=1}^{n}a_{i}s_{i},a_{i}\in\K\right\}$, entonces 
+    \item Sea $I=\gen{S}=\left\{\ds\sum_{i=1}^{n}a_{i}s_{i},a_{i}\in k\right\}$, entonces 
     $V(I)=V(S)$.
     \begin{dem}
         Veamos que $V(I)\subseteq V(S)$, si $p\in V(I)$, como $S\subseteq I$ se sigue que 
@@ -150,18 +150,18 @@ que $\K=\overline{\K}$).
     \item Sea $\{I_{\alpha}\}$ una colección de ideales, entonces 
     $V(\bigcup_{\alpha}I_{\alpha})=\bigcap_{\alpha}V(I_{\alpha})$.
     \item Si $I\subseteq J$ se sigue que $V(J)\subseteq V(I)$.
-    \item Sean $F,G\in\K[x_{1},\cdots,x_{n}]$, se tiene que $V(FG)=V(F)\cup V(G)$.
-    \item Tenemos las siguientes dos identidades $V(1)=\emptyset$ y $V(0)=\A_{\K}^{n}$.
+    \item Sean $F,G\in k[x_{1},\cdots,x_{n}]$, se tiene que $V(FG)=V(F)\cup V(G)$.
+    \item Tenemos las siguientes dos identidades $V(1)=\emptyset$ y $V(0)=\A_{k}^{n}$.
     
-    \textbf{observación:} Lo anterior es valido si $\K$ es algebraicamente cerrado, de lo 
+    \textbf{observación:} Lo anterior es valido si $k$ es algebraicamente cerrado, de lo 
     contrario, si consideramos $\A_{\R}^{1}$ vemos que $V(x^{2}+1)=\emptyset$.
 \end{enumerate}
 
 \subsection{Ideal de un conjunto}
 \begin{dfn}
-    Sea $X\subseteq\A_{\K}^{n}$ un conjunto arbitrario. Se define el ideal de $X$ como
+    Sea $X\subseteq\A_{k}^{n}$ un conjunto arbitrario. Se define el ideal de $X$ como
     \begin{equation*}
-        I(X):=\left\{F\in\K[x_{1},\cdots,x_{n}]:F(p)=0\hspace{4mm}\forall p\in X\right\}
+        I(X):=\left\{F\in k[x_{1},\cdots,x_{n}]:F(p)=0\hspace{4mm}\forall p\in X\right\}
     \end{equation*}
 \end{dfn}
 
@@ -172,8 +172,8 @@ esta propiedad se dice radical.
 \noindent Propiedades del ideal de un conjunto:
 \begin{enumerate}
     \item Si $X\subseteq Y$ se tiene que $I(Y)\subseteq I(X)$.
-    \item Se tiene lo siguiente $I(\emptyset)=\K[x_{1},\cdots,x_{n}]$ y $I(\A_{\K}^{n})=\{0\}$.
-    Además, si $\K$ es un cuerpo infinito, se tiene que $I(\{a_{1},\cdots,a_{n}\})=
+    \item Se tiene lo siguiente $I(\emptyset)=k[x_{1},\cdots,x_{n}]$ y $I(\A_{k}^{n})=\{0\}$.
+    Además, si $k$ es un cuerpo infinito, se tiene que $I(\{a_{1},\cdots,a_{n}\})=
     (x_{1}-a_{1},\cdots,x_{n}-a_{n})$.
 \end{enumerate}
 
@@ -197,7 +197,7 @@ esta propiedad se dice radical.
     decimos que $a_{d}$ es el término líder de $F$ denotado por $l(F)$. Sea
     
     \begin{equation*}
-        \J=\{r\in R:r \text{ es término líder de algún } F\in I\}\cup\{0\}
+        \J:=\{r\in R:r \text{ es término líder de algún } F\in I\}\cup\{0\}
     \end{equation*}
     Afirmamos que $\J$ es ideal, en efecto, sean $l(F),l(G)\in\J$, supongamos sin perdida de 
     generalidad que $gr(F)\leq gr(G)$, luego
@@ -206,7 +206,66 @@ esta propiedad se dice radical.
         Fx^{gr(G)-deg(F)}+G=H
     \end{equation*}
     donde $l(H)=l(F)+l(G)$. Es claro que $r\cdot l(F)\in\J$ con $r\in R$. Por hipotesis existen 
-    $F_{1},\cdots,F_{r}\in I$ tales que $\J=(l(F_{1}),\cdots,l(F_{r}))$.
+    $F_{1},\cdots,F_{r}\in I$ tales que $\J=(l(F_{1}),\cdots,l(F_{r}))$. Sea $N>gr(F_{i})$ para
+    todo $1\leq i\leq r$. Para cada $m\leq N$ definimos
+
+    \begin{equation*}
+        \J_{m}:=\{r\in R:r\text{ es término líder de }F\in I\text{ y }gr(F)\leq m\}
+    \end{equation*}
+    Notemos que los $\J_{m}$ son ideales en $R$, por ende, son finitamente generados, es decir
+    $\J_{m}=(l(F_{m,j}))$. Consideremos el ideal $I'=\gen{F_{m,j}, F_{i}}$, afirmamos que $I'=I$.
+    Claramente se tiene que $I'\subset I$. Supongamos, por contradicción, que $I'\neq I$, sea 
+    $G\in I'\setminus I$ de menor grado. Tenemos dos consideramos
+
+    \begin{enumerate}
+        \item Veamos cuando $gr(G)>N$, existen polinomios $Q_{i}\in R[X]$ tal que $G$ y 
+        $\sum Q_{i}F_{i}$ tienen el mismo coeficiente líder. Luego $G-\sum Q_{i}F_{i}\in I'$ pues
+        tiene menor grado que $G$, se sigue que $G\in I'$.
+
+        \item El resultado para $gr(G)\leq N$ se obtiene del mismo modo, usando esta vez los 
+        $F_{m,j}$.
+    \end{enumerate}
+\end{dem}
+
+\noindent\textbf{Ejemplo:} Sea $(0,0)\in\A_{\R}^{2}$, entonces $\{(0,0)\}=V(x^{2}+y^{2})$. Pero en
+$\C$ tenemos que $\{(0,0)\}\neq V(F)$ para ningún $F\in k[x,y]$.
+
+\subsection{Componentes Irreducibles en un Conjunto Algebraico}
+
+\begin{dfn}
+    Un conjunto algebraico $V$ se dice reducible si $V=V_{1}\cup V_{2}$ con $V_{i}$ conjunto
+    conjunto algebraico y distinto de $V$.
+\end{dfn}
+
+\noindent\textbf{Observación: } Un punto es un conjunto algebraico irreducible, lo que implica que
+cualquier conjunto finito es algebarico y reducible.
+
+\noindent\textbf{Ejemplos: }
+\begin{itemize}
+    \item Notemos que $V(xy)=V(x)\cup V(y)$, es decir $V(xy)$ es reducible.
+    \item Consideremos el espacio afín $\A_{\R}^{1}$, entonces el conjunto algebraico 
+    $V((x^{2}+1)x)=\{0\}$ es irrducible.
+\end{itemize}
+
+\begin{prop}
+    Un conjunto algebraico $V$ es irrducible si y solo si el ideal $I(V)$ es primo.
+\end{prop}
+
+\noindent\textbf{Notación: }Un conjunto algebraico irrducible se dice variedad afín.
+
+\begin{dem}\hspace{1mm}
+    \begin{itemize}
+        \item $\Rightarrow|$ Supongamos que $I(V)$ no es primo, entonces existen $F_{1},F_{2}$ 
+        polinomios tales que $F_{1}\cdot F_{2}\in I(V)$ y $F_{1},F_{2}\notin I(V)$. Afirmamos que
+        $V=(V\cap V(F_{1}))\cup(V\cap V(F_{2}))$. Sea $p\in V$, entonces $F_{1}(p)\cdot F_{2}(p)=0$
+        lo que implica que $p\in(V\cap V(F_{1}))\cup(V\cap V(F_{2}))$, además 
+        $V\cap V(F_{i})\neq V$ ya que existe $q_{i}$ tal que $F_{i}(q_{i})\neq 0$.
+
+        \item $\Leftarrow|$ Supongamos que $V$ es reducible. Luego $V=V_{1}\cup V_{2}$ con 
+        $V_{i}\neq V$. Entonces existe un polinomio $F_{i}$ tal que $F_{i}(p)=0$ para todo 
+        $p\in V_{i}$, pero no para todo punto en $V$. Notemos que $F_{1}\cdot F_{2}\in I(V)$, 
+        sin embargo, $F_{i}\notin I(V)$.
+    \end{itemize}
 \end{dem}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
