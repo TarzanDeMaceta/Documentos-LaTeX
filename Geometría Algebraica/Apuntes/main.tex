@@ -177,6 +177,38 @@ esta propiedad se dice radical.
     (x_{1}-a_{1},\cdots,x_{n}-a_{n})$.
 \end{enumerate}
 
+\subsection{El Teorema de la Base de Hilbert}
+\begin{teo}
+    Todo conjunto algebraico corresponde a la intersección finita de hipersuperficies.
+\end{teo}
+
+\begin{dem}
+    Sea $V(I)$ el conjunto algebraico para algún ideal $I\subseteq k[x_{1},\cdots,x_{n}]$. 
+    Basta con probar que $I$ es finitamente generado, en tal caso $I=(F_{1},\cdots,F_{r})$, 
+    entonces $V(I)=V(F_{1},\cdots,F_{r})=V(F_{1})\cap\cdots\cap V(F_{r})$.
+\end{dem}
+
+\begin{teo}
+    Si $R$ es un anillo Noetheriano, entonces $R[X]$ es un anillo Noetheriano.
+\end{teo}
+
+\begin{dem}
+    Sea $I\subseteq R[X]$ un ideal. Dado $F=a_{0}+a_{1}x+\cdots+a_{d}x^{d}$ con $a_{d}\neq0$
+    decimos que $a_{d}$ es el término líder de $F$ denotado por $l(F)$. Sea
+    
+    \begin{equation*}
+        \J=\{r\in R:r \text{ es término líder de algún } F\in I\}\cup\{0\}
+    \end{equation*}
+    Afirmamos que $\J$ es ideal, en efecto, sean $l(F),l(G)\in\J$, supongamos sin perdida de 
+    generalidad que $gr(F)\leq gr(G)$, luego
+    
+    \begin{equation*}
+        Fx^{gr(G)-deg(F)}+G=H
+    \end{equation*}
+    donde $l(H)=l(F)+l(G)$. Es claro que $r\cdot l(F)\in\J$ con $r\in R$. Por hipotesis existen 
+    $F_{1},\cdots,F_{r}\in I$ tales que $\J=(l(F_{1}),\cdots,l(F_{r}))$.
+\end{dem}
+
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
 \end{document}
