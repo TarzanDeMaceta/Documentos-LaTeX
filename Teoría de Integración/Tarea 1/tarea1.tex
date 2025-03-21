@@ -80,14 +80,18 @@ Además, por construcción $\Pi_{n+1}$ es un refinamiento de $\Pi_{n}$ y por lo 
 
     \item En primer lugar, demostraremos que dado un conjunto $E\subseteq[a,b]$ de medida nula, 
     entonces $E^{c}$ es denso en $[a,b]$. En efecto, sea $x\in E$ y $U$ una vecindad conexa de $x$ 
-    de largo $\varepsilon>0$. Supongamos, por contradicción, que no existe un punto de $E^{c}$ en 
-    $U$, luego $\varepsilon=\abs{U}\leq\ds\sum_{i\in\N}\abs{I_{i}}$ con $(I_{i})_{i\in\N}$ una colección
-    tal que
+    de largo $\varepsilon>0$. Supongamos, por contradicción, que $U\subseteq E$. 
+    Como $E$ es de medida nula, existe $(I_{i})_{i\in\N}$ una colección de intervalos tales que
     \begin{equation*}
+        E\subseteq\bigcup_{i\in\N}I_{i}\hspace{4mm}\text{y}\hspace{4mm}
         \sum_{i\in\N}\abs{I_{i}}<\varepsilon
     \end{equation*}
-    que existe pues $E$ es de medida nula. Lo anterior es una contradicción, lo que prueba la
-    afirmación.
+    por otro lado tenemos que
+    \begin{equation*}
+        \varepsilon=\abs{U}=\lambda^{*}(U)\leq\lambda^{*}\left(\bigcup_{i\in\N}I_{i}\right)\leq
+        \sum_{i\in\N}\lambda^{*}(I_{i})=\sum_{i\in\N}\abs{I_{i}}
+    \end{equation*}
+    Lo anterior es una contradicción, lo que prueba la afirmación.
     \vspace{4mm}
 
     \noindent Sea $\Pi$ una partición de $[a,b]$, por lo probado anteriormente, para todo $i$ se
