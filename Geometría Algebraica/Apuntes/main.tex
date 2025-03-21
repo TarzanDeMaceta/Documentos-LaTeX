@@ -1,0 +1,472 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{14cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Profesor: Giancarlo Urzúa -- Estudiante: Benjamín Mateluna}
+\end{minipage}
+\vspace{1ex}
+
+{\centerline{\bf Geometría Algebraica - MAT2824}
+\centerline{\bf Apuntes}}
+\centerline{\bf 06 de Marzo de 2025}
+
+\newpage
+\tableofcontents
+
+\newpage
+\section*{Introducción}
+\phantomsection
+\addcontentsline{toc}{section}{Introducción}
+
+\noindent Habrán tres evaluaciones (I1, I2, I3) cada una vale un $20\%$ y un examen (EX) que vale 
+un $40\%$. Las fechas son, 9 de abril, 14 de Mayo, 11 de Junio y 1 de Julio respectivamente.
+
+\newpage
+\section{Conjuntos Algebraicos afines}
+\subsection{Preliminares algebraicos}
+\noindent Sea $R$ un anillo conmutativo con $+,\cdot$ y con $1\neq0$. Si $R,R'$ son anillos, un 
+morfismo de anillos es una función $f:R\to R'$ que respeta $+,\cdot$ y $f(1_{R})=1_{R'}$. Un 
+dominio $R$ es un anillo en donde $xy=xz$ implica que $y=z$ para todo $x\neq0$.
+\vspace{4mm}
+
+\noindent\textbf{Ejemplo} $\Z$ es dominio, pero $\Z/6$ no lo es.
+\vspace{4mm}
+
+\noindent Un cuerpo es un dominio donde todo $x\neq0$ tiene un inverso. Dado $R$ dominio, existe el
+cuerpo de fracciones $K$ tal que $R\subseteq K$. Dado $R$ anillo, sea $R[x]$ el anillo de 
+polinomios con coeficientes en $R$, sus elementos tienen la forma
+
+\begin{equation*}
+    f(x)=a_{0}+a_{1}x+\cdots+a_{d}x^{d}\text{ , }a_{d}\neq0
+\end{equation*}
+
+\noindent y decimos que $f$ tiene grado $d$ denotado por $gr(f)$. Se define de manera recursiva
+$R[x_{1},\cdots,x_{n}]=R[x_{1},\cdots,x_{n-1}][x_{n}]$ el anillo de polinomios en $n$ variables.
+Dado $f=\alpha\cdot x_{1}^{\lambda_{1}}\cdots x_{n}^{\lambda_{n}}$ su grado se define como 
+$gr(f)=\sum_{i=1}^{n}\lambda_{i}$, para $f$ en general, definimos su grado como 
+$gr(f):=max\{\text{grados de monomios}\}$. Dado $f\in R[x_{1},\cdots,x_{n}]$ y $d=gr(f)$ entonces
+
+\begin{equation*}
+    f=F_{0}+F_{1}+\cdots+F_{d}\text{ , con }F_{i}\text{ homogeneos, esto es, }
+    F_{i}(\lambda x_{x_{1}},\cdots,\lambda x_{n})=\lambda^{i}F(x_{1},\cdots,x_{n})
+\end{equation*}
+
+\noindent Si $f\in R[x]$ una raíz (cero) de $f$ es un $r\in R$ tal que $f(r)=0$.
+
+\begin{teo}
+    Se tiene que $r$ es cero si y solo si $f(x)=(x-r)g(x)$ para algún $g\in R[x]$.
+\end{teo}
+
+\noindent Un cero de $f(x_{1},\cdots,x_{n})$ es un $(a_{1},\cdots,a_{n})\in\R^{n}$ tal que 
+$f(a_{1},\cdots,a_{n})=0$.
+\vspace{4mm}
+
+\noindent Decimos que $r\in R$ es irreductible si toda descomposición $r=ab$ con $a,b\in R$ se 
+tiene que $a$ o $b$ es una unidad. Un anillo $R$ se dice dominio de factorización unica si todo 
+elemento no nulo se puede factorizar de manera esencialmente unica en producto de irreductibles.
+
+\begin{lema}
+    Si $R$ es dominio de factorización unica entonces $R[x]$ es dominio de factorización unica.
+\end{lema}
+
+\begin{lema}
+    Si $R$ es un dominio de factorización unica y $K$ su cuerpo de fracciones. 
+Dado $f\in R[x]$ irreductible entonces $f$ es irreductible en $K[x]$.
+\end{lema}
+
+\noindent Sea $R$ un anillo. Un ideal $I\subset R$ es tal que si $a,b\in I$ entonces $a+b\in I$ y
+si $r\in R$ entonces $ra\in I$. Consideramos la función $\pi:R\to R/I$ donde $R/I$ es el anillo 
+cociente que es conmutativo. Un ideal es maximal si y solo si $R/I$ es cuerpo.
+
+\begin{teo}
+    Sea $R$ un dominio euclideano (se cumple algoritmo de la división) y $a,b\in R$, consideremos
+    $mcd(a,b)=d$. Entonces existen $c,e\in R$ tales que $ac+be=d$.
+\end{teo}
+
+\begin{teo}
+    Si $F$ es un polinomio homogeneo de grado $d$, entonces
+    \begin{equation*}
+        dF=x_{1}F_{x_{1}}+\cdots+x_{n}F_{x_{n}}
+    \end{equation*}
+    donde $F_{x_{i}}$ es la derivada formal con respecto a $x_{i}$.
+\end{teo}
+
+\subsection{Espacio Afín y Conjuntos Algebraicos}
+\begin{dfn}
+Sea $k$ un cuerpo. El espacio afín de dim $n$ es $\A_{k}^{n}:=k^{n}$ (generalmente se supondra
+que $k=\overline{k}$).
+\end{dfn}
+
+\begin{dfn}
+    Una hipersuperficie de $\A_{k}^{n}$ es $V(F)=\{p\in\A_{k}^{n}:F(p)=0\}$ para un 
+    $F\in k[x_{1},\cdots,x_{n}]$.
+\end{dfn}
+
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Sea $k=\R$ consideramos la hipersuperficie $V(y^{2}-x^{2}(x+1))\subseteq\A_{\R}^{2}$ 
+    (foto)
+
+    El punto $(0,0)$ se llama nodo.
+    \item Veamos la hipersuperficie $V((x^{3}-y^{3})(y^{3}-1)(x^{3}-1))\subseteq\A_{\C}^{2}$.
+    \item La hipersuperficie $V(x^{2}+y^{2}-z^{2})\subseteq\A_{\R}^{3}$ es conocida como cono
+    (foto)
+
+    Como en el primer ejemplo, el punto $(0,0)$ se llama nodo
+    \item Consideremos $V(y^{2}-x^{3})\subseteq\A_{\R}^{2}$ (foto)
+    
+    En este caso, el punto $(0,0)$ no es un nodo, en este caso se llama cuspide.
+    \item Veamos el caso de una hipersuperficie no parametrizable, esta es 
+    $V(y^{2}-x(x+1)(x+\lambda))$.
+\end{itemize}
+
+\begin{dfn}
+    Sea $S\subseteq k[x_{1},\cdots,x_{n}]$ un conjunto arbitrario, se define 
+    \begin{equation*}
+        V(S):=\{p\in\A_{k}^{n}:F(p)=0\hspace{4mm}\forall F\in S\}=\bigcap_{F\in S} V(F)
+    \end{equation*}
+    y se dice que es un conjunto algebraico afín.
+\end{dfn}
+
+\noindent Propiedades de un conjunto algebraico afín:
+\begin{enumerate}
+    \item Sea $I=\gen{S}=\left\{\ds\sum_{i=1}^{n}a_{i}s_{i},a_{i}\in k\right\}$, entonces 
+    $V(I)=V(S)$.
+    \begin{dem}
+        Veamos que $V(I)\subseteq V(S)$, si $p\in V(I)$, como $S\subseteq I$ se sigue que 
+        $p\in V(S)$. Para $V(S)\subseteq V(I)$ notemos que dado $f\in I$ se tiene que 
+        $f=\sum a_{i}s_{i}$, luego si $p\in V(S)$ vemos que $f(p)=\sum a_{i}s_{i}(p)=0$.
+    \end{dem}
+
+    \item Sea $\{I_{\alpha}\}$ una colección de ideales, entonces 
+    $V(\bigcup_{\alpha}I_{\alpha})=\bigcap_{\alpha}V(I_{\alpha})$.
+    \item Si $I\subseteq J$ se sigue que $V(J)\subseteq V(I)$.
+    \item Sean $F,G\in k[x_{1},\cdots,x_{n}]$, se tiene que $V(FG)=V(F)\cup V(G)$.
+    \item Tenemos las siguientes dos identidades $V(1)=\emptyset$ y $V(0)=\A_{k}^{n}$.
+    
+    \textbf{observación:} Lo anterior es valido si $k$ es algebraicamente cerrado, de lo 
+    contrario, si consideramos $\A_{\R}^{1}$ vemos que $V(x^{2}+1)=\emptyset$.
+\end{enumerate}
+
+\subsection{Ideal de un conjunto}
+\begin{dfn}
+    Sea $X\subseteq\A_{k}^{n}$ un conjunto arbitrario. Se define el ideal de $X$ como
+    \begin{equation*}
+        I(X):=\left\{F\in k[x_{1},\cdots,x_{n}]:F(p)=0\hspace{4mm}\forall p\in X\right\}
+    \end{equation*}
+\end{dfn}
+
+\noindent\textbf{observación:} Notemos que si $F^{m}\in I(X)$ entonces $F\in I(X)$. Un ideal con
+esta propiedad se dice radical.
+\vspace{4mm}
+
+\noindent Propiedades del ideal de un conjunto:
+\begin{enumerate}
+    \item Si $X\subseteq Y$ se tiene que $I(Y)\subseteq I(X)$.
+    \item Se tiene lo siguiente $I(\emptyset)=k[x_{1},\cdots,x_{n}]$ y $I(\A_{k}^{n})=\{0\}$.
+    Además, si $k$ es un cuerpo infinito, se tiene que $I(\{a_{1},\cdots,a_{n}\})=
+    (x_{1}-a_{1},\cdots,x_{n}-a_{n})$.
+\end{enumerate}
+
+\subsection{El Teorema de la Base de Hilbert}
+\begin{teo}
+    Todo conjunto algebraico corresponde a la intersección finita de hipersuperficies.
+\end{teo}
+
+\begin{dem}
+    Sea $V(I)$ el conjunto algebraico para algún ideal $I\subseteq k[x_{1},\cdots,x_{n}]$. 
+    Basta con probar que $I$ es finitamente generado, en tal caso $I=(F_{1},\cdots,F_{r})$, 
+    entonces $V(I)=V(F_{1},\cdots,F_{r})=V(F_{1})\cap\cdots\cap V(F_{r})$.
+\end{dem}
+
+\begin{teo}
+    Si $R$ es un anillo Noetheriano, entonces $R[X]$ es un anillo Noetheriano.
+\end{teo}
+
+\begin{dem}
+    Sea $I\subseteq R[X]$ un ideal. Dado $F=a_{0}+a_{1}x+\cdots+a_{d}x^{d}$ con $a_{d}\neq0$
+    decimos que $a_{d}$ es el término líder de $F$ denotado por $l(F)$. Sea
+    
+    \begin{equation*}
+        \J:=\{r\in R:r \text{ es término líder de algún } F\in I\}\cup\{0\}
+    \end{equation*}
+    Afirmamos que $\J$ es ideal, en efecto, sean $l(F),l(G)\in\J$, supongamos sin perdida de 
+    generalidad que $gr(F)\leq gr(G)$, luego
+    
+    \begin{equation*}
+        Fx^{gr(G)-deg(F)}+G=H
+    \end{equation*}
+    donde $l(H)=l(F)+l(G)$. Es claro que $r\cdot l(F)\in\J$ con $r\in R$. Por hipotesis existen 
+    $F_{1},\cdots,F_{r}\in I$ tales que $\J=(l(F_{1}),\cdots,l(F_{r}))$. Sea $N>gr(F_{i})$ para
+    todo $1\leq i\leq r$. Para cada $m\leq N$ definimos
+
+    \begin{equation*}
+        \J_{m}:=\{r\in R:r\text{ es término líder de }F\in I\text{ y }gr(F)\leq m\}
+    \end{equation*}
+    Notemos que los $\J_{m}$ son ideales en $R$, por ende, son finitamente generados, es decir
+    $\J_{m}=(l(F_{m,j}))$. Consideremos el ideal $I'=\gen{F_{m,j}, F_{i}}$, afirmamos que $I'=I$.
+    Claramente se tiene que $I'\subset I$. Supongamos, por contradicción, que $I'\neq I$, sea 
+    $G\in I'\setminus I$ de menor grado. Tenemos dos consideramos
+
+    \begin{enumerate}
+        \item Veamos cuando $gr(G)>N$, existen polinomios $Q_{i}\in R[X]$ tal que $G$ y 
+        $\sum Q_{i}F_{i}$ tienen el mismo coeficiente líder. Luego $G-\sum Q_{i}F_{i}\in I'$ pues
+        tiene menor grado que $G$, se sigue que $G\in I'$.
+
+        \item El resultado para $gr(G)\leq N$ se obtiene del mismo modo, usando esta vez los 
+        $F_{m,j}$.
+    \end{enumerate}
+\end{dem}
+
+\noindent\textbf{Ejemplo:} Sea $(0,0)\in\A_{\R}^{2}$, entonces $\{(0,0)\}=V(x^{2}+y^{2})$. Pero en
+$\C$ tenemos que $\{(0,0)\}\neq V(F)$ para ningún $F\in k[x,y]$.
+
+\subsection{Componentes Irreducibles en un Conjunto Algebraico}
+
+\begin{dfn}
+    Un conjunto algebraico $V$ se dice reducible si $V=V_{1}\cup V_{2}$ con $V_{i}$ conjunto
+    conjunto algebraico y distinto de $V$.
+\end{dfn}
+
+\noindent\textbf{Observación: } Un punto es un conjunto algebraico irreducible, lo que implica que
+cualquier conjunto finito es algebraico y reducible.
+
+\noindent\textbf{Ejemplos: }
+\begin{itemize}
+    \item Notemos que $V(xy)=V(x)\cup V(y)$, es decir $V(xy)$ es reducible.
+    \item Consideremos el espacio afín $\A_{\R}^{1}$, entonces el conjunto algebraico 
+    $V((x^{2}+1)x)=\{0\}$ es irrducible.
+\end{itemize}
+
+\begin{prop}
+    Un conjunto algebraico $V$ es irrducible si y solo si el ideal $I(V)$ es primo.
+\end{prop}
+
+\begin{dem}\hspace{1mm}
+    \begin{itemize}
+        \item $\Rightarrow|$ Supongamos que $I(V)$ no es primo, entonces existen $F_{1},F_{2}$ 
+        polinomios tales que $F_{1}\cdot F_{2}\in I(V)$ y $F_{1},F_{2}\notin I(V)$. Afirmamos que
+        $V=(V\cap V(F_{1}))\cup(V\cap V(F_{2}))$. Sea $p\in V$, entonces $F_{1}(p)\cdot F_{2}(p)=0$
+        lo que implica que $p\in(V\cap V(F_{1}))\cup(V\cap V(F_{2}))$, además 
+        $V\cap V(F_{i})\neq V$ ya que existe $q_{i}$ tal que $F_{i}(q_{i})\neq 0$.
+
+        \item $\Leftarrow|$ Supongamos que $V$ es reducible. Luego $V=V_{1}\cup V_{2}$ con 
+        $V_{i}\neq V$. Entonces existe un polinomio $F_{i}$ tal que $F_{i}(p)=0$ para todo 
+        $p\in V_{i}$, pero no para todo punto en $V$. Notemos que $F_{1}\cdot F_{2}\in I(V)$, 
+        sin embargo, $F_{i}\notin I(V)$.
+    \end{itemize}
+\end{dem}
+
+\begin{dfn}
+    Una variedad afín $V$ es un conjunto algebraico afín irreducible.
+\end{dfn}
+
+\begin{lema}
+    Sea $R$ un anillo, las siguientes afirmaciones son equivalentes:
+    \begin{enumerate}
+        \item $R$ es Noetheriano.
+        \item Si  $\mathcal{C}$ es una colección no vacía de ideales en $R$, entonces
+        $\mathcal{C}$ tiene un elemento maximal, es decir, existe $I\in\mathcal{C}$ que no está 
+        contenido en otro ideal de $\mathcal{C}$.
+        \item Toda cadena ascendente de ideales en $R$ se estabiliza.
+    \end{enumerate}
+\end{lema}
+
+\begin{dem} \hspace{1mm}
+    \begin{itemize}
+        \item (a) $\Rightarrow$(b) $|$ Necesitamos usar el axioma de elección. Sea $\mathcal{C}$
+        una colección de ideales en $R$, para cada subconjunto no vacío de $\mathcal{C}$ elegimos
+        un ideal. Sea $I_{0}$ el ideal escogido para $\mathcal{C}$, definimos el conjunto
+
+        \begin{equation*}
+            \mathcal{C}_{1}:=\{I\in\mathcal{C}:I_{0}\subset I\}
+        \end{equation*}
+        Si $\mathcal{C}_{1}=\emptyset$ entonces $I_{0}$ es el ideal maximal. Si no, repetimos el
+        proceso. Sea $I\in\mathcal{C}_{1}$ el escogido, definimos
+
+        \begin{equation*}
+            \mathcal{C}_{2}:=\{I\in\mathcal{C}_{2}:I_{1}\subset I\}
+        \end{equation*}
+        Es suficiente demostrar que existe $n$ tal que $\mathcal{C}_{n}=\emptyset$. Sea 
+        $I=\bigcup_{n=0}^{\infty}I_{n}$ es ideal, además, notemos que $I_{n}\subset I_{n+1}$. 
+        Como $R$ es Noetheriano, entonces $I=(f_{1},\cdots,f_{m})$, luego existe $r$ tal que 
+        $f_{1},\cdots,f_{m}\in I_{r}$, lo que implica que $I\subseteq I_{r}$ y por lo tanto 
+        $I=I_{r}$ se sigue que $I_{r}=I_{s}$ para todo $s>r$, lo cual es una contradicción.
+
+        \item (b) $\Rightarrow$(c) $|$ Basta tomar $\mathcal{C}$ como nuestra colección de ideales
+        en $R$, luego, existe un elemento maximal.
+
+        \item (c) $\Rightarrow$(a) $|$ Sea $I\subseteq R$ un ideal. Si $I=(0)$ estamos listos, de
+        lo contrario, sea $f_{1}\in I$, entonces $(f_{1})\subseteq I$. Supongamos que 
+        $I\setminus(f_{1})\neq\emptyset$, sea $f_{2}\in I\setminus(f_{1})$, de esta manera
+        construimos una cadena ascendente de ideales
+
+        \begin{equation*}
+            (f_{1})\subset (f_{1},f_{2})\subset\cdots\subset(f_{1},\cdots,f_{n})\subset\cdots
+        \end{equation*}
+        para algun $N$ la cadena se estabiliza y por ende $(f_{1},\cdots,f_{N})=I$.
+    \end{itemize}
+\end{dem}
+
+\begin{prop}
+    Cualquier colección de conjuntos algebraicos $\{V_{i}\}_{i\in I}$ en $\A_{k}^{n}$ tiene un
+    elemento minimal.
+\end{prop}
+
+\begin{dem}
+    Dada $\{V_{i}\}_{i\in I}$ obtenemos una colección $\mathcal{C}=\{I(V_{i})\}_{i\in I}$ de
+    ideales en $k[x_{1},\cdots,x_{n}]$, el cual es Noetheriano. Luego $\mathcal{C}$ tiene un 
+    elemento maximal, digamos $I(V_{*})$, afirmamos que $V_{*}$ es el elemento minimal, de lo
+    contrario, existe $V_{i}\subseteq V_{*}$ entonces $I(V_{*})\subseteq I(V_{i})$.
+\end{dem}
+
+\begin{teo}
+    Sea $V\subseteq\A_{k}^{n}$ un conjunto algebraico. Entonces existen unicos conjuntos 
+    algebraicos irreducibles $V_{1},\cdots,V_{m}$ tales que 
+    \begin{equation*}
+        V=\bigcup_{i}^{m}V_{i}\hspace{4mm}\text{y}\hspace{4mm}V_{i}\not\subset 
+        V_{j}\hspace{4mm}\forall i\neq j
+    \end{equation*}   
+\end{teo}
+
+\begin{dem}
+    Sea $\mathcal{C}=\{V\subseteq\A_{k}^{n}\text{ conjunto algebraico}:V\text
+    { no es unión finita de irreducibles}\}$. Si $\mathcal{C}$ es vacío estamos listos. Si no lo 
+    es, sea $V\in\mathcal{C}$ minimal. Tenemos que $V$ no es irreducible, entonces 
+    $V=V_{1}\cup V_{2}$ con $V_{i}\subset V$, lo que implica que algún $V_{i}\in\mathcal{C}$ lo
+    cual es una contradicción.
+    \vspace{4mm}
+
+    \noindent Sea $V=\bigcup_{i=1}^{m}V_{i}$ con $V_{i}$ irreducibles, asumir que 
+    $V_{i}\not\subset V_{j}$ para todo $i\neq j$. Digamos que
+    
+    \begin{equation*}
+        \bigcup_{i=1}^{m}V_{i}=\bigcup_{j=1}^{s}W_{j}\hspace{4mm}\text{con}\hspace{4mm}
+        V_{i}\not\subset V_{j}\hspace{4mm}\text{y}\hspace{4mm} W_{i}\not\subset W_{j}
+        \hspace{4mm}\text{y}\hspace{4mm}V_{i},W_{j}\neq\emptyset
+    \end{equation*}
+    Notemos que $V_{1}=V_{1}\cap V=\bigcup_{j=1}^{s}(V_{1}\cap W_{j})$, como $V_{1}$ es 
+    irreducible, existe unico $j$ tal que $V_{1}=V_{1}\cap W_{j}$, es decir, 
+    $V_{1}\subseteq W_{j}$. Por otro lado, existe unico $i$ tal que $W_{j}\subseteq V_{i}$, lo que
+    implica que $V_{1}\subseteq V_{i}$ entonces $i=1$ y así $V_{1}=W_{j}$.
+\end{dem}
+
+\subsection{Conjuntos Algebraicos del Plano}
+
+\begin{lema}
+    Si $f,g\in k[x,y]$ no tienen factores en común, entonces $V(f,g)$ es un conjunto finito.
+\end{lema}
+
+\begin{dem}
+    Recordemos que $k(x)[y]$ es dominio euclideano. Por lema de gauss, $f,g$ no tienen factores en
+    común en $k(x)[y]$, entonces existen $a,b\in k(x)[y]$ tal que $af+bg=1$. Existe $r(x)$ tal que
+    
+    \begin{equation*}
+        raf+rbg=r
+    \end{equation*}
+    es una ecuación en $k[x,y]$. Sea $(p,q)\in V(f,g)$, evaluando en la ecuación anterior vemos que
+    
+    \begin{equation*}
+        0=raf(p,q)+rbg(p,q)=r(p)
+    \end{equation*}
+    por lo tanto la cantidad de valores posibles de $p$ es finita. Haciendo lo mismo para $y$ 
+    obtenemos que $q$ solo puede tomar una cantidad finita de valores.
+\end{dem}
+
+\begin{cor}
+    Si $f\in k[x,y]$ es irreducible con $\abs{V(f)}=\infty$ entonces $I(V(f))=(f)$ y $V(f)$ es 
+    irreducible.
+\end{cor}
+
+\begin{dem}
+    Si $g\in I(V(f))$, entonces $\abs{V(f,g)}=\infty$, luego, $f$ y $g$ tienen factores en común,
+    como $f$ es irreducible, entonces $f$ divide a $g$ lo que implica que $g\in(f)$. La otra
+    contención es directa.
+    \vspace{4mm}
+
+    \noindent Por otro lado, notemos que $(f)$ es primo, pues f es irreducible, así, $V(f)$ es 
+    irreducible.
+\end{dem}
+
+\begin{cor}
+    Supongamos que $k$ es infinito, entonces los conjuntos algebraicos irreducibles de $\A_{k}^{2}$
+    son: $\emptyset$, $\A_{k}^{2}$, un punto y los conjuntos $V(f)$ con $f$ irreducible y 
+    $\abs{V(f)}=\infty$.
+\end{cor}
+
+\begin{dem}
+    Sea $V$ un conjunto algebraico irreducible. Si $\abs{V}<\infty$ entonces $V=\emptyset$ o $V$
+    es un punto. Si $I(V)=(0)$ entonces $V=\A_{k}^{2}$. Supongamos que $\abs{V}=\infty$ y que
+    $(0)\subset I(V)\subset k[x,y]$. Como $I(V)$ es primo, existe un polinomio no constante e
+    irreducible tal que $f\in I(V)$.
+    \vspace{4mm}
+
+    \noindent Si $g\in I(V)$ y $g\not\in(f)$, entonces $V\subset V(f,g)$, por la proposición, esto
+    es una contradicción. De este modo, $I(V)=(f)$. Afirmamos que $V(f)=V$, en efecto, tenemos que
+    $V=V(I(V))=V(f)$.
+\end{dem}
+
+\begin{cor}
+    Supongamos que $k=\overline{k}$. Sea $f\in k[x,y]$ y sea $f=\ds\prod_{i=1}^{m}f_{i}^{\alpha_{i}}$
+    con $f_{i}$ irreducible. Entonces
+    \begin{equation*}
+        V(f)=\bigcup_{i=1}^{m}V(f_{i})
+    \end{equation*}
+    es su descomposición en irreducibles y además $I(V(f))=(f_{1},\cdots,f_{m})$.
+\end{cor}
+
+\begin{dem}
+    Como $f_{i},f_{j}$ son coprimos no hay inclusiones entre $V(f_{i})$ y $V(f_{j})$, de lo 
+    contrario si existen $i\neq j$ tales que $V(f_{i})\subset V(f_{j})$, entonces
+    \begin{equation*}
+        (f_{i})=I(V(f_{i}))\supset I(V(f_{j}))=(f_{j})
+    \end{equation*}
+    lo cual es una contradicción. Luego,
+    \begin{equation*}
+        I(V(f))=I\left(\bigcup V(f_{i})\right)=\bigcap I(V(f_{i}))=\bigcap(f_{i})=
+        (f_{1}\cdots f_{m})
+    \end{equation*}
+\end{dem}
+
+\subsection{Nullstellensatz de Hilbert}
+Como premisa supondremos que $k=\overline{k}$.
+
+\begin{teo}
+    Sea $I\subset k[x_{1},\cdots,x_{n}]$ un ideal, entonces $V(I)\neq\emptyset$.
+\end{teo}
+
+\begin{dem}
+    Podemos suponer que $I$ es maximal. En efecto, recordemos que todo ideal esta contenido en un
+    ideal maximal, digamos $M$, entonces $V(M)\subseteq V(I)$. Como $I$ es maximal, esto equivale
+    a que $k[x_{1},\cdots,x_{n}]/I\supset k$ es cuerpo. Como $k$ es algebraicamente cerrado,
+    podemos asumir que $k[x_{1},\cdots,x_{n}]/I=k$.
+    \vspace{4mm}
+
+    \noindent Así, cada variable $x_{i}$ puede ser identificada por un elemento en $k$ digamos
+    $a_{i}$, lo que implica que $x_{i}-a_{i}$ es igual $0$ bajo el cociente, se sigue que 
+    $x_{i}-a_{i}\in I$, luego $I=(x_{1}-a_{1},\cdots,x_{n}-a_{n})$.
+\end{dem}
+
+De la demostración surge una pregunta, ¿Por que $k[x_{1},\cdots,x_{n}]/I=k$? El siguiente lema lo
+responde
+
+\begin{lema}
+    Sea $K\subset L$ una extensión de cuerpo tal que $L$ es finitamente generado como $k$-algebra.
+    Entonces $L$ es finitamente generado como $k$-módulo.
+\end{lema}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}

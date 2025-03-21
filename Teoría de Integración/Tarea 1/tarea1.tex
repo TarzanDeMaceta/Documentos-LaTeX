@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{14cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Profesor: Gregorio Moreno -- Estudiante: Benjamín Mateluna}
+\end{minipage}
+\vspace{1ex}
+
+{\centerline{\bf Teoría de Integración - MAT2534}
+\centerline{\bf Tarea 1}}
+\centerline{\bf 02 de Abril de 2025}
+
+\section*{Problema 1}
+\noindent Por definición de infimo, dado $\varepsilon>0$, existe una partición $\Pi_{\varepsilon}$ 
+de $[a,b]$ tal que $U(f,\Pi_{\varepsilon})<\mathcal{U}+\varepsilon$. Consideremos la colección
+$\left(\Pi^{*}_{n}\right)_{n}$ de particiones de $[a,b]$ tales que
+\begin{equation*}
+    U(f,\Pi^{*}_{n})<\mathcal{U}+\frac{1}{n}
+\end{equation*}
+Definimos la partición
+\begin{equation*}
+    \Pi_{n}:=\bigcup_{i=1}^{n}\Pi^{*}_{i}
+\end{equation*}
+Notemos que $\Pi_{n}$ es un refinamiento de $\Pi^{*}_{n}$, luego $U(f,\Pi_{n})\leq 
+U(f,\Pi^{*}_{n})$, por teorema del sandwich vemos que
+\begin{equation*}
+    \lim_{n\to\infty}U(f,\Pi_{n})=\mathcal{U}
+\end{equation*}
+Además, por construcción $\Pi_{n+1}$ es un refinamiento de $\Pi_{n}$ y por lo tanto $U(f,\Pi_{n+1})
+\leq U(f,\Pi_{n})$.
+
+\section*{Problema 2}
+\begin{enumerate}
+    \item Sea $\varepsilon>0$, como $f$ es integrable, existe una partición $\Pi$ del intervalo 
+    $[a,b]$ tal que
+    
+    \begin{equation*}
+        U(f,\Pi)-L(f,\Pi)<\varepsilon
+    \end{equation*}
+    Veamos que
+
+    \begin{align*}
+        U(\abs{f},\Pi)-L(\abs{f},\Pi) &= \sum \left(\sup_{x\in I_{i}}\abs{f(x)}-
+        \inf_{x\in I_{i}}\abs{f(x)}\right)\abs{I_{i}}=\sum \left(\sup_{x,y\in I_{i}}
+        \abs{\abs{f(x)}-\abs{f(y)}}\right)\abs{I_{i}}\\
+        & \leq\sum \left(\sup_{x,y\in I_{i}}\abs{f(x)-f(y)}\right)\abs{I_{i}}
+        =\sum \left(\sup_{x\in I_{i}}f(x)-\inf_{x\in I_{i}}f(x)\right)\abs{I_{i}} \\
+        & =U(f,\Pi)-L(f,\Pi)<\varepsilon
+    \end{align*}
+    Por lo tanto $\abs{f}$ es Riemann-integrable. Por otro lado sabemos que $f\leq\abs{f}$ y 
+    $-f\leq\abs{f}$, luego, dada una partición $\Pi$ de $[a,b]$ se sigue que
+    
+    \begin{equation*}
+        U(f,\Pi)\leq U(\abs{f},\Pi)\hspace{4mm}\text{y}\hspace{4mm}L(-f,\Pi)\leq L(\abs{f},\Pi)
+    \end{equation*}
+    Aplicando $\inf$ a la izquierda, $\sup$ a la derecha y usando que $-\inf x=\sup -x$, tenemos 
+    lo siguiente
+
+    \begin{equation*}
+        \int_{a}^{b}f(x)dx\leq\int_{a}^{b}\abs{f(x)}dx\hspace{4mm}\text{y}\hspace{4mm}
+        -\int_{a}^{b}f(x)dx\leq\int_{a}^{b}\abs{f(x)}dx
+    \end{equation*}
+    Concluimos que
+    
+    \begin{equation*}
+        \abs{\int_{a}^{b}f(x)dx}\leq\int_{a}^{b}\abs{f(x)}dx
+    \end{equation*}
+
+    \item En primer lugar, demostraremos que dado un conjunto $E\subseteq[a,b]$ de medida nula, 
+    entonces $E^{c}$ es denso en $[a,b]$. En efecto, sea $x\in E$ y $U$ una vecindad conexa de $x$ 
+    de largo $\varepsilon>0$. Supongamos, por contradicción, que no existe un punto de $E^{c}$ en 
+    $U$, luego $\varepsilon=\abs{U}\leq\ds\sum_{i\in\N}\abs{I_{i}}$ con $(I_{i})_{i\in\N}$ una colección
+    tal que
+    \begin{equation*}
+        \sum_{i\in\N}\abs{I_{i}}<\varepsilon
+    \end{equation*}
+    que existe pues $E$ es de medida nula. Lo anterior es una contradicción, lo que prueba la
+    afirmación.
+    \vspace{4mm}
+
+    \noindent Sea $\Pi$ una partición de $[a,b]$, por lo probado anteriormente, para todo $i$ se
+    tiene que existe $\overline{x_{i}}\in E^{c}$ tal que $\overline{x_{i}}\in[x_{i-1},x_{i}]$. De
+    este modo, para cada partición $\Pi$ de $[a,b]$, escojemos el conjunto de representantes 
+    $\overline{C}=\{\overline{x_{i}}\}_{i}$, entonces
+    \begin{equation*}
+        S(f,\Pi,C)=\sum_{i}f(\overline{x_{i}})(x_{i}-x_{i-1})=0
+    \end{equation*}
+    Como $f$ es Riemann integrable, se sigue que
+    \begin{equation*}
+        \int_{a}^{b}f(x)dx=\lim_{\abs{\Pi}\to0}S(f,\Pi,C)=\lim_{\abs{\Pi}\to0}0=0
+    \end{equation*}
+\end{enumerate}
+
+\section*{Problema 3}
+
+\section*{Problema 4}
+\begin{itemize}
+    \item (a) Dado $\varepsilon>0$, notemos que un cubrimiento de $\{a\}$ es $(a,a+\varepsilon]$,
+    luego
+    \begin{equation*}
+        \mu^{*}_{F}(\{a\})\leq\tau_{F}((a,a+\varepsilon])=F(a+\varepsilon)-F(a)
+    \end{equation*}
+    tomando límite por la derecha y usando que $F$ es continua por la derecha se tiene que 
+    $\mu^{*}_{F}(\{a\})\leq0$, y por lo tanto $\mu^{*}_{F}(\{a\})=0$.
+
+    \item (c)
+
+    \item (b) Usando monotonía de la medida exterior vemos que 
+    $F(b)-F(a)=\mu^{*}_{F}((a,b])\leq\mu^{*}_{F}([a,b])$, por otro lado, como $\mu^{*}_{F}$ es
+    subaditiva se tiene que
+    \begin{equation*}
+        \mu^{*}_{F}([a,b])=\mu^{*}_{F}(\{a\}\cup(a,b])\leq\mu^{*}_{F}(\{a\})+\mu^{*}_{F}((a,b])
+        =F(b)-F(a)
+    \end{equation*}
+\end{itemize}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}

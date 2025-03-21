@@ -1,1 +1,2 @@
-# Documentos-LaTeX
+# Documentos_LaTeX
+Esperando una redacción...

@@ -1,0 +1,539 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{14cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Profesor: Pedro Gaspar -- Estudiante: Benjamín Mateluna}
+\end{minipage}
+\vspace{1ex}
+
+{\centerline{\bf Geometría Diferencial - MAT2860}
+\centerline{\bf Apuntes}}
+\centerline{\bf 06 de Marzo de 2025}
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{Introducción}
+\subsection{Evaluaciones}
+Habrán tres interrogaciones (I1, I2, I3) cada una vale un $25\%$ y un examen (EX) que vale un 
+$25\%$. Las fechas son 14 de abril, 19 de Mayo, 16 de Junio y 3 de Julio respectivamente.
+
+\newpage
+\section{Curvas en \texorpdfstring{$\R^{n}$}{}}
+\subsection{Curvas parametrizadas}
+\noindent Consideramos $\R^{n}:=\{v=(v_{1},\cdots,v_{n}):v_{i}\in\R\}$. Un espacio vectorial sobre 
+$\R$ de dimensión n, con el producto escalar dado por
+\begin{equation*}
+    \ip{v}{w}=\ds\sum_{i=1}^{n}v_{i}w_{i}\hspace{4mm}\text{con }v,w\in\R^{n}
+\end{equation*}
+
+\begin{dfn}
+    Una curva parametrizada en $\R^{n}$ es una función continua $\alpha:I\subseteq\R\to\R^{n}$ con 
+    $I$ un intervalo abierto. Escribimos $\alpha(t)=(\alpha_{1}(t),\cdots,\alpha_{n}(t))$.
+\end{dfn}
+
+\noindent Diremos que $\alpha$ es diferenciable si sus funciones coordenadas 
+$\alpha_{i}\in\mathcal{C}^{\infty}$. En tal caso, el vector 
+$\alpha'(t)=(\alpha_{1}'(t),\cdots,\alpha_{n}'(t))$ se llama vector tangente a la curva $\alpha$ en
+$t\in I$
+
+\begin{dfn}
+    La traza de una curva parametrizada $\alpha:I\subseteq\R\to\R^{n}$ es $\alpha(I)=im(\alpha)$.
+\end{dfn}
+
+\noindent\textbf{Ejemplos}
+\begin{enumerate}
+    \item Si $p,v\in\R^{n}$ con $v\neq0$, la curva parametrizada $\alpha(t)=tv+p$ con $t\in\R$ 
+    que describe una recta que pasa por $p=\alpha(0)$ con vector tangente $\alpha'(t)=v$.
+    \item Sea $\beta:\R\to\R^{3}$ dada por $b(t):=t^{3}\cdot\overrightarrow{e}_{1}$ es una curva
+    parametrizada diferenciable con $\beta'(t)=3t^{2}\cdot\overrightarrow{e}_{1}$.
+    \item Sea $p\in\R^{2}$ y $r>0$ consideramos $\alpha(t)=(rcos(t),rsen(t))+p$, una curva
+    parametrizada diferenciable cuya traza es $\alpha(\R)=\{(x,y)\in\R^{2}:\abs{(x,y)}{p}=r\}$
+    \item Sean $a,b\in\R\setminus{\{0\}}$. La curva parametrizada $\alpha:\R\to\R^{3}$ dada por
+    $\alpha(t)=(acos(t),asen(t),bt)$ con $t\in\R$ se llama una helice circular. 
+    Además $\alpha'(t)=(-asen(t),acos(t),b)$.
+    \item Sea $\alpha:\R\to\R^{2}$ dada por $\alpha(t)=(t^{3}-4t,t^{2}-4)$ es una curva 
+    parametrizada diferenciable con $\alpha(-2)=\alpha(2)=0$, pero $\alpha'(-2)\neq\alpha(2)$.
+\end{enumerate}
+
+\subsection{Longitud y Parametro de Arco}
+\noindent Sea $\alpha:I\subseteq\R\to\R^{n}$ una curva parametrizada, consideremos $[a,b]\subseteq I$.
+Buscamos medir la longitud de $\alpha([a,b])$. Una estrategia, dada una partición $P:=\{a=t_{0}
+<t_{1}<\cdots<t_{n}=b\}$ de $[a,b]$ calculamos
+
+\begin{equation*}
+    \ds\sum_{i=1}^{k}\abs{\alpha(t_{i})-\alpha(t_{i-1})}=:L_{a}^{b}(\alpha,P)
+\end{equation*}
+
+\noindent esta suma corresponde a la longitud de una curva poligonal que pasa por los puntos 
+$\alpha(t_{i})$. Si $Q\supseteq P$ es otra partición de $[s,b]$, entonces 
+$L_{a}^{b}(\alpha,Q)\geq L_{a}^{b}(\alpha,P)$.
+
+\begin{dfn}
+    La longitud de una curva parametrizada $\alpha$ sobre $[a,b]\subseteq I$ es
+    \begin{equation*}
+        L_{a}^{b}(\alpha)=sup\{L_{a}^{b}(\alpha,P):P\text{ es partición de }[a,b]\}.
+    \end{equation*}
+\end{dfn}
+
+\noindent Si $\alpha$ es diferenciable sobre $[a,b]$ y hacemos $\abs{P}=max\{t_{i}-t_{i-1}\}$ muy
+pequeña, esperariamos que $\abs{\alpha(t_{i})-\alpha(t_{i-1})}\approx
+\abs{\alpha'(\overline{t_{i}})}(t_{i}-t_{i-1})$.
+
+\begin{prop}
+    Si $\alpha:I\subseteq\R\to\R^{n}$ es una curva parametrizada diferenciable sobre $[a,b]
+    \subseteq I$, entonces 
+    \begin{equation*}
+        L_{a}^{b}(\alpha)=\int_{a}^{b}\abs{\alpha'(t)}dt
+    \end{equation*}
+    (Para la demostración revisar Montiel-Ros, página 5)
+\end{prop}
+
+\begin{cor}
+    Tenemos que $\abs{\alpha(a)-\alpha(b)}\leq L_{a}^{b}(\alpha)$.
+\end{cor}
+
+\begin{cor}
+    Si $F:\R^{n}\to\R^{n}$ cumple $\abs{DF(p)v}=\abs{v}$ para todo $p,v\in\R^{n}$, entonces
+    $L_{a}^{b}(F\circ\alpha)=L_{a}^{b}(\alpha)$.
+\end{cor}
+
+\noindent De hecho, $F\circ\alpha: I\to\R^{n}$ es una curva parametrizada diferenciable, con
+
+\begin{equation*}
+    \abs{(F\circ\alpha)'(t)}=\abs{DF(\alpha(t))\alpha'(t)}=\abs{\alpha'(t)}
+\end{equation*}
+
+\noindent para todo $t\in I$, basta con integrar sobre $[a,b]$. Si $p_{0}\in\R^{n}$ y 
+$A:\R^{n}\to\R^{n}$ es una transformación lineal ortogonal , esto es, $\ip{Au}{Av}=\ip{u}{v}$ 
+para todo $u,v\in\R^{n}$, entonces $F:\R^{n}\to\R^{n}$ dada por $F(p)=Ap+p_{0}$ cumple
+
+\begin{equation*}
+    DF(p)v=\dv{}{t}F(p+tv)\big|_{t=0}=\dv{}{t}(A(p+tv)+p_{0})\big|_{t=0}=Av
+\end{equation*}
+
+\noindent Por lo tanto $\abs{DF(p)v}=\abs{Av}=\abs{v}$.
+
+\begin{cor}
+    Si $h:J\subseteq\R\to I\subseteq\R$ es un difeomorfismo y $\alpha: I\to\R$ es una curva 
+    parametrizada diferenciable, entonces
+    \begin{equation*}
+        L_{a}^{b}(\alpha\circ h)=L_{c}^{d}(\alpha)
+    \end{equation*}
+    donde $h([a,b])=[c,d]$ para todo $[a,b]\subseteq J$.
+\end{cor}
+
+\noindent Por regla de la cadena tenemos que $(\alpha\circ h')(t)=h'(t)\alpha'(h(t))$. La curva 
+$\alpha\circ h$ tiene la misma traza que $\alpha$, en efecto $(\alpha\circ h)(J)=\alpha(h(J))=
+\alpha(I)$. Decimos que $\alpha\circ h$ es una reparametrización de la curva $alpha$.
+
+\begin{dem}
+    Como $h$ y $h^{-1}$ son diferenciables, se tiene que $h'(t)\neq0$ para todo $t\in J$. Veamos
+    que
+    \begin{equation*}
+        1=\dv{}{t}(t)=(h^{-1}\circ h)'(t)=(h^{-1})'(h(t))h'(t)
+    \end{equation*}
+    Luego como J es un intervalo y $h'$ es continua, tenemos que $h'<0$ o $h>0$.
+    \begin{itemize}
+        
+        \item Si $h'<0$, entonces $h(a)=c$, $h(b)=d$,
+        \begin{equation*}
+            \int_{a}^{b}\abs{(\alpha\circ h)'(t)}dt=\int_{a}^{b}\abs{\alpha'(h(t))}\abs{h'(t)}dt=
+            \int_{c}^{d}\abs{\alpha'(s)}ds=L_{c}^{d}(\alpha)
+        \end{equation*}
+
+        \item Si $h'>0$, entonces $h(b)=c$, $h(a)=d$,
+        \begin{equation*}
+            \int_{a}^{b}\abs{(\alpha\circ h)'(t)}dt=\int_{a}^{b}\abs{\alpha'(h(t))}\abs{h'(t)}dt=
+            \int_{d}^{c}-\abs{\alpha'(s)}ds=\int_{c}^{d}\abs{\alpha'(s)}ds=L_{c}^{d}(\alpha)
+        \end{equation*}
+
+    \end{itemize}
+\end{dem}
+
+\begin{dfn}
+    Se dice que una curva parametrizada diferenciable $\alpha: I\subseteq\R\to\R^{n}$ es regular si
+    $\alpha'(t)\neq0$ para todo $t\in I$. Si además $\abs{\alpha'(t)}=1$ para todo $t\in I$ se dice
+    que $\alpha$ esta parametrizada por el arco.
+\end{dfn}
+
+\noindent Una curva $\alpha$ parametrizada por el arco tienen las siguientes propiedades
+
+\begin{itemize}
+    \item $\alpha'(t)$ es ortogonal a $\alpha''(t)$ para todo $t\in I$, en efecto
+    
+    \begin{equation*}
+        0=\dv{}{t}(\abs{\alpha'(t)}^{2})=\dv{}{t}(\ip{\alpha'(t)}{\alpha'(t)})=2\ip{\alpha'(t)}
+        {\alpha''(t)}
+    \end{equation*}
+
+    \item Se tiene que $L_{a}^{b}(\alpha)=\int_{a}^{b}\abs{\alpha'(t)}dt=b-a$.
+\end{itemize}
+
+\begin{teo}
+    Si $\alpha: I\to\R^{n}$ es una curva parametrizada diferenciable regular, entonces $\alpha$
+    admite una parametrización por arco. Concretamente , si $t_{0}\in I$ y definimos $s: I\to\R$ 
+    por
+    \begin{equation*}
+        s(t):=\int_{t_{0}}^{t}\abs{\alpha'(t)}dt
+    \end{equation*}
+    entonces $s$ es un difeomorfismo sobre $J\subseteq\R$ y $\alpha\circ s^{-1}:J\to\R^{n}$ esta
+    parametrizada por el arco.
+\end{teo}
+
+\begin{dem}
+    Por TFC, sabemos que $s$ es diferenciable, mas aun, $s'(t)=\abs{\alpha'(t)}$ para todo 
+    $t\in I$. Luego, $s'>0$, es decir, $s$ es creciente y $s(I)=J$ es un intervalo abierto. Además,
+    por teorema de la función inversa, vemos que
+
+    \begin{equation*}
+        (s^{-1})'(r)=\frac{1}{s'(s^{-1}(r))}=\frac{1}{\abs{\alpha'(s^{-1}(r))}}\hspace{4mm}
+        \forall r\in J
+    \end{equation*}
+
+    \noindent Por lo tanto $\abs{(\alpha\circ s^{-1})'(r)}=1$ para todo $r\in J$, luego 
+    $\alpha\circ s^{-1}$ esta parametrizada por el arco.
+\end{dem}
+
+\noindent\textbf{Ejemplos}
+\begin{enumerate}
+    \item Sea $\alpha(t)=tv+p_{0}$ con $p_{0},v\in\R^{n}$ y $v\neq0$. Como $\alpha'(t)=v$, tenemos
+    \begin{equation*}
+        s(t)=\int_{0}^{t}\abs{v}dx=t\abs{v}
+    \end{equation*}
+    entonces $\alpha\circ s^{-1}(x)=x\cdot\frac{v}{\abs{v}}+p_{0}$ es una parametrización por el
+    arco de $\alpha$.
+
+    \item Consideremos $\alpha(t)=(rcost,rsent)+p_{0}$ con $p_{0}\in\R^{2}$ y $r>0$. Como 
+    $\alpha'(t)=(-rsent,rcost)$ entonces $\abs{\alpha'(t)}=r$, tenemos que
+    \begin{equation*}
+        s(t)=\int_{0}^{t}rdx=rt
+    \end{equation*}
+    y $(\alpha\circ s^{-1})(x)=(rcos(\frac{x}{r}),rsen(\frac{x}{r}))+p_{0}$ es una curva 
+    parametrizada por el arco para $\alpha$.
+
+    \item Definimos $\alpha(t)=(acost,asent,bt)$ con $a,b\in\R\setminus\{0\}$. Como $\abs
+    {\alpha'(t)}=\sqrt{a^{2}+b^{2}}$ una curva parametrizada por el arco es
+    \begin{equation*}
+        (\alpha\circ s^{-1})(x)=\left(acos\left(\frac{x}{\sqrt{a^{2}+b^{2}}}\right),
+        asen\left(\frac{x}{\sqrt{a^{2}+b^{2}}}\right),\frac{bt}{\sqrt{a^{2}+b^{2}}}\right)
+    \end{equation*}
+\end{enumerate}
+
+\subsection{Curvatura de un Curva Regular (Teoría Local de Curvas)}
+
+\noindent\textbf{Notación:} Notamos por $\mathcal{J}$ a la función $\mathcal{J}:\R^{2}\to\R^{2}$
+dada por $\mathcal{J}(x,y)=(-y,x)$ que cumple lo siguientes
+
+\begin{itemize}
+    \item $\mathcal{J}$ es una transformación lineal ortogonal.
+    \item $\ip{u,\mathcal{J}u}=0$ y $\mathcal{J}(\mathcal{J}u)=-u$ para todo $u\in\R^{2}$.
+    \item Si $\abs{u}=1$, entonces $\{u,\mathcal{J}u\}$ es una base ortonormal positiva de 
+    $\R^{2}$.
+    \item Si $A:\R^{2}\to\R^{2}$ es una transformación lineal ortogonal, entonces 
+    $\mathcal{J}A=det(A)A\mathcal{J}$.
+\end{itemize}
+
+\noindent Nuestro objetivo es asociar a una curva parametrizada regular $\alpha: I\to\R^{n}$ una cantidad 
+geometrica, para ello queremos definir una función $K(=K_{\alpha}): I\to\R$ tal que
+\begin{enumerate}
+    \item $K$ es invariante bajo movimientos rigidos.
+    \item $K$ es invariante por parametrizaciones.
+    \item $K\equiv0$ si y solo si $\alpha$ corresponde a un segmento de recta.
+\end{enumerate}
+
+\noindent Si tenemos $\alpha: I\to\R^{2}$ una curva parametrizada por el arco, definimos por $T: I\to\R^{2}$ 
+dada por $T(s):=\alpha'(s)$ y $N: I\to\R^{2}$ como $N(s):=\mathcal{J}T(s)$. Recordemos que 
+$\{T(s),N(s)\}$ es una base ortonormal en $\R^{n}$ para cada $s\in I$ (Tiedro de Frenet).
+\vspace{4mm}
+
+\noindent Notemos que $N(s)\perp T(s)$ y $T'(s)\perp T(s)$, luego, existe un $k(s)\in\R$ tal que 
+$T'(s)=K(s)N(s)$. La función $K_{\alpha}=K: I\to\R$ se llama la curva de $\alpha$. Tomando el 
+producto con $N(s)$,
+\begin{equation*}
+    K(s)=\ip{K(s)N(s)}{N(s)}
+\end{equation*}
+Por lo tanto $K(s)=\ip{T'(s)}{N(s)}$. Por otro lado, observemos que
+\begin{equation*}
+    N'(s)=\dv{}{s}\left(\J T(s)\right)=\J\dv{}{s}(T(s))=\J(K(s)N(s))=\J(K(s)\J T(s))=-K(s)T(s)
+\end{equation*}
+
+\begin{prop}
+    Para una curva parametrizada por el arco $\alpha: I\to\R^{2}$ vale que $T'=KN$ y $N'=-KT$.
+\end{prop}
+
+\noindent\textbf{Ejemplos:}
+\begin{enumerate}
+    \item Una recta parametrizada por el arco $\alpha(s):=s\cdot \frac{v}{\abs{v}}+p_{0}$ con
+    $v\in\R^{2}\setminus\{0\}$, tenemos que
+    \begin{equation*}
+        T(s)=\frac{v}{\abs{v}}\text{ , }N(s)=\frac{\J v}{\abs{v}}=\frac{\J v}{\abs{\J v}}
+        \text{ y }K(s)=0\hspace{4mm}\forall s\in\R
+    \end{equation*}
+
+    \item Si $\alpha: I\to\R^{2}$ esta parametrizada y $K\equiv0$, entonces $T'(s)=0$ para todo
+    $s\in I$, es decir, $\alpha''(s)=0$ para todo $s\in I$. Integrando dos veces concluimos que
+    cada coordenada de $\alpha$ es una función lineal, luego $\alpha$ es un segmento de recta.
+
+    \item Sea 
+    $\alpha(s):=\left(rcos\left(\frac{s}{r}\right),rsen\left(\frac{s}{r}\right)\right)+p_{0}$,
+    entonces
+    \begin{equation*}
+        T(s)=\left(-sen\left(\frac{s}{r}\right),cos\left(\frac{s}{r}\right)\right)\text{ y }
+        N(s)=\left(-cos\left(\frac{s}{r}\right),-sen\left(\frac{s}{r}\right)\right)
+    \end{equation*}
+    Notemos que
+    \begin{equation*}
+        T'(s)=\left(-\frac{1}{r}cos\left(\frac{s}{r}\right),-\frac{1}{r}sen\left(
+        \frac{s}{r}\right)\right)=\frac{1}{r}N(s)
+    \end{equation*}
+    Por lo tanto $K(s)=\frac{1}{r}\ip{N(s)}{N(s)}=\frac{1}{r}$.
+\end{enumerate}
+
+\noindent Consideremos ahora una curva regular $\beta:\widetilde{I}\to\R^{2}$ y una reparametrización
+$\alpha=\beta\circ h: I\to\R^{2}$ parametrizada por el arco, donde $h: I\to\widetilde{I}$ es un
+difeomorfismo con $h'>0$. Con esto
+\begin{equation*}
+    \abs{\beta'(t)}=\abs{(\beta\circ h\circ h^{-1})'(t)}=\abs{(\alpha\circ h^{-1})'(t)}=
+    (h^{-1})'(t)
+\end{equation*}
+Así, definimos el diedro de Frenet de la curva $\alpha$ por
+\begin{equation*}
+    T_{\beta}(t):=\frac{\beta'(t)}{\abs{\beta'(t)}}=
+    \frac{(\alpha\circ h^{-1})'(t)}{\abs{(\alpha\circ h^{-1})'(t)}}=
+    \frac{\alpha'(h^{-1}(t))h^{-1}(t)}{\abs{\alpha'(h^{-1}(t))h^{-1}(t)}}=
+    T_{\alpha}(h^{-1}(t))
+\end{equation*}
+Por otro lado
+\begin{equation*}
+    N_{\beta}=\J T_{\beta}(t)=\J T_{\alpha}(h^{-1}(t))=N_{\alpha}(h^{-1}(t))
+\end{equation*}
+y definimos la curvatura de la curva $\beta$ por
+\begin{equation*}
+    K_{\beta}(t):=K_{\alpha}(h^{-1}(t))\text{ , }t\in\widetilde{I}
+\end{equation*}
+Como $\beta'(t)=\abs{\beta'(t)}T_{\alpha}(h^{-1}(t))$ se tiene que
+\begin{equation*}
+    \beta''=(\abs{\beta'})'T_{\alpha}\circ h^{-1}+\abs{\beta'}^{2}(T'_{\alpha}\circ h^{-1})
+\end{equation*}
+y además $N_{\alpha}\circ h^{-1}=\J T_{\beta}=\frac{\J\beta'}{\abs{\beta'}}$ se sigue que
+\begin{equation*}
+    \frac{\ip{\beta''}{\J\beta'}}{\abs{\beta'}}=
+    \ip{(\abs{\beta'})'T_{\alpha}\circ h^{-1}+\abs{\beta'}^{2}(T'_{\alpha}\circ h^{-1})}
+    {N_{\alpha}\circ h^{-1}}=\abs{\beta'}^{2}\ip{T'_{\alpha}\circ h^{-1}}{N_{\alpha}\circ h^{-1}}
+    =\abs{\beta'}^{2}K_{\alpha}\circ h^{-1}
+\end{equation*}
+Concluimos que $K_{\beta}=\frac{\ip{\beta''}{\J\beta'}}{\abs{\beta'}^{3}}$.
+
+\begin{prop}
+    Sea $\alpha: I\to\R^{2}$ una curva regular, entonces
+    \begin{enumerate}
+        \item Si $\phi:\widetilde{I}\to I$ es un difeomorfismo entonces $K_{\alpha\circ\phi}=
+        sgn(\phi')K_{\alpha}\circ\phi$.
+        
+        \item Si $F:\R^{2}\to\R^{2}$ es un movimiento rigido, entonces $K_{F\circ\alpha}=
+        (detDF)K_{\alpha}$.
+    \end{enumerate}
+\end{prop}
+
+\begin{dem} Sea $\alpha: I\to\R^{2}$ una curva regular
+    \begin{enumerate}
+        \item Como $(\alpha\circ\phi)'(t)=\phi'(t)\alpha'(\phi(t))$, se sigue que 
+        $\abs{(\alpha\circ\phi)'(t)}=\abs{\phi'(t)}\abs{\alpha'(\phi(t))}$, escrito de otro modo
+        
+        \begin{equation*}
+            \abs{(\alpha\circ\phi)}=sgn(\phi')\cdot\phi'\abs{\alpha'\circ\phi}
+        \end{equation*}
+        Luego
+        \begin{align*}
+            K_{\alpha\circ\phi} &= \frac{\ip{(\alpha\circ\phi)''}{\J(\alpha\circ\phi)'}}
+            {\abs{(\alpha\circ\phi)'}^{3}}=
+            \frac{\ip{\phi''(\alpha'\circ\phi)+(\phi')^{2}\alpha''\circ\phi}
+            {\phi'\J(\alpha'\circ\phi)}}{sgn(\phi')(\phi')^{3}\abs{\alpha'\circ\phi}^{3}} \\
+            &= \frac{(\phi')^{3}\ip{\alpha''\circ\phi}{\J\alpha'\circ\phi}}
+            {(\phi')^{3}\abs{\alpha'\circ\phi}^{3}}sgn(\phi')=sgn(\phi')K_{\alpha}\circ\phi
+        \end{align*}
+        
+        \item Sabemos que $F(p)=Ap+p_{0}$, entonces $DF=A$. Luego,
+        \begin{align*}
+            \ip{(F\circ\alpha)''}{\J(F\circ\alpha)'} &= \ip{(DF(\alpha)\alpha')'}
+            {\J(DF(\alpha)\alpha')}=\ip{(A\alpha')'}{\J(A\alpha')} \\
+            &= \ip{A\alpha''}{(detA)A\J\alpha'}=detA\ip{\alpha''}{\J\alpha'}
+        \end{align*}
+        Además $\abs{(F\circ\alpha)'}=\abs{A\alpha'}=\abs{\alpha'}$. Juntando lo anterior vemos que
+        \begin{equation*}
+            K_{F\circ\alpha}=\frac{\ip{(F\circ\alpha)''}{\J(F\circ\alpha)'}}
+            {\abs{(F\circ\alpha)'}^{3}} = detA\cdot K_{\alpha}
+        \end{equation*}
+    \end{enumerate}
+\end{dem}
+
+\begin{prop}
+    Sea $\alpha: I\to\R^{2}$ una curva parametrizada por el arco. Supongamos que existe una función
+    diferenciable $\theta: I\to\R$ tal que $T(s)=(cos(\theta(s)),sen(\theta(s)))$. Entonces 
+    $K_{\alpha}=\dv{\theta}{s}$.
+\end{prop}
+
+\begin{dem}
+    Recordemos que
+    \begin{equation*}
+        K_{\alpha}=\ip{T'_{\alpha}}{\J T_{\alpha}}=
+        \ip{\left(-\dv{\theta}{s}sen\theta,\dv{\theta}{s}cos\theta\right)}
+        {(-sen\theta,cos\theta)}=\dv{\theta}{s}\abs{(-sen\theta,cos\theta)}^{2}=\dv{\theta}{s}
+    \end{equation*}
+\end{dem}
+
+\begin{teo}
+    Sea $K: I\to\R$ una función diferenciable, entonces existe una unica curva parametrizada por 
+    el arco $\alpha: I\to\R$, salvo por movimientos rigidos, tal que $K_{\alpha}=K$.
+\end{teo}
+
+\subsection{Teoría Local de Curvas en el Espacio}
+
+\begin{dfn}
+    Sea $\alpha: I\to\R^{3}$ parametrizada por el arco. La curvatura de $\alpha$ en $s\in I$ es
+    \begin{equation*}
+        K_{\alpha}:=\abs{T'(s)}
+    \end{equation*}
+\end{dfn}
+
+\noindent\textbf{Observación:} Para curvas en $\R^{3}$, $K_{\alpha}\geq0$. Además, 
+$K_{\alpha}\equiv0$ si y solo si $\alpha$ es un segmento de recta.
+
+\begin{dfn}
+    Sea $\alpha: I\to\R^{3}$ parametrizada por el arco, tal que $K_{\alpha}>0$. Definimos
+    \begin{equation*}
+        N(s):=\frac{T'(s)}{\abs{T'(s)}}
+    \end{equation*}
+\end{dfn}
+
+\noindent\textbf{Observación:} Como $T(s)\perp T'(s)$, pues $\abs{T}=1$, está definición se condice
+con el caso en $\R^{2}$, además de manera directa, obtenemos que $K_{\alpha}N(s)=T(s)$.
+
+\begin{dfn}
+    Sea $\alpha: I\to\R^{3}$ parametrizada por el arco. Definimos el vector binormal de $\alpha$
+    en $s\in I$ por
+    \begin{equation*}
+        B(s)=T(s)\times N(s)
+    \end{equation*}
+\end{dfn}
+
+\noindent\textbf{Observación:} Por definición del producto cruz el conjunto $\{T,N,B\}$ es una base
+ortonormal positiva de $\R^{3}$ para todo $s\in I$ llamada el tiedro de Frenet de $\alpha$ en 
+$s\in I$.
+\vspace{4mm}
+
+\noindent Notemos que $B'(s)=\dv{}{s}(T(s)\times N(s))=T'(s)\times N(s)+T(s)\times N'(s)=
+T(s)\times N'(s)$. Además, $\abs{B}=\abs{T}\abs{N}=1$ y por lo tanto $B'\perp B$, por otro lado
+$\ip{B'}{T}=\ip{T\times N'}{T}=0$, osea $B'\perp T$. Por lo tanto, existe $\tau(s)\in I$ tal quiero
+\begin{equation*}
+    B'(s)=\tau(s)N(s)
+\end{equation*}
+Se dice que $\tau(s)=:\tau_{\alpha}(s)$ es la torsión de $\alpha$ en $s\in I$. Finalmente, como
+$N'\perp N$, tenemos que
+\begin{equation*}
+    N'(s)=aT(s)+bB(s)
+\end{equation*}
+donde
+
+\begin{align*}
+    a\ip{T}{T} &= \ip{N'}{T}=\ip{N'}{T}+\ip{N}{T'}-\ip{N}{T'} \\
+    &= \dv{}{s}\ip{N}{T}-\ip{N}{T'}=-\ip{N}{KN}=-K
+\end{align*}
+y similarmente obtenemos que $b=\ip{N'}{B}=-\tau(s)$.
+
+\begin{prop}
+    Ecuaciones de Frenet-Serret
+    \begin{itemize}
+        \item $T'(s)=K(s)N(s)$
+        \item $N'(s)=-K(s)T(s)-\tau(s) B(s)$
+        \item $B'(s)=\tau(s) N(s)$
+    \end{itemize}
+\end{prop}
+
+\noindent\textbf{Ejemplos:}
+\begin{enumerate}
+    \item Sea $\alpha: I\to\R^{3}$ una curva parametrizada por el arco. Supongamos que 
+    $\alpha(I)\subseteq P$ con $P$ un plano. Podemos describir el plano con la ecuación
+    $\ip{x-p_{0}}{u}=0$, donde $p_{0},u\in\R^{3}$ con $u$ unitario y perpendicular al plano. 
+    Entonces $\ip{\alpha(s)-p_{0}}{u}=0$ para todo $s\in I$, derivando vemos que
+    \begin{equation*}
+        \ip{\alpha'(s)}{u}=\ip{T(s)}{u}=0\hspace{4mm}\forall s\in I
+    \end{equation*}
+    En ese caso, $K(s)$ es el valor absoluto de la curvatura de $\alpha$ como una curva plana.
+    Supongamos que $K(s)>0$ para todo $s\in I$. Entonces
+    \begin{equation*}
+        0=\dv{}{s}=\ip{T}{u}=\ip{T'}{u}=K(s)\ip{N}{u}
+    \end{equation*}
+    lo que implica que $N\perp u$ para todo $s\in I$. Luego, $B(s)=\pm u$ para todo $s\in I$, se
+    sigue que $\tau(s)=\ip{B'}{N}=0$.
+
+    \item Supongamos que $\alpha$ es una curva parametrizada por el arco tal que 
+    $\tau_{\alpha}\equiv0$, entonces $B'=\tau\cdot N=0$ para todo $s\in I$ y por lo tanto $B=u$,
+    con $u\in\R^{3}$ y $\abs{u}=1$, así $T\times N=u$ para todo $s\in I$.
+    \vspace{4mm}
+
+    \noindent Ahora, usando las ecuaciones de frenet vemos que $T\perp u$ y $N\perp u$ para todo
+    $s\in I$ y concluimos que
+    \begin{equation*}
+        \ip{\alpha(s)-\alpha(s_{0})}{u}=\ip{\int_{s_{0}}^{s}T(x)dx}{u}=
+        \int_{s_{0}}^{s}\ip{T(x)}{u}dx=0\hspace{4mm}\forall s\in I
+    \end{equation*}
+\end{enumerate}
+
+\begin{prop}
+    Sea $\alpha: I\to\R^{3}$ una curva parametrizada por el arco, $p_{0}\in\R^{3}$, 
+    $A:\R^{3}\to\R^{3}$ lineal, ortogonal y positiva. Sea $F:\R^{3}\to\R^{3}$ con 
+    $F(p)=Ap+p_{0}$. Entonces
+    \begin{align*}
+        & K_{F\circ\alpha}=K_{\alpha}\hspace{4mm}\text{,}\hspace{4mm}\tau_{F\circ\alpha}=
+        \tau_{\alpha} \\
+        & T_{F\circ\alpha}=AT_{\alpha}\hspace{4mm}\text{,}\hspace{4mm}
+        N_{F\circ\alpha}=AN_{\alpha}\hspace{4mm}\text{,}\hspace{4mm}
+        B_{F\circ\alpha}=AB_{\alpha}
+    \end{align*}
+\end{prop}
+
+\noindent Podemos extender las definiciones de curvatura, torsión y del tiedro de frenet para
+curvas regulares $\beta: I\to\R^{3}$ por
+\begin{equation*}
+    K_{\beta}(t):=K_{\alpha}(h^{-1}(t))
+\end{equation*}
+donde $\alpha=\beta\circ h$ es una parametrización por el arco, con $h$ difeomorfismo, $h'>0$ y
+$K_{\beta}>0$. Se cumple lo siguiente
+\begin{itemize}
+    \item $T_{\beta}(t)=T_{\alpha}(h^{-1}(t))$
+    \item $N_{\beta}(t)=N_{\alpha}(h^{-1}(t))$
+    \item $B_{\beta}(t)=B_{\alpha}(h^{-1}(t))$
+    \item $\tau_{\beta}(t)=\tau_{\alpha}(h^{-1}(t))$
+\end{itemize}
+
+\begin{prop}
+    Sea $\beta: I\to\R^{3}$ una curva regular, entonces
+    \begin{enumerate}
+        \item $K_{\beta}=\dfrac{\abs{\beta'\times\beta''}}{\abs{\beta'}^{3}}$
+        \item $\tau_{\beta}=\dfrac{-det(\beta',\beta'',\beta''')}{\abs{\beta'\times\beta''}^{2}}=
+        -\dfrac{\ip{\beta'}{\beta''\times\beta'''}}{\abs{\beta'\times\beta''}^{2}}$
+        \item $T_{\beta}=\dfrac{\beta'}{\abs{\beta'}}$
+        \item $B_{\beta}=\dfrac{\beta'\times\beta''}{\abs{\beta'\times\beta''}}$
+        \item $N_{\beta}=\dfrac{\abs{\beta'}^{2}\beta''-\ip{\beta'}{\beta''}\beta'}
+        {\abs{\abs{\beta'}^{2}\beta''-\ip{\beta'}{\beta''}\beta'}}$
+    \end{enumerate}
+\end{prop}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}

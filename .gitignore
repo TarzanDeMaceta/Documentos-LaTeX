@@ -1,0 +1,11 @@
+# ------------------------------------------------------------
+
+#Ignoro el template, no es necesario subir
+Template
+
+# Ignoramos todas la extensiones que no nos interesan
+*.bbl
+*.gz
+*.jpg
+*.sty
+*.bib
