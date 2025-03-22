@@ -534,6 +534,165 @@ $K_{\beta}>0$. Se cumple lo siguiente
     \end{enumerate}
 \end{prop}
 
+\begin{teo}
+    (Teorema Fundamental de las curvas en el Espacio)
+    
+    Sea $K,\tau: I\subseteq\R\to\R$ funciones diferenciables con $K(s)>0$ para todo $s\in I$.
+    Entonces existe $\alpha:I\to\R^{3}$ parametrizada por el arco tal que
+    \begin{equation*}
+        K_{\alpha}=K\hspace{4mm}\text{y}\hspace{4mm}\tau_{\alpha}=\tau
+    \end{equation*}
+    Además, si $\beta:I\to\R^{3}$ es parametrizada por el arco tal que $K_{\beta}=K$ y 
+    $\tau_{\beta}=\tau$. Entonces existe un movimiento rigido $F:\R^{3}\to\R^{3}$ tal que
+    $F\circ\beta=\alpha$.
+\end{teo}
+
+\begin{dem}
+    El sistema
+    \begin{equation*}
+        (FS):\begin{pmatrix}
+            T \\ N \\ B
+        \end{pmatrix}'
+        =A
+        \begin{pmatrix}
+            T \\ N \\ B
+        \end{pmatrix}
+        \hspace{4mm}\text{y}\hspace{4mm}A(s)=
+        \begin{pmatrix}
+            0 & K(s) & 0 \\
+            -K(s) & 0 & -\tau(s) \\
+            0 & \tau(s) & 0
+        \end{pmatrix}
+    \end{equation*}
+    tiene solución única para cada condición inicial $T(s_{0})=T_{0}$, $N(s_{0})=N_{0}$ y 
+    $B(s_{0})=B_{0}$. Sea $\{T_{0},N_{0},B_{0}\}$ una base ortonormal de $\R^{3}$. Consideremos
+    \begin{equation*}
+        M(s)=
+        \begin{pmatrix}
+            \ip{T}{T} & \ip{T}{N} & \ip{T}{B} \\
+            \ip{N}{T} & \ip{N}{N} & \ip{N}{B} \\
+            \ip{B}{T} & \ip{B}{N} & \ip{B}{B}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            T & N & B
+        \end{pmatrix}^{T}\cdot
+        \begin{pmatrix}
+            T & N & B
+        \end{pmatrix}
+    \end{equation*}
+    Por otro lado
+    \begin{align*}
+        M'(s) &=
+        \begin{pmatrix}
+            T & N & B
+        \end{pmatrix}'^{T}\cdot
+        \begin{pmatrix}
+            T & N & B
+        \end{pmatrix}+
+        \begin{pmatrix}
+            T & N & B
+        \end{pmatrix}^{T}\cdot
+        \begin{pmatrix}
+            T & N & B
+        \end{pmatrix}' \\
+        &= A
+        \begin{pmatrix}
+            T & N & B
+        \end{pmatrix}^{T}\cdot
+        \begin{pmatrix}
+            T & N & B
+        \end{pmatrix}+
+        \begin{pmatrix}
+            T & N & B
+        \end{pmatrix}^{T}
+        \begin{pmatrix}
+            T & N & B
+        \end{pmatrix}A^{T} \\
+        &= AM-MA
+    \end{align*}
+    La matriz $M_{0}(s)=I_{3}$ con $s\in I$ es una solución con $M_{0}(s_{0})=I_{3}=M(s_{0})$ 
+    (pues $T_{0},N_{0},B_{0}$ son ortonormales). Por unicidad de la solución $M(s)\equiv I_{3}$
+    para todo $s\in I$.
+    \vspace{4mm}
+
+    \noindent La matriz $(T\hspace{1mm}N\hspace{1mm}B)$ tiene determinante $1$ o $-1$. Sin embargo,
+    el determinante es una función continua, luego es constante, pues su dominio es $I$, un conexo.
+    Como vale $1$ en $s=s_{0}$ pues $T_{0},N_{0},B_{0}$ es positiva, vale $1$ sobre $I$.
+    \vspace{4mm}
+
+    \noindent Definimos $\alpha:I\to\R^{3}$ por
+    \begin{equation*}
+        \alpha(x)=\int_{s_{0}}^{s}T(x)dx
+    \end{equation*}
+    Por TFC, $\alpha'(s)=T(s)$ unitario, luego $\alpha$ es una curva parametrizada por el arco.
+    Además
+    \begin{equation*}
+        K_{\alpha}(s)=\abs{T'(s)}=\abs{K(s)N(s)}=K(s)\abs{N(s)}=K(s)\hspace{4mm}\forall s\in I
+    \end{equation*}
+    De ahí,
+    \begin{equation*}
+        N_{\alpha}(s)=\frac{T'_{\alpha}(s)}{\abs{T'_{\alpha}(s)}}=\frac{T'(s)}{\abs{T'(s)}}=
+        \frac{K(s)N(s)}{\abs{K(s)N(s)}}=N(s)
+    \end{equation*}
+    y $B_{\alpha}(s)=T_{\alpha}(s)\times N_{\alpha}(s)=T(s)\times N(s)=B(s)$, pues $T(s),N(s),B(s)$
+    es base ortonormal positiva. Por tanto,
+    \begin{equation*}
+        \tau_{\alpha}=\ip{B'_{\alpha}(s)}{N_{\alpha}(s)}=\ip{B'(s)}{N(s)}=\ip(\tau N,N)=\tau(s)
+    \end{equation*}
+    Sea $A:\R^{3}\to\R^{3}$ ortogonal tal que
+    \begin{align*}
+        & AT_{\beta}(s_{0})=T_{\alpha}(s_{0}) \\
+        & AN_{\beta}(s_{0})=N_{\alpha}(s_{0}) \\
+        & AB_{\beta}(s_{0})=B_{\alpha}(s_{0})
+    \end{align*}
+    y $p_{0}=\alpha(s_{0})-A\beta(s_{0})$. Luego, $F:\R^{3}\to\R^{3}$ con $F(p)=Ap+p_{0}$. Defina
+    $\gamma=F\circ\beta:I\to\R^{3}$. Queremos ver que $\gamma\equiv\alpha$. Como $F$ es movimiento
+    rigido $\alpha$ y $\gamma$ tienen curvatura $K$ y torsión $\tau$ y tiedro
+    \begin{align*}
+        & T_{\gamma}=T_{F\circ\beta}=AT_{\beta} \\
+        & N_{\gamma}=N_{F\circ\beta}=AN_{\beta} \\
+        & B_{\gamma}=B_{F\circ\beta}=AB_{\beta}
+    \end{align*}
+    Luego
+    $f(s)=\abs{T_{\gamma}(s)-T_{\alpha}(s)}^{2}+
+    \abs{N_{\gamma}(s)-N_{\alpha}(s)}^{2}+\abs{B_{\gamma}(s)-B_{\alpha}(s)}^{2}$
+    vale $0$ en $s=s_{0}$. Por otro lado
+    \begin{equation*}
+        f'(s)=2\ip{T_{\gamma}-T_{\alpha}}{T'_{\gamma}-T'_{\alpha}}
+        +2\ip{N_{\gamma}-N_{\alpha}}{N'_{\gamma}-N'_{\alpha}}
+        +2\ip{B_{\gamma}-B_{\alpha}}{B'_{\gamma}-B'_{\alpha}}=0\hspace{4mm}\forall s\in I
+    \end{equation*}
+    por lo tanto $f$ es constante y por lo mencionado $f\equiv0$. De este modo, 
+    $\gamma'=T_{\gamma}\equiv T_{\alpha}=\alpha'$. Pero 
+    \begin{equation*}
+        \gamma(s_{0})=F(\beta{s_{0}})=A\beta(s_{0})+p_{0}=\alpha(s_{0})
+    \end{equation*}
+\end{dem}
+
+\newpage
+\section{Superficies Regulares}
+\begin{dfn}
+    Sea $\Sigma\subseteq\R^{3}$, decimos que $\Sigma$ es una superficie regular si para todo
+    $p\in\Sigma$ existe un abierto $V\subseteq\R^{3}$ con $p\in V$ y una función diferenciable
+    \begin{equation*}
+        \varphi:\mathcal{V}\subseteq\R^{2}\to\R^{3}
+    \end{equation*}
+    tal que
+    \begin{itemize}
+        \item $\varphi(\mathcal{V})=V\cap\Sigma$
+        \item $\varphi$ es homeomorfismo de $\mathcal{V}$ sobre $V\cap\Sigma$
+        \item $D\varphi(q):\R^{3}\to\R^{3}$ es inyectiva, es decir, si $\varphi=\varphi(u,v)$, 
+        entonces
+        \begin{align*}
+            & D\varphi(q)\cdot e_{1}=\dv{}{t}\varphi(q+te_{1})\big|_{t=0}=\varphi_{u}(q) \\
+            & D\varphi(q)\cdot e_{2}=\dv{}{t}\varphi(q+te_{2})\big|_{t=0}=\varphi_{v}(q)
+        \end{align*}
+        son linealmente independientes, en otras palabras 
+        $\varphi_{u}(q)\times\varphi_{v}(q)\neq0$.
+    \end{itemize}
+\end{dfn}
+
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
 \end{document}
