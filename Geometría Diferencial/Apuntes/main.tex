@@ -170,7 +170,7 @@ $\alpha\circ h$ tiene la misma traza que $\alpha$, en efecto $(\alpha\circ h)(J)
     que $\alpha$ esta parametrizada por el arco.
 \end{dfn}
 
-\noindent Una curva $\alpha$ parametrizada por el arco tienen las siguientes propiedades
+\noindent Una curva $\alpha$ parametrizada por el arco tiene las siguientes propiedades
 
 \begin{itemize}
     \item $\alpha'(t)$ es ortogonal a $\alpha''(t)$ para todo $t\in I$, en efecto
@@ -233,7 +233,7 @@ $\alpha\circ h$ tiene la misma traza que $\alpha$, en efecto $(\alpha\circ h)(J)
     \end{equation*}
 \end{enumerate}
 
-\subsection{Curvatura de un Curva Regular (Teoría Local de Curvas)}
+\subsection{Curvatura de una Curva Regular (Teoría Local de Curvas)}
 
 \noindent\textbf{Notación:} Notamos por $\mathcal{J}$ a la función $\mathcal{J}:\R^{2}\to\R^{2}$
 dada por $\mathcal{J}(x,y)=(-y,x)$ que cumple lo siguientes
@@ -247,17 +247,18 @@ dada por $\mathcal{J}(x,y)=(-y,x)$ que cumple lo siguientes
     $\mathcal{J}A=det(A)A\mathcal{J}$.
 \end{itemize}
 
-\noindent Nuestro objetivo es asociar a una curva parametrizada regular $\alpha: I\to\R^{n}$ una cantidad 
-geometrica, para ello queremos definir una función $K(=K_{\alpha}): I\to\R$ tal que
+\noindent Nuestro objetivo es asociar a una curva parametrizada regular $\alpha: I\to\R^{n}$ una 
+cantidad geometrica, para ello queremos definir una función $K(=K_{\alpha}): I\to\R$ tal que
 \begin{enumerate}
     \item $K$ es invariante bajo movimientos rigidos.
     \item $K$ es invariante por parametrizaciones.
     \item $K\equiv0$ si y solo si $\alpha$ corresponde a un segmento de recta.
 \end{enumerate}
 
-\noindent Si tenemos $\alpha: I\to\R^{2}$ una curva parametrizada por el arco, definimos por $T: I\to\R^{2}$ 
-dada por $T(s):=\alpha'(s)$ y $N: I\to\R^{2}$ como $N(s):=\mathcal{J}T(s)$. Recordemos que 
-$\{T(s),N(s)\}$ es una base ortonormal en $\R^{n}$ para cada $s\in I$ (Tiedro de Frenet).
+\noindent Si tenemos $\alpha: I\to\R^{2}$ una curva parametrizada por el arco, definimos la función 
+$T: I\to\R^{2}$ dada por $T(s):=\alpha'(s)$ y $N: I\to\R^{2}$ como $N(s):=\mathcal{J}T(s)$.
+Recordemos que $\{T(s),N(s)\}$ es una base ortonormal en $\R^{n}$ para cada $s\in I$ 
+(Diedro de Frenet).
 \vspace{4mm}
 
 \noindent Notemos que $N(s)\perp T(s)$ y $T'(s)\perp T(s)$, luego, existe un $k(s)\in\R$ tal que 
@@ -303,9 +304,9 @@ Por lo tanto $K(s)=\ip{T'(s)}{N(s)}$. Por otro lado, observemos que
     Por lo tanto $K(s)=\frac{1}{r}\ip{N(s)}{N(s)}=\frac{1}{r}$.
 \end{enumerate}
 
-\noindent Consideremos ahora una curva regular $\beta:\widetilde{I}\to\R^{2}$ y una reparametrización
-$\alpha=\beta\circ h: I\to\R^{2}$ parametrizada por el arco, donde $h: I\to\widetilde{I}$ es un
-difeomorfismo con $h'>0$. Con esto
+\noindent Consideremos ahora una curva regular $\beta:\widetilde{I}\to\R^{2}$ y una 
+reparametrización $\alpha=\beta\circ h: I\to\R^{2}$ parametrizada por el arco, donde 
+$h: I\to\widetilde{I}$ es un difeomorfismo con $h'>0$. Con esto
 \begin{equation*}
     \abs{\beta'(t)}=\abs{(\beta\circ h\circ h^{-1})'(t)}=\abs{(\alpha\circ h^{-1})'(t)}=
     (h^{-1})'(t)
@@ -414,7 +415,7 @@ Concluimos que $K_{\beta}=\frac{\ip{\beta''}{\J\beta'}}{\abs{\beta'}^{3}}$.
 $K_{\alpha}\equiv0$ si y solo si $\alpha$ es un segmento de recta.
 
 \begin{dfn}
-    Sea $\alpha: I\to\R^{3}$ parametrizada por el arco, tal que $K_{\alpha}>0$. Definimos
+    Sea $\alpha: I\to\R^{3}$ una curva parametrizada por el arco, tal que $K_{\alpha}>0$. Definimos
     \begin{equation*}
         N(s):=\frac{T'(s)}{\abs{T'(s)}}
     \end{equation*}
@@ -564,8 +565,10 @@ $K_{\beta}>0$. Se cumple lo siguiente
             0 & \tau(s) & 0
         \end{pmatrix}
     \end{equation*}
-    tiene solución única para cada condición inicial $T(s_{0})=T_{0}$, $N(s_{0})=N_{0}$ y 
-    $B(s_{0})=B_{0}$. Sea $\{T_{0},N_{0},B_{0}\}$ una base ortonormal de $\R^{3}$. Consideremos
+    para cada $\{T_{0},N_{0},B_{0}\}\subseteq\R^{3}$ y $s_{0}\in I$, existe una única solución del
+    sistema, $\{T, N, B\}$, definida en $I$ tal que $T(s_{0})=T_{0}$, $N(s_{0})=N_{0}$ y 
+    $B(s_{0})=B_{0}$. Veamos que $\{T,N,B\}$ son ortonormales para cada  $s\in I$. Sea
+    $\{T_{0},N_{0},B_{0}\}$ una base ortonormal positiva de $\R^{3}$. Consideremos la función
     \begin{equation*}
         M(s)=
         \begin{pmatrix}
@@ -611,14 +614,14 @@ $K_{\beta}>0$. Se cumple lo siguiente
         \end{pmatrix}A^{T} \\
         &= AM-MA
     \end{align*}
-    La matriz $M_{0}(s)=I_{3}$ con $s\in I$ es una solución con $M_{0}(s_{0})=I_{3}=M(s_{0})$ 
-    (pues $T_{0},N_{0},B_{0}$ son ortonormales). Por unicidad de la solución $M(s)\equiv I_{3}$
-    para todo $s\in I$.
+    La matriz $M_{0}(s)=I_{3}$ con $s\in I$ es solución del sistema, además
+    $M_{0}(s_{0})=I_{3}=M(s_{0})$ (pues $T_{0},N_{0},B_{0}$ son ortonormales). Por unicidad de la 
+    solución $M(s)\equiv I_{3}$ para todo $s\in I$.
     \vspace{4mm}
 
-    \noindent La matriz $(T\hspace{1mm}N\hspace{1mm}B)$ tiene determinante $1$ o $-1$. Sin embargo,
-    el determinante es una función continua, luego es constante, pues su dominio es $I$, un conexo.
-    Como vale $1$ en $s=s_{0}$ pues $T_{0},N_{0},B_{0}$ es positiva, vale $1$ sobre $I$.
+    \noindent La matriz $(T\hspace{1mm}N\hspace{1mm}B)$ tiene determinante $1$ o $-1$. Como $I$ es
+    conexo y el determinante una función continua, entonces es constante. Como vale $1$ en 
+    $s=s_{0}$ pues $\{T_{0},N_{0},B_{0}\}$ es base positiva, vale $1$ sobre $I$.
     \vspace{4mm}
 
     \noindent Definimos $\alpha:I\to\R^{3}$ por
@@ -635,10 +638,10 @@ $K_{\beta}>0$. Se cumple lo siguiente
         N_{\alpha}(s)=\frac{T'_{\alpha}(s)}{\abs{T'_{\alpha}(s)}}=\frac{T'(s)}{\abs{T'(s)}}=
         \frac{K(s)N(s)}{\abs{K(s)N(s)}}=N(s)
     \end{equation*}
-    y $B_{\alpha}(s)=T_{\alpha}(s)\times N_{\alpha}(s)=T(s)\times N(s)=B(s)$, pues $T(s),N(s),B(s)$
-    es base ortonormal positiva. Por tanto,
+    y $B_{\alpha}(s)=T_{\alpha}(s)\times N_{\alpha}(s)=T(s)\times N(s)=B(s)$, ya que 
+    $T(s),N(s),B(s)$ es base ortonormal positiva. Por tanto,
     \begin{equation*}
-        \tau_{\alpha}=\ip{B'_{\alpha}(s)}{N_{\alpha}(s)}=\ip{B'(s)}{N(s)}=\ip(\tau N,N)=\tau(s)
+        \tau_{\alpha}=\ip{B'_{\alpha}(s)}{N_{\alpha}(s)}=\ip{B'(s)}{N(s)}=\ip{\tau N}{N}=\tau(s)
     \end{equation*}
     Sea $A:\R^{3}\to\R^{3}$ ortogonal tal que
     \begin{align*}
@@ -664,13 +667,15 @@ $K_{\beta}>0$. Se cumple lo siguiente
         +2\ip{B_{\gamma}-B_{\alpha}}{B'_{\gamma}-B'_{\alpha}}=0\hspace{4mm}\forall s\in I
     \end{equation*}
     por lo tanto $f$ es constante y por lo mencionado $f\equiv0$. De este modo, 
-    $\gamma'=T_{\gamma}\equiv T_{\alpha}=\alpha'$. Pero 
+    $\gamma'=T_{\gamma}\equiv T_{\alpha}=\alpha'$. Como 
     \begin{equation*}
         \gamma(s_{0})=F(\beta{s_{0}})=A\beta(s_{0})+p_{0}=\alpha(s_{0})
     \end{equation*}
+    concluimos que $\gamma\equiv\alpha$.
 \end{dem}
 
 \newpage
+
 \section{Superficies Regulares}
 \begin{dfn}
     Sea $\Sigma\subseteq\R^{3}$, decimos que $\Sigma$ es una superficie regular si para todo

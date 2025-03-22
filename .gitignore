@@ -7,5 +7,10 @@ Template
 *.bbl
 *.gz
 *.jpg
-*.sty
 *.bib
+*.aux
+*.log
+*.fls
+*.out
+*.fdb_latexmk
+*.toc

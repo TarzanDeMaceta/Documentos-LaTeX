@@ -1,0 +1,85 @@
+% Paquetes
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{mathtools}
+\usepackage{dsfont}
+\usepackage{tikz}
+\usepackage[all]{xy}
+\usepackage{mathrsfs}
+
+%\usepackage{biblatex} % Quitar el comentado si quiero usar bibliografia
+%\usepackage{csquotes}
+
+% ----- Comandos nuevos -----
+    \newcommand{\ds}{\displaystyle}
+    \newcommand{\norm}[1]{\left \lVert #1\right \rVert}
+    \newcommand{\dv}[2]{\frac{d#1}{d#2}}
+    \newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}
+    \newcommand{\abs}[1]{\left|#1 \right|}
+    \newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+    \newcommand{\C}{\mathbb{C}}
+    \newcommand{\R}{\mathbb{R}}
+    \newcommand{\K}{\mathbb{K}}
+    \newcommand{\Q}{\mathbb{Q}}
+    \newcommand{\Z}{\mathbb{Z}}
+    \newcommand{\N}{\mathbb{N}}
+    \newcommand{\D}{\mathbb{D}}
+    \newcommand{\V}{\mathcal{V}}
+    \newcommand{\B}{\mathcal{B}}
+    \newcommand{\A}{\mathcal{A}}
+    \newcommand{\J}{\mathcal{J}}
+    
+    % --- Teoremas ---
+        \newtheorem{teo}{Teorema}[]
+        \newtheorem{prop}{Proposición}[teo]
+        \newtheorem{lema}{Lema}[teo]
+        \newtheorem{ejm}{Ejemplo}[teo]
+        \newtheorem{cor}{Corolario}[teo]
+        \newtheorem{dfn}{Definición}[teo]
+        \newtheorem*{obs}{Observación}
+        \newtheorem*{sol}{Solución}
+        \newtheorem*{dem}{Demostración}
+
+% ----- Fomato de texto -----
+    \geometry{left=2cm, bottom=2.5cm, top=2cm, right=2cm}
+    
+    \renewcommand{\theenumi}{\alph{enumi}}
+    \renewcommand{\labelenumi}{{\theenumi})}
+    \renewcommand{\theenumii}{\roman{enumii}}
+    \renewcommand{\labelenumii}{{\theenumii})}
+    \renewcommand{\theenumiii}{\arabic{enumiii}}
+    \renewcommand{\labelenumiii}{{\theenumiii})}
+
+    \renewcommand{\theenumi}{\alph{enumi}}
+    \renewcommand{\labelenumi}{{\theenumi})}
+    \renewcommand{\theenumii}{\roman{enumii}}
+    \renewcommand{\labelenumii}{{\theenumii})}
+    \renewcommand{\theenumiii}{\arabic{enumiii}}
+    \renewcommand{\labelenumiii}{{\theenumiii})}
+
+% ----- Cajas de color ----- (Para la caja con color es necesario el paquete de tcolorbox)
+
+\tcolorboxenvironment{teo}{
+    enforce breakable,
+    toprule = 0.2pt,
+    bottomrule = 0.2pt,
+    leftrule = 1mm,
+    rightrule = 1mm,
+    colback = teal!50!red!30!white,
+    colframe = teal!60!red,
+    arc = 0mm
+} % Teorema
+
+% Para enmarcar mas claramente el ambiente de una demostración
+\tcolorboxenvironment{dem}{
+    blanker,
+    enforce breakable,
+    left=5mm,
+    before skip=10pt,
+    after skip=10pt,
+    borderline west={0.5mm}{0pt}{black}
+}
