@@ -441,7 +441,7 @@ cualquier conjunto finito es algebraico y reducible.
 \end{dem}
 
 \subsection{Nullstellensatz de Hilbert}
-Como premisa supondremos que $k=\overline{k}$.
+\noindent En general supondremos que $k=\overline{k}$, a no ser que se diga lo contrario.
 
 \begin{teo}
     Sea $I\subset k[x_{1},\cdots,x_{n}]$ un ideal, entonces $V(I)\neq\emptyset$.
@@ -449,23 +449,125 @@ Como premisa supondremos que $k=\overline{k}$.
 
 \begin{dem}
     Podemos suponer que $I$ es maximal. En efecto, recordemos que todo ideal esta contenido en un
-    ideal maximal, digamos $M$, entonces $V(M)\subseteq V(I)$. Como $I$ es maximal, esto equivale
+    ideal maximal, digamos $M$, entonces $V(M)\subseteq V(I)$. $\{\}$Como $I$ es maximal, esto equivale
     a que $k[x_{1},\cdots,x_{n}]/I\supset k$ es cuerpo. Como $k$ es algebraicamente cerrado,
     podemos asumir que $k[x_{1},\cdots,x_{n}]/I=k$.
     \vspace{4mm}
 
     \noindent Así, cada variable $x_{i}$ puede ser identificada por un elemento en $k$ digamos
     $a_{i}$, lo que implica que $x_{i}-a_{i}$ es igual $0$ bajo el cociente, se sigue que 
-    $x_{i}-a_{i}\in I$, luego $I=(x_{1}-a_{1},\cdots,x_{n}-a_{n})$.
+    $x_{i}-a_{i}\in I$, luego $I=(x_{1}-a_{1},\cdots,x_{n}-a_{n})$. (Mejorar escritura)
 \end{dem}
 
-\noindent De la demostración surge una pregunta, ¿Por que $k[x_{1},\cdots,x_{n}]/I=k$? El siguiente lema lo
-responde
+\noindent De la demostración surge una pregunta, ¿Por que $k[x_{1},\cdots,x_{n}]/I=k$? El siguiente 
+lema lo responde
 
 \begin{lema}
-    Sea $K\subset L$ una extensión de cuerpo tal que $L$ es finitamente generado como $k$-algebra.
-    Entonces $L$ es finitamente generado como $k$-módulo.
+    (Lema de Zariski) Sea $K\subset L$ una extensión de cuerpo tal que $L$ es finitamente generado 
+    como $k$-algebra. Entonces $L$ es finitamente generado como $k$-módulo.
 \end{lema}
+
+\noindent Exploraremos una demostración menos general del teorema anterior, pero sin usar lema de
+Zariski. Para ello supongamos que $k=\C$.
+
+\begin{dem}
+    Del mismo modo, supongamos que $I\subset k[x_{1},\cdots,x_{n}]$ es un ideal maximal, luego
+    $L:=k[x_{1},\cdots,x_{n}]/I$ es cuerpo, consideramos el morfismo canónico 
+    \vspace{2mm}
+
+    \centerline{
+        \xymatrix{
+            \C[x_{1},\cdots,x_{n}] \ar[r]^-{\pi} & L \\
+            \C[x_{i}] \ar[u]^{i} \ar[ru]_{\pi_{i}:=\pi\big|_{\C[x_{i}]}}
+        }
+    }
+    \vspace{2mm}
+
+    Afirmamos que $ker(\pi_{i})=(0)$ o $ker(\pi_{i})=(x_{i}-a_{i})$ para algún 
+    $a_{i}\in\C$. En efecto, si $ker(\pi_{i})\neq(0)$, entonces $(0)\subset ker(\pi_{i})
+    \subset\C[x_{i}]$, donde la segunda contención es estricta, de lo contrario, $1\in I$ y
+    entonces $I=k[x_{1},\cdots,x_{n}]$. Sea $f\in ker(\pi_{i})$, entonces como $\C$ es 
+    algebraicamente cerrado, existe $(x_{i}-a_{i})$ factor de $f$ tal que $\pi_{i}(x_{i}-a_{i})=0$.
+    \vspace{4mm}
+
+    \noindent Volviendo a la demostración del teorema. Tenemos dos consideramos
+    \begin{itemize}
+        \item $ker(\pi_{i})=(x_{i}-a_{i})$ para todo $i$. Entonces $(x_{1}-a_{i},\cdots,
+        x_{n}-a_{n})\subseteq I$. Como $(x_{1}-a_{i},\cdots,x_{n}-a_{n})$ es ideal maximal e $I$ es
+        propio se obtiene el resultado.
+
+        \item Existe $i$ tal que $ker(\pi_{i})=(0)$, entonces $\pi_{i}$ es inyectiva, como $L$ es
+        cuerpo $\C(x_{i})$ se incrusta en $L$.
+        \vspace{2mm}
+
+        \centerline{
+            \xymatrix{
+                \C[x_{i}] \ar[r]^-{\pi_{i}} \ar[d]_{i} & L \\
+                \C(x_{i}) \ar[ru]_{i_{L}}
+            }
+        }
+        \vspace{2mm}
+
+        \noindent Es decir $\C(x_{i})\subseteq L$. Notemos que $L$ es un espacio vectorial 
+        numerable, a saber, la base corresponde a todos los monomios. Notemos que el siguiente 
+        conjunto es linealmente independiente
+        \begin{equation*}
+            S:=\left\{\frac{1}{x_{i}-a_{i}}:a\in\C\right\}
+        \end{equation*}
+        Notemos que si $\sum_{j=1}^{m}\frac{\lambda_{j}}{x_{i}-a_{j}}=0$ entonces multiplicando 
+        por $(x_{i}-a_{1})\cdots(x_{i}-a_{m})$ y evaluando se tiene que $\lambda_{j}=0$ para todo 
+        $j$. Esto es una contradicción pues $S$ es no numerable.
+    \end{itemize}
+\end{dem}
+
+\begin{teo}
+    (Teorema de Nullstellensatz) Sea $I\subset k[x_{1},\cdots,x_{n}]$, entonces $I(V(I))=\sqrt{I}$.
+\end{teo}
+
+\begin{dem} \hspace{4mm}
+    \begin{itemize}
+        \item $\supseteq|$ Sea $f\in\sqrt{I}$, entonces $f^{n}\in I$ para algún $n$. Luego 
+        $f^{n}(p)=0$ para todo $p\in V(I)$, entonces $f(p)=0$ para todo $p\in V(I)$ lo que implica
+        que $f\in I(V(I))$.
+
+        \item $\subseteq|$ (Truco de Rabinowitsch) Sea $f\in I(V(I))$ y digamos que 
+        $I=(f_{1},\cdots,f_{m})$. Definimos el ideal $J:=(f_{1},\cdots,f_{m},x_{n+1}f-1)
+        \subseteq k[x_{1},\cdots,x_{n+1}]$. Supongamos que $(a_{1},\cdots,a_{n},a_{n+1})\in V(J)$,
+        entonces $(a_{1},\cdots,a_{n})\in V(I)$ se sigue que $f(a_{1},\cdots,a_{n})=0$, esto 
+        resulta en una contradicción. Concluimos que $V(J)=\emptyset$.
+        \vspace{4mm}
+
+        \noindent Por el teorema anterior y como $k$ es algebraicamente cerrado tenemos que 
+        $J=k[x_{1},\cdots,x_{n+1}]$, entonces existen $\{g_{i}\}_{i=1}^{m+1}\subseteq 
+        k[x_{1},\cdots,x_{n}]$ tales que
+        \begin{equation*}
+            g_{1}f_{1}+\cdots+g_{m}f_{m}+g_{m+1}(x_{n+1}f-1)=1
+        \end{equation*}
+        tomando $x_{n+1}=1/f$ obtenemos
+        \begin{equation*}
+            g_{1}(x_{1},\cdots,x_{n},1/f)f_{1}+\cdots+g_{m}(x_{1},\cdots,x_{n},1/f)f_{m}=1
+        \end{equation*}
+        existe $n\in\N$ tal que $f^{n}\in I$.
+    \end{itemize}
+\end{dem}
+
+\begin{cor}
+    Hay una correspondecia uno a uno entre puntos en $\A_{k}^{n}$ e ideales maximales.
+\end{cor}
+
+\begin{cor}
+    Las variedades afines en $\A_{k}^{n}$ estan en correspondecia uno a uno con los ideales primos.
+\end{cor}
+
+\begin{cor}
+    Las hipersuperficies irreducibles en $\A_{k}^{n}$ se corresponden uno a uno con polinomios
+    irreducibles en $k[x_{1},\cdots,x_{n}]$.
+\end{cor}
+
+\begin{cor}
+    Sea $I\subseteq k[x_{1},\cdots,x_{n}]$. Entonces $V(I)$ es un conjunto finito de puntos si y
+    solo si como $k$-espacio vectorial $k[x_{1},\cdots,x_{n}]/I$ tiene dimensión finita.
+\end{cor}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
