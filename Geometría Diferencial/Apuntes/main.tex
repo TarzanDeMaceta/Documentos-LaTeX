@@ -677,6 +677,7 @@ $K_{\beta}>0$. Se cumple lo siguiente
 \newpage
 
 \section{Superficies Regulares}
+\subsection{Definición y ejemplos}
 \begin{dfn}
     Sea $\Sigma\subseteq\R^{3}$, decimos que $\Sigma$ es una superficie regular si para todo
     $p\in\Sigma$ existe un abierto $V\subseteq\R^{3}$ con $p\in V$ y una función diferenciable
@@ -694,9 +695,129 @@ $K_{\beta}>0$. Se cumple lo siguiente
             & D\varphi(q)\cdot e_{2}=\dv{}{t}\varphi(q+te_{2})\big|_{t=0}=\varphi_{v}(q)
         \end{align*}
         son linealmente independientes, en otras palabras 
-        $\varphi_{u}(q)\times\varphi_{v}(q)\neq0$.
+        $\varphi_{u}(q)\times\varphi_{v}(q)\neq0$. Decimos que $\varphi$ es una parametrización 
+        local para $\Sigma$
     \end{itemize}
 \end{dfn}
+
+\noindent\textbf{Ejemplos: }
+\begin{itemize}
+    \item Sea $f:\V\subseteq\R^{2}\to\R$ diferenciable, consideramos $\Sigma:=
+    \{(x,y,(f(x,y)))\in\R^{3}:(x,y)\in\V\}$ Tomamos $V=\R^{3}$, definimos la función $\varphi:
+    \V\to\R^{3}$ dada por $\varphi(u,v)=(u,v,f(u,v))$, entonces
+    \begin{enumerate}
+        \item $\varphi(\V)=\Sigma=\Sigma\cap V$.
+        \item $\varphi$ tiene inversa, a saber, $\varphi^{-1}(x,y,z)=(x,y)$ que es la restricción
+        de una función continua, luego $\varphi^{-1}$ es continua.
+        \item $\varphi_{u}(u,v)=\left(1,0,\pdv{f}{u}(u,v)\right)$ y $\varphi_{v}(u,v)=
+        \left(0,1,\pdv{f}{v}(u,v)\right)$ son linealmente independientes.
+    \end{enumerate}
+    Por lo tanto, $\varphi$ es una parametrización local con $\varphi(\V)=\Sigma$
+
+    \item Veamos la esfera unitaria $\mathbb{S}^{2}$. Si $(x,y,z)\in\mathbb{S}^{2}$, entonces 
+    $x\neq0$ o $y\neq0$ o $z\neq0$. Consideramos
+    \begin{equation*}
+        \mathbb{S}^{2}=\mathbb{S}^{2}\cap\left(V_{1}^{+}\cup V_{2}^{+}\cup V_{3}^{+}
+        \cup V_{1}^{-}\cup V_{2}^{-}\cup V_{3}^{-}\right)
+    \end{equation*}
+    donde $V_{i}^{\pm}:=\{(x,y,z)\in\R^{3}:\pm x_{i}>0\}$. Definimos la función 
+    $\varphi_{1}^{\pm}:B_{1}(0)\subseteq\R^{2}\to\R^{3}$ dada por
+    \begin{equation*}
+        \varphi_{1}^{\pm}(u,v):=(\pm\sqrt{1-u^{2}-v^{2}},u,v)
+    \end{equation*}
+    luego, $\varphi_{1}^{\pm}(B_{1}(0))=V_{1}^{\pm}\cap\mathbb{S}^{2}$, 
+    $(\varphi_{1}^{\pm})^{-1}:V_{1}^{\pm}\cap\mathbb{S}^{2}\to B_{1}(0)$ que manda $(x,y,z)$ en 
+    $(y,z)$ es continua y además $(\varphi_{1}^{\pm})^{-1}_{u}(q)$ y 
+    $(\varphi_{1}^{\pm})^{-1}_{v}(q)$ son linealmente independientes para todo $q\in B_{1}(0)$. Un
+    argumento similar se utiliza para $V_{2}^{\pm}$ y $V_{3}^{\pm}$.
+\end{itemize}
+
+\begin{dfn}
+    Una superficie parametrizada diferenciable es una aplicación  diferenciable $\varphi:\V
+    \subseteq\R^{2}\to\R^{3}$ con $\V$ abierto. Se dice que $\varphi$ es regular si 
+    $D\varphi(q):\R^{2}\to\R^{2}$ es inyectiva para todo $q\in\V$.
+\end{dfn}
+
+\noindent\textbf{Ejemplos:} 
+\begin{itemize}
+    \item Toda parametrización local de una superficie regular es una superficie parametrizada 
+    regular.
+
+    \item Sea $\alpha:I\subseteq\R\to\R^{2}$ una curva parametrizada diferenciable. Definimos
+    $\varphi:I\times\R\to\R^{3}$ por $\varphi(u,v)=(\alpha(u),v)$. Esta superficie parametrizada 
+    diferenciable se llama cilindro sobre $\alpha$.
+    \vspace{4mm}
+
+    \noindent Como $\varphi_{u}(u,v)=(\alpha'(u),0)$ y $\varphi_{v}(u,v)=(0,0,1)$ son linealmente
+    independientes si y solo si $\alpha'\not\equiv0$, es decir, $\varphi$ es regular si y solo si
+    $\alpha$ es una curva regular.
+
+    \item Si $I=\R$ y existe $T\in\R$ tal que $\alpha(t+T)=\alpha(t)$ entonces 
+    $\varphi(I\times\R)=\alpha(\R)\times\R$ es una superficie regular.
+
+    \item Si $\alpha$ es inyectiva y para todo $t\in I$ existen abiertos $V\subseteq\R^{2}$ y 
+    $J\subseteq I$ con $t\in J$ tales que $\alpha(I)\cap V=\alpha(J)$ entonces $\varphi(I\times\R)$
+    es una superficie regular.
+\end{itemize}
+
+\begin{teo}
+    (Teorema de la Función Implicita) Sea $h:W\subseteq\R^{3}\to\R$ continua diferenciable, 
+    $p_{0}=(x_{0},y_{0},z_{0})\in W$ tal que $\pdv{h}{z}(p_{0})\neq0$. Entonces existen abiertos
+    $\V\subseteq\R^{2}$, $I\subseteq\R$ y $f:\V\to I$ continua diferenciable tales que
+    \begin{itemize}
+        \item El punto $p_{0}\in\V\times I$
+        \item Se tiene la igualdad de conjuntos $h^{-1}(h_{p_{0}})\cap(\V\times I)=
+        \{(x,y,f(x,y)):(x,y)\in\V\}$
+    \end{itemize}
+    Además se tiene que
+    \begin{itemize}
+        \item
+        \begin{equation*}
+            \pdv{f}{x}(x,y)=\frac{-\pdv{h}{x}(x,y,f(x,y))}{-\pdv{h}{z}(x,y,f(x,y))}
+        \end{equation*}
+        \item
+        \begin{equation*}
+            \pdv{f}{y}(x,y)=\frac{-\pdv{h}{y}(x,y,f(x,y))}{-\pdv{h}{z}(x,y,f(x,y))}
+        \end{equation*}
+    \end{itemize}
+    Si $h$ es suave entonces $f$ también lo es.
+\end{teo}
+
+\begin{dfn}
+    Sea $F:W\subseteq\R^{n}\to\R^{m}$ diferenciable. Se dice que $q\in\R^{m}$ es un valor regular
+    para $F$, si $F^{-1}(q)=\emptyset$ o si para todo $p\in F^{-1}(q)$ se tiene que 
+    $DF(p):\R^{n}\to\R^{m}$ es sobreyectiva.
+\end{dfn}
+
+\noindent Por ejemplo si $h:W\subseteq\R^{n}\to\R$ entonces $Dh(p):\R^{n}\to\R$
+\begin{align*}
+    Dh(p)e_{i} &= \dv{}{t}h(p+te_{i})\big|_{t=0} \\
+    &= \dv{}{t}h(p_{1},\cdots, p_{i-1},p_{i}+t,p_{i+1},\cdots,p_{n})\big|_{t=0} \\
+    &= \pdv{h}{x_{i}}(p)
+\end{align*}
+Luego $q\in\R$ es valor regular par a $h$ si y solo si para todo $p\in h^{-1}(q)$, 
+$\pdv{h}{x_{i}}(p)\neq0$ para algún $i$, o sea, $\nabla h(p)\neq0$ para todo $p\in h^{-1}(q)$.
+
+\begin{teo}
+    Sea $h:W\subseteq\R^{3}\to\R$ una función diferenciable. Si $c\in\R$ es un valor regular para
+    $h$, entonces $h^{-1}(c)$ es una superficie regular.
+\end{teo}
+\begin{dem}
+    Si $c$ es valor regular, entonces para todo $p\in h^{-1}(c)$ se sigue que $\nabla h(p)\neq0$,
+    es decir,
+    \begin{equation*}
+        \pdv{h}{x}(p)\neq0\hspace{4mm}\text{ó}\hspace{4mm}
+        \pdv{h}{y}(p)\neq0\hspace{4mm}\text{ó}\hspace{4mm}
+        \pdv{h}{z}(p)\neq0
+    \end{equation*}
+    Supongamos sin perdida de generalidad que $\pdv{h}{z}\neq0$. Por teo de la función Implicita,
+    existen abiertos $\V\subseteq\R^{2}$, $I\subseteq\R$ y una función suave $f:\V\to I$ tales que
+    $p\in\V\times I$ y $h^{-1}(c)\cap(\V\times I)=Graf(f)$.
+    \vspace{4mm}
+
+    \noindent Por lo visto al inicio de la sección, existe parametrización local $\varphi:\V\to
+    \R^{3}$ con $\varphi(\V)=h^{-1}(c)\cap(\V\times I)$.
+\end{dem}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
