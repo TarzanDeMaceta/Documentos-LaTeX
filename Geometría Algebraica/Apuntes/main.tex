@@ -565,9 +565,112 @@ Zariski. Para ello supongamos que $k=\C$.
 \end{cor}
 
 \begin{cor}
-    Sea $I\subseteq k[x_{1},\cdots,x_{n}]$. Entonces $V(I)$ es un conjunto finito de puntos si y
-    solo si como $k$-espacio vectorial $k[x_{1},\cdots,x_{n}]/I$ tiene dimensión finita.
+    Sea $I\subseteq k[x_{1},\cdots,x_{n}]$ un ideal. Entonces $V(I)$ es un conjunto finito de 
+    puntos si y solo si como $k$-espacio vectorial $k[x_{1},\cdots,x_{n}]/I$ tiene dimensión finita.
 \end{cor}
+
+\begin{dem}\hspace{4mm}
+    \begin{itemize}
+        \item $\Leftarrow|$ Sean $p_{1},\cdots,p_{r}\in V(I)\subseteq\A_{k}^{n}$. Consideramos
+        $F_{1},\cdots,F_{r}\in k[x_{1},\cdots,x_{n}]$ tales que $F_{i}(p_{j})=0$ para todo 
+        $i\neq j$ y $F_{i}(p_{i})=1$. Sea $\overline{F_{i}}$ la imagen de $F_{i}$ en el cociente
+        $k[x_{1},\cdots,x_{n}]/I=R$.
+        \vspace{4mm}
+
+        \noindent Afirmamos que el conjunto $\{F_{1},\cdots,F_{r}\}$ es linealmente independiente
+        en $R$. En efecto, si
+        \begin{equation*}
+            \sum_{i=1}^{r}\lambda_{i}\overline{F_{i}}=0\hspace{4mm}\text{con}\hspace{4mm}
+            \lambda_{i}\in k
+        \end{equation*}
+        entonces $\sum\lambda_{i}\overline{F_{i}}\in I$, evaluando en $p_{i}$ vemos que 
+        $\lambda_{i}=0$ para todo $i$, lo que prueba la afirmación. Así, $r\leq dim_{k}R$.
+
+        \item $\Rightarrow|$ Digamos que $V(I)=\{p_{1},\cdots,p_{r}\}$ y 
+        $p_{i}=(a_{i1},\cdots,a_{in})$. Definimos
+        \begin{equation*}
+            F_{j}:=\prod_{i=1}^{r}(x_{j}-a_{ij})
+        \end{equation*}
+        Luego $F_{j}\in I(V(I))$, por Nullstellensatz, se tiene que $F_{j}^{N}$ para algún $N$,
+        así, $\overline{F_{j}}^{N}=0$ en $R$, es decir, $p(x_{j})+x_{j}^{rN}=0$, con 
+        $gr(p_{j})<rN$ entonces $dim_{k}R<\infty$.
+    \end{itemize}
+\end{dem}
+
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Consideremos los polinomios $x-y,y-x^{2}\in k[x,y]$, se sigue 
+    $V((x-y,y-x^{2}))=\{(0,0),(1,1)\}$
+    \begin{equation*}
+        dim_{k}\left(k[x,y]\Big/(x-y,y-x^{2})\right)=dim_{k}\left(k[x]\Big/(x-x^{2})\right)
+        =dim_{k}\left(k\oplus kx\right)=2
+    \end{equation*}
+
+    \item Notemos que $V(x-y-1,x-y)=\emptyset$ y por otro lado
+    \begin{equation*}
+        k[x,y]\Big/(x-y,x-y-1)=k[x,y]\Big/(1)=(0)
+    \end{equation*}
+    así $dim_{k}R=0$.
+
+    \item Veamos que $V(y,x-y^{3})=\{(0,0)\}$, entonces
+    \begin{equation*}
+        dim_{k}\left(k[x,y]\Big/(y,x^{3}-y)\right)=dim_{k}\left(k[x]\Big/(x^{3})\right)=3
+    \end{equation*}
+
+    \item El conjunto $V(my-x,y-x^{2})$ tiene dos puntos de intersección para todo $m\neq0$,
+    \begin{equation*}
+        dim_{k}\left(k[x,y]\Big/(my-x,y-x^{2})\right)=dim_{k}\left(k[x]\Big/(mx^{2}-x)\right)=2
+    \end{equation*}
+    pero si $m=0$, vemos que  $dim_{k}R=1$.
+\end{itemize}
+
+\subsection{Modulos y Condiciones de Finitud}
+
+\subsection{Elementos Integrales}
+\begin{dfn}
+    Sean $R\subset S$ dominios enteros. Decimos que un elemento $v\in S$ es integral sobre $R$ si
+    \begin{equation*}
+        v^{n}+r_{n-1}v^{n-1}+\cdots+r_{1}v+r_{0}=0
+    \end{equation*}
+    para algunos $r_{i}\in R$ y $n\in\N$.
+\end{dfn}
+
+\begin{prop}
+    Sean $R\subset S$ dominios enteros, $v\in S$. Son equivalentes las siguientes afirmaciones
+    \begin{enumerate}
+        \item $v$ es integral sobre $R$.
+        \item $R[v]$ es un $R$-modulo finitamente generado.
+        \item Existe un subanillo $R'\subset S$ con $R[v]\subset R'$ y $R'$ un $R$-modulo 
+        finitamente generado sobre $R$.
+    \end{enumerate}
+\end{prop}
+
+\begin{dem}\hspace{4mm}
+    \begin{itemize}
+        \item (a) $\Rightarrow$(b) $|$ Existe un polinomio monico $f\in R[x]$ tal que $f(v)=0$, 
+        luego el $R[v]$ se puede generar por finitos elementos.
+
+        \item (b) $\Rightarrow$(c) $|$ Basta tomar $R'=R[v]$.
+        
+        \item (c) $\Rightarrow$(a) $|$ Existe $R'$ tal que $R\subset R[v]\subset R'\subset S$. Con
+        $R$, $R[v]$, $R'$ finitamente generados como $R$-modulos. Sean $w_{1},\cdots,w_{n}$
+        generadores de $R'$. Sabemos que
+        \begin{equation*}
+            v\cdot w_{i}=a_{i1}w_{1}+\cdots+a_{in}w_{n}
+        \end{equation*}
+        luego tenemos el sistema
+        \begin{align*}
+            & (a_{11}-v)w_{1}+a_{12}w_{2}+\cdots+a_{1n}w_{n}=0 \\
+            & a_{21}w_{1}+(a_{22}-v)w_{2}+\cdots+a_{2n}w_{n}=0 \\
+            & \vdots \\
+            & a_{n1}w_{1}+a_{n2}w_{2}+\cdots+(a_{nn}-v)w_{n}=0
+        \end{align*}
+        Como $R\subset S$ son dominios, podemos verlo dentro del cuerpo de fracciones, entonces
+        tiene sentido calcular el determinante de la matriz asociada al sistema de ecuaciones. Por
+        otro lado, $(w_{1},\cdots,w_{n})$ es una solución no trivial del sistema y por lo tanto el
+        determinante de la matriz asociada es $0$, lo que implica que $v$ es integral sobre $R$.
+    \end{itemize}
+\end{dem}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
