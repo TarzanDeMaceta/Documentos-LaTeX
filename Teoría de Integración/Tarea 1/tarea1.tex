@@ -23,7 +23,7 @@
 \centerline{\bf 02 de Abril de 2025}
 
 \section*{Problema 1}
-\noindent Por definición de infimo, dado $\varepsilon>0$, existe una partición $\Pi_{\varepsilon}$ 
+\noindent Por definición de ínfimo, dado $\varepsilon>0$, existe una partición $\Pi_{\varepsilon}$ 
 de $[a,b]$ tal que $U(f,\Pi_{\varepsilon})<\mathcal{U}+\varepsilon$. Consideremos la colección
 $\left(\Pi^{*}_{n}\right)_{n}$ de particiones de $[a,b]$ tales que
 \begin{equation*}
@@ -58,12 +58,12 @@ $U(f,\Pi_{n+1})\leq U(f,\Pi_{n})$.
         =\sum \left(\sup_{x\in I_{i}}f(x)-\inf_{x\in I_{i}}f(x)\right)\abs{I_{i}} \\
         & =U(f,\Pi)-L(f,\Pi)<\varepsilon
     \end{align*}
-    Por lo tanto $\abs{f}$ es Riemann-integrable. Por otro lado sabemos que $f\leq\abs{f}$ y 
+    Por lo tanto $\abs{f}$ es Riemann-integrable. Por otro lado, sabemos que $f\leq\abs{f}$ y 
     $-f\leq\abs{f}$, luego, dada una partición $\Pi$ de $[a,b]$ se sigue que
     \begin{equation*}
         U(f,\Pi)\leq U(\abs{f},\Pi)\hspace{4mm}\text{y}\hspace{4mm}L(-f,\Pi)\leq L(\abs{f},\Pi)
     \end{equation*}
-    Aplicando $\inf$ a la izquierda, $\sup$ a la derecha y usando que $-\inf x=\sup -x$, tenemos 
+    Aplicando ínfimo a la izquierda, supremo a la derecha y usando que $-\inf x=\sup -x$ tenemos 
     lo siguiente
     \begin{equation*}
         \int_{a}^{b}f(x)dx\leq\int_{a}^{b}\abs{f(x)}dx\hspace{4mm}\text{y}\hspace{4mm}
@@ -93,19 +93,19 @@ $U(f,\Pi_{n+1})\leq U(f,\Pi_{n})$.
     \noindent Sea $\Pi$ una partición de $[a,b]$, por lo probado anteriormente, para todo $i$ se
     tiene que existe $\overline{x_{i}}\in E^{c}$ tal que $\overline{x_{i}}\in[x_{i-1},x_{i}]$. De
     este modo, para cada partición $\Pi$ de $[a,b]$, escojemos el conjunto de representantes 
-    $\overline{C}=\{\overline{x_{i}}\}_{i}$, entonces
+    $C=\{\overline{x_{i}}\}_{i}$, entonces
     \begin{equation*}
-        S(f,\Pi,\overline{C})=\sum_{i}f(\overline{x_{i}})(x_{i}-x_{i-1})=0
+        S(f,\Pi,C)=\sum_{i}f(\overline{x_{i}})(x_{i}-x_{i-1})=0
     \end{equation*}
     Como $f$ es Riemann integrable, se sigue que
     \begin{equation*}
-        \int_{a}^{b}f(x)dx=\lim_{\abs{\Pi}\to0}S(f,\Pi,\overline{C})=\lim_{\abs{\Pi}\to0}0=0
+        \int_{a}^{b}f(x)dx=\lim_{\abs{\Pi}\to0}S(f,\Pi,C)=\lim_{\abs{\Pi}\to0}0=0
     \end{equation*}
 \end{enumerate}
 
 \section*{Problema 3}
-\noindent Denotaremos por $\overline{x_{i}}$ a los puntos en $C$ y $L:=\frac{b-a}{n}$. Notemos lo
-siguiente
+\noindent Denotaremos por $\overline{x_{i}}$ a los puntos en $C$ y $L:=\frac{b-a}{n}$. Por TFC 
+tenemos lo siguiente
 \begin{equation*}
     f(x)-f(\overline{x_{i}})=\int_{\overline{x_{i}}}^{x}f'(t)-f'(\overline{x_{i}})dt+
     f'(\overline{x_{i}})(x-\overline{x_{i}})
@@ -114,9 +114,9 @@ Por TVM existe $\alpha(t)\in(\overline{x_{i}},t)$ tal que
 \begin{equation*}
     f''(\alpha(t))=\frac{f'(t)-f'(\overline{x_{i}})}{t-\overline{x_{i}}}
 \end{equation*}
-para $t=\overline{x_{i}}$ diremos que $f''(\alpha(\overline{x_{i}}))=f''(\overline{x_{i}})$, luego
+para $t=\overline{x_{i}}$ diremos que $f''(\alpha(\overline{x_{i}}))=f''(\overline{x_{i}})$. Luego
 \begin{equation*}
-    f(x)-f(\overline{x_{i}})=\int_{\overline{x_{i}}}^{x}f''(\alpha(t))(x-\overline{x_{i}})dt+
+    f(x)-f(\overline{x_{i}})=\int_{\overline{x_{i}}}^{x}f''(\alpha(t))(t-\overline{x_{i}})dt+
     f'(\overline{x_{i}})(x-\overline{x_{i}})
 \end{equation*}
 Afirmamos que la función $f''(\alpha(t))$ es continua, en efecto
@@ -125,9 +125,9 @@ Afirmamos que la función $f''(\alpha(t))$ es continua, en efecto
     {t-\overline{x_{i}}}=\frac{f'(t_{0})-f'(\overline{x_{i}})}
     {t_{0}-\overline{x_{i}}}=f''(\alpha(t_{0}))
 \end{equation*}
-Para el caso $t_{0}=\overline{x_{i}}$ en la segunda expresión nos queda exactamente la segunda 
-derivada en el punto $\overline{x_{i}}$, por lo tanto $f(\alpha)$ es continua en 
-$[\overline{x_{i}},x]$. Como $x\geq\overline{x_{i}}$, por TVM para integrales existe 
+Para el caso $t_{0}=\overline{x_{i}}$ en la segunda expresión nos queda exactamente la definición 
+de la segunda derivada de $f''$ en el punto $\overline{x_{i}}$, por lo tanto $f(\alpha)$ es 
+continua en $[\overline{x_{i}},x]$. Como $x\geq\overline{x_{i}}$, por TVM para integrales existe 
 $\alpha(t_{0})$ tal que
 \begin{equation*}
     f(x)-f(\overline{x_{i}})=f''(\alpha(t_{0}))\int_{\overline{x_{i}}}^{x}t-\overline{x_{i}}
@@ -150,13 +150,12 @@ De este modo
 \noindent En primer lugar demostraremos que si $x_{0}<a$ entonces $F(x_{0})\leq F(a^{-})$ donde 
 $F(a^{-})=\lim\limits_{x\to a^{-}}f(x)$. En efecto, dado $\varepsilon>0$, existe $\delta>0$ tal que
 \begin{equation*}
-    a-\delta<x<a\hspace{4mm}\text{entonces}\hspace{4mm}\abs{F(x)-F(a^{-})}<\varepsilon
+    F(x_{0})\leq F(a-\delta/2)<F(a^{-})+\varepsilon
 \end{equation*}
-existe $x_{1}\in(x_{0},a)$ tal que $F(x_{1})<F(a^{-})+\varepsilon$, como $F$ es creciente, 
-se sigue que $F(x_{0})<F(a^{-})+\varepsilon$, esto implica que $F(x_{0})\leq F(a^{-})$.
+esto implica que $F(x_{0})\leq F(a^{-})$.
 \begin{enumerate}
-    \item Sea $\varepsilon>0$. Existe $\delta>0$ tal que si $x\in(a-\delta,a)$ entonces 
-    $-F(x)<-F(a^{-})+\varepsilon$. Consideremos el cubrimiento $(a-\delta/2,a]$, luego
+    \item Sea $\varepsilon>0$, existe $\delta>0$ tal que $-F(a-\delta/2)<-F(a^{-})+\varepsilon$. 
+    Consideremos el cubrimiento $(a-\delta/2,a]$ de $\{a\}$, luego
     \begin{equation*}
         \mu_{F}^{*}(\{a\})\leq F(a)-F(a-\delta/2)<F(a)-F(a^{-})+\varepsilon
     \end{equation*}
@@ -164,6 +163,7 @@ se sigue que $F(x_{0})<F(a^{-})+\varepsilon$, esto implica que $F(x_{0})\leq F(a
     \begin{equation*}
         \mu_{F}^{*}(\{a\})<F(a)-F(a^{-})+\varepsilon
     \end{equation*}
+    
     como $\varepsilon$ es arbitrario, se sigue que $\mu_{F}^{*}(\{a\})\leq F(a)-F(a^{-})$. Sea
     $(I_{n})_{n\in\N}$ un cubrimiento de $\{a\}$, donde $I_{n}=(a_{n},b_{n}]$. Existe $n_{0}$ 
     tal que $a\in I_{n_{0}}$, así
@@ -178,15 +178,17 @@ se sigue que $F(x_{0})<F(a^{-})+\varepsilon$, esto implica que $F(x_{0})\leq F(a
     \begin{equation*}
         \mu_{F}^{*}([a,b])\leq\tau((a-\delta/2,b])=F(b)-F(a-\delta/2)<F(b)-F(a^{-})+\varepsilon
     \end{equation*}
-    como $\varepsilon$ es arbitrario, vemos que $\mu_{F}^{*}([a,b])\leq F(b)-F(a^{-})$. Sea 
-    $(I_{n})_{n}$ un cubrimiento de $[a,b]$, diremos que $I_{n}=(a_{n},b_{n}]$. Sea 
+
+    como $\varepsilon$ es arbitrario, vemos que $\mu_{F}^{*}([a,b])\leq F(b)-F(a^{-})$. 
+    \vspace{2mm}\\
+    Sea $(I_{n})_{n}$ un cubrimiento de $[a,b]$, diremos que $I_{n}=(a_{n},b_{n}]$. Sea 
     $\varepsilon>0$, dado $n\in\N$ existe $\delta_{n}>0$ tal que
     \begin{equation*}
-        F(b_{n}+\delta_{n}/2)-F(\delta_{n}/2)<\frac{\varepsilon}{2^{n}}
+        F(b_{n}+\delta_{n}/2)-F(b_{n})<\frac{\varepsilon}{2^{n}}
     \end{equation*}
-    Consideramos $(I_{n}^{*})_{n}$ donde $I_{n}^{*}:=(a_{n},b_{n}+\delta_{n}/2]$, un cubrimiento de
-    $[a,b]$. Como $F$ es creciente notemos que $\tau(A)\leq\tau(B)$ para todo $A\subseteq B$ con 
-    $A,B\in\mathcal{C}$, luego
+    Consideramos $(I_{n}^{*})_{n}$ un cubrimiento de $[a,b]$ donde $I_{n}^{*}:=
+    (a_{n},b_{n}+\delta_{n}/2]$. Como $F$ es creciente notemos que $\tau(A)\leq\tau(B)$ para todo 
+    $A\subseteq B$ con $A,B\in\mathcal{C}$, luego
     \begin{equation*}
         \sum_{n\in\N}\tau(I_{n})\leq\sum_{n\in\N}\tau(I_{n}^{*})
     \end{equation*}
@@ -195,25 +197,26 @@ se sigue que $F(x_{0})<F(a^{-})+\varepsilon$, esto implica que $F(x_{0})\leq F(a
         0\leq\sum_{n\in\N}\tau(I_{n}^{*})-\tau(I_{n})=\sum_{n\in\N}F(b_{n}+{\delta_{n}/2})
         -F(b_{n})<\sum_{n\in\N}\frac{\varepsilon}{2^{n}}=\varepsilon
     \end{equation*}
-    nuevamente, como $\varepsilon$ es arbitrario se sigue que
+    nuevamente, como $\varepsilon$ es arbitrario, se tiene que
     \begin{equation*}
         \sum_{n\in\N}\tau(I_{n})=\sum_{n\in\N}\tau(I_{n}^{*})
     \end{equation*}
-    Definimos el cubrimiento abierto $[a,b]$ dado por $(U_{n})_{n\in\N}$ donde 
-    $U_{n}:=int(I_{n}^{*})$, por compacidad existe $N\in\N$ tal que $(U_{n})_{n=1}^{N}$ 
-    cubren $[a,b]$, sin perdidad de generalidad podemos suponer que
+    Definimos un cubrimiento abierto de $[a,b]$ dado por $(U_{n})_{n\in\N}$ donde 
+    $U_{n}:=int(I_{n}^{*})$, por compacidad existe $N\in\N$ tal que $(U_{n})_{n=1}^{N}$ cubre 
+    $[a,b]$, sin perdidad de generalidad podemos suponer que
     \begin{itemize}
         \item $a\in U_{1}$ y $b\in U_{N}$.
         \item $a_{n+1}<b_{n}+\delta_{n}/2$ para todo $1\leq n\leq N-1$.
     \end{itemize}
-    Entonces, como $F$ es creciente vemos que
+    Entonces, como $F$ es creciente y $U_{n}\subseteq I_{n}^{*}$ para todo $n\in\N$, vemos que
     \begin{align*}
         \sum_{n\in\N}\tau(I_{n}) &= \sum_{n\in\N}\tau(I_{n}^{*})\geq
         \sum_{n=1}^{N}\tau(I_{n}^{*})=\sum_{n=1}^{N}F(b_{n}+\delta_{n}/2)-F(a_{n}) \\
         &= \sum_{n=1}^{N-1}F(b_{n}+\delta_{n}/2)-F(a_{n+1})+F(b_{N}+\delta_{N}/2)-F(a_{1}) \\
         &\geq F(b_{N}+\delta_{N}/2)-F(a_{1})\geq F(b)-F(a^{-})
     \end{align*}
-    Por lo tanto $\mu_{F}^{*}([a,b])=F(b)-F(a^{-})$.
+    es decir, $\mu_{F}^{*}([a,b])\geq F(b)-F(a^{-})$. Por lo tanto 
+    $\mu_{F}^{*}([a,b])=F(b)-F(a^{-})$.
     
     \item Consideremos el cubrimiento $(a,b]$ de $(a,b]$, luego
     \begin{equation*}

@@ -26,8 +26,9 @@
 \tableofcontents
 
 \newpage
-\section{Introducción}
-\subsection{Evaluaciones}
+\section*{Introducción}
+\addcontentsline{toc}{section}{Introducción}
+
 Habrán tres interrogaciones (I1, I2, I3) cada una vale un $25\%$ y un examen (EX) que vale un 
 $25\%$. Las fechas son 14 de abril, 19 de Mayo, 16 de Junio y 3 de Julio respectivamente.
 
@@ -818,6 +819,154 @@ $\pdv{h}{x_{i}}(p)\neq0$ para algún $i$, o sea, $\nabla h(p)\neq0$ para todo $p
     \noindent Por lo visto al inicio de la sección, existe parametrización local $\varphi:\V\to
     \R^{3}$ con $\varphi(\V)=h^{-1}(c)\cap(\V\times I)$.
 \end{dem}
+
+\subsection{Cambio de Coordenadas}
+\begin{lema}
+    Sea $\varphi:\V\subseteq\R^{2}\to\R^{3}$ superficie parametrizada regular
+    \begin{equation*}
+        \varphi(u,v)=(x(u,v),y(u,v),z(u,v))
+    \end{equation*}
+    Entonces para todo punto $(u_{0},v_{0})\in\V$ se tiene que $D(\pi\circ\varphi)(u_{0},v_{0}):
+    \R^{2}\to\R^{2}$ es un isomorfismo lineal, donde $\pi:\R^{3}\to\R^{2}$ es una de las 
+    proyecciones a los planos $xy$, $xz$ o $yz$.
+    \vspace{4mm}
+
+    \noindent Consecuentemente existe $\V_{0}\subseteq\V$ abierto con $(u_{0},v_{0})\in\V_{0}$ tal
+    que $\pi\circ\varphi(\V_{0})=W_{0}\subseteq\R^{2}$ es abierto y $\pi\circ\varphi\big|_{\V_{0}}
+    :\V_{0}\to\ W_{0}$ es un difeomorfismo.
+\end{lema}
+
+\begin{dem}
+    La matriz $D\varphi(u_{0},v_{0}):\R^{2}\to\R^{3}$ es
+    \begin{equation*}
+        \begin{pmatrix}
+            \pdv{x}{u} & \pdv{x}{v} \\[1mm]
+            \pdv{y}{u} & \pdv{y}{v} \\[1mm]
+            \pdv{z}{u} & \pdv{z}{v}
+        \end{pmatrix}(u_{0},v_{0})
+    \end{equation*}
+    Como la superficie es regular, las columnas son linealmente independientes. Luego la matriz 
+    tiene una submatriz $2\times2$ invertible. Pero estas submatrices son las matrices de
+    \begin{equation*}
+        D(\pi\circ\varphi)(u_{0},v_{0}):\R^{2}\to\R^{2}
+    \end{equation*}
+    La última parte es consecuencia directa del teorema de la función inversa.
+\end{dem}
+
+\noindent\textbf{Observación:} La función $\psi=\varphi\circ(\pi\circ\varphi)^{-1}:W_{0}\to\R^{3}$
+es también una superficie parametrizada regular con
+\begin{equation*}
+    \psi(W_{0})=\varphi((\pi\circ\varphi)^{-1}(W_{0}))=\varphi(\V_{0})
+\end{equation*}
+Además, $\pi\circ\psi=id_{W_{0}}$, osea, $\psi$ es la grafica de una función $f:W_{0}\to\R$ 
+diferenciable.
+
+\begin{cor}
+    Si $\Sigma\subseteq\R^{3}$ es una superficie regular, entonces para todo $p\in\Sigma$ existe 
+    parametrización local cuya imagen contiene a $p$ y que es grafica.
+\end{cor}
+
+\begin{teo}
+    Si $\varphi_{i}:\V_{i}\subseteq\R^{2}\to\Sigma$ son parametrizaciones locales de $\Sigma$ con
+    $U:=\varphi_{1}(\V_{1})\cap \varphi_{2}(\V_{2})\neq\emptyset$. Entonces la aplicación
+    \begin{equation*}
+        \varphi_{2}^{-1}\circ \varphi_{1}:\varphi_{1}^{-1}(U)\subseteq\R^{2}\to 
+        \varphi_{2}^{-1}(U)\subseteq\R^{2}
+    \end{equation*}
+    es un difeomorfismo. Se dice que $\varphi_{2}^{-1}\circ \varphi_{1}$ es un cambio de 
+    coordenadas.
+\end{teo}
+
+\begin{dem}
+    Como $\varphi_{i}$ son homeomorfismos, basta demostrar que $\varphi_{2}^{-1}\circ \varphi_{1}$ 
+    es diferenciable en cada $p_{1}\in \varphi_{1}^{-1}(U)$. Sean
+    \begin{equation*}
+        q=\varphi_{1}(p_{1})\hspace{4mm}\text{y}\hspace{4mm}p_{2}=\varphi_{2}^{-1}(q)=\varphi_{2}^{-1}(\varphi_{1}(p_{1}))
+    \end{equation*}
+    Por el lema, existe proyección $\pi:\R^{3}\to\R^{2}$ y un abierto $V_{2}\subseteq 
+    \varphi_{2}^{-1}(U)$ con $p_{2}\in V_{2}$ tal que
+    \begin{equation*}
+        \pi\circ \varphi_{2}:V_{2}\to\pi(\varphi_{2}(V_{2}))=:W\subseteq\R^{2}\hspace{2mm}
+        \text{un abierto}
+    \end{equation*}
+    es un difeomorfismo. Sea $V_{1}:=(\varphi_{2}^{-1}\circ \varphi_{1})^{-1}(V_{2})=
+    \varphi_{1}^{-1}(\varphi_{2}(V_{2}))$, entonces
+    \begin{itemize}
+        \item $p_{1}\in V_{1}$ pues $\varphi_{2}^{-1}\circ \varphi_{1}(p_{1})=\varphi_{2}^{-1}(q)
+        =p_{2}\in V_{2}$.
+        
+        \item Si $p\in V_{1}$ entonces $\varphi_{1}(p)\in\varphi_{2}(V_{2})$ y por ende
+        $\pi\circ\varphi_{1}(p)\in\pi\circ\varphi_{2}(V_{2})=W$
+        
+        \item $V_{1}$ es abierto
+    \end{itemize}
+    Por lo tanto esta bien definida la función $(\pi\circ\varphi_{2})^{-1}\circ\pi\circ\varphi_{1}:
+    V_{1}\to\V_{2}$. La cual cumple que $(\pi\circ\varphi_{2})^{-1}\circ\pi\circ\varphi_{1}=
+    \varphi_{2}^{-1}\circ\varphi_{1}$ en su dominio. Como $(\pi\circ\varphi_{2})^{-1}$ y
+    $(\pi\circ\varphi_{1})$ son diferenciables, $\varphi_{2}^{-1}\circ\varphi_{1}$ es diferenciable 
+    en $p_{1}\in V_{1}$.
+\end{dem}
+
+\subsection{Aplicaiones Diferenciables}
+\begin{dfn}
+    Se dice que $f:\Sigma\to\R^{d}$ es diferenciable en $p\in\Sigma$ si existe una parametrización
+    local $\varphi:\V\subseteq\R^{2}\to\Sigma$ con $p\in\varphi(\V)$ y tal que $f\circ\V$ es 
+    diferenciable en $\varphi^{-1}(p)\in\V$.
+\end{dfn}
+
+\begin{dfn}
+    Se dice que
+    \begin{equation*}
+        \gamma:V\subseteq\R^{d}\to\Sigma\subseteq\R^{3}
+    \end{equation*}
+    con $\Sigma$ una superficie parametrizada regular, es diferenciable en $q\in V$. Si existe una
+    parametrización local $\varphi:\V\subseteq\R^{2}\to\Sigma$ con $\gamma(q)\in\varphi(\V)$ tal 
+    que
+    \begin{equation*}
+        \varphi^{-1}\circ\gamma:\gamma^{-1}(\varphi(\V))\subseteq\R^{d}\to\R^{2}
+    \end{equation*}
+    es diferenciable en $q\in\gamma^{-1}(\varphi(\V))$.
+\end{dfn}
+
+\noindent\textbf{Observación:}
+\begin{enumerate}
+    \item La definición de diferenciabilidad de $f:\Sigma\to\R^{d}$ no depende de la 
+    parametrización
+    \begin{equation*}
+        f\circ\widetilde{\varphi}=(f\circ\varphi)\circ(\varphi^{-1}\circ\widetilde{\varphi})
+    \end{equation*}
+    entonces $f\circ\widetilde{\varphi}$ es diferenciable si y solo si $f\circ\varphi$ es 
+    diferenciable.
+
+    \item Esta noción de diferenciabilidad es local, es decir, si $p\in U\subseteq\Sigma$, con
+    $U$ abierto, entonces $f$ es diferenciable si y solo si $f\big|_{U}:U\to\R^{d}$ es 
+    diferenciable en $p$.
+    
+    \item Si $f:\Sigma\to\R^{d}$ es diferenciable entonces $f$ es continua, en efecto
+    \begin{equation*}
+        f=(f\circ\varphi)\circ\varphi^{-1}
+    \end{equation*}
+    es composición de mapeos continuos.
+
+    \item Observaciones análogas se cumplen para $\gamma:V\subseteq\R^{2}\to\Sigma$.
+\end{enumerate}
+
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Si $\varphi:\V\subseteq\R^{2}\to\Sigma$ es una parametrización local, entonces 
+    $\varphi$ y $\varphi^{-1}$ son diferenciables y $\varphi^{-1}\circ\varphi$ es la identidad.
+
+    \item Si $h:W\subseteq\R^{3}\to\R$ es diferenciable con $W$ abierto y si $\Sigma\subseteq W$
+    es una superficie parametrizada regular, entonces $h\big|_{\Sigma}:\Sigma\to\R$ es 
+    diferenciable. Para toda parametrización local $\varphi:\V\subseteq\R^{2}\to\Sigma$ tenemos que
+    $h\big|_{\Sigma}$ es la composición de $\varphi$ y $h$.
+
+    \item Función altura, $h:\Sigma\to\R$ dada por $h(p)=\ip{u}{p-p_{0}}$. Esta función mide la 
+    altura del punto $p_{0}\Sigma$ al plano $p_{0}+u^{\perp}$, donde $\abs{u}=1$.
+    
+    \item El cuadrado de la distancia a un $p_{0}\in\R^{3}$. Es decir, $f\Sigma\to\R$ dada por
+    $\abs{p-p_{0}}^{2}$. Si $p_{0}\not\in\Sigma$ entonces $\abs{p-p_{0}}$ también es diferenciable.
+\end{itemize}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
