@@ -126,8 +126,9 @@ Afirmamos que la función $f''(\alpha(t))$ es continua, en efecto
     {t_{0}-\overline{x_{i}}}=f''(\alpha(t_{0}))
 \end{equation*}
 Para el caso $t_{0}=\overline{x_{i}}$ en la segunda expresión nos queda exactamente la definición 
-de la segunda derivada de $f''$ en el punto $\overline{x_{i}}$, por lo tanto $f(\alpha)$ es 
-continua en $[\overline{x_{i}},x]$. Como $x\geq\overline{x_{i}}$, por TVM para integrales existe 
+de la segunda derivada de $f$ en el punto $\overline{x_{i}}$, por lo tanto $f(\alpha)$ es 
+continua en el intervalo cerrado entre $\overline{x_{i}}$ y $x$. Como $t-\overline{x_{i}}$ no 
+cambia de signo en el anterior intervalo, por TVM para integrales existe
 $\alpha(t_{0})$ tal que
 \begin{equation*}
     f(x)-f(\overline{x_{i}})=f''(\alpha(t_{0}))\int_{\overline{x_{i}}}^{x}t-\overline{x_{i}}
@@ -195,12 +196,8 @@ esto implica que $F(x_{0})\leq F(a^{-})$.
     \end{equation*}
     por otro lado
     \begin{equation*}
-        0\leq\sum_{n\in\N}\tau(I_{n}^{*})-\tau(I_{n})=\sum_{n\in\N}F(b_{n}+{\delta_{n}/2})
+        \sum_{n\in\N}\tau(I_{n}^{*})-\tau(I_{n})=\sum_{n\in\N}F(b_{n}+{\delta_{n}/2})
         -F(b_{n})<\sum_{n\in\N}\frac{\varepsilon}{2^{n}}=\varepsilon
-    \end{equation*}
-    nuevamente, como $\varepsilon$ es arbitrario, se tiene que
-    \begin{equation*}
-        \sum_{n\in\N}\tau(I_{n})=\sum_{n\in\N}\tau(I_{n}^{*})
     \end{equation*}
     Definimos un cubrimiento abierto de $[a,b]$ dado por $(U_{n})_{n\in\N}$ donde 
     $U_{n}:=int(I_{n}^{*})$, por compacidad existe $N\in\N$ tal que $(U_{n})_{n=1}^{N}$ cubre 
@@ -211,13 +208,17 @@ esto implica que $F(x_{0})\leq F(a^{-})$.
     \end{itemize}
     Entonces, como $F$ es creciente y $U_{n}\subseteq I_{n}^{*}$ para todo $n\in\N$, vemos que
     \begin{align*}
-        \sum_{n\in\N}\tau(I_{n}) &= \sum_{n\in\N}\tau(I_{n}^{*})\geq
+        \sum_{n\in\N}\tau(I_{n})+\varepsilon &> \sum_{n\in\N}\tau(I_{n}^{*})\geq
         \sum_{n=1}^{N}\tau(I_{n}^{*})=\sum_{n=1}^{N}F(b_{n}+\delta_{n}/2)-F(a_{n}) \\
         &= \sum_{n=1}^{N-1}F(b_{n}+\delta_{n}/2)-F(a_{n+1})+F(b_{N}+\delta_{N}/2)-F(a_{1}) \\
         &\geq F(b_{N}+\delta_{N}/2)-F(a_{1})\geq F(b)-F(a^{-})
     \end{align*}
-    es decir, $\mu_{F}^{*}([a,b])\geq F(b)-F(a^{-})$. Por lo tanto 
-    $\mu_{F}^{*}([a,b])=F(b)-F(a^{-})$.
+    nuevamente, como $\varepsilon$ es arbitrario, se tiene que
+    \begin{equation*}
+        \sum_{n\in\N}\tau(I_{n})\geq F(b)-F(a^{-})
+    \end{equation*}
+    es decir, $\mu_{F}^{*}([a,b])\geq F(b)-F(a^{-})$. Por lo tanto $\mu_{F}^{*}([a,b])=
+    F(b)-F(a^{-})$.
     
     \item Consideremos el cubrimiento $(a,b]$ de $(a,b]$, luego
     \begin{equation*}

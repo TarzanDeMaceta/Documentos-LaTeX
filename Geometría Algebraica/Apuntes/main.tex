@@ -625,6 +625,40 @@ Zariski. Para ello supongamos que $k=\C$.
 \end{itemize}
 
 \subsection{Modulos y Condiciones de Finitud}
+Sea $R$ un anillo, se dice que $M$ es un $R$-módulo, si $M$ es un grupo conmutativo y si viene con
+producto escalar, es decir, una función de $R\times M$ a $M$, se denota por $a\cdot m$ que 
+satisface lo siguiente
+\begin{itemize}
+    \item $(a+b)m=am+bm$ para todo $a,b\in R$ y $m\in M$.
+    \item $a(m+n)=am+an$ para todo $a\in R$ y $m,n\in M$.
+    \item $(ab)m=a(bm)$ para todo $a,b\in R$ y $m\in M$.
+    \item $1_{R}\cdot m=m$ para todo $m\in M$
+\end{itemize}
+Un subgrupo de $N$ de un $R$-módulo $M$ se dice un submodulo si $N$ es un $R$-módulo con el mismo
+producto escalar. Dado $S\subseteq M$, definimos el generado de $S$ por
+\begin{equation*}
+    \gen{S}:=\left\{\sum r_{i}s_{i}\hspace{2mm}|\hspace{2mm}r_{i}\in R,s_{i}\in S\right\}
+\end{equation*}
+de hecho corresponde al submódulo de $M$ mas pequeño que contiene a $S$. Decimos que $M$ es 
+finitamente generado si existe $S\subseteq M$ tal que $\gen{S}=M$.
+\vspace{4mm}
+
+\noindent Sea $R$ un subanillo de $S$. Decimos que $S$ es modulo finito sobre $R$, si es 
+finitamente generado como $R$-módulo.
+\vspace{4mm}
+
+\noindent Sean $v_{1},\cdots,v_{n}\in S$. Sea $\varphi:R[x_{1},\cdots,x_{n}]\to S$ el morfismo
+de anillo que manda $x_{i}$ a $v_{i}$. La imagen de $\varphi$ se denota por 
+$R[v_{1},\cdots,v_{n}]$ y corresponde a un subanillo de $S$ que contiene a $R$ y 
+$v_{1},\cdots,v_{n}$, además, es el subanillo mas pequeño con esta propiedad. Decimos que $S$ es 
+un anillo finito sobre $R$ si $S=R[v_{1},\cdots,v_{n}]$ para algunos $v_{1},\cdots,v_{n}\in S$.
+\vspace{4mm}
+
+\noindent Sean $K\subset L$ cuerpos. Sean $v_{1},\cdots,v_{n}\in L$ y consideremos 
+$K(v_{1},\cdots,v_{n})$ el cuerpo de fracciones de  $K[v_{1},\cdots,v_{n}]$. Al igual que antes,
+corresponde al menor subcuerpo de $L$ que contiene a $K$ y $v_{1},\cdots,v_{n}$. El cuerpo $L$ se
+dice una extensión finitamente generada de $K$ si $L=K(v_{1},\cdots,v_{n})$ para algunos
+$v_{1},\cdots,v_{n}\in L$.
 
 \subsection{Elementos Integrales}
 \begin{dfn}
