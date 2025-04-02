@@ -706,6 +706,69 @@ $v_{1},\cdots,v_{n}\in L$.
     \end{itemize}
 \end{dem}
 
+\begin{cor}
+    Sean $R\subseteq S$ dominios. Entonces los elementos integrales sobre $R$ forman un anillo.
+\end{cor}
+\begin{dem}
+    Sean $a,b\in S$ elementos integrales sobre $R$. Notemos que
+    \begin{equation*}
+        R\subseteq R[a+b]\subseteq R[a,b]\hspace{4mm}\text{y}\hspace{4mm}
+        R\subseteq R[ab]\subseteq R[a,b]
+    \end{equation*}
+    Como $a$ y $b$ son elementos integrales sobre $R$, $R[a]$ y $R[b]$ son finitamente generados
+    por $\{1,a,a^{2},\cdots,a^{n-1}\}$ y $\{1,b,b^{2},\cdots,b^{n-1}\}$. Es claro que
+    $R[a,b]$ es generado por $\{a^{i}b^{j}:0\leq i\leq n-1,\hspace{2mm}0\leq j\leq m-1\}$. Por la
+    proposición se sigue que $a+b$ y $ab$ son elementos integrales sobre $R$.
+\end{dem}
+
+\begin{dfn}
+    Sean $R\subseteq S$ dominios. Decimos que $S$ es integral sobre $R$ si todo $s\in S$ es 
+    integral sobre $R$.
+    \vspace{4mm}
+
+    \noindent Además, $R$ es un dominio integralmente cerrado si para ningún 
+    $z\in Frac(R)\setminus R$ es integral.
+\end{dfn}
+
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Consideremos $\Z\subseteq\Q$, sea $p/q\in\Q$ con $p$ y $q$ coprimos. Si tenemos la 
+    expresión
+    \begin{equation*}
+        \left(\frac{p}{q}\right)^{n}+a_{n-1}\left(\frac{p}{q}\right)^{n-1}+
+        \cdots+a_{1}\left(\frac{p}{q}\right)+a_{0}=0
+    \end{equation*}
+    Por teorema de la raiz racional, $q$ debe dividir a $1$, luego $q=1$ lo que implica que 
+    $p/q\in\Z$. Concluimos que $Z$ es integralmente cerrado.
+
+    \item Veamos el conjunto algebraico $V(y^{2}-x^{3})\subseteq\A_{k}^{2}$ con $k=\overline{k}$.
+    Vemos el anillo
+    \begin{equation*}
+        R=\frac{k[x,y]}{(y^{2}-x^{3})}
+    \end{equation*}
+    que es un dominio, pues $(y^{2}-x^{3})$ es irreductible. Dentro de $R\subseteq Frac(R)$, vemos
+    que se cumple la relación $y^{2}=x^{3}$, que dentro del cuerpo de fracciones es equivalente a
+    \begin{equation*}
+        \left(\frac{y}{x}\right)^{2}-x=0
+    \end{equation*}
+    notemos que $\frac{y}{x}\not\in R$ y que $x\in R$. Por lo tanto $R$ no es integralmente 
+    cerrado.
+
+    \item Sea $V(y-x^{2})\subseteq\A_{k}^{2}$. Vemos el anillo
+    \begin{equation*}
+        R=\frac{k[x,y]}{(y-x^{2})}
+    \end{equation*}
+    por demostrar, $R$ es integralmente cerrado. Consideremos la función 
+    $\varphi:\A_{k}^{1}\to\A_{k}^{2}$ dada por $\varphi(t)=(t,t^{2})$. Notemos que 
+    $Im(\varphi)=V(y-x^{2})$. La función $\varphi$ induce el isomorfismo
+    \begin{align*}
+        \frac{k[x,y]}{(y-x^{2})} &\to k[t] \\
+        x &\to t \\
+        y^{2} &\to t^{2}
+    \end{align*}
+    Como $k[t]$ es DFU, se sigue que $R$ es integralmente cerrado.
+\end{itemize}
+
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
 \end{document}
