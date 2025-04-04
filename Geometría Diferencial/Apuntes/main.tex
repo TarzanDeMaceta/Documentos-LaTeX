@@ -1119,7 +1119,11 @@ y cualquier parametrización local en $p$ tiene derivada con la misma imagen en 
     \end{equation*}
     con $\varphi$ una parametrización local en $p$. Lo denotaremos por $T_{p}\Sigma$.
 \end{dfn}
-\textbf{Observación:} Geometricamente $T_{p}\Sigma$ es un plano en $\R^{3}$ que pasa por 
+\noindent Denotamos por $\varphi_{u}:=D\varphi(\varphi^{-1}(p))e_{1}$ y $\varphi_{v}:=
+D\varphi(\varphi^{-1}(p))e_{2}$.
+\vspace{4mm}
+
+\noindent\textbf{Observación:} Geometricamente $T_{p}\Sigma$ es un plano en $\R^{3}$ que pasa por 
 $0\in\R^{3}$.
 \begin{prop}
     Para $p\in\Sigma$ y $w\in\R^{3}$ tenemos que $w\in T_{p}\Sigma$ si y solo si existe una curva
@@ -1130,6 +1134,147 @@ $0\in\R^{3}$.
         \item $\alpha'(0)=w$.
     \end{itemize}
 \end{prop}
+
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Consideremos un plano en $\R^{3}$, es decir, $P=q+span\{w_{1},w_{2}\}$. Su 
+    parametrización local es $\varphi:\R^{2}\to\R^{3}$ dada por $\varphi(u,v)=q+uw_{1}+vw_{2}$, 
+    luego
+    \begin{align*}
+        \varphi_{u}(u,v)=w_{1} \\
+        \varphi_{v}(u,v)=w_{2}
+    \end{align*}
+    es decir $T_{\varphi(u,v)}P=span\{w_{1},w_{2}\}$.
+
+    \item Sea $f:\V\subseteq\R^{2}\to\R$ una función diferenciable. Tomemos $Graf(f)=
+    \{(x,f(x)):x\in\V\subseteq\R^{2}\}$. Su parametrización local es $\varphi(u,v)=(u,v,f(u,v))$,
+    entonces
+    \begin{align*}
+        \varphi_{u}(u,v)=\left(1,0,\pdv{f}{u}\right) \\
+        \varphi_{v}(u,v)=\left(0,1,\pdv{f}{v}\right)
+    \end{align*}
+    se sigue que $T_{\varphi(u,v)}Graf(f)=\left\{(a,b,a\pdv{f}{u}+b\pdv{f}{v}):a,b\in\R\right\}$.
+\end{itemize}
+
+\begin{dem} Sea $p\in\Sigma$, $\varphi:\V\subseteq\R^{2}\to\R^{3}$ una parametrización local en 
+    $p$ y $p_{0}=\varphi^{-1}(p)$.
+    \begin{itemize}
+        \item $\Rightarrow|$ Existen $a,b\in\R$ tales que
+        \begin{equation*}
+            w=D\varphi(p_{0})(a,b)=a\varphi_{u}(p_{0})+b\varphi_{v}(p_{0})
+        \end{equation*}
+        Como $p_{0}\in\V$ y $\V$ es abierto, tenemos que $p_{0}+t(a,b)\in\V$ para 
+        $t\in(-\varepsilon,\varepsilon)$ y $\varepsilon>0$ suficientemente pequeño. Definimos
+        \begin{equation*}
+            \alpha:(-\varepsilon,\varepsilon)\to\R^{3}\hspace{4mm}\text{por}\hspace{4mm}
+            \alpha(t)=\varphi(p_{0}+t(a,b))
+        \end{equation*}
+        entonces $\alpha$ es diferenciable y $\alpha((-\varepsilon,\varepsilon))\subseteq\Sigma$.
+        Por otro lado $\alpha(0)=\varphi(p_{0})=p$ y
+        \begin{align*}
+            \alpha'(0) &= \dv{}{t}\Big|_{t=0}\varphi(p_{0}+t(a,b)) \\
+            &= D\varphi(p_{0})\left(\dv{}{t}\Big|_{t=0}(p_{0}+t(a,b))\right)=
+            D\varphi(p_{0})(a,b) \\
+            &= w
+        \end{align*}
+
+        \item $\Leftarrow|$ Como $\alpha(0)=p\in\varphi(\V)$ y $\varphi(\V)$ es abierto en 
+        $\Sigma$, tenemos que $\alpha(t)\in\varphi(\V)$ para $t$ suficientemente pequeño. Luego,
+        esta bien definida
+        \begin{equation*}
+            \alpha_{0}:=\varphi^{-1}\circ\alpha
+        \end{equation*}
+        y es una curva diferenciable en $\V$. Sea $(a,b)=\alpha_{0}'(0)\in\R^{2}$, entonces
+        \begin{equation*}
+            D\varphi(p_{0})(a,b)=D\varphi(\alpha_{0}(0))\alpha_{0}'(0)=
+            (\varphi\circ\alpha_{0})'(0)=\alpha'(0)=w
+        \end{equation*}
+    \end{itemize}
+\end{dem}
+
+\noindent\textbf{Ejemplo:} Sea $h:W\subseteq\R^{3}\to\R$ diferenciable y $c\in\R$ un valor regular
+para $h$. Vimos que $h^{-1}(c)=\Sigma$ es una superficie regular. Sea $p\in\Sigma$, y 
+$w\in T_{p}{\Sigma}$, existe $\alpha$ curva diferenciable tal que $\alpha'(0)=w$, $\alpha(0)=p$ y
+$\alpha(t)\in\Sigma$ para todo $t\in(-\varepsilon, \varepsilon)$. Veamos que 
+$h\circ\alpha\equiv c$. Entonces
+\begin{equation*}
+    0=(h\circ\alpha)'(0)=Dh(\alpha(0))\alpha'(0)=Dh(p)w
+\end{equation*}
+luego $T_{p}\Sigma\subseteq ker(Dh(p))=(\nabla h(p))^{\perp}$. Por lo tanto $T_{p}\Sigma=
+(\nabla h(p))^{\perp}$. Hemos concluido que el gradiente de la función es perpendicular al plano 
+tangente $T_{p}\Sigma$.
+\vspace{4mm}
+
+\noindent Por ejemplo $h(x,y,z)=x^{2}+y^{2}+z^{2}$ entonces $\nabla h=(2x,2y,2z)$, es decir, 
+$\nabla h=2p$ para todo $p\in\R^{3}$. Como $\mathbb{S}^{2}=h^{-1}(1)$ tenemos 
+$T_{p}\mathbb{S}^{2}=(\nabla h(p))^{\perp}=p^{\perp}$
+
+\begin{dfn}
+    Sea $f:\Sigma\to\R^{m}$ diferenciable en $p\in\Sigma$. Definimos la derivada o diferencial de
+    $f$ en $p\in\Sigma$ se define por
+    \begin{align*}
+        Df_{p}:T_{p}\Sigma &\to \R^{m} \\
+        w=\alpha'(0) &\to (f\circ\alpha)'(0)\in\R^{m}
+    \end{align*}
+\end{dfn}
+
+\begin{prop}
+    La derivada de una función diferenciable no depende de la elección de la curva y es lineal.
+\end{prop}
+\begin{dem}
+    Sea $\varphi:\V\subseteq\R^{2}\to\R^{3}$ parametrización local para $\Sigma$ con 
+    $p\in\varphi(\V)$. Escriba $p_{0}=\varphi^{-1}(p)\in\V$. Sea $\alpha:
+    (-\varepsilon, \varepsilon)\to\R^{3}$ una curva diferenciable, con $\alpha(0)=p$, 
+    $\alpha'(0)=w\in T_{p}\Sigma$ y $\alpha(t)\in\varphi(\V)$ para todo 
+    $t\in(-\varepsilon, \varepsilon)$. Definimos 
+    $\alpha_{0}=\varphi^{-1}\circ\alpha:(-\varepsilon, \varepsilon)\to\V$ es una curva parametrizada
+    diferenciable con $\alpha_{0}(0)=\varphi^{-1}(\alpha(0))=p_{0}$.
+    \vspace{4mm}
+
+    \noindent Notemos que $w=D\varphi(p_{0})(\alpha_{0}'(0))$. Luego
+    \begin{align*}
+        Df_{p}(w) &= (f\circ\alpha)'(0)=(f\circ\varphi\circ\varphi^{-1}\circ\alpha)'(0)=
+        ((f\circ\varphi)\circ\alpha_{0})'(0) \\
+        &= D(f\circ\varphi)(\alpha_{0}(0))\alpha_{0}'(0) \\
+        &= D(f\circ\varphi)(p_{0})\circ (D\varphi)^{-1}(p_{0})w
+    \end{align*}
+    para todo $w\in T_{p}\Sigma$. Es decir,
+    \begin{equation*}
+        Df_{p}=D(f\circ\varphi)(p_{0})\circ (D\varphi)^{-1}(p_{0})
+    \end{equation*}
+    entonces, $Df_{p}$ es lineal y no depende de $\alpha$.
+\end{dem}
+
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Sea $f:\Sigma\to\R^{m}$ dada por $f\equiv c$. Para todo $p\in\Sigma$ y todo 
+    $w\in T_{p}\Sigma$, $w=\alpha'(0)$, luego
+    \begin{equation*}
+        Df_{p}(w)=(f\circ\alpha)'(0)=\dv{}{t}\Big|_{t=0}(f\circ\alpha)(t)=0
+    \end{equation*}
+
+    \item Sea $i_{\Sigma}:\Sigma\to\R^{3}$ la inclusión, es decir, $i_{\Sigma}(p)=p$. Para 
+    $p\in\Sigma$ con $w=\alpha'(0)\in T_{p}\Sigma$ tenemos que
+    \begin{equation*}
+        D(i_{\Sigma})_{p}w=(i_{\Sigma}\circ\alpha)'(0)=\alpha'(0)=w
+    \end{equation*}
+
+    \item Sea $F:\R^{3}\to\R^{m}$ diferenciable, entonces $F\big|_{\Sigma}=:f$ es diferenciable.
+    Además, si $p\in\Sigma$, $w=\alpha'(0)\in T_{p}\Sigma$ se sigue que
+    \begin{equation*}
+        Df_{p}(w)=(f\circ\alpha)'(0)=(F\circ\alpha)'(0)=DF(\alpha(0))\alpha'(0)=DF(p)w
+    \end{equation*}
+    es decir, $Df_{p}=DF(p)\big|_{T_{p}\Sigma}$.
+
+    \item Sea $h:\Sigma\to\R$ dada por $h(p)=\ip{p-p_{0}}{u}$ con $p_{0},u\in\R^{3}$ y $\abs{u}=1$,
+    entonces $Dh_{p}w=\ip{w}{u}$.
+
+    \item Sea $f:\Sigma\to\R$ dada por $f(p)=\abs{p-p_{0}}^{2}$, luego
+    $Df_{p}w=2\ip{w}{p-p_{0}}$.
+
+    \item Sea $\pi_{i}:\R^{3}\to\R$ la proyección en la coordenada i-esima, entonces
+    $D\left(\pi_{i}\big|_{\Sigma}\right)w=w_{i}$.
+\end{itemize}
  
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 

@@ -643,7 +643,7 @@ de hecho corresponde al submódulo de $M$ mas pequeño que contiene a $S$. Decim
 finitamente generado si existe $S\subseteq M$ tal que $\gen{S}=M$.
 \vspace{4mm}
 
-\noindent Sea $R$ un subanillo de $S$. Decimos que $S$ es modulo finito sobre $R$, si es 
+\noindent Sea $R\subseteq S$ anillos. Decimos que $S$ es modulo finito sobre $R$, si es 
 finitamente generado como $R$-módulo.
 \vspace{4mm}
 
@@ -651,7 +651,7 @@ finitamente generado como $R$-módulo.
 de anillo que manda $x_{i}$ a $v_{i}$. La imagen de $\varphi$ se denota por 
 $R[v_{1},\cdots,v_{n}]$ y corresponde a un subanillo de $S$ que contiene a $R$ y 
 $v_{1},\cdots,v_{n}$, además, es el subanillo mas pequeño con esta propiedad. Decimos que $S$ es 
-un anillo finito sobre $R$ si $S=R[v_{1},\cdots,v_{n}]$ para algunos $v_{1},\cdots,v_{n}\in S$.
+un algebra finita sobre $R$ si $S=R[v_{1},\cdots,v_{n}]$ para algunos $v_{1},\cdots,v_{n}\in S$.
 \vspace{4mm}
 
 \noindent Sean $K\subset L$ cuerpos. Sean $v_{1},\cdots,v_{n}\in L$ y consideremos 
@@ -726,7 +726,7 @@ $v_{1},\cdots,v_{n}\in L$.
     integral sobre $R$.
     \vspace{4mm}
 
-    \noindent Además, $R$ es un dominio integralmente cerrado si para ningún 
+    \noindent Además, $R$ es un dominio integralmente cerrado si ningún 
     $z\in Frac(R)\setminus R$ es integral.
 \end{dfn}
 
@@ -768,6 +768,84 @@ $v_{1},\cdots,v_{n}\in L$.
     \end{align*}
     Como $k[t]$ es DFU, se sigue que $R$ es integralmente cerrado.
 \end{itemize}
+
+\noindent Vamos a estudiar un caso particular del lema de Zariski. Sea $k$ un cuerpo e 
+$I\subseteq k[x]$ un ideal maximal, entonces $k[x]/I=L$ es un cuerpo. Tenemos dos casos, 
+$I=(0)$ ó $I=(f(x))$. Si $I=(0)$ entonces $k[x]$ es cuerpo, esto es una contradicción. Por otro 
+lado escribimos
+\begin{equation*}
+    f(x)=x^{n}+a_{n-1}x^{n-1}+\cdots+a_{1}x+a_{0}
+\end{equation*}
+pero en $L$ se tiene que $f(x)=0$, luego, $L$ es generado como $k$ módulo por 
+$\{1,x,\cdots,x^{n-1}\}$.
+\vspace{4mm}
+
+\noindent Veamos cuando $k[x,y]/I=L$ donde $k$ es un cuerpo e $I\subseteq k[x,y]$ es un ideal 
+maximal. Si $x\in I$ o $y\in I$ podemos reducir al caso anterior. Entonces $L$ es finitamente 
+generado por potencias de $x$ e $y$. 
+\vspace{4mm}
+
+\noindent Pensaremos en $k(x)$ como los cocientes de polinomios en una variable modulo $I$, luego
+\begin{equation*}
+    k\subset k(x)\subset k(x)[y]=L
+\end{equation*}
+donde la igualdad $k(x)[y]=L$ se debe a que la inversa de un polinomio en $k(x)$ en realidad se 
+escribe como combinación de potencias de $x$ e $y$. Además, por el caso anterior, $k(x)[y]$ es
+finitamente generado como $k(x)$ módulo.
+
+\vspace{4mm}
+
+\noindent Tenemos dos casos:
+\begin{itemize}
+    \item Caso $1$: La extensión $k\subset k(x)$ es finita. Esto implica que la extensión 
+    $k\subseteq L$ es finita, basta tomar el producto de los generadores.
+
+    \item Caso $2$: Se tiene la siguiente igualdad
+    \begin{equation*}
+        k(x)=\left\{\text{cocientes }\frac{p(x)}{q(x)}\right\}
+    \end{equation*}
+    En $L$ se debe cumplir la relación $y^{m}=a_{m-1}y^{m-1}+\cdots+a_{1}y+a_{0}$ con 
+    $a_{i}\in k(x)$. Tomar $a\in k[x]$ tal que $a^{m}$ limpie los denominadores, luego
+    \begin{equation*}
+        (ay)^{m}=b_{m-1}(ay)^{m-1}+\cdots+b_{1}(ay)+b_{0}
+    \end{equation*}
+    con $b_{i}\in k[x]$. Se sigue que $ay$ es integral sobre $k[x]$. Sea $z\in L$, luego para $N$ 
+    suficientemente grande $a^{N}z$ es integral sobre $k[x]$, ya que
+    \begin{align*}
+        a^{N}z &= a^{N}f(x,y) \\
+        &= a^{N}(c_{0}+c_{1}y+\cdots+c_{M}y^{M}) \\
+        &= c_{0}'+c_{1}'(ya)+\cdots+c_{M}'(ya)^{M}
+    \end{align*}
+    donde $c_{i}'\in k[x]$. Como $k[x]$ es DFU, $a=p_{1}\cdots p_{s}$ su factorización en 
+    irreducibles, sea $p_{s+1}$ un irreductible distinto de $p_{i}$, tomando $z=\frac{1}{p_{s+1}}$ 
+    resulta que $a^{N}z$ es integral, lo cual es una contradicción.
+\end{itemize}
+
+\begin{lema}
+    (Lema de Zariski) Sean $K\subseteq L$ y $L$ es finitamente generado como $K$ algebra, entonces
+    $L$ es finitamente generado como $K$ modulo, es decir, como espacio vectorial.
+\end{lema}
+
+\section{Variedades Afines}
+\noindent En general supondremos que $k=\overline{k}$.
+\begin{dfn}
+    Una variedad afín es un conjunto algebraico $V\subseteq\A_{k}^{n}$ irreducible.
+\end{dfn}
+\noindent Recordemos que $V$ es irreducible si  y solo si $I(V)$ es primmo. Entonces definimos el 
+dominio
+\begin{equation*}
+    \Gamma(V):=\frac{k[x_{1},\cdots,x_{n}]}{I(V)}
+\end{equation*}
+y lo llamamos anillo de coordenadas de $V$.
+\begin{dfn}
+    Sean $V\subseteq\A_{k}^{n}$ y $W\subseteq\A_{k}^{m}$ variedades afines. Una aplicación 
+    polinomial es una función
+    \begin{align*}
+        \varphi:V &\to W \\
+        a:(a_{1},\cdots,a_{n}) &\to (f_{1}(a),\cdots,f_{m}(a))
+    \end{align*}
+    donde $f_{i}\in k[x_{1},\cdots,x_{n}]$.
+\end{dfn}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
