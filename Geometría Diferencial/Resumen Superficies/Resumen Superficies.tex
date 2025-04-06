@@ -1,0 +1,196 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{14cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Profesor: Pedro Gaspar -- Estudiante: Benjamín Mateluna}
+\end{minipage}
+\vspace{1ex}
+
+{\centerline{\bf Geometría Diferencial - MAT2860}
+\centerline{\bf Resumen Superficies Regulares (I1)}}
+\centerline{\bf 06 de Abril de 2025}
+
+\newpage
+\section{Superficies Regulares}
+\subsection{Definición y ejemplos}
+\begin{dfn}
+    Sea $\Sigma\subseteq\R^{3}$, decimos que $\Sigma$ es una superficie regular si para todo
+    $p\in\Sigma$ existe un abierto $V\subseteq\R^{3}$ con $p\in V$ y una función diferenciable
+    \begin{equation*}
+        \varphi:\mathcal{V}\subseteq\R^{2}\to\R^{3}
+    \end{equation*}
+    tal que
+    \begin{itemize}
+        \item $\varphi(\mathcal{V})=V\cap\Sigma$
+        \item $\varphi$ es homeomorfismo de $\mathcal{V}$ sobre $V\cap\Sigma$
+        \item $D\varphi(q):\R^{2}\to\R^{3}$ es inyectiva, es decir, si $\varphi=\varphi(u,v)$, 
+        entonces
+        \begin{align*}
+            & \varphi_{u}(q):=D\varphi(q)\cdot e_{1}=\dv{}{t}\varphi(q+te_{1})\big|_{t=0} \\
+            & \varphi_{v}(q):=D\varphi(q)\cdot e_{2}=\dv{}{t}\varphi(q+te_{2})\big|_{t=0}
+        \end{align*}
+        son linealmente independientes, en otras palabras 
+        $\varphi_{u}(q)\times\varphi_{v}(q)\neq0$. Decimos que $\varphi$ es una parametrización 
+        local para $\Sigma$.
+    \end{itemize}
+\end{dfn}
+\begin{dfn}
+    Una superficie parametrizada diferenciable es una aplicación  diferenciable $\varphi:\V
+    \subseteq\R^{2}\to\R^{3}$ con $\V$ abierto. Se dice que $\varphi$ es regular si 
+    $D\varphi(q):\R^{2}\to\R^{3}$ es inyectiva para todo $q\in\V$.
+\end{dfn}
+\begin{dfn}
+    Sea $F:W\subseteq\R^{n}\to\R^{m}$ diferenciable. Se dice que $q\in\R^{m}$ es un valor regular
+    para $F$, si $F^{-1}(q)=\emptyset$ o si para todo $p\in F^{-1}(q)$ se tiene que 
+    $DF(p):\R^{n}\to\R^{m}$ es sobreyectiva.
+\end{dfn}
+\begin{teo}
+    Sea $h:W\subseteq\R^{3}\to\R$ una función diferenciable. Si $c\in\R$ es un valor regular para
+    $h$, entonces $h^{-1}(c)$ es una superficie regular.
+\end{teo}
+
+\subsection{Cambio de Coordenadas}
+\begin{lema}
+    Sea $\varphi:\V\subseteq\R^{2}\to\R^{3}$ superficie parametrizada regular
+    \begin{equation*}
+        \varphi(u,v)=(x(u,v),y(u,v),z(u,v))
+    \end{equation*}
+    Entonces para todo punto $(u_{0},v_{0})\in\V$ se tiene que $D(\pi\circ\varphi)(u_{0},v_{0}):
+    \R^{2}\to\R^{2}$ es un isomorfismo lineal, donde $\pi:\R^{3}\to\R^{2}$ es una de las 
+    proyecciones a los planos $xy$, $xz$ o $yz$.
+    \vspace{4mm}
+
+    \noindent Consecuentemente existe $\V_{0}\subseteq\V$ abierto con $(u_{0},v_{0})\in\V_{0}$ tal
+    que $\pi\circ\varphi(\V_{0})=W_{0}\subseteq\R^{2}$ es abierto y $\pi\circ\varphi\big|_{\V_{0}}
+    :\V_{0}\to\ W_{0}$ es un difeomorfismo.
+\end{lema}
+\begin{cor}
+    Si $\Sigma\subseteq\R^{3}$ es una superficie regular, entonces para todo $p\in\Sigma$ existe 
+    parametrización local cuya imagen contiene a $p$ y que corresponde a la gráfica de una función 
+    diferenciable.
+\end{cor}
+\begin{teo}
+    Si $\varphi_{i}:\V_{i}\subseteq\R^{2}\to\Sigma$ son parametrizaciones locales de $\Sigma$ con
+    $U:=\varphi_{1}(\V_{1})\cap \varphi_{2}(\V_{2})\neq\emptyset$. Entonces la aplicación
+    \begin{equation*}
+        \varphi_{2}^{-1}\circ \varphi_{1}:\varphi_{1}^{-1}(U)\subseteq\R^{2}\to 
+        \varphi_{2}^{-1}(U)\subseteq\R^{2}
+    \end{equation*}
+    es un difeomorfismo. Se dice que $\varphi_{2}^{-1}\circ \varphi_{1}$ es un cambio de 
+    coordenadas.
+\end{teo}
+
+\subsection{Aplicaciones Diferenciables}
+\begin{dfn}
+    Se dice que $f:\Sigma\to\R^{d}$ es diferenciable en $p\in\Sigma$ si existe una parametrización
+    local $\varphi:\V\subseteq\R^{2}\to\Sigma$ con $p\in\varphi(\V)$ y tal que $f\circ\varphi$ es 
+    diferenciable en $\varphi^{-1}(p)\in\V$.
+\end{dfn}
+\begin{dfn}
+    Se dice que
+    \begin{equation*}
+        \gamma:V\subseteq\R^{d}\to\Sigma\subseteq\R^{3}
+    \end{equation*}
+    con $\Sigma$ una superficie parametrizada regular, es diferenciable en $q\in V$. Si existe una
+    parametrización local $\varphi:\V\subseteq\R^{2}\to\R^{3}$ con $\gamma(q)\in\varphi(\V)$ tal 
+    que
+    \begin{equation*}
+        \varphi^{-1}\circ\gamma:\gamma^{-1}(\varphi(\V))\subseteq\R^{d}\to\R^{2}
+    \end{equation*}
+    es diferenciable en $q\in\gamma^{-1}(\varphi(\V))$.
+\end{dfn}
+\begin{lema}\hspace{1mm}
+    \begin{enumerate}
+        \item Sean $\gamma:\V\subseteq\R^{d}\to\Sigma$ y $f:\Sigma\to\R^{m}$ tales que $\gamma$ es
+        diferenciable en $q$ y $f$ es diferenciable en $\gamma(q)$ entonces $f\circ\gamma$ es
+        diferenciable en $q$.
+
+        \item Sean $f:\Sigma\to\R^{m}$ y $\phi:W\subseteq\R^{m}\to\R^{d}$ con 
+        $f(\Sigma)\subseteq W$ tales que $f$ es diferenciable en $p$ y $\phi$ es diferenciable en
+        $\phi\circ f$ es diferenciable en $p$.
+    \end{enumerate}
+\end{lema}
+\begin{cor}
+    Una aplicación $\gamma:V\subseteq\R^{d}\to\Sigma$ es diferenciable $q\in V$ si y solo si
+    sus coordenadas $\gamma_{1},\gamma_{2},\gamma_{3}$ son funciones diferenciables de $V$ a $\R$ 
+    en $q$.
+\end{cor}
+\begin{dfn}
+    Sean $\Sigma_{1},\Sigma_{2}$ superficies regulares. Se dice que
+    \begin{equation*}
+        F:\Sigma_{1}\to\Sigma_{2}
+    \end{equation*}
+    es diferenciable en $p\in\Sigma_{1}$. Si existen parametrizaciones locales 
+    $\varphi_{i}:\V_{i}\subseteq\R^{2}\to\R^{3}$ para $\Sigma_{i}$ con $p\in\varphi_{1}(\V_{1})$ y
+    $F(p)\in\varphi_{2}(\V_{2})$ tales que
+    \begin{equation*}
+        \varphi_{2}^{-1}\circ F\circ\varphi_{1}:(F\circ\varphi_{1})^{-1}(\varphi(\V_{2}))\to\V_{2}
+    \end{equation*}
+    es diferenciable en $\varphi^{-1}_{1}(p)\in\V_{1}$.
+\end{dfn}
+\begin{prop}
+    Sea $F:\Sigma_{1}\to\Sigma_{2}\subseteq\R^{3}$ y escribimos
+    \begin{equation*}
+        F(p)=(F_{1}(p),F_{2}(P),F_{3}(p))
+    \end{equation*}
+    donde $F_{i}:\Sigma_{1}\to\R$. Entonces $F$ es diferenciable en $p\in\Sigma_{1}$ si y solo si 
+    $F_{i}$ son diferenciables en $p\in\Sigma_{1}$.
+\end{prop}
+\begin{dfn}
+    Se dice que $F:\Sigma_{1}\to\Sigma_{2}$ entre superficies regulares es un difeomorfismo si
+    \begin{itemize}
+        \item $F$ es diferenciable, es decir, $F$ es diferenciable para todo $p\in\Sigma_{1}$.
+        \item $F$ es una biyección y $F^{-1}$ es diferenciable
+    \end{itemize}
+\end{dfn}
+\begin{teo}
+    Sean $F:\Sigma_{1}\to\Sigma_{2}$ y $G:\Sigma_{2}\to\Sigma_{3}$ aplicaciones diferenciables entre
+    superficies regulares. Si $F$ es diferenciable en $p\in\Sigma_{1}$ y $G$ es diferenciable en
+    $F(p)\in\Sigma_{2}$ entonces $G\circ F$ es diferenciable en $p\in\Sigma_{1}$.
+\end{teo}
+
+\subsection{El Plano Tangente}
+\begin{dfn}
+    El plano tangente a $\Sigma$ en $p\in\Sigma$ es el subespacio vectorial
+    \begin{equation*}
+        D\varphi(\varphi^{-1}(p))(\R^{2})\subseteq\R^{3}
+    \end{equation*}
+    con $\varphi$ una parametrización local en $p$. Lo denotaremos por $T_{p}\Sigma$.
+\end{dfn}
+\newpage
+\begin{prop}
+    Para $p\in\Sigma$ y $w\in\R^{3}$ tenemos que $w\in T_{p}\Sigma$ si y solo si existe una curva
+    parametrizada diferenciable $\alpha:(-\varepsilon,\varepsilon)\subseteq\R\to\R^{3}$ tal que
+    \begin{itemize}
+        \item $\alpha(0)=p$.
+        \item $\alpha(t)\in\Sigma$ para todo $t\in(-\varepsilon,\varepsilon)$.
+        \item $\alpha'(0)=w$.
+    \end{itemize}
+\end{prop}
+\begin{dfn}
+    Sea $f:\Sigma\to\R^{m}$ diferenciable en $p\in\Sigma$. Definimos la derivada o diferencial de
+    $f$ en $p\in\Sigma$ se define por
+    \begin{align*}
+        Df_{p}:T_{p}\Sigma &\to \R^{m} \\
+        w=\alpha'(0) &\to (f\circ\alpha)'(0)\in\R^{m}
+    \end{align*}
+\end{dfn}
+\begin{prop}
+    La derivada de una función diferenciable no depende de la elección de la curva y es lineal.
+\end{prop}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}
