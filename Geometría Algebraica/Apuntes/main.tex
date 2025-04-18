@@ -826,26 +826,145 @@ finitamente generado como $k(x)$ módulo.
     $L$ es finitamente generado como $K$ modulo, es decir, como espacio vectorial.
 \end{lema}
 
+\newpage
 \section{Variedades Afines}
-\noindent En general supondremos que $k=\overline{k}$.
+\noindent De ahora en adelante $k$ será un cuerpo algebraicamente cerrado. A un conjunto algebraico
+afín irreducible lo llamamos variedad afín, o simplemente variedad.
+
+\subsection{Anillo de Coordenadas}
 \begin{dfn}
-    Una variedad afín es un conjunto algebraico $V\subseteq\A_{k}^{n}$ irreducible.
+    Sea $V\subseteq\A_{k}^{n}$ una variedad no vacía. Definimos
+    \begin{equation*}
+        \Gamma(V):=\frac{\pvk{x}{n}}{I(V)}
+    \end{equation*}
+    y lo llamamos el \textbf{anillo de coordenadas de $V$} y los elementos de $\Gamma(V)$ les decimos
+    \textbf{funciones regulares}.
 \end{dfn}
-\noindent Recordemos que $V$ es irreducible si  y solo si $I(V)$ es primmo. Entonces definimos el 
-dominio
-\begin{equation*}
-    \Gamma(V):=\frac{k[x_{1},\cdots,x_{n}]}{I(V)}
-\end{equation*}
-y lo llamamos anillo de coordenadas de $V$.
+\noindent\textbf{Observación:} El anillo de coordenadas de $V$ es un dominio, ya que $\I(V)$ es un
+ideal primo de $\pvk{x}{n}$. Por otro lado, dado $f,g\in\pvk{x}{n}$ entonces $f,g$ determinan la
+misma función si y solo si $f-g\equiv0$ en $V$, es decir, $f-g\in\I(V)$. De este modo tenemos dos
+maneras de ver los elementos de $\Gamma(V)$; como una función de $V$, o como clase de equivalencia 
+de polinomios.
+
+\subsection{Aplicaciones Polinomiales}
 \begin{dfn}
-    Sean $V\subseteq\A_{k}^{n}$ y $W\subseteq\A_{k}^{m}$ variedades afines. Una aplicación 
-    polinomial es una función
-    \begin{align*}
-        \varphi:V &\to W \\
-        a:(a_{1},\cdots,a_{n}) &\to (f_{1}(a),\cdots,f_{m}(a))
-    \end{align*}
-    donde $f_{i}\in k[x_{1},\cdots,x_{n}]$.
+    Sean $V\subseteq\A_{k}^{n}$ y $W\subseteq\A_{k}^{m}$ variedades. Una aplicación 
+    $\varphi:V\to W$ se dice \textbf{aplicación polinomial} si existen $f_{i}\in\pvk{x}{n}$ tales que
+    \begin{equation*}
+        \varphi(a)=\varphi(a_{1},\cdots,a_{n})=(f_{1}(a),\cdots,f_{m}(a))
+    \end{equation*}
 \end{dfn}
+\begin{prop}
+    Sean $V\subseteq\A_{k}^{n}$ y $W\subseteq\A_{k}^{m}$ variedades. Entonces hay una 
+    correspondecia uno a uno entre las funciones polinomiales $\varphi:V\to W$ y los homomorfismos
+    $\tilde{\varphi}:\Gamma(W)\to\Gamma(V)$.
+\end{prop}
+\begin{dem}\hspace{1mm}
+    \begin{itemize}
+        \item Dada $\varphi:V\to W$ una aplicación polinomial, sean $f_{i}\in\pvk{x}{n}$ tales que
+        $\varphi=(f_{1},\cdots,f_{m})$. Definimos $\tilde{\varphi}:\Gamma(W)\to\Gamma(V)$ dada por
+        \begin{equation*}
+            \tilde{\varphi}(f):=f\circ\varphi=f(f_{1},\cdots,f_{m})
+        \end{equation*}
+        Veamos que esta bien definida, en efecto, sea $f\in\I(W)$, entonces $g\circ\varphi\equiv0$ 
+        en $V$, luego $g\circ\varphi\in\I(V)$. Claramente $\tilde{\varphi}$ es homomorfismo.
+
+        \item Sea $\tilde{\varphi}:\Gamma(W)\to\Gamma(V)$ un homomorfismo. Sean 
+        $f_{i}\in\pvk{x}{n}$ tales que $\tilde{\varphi}(y_{i})=f_{i}$, definimos la aplicación 
+        polinomial $\varphi:=(f_{i},\cdots,f_{m})$, por la discusión anterior $\varphi$ esta bien
+        definida y además la función inducida por $\varphi$ es la misma que $\tilde{\varphi}$.
+    \end{itemize}
+\end{dem}
+\begin{dfn}
+    Una aplicación polinomial se dice \textbf{isomorfismo} si tiene inversa que también es una 
+    aplicación polinomial.
+\end{dfn}
+\noindent\textbf{Observación:} Por la proposición anterior una aplicación polinomial es 
+isomorfismo si y solo si el homomorfismo inducido es isomorfismo de anillos. Luego, dos variedades
+son isomorfas si y solo si sus anillos de coordenadas son isomorfos.
+
+\subsection{Cambio de Coordenadas}
+\begin{dfn}
+    Un \textbf{cambio de coordenadas afín} en $\A_{k}^{n}$ es una aplicación polinomial 
+    $\varphi=(f_{1},\cdots,f_{n}):\A_{k}^{n}\to\A_{k}^{n}$ tal que $gr(f_{i})=1$ y $\varphi$ es 
+    biyectiva.
+\end{dfn}
+
+\subsection{Funciones Racionales y Anillos Locales}
+
+\begin{dfn}
+    Sea $V\subseteq\A_{k}^{n}$ una variedad no vacía. Definimos el \textbf{cuerpo de funciones 
+    racionales} en $V$ como $k(V):=Frac(\Gamma(V))$. Un elemento en $k(V)$ se dice \textbf{función 
+    racional} en $V$.
+\end{dfn}
+\noindent Notemos que $f\in k(V)$ no es necesariamente una función $f:V\to\A_{k}^{1}$. 
+Consideremos $V=\V(xw-yz)\subseteq\A_{k}^{4}$ y $f=\frac{x}{y}$, luego, no es posible evaluar en
+los puntos de la forma $(a,0,b,0)$.
+\vspace{2mm}
+\begin{dfn}
+    Sea $V\subseteq\A_{k}^{n}$ una variedad no vacía. Sea $f$ una función racional de $V$ y 
+    $p\in V$, decimos que $f$ esta definida en $p$ si para algunos $a,b\in\Gamma(V)$ se tiene que 
+    $f=\frac{a}{b}$ y $b(p)\neq0$.
+\end{dfn}
+\noindent\textbf{Observación:} Si $\Gamma(V)$ es DFU entonces la expresión $a/b$ es esencialmente 
+única y por lo tanto $f$ esta definida en $p$ si y solo si $b(p)\neq0$.
+\begin{dfn}
+    Sea $V\subseteq\A_{k}^{n}$ una variedad no vacía. Sea $p\in V$, definimos
+    \begin{equation*}
+        \mathcal{O}_{p}(V):=\{f\in k(V):f\text{ está definida en }p\}
+    \end{equation*}
+    se dice que $\mathcal{O}_{p}(V)$ es el \textbf{anillo local} de $V$ en $p$.
+\end{dfn}
+\noindent\textbf{Observación:} Notemos que $\mathcal{O}_{p}(V)$ es un subanillo de $k(V)$ que 
+contiene $\Gamma(V)$, en otras palabras $k\subseteq\Gamma(V)\subseteq\mathcal{O}_{p}(V)\subseteq 
+k(V)$.
+
+\noindent Este anillo tiene la propiedad de que tiene un único ideal maximal, a saber, 
+$m_{p}(V)=\{f\in\mathcal{O}_{p}(V):f(p)=0\}$. Un anillo con esta propiedad se dice 
+\textbf{anillo local}.
+\begin{dfn}
+    El conjunto de puntos $p\in V$ donde una función racional $f$ no está definida se llama el
+    \textbf{conjunto de polos} de $f$.
+\end{dfn}
+\begin{prop}\hspace{1mm}
+    \begin{enumerate}
+        \item El conjunto de polos de una función racional es un subconjunto algebraico de $V$.
+        \item $\Gamma(V)=\bigcap_{p\in V}\mathcal{O}_{p}(V)$.
+    \end{enumerate}
+\end{prop}
+\begin{dem}\hspace{1mm}
+    \begin{enumerate}
+        \item Sea $f\in k(V)$. Consideramos
+        \begin{equation*}
+            J_{f}:=\{G\in\pvk{x}{n}:\overline{G}f\in\Gamma(V)\}
+        \end{equation*}
+        donde $\overline{G}$ es la clase de $G$ en $\Gamma(V)$. Es claro que $J_{f}$ es un ideal
+        en $\pvk{x}{n}$ que contiene a $I(V)$. Veamos que $V(J_{f})=\{\text{polos de }f\}$.
+
+        \noindent Supongamos que $p\not\in V(J_{f})$, entonces existe $G\in J_{f}$ tal que 
+        $G(p)\neq0$. Tenemos que $\overline{G}f=\overline{H}\in\Gamma(V)$, en $k(V)$ se tiene que
+        $f=\frac{H}{G}$, entonces $p$ no es polo de $f$.
+        
+        \noindent Si $p$ no es polo de $f$, entonces existen $G,H\in\pvk{x}{n}$ tal que 
+        $f=\frac{H}{G}$ y $G(p)\neq0$, además vemos que $\overline{G}f\in\Gamma(V)$, es decir, 
+        $p\not\in V(J_{f})$.
+
+        \item Una contención es clara, veamos la otra. Sea $f\in\bigcap_{p\in V}
+        \mathcal{O}_{p}(V)$, entonces $V(J_{f})=\emptyset$, por Nullstellensatz se sigue que 
+        $J_{f}=\pvk{x}{n}$ y por ende $f=1\cdot f\in\Gamma(V)$.
+    \end{enumerate}
+\end{dem}
+\begin{prop}
+    $\mathcal{O}_{p}(V)$ es un dominio local Noetheriano.
+\end{prop}
+\begin{dem}
+    Sea $I\subseteq\mathcal{O}_{p}(V)$ un ideal, consideremos $I'=I\cap\Gamma(V)$. Como $\Gamma(V)$
+    es Noetheriano, existen $f_{i}\in\Gamma(V)$ tales que $I'=\gen{f_{1},\cdots,f_{m}}$. Luego si
+    $f=\frac{a}{b}$ entonces $bf=a\in I'$. Se sigue que
+    \begin{equation*}
+        bf=\sum a_{i}f_{i}\Rightarrow f=\sum\frac{a_{i}}{b}f_{i}
+    \end{equation*}
+\end{dem}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
