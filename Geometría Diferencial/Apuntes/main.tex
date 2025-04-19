@@ -907,7 +907,7 @@ diferenciable.
     en $p_{1}\in V_{1}$.
 \end{dem}
 
-\subsection{Aplicaiones Diferenciables}
+\subsection{Aplicaciones Diferenciables}
 \begin{dfn}
     Se dice que $f:\Sigma\to\R^{d}$ es diferenciable en $p\in\Sigma$ si existe una parametrización
     local $\varphi:\V\subseteq\R^{2}\to\Sigma$ con $p\in\varphi(\V)$ y tal que $f\circ\varphi$ es 
@@ -1209,6 +1209,7 @@ tangente $T_{p}\Sigma$.
 $\nabla h=2p$ para todo $p\in\R^{3}$. Como $\mathbb{S}^{2}=h^{-1}(1)$ tenemos 
 $T_{p}\mathbb{S}^{2}=(\nabla h(p))^{\perp}=p^{\perp}$
 
+\subsection{El Diferencial de una Aplicación Diferenciable}
 \begin{dfn}
     Sea $f:\Sigma\to\R^{m}$ diferenciable en $p\in\Sigma$. Definimos la derivada o diferencial de
     $f$ en $p\in\Sigma$ se define por
@@ -1275,7 +1276,234 @@ $T_{p}\mathbb{S}^{2}=(\nabla h(p))^{\perp}=p^{\perp}$
     \item Sea $\pi_{i}:\R^{3}\to\R$ la proyección en la coordenada i-esima, entonces
     $D\left(\pi_{i}\big|_{\Sigma}\right)w=w_{i}$.
 \end{itemize}
- 
+
+\noindent (Corregir hacia atras)
+%-------------------------------------------------------------------%
+
+\noindent Dada $\gamma:\V\subseteq\R^{n}\to\Sigma$ diferenciable en $q\in\V$ luego su derivada 
+está bien definida como aplicación lineal $D_{\gamma}(q):\R^{n}\to\R^{3}$, notemos que
+\begin{equation*}
+    D_{\gamma}(q)w=\dv{}{t}\Big|_{t=o}\gamma(q+tw)=(\gamma\circ\beta)'(0)
+\end{equation*}
+donde $\beta(t)=q+tw$, como $\gamma\circ\beta\in\Sigma$ vemos que $(\gamma\circ\beta)'(0)\in
+T_{\gamma(q)}\Sigma$, definimos su diferencial como
+\begin{equation*}
+    D_{\gamma_{q}}:=D_{\gamma}(q):\R^{n}\to T_{\gamma(q)}\Sigma
+\end{equation*}
+
+\begin{dfn}
+    Sea $F:\Sigma_{1}\to\Sigma_{2}$ diferenciable en $p\in\Sigma_{1}$. Dado $v\in T_{p}\Sigma$ 
+    definimos el \textbf{diferencial F en p} como $DF_{p}:T_{p}\Sigma_{1}\to T_{F(p)}
+    \Sigma_{2}$ dada por
+    \begin{equation*}
+        DF_{p}(v):=(F\circ\alpha)'(0)
+    \end{equation*}
+    donde $\alpha$ es una curva diferenciable tal que $\alpha\subset\Sigma_{1}$ y es tangente a 
+    $\alpha'(0)=v$.
+\end{dfn}
+
+\noindent\textbf{Observación:} El diferencial de $F$ esta bien definido, como $\alpha\subset
+\Sigma_{1}$ se tiene que $F\circ\alpha\subset\Sigma_{2}$ y pasa por el punto $F(p)$, luego 
+$(F\circ\alpha)'(0)\in T_{F(p)}\Sigma_{2}$. Además, por la discusión anterior, el valor no depende
+de la elección de la curva $\alpha$ y es un mapeo lineal.
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} Sea $A\R^{3}\to\R^{3}$ lineal y $\Sigma\subseteq\R^{3}$ superficie 
+regular tal que $A(\Sigma)\subseteq\Sigma$. Luego esta bien definida $A:\Sigma\to\Sigma$ y es 
+diferenciable en $p\in\Sigma$, pues es restricción de una aplicación diferenciable. Queremos 
+calcular
+\begin{equation*}
+    DA_{p}:T_{p}\Sigma\to T_{A(p)}\Sigma
+\end{equation*}
+Sea $v\in T_{p}\Sigma$ y $v=\alpha'(0)$ para $\alpha\subset\Sigma$ tangente a $v$, entonces
+\begin{equation*}
+    DA_{p}(v)=\dv{}{t}\Big|_{t=0}(A\circ\alpha)(t)=A\left(\dv{}{t}\Big|_{t=0}\alpha(t)\right)=
+    A(\alpha'(0))=Av
+\end{equation*}
+Por lo tanto $DA_{p}=A\Big|_{T_{p}\Sigma}$.
+
+\begin{teo}
+    (\textbf{Regla de la Cadena}) Sean $F:\Sigma_{1}\to\Sigma_{2}$ y $G:\Sigma_{2}\to\Sigma_{3}$ 
+    aplicaciones diferenciables en $p\in\Sigma_{1}$ y $F(p)\in\Sigma_{2}$ respectivamente, 
+    entonces
+    \begin{equation*}
+        D(G\circ F)_{p}=DG_{F(p)}\circ DF(p)
+    \end{equation*}
+\end{teo}
+
+\begin{dem}
+    Sea $v\in T_{p}\Sigma_{1}$ y $\alpha\subset\Sigma_{1}$ tangente a $\alpha'(0)=v$. Notemos que
+    \begin{equation*}
+        D(G\circ F)_{p}(\alpha'(0))=(G\circ F\circ \alpha)'(0)=DG_{F(p)}(F\circ\alpha)'(0)=
+        DG_{F(p)}\circ DF_{p}(\alpha'(0))
+    \end{equation*}
+\end{dem}
+
+\begin{cor}
+    Sea $F:\Sigma_{1}\to\Sigma_{2}$ un difeomorfismo, entonces $D(F^{-1})_{F(p)}=(DF_{p})^{-1}$ 
+    para todo $p\in\Sigma_{1}$
+\end{cor}
+
+\begin{teo}
+    (\textbf{Teorema de la Función Inversa}) Sea $F:\Sigma_{1}\to\Sigma_{2}$ diferenciable. Sea 
+    $p\in\Sigma_{1}$ tal que $Df_{p}$ es isomorfismo, entonces existe $U\subseteq\Sigma_{1}$ 
+    abierto con $p\in U$ tal que $F(U)\subseteq\Sigma_{2}$ es abierto y
+    \begin{equation*}
+        F\Big|_{U}:U\to F(U)
+    \end{equation*}
+    es un difeomorfismo.
+\end{teo}
+
+\begin{dfn}
+    Sea $f:\Sigma\to\R$ diferenciable. Decimos que $p\in\Sigma$ es un \textbf{punto crítico} de 
+    $f$ si
+    \begin{equation*}
+        0\equiv Df_{p}:T_{p}\Sigma\to\R
+    \end{equation*}
+    en otras palabras, no es sobreyectiva. Se dice que $c\in\R$ es un \textbf{valor regular} si 
+    $f^{-1}(c)$ no contiene puntos críticos.
+\end{dfn}
+
+\begin{prop}
+    Sea $f:\Sigma\to\R$ diferenciable y $p\in\Sigma$ un punto maximo o minimo (local o global),
+    entonces $p$ es punto crítico.
+\end{prop}
+\begin{dem}
+    Sea $v\in T_{p}\Sigma$ y $\alpha\subset\Sigma$ tangente a $\alpha'(0)=v$, luego
+    \begin{equation*}
+        Df_{p}(v)=(f\circ\alpha)'(0)=0
+    \end{equation*}
+    Concluimos que $p$ es punto crítico de $f$.
+\end{dem}
+
+\begin{teo}
+    Sea $f:\Sigma\to\R$ diferenciable, si $c\in\R$ es valor regular de $f$, entonces $f^{-1}(c)$
+    es una curva regular.
+\end{teo}
+
+\noindent\textbf{Observación:} Se dice que $S\subset\Sigma$ es una \textbf{curva regular} si para
+todo $p\in\Sigma$ existe un abierto $U\subseteq\Sigma$ y una curva parametrizada regular
+$\alpha:I\subseteq\R\to\Sigma$ tal que $\alpha(I)=U\cap S$.
+
+\vspace{4mm}
+\noindent Sea $f:\Sigma\to\R^{m}$ diferenciable en $p\in\Sigma$. Si $\varphi:\V\subseteq\R^{2}\to\R^{3}$ es
+parametrización local para $\Sigma$ con $p\in\varphi(\V)$ tenemos una base de $T_{p}\Sigma$, a 
+saber, $\varphi_{u}(p_{0}),\varphi_{v}(p_{0})$ donde $p_{0}=\varphi^{-1}(p)$. Vimos que
+$Df_{p}\circ D\varphi_{p_{0}}=D(f\circ\varphi)_{p_{0}}$, luego
+\begin{equation*}
+    Df_{p}(a\varphi_{u}(p_{0})+b\varphi_{v}(p_{0}))=Df_{p}(D\varphi_{p_{0}}(a,b))=
+    D(f\circ\varphi)_{p_{0}}(a,b)
+\end{equation*}
+es decir, la matriz de $Df_{p}$ respecto a $\{\varphi_{u}(p_{0}),\varphi_{v}(p_{0})\}$ es la matriz
+jacobiana de $D(f\circ\varphi)_{p_{0}}$.
+
+\newpage
+\section{La Segunda Forma Fundamental}
+\subsection{Campos Vectoriales y Orientación}
+
+\begin{dfn}
+    Sea $\Sigma$ una superficie regular. Una aplicación continua $V:\Sigma\to\R^{3}$ se dice
+    \textbf{campo vectorial}. Se dice que $V$ es:
+    \begin{enumerate}
+        \item \textbf{Campo tangente} si $V(p)\in T_{p}\Sigma$ para todo $p\in\Sigma$.
+        \item \textbf{Campo normal} si $V(p)\in\left(T_{p}\Sigma\right)^{\perp}$ para todo $p\in\Sigma$.
+        \item \textbf{Campo unitario} si $\abs{V(p)}=1$ para todo $p\in\Sigma$.
+    \end{enumerate}
+\end{dfn}
+
+\noindent\textbf{Ejemplo:} Sea $\varphi:\V\subseteq\R^{2}\to\R^{3}$ una parametrización local para
+$\Sigma$ y $U=\varphi(\V)$ entonces
+\begin{align*}
+    \varphi_{u}\circ\varphi^{-1}:U\to\R^{3} \\
+    \varphi_{v}\circ\varphi^{-1}:U\to\R^{3}
+\end{align*}
+son campos tangentes. Sea $N^{x}:\V\to\R^{3}$ dada por
+\begin{equation*}
+    N^{x}(u,v):=\frac{\varphi_{u}(u,v)\times\varphi_{v}(u,v)}
+    {\abs{\varphi_{u}(u,v)\times\varphi_{v}(u,v)}}
+\end{equation*}
+es diferenciable y $N^{x}\perp T_{\varphi(u,v)}\Sigma$. Luego $N=N^{x}\circ\varphi^{-1}$ es campo
+unitario, normal y diferenciable.
+
+\begin{dfn}
+    Se dice que una superficie regular $\Sigma$ es \textbf{orientable} si existe un campo normal, 
+    unitario y continuo $N:\Sigma\to\R^{3}$. En ese caso, se dice que $N$ define una Orientación.
+    Además,
+    \begin{itemize}
+        \item Sea $\{w_{1},w_{2}\}$ base de $T_{p}\Sigma$, se dice \textbf{positiva} si 
+        $\{w_{1},w_{2},N(p)\}$ es una base positiva de $\R^{3}$.
+        
+        \item Una parametrización $\varphi$ es \textbf{positiva} si $N^{x}=N\circ\varphi$.
+    \end{itemize}
+\end{dfn}
+
+\noindent\textbf{Observaciones:}
+\begin{enumerate}
+    \item Si $\Sigma$ es conexa y esta orientada por $N:\Sigma\to\R^{3}$, hay exactamente dos
+    orientaciones en $\Sigma$, que son $N$ y $-N$. En efecto, sea $V:\Sigma\to\R^{3}$ normal, 
+    unitario y continuo, entonces
+    \begin{align*}
+        A=\{p\in\Sigma:V(p)=N(p)\}=(V-N)^{-1}(0), \\
+        B=\{p\in\Sigma:V(p)=-N(p)\}=(V+N)^{-1}(0)
+    \end{align*}
+    son cerrados. Dado $p\in\Sigma$ se tiene que $V(p)\in\left(T_{p}\Sigma\right)^{\perp}=
+    span\{N(p)\}$ y $\abs{V(p)}=1$, luego $V(p)=N(p)$ ó $V(p)=-N(p)$, es decir $A\cup B=\Sigma$. 
+    Además, $A\cap B=\emptyset$. Así, por conexidad, tenemos que $A=\Sigma$ y por lo tanto 
+    $V\equiv N$ o bien $B=\Sigma$ y $V\equiv -N$.
+
+    \item Dada $N:\Sigma\to\R^{3}$ una orientación. Veamos que $N$ es diferenciable. Sea 
+    $p\in\Sigma$, existe una parametrización local $\varphi:\V\subseteq\R^{2}\to\R^{3}$ para 
+    $\Sigma$ con $p\in\varphi(\V)$ y $\varphi(\V)$ conexo. De ahí, $N\big|_{\varphi(\V)}$ define 
+    una orientación para $\varphi(\V)$. Por (a) tenemos que $(N^{x}\circ\varphi^{-1})\equiv N$ ó
+    $(N^{x}\circ\varphi^{-1})\equiv -N$ y por lo tanto $N\big|_{\varphi(\V)}$ es diferenciable. 
+    Concluimos que $N$ es diferenciable.
+
+    \item Si $\Sigma_{1}$ y $\Sigma_{2}$ son difeomorfos. Entonces $\Sigma_{1}$ es orientable si y
+    solo si $\Sigma_{2}$ es orientable.
+\end{enumerate}
+
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Si $\Sigma=\varphi(\V)$ para una parametrización, entonces $\Sigma$ 
+    es orientable.
+
+    \item Sea $\Sigma=Graf(f)$ con $f:\V\subseteq\R^{2}\to\R^{3}$ diferenciable, entonces 
+    $\varphi(u,v)=(u,v,f(u,v))$ es parametrización local y $\varphi(\V)=\Sigma$. Luego
+    \begin{align*}
+        \varphi_{u}(u,v)=(1,0,\partial_{u}f) \\
+        \varphi_{v}(u,v)=(0,1,\partial_{v}f)
+    \end{align*}
+    entonces
+    \begin{equation*}
+        \varphi_{u}\times\varphi_{v}=(-\partial_{u}f,-\partial_{v}f,1)=(-\nabla f,1)
+    \end{equation*}
+    consideramos
+    \begin{equation*}
+        N^{x}(u,v)=\frac{1}{\sqrt{1+\abs{\nabla f}^{2}}}(-\nabla f,1)
+    \end{equation*}
+    se sigue que $N^{x}\circ\varphi^{-1}$ define una orientación para $\Sigma$.
+
+    \item (Niveles Regulares) Sea $h:W\subseteq\R^{3}\to\R$ diferenciable y $c\in\R$ un valor 
+    regular para $h$, luego $\Sigma=h^{-1}(c)$ es superficie regular. Sabemos que $T_{p}\Sigma=
+    (\nabla h(p))^{\perp}$. Si $W_{0}=\{p\in W:\nabla h(p)\neq0\}$, entonces $W_{0}$ es abierto y
+    $\Sigma\subset W_{0}$. Definimos $N:W_{0}\to\R^{3}$ dada por
+    \begin{equation*}
+        N(p):=\frac{\nabla h(p)}{\abs{\nabla h(p)}}
+    \end{equation*}
+    es continua y dado $p\in\Sigma$ se tiene que $N(p)\perp T_{p}\Sigma$. Por lo tanto 
+    $N\big|_{\Sigma}$ define una orientación.
+\end{itemize}
+
+\begin{prop}
+    Sea $\Sigma$ una superficie regular. Entonces $\Sigma$ es orientable si y solo si existen
+    $\{\varphi_{i}:\V_{i}\subseteq\R^{2}\}_{i}$ parametrizaciones locales para $\Sigma$ tales que
+    \begin{itemize}
+        \item $\bigcup_{i}\varphi_{i}(\V_{i})=\Sigma$
+        \item $\varphi_{j}^{-1}\circ\varphi_{i}$ tiene determinante jacobiano positivo para todo 
+        $i,j$.
+    \end{itemize}
+\end{prop}
+
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
 \end{document}
