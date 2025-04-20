@@ -1504,6 +1504,156 @@ unitario, normal y diferenciable.
     \end{itemize}
 \end{prop}
 
+\subsection{Formas Fundamentales y Aplicación de Gauss}
+\begin{dfn}
+    Sea $\Sigma$ una superficie regular. La \textbf{primera forma fundamental} de $\Sigma$ en 
+    $p\in\Sigma$ es la restricción del producto interno a $T_{p}\Sigma$,
+    \begin{equation*}
+        \ip{.}{.}=I_{p}:T_{p}\Sigma\times T_{p}\Sigma\to\R,\hspace{4mm}
+        \ip{w_{1}}{w_{2}}_{p}=I_{p}(w_{1},w_{2})\to\ip{w_{1}}{w_{2}}
+    \end{equation*}
+\end{dfn}
+
+\noindent Sea $\varphi:\V\subseteq\R^{2}\to\R^{3}$ una parametrización local para $\Sigma$, 
+entonces las funciones diferenciables $E,F,G:\V\to\R$ dadas por
+\begin{equation*}
+    E(u,v):=\abs{\varphi_{u}(u,v)}^{2},\hspace{4mm}
+    F(u,v):=\ip{\varphi_{u}(u,v)}{\varphi_{v}(u,v)},\hspace{4mm}
+    G(u,v):=\abs{\varphi_{v}(u,v)}^{2},\hspace{4mm}
+\end{equation*}
+se llaman los \textbf{coeficientes de la primera forma fundamental} en las coordenadas $(u,v)$. Se
+dice que $\varphi$ es una parametrización ortogonal si $F\equiv0$. Podemos escribir $\ip{.}{.}_{p}$
+en $p=\varphi(p_{0})$ en términos de la base $\{\varphi_{u}(p_{0}),\varphi_{v}(p_{0})\}$ como
+\begin{equation*}
+    I_{p}(w_{1},w_{2})=\ip{a_{1}\varphi_{u}(p_{0})+a_{2}\varphi_{v}(p_{0})}
+    {b_{1}\varphi_{u}(p_{0})+b_{2}\varphi_{v}(p_{0})} = a_{1}b_{1}E(p_{0})+
+    (a_{1}b_{2}+a_{2}b_{1})F(p_{0})+a_{2}b_{2}G(p_{0})
+\end{equation*}
+
+\vspace{4mm}
+\noindent\textbf{Observación:} Si denotamos las variables de $\varphi$ por $x_{i}$ también se usa
+la notación $g_{ij}:=\ip{\varphi_{x_{i}}}{\varphi_{x_{j}}}$, es decir, $g_{11}=E$, $g_{12}=g_{21}=F$
+y $g_{22}=G$.
+
+\vspace{4mm}
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Sea $P=p_{0}+w^{\perp}\subseteq\R^{3}$ un plano, podemos escoger $w_{1},w_{2}\in 
+    w^{\perp}$ ortonormales y definir una parametrización $\varphi:\R^{2}\to\R^{3}$ por
+    $\varphi(u,v):=p_{0}+uw_{1}+vw_{2}$, con lo cual $\varphi_{u}\equiv w_{1}$ y 
+    $\varphi_{v}\equiv w_{2}$. Luego
+    \begin{equation*}
+        \begin{pmatrix}
+            E & F \\
+            F & G
+        \end{pmatrix}(u,v)=
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & 1
+        \end{pmatrix}\hspace{4mm}\forall(u,v)\in\R^{2}
+    \end{equation*}
+
+    \item Para una gráfica $\Sigma=Graf(f)$ de una función $f:\V\subseteq\R^{2}\to\R$ diferenciable
+    la parametrización local $\varphi_{u}=(1,0,\partial_{u}f)$ y $\varphi_{v}=(0,1,\partial_{v}f)$,
+    luego
+    \begin{equation*}
+        E(u,v)=1+(\partial_{u}f(u,v))^{2},\hspace{4mm}
+        F(u,v)=\ip{\partial_{u}f(u,v)}{\partial_{v}f(u,v)},\hspace{4mm}
+        G(u,v)=1+(\partial_{v}f(u,v))^{2}
+    \end{equation*}
+
+    \item Considere el cilindro $\{(x,y,z)\in\R^{3}:x^{2}+y^{2}=r^{2}\}$ con parametrización local
+    $\varphi(u,v)=(rcosu,rsenu,v)$. Tenemos $\varphi_{u}(u,v)=(-rsenu,rcosu,0)$ y 
+    $\varphi_{v}(u,v)=(0,0,1)$, luego
+    \begin{equation*}
+        E(u,v)=r^{2},\hspace{4mm}
+        F(u,v)=0,\hspace{4mm}
+        G(u,v)=1
+    \end{equation*}
+    Vemos que la parametrización es ortogonal.
+\end{itemize}
+
+\vspace{2mm}
+\noindent\textbf{Observación:} Veamos lo siguiente
+\begin{align*}
+    \abs{\varphi_{u}\times\varphi_{v}}^{2}(u,v) &= \abs{\varphi_{u}(u,v)}^{2}\cdot
+    \abs{\varphi_{v}(u,v)}^{2}-\ip{\varphi_{u}(u,v)}{\varphi_{v}(u,v)}^{2} \\
+    &= E(u,v)\cdot G(u,v)-F^{2}(u,v)=det
+    \begin{vmatrix}
+        E & F \\
+        F & G
+    \end{vmatrix}(u,v)
+\end{align*}
+Luego, la matriz $\begin{pmatrix}
+    E & F \\
+    F & G
+\end{pmatrix}$ es invertible y es definida positiva.
+
+\begin{prop}
+    Sea $f:\Sigma\to\R$ diferenciable. Existe un campo tangente diferenciable 
+    $\nabla^{\Sigma}f:\Sigma\to\R^{3}$ tal que
+    \begin{equation*}
+        \ip{\nabla^{\Sigma}f(p)}{w}_{p}=Df_{p}(w)\hspace{4mm}\forall w\in T_{p}\Sigma
+    \end{equation*}
+\end{prop}
+
+\begin{dfn}
+    El campo $\nabla^{\Sigma}f$ se llama \textbf{campo gradiente} de $f$.
+\end{dfn}
+
+\noindent\textbf{Observación:} Para una parametrización local $\varphi:\V\subseteq\R^{2}\to\R^{3}$ 
+de $\Sigma$, se escribe como
+\begin{equation*}
+    \nabla^{\Sigma}f(p)=\frac{f_{u}\cdot G-f_{v}\cdot F}{EG-F^{2}}(p_{0})\cdot\varphi_{u}(p_{0})+
+    \frac{f_{v}\cdot E-f_{u}\cdot F}{EG-F^{2}}(p_{0})\cdot\varphi_{v}(p_{0})
+\end{equation*}
+para todo $p=\varphi(p_{0})\in\varphi(\V)$, donde $f_{u}=(f\circ\varphi)_{u}$ y 
+$f_{v}=(f\circ\varphi)_{v}$.
+
+\vspace{2mm}
+\noindent Supongamos que $\Sigma$ es una superficie regular orientable y sea $N:\Sigma\to\R^{3}$
+un campo normal unitario diferenciable. Observe que $N$ define una aplicación 
+$N:\Sigma\to\mathbb{S}^{2}$ llamada la \textbf{aplicación de Gauss} de $\Sigma$. Como en el caso 
+de curvas, esperamos describir la geometría de $\Sigma$ usando la derivada de $N$.
+
+\begin{prop}
+    Sea $p\in\Sigma$, tenemos $T_{p}\Sigma$ y la derivada de $N$ es una aplicación lineal 
+    $DN_{p}:T_{p}\Sigma\to T_{p}\Sigma$ la cual es simétrica (autoadjunta) respecto a 
+    $\ip{.}{.}_{p}$.
+\end{prop}
+
+\begin{dem}
+    La primera afirmación es consecuencia de $T_{p}\Sigma=N(p)^{\perp}=T_{N(p)}\mathbb{S}^{2}$,
+    donde usamos que $T_{q}\mathbb{S}^{2}=q^{\perp}$ para todo $q\in\mathbb{S}^{2}$. Resta ver que
+    $DN(p)$ es simétrica. Sea $\varphi:\V\subseteq\R^{2}\to\R^{3}$ es una parametrización local de
+    $\Sigma$ con $p=\varphi(p_{0})$, entonces
+    \begin{align*}
+        \ip{DNp(\varphi_{u}(p_{0}))}{\varphi_{v}(p_{0})}_{p} &= \ip{D(N\circ\varphi)_{p_{0}}e_{1}}
+        {\varphi_{v}(p_{0})}=\ip{(N\circ\varphi)_{u}}{\varphi_{v}}(p_{0}) \\
+        &= \pdv{}{u}\ip{N,\varphi_{v}}(p_{0})-\ip{N}{\varphi_{vu}}(p_{0})=
+        -\ip{N}{\varphi_{vu}}(p_{0})
+    \end{align*}
+    del mismo modo se tiene que $\ip{DNp(\varphi_{v}(p_{0}))}{\varphi_{u}(p_{0})}_{p}=
+    -\ip{N}{\varphi_{uv}}(p_{0})$. Como $\varphi_{uv}=\varphi_{vu}$ y $\{\varphi_{u}(p_{0}),
+    \varphi_{v}(p_{0})\}$ es una base para $T_{p}\Sigma$, concluimos que $DN_{p}$ es simétrica.
+\end{dem}
+
+\begin{dfn}
+    Se dice que $A_{p}:=-DN_{p}:T_{p}\Sigma\to T_{p}\Sigma$ es el \textbf{operador de Weingarten}
+    de $\Sigma$ en $p$. La forma bilineal $\mathbb{I}_{p}:T_{p}\Sigma\times T_{p}\Sigma\to\R$
+    asociada al operador $A_{p}$ mediante $\ip{.}{.}_{p}$ se llama la \textbf{segunda forma 
+    fundamental} de $\Sigma$ en $p$. Concretamente
+    \begin{equation*}
+        \I_{p}(w_{1},w_{2})=\ip{A_{p}w_{1}}{w_{2}}=-\ip{DN_{p}w_{1}}{w_{2}}=
+        -\ip{w_{1}}{DN_{p}w_{2}}
+    \end{equation*}
+    para todo $w_{1},w_{2}\in T_{p}\Sigma$.
+\end{dfn}
+
+\noindent\textbf{Ejemplo:} Para un plano $P=p_{0}+w^{\perp}\subseteq\R^{3}$ la aplicación de Gauss
+$N:P\to\mathbb{S}^{2}$ es constante y vale $N(p)=\frac{w}{\abs{w}}$. Luego $A_{p}=-DN_{p}\equiv0$
+y $\I_{p}\equiv0$ para todo $p\in\Sigma$.
+
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
 \end{document}
