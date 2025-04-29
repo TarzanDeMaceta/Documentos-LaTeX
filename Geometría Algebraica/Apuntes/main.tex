@@ -966,6 +966,256 @@ $m_{p}(V)=\{f\in\mathcal{O}_{p}(V):f(p)=0\}$. Un anillo con esta propiedad se di
     \end{equation*}
 \end{dem}
 
+\subsection{Anillos de Evaluación Discreta}
+\begin{prop}
+    Sea $R$ un dominio que no es cuerpo. Luego, $R$ es Noetheriano, local y su ideal maximal es
+    principal si y solo si existe $t\in R$ irreducible tal que para todo $z\in R\setminus\{0\}$ y
+    $z=ut^{n}$ para algún $u$ unidad y $n\in\N_{0}$.
+\end{prop}
+\begin{dfn}
+    Sea $R$ como antes, decimos que $R$ es un \textbf{anillo de evaluación discreta} y lo 
+    abreviamos $DVR$, el elemento $t$ se llama \textbf{parametro uniformizante}.
+\end{dfn}
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Consideremos $p\in\A_{k}^{1}=V$, sea $m_{p}(V)$ el unico ideal maximal de 
+    $\mathcal{O}_{p}(V)$, luego $(t)=m_{p}(V)$.
+    
+    \item Un no ejemplo. Si tomamos $p=(0,0)\in\A_{k}^{2}=V$ entonces $(x,y)\subseteq\mathcal{O}_{p}(V)$
+    no es principal, $\mathcal{O}_{p}(V)$ no es un $DVR$.
+\end{itemize}
+\begin{dfn}
+    Sea $R$ un $DVR$, consideremos $k=Frac(R)$, entonces para todo $z\in k$ existe $n\in\Z$ y 
+    $u\in R$ unidad tales que $z=ut^{n}$, luego
+    \begin{enumerate}
+        \item $n$ es el \textbf{orden} de $z$ y se escribe $ord(z)$. Decimos que $ord(o)=\infty$.
+        
+        \item Si $n<0$, entonces $z$ es un \textbf{polo}.
+        
+        \item Si $n>0$, decimos que $z$ es un \textbf{cero}.
+        
+        \item Si $n=0$, $z$ se dice \textbf{unidad}.
+    \end{enumerate}
+\end{dfn}
+
+\subsection{Formas}
+\begin{dfn}
+    Una \textbf{forma} es un polinomio homogeneo en $R[x_{1},\cdots,x_{n}]$, con $R$ dominio. 
+    Recordando el capitulo 1, sección 1, $f\in R[x_{1},\cdots,x_{n}]$ es homogeneo si 
+    $f(\lambda\overrightarrow{x})=\lambda^{n}f(\overrightarrow{x})$ con $n=gr(f)$.
+\end{dfn}
+\noindent\textbf{Ejemplo:} Sea $f=x_{1}^{2}+x_{2}^{2}+x_{3}x_{4}$ es una forma.
+\begin{dfn}
+    Sea $R$ un dominio,
+    \begin{enumerate}
+        \item Sea $f\in R[x_{1},\cdots,x_{n}]$, escribimos $f=\sum f_{0}+f_{1}+\cdots+f_{d}$ donde
+        $f_{i}$ es un polinomio homogeneo de grado $i$, definimos $f^{*}\in 
+        R[x_{1},\cdots,x_{n+1}]$ como
+        \begin{equation*}
+            f^{*}:=x^{d}_{n+1}f_{0}+x^{d-1}_{n+1}f_{1}+\cdots+f_{d}=
+            x^{d}_{n+1}f\left(\frac{x_{1}}{x_{n+1}},\cdots,\frac{x_{n}}{x_{n+1}}\right)
+        \end{equation*}
+        este proceso se llama \textbf{homogenización}.
+
+        \item Sea $F\in R[x_{1},\cdots,x_{n+1}]$ una forma, definimos $F_{*}\in 
+        R[x_{1},\cdots,x_{n}]$ como $F_{*}:=F(x_{1},\cdots,x_{n},1)$. Decimos que 
+        \textbf{deshomogenizamos} el polinomio.
+    \end{enumerate}
+\end{dfn}
+\begin{prop}
+    Se cumple lo siguiente
+    \begin{enumerate}
+        \item $(FG)_{*}=F_{*}G_{*}$ y $(fg)^{*}=f^{*}g^{*}$.
+        
+        \item Si $F\neq0$ y $r$ es la mayor potencia de $x_{n+1}$ que divide $F$ entonces 
+        $x^{r}_{n+1}(F_{*})^{*}=F$. Además, $(f^{*})_{*}$.
+        
+        \item Se tiene que $(F+G)_{*}=F_{*}+G_{*}$. Por otro lado, sea $r=gr(g)$, $s=gr(f)$ y 
+        $t=r+s-gr(f+g)^{*}$ entonces $x^{t}_{n+1}(f+g)^{*}=x^{r}_{n+1}f^{*}+x^{s}_{n+1}g^{*}$.
+    \end{enumerate}
+\end{prop}
+
+\subsection{Producto Directo de Anillos}
+\begin{dfn}
+    Sean $R_{1},\cdots,R_{n}$ anillos, definimos $R:=\prod R_{i}$ junto con las operaciones
+    \begin{align*}
+        (a_{1},\cdots,a_{n})+(b_{2},\cdots,b_{n}):=(a_{1}+b_{1},\cdots,a_{n}+b_{n}) \\
+        (a_{1},\cdots,a_{n})\cdot(b_{2},\cdots,b_{n}):=(a_{1}\cdot b_{1},\cdots,a_{n}\cdot b_{n})
+    \end{align*}
+    y $\pi_{i}:R\to R_{i}$ son las proyecciones a cada coordenada. Decimos que $R$ es un
+    \textbf{anillo producto}.
+\end{dfn}
+\noindent\textbf{Observación:} Es directo que $R$ con las operaciones definidas es un anillo, donde
+$(0,\cdots,0)$ y $(1,\cdots,1)$ son los neutros de $+$ y $\cdot$ respectivamente.
+\begin{prop}
+    (\textbf{Propiedad Universal}) Para todo anillo $S$ y todo morfismo $\phi_{i}:S\to R_{i}$, 
+    existe un unico morfismo $\varphi:S\to R$ tal que
+    
+    \centerline{
+        \xymatrix{
+            S \ar[r]^{\varphi} \ar[d]_{\phi_{i}} & R \ar[ld]^{\pi_{i}} \\
+            R_{i}
+        }
+    }
+\end{prop}
+
+\subsection{Operando con Ideales}
+\begin{dfn}
+    Sean $I,J\subseteq R$ ideales de un anillo $R$. Definimos el \textbf{producto de ideales}
+    como
+    \begin{equation*}
+        IJ:=\gen{ab:a\in I,b\in J}
+    \end{equation*}
+\end{dfn}
+\noindent\textbf{Observación:} Si $I=\gen{a_{1},\cdots,a_{n}}$ entonces
+\begin{equation*}
+    I^{n}=\gen{a_{1}^{i_{1}}\cdots a_{k}^{i_{k}}:k\leq r,\sum_{j=1}^{k}i_{j}=n}
+\end{equation*}
+\begin{dfn}
+    Sean $I,J\subseteq R$ ideales, definimos la \textbf{suma de ideales} como 
+    $I+J:=\{a+b:a\in I,b\in J\}$. Decimos $I,J$ son \textbf{comaximales} si $I+J=R$.
+\end{dfn}
+\begin{prop} Sean $I,J\subseteq R$ ideales, tenemos que
+    \begin{enumerate}
+        \item $IJ\subseteq I\cap J$.
+        \item Si $I,J$ son comaximales entonces $IJ=I\cap J$.
+    \end{enumerate}
+\end{prop}
+
+\subsection{Ideales de un Número Finito de Puntos}
+\begin{prop}
+    Sea $I\subseteq\pvk{x}{n}$ un ideal con $k=\overline{k}$. Supongamos que $\abs{V(I)}<\infty$, 
+    digamos que $V(I)=\{p_{1},\cdots,p_{m}\}$, entonces existe un isomorfismo natural
+    \begin{equation*}
+        \varphi:\frac{\pvk{x}{n}}{I}\to
+        \frac{\mathcal{O}_{p_{1}}(\A_{k}^{n})}{I\mathcal{O}_{p_{1}}(\A_{k}^{n})}\times\cdots\times
+        \frac{\mathcal{O}_{p_{m}}(\A_{k}^{n})}{I\mathcal{O}_{p_{m}}(\A_{k}^{n})}
+    \end{equation*}
+    donde $I\mathcal{O}_{p_{i}}(\A_{k}^{n})$ es el ideal generado por $I$ con elementos de 
+    $\mathcal{O}_{p_{i}}(\A_{k}^{n})$.
+\end{prop}
+\begin{dem}
+    Diremos que $\mathcal{O}_{i}:=\mathcal{O}_{p_{i}}(\A_{k}^{n})$, $R=\pvk{x}{n}/I$ y que 
+    $R_{i}:=\mathcal{O}_{i}/I\mathcal{O}_{i}$. Sea $I_{i}$ el ideal maximal de $p_{i}$, luego
+    $(x_{1}-p_{i1},\cdots,x_{n}-p_{in})=I_{i}\supset I$. Definimos $\varphi_{i}:R\to R_{i}$ donde
+    $\varphi(f)=\varphi_{i}([F]_{I}):=[F]_{I\mathcal{O}_{i}}$.
+
+    \vspace{4mm}
+    \noindent Por la propiedad universal, existe un unico morfismo 
+    $\varphi:R\to R_{1}\times\cdots\times R_{m}$, que esta dada por $\varphi(F)=
+    (\varphi_{1}(F),\cdots,\varphi_{m}(F))$. Afirmamos que $\varphi$ es biyección. Por 
+    Nullstellensatz se sigue que
+    \begin{equation*}
+        \sqrt{I}=\I(\{p_{1},\cdots,p_{m}\})=\bigcap_{i=i}^{m}I_{i}
+    \end{equation*}
+    entonces $\left(\bigcap_{i=i}^{m}I_{i}\right)^{d}\subseteq I$ para algún $d\in\N$. Por otro 
+    lado $\left(\bigcap_{i=i}^{m}I_{i}\right)^{d}=\left(I_{1}\cdots I_{m}\right)^{d}=
+    \bigcap_{i=1}^{m}I_{i}^{d}$, se sigue que $\bigcap_{i=i}^{m}I_{i}^{d}\subseteq I$. 
+    
+    \vspace{4mm}
+    \noindent Sean $F_{i}\in\pvk{x}{n}$ tales que $F_{i}(p_{j})=0$ para $i\neq j$ y 
+    $F_{i}(p_{i})=1$, definimos $E_{i}=1-(1-F_{i}^{d})^{d}$ para $i=1,\cdots,m$. Notemos que 
+    $E_{i}=F_{i}^{d}D_{i}$ para algún $D_{i}$, entonces $E_{i}\in I_{j}^{d}$ para $i\neq j$, lo que
+    implica
+    \begin{itemize}
+        \item Dado $j$ fijo se tiene que $1-\sum_{i}E_{i}=(1-E_{j})-\sum_{i\neq j}E_{i}\in 
+        I_{j}^{d}$, lo que implica que $1-\sum_{i}E_{i}\in\bigcap_{j=1}^{m}I_{j}^{d}$.
+
+        \item Para $i$ fijo vemos que $E_{i}-E_{i}^{2}=E_{i}(1-F_{i}^{d})^{d}\in
+        \bigcap_{i=1}^{m}I_{i}^{d}$.
+    \end{itemize}
+    Definimos $e_{i}:=[E_{i}]_{I}\in R$, por lo anterior, cumplen que $e_{i}^{2}=e_{i}$, 
+    $e_{i}e_{j}=0$ y $\sum_{i}e_{i}=1$.
+    
+    \vspace{4mm}
+    \noindent \textbf{Lema:} Si $G\in\pvk{x}{n}$ con $G(p_{i})\neq0$ entonces
+    existe $t\in R$ tal que $tg=e_{i}$ donde $g=[G]_{I}\in R$. En efecto, supongamos que 
+    $G(p_{i})=1$ y sea $H=1-G$, luego
+    \begin{equation*}
+        (1-H)(E_{i}+HE_{i}+\cdots+H^{d-1}E_{i})=E_{i}-H^{d}E_{i}
+    \end{equation*}
+    por ende
+    \begin{equation*}
+        g(e_{i}+he_{i}+\cdots+h^{d-1}e_{i})=e_{i}
+    \end{equation*}
+    Veamos que $\varphi$ es biyección. Sea $f\in R$ tal que $\varphi(f)=0$, luego 
+    $[F]_{I\mathcal{O}_{i}}=0$, lo que implica que $F\in I\mathcal{O}_{i}$, entonces existe 
+    $G\in\pvk{x}{n}$ tal que $G_{i}(p_{i})\neq0$ y $FG\in I$, por el lema se sigue que existe 
+    $t_{i}\in R$ tal que $t_{i}g_{i}=e_{i}$, entonces
+    \begin{equation*}
+        f=\sum_{i}e_{i}f=\sum_{i}t_{i}g_{i}f=0
+    \end{equation*}
+    por lo tanto $\varphi$ es inyectiva. Como $E_{i}(p_{i})=1$ vemos que $\varphi(e_{i})$ es una
+    unidad en $R_{i}$, como $e_{i}e_{j}=0$ para $i\neq j$ se tiene que $\varphi_{i}(e_{j})=0$ para
+    $i\neq j$. Por ende, $\varphi_{i}(e_{i})=\varphi_{i}(\sum e_{j})=1$. Sea
+    \begin{equation*}
+        z=\left(\frac{h_{1}}{g_{1}},\cdots,\frac{h_{m}}{g_{m}}\right)\in R_{1}
+        \times\cdots\times R_{m}
+    \end{equation*}
+    por el lema, existe $t_{i}$ tal que $t_{i}g_{i}=e_{i}$, tenemos que
+    \begin{equation*}
+        \varphi_{i}(g_{i})\frac{h_{i}}{g_{i}}=[G_{i}]_{i}\cdot\left[\frac{H_{i}}{G_{i}}\right]_{i}
+        =[H_{i}]_{i}=\varphi_{i}(h_{i})
+    \end{equation*}
+    lo que implica que $\varphi_{i}(t_{i}h_{i})=h_{i}/g_{i}$. De este modo
+    \begin{equation*}
+        \varphi_{i}\left(\sum t_{j}h_{j}e_{j}\right)=\varphi_{i}(t_{i}h_{i})=\frac{h_{i}}{g_{i}}
+    \end{equation*}
+    concluimos que $\varphi(\sum t_{j}h_{j}e_{j})=z$ y por lo tanto $\varphi$ es sobreyectiva.
+\end{dem}
+\begin{cor}
+    \begin{equation*}
+        dim_{k}\left(\frac{\pvk{x}{n}}{I}\right)=
+        \sum_{i=1}^{m}dim_{k}\left(\frac{\mathcal{O}_{i}}{I\mathcal{O}_{i}}\right)
+    \end{equation*}
+\end{cor}
+
+\subsection{Modulos Cociente y Secuencias Exactas}
+\noindent Sea $R$ un anillo, sean $M$ y $V$ $R$-modulos un morfismo de grupos $\varphi:M\to V$ se
+dice \textbf{morfismo de $R$-modulos} si $\varphi(am)=a\varphi(m)$ para todo $a\in R$ y $m\in M$.
+Decimos que es isomorfismo cuando es biyectivo.
+
+\vspace{4mm}
+\noindent Sea $N$ un submodulo de un $R$-modulo $M$, en el grupo cociente $M/N$ consideramos la
+operación $a\overline{m}=\overline{am}$, lo que da estructura de $R$-modulo y lo llamamos el
+\textbf{modulo cociente} de M por N.
+\begin{dfn}
+    Sean $\psi:M'\to M$ y $\varphi:M\to M''$ morfismos de $R$-modulos. Decimos que la secuencia
+    
+    \centerline{
+        \xymatrix{
+            M' \ar[r]^{\psi} & M \ar[r]^{\varphi} & M''
+        }
+    }
+    \noindent es \textbf{exacta} si $Im(\psi)=ker(\varphi)$.
+\end{dfn}
+\begin{prop}\hspace{1mm}
+    \begin{enumerate}
+        \item Sea
+    
+        \centerline{
+            \xymatrix{
+                0 \ar[r] & V' \ar[r]^{\psi} & V \ar[r]^{\varphi} & V'' \ar[r] & 0
+            }
+        }
+        \noindent una secuencia exacta de espacios vectoriales sobre un cuerpo $k$ de dimensión 
+        finita, entonces $dim V'+dim V''=dim V$.
+
+        \item Sea
+        
+        \centerline{
+            \xymatrix{
+                0 \ar[r] & V_{1} \ar[r]^{\varphi_{1}} & V_{2} \ar[r]^{\varphi_{2}} & V_{3} 
+                \ar[r]^{\varphi_{3}} & V_{4} \ar[r] & 0
+            }
+        }
+        \noindent una secuencia exacta de espacios vectoriales sobre un cuerpo $k$ de dimensión 
+        finita, entonces $dim V_{4}=dim V_{3}-dim V_{2}+dim V_{1}$
+    \end{enumerate}    
+\end{prop}
+
+\subsection{Modulos Libres}
+
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
 \end{document}
