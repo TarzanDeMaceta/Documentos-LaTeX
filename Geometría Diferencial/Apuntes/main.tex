@@ -1650,9 +1650,264 @@ de curvas, esperamos describir la geometría de $\Sigma$ usando la derivada de $
     para todo $w_{1},w_{2}\in T_{p}\Sigma$.
 \end{dfn}
 
-\noindent\textbf{Ejemplo:} Para un plano $P=p_{0}+w^{\perp}\subseteq\R^{3}$ la aplicación de Gauss
-$N:P\to\mathbb{S}^{2}$ es constante y vale $N(p)=\frac{w}{\abs{w}}$. Luego $A_{p}=-DN_{p}\equiv0$
-y $\I_{p}\equiv0$ para todo $p\in\Sigma$.
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Para un plano $P=p_{0}+w^{\perp}\subseteq\R^{3}$ la aplicación de Gauss
+    $N:P\to\mathbb{S}^{2}$ es constante y vale $N(p)=\frac{w}{\abs{w}}$. Luego $A_{p}=-DN_{p}\equiv0$
+    y $\I_{p}\equiv0$ para todo $p\in\Sigma$.
+    
+    \item Sea $\mathbb{S}^{2}(r):=\{(x,y,z)\in\R^{3}:x^{2}+y^{2}+z^{2}=r^{2}\}$. Luego 
+    $N(f)=-\frac{1}{r}p$. Sea $w\in T_{p}\mathbb{S}^{2}(r)$, con $w=\alpha'(0)$ y $\alpha\subset
+    \mathbb{S}^{2}(r)$, entonces
+    \begin{equation*}
+        DN_{p}(w)=(N\circ\alpha)'(0)=\dv{}{t}\Big|_{t=0}N(\alpha(t))=\dv{}{t}\Big|_{t=0}
+        \left(-\frac{1}{r}p\right)=-\frac{1}{r}\alpha'(0)=-\frac{1}{r}w
+    \end{equation*}
+    Por lo tanto $A_{p}w=\frac{1}{r}w$, entonces la segunda forma fundamental tiene la forma
+    $\I_{p}(v,w)=\frac{1}{r}\ip{v}{w}_{p}$ y
+    \begin{equation*}
+        A_{p}=\begin{pmatrix}
+            \frac{1}{r} & 0 \\
+            0 & \frac{1}{r}
+        \end{pmatrix}
+    \end{equation*}
+
+    \item Consideremos $C:=\{(x,y,z)\in\R^{3}:x^{2}+y^{2}=r^{2}\}=h^{-1}(r^{2})$ con 
+    $h(x,y,z)=x^{2}+y^{2}$, luego $T_{p}C=(\nabla h(p))^{\perp}=(2x,2y,0)^{\perp}$. Sean $w_{1}=
+    (-y,x,0)=\alpha'(0)$ y $w_{2}=(0,0,1)=\beta'(0)$ donde
+    \begin{align*}
+        & \alpha(t)=\left(cos\left(\frac{t}{r}\right)x-sen\left(\frac{t}{r}\right)y,
+        sen\left(\frac{t}{r}\right)x+cos\left(\frac{t}{r}\right)y,z\right) \\
+        & \beta(t)=(x,y,z+t)
+    \end{align*}
+    Tomamos $N(p)=-\frac{1}{r}(x,y,0)$, luego
+    \begin{align*}
+        & DN_{p}w_{1}=\dv{}{t}\Big|_{t=0}N(\alpha(t))=-\frac{1}{r}w_{1} \\
+        & DN_{p}w_{2}=\dv{}{t}\Big|_{t=0}N(\beta(t))=0
+    \end{align*}
+    por lo tanto
+    \begin{equation*}
+        A_{p}=\begin{pmatrix}
+            \frac{1}{r} & 0 \\
+            0 & 0
+        \end{pmatrix}
+    \end{equation*}
+\end{itemize}
+
+\begin{dfn}
+    Los autovalores de $A_{p}$ se llaman las \textbf{curvaturas principales} de $\Sigma$ en $p$ y
+    y las denotamos $k_{1}(p)\leq k_{2}(p)$. Los autovectores $\{e_{1},e_{2}\}$ que corresponden a 
+    $k_{1},k_{2}$ se llaman \textbf{direcciones principales} de $\Sigma$ en $p$. Además se definen
+    \begin{equation*}
+        k_{\Sigma}(p):=det(A_{p})\hspace{4mm}H_{\Sigma}(p):=\frac{1}{2}tr(A_{p})
+    \end{equation*}
+    la \textbf{curvatura gaussiana} y \textbf{curvatura media} respectivamente.
+\end{dfn}
+\noindent\textbf{Observación:} La curvatura gaussiana es la unica que no depende de la orientación,
+además, se tiene lo siguiente
+\begin{equation*}
+    k_{1}=H_{\Sigma}-\sqrt{H_{\Sigma}^{2}-k_{\Sigma}}\hspace{4mm}\text{ y }\hspace{4mm}
+    k_{2}=H_{\Sigma}+\sqrt{H_{\Sigma}^{2}-k_{\Sigma}}
+\end{equation*}
+lo anterior esta bien definido gracias a la desigualdad de las medias.
+\begin{prop}
+    Sea $\Sigma$ una superficie regular. Sea $\alpha:(-\varepsilon,\varepsilon)\to\Sigma$ una 
+    curva parametrizada por el arco con $\alpha(0)=p$ y $\alpha'(0)\in T_{p}\Sigma$. Sea 
+    $k_{\alpha}$ la curvatura de $\alpha$ en $p$ y $N_{\alpha}$ el normal unitario. Entonces
+    \begin{equation*}
+        \I_{p}(\alpha'(0),\alpha'(0))=\ip{N_{\Sigma}(p)}{k_{\alpha}N_{\alpha}}
+    \end{equation*}
+\end{prop}
+\begin{dem}
+    Como $\alpha'(t)\in T_{p}\Sigma$ se sigue que $\ip{N\circ\alpha(t)}{\alpha'(t)}=0$, entonces
+    \begin{equation*}
+        \ip{DN_{\alpha(t)}(\alpha'(t))}{\alpha'(t)}+\ip{N(\alpha(t))}{\alpha''(t)}=0
+    \end{equation*}
+    lo que implica la afirmación.
+\end{dem}
+Veamos que $\ip{N(\alpha(t))}{\alpha''(t)}$ solo depende de la dirección tangente $\alpha'(0)\in 
+T_{p}\Sigma$.
+
+\begin{dfn}
+    Sea $v\in T_{p}\Sigma$ unitario, definimos la \textbf{curvatura normal} de $\Sigma$ en $p$ en
+    la dirección de $v$ por $k_{v}:=\I_{p}(v,v)$.
+\end{dfn}
+\noindent Sea $\{e_{1},e_{2}\}$ base ortonormal de $T_{p}\Sigma$ tal que $A_{p}(e_{i})=
+k_{i}(p)e_{i}$. Entonces $v=\ip{v}{e_{1}}e_{1}+\ip{v}{e_{2}}e_{2}$ y también
+\begin{align*}
+    k_{v} &= \I_{p}(v,v)=\I_{p}(\ip{v}{e_{1}}e_{1}+\ip{v}{e_{2}}e_{2},
+    \ip{v}{e_{1}}e_{1}+\ip{v}{e_{2}}e_{2}) \\
+    &= \ip{v}{e_{1}}^{2}\I_{p}(e_{1},e_{1})+2\ip{v}{e_{1}}\ip{v}{e_{2}}\I_{p}(e_{1},e_{2})+
+    \ip{v}{e_{2}}^{2}\I_{p}(e_{2},e_{2}) \\
+    &= \ip{v}{e_{1}}^{2}k_{1}+\ip{v}{e_{2}}^{2}k_{2}
+\end{align*}
+\begin{cor}
+    $k_{1}(p)$ y $k_{2}(p)$ son el maximo y minimo de las curvaturas normales $k_{v}$, para 
+    $v\in T_{p}\Sigma$ unitario.
+\end{cor}
+
+\begin{dfn}
+    Sea $\Sigma$ una superficie regular y $N:\Sigma\to\mathbb{S}^{2}$ aplicación de Gauss. Dado 
+    $p\in\Sigma$ se dice un punto
+    \begin{itemize}
+        \item \textbf{eliptico} si $k_{\Sigma}(p)>0$.
+        \item \textbf{hiperbolico} si $k_{\Sigma}(p)<0$.
+        \item \textbf{parabolico} si $k_{\Sigma}(p)=0$ y $H_{\Sigma}(p)\neq0$.
+        \item \textbf{plano} si $k_{1}(p)=0$ y $k_{2}(p)=0$
+    \end{itemize}
+\end{dfn}
+\noindent\textbf{Observación:}
+\begin{enumerate}
+    \item Si $p$ es eliptico entonces todas las curvaturas normales en $p$ tienen el mismo signo y
+    toda sección normal en $p$ esta contenida en un lado de $T_{p}\Sigma$.
+
+    \item Si $p$ es hiperbolico, $k_{1}(p)<0<k_{2}(p)$ y $\Sigma$ tiene puntos en ambos lados de
+    $T_{p}\Sigma$.
+\end{enumerate}
+Estas conclusiones se pueden profundizar estudiando la hessiana en $p$ de la función 
+$f:\Sigma\to\R$ dada por $f(q):=\ip{q-p}{N(p)}$.
+
+\noindent Sea $\varphi=\varphi(u,v):\V\subseteq\R^{2}\to\R^{3}$ parametrización local. Luego
+$\varphi_{u}(u,v)$ y $\varphi_{v}(u,v)$ son campos tangentes, definimos
+\begin{align*}
+    e(u,v) &:= \I_{\varphi(u,v)}(\varphi_{u}(u,v),\varphi_{u}(u,v))=
+    \ip{A_{\varphi(u,v)}\varphi_{u}(u,v)}{\varphi_{u}(u,v)} \\
+    &= -\ip{DN_{\varphi(u,v)}(\varphi_{u}(u,v))}{\varphi_{u}(u,v)}=
+    -\ip{(N\circ\varphi)_{u}(u,v)}{\varphi_{u}(u,v)} \\
+    &= \ip{N\circ\varphi(u,v)(u,v)}{\varphi_{uu}(u,v)}
+\end{align*}
+Del mismo modo se tiene que
+\begin{align*}
+    f(u,v) &:= \I_{\varphi(u,v)}(\varphi_{u}(u,v),\varphi_{v}(u,v))=\ip{N\circ\varphi(u,v)}
+    {\varphi_{uv}(u,v)} \\
+    g(u,v) &:= \I_{\varphi(u,v)}(\varphi_{v}(u,v),\varphi_{v}(u,v))=\ip{N\circ\varphi(u,v)}
+    {\varphi_{vv}(u,v)}
+\end{align*}
+Estas funciones se llaman \textbf{coeficientes de la segunda forma fundamental} en 
+$\varphi(u,v)\in\Sigma$ respecto a $\varphi$.
+
+\begin{teo}
+    Se tienen las siguientes igualdades
+    \begin{equation*}
+        k_{\Sigma}\circ\varphi=det\left(\begin{pmatrix}
+            E & F \\
+            F & G
+        \end{pmatrix}^{-1}\begin{pmatrix}
+            e & f \\
+            f & g
+        \end{pmatrix}\right)=\frac{eg-f^{2}}{EG-F^{2}}
+    \end{equation*}
+    \begin{equation*}
+        H_{\Sigma}\circ\varphi=\frac{1}{2}tr\left(\begin{pmatrix}
+            E & F \\
+            F & G
+        \end{pmatrix}^{-1}\begin{pmatrix}
+            e & f \\
+            f & g
+        \end{pmatrix}\right)=\frac{Eg+Ge-2Ff}{EG-F^{2}}
+    \end{equation*}
+\end{teo}
+\begin{dem}
+    Sea $p=\varphi(p_{0})$ con $p_{0}\in\V$ y escribamos
+    \begin{equation*}
+        A_{p}=\begin{pmatrix}
+            a_{11} & a_{12} \\
+            a_{21} & a_{22}
+        \end{pmatrix}
+    \end{equation*}
+    para la matriz de $A_{p}$ en la base $\{\varphi_{u}(p_{0}),\varphi_{v}(p_{0})\}$. 
+    Basta demostrar
+    \begin{equation*}
+        \begin{pmatrix}
+            E & F \\
+            F & G
+        \end{pmatrix}\begin{pmatrix}
+            a_{11} & a_{12} \\
+            a_{21} & a_{22}
+        \end{pmatrix}=\begin{pmatrix}
+            e & f \\
+            f & g
+        \end{pmatrix}
+    \end{equation*}
+    Notemos que
+    \begin{equation*}
+        A_{p}(\varphi_{u}(p_{0}))=a_{11}\varphi_{u}(p_{0})+a_{21}\varphi_{v}(p_{0})
+        \hspace{4mm}\text{ y }\hspace{4mm}
+        A_{p}(\varphi_{v}(p_{0}))=a_{12}\varphi_{u}(p_{0})+a_{22}\varphi_{v}(p_{0})
+    \end{equation*}
+    Tomando producto interno de cada ecuación con $\varphi_{u}$ y $\varphi_{v}$ vemos que
+    \begin{align*}
+        e(p_{0}) &= \ip{A_{p}(\varphi_{u}(p_{0}))}{\varphi_{u}(p_{0})}=
+        \ip{a_{11}\varphi_{u}(p_{0})+a_{21}\varphi_{v}(p_{0})}{\varphi_{u}(p_{0})} \\
+        &= a_{11}E(p_{0})+a_{21}F(p_{0})
+    \end{align*}
+    Del mismo modo vemos que
+    \begin{align*}
+        f(p_{0}) &= \ip{A_{p}(\varphi_{u}(p_{0}))}{\varphi_{v}(p_{0})}
+        =a_{11}F(p_{0})+a_{21}G(p_{0}) \\
+        f(p_{0}) &= \ip{A_{p}(\varphi_{v}(p_{0}))}{\varphi_{u}(p_{0})}
+        =a_{12}E(p_{0})+a_{22}F(p_{0}) \\
+        g(p_{0}) &= \ip{A_{p}(\varphi_{v}(p_{0}))}{\varphi_{v}(p_{0})}
+        =a_{12}F(p_{0})+a_{22}G(p_{0})
+    \end{align*}
+\end{dem}
+\begin{cor}
+    Como resultado se tiene que $k_{1},k_{2}:\Sigma\to\R$ son funciones continuas y son 
+    diferenciables en todo $p\in\Sigma$ donde $k_{1}(p)\neq k_{2}(p)$.
+\end{cor}
+\noindent\textbf{Ejemplo:} Sea $\Sigma=Graf(h)$ con $h:\V\subseteq\R^{2}\to\R$ diferenciable con 
+parametrización $\varphi(u,v)=(u,v,h(u,v))$. Recordemmos que
+\begin{equation*}
+    \varphi_{u}=(1,0,h_{u})\text{ ,}\hspace{4mm}\varphi_{v}=(0,1,h_{v})\text{ ,}\hspace{4mm}
+    N=(-\nabla h,1)\frac{1}{(1+h_{u}^{2}+h_{v}^{2})^{1/2}}=\frac{1}{\sqrt{1+h_{u}^{2}+h_{v}^{2}}}
+    (-h_{u},h_{v},1)
+\end{equation*}
+Además, tenemos que
+\begin{equation*}
+    E=1+h_{u}^{2}\text{ ,}\hspace{4mm}F=h_{u}h_{v}\text{ ,}\hspace{4mm}G=1+h_{v}^{2}
+\end{equation*}
+y por lo tanto
+\begin{equation*}
+    EG-F^{2}=(1+h_{u}^{2})(1+h_{v}^{2})-(h_{u}h_{v})^{2}=1+h_{u}^{2}+h_{v}^{2}
+\end{equation*}
+Buscamos calcular $e,g,f$, para ello veamos que
+\begin{equation*}
+    \varphi_{uu}=(0,0,h_{uu})\text{ ,}\hspace{4mm}\varphi_{uv}=(0,0,h_{uv})\text{ ,}\hspace{4mm}
+    \varphi_{vv}=(0,0,h_{vv})
+\end{equation*}
+luego
+\begin{equation*}
+    e=\ip{N}{\varphi_{uu}}=\frac{h_{uu}}{\sqrt{1+h_{u}^{2}+h_{v}^{2}}}\text{ ,}\hspace{4mm}
+    f=\ip{N}{\varphi_{uv}}=\frac{h_{uv}}{\sqrt{1+h_{u}^{2}+h_{v}^{2}}}\text{ ,}\hspace{4mm}
+    g=\ip{N}{\varphi_{vv}}=\frac{h_{vv}}{\sqrt{1+h_{u}^{2}+h_{v}^{2}}}\text{ ,}
+\end{equation*}
+entonces
+\begin{equation*}
+    eg-f^{2}=\frac{h_{uu}h_{vv}-h_{uv}^{2}}{\sqrt{1+h_{u}^{2}+h_{v}^{2}}}
+\end{equation*}
+Concluimos que
+\begin{equation*}
+    k_{\Sigma}=\frac{h_{uu}h_{vv}-h_{uv}^{2}}{(1+h_{u}^{2}+h_{v}^{2})^{3/2}}
+\end{equation*}
+por otro lado
+\begin{equation*}
+    eG+gE-2Ff=\frac{h_{uu}(1+h_{v}^{2})}{\sqrt{1+h_{u}^{2}+h_{v}^{2}}}+
+    \frac{h_{vv}(1+h_{u}^{2})}{\sqrt{1+h_{u}^{2}+h_{v}^{2}}}-
+    \frac{2h_{u}h_{v}h_{uv}}{\sqrt{1+h_{u}^{2}+h_{v}^{2}}}
+\end{equation*}
+y Finalmente
+\begin{equation*}
+    H_{\Sigma}=\frac{h_{uu}(1+h_{v}^{2})+h_{vv}(1+h_{u}^{2})-2h_{u}h_{v}h_{uv}}
+    {(1+h_{u}^{2}+h_{v}^{2})^{3/2}}
+\end{equation*}
+
+\noindent\textbf{Ejemplo:} Sea $\varphi(u,v)=(ucosv,usenv,v)$ luego $E=1$, $F=0$ y $G=1+u^{2}$.
+Además, $\varphi_{uu}=(0,0,0)$, $\varphi_{uv}=(-senv,cosv,0)$ y $\varphi_{vv}=(-ucosv,-usenv,0)$.
+Lo que implica que $e=g=0$ y $f=-\frac{1}{\sqrt{1+u^{2}}}$. Finalmente
+\begin{equation*}
+    k_{\Sigma}=\frac{0-\left(\frac{1}{1+u^{2}}\right)}{1+u^{2}}=-\frac{1}{(1+u^{2})^{2}}<0
+    \text{ ,}\hspace{4mm}H_{\Sigma}=0
+\end{equation*}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 

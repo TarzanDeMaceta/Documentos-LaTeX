@@ -837,8 +837,8 @@ afín irreducible lo llamamos variedad afín, o simplemente variedad.
     \begin{equation*}
         \Gamma(V):=\frac{\pvk{x}{n}}{I(V)}
     \end{equation*}
-    y lo llamamos el \textbf{anillo de coordenadas de $V$} y los elementos de $\Gamma(V)$ les decimos
-    \textbf{funciones regulares}.
+    y lo llamamos el \textbf{anillo de coordenadas de $V$} y los elementos de $\Gamma(V)$ les 
+    decimos \textbf{funciones regulares}.
 \end{dfn}
 \noindent\textbf{Observación:} El anillo de coordenadas de $V$ es un dominio, ya que $\I(V)$ es un
 ideal primo de $\pvk{x}{n}$. Por otro lado, dado $f,g\in\pvk{x}{n}$ entonces $f,g$ determinan la
@@ -849,7 +849,8 @@ de polinomios.
 \subsection{Aplicaciones Polinomiales}
 \begin{dfn}
     Sean $V\subseteq\A_{k}^{n}$ y $W\subseteq\A_{k}^{m}$ variedades. Una aplicación 
-    $\varphi:V\to W$ se dice \textbf{aplicación polinomial} si existen $f_{i}\in\pvk{x}{n}$ tales que
+    $\varphi:V\to W$ se dice \textbf{aplicación polinomial} si existen $f_{i}\in\pvk{x}{n}$ tales 
+    que
     \begin{equation*}
         \varphi(a)=\varphi(a_{1},\cdots,a_{n})=(f_{1}(a),\cdots,f_{m}(a))
     \end{equation*}
@@ -1215,6 +1216,30 @@ operación $a\overline{m}=\overline{am}$, lo que da estructura de $R$-modulo y l
 \end{prop}
 
 \subsection{Modulos Libres}
+\begin{dfn}
+    Sea $R$ un anillo y $X$ un conjunto. Consideramos
+    \begin{equation*}
+        M_{X}:=\left\{\varphi:X\to R:\abs{\varphi^{-1}(R\setminus\{0\})}<\infty\right\}
+    \end{equation*}
+    Lo dotamos de estructura de $R$-modulo como sigue: $(\varphi+\psi)(x):=\varphi(x)+\psi(x)$ y
+    $(a\varphi)(x):=a\varphi(x)$, donde $\varphi,\psi\in M_{X}$ y $a\in R$. El modulo $M_{X}$ se
+    dice \textbf{$R$-modulo libre} sobre el conjunto $X$.
+\end{dfn}
+\noindent\textbf{Observación:} Si definimos $\varphi_{x}\in M_{X}$ como 
+$\varphi_{x}(y):=\mathbbm{1}_{x}(y)$, entonces todo $\varphi\in M_{X}$ tiene expresión unica
+$\varphi=\sum a_{x}\varphi_{x}$ donde $a_{x}=\varphi(x)$. Usualmente escribimos $x$ en lugar de 
+$\varphi_{x}$.
+\begin{prop}
+    (\textbf{Propiedad Universal}) Sea $\alpha:X\to M$ una función del conjunto $X$ a un $R$-modulo
+    $M$, entonces $\alpha$ se extiende de manera unica a un morfismo de $M_{X}$ a $M$.
+\end{prop}
+\begin{dfn}
+    Un $R$-modulo $M$ se dice \textbf{libre} con base $m_{1},\cdots,m_{n}\in M$, si el conjunto
+    $X:=\{m_{1},\cdots,m_{n}\}$ y el morfismo natural de $M_{X}$ a $M$ es isomorfismo.
+\end{dfn}
+
+\newpage
+\section{Propiedades Locales de Curvas Planas}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
