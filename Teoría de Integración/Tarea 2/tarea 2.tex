@@ -24,8 +24,134 @@
 
 \section*{Problema 1}
 \section*{Problema 2}
+\begin{enumerate}
+    \item A
+    \item Sea $(s_{n})_{n}$ una sucesión de funciones simples positivas tales que 
+    $s_{n}\uparrow f$, por la parte anterior, tenemos que
+    \begin{equation*}
+        \int s_{n}\hspace{1mm}d\mu\leq\lim\limits_{n\to\infty}\int \inf_{k\geq n}
+        f_{k}\hspace{1mm}d\mu\leq\liminf\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu
+    \end{equation*}
+    lo que implica que
+    \begin{equation*}
+        \int \liminf\limits_{n\to\infty}f_{n}\hspace{1mm}d\mu=\int f\hspace{1mm}d\mu\leq
+        \liminf\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu
+    \end{equation*}
+    se tiene el lema de fatou.
+
+    \item Sean $f,f_{n}:\Omega\to[0,\infty]$ funciones medibles tales que $f_{n}\leq f_{n+1}$ y
+    $f_{n}\to f$ $\mu$-ctp. Por monotonía, sabemos que
+    \begin{equation*}
+        \lim\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu\leq\int f\hspace{1mm}d\mu
+    \end{equation*}
+    por otro lado, por la parte b), tenemos que
+    \begin{align*}
+        \int f\hspace{1mm}d\mu &= \int \lim\limits_{n\to\infty}f_{n}\hspace{1mm}d\mu
+        =\int \liminf\limits_{n\to\infty}f_{n}\hspace{1mm}d\mu
+        \leq\liminf\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu \\
+        &= \lim\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu
+    \end{align*}
+    lo que prueba el teorema de convergencia monótona.
+\end{enumerate}
+
 \section*{Problema 3}
 \section*{Problema 4}
+\begin{enumerate}
+    \item Notemos que $\mathbbm{1}_{X}=\textbf{1}\in\V$, entonces $X\in\mathcal{G}$. Sea 
+    $E\in\mathcal{G}$, luego $\I_{E}\in\mathcal{G}$, como $\V$ es espacio vectorial, vemos que
+    \begin{equation*}
+        \I_{E^{c}}=\textbf{1}-\I_{E}\in\V
+    \end{equation*}
+    se sigue que $E^{c}\in\mathcal{G}$. En primer lugar veremos que si $A,B\in\mathcal{G}$ entonces
+    $A\cup B\in\mathcal{G}$. En efecto, veamos que $\I_{A\cup B}=\max\{\I_{A},\I_{B}\}\in\V$,
+    inductivamente se tiene que $\mathcal{G}$ es cerrado bajo uniones finitas. Sea $(A_{n})_{n}
+    \subseteq\mathcal{G}$, definimos la sucesión
+    \begin{equation*}
+        E_{n}:=\bigcup_{i=1}^{n}A_{i}\in\mathcal{G}
+    \end{equation*}
+    notemos que $E_{n}\subseteq E_{n+1}$ lo que implica que $\I_{E_{n}}\leq\I_{E_{n+1}}\leq1$ para
+    todo $n\in\N$, entonces
+    \begin{equation*}
+        \I_{\bigcup_{n\in\N}A_{n}}=\I_{\bigcup_{n\in\N}E_{n}}=\sup_{n}\I_{E_{n}}\in\V
+    \end{equation*}
+    Concluimos que $\mathcal{G}$ es una $\sigma$-álgebra.
+
+    \item Como lema, veamos que dadas $f,g\in\V$ se tiene que $\min\{f,g\}=-\max\{-f,-g\}\in\V$. 
+    Sea $f\in\V$, basta ver que $A:=f^{-1}((a,\infty))\in\mathcal{G}$ para todo $a\in\R$, es decir,
+    $\I_{A}\in\V$. Definimos
+    \begin{equation*}
+        f_{n}:=\min\{\textbf{1},\max\{\textbf{0},n(f-\textbf{a})\}\}\in\V
+    \end{equation*}
+    donde $\textbf{0}=\I_{\emptyset}$ y $\textbf{a}=a\textbf{1}$, ambos en $\V$. Notemos que 
+    $f_{n}\leq1$ para todo $n\in\N$. Afirmamos que $f_{n}\leq f_{n+1}$ para todo $n\in\N$, tenemos
+    dos casos
+    \begin{itemize}
+        \item $x\in A$, entonces $f(x)-\textbf{a}>0$ y luego $n(f(x)-\textbf{a})\leq(n+1)
+        (f(x)-\textbf{a})$ lo que implica que $f_{n}(x)\leq f_{n+1}(x)$.
+
+        \item $x\not\in A$, entonces $f_{n}(x)=0$.
+    \end{itemize}
+    por lo tanto $\sup_{n}f_{n}\in\V$. Afirmamos que $\I_{A}=\sup_{n}f_{n}$, en efecto, sea 
+    $x\in A$, por propiedad arquimediana, existe $n\in\N$ tal que $1\leq n(f(x)-\textbf{a})$ y por
+    ende $f_{n}(x)=1$, se sigue que $\sup_{n}f_{n}(x)=1$. Concluimos que $f$ es $\mathcal{G}$-
+    medible.
+
+    \item Definimos una medida $\mu$ sobre el espacio $(X,\mathcal{G})$ dada por 
+    $\mu(E)=I(\I_{E})$ con $E\in\mathcal{G}$. Veamos que, en efecto, es una medida,
+    \begin{itemize}
+        \item Como $\I_{E}\geq0$ para todo $E\in\mathcal{G}$, entonces $I(E)\geq0$, se sigue que
+        $\mu$ es positiva.
+        
+        \item Notemos que $\mu(\emptyset)=I(\I_{\emptyset})=I(\textbf{0})=0$, lo anterior se debe
+        a que $I$ es lineal.
+
+        \item Sea $(A_{n})_{n}\subseteq\mathcal{G}$ disjuntos de a pares, entonces
+        \begin{equation*}
+            \sum_{n\in\N}\I_{A_{n}}=\I_{\bigcup_{n\in\N}A_{n}}
+        \end{equation*}
+        de este modo
+        \begin{align*}
+            \mu\left(\bigcup_{n\in\N}A_{n}\right) &= I\left(\I_{\bigcup_{n\in\N}A_{n}}\right)
+            =I\left(\sum_{n\in\N}\I_{A_{n}}\right)=I\left(\sum_{i=1}^{n}\I_{A_{i}}\right)+
+            I\left(\sum_{m=n+1}^{\infty}\I_{A_{m}}\right) \\
+            &= \sum_{i=1}^{n}I(\I_{A_{i}})+I\left(\sum_{m=n+1}^{\infty}\I_{A_{m}}\right)
+        \end{align*}
+        Consideremos la sucesión $f_{n}=\sum_{m=n+1}^{\infty}\I_{A_{m}}$, luego $f_{n}\geq f_{n+1}$
+        y como $\sum_{n\in\N}\I_{A_{n}}=\I_{\bigcup_{n\in\N}A_{n}}$, se sigue que 
+        $\lim\limits_{n\to\infty}f_{n}=0$, por lo tanto $\lim\limits_{n\to\infty}I(f_{n})=0$, así
+        \begin{equation*}
+            \mu\left(\bigcup_{n\in\N}A_{n}\right)=\lim\limits_{n\to\infty}
+            \sum_{i=1}^{n}I(\I_{A_{i}})+I(f_{n})=\sum_{n\in\N}I(\I_{A_{n}})=\sum_{n\in\N}\mu(A_{n})
+        \end{equation*}
+    \end{itemize}
+    Por otro lado, $\mu$ es de medida finita, en efecto, $\mu(X)=I(\textbf{1})\in\R$. En 
+    particular, $\mu$ es una medida sobre el álgebra $\mathcal{G}$, por teorema de Caratheodory, 
+    $\mu^{*}\big|_{\mathcal{F}}$ es la unica extensión de $\mu$ a $\sigma(G)$. Sin embargo, 
+    $\sigma(G)=G$ ya que $G$ es $\sigma$-álgebra y por ende $\mu^{*}\big|_{\mathcal{F}}=\mu$.
+    
+    \vspace{4mm}
+    \noindent Falta ver que dada $f\in\V$ se tiene que
+    \begin{equation*}
+        I(f)=\int f\hspace{1mm}d\mu
+    \end{equation*}
+    Supongamos que $f$ es simple y sea $\sum a_{i}\I_{A_{i}}$ una representación, entonces
+    \begin{equation*}
+        \int f\hspace{1mm}d\mu=\sum a_{i}\mu(A_{i})=\sum a_{i}I(\I_{A_{i}})
+        =I\left(\sum a_{i}\I_{A_{i}}\right)=I(f)
+    \end{equation*}
+    Sea $f\in\V$ tal que $f\geq0$, sea $(s_{n})_{n}$ una sucesión de funciones simples positivas
+    tales que $s_{n}\uparrow f$, entonces la sucesión $g_{n}=f-s_{n}$ es decreciente y 
+    $g_{n}\to0$, entonces $I(g_{n})\to0$, se sigue que
+    \begin{equation*}
+        I(f)=\lim\limits_{n\to\infty}I(s_{n})=\lim\limits_{n\to\infty}\int s_{n}\hspace{1mm}d\mu
+        =\int f\hspace{1mm}d\mu
+    \end{equation*}
+    Sea $f\in\V$, entonces
+    \begin{equation*}
+        \int f\hspace{1mm}d\mu=\int f_{+}\hspace{1mm}d\mu-\int f_{-}\hspace{1mm}d\mu
+        =I(f_{+})-I(f_{-})=I(f)
+    \end{equation*}
+\end{enumerate}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
