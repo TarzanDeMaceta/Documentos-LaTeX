@@ -55,6 +55,66 @@
 \end{enumerate}
 
 \section*{Problema 3}
+\noindent Sean $f,f_{n}:\Omega\to\overline{\R}$ funciones mediles y $g\in L^{1}$ tales que $f_{n}\to f$ 
+$\mu$-ctp y $\abs{f_{n}}\leq g$. Notemos que $\abs{f_{n}}\to\abs{f}$ $\mu$-ctp, luego 
+$\abs{f}\leq g$ $\mu$-ctp. Dado $m\in\N$, por teorema de Egoroff, existe $\Omega_{m}^{*}\in
+\mathcal{F}$ tal que
+\begin{equation*}
+    \mu((\Omega_{m}^{*})^{c})<\frac{1}{m}
+\end{equation*}
+y $f_{n}$ converge uniformemente a $f$ en $\Omega_{m}^{*}$ para todo $m\in\N$. 
+Definimos la sucesión
+\begin{equation*}
+    \Omega_{m}:=\bigcup_{i=1}^{m}\Omega_{i}^{*}
+\end{equation*}
+Notemos que $\Omega_{m}^{c}\supseteq\Omega_{m+1}^{c}$, $\mu(\Omega_{m}^{c})<\frac{1}{m}$ para todo 
+$m\in\N$ y $\mu(\Omega_{1}^{c})\leq\mu(\Omega)<\infty$. Además, la convergencia en $\Omega_{m}$ 
+sigue siendo uniforme, basta tomar máximo. Dado $m\in\N$, se tiene lo siguiente
+\begin{align*}
+    \int\abs{f_{n}-f}\hspace{1mm}d\mu &= \int_{\Omega_{m}}\abs{f_{n}-f}\hspace{1mm}d\mu+
+    \int_{\Omega_{m}^{c}}\abs{f_{n}-f}\hspace{1mm}d\mu \\
+    &\leq \sup_{x\in\Omega_{m}}\abs{f_{n}-f}\mu(\Omega_{m})
+    +\int_{\Omega_{m}^{c}}\abs{f_{n}-f}\hspace{1mm}d\mu \\
+    &\leq \sup_{x\in\Omega_{m}}\abs{f_{n}-f}\mu(\Omega)
+    +2\int_{\Omega_{m}^{c}}g\hspace{1mm}d\mu
+\end{align*}
+Como $g$ es positiva, consideramos la medida $\varphi:\Omega\to\overline{\R}$ sobre el espacio 
+$(\Omega, \mathcal{F})$ dada por
+\begin{equation*}
+    \varphi(E)=\int_{E}g\hspace{1mm}d\mu\hspace{4mm}\text{ para }E\in\mathcal{F}
+\end{equation*}
+que es finita, pues $g\in L^{1}$. Luego
+\begin{equation*}
+    \mu\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{n\to\infty}\mu(\Omega_{m}^{c})
+    \hspace{4mm}\text{ y }\hspace{4mm}
+    \varphi\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{n\to\infty}
+    \varphi(\Omega_{m}^{c})
+\end{equation*}
+Por lo anterior mencionado, vemos que
+\begin{equation*}
+    \mu\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{m\to\infty}\mu(\Omega_{m}^{c})=0
+\end{equation*}
+lo que implica que
+\begin{equation*}
+    \varphi\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=0
+\end{equation*}
+De este modo, para todo $m\in\N$ se sigue que
+\begin{equation*}
+    \lim\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu
+    \leq \lim\limits_{n\to\infty}\sup_{x\in\Omega_{m}}\abs{f_{n}-f}\mu(\Omega)
+    +2\lim\limits_{n\to\infty}\varphi(\Omega_{m}^{c})=2\varphi(\Omega_{m}^{c})
+\end{equation*}
+entonces
+\begin{equation*}
+    \lim\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu
+    =\lim\limits_{m\to\infty}\lim\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu
+    \leq2\lim\limits_{m\to\infty}\varphi(\Omega_{m}^{c})=0
+\end{equation*}
+En particular, usando desigualdad triangular, se tiene que
+\begin{equation*}
+    \lim\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu=\int f\hspace{1mm}d\mu
+\end{equation*}
+
 \section*{Problema 4}
 \begin{enumerate}
     \item Notemos que $\mathbbm{1}_{X}=\textbf{1}\in\V$, entonces $X\in\mathcal{G}$. Sea 
@@ -96,34 +156,31 @@
     ende $f_{n}(x)=1$, se sigue que $\sup_{n}f_{n}(x)=1$. Concluimos que $f$ es $\mathcal{G}$-
     medible.
 
-    \item Definimos una medida $\mu$ sobre el espacio $(X,\mathcal{G})$ dada por 
-    $\mu(E)=I(\I_{E})$ con $E\in\mathcal{G}$. Veamos que, en efecto, es una medida,
-    \begin{itemize}
-        \item Como $\I_{E}\geq0$ para todo $E\in\mathcal{G}$, entonces $I(E)\geq0$, se sigue que
-        $\mu$ es positiva.
-        
-        \item Notemos que $\mu(\emptyset)=I(\I_{\emptyset})=I(\textbf{0})=0$, lo anterior se debe
-        a que $I$ es lineal.
-
-        \item Sea $(A_{n})_{n}\subseteq\mathcal{G}$ disjuntos de a pares, entonces
-        \begin{equation*}
-            \sum_{n\in\N}\I_{A_{n}}=\I_{\bigcup_{n\in\N}A_{n}}
-        \end{equation*}
-        de este modo
-        \begin{align*}
-            \mu\left(\bigcup_{n\in\N}A_{n}\right) &= I\left(\I_{\bigcup_{n\in\N}A_{n}}\right)
-            =I\left(\sum_{n\in\N}\I_{A_{n}}\right)=I\left(\sum_{i=1}^{n}\I_{A_{i}}\right)+
-            I\left(\sum_{m=n+1}^{\infty}\I_{A_{m}}\right) \\
-            &= \sum_{i=1}^{n}I(\I_{A_{i}})+I\left(\sum_{m=n+1}^{\infty}\I_{A_{m}}\right)
-        \end{align*}
-        Consideremos la sucesión $f_{n}=\sum_{m=n+1}^{\infty}\I_{A_{m}}$, luego $f_{n}\geq f_{n+1}$
-        y como $\sum_{n\in\N}\I_{A_{n}}=\I_{\bigcup_{n\in\N}A_{n}}$, se sigue que 
-        $\lim\limits_{n\to\infty}f_{n}=0$, por lo tanto $\lim\limits_{n\to\infty}I(f_{n})=0$, así
-        \begin{equation*}
-            \mu\left(\bigcup_{n\in\N}A_{n}\right)=\lim\limits_{n\to\infty}
-            \sum_{i=1}^{n}I(\I_{A_{i}})+I(f_{n})=\sum_{n\in\N}I(\I_{A_{n}})=\sum_{n\in\N}\mu(A_{n})
-        \end{equation*}
-    \end{itemize}
+    \item Definimos $\mu:X\to[0,\infty]$ sobre el espacio $(X,\mathcal{G})$, dada por 
+    $\mu(E):=I(\I_{E})$ con $E\in\mathcal{G}$. Afirmamos que $\mu$ es una medida, en efecto, como
+    $I(f)\geq0$ para toda $f\in\V$ con $f\geq0$, entonces dado $E\in\mathcal{G}$ vemos que 
+    $\mu(E)=I(\I_{E})\geq0$. Por otro lado, $\mu(\emptyset)=I(\I_{\emptyset})=I(\textbf{0})=0$,
+    ya que $I$ es lineal.
+    
+    \vspace{4mm}
+    \noindent Sea $(A_{n})_{n}\subseteq\mathcal{G}$ disjuntos de a pares, entonces
+    \begin{equation*}
+        \sum_{n\in\N}\I_{A_{n}}=\I_{\bigcup_{n\in\N}A_{n}}
+    \end{equation*}
+    de este modo
+    \begin{align*}
+        \mu\left(\bigcup_{n\in\N}A_{n}\right) &= I\left(\I_{\bigcup_{n\in\N}A_{n}}\right)
+        =I\left(\sum_{n\in\N}\I_{A_{n}}\right)=I\left(\sum_{i=1}^{n}\I_{A_{i}}\right)+
+        I\left(\sum_{m=n+1}^{\infty}\I_{A_{m}}\right) \\
+        &= \sum_{i=1}^{n}I(\I_{A_{i}})+I\left(\sum_{m=n+1}^{\infty}\I_{A_{m}}\right)
+    \end{align*}
+    Consideremos la sucesión $f_{n}=\sum_{m=n+1}^{\infty}\I_{A_{m}}$, luego $f_{n}\geq f_{n+1}$
+    y como $\sum_{n\in\N}\I_{A_{n}}=\I_{\bigcup_{n\in\N}A_{n}}$, se sigue que 
+    $\lim\limits_{n\to\infty}f_{n}=0$, por lo tanto $\lim\limits_{n\to\infty}I(f_{n})=0$, así
+    \begin{equation*}
+        \mu\left(\bigcup_{n\in\N}A_{n}\right)=\lim\limits_{n\to\infty}
+        \sum_{i=1}^{n}I(\I_{A_{i}})+I(f_{n})=\sum_{n\in\N}I(\I_{A_{n}})=\sum_{n\in\N}\mu(A_{n})
+    \end{equation*}
     Por otro lado, $\mu$ es de medida finita, en efecto, $\mu(X)=I(\textbf{1})\in\R$. En 
     particular, $\mu$ es una medida sobre el álgebra $\mathcal{G}$, por teorema de Caratheodory, 
     $\mu^{*}\big|_{\mathcal{F}}$ es la unica extensión de $\mu$ a $\sigma(G)$. Sin embargo, 
@@ -134,19 +191,19 @@
     \begin{equation*}
         I(f)=\int f\hspace{1mm}d\mu
     \end{equation*}
-    Supongamos que $f$ es simple y sea $\sum a_{i}\I_{A_{i}}$ una representación, entonces
+    Supongamos que $f$ es simple y sea $\sum a_{i}\I_{A_{i}}$ una representación, vemos que
     \begin{equation*}
         \int f\hspace{1mm}d\mu=\sum a_{i}\mu(A_{i})=\sum a_{i}I(\I_{A_{i}})
         =I\left(\sum a_{i}\I_{A_{i}}\right)=I(f)
     \end{equation*}
     Sea $f\in\V$ tal que $f\geq0$, sea $(s_{n})_{n}$ una sucesión de funciones simples positivas
-    tales que $s_{n}\uparrow f$, entonces la sucesión $g_{n}=f-s_{n}$ es decreciente y 
+    tales que $s_{n}\uparrow f$, de este modo la sucesión $g_{n}=f-s_{n}$ es decreciente y 
     $g_{n}\to0$, entonces $I(g_{n})\to0$, se sigue que
     \begin{equation*}
         I(f)=\lim\limits_{n\to\infty}I(s_{n})=\lim\limits_{n\to\infty}\int s_{n}\hspace{1mm}d\mu
         =\int f\hspace{1mm}d\mu
     \end{equation*}
-    Sea $f\in\V$, entonces
+    Sea $f\in\V$, luego
     \begin{equation*}
         \int f\hspace{1mm}d\mu=\int f_{+}\hspace{1mm}d\mu-\int f_{-}\hspace{1mm}d\mu
         =I(f_{+})-I(f_{-})=I(f)
