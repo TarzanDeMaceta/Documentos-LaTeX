@@ -23,9 +23,67 @@
 \centerline{\bf 09 de Mayo de 2025}
 
 \section*{Problema 1}
+\noindent Sean $f,f_{n}$ con $n\geq1$ funciones integrables tales que $f_{n}\to f$ $\mu$-ctp. Por 
+desigualdad triangular, basta probar que
+\begin{equation*}
+    \lim\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu=0
+\end{equation*}
+Notemos que $\abs{f_{n}-f}\leq\abs{f_{n}}+\abs{f}$. Definimos $g_{n}:=\abs{f_{n}}+\abs{f}-
+\abs{f_{n}-f}$ que resulta positiva y medible para todo $n\in\N$. Luego, por lema de fatou
+\begin{align*}
+    2\int\abs{f}\hspace{1mm}d\mu &= \int\liminf\limits_{n\to\infty}g_{n}\hspace{1mm}d\mu
+    \leq\liminf\limits_{n\to\infty}\int g_{n}\hspace{1mm}d\mu \\
+    &=\liminf\limits_{n\to\infty}\left(\int\abs{f_{n}}\hspace{1mm}d\mu+\int\abs{f}\hspace{1mm}d\mu
+    -\int\abs{f_{n}-f}\hspace{1mm}d\mu\right)
+\end{align*}
+usando que $-\inf x=\sup -x$, vemos que
+\begin{equation*}
+    2\int\abs{f}\hspace{1mm}d\mu\leq2\int\abs{f}\hspace{1mm}d\mu-
+    \limsup\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu
+\end{equation*}
+se sigue que
+\begin{equation*}
+    0\leq\liminf\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu
+    \leq\limsup\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu\leq0
+\end{equation*}
+Concluimos que
+\begin{equation*}
+    \lim\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu=0
+\end{equation*}
+
 \section*{Problema 2}
 \begin{enumerate}
-    \item A
+    \item Sea $0\leq s\leq f$ simple y sea $0<c<1$. Definimos $E_{n}:=\{x\in\Omega:g_{n}(x)\geq c\cdot 
+    s(x)\}$ para $n\in\N$. Consideramos la medida $\varphi:\mathcal{F}\to[0,\infty]$ dada por
+    \begin{equation*}
+        \varphi(E)=\int_{E}s\hspace{1mm}d\mu\hspace{4mm}\text{ para }E\in\mathcal{F}
+    \end{equation*}
+    Luego,
+    \begin{equation*}
+        \int g_{n}\hspace{1mm}d\mu\geq\int_{E_{n}} g_{n}\hspace{1mm}d\mu
+        \geq\int_{E_{n}} c\cdot s\hspace{1mm}d\mu=c\int_{E_{n}} s\hspace{1mm}d\mu
+        =c\cdot\varphi(E_{n})
+    \end{equation*}
+    Como $g_{n}\leq g_{n+1}$ para todo $n\in\N$, tenemos que $E_{n}\subseteq E_{n+1}$. Por otra 
+    parte, como $g_{n}\to f$ vemos que
+    \begin{equation*}
+        \Omega=\bigcup_{n\in\N}E_{n}
+    \end{equation*}
+    se sigue que
+    \begin{equation*}
+        \lim\limits_{n\to\infty}\varphi(E_{n})=\varphi\left(\bigcup_{n\in\N}E_{n}\right)
+        =\varphi(\Omega)=\int s\hspace{1mm}d\mu
+    \end{equation*}
+    de este modo,
+    \begin{equation*}
+        \lim\limits_{n\to\infty}\int g_{n}\hspace{1mm}d\mu\geq c\cdot\lim\limits_{n\to\infty}
+        \varphi(E_{n})=c\int s\hspace{1mm}d\mu
+    \end{equation*}
+    como $c$ es arbitrario, tomando $c\uparrow1$, concluimos que
+    \begin{equation*}
+        \lim\limits_{n\to\infty}\int g_{n}\hspace{1mm}d\mu\geq\int s\hspace{1mm}d\mu
+    \end{equation*}
+
     \item Sea $(s_{n})_{n}$ una sucesión de funciones simples positivas tales que 
     $s_{n}\uparrow f$, por la parte anterior, tenemos que
     \begin{equation*}
@@ -34,13 +92,14 @@
     \end{equation*}
     lo que implica que
     \begin{equation*}
-        \int \liminf\limits_{n\to\infty}f_{n}\hspace{1mm}d\mu=\int f\hspace{1mm}d\mu\leq
-        \liminf\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu
+        \int \liminf\limits_{n\to\infty}f_{n}\hspace{1mm}d\mu=\int f\hspace{1mm}d\mu
+        =\lim\limits_{n\to\infty}\int s_{n}\hspace{1mm}d\mu
+        \leq\liminf\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu
     \end{equation*}
     se tiene el lema de fatou.
 
     \item Sean $f,f_{n}:\Omega\to[0,\infty]$ funciones medibles tales que $f_{n}\leq f_{n+1}$ y
-    $f_{n}\to f$ $\mu$-ctp. Por monotonía, sabemos que
+    $f_{n}\to f$ $\mu$-ctp. Como $f_{n}\leq f$, por monotonía, sabemos que
     \begin{equation*}
         \lim\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu\leq\int f\hspace{1mm}d\mu
     \end{equation*}
@@ -78,37 +137,41 @@ sigue siendo uniforme, basta tomar máximo. Dado $m\in\N$, se tiene lo siguiente
     &\leq \sup_{x\in\Omega_{m}}\abs{f_{n}-f}\mu(\Omega)
     +2\int_{\Omega_{m}^{c}}g\hspace{1mm}d\mu
 \end{align*}
-Como $g$ es positiva, consideramos la medida $\varphi:\Omega\to\overline{\R}$ sobre el espacio 
+Como $g$ es positiva, consideramos la medida $\varphi:\Omega\to[0,\infty]$ sobre el espacio 
 $(\Omega, \mathcal{F})$ dada por
 \begin{equation*}
     \varphi(E)=\int_{E}g\hspace{1mm}d\mu\hspace{4mm}\text{ para }E\in\mathcal{F}
 \end{equation*}
 que es finita, pues $g\in L^{1}$. Luego
 \begin{equation*}
-    \mu\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{n\to\infty}\mu(\Omega_{m}^{c})
+    \mu\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{m\to\infty}\mu(\Omega_{m}^{c})
     \hspace{4mm}\text{ y }\hspace{4mm}
-    \varphi\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{n\to\infty}
+    \varphi\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{m\to\infty}
     \varphi(\Omega_{m}^{c})
 \end{equation*}
 Por lo anterior mencionado, vemos que
 \begin{equation*}
     \mu\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{m\to\infty}\mu(\Omega_{m}^{c})=0
-\end{equation*}
-lo que implica que
-\begin{equation*}
-    \varphi\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=0
+    \hspace{4mm}\text{lo que implica que}\hspace{4mm}\varphi\left(\bigcap_{m\in\N}\Omega_{m}^{c}
+    \right)=0
 \end{equation*}
 De este modo, para todo $m\in\N$ se sigue que
-\begin{equation*}
-    \lim\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu
-    \leq \lim\limits_{n\to\infty}\sup_{x\in\Omega_{m}}\abs{f_{n}-f}\mu(\Omega)
-    +2\lim\limits_{n\to\infty}\varphi(\Omega_{m}^{c})=2\varphi(\Omega_{m}^{c})
-\end{equation*}
+\begin{align*}
+    \limsup\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d &\leq
+    \limsup\limits_{n\to\infty}\left(\sup_{x\in\Omega_{m}}\abs{f_{n}-f}\mu(\Omega)
+    +2\varphi(\Omega_{m}^{c})\right) \\
+    &=\lim\limits_{n\to\infty}\sup_{x\in\Omega_{m}}\abs{f_{n}-f}\mu(\Omega)
+    +2\varphi(\Omega_{m}^{c})=2\varphi(\Omega_{m}^{c})
+\end{align*}
 entonces
 \begin{equation*}
-    \lim\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu
-    =\lim\limits_{m\to\infty}\lim\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu
+    \limsup\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu
+    =\lim\limits_{m\to\infty}\limsup\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu
     \leq2\lim\limits_{m\to\infty}\varphi(\Omega_{m}^{c})=0
+\end{equation*}
+por lo tanto
+\begin{equation*}
+    \lim\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d\mu=0
 \end{equation*}
 En particular, usando desigualdad triangular, se tiene que
 \begin{equation*}
