@@ -88,7 +88,8 @@ Concluimos que
     $s_{n}\uparrow f$, por la parte anterior, tenemos que
     \begin{equation*}
         \int s_{n}\hspace{1mm}d\mu\leq\lim\limits_{n\to\infty}\int \inf_{k\geq n}
-        f_{k}\hspace{1mm}d\mu\leq\liminf\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu
+        f_{k}\hspace{1mm}d\mu\leq\lim\limits_{n\to\infty}\inf_{k\geq n}\int f_{k}\hspace{1mm}d\mu
+        =\liminf\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu
     \end{equation*}
     lo que implica que
     \begin{equation*}
@@ -103,7 +104,7 @@ Concluimos que
     \begin{equation*}
         \lim\limits_{n\to\infty}\int f_{n}\hspace{1mm}d\mu\leq\int f\hspace{1mm}d\mu
     \end{equation*}
-    por otro lado, por la parte b), tenemos que
+    por otro lado, por el lema de fatou, tenemos que
     \begin{align*}
         \int f\hspace{1mm}d\mu &= \int \lim\limits_{n\to\infty}f_{n}\hspace{1mm}d\mu
         =\int \liminf\limits_{n\to\infty}f_{n}\hspace{1mm}d\mu
@@ -114,8 +115,8 @@ Concluimos que
 \end{enumerate}
 
 \section*{Problema 3}
-\noindent Sean $f,f_{n}:\Omega\to\overline{\R}$ funciones mediles y $g\in L^{1}$ tales que $f_{n}\to f$ 
-$\mu$-ctp y $\abs{f_{n}}\leq g$. Notemos que $\abs{f_{n}}\to\abs{f}$ $\mu$-ctp, luego 
+\noindent Sean $f,f_{n}:\Omega\to\overline{\R}$ funciones mediles y $g\in L^{1}$ tales que $f_{n}
+\to f$ $\mu$-ctp y $\abs{f_{n}}\leq g$. Notemos que $\abs{f_{n}}\to\abs{f}$ $\mu$-ctp, luego 
 $\abs{f}\leq g$ $\mu$-ctp. Dado $m\in\N$, por teorema de Egoroff, existe $\Omega_{m}^{*}\in
 \mathcal{F}$ tal que
 \begin{equation*}
@@ -127,8 +128,8 @@ Definimos la sucesión
     \Omega_{m}:=\bigcup_{i=1}^{m}\Omega_{i}^{*}
 \end{equation*}
 Notemos que $\Omega_{m}^{c}\supseteq\Omega_{m+1}^{c}$, $\mu(\Omega_{m}^{c})<\frac{1}{m}$ para todo 
-$m\in\N$ y $\mu(\Omega_{1}^{c})\leq\mu(\Omega)<\infty$. Además, la convergencia en $\Omega_{m}$ 
-sigue siendo uniforme, basta tomar máximo. Dado $m\in\N$, se tiene lo siguiente
+$m\in\N$. Además, la convergencia en $\Omega_{m}$ sigue siendo uniforme, basta tomar máximo. 
+Dado $m\in\N$, se tiene lo siguiente
 \begin{align*}
     \int\abs{f_{n}-f}\hspace{1mm}d\mu &= \int_{\Omega_{m}}\abs{f_{n}-f}\hspace{1mm}d\mu+
     \int_{\Omega_{m}^{c}}\abs{f_{n}-f}\hspace{1mm}d\mu \\
@@ -142,26 +143,27 @@ $(\Omega, \mathcal{F})$ dada por
 \begin{equation*}
     \varphi(E)=\int_{E}g\hspace{1mm}d\mu\hspace{4mm}\text{ para }E\in\mathcal{F}
 \end{equation*}
-que es finita, pues $g\in L^{1}$. Luego
+que es finita, pues $g\in L^{1}$. Luego, como $\mu(\Omega_{1}^{c})\leq\mu(\Omega)<\infty$ y
+$\varphi(\Omega_{1}^{c})\leq\varphi(\Omega)<\infty$ tenemos
 \begin{equation*}
     \mu\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{m\to\infty}\mu(\Omega_{m}^{c})
     \hspace{4mm}\text{ y }\hspace{4mm}
     \varphi\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{m\to\infty}
     \varphi(\Omega_{m}^{c})
 \end{equation*}
-Por lo anterior mencionado, vemos que
+Recordemos que $\mu(\Omega_{m}^{c})<\frac{1}{m}$ para todo $m\in\N$, vemos que
 \begin{equation*}
     \mu\left(\bigcap_{m\in\N}\Omega_{m}^{c}\right)=\lim\limits_{m\to\infty}\mu(\Omega_{m}^{c})=0
     \hspace{4mm}\text{lo que implica que}\hspace{4mm}\varphi\left(\bigcap_{m\in\N}\Omega_{m}^{c}
     \right)=0
 \end{equation*}
-De este modo, para todo $m\in\N$ se sigue que
+De este modo, por convergencia uniforme, para todo $m\in\N$ se sigue que
 \begin{align*}
     \limsup\limits_{n\to\infty}\int\abs{f_{n}-f}\hspace{1mm}d &\leq
     \limsup\limits_{n\to\infty}\left(\sup_{x\in\Omega_{m}}\abs{f_{n}-f}\mu(\Omega)
     +2\varphi(\Omega_{m}^{c})\right) \\
     &=\lim\limits_{n\to\infty}\sup_{x\in\Omega_{m}}\abs{f_{n}-f}\mu(\Omega)
-    +2\varphi(\Omega_{m}^{c})=2\varphi(\Omega_{m}^{c})
+    +\lim\limits_{n\to\infty}2\varphi(\Omega_{m}^{c})=2\varphi(\Omega_{m}^{c})
 \end{align*}
 entonces
 \begin{equation*}
@@ -199,7 +201,7 @@ En particular, usando desigualdad triangular, se tiene que
     \end{equation*}
     Concluimos que $\mathcal{G}$ es una $\sigma$-álgebra.
 
-    \item Como lema, veamos que dadas $f,g\in\V$ se tiene que $\min\{f,g\}=-\max\{-f,-g\}\in\V$. 
+    \item Veamos que dadas $f,g\in\V$ se tiene que $\min\{f,g\}=-\max\{-f,-g\}\in\V$. 
     Sea $f\in\V$, basta ver que $A:=f^{-1}((a,\infty))\in\mathcal{G}$ para todo $a\in\R$, es decir,
     $\I_{A}\in\V$. Definimos
     \begin{equation*}
@@ -207,61 +209,62 @@ En particular, usando desigualdad triangular, se tiene que
     \end{equation*}
     donde $\textbf{0}=\I_{\emptyset}$ y $\textbf{a}=a\textbf{1}$, ambos en $\V$. Notemos que 
     $f_{n}\leq1$ para todo $n\in\N$. Afirmamos que $f_{n}\leq f_{n+1}$ para todo $n\in\N$, tenemos
-    dos casos
-    \begin{itemize}
-        \item $x\in A$, entonces $f(x)-\textbf{a}>0$ y luego $n(f(x)-\textbf{a})\leq(n+1)
-        (f(x)-\textbf{a})$ lo que implica que $f_{n}(x)\leq f_{n+1}(x)$.
+    dos casos. Sea $x\in A$, entonces $f(x)-a>0$ y luego $n(f(x)-a)\leq(n+1)$. Si 
+    $x\not\in A$, entonces $f_{n}(x)=0$, con $n\in\N$.
 
-        \item $x\not\in A$, entonces $f_{n}(x)=0$.
-    \end{itemize}
-    por lo tanto $\sup_{n}f_{n}\in\V$. Afirmamos que $\I_{A}=\sup_{n}f_{n}$, en efecto, sea 
-    $x\in A$, por propiedad arquimediana, existe $n\in\N$ tal que $1\leq n(f(x)-\textbf{a})$ y por
-    ende $f_{n}(x)=1$, se sigue que $\sup_{n}f_{n}(x)=1$. Concluimos que $f$ es $\mathcal{G}$-
+    Por lo tanto $\sup_{n}f_{n}\in\V$. Afirmamos que $\I_{A}=\sup_{n}f_{n}$. Sea $x\in A$, existe 
+    $n\in\N$ tal que $1\leq n(f(x)-a)$ y por ende $f_{n}(x)=1$, se sigue que $\sup_{n}f_{n}(x)=1$. Concluimos que $f$ es $\mathcal{G}$-
     medible.
 
-    \item Definimos $\mu:X\to[0,\infty]$ sobre el espacio $(X,\mathcal{G})$, dada por 
+    \item Definimos $\mu:X\to[0,\infty]$ sobre el espacio $(X,\mathcal{G})$ como
     $\mu(E):=I(\I_{E})$ con $E\in\mathcal{G}$. Afirmamos que $\mu$ es una medida, en efecto, como
     $I(f)\geq0$ para toda $f\in\V$ con $f\geq0$, entonces dado $E\in\mathcal{G}$ vemos que 
-    $\mu(E)=I(\I_{E})\geq0$. Por otro lado, $\mu(\emptyset)=I(\I_{\emptyset})=I(\textbf{0})=0$,
-    ya que $I$ es lineal.
+    $\mu(E)=I(\I_{E})\geq0$. Por otro lado, $\mu(\emptyset)=I(\I_{\emptyset})=I(\textbf{1}
+    -\textbf{1})=I(\textbf{1})-I(\textbf{1})=0$.
     
     \vspace{4mm}
     \noindent Sea $(A_{n})_{n}\subseteq\mathcal{G}$ disjuntos de a pares, entonces
     \begin{equation*}
         \sum_{n\in\N}\I_{A_{n}}=\I_{\bigcup_{n\in\N}A_{n}}
     \end{equation*}
-    de este modo
+    de este modo, para $m\in\N$
     \begin{align*}
         \mu\left(\bigcup_{n\in\N}A_{n}\right) &= I\left(\I_{\bigcup_{n\in\N}A_{n}}\right)
-        =I\left(\sum_{n\in\N}\I_{A_{n}}\right)=I\left(\sum_{i=1}^{n}\I_{A_{i}}\right)+
-        I\left(\sum_{m=n+1}^{\infty}\I_{A_{m}}\right) \\
-        &= \sum_{i=1}^{n}I(\I_{A_{i}})+I\left(\sum_{m=n+1}^{\infty}\I_{A_{m}}\right)
+        =I\left(\sum_{n\in\N}\I_{A_{n}}\right)=I\left(\sum_{n=1}^{m}\I_{A_{n}}\right)+
+        I\left(\sum_{n=m+1}^{\infty}\I_{A_{n}}\right) \\
+        &= \sum_{n=1}^{m}I(\I_{A_{n}})+I\left(\sum_{n=m+1}^{\infty}\I_{A_{n}}\right)
     \end{align*}
-    Consideremos la sucesión $f_{n}=\sum_{m=n+1}^{\infty}\I_{A_{m}}$, luego $f_{n}\geq f_{n+1}$
+    Consideremos la sucesión $f_{m}=\sum_{n=m+1}^{\infty}\I_{A_{n}}$, luego $f_{m}\geq f_{m+1}$
     y como $\sum_{n\in\N}\I_{A_{n}}=\I_{\bigcup_{n\in\N}A_{n}}$, se sigue que 
-    $\lim\limits_{n\to\infty}f_{n}=0$, por lo tanto $\lim\limits_{n\to\infty}I(f_{n})=0$, así
+    $\lim\limits_{m\to\infty}f_{m}=0$ y por lo tanto $\lim\limits_{m\to\infty}I(f_{m})=0$, así
     \begin{equation*}
-        \mu\left(\bigcup_{n\in\N}A_{n}\right)=\lim\limits_{n\to\infty}
-        \sum_{i=1}^{n}I(\I_{A_{i}})+I(f_{n})=\sum_{n\in\N}I(\I_{A_{n}})=\sum_{n\in\N}\mu(A_{n})
+        \mu\left(\bigcup_{n\in\N}A_{n}\right)=\lim\limits_{m\to\infty}
+        \sum_{n=1}^{m}I(\I_{A_{n}})+I(f_{m})=\sum_{n\in\N}I(\I_{A_{n}})=\sum_{n\in\N}\mu(A_{n})
     \end{equation*}
     Por otro lado, $\mu$ es de medida finita, en efecto, $\mu(X)=I(\textbf{1})\in\R$. En 
     particular, $\mu$ es una medida sobre el álgebra $\mathcal{G}$, por teorema de Caratheodory, 
-    $\mu^{*}\big|_{\mathcal{F}}$ es la unica extensión de $\mu$ a $\sigma(G)$. Sin embargo, 
-    $\sigma(G)=G$ ya que $G$ es $\sigma$-álgebra y por ende $\mu^{*}\big|_{\mathcal{F}}=\mu$.
+    $\mu^{*}\big|_{\mathcal{F}}$ es la unica extensión de $\mu$ a $\sigma(\mathcal{G})$. 
+    Sin embargo, $\sigma(\mathcal{G})=\mathcal{G}$ ya que $\mathcal{G}$ es $\sigma$-álgebra y por 
+    ende $\mu^{*}\big|_{\mathcal{F}}=\mu$ en $\mathcal{G}$.
     
     \vspace{4mm}
     \noindent Falta ver que dada $f\in\V$ se tiene que
     \begin{equation*}
         I(f)=\int f\hspace{1mm}d\mu
     \end{equation*}
-    Supongamos que $f$ es simple y sea $\sum a_{i}\I_{A_{i}}$ una representación, vemos que
+    Sea $s\in\V$ simple y sea $\sum a_{i}\I_{A_{i}}$ una representación, vemos que
     \begin{equation*}
-        \int f\hspace{1mm}d\mu=\sum a_{i}\mu(A_{i})=\sum a_{i}I(\I_{A_{i}})
-        =I\left(\sum a_{i}\I_{A_{i}}\right)=I(f)
+        \int s\hspace{1mm}d\mu=\sum a_{i}\mu(A_{i})=\sum a_{i}I(\I_{A_{i}})
+        =I\left(\sum a_{i}\I_{A_{i}}\right)=I(s)
     \end{equation*}
-    Sea $f\in\V$ tal que $f\geq0$, sea $(s_{n})_{n}$ una sucesión de funciones simples positivas
-    tales que $s_{n}\uparrow f$, de este modo la sucesión $g_{n}=f-s_{n}$ es decreciente y 
-    $g_{n}\to0$, entonces $I(g_{n})\to0$, se sigue que
+    Sean $f,g\in\V$ tales que $f\leq g$, entonces $0\leq I(g-f)=I(g)-I(f)$, es decir, $I$ es 
+    creciente. Sea $f\in\V$ tal que $f\geq0$, sea $(s_{n})_{n}$ una sucesión de funciones simples 
+    positivas tales que $s_{n}\uparrow f$, de este modo la sucesión $g_{n}=f-s_{n}$ es decreciente 
+    y $g_{n}\to0$, entonces $I(g_{n})\to0$. Además
+    \begin{equation*}
+        I(s_{n})\leq I(s_{n+1})\hspace{4mm}\text{para todo }n\in\N
+    \end{equation*}
+    así, la expresión $\lim\limits_{n\to\infty}I(s_{n})$ existe. Se sigue que
     \begin{equation*}
         I(f)=\lim\limits_{n\to\infty}I(s_{n})=\lim\limits_{n\to\infty}\int s_{n}\hspace{1mm}d\mu
         =\int f\hspace{1mm}d\mu

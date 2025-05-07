@@ -1240,6 +1240,79 @@ $\varphi_{x}$.
 
 \newpage
 \section{Propiedades Locales de Curvas Planas}
+\subsection{Puntos Multiples y Rectas Tangentes}
+\begin{dfn}
+    Sea $V=\V(F)\subseteq\A_{k}^{2}$ con $F$ no constante y no necesariamente irreducible. Decimos
+    que $V$ es una \textbf{curva plana}. El \textbf{grado} de una curva es el grado de $F$.
+\end{dfn}
+\noindent\textbf{Observación:} Si $F=F_{1}^{\alpha_{1}}\cdots F_{r}^{\alpha_{r}}$ con $F_{i}$ 
+irreducible entonces $V=\V(F_{1})\cup\cdots\cup\V(F_{r})$ es su descomposición en irreducibles.
+Si $\alpha_{i}=1$ decimos que la componente $\V(F_{i})$ es \textbf{simple}.
+\begin{dfn}
+    Sea $V\subseteq\A_{k}^{2}$ una curva plana. Dado $p\in V$ decimos que es \textbf{no singular} 
+    si $F_{x}(p)\neq0$ o $F_{y}(p)\neq0$. En este caso la recta
+    \begin{equation*}
+        F_{x}(p)(x-a)+F_{y}(p)(y-b)=0\hspace{4mm}\text{con }p=(a,b)
+    \end{equation*}
+    es la \textbf{recta tangente} en $p$. De lo contrario, decimos que $p$ es \textbf{singular}.
+\end{dfn}
+\begin{dfn}
+    Una curva plana $V\subseteq\A_{k}^{2}$ se dice \textbf{no singular} si todo punto es no 
+    singular.
+\end{dfn}
+
+\noindent\textbf{Ejemplo:} Sea $F=y^{2}-x^{2}-x^{3}$, luego $F_{x}=-2x-3x^{2}$ y $F_{y}=2y$.
+Buscamos los puntos singulares, debemos resolver el sistema
+\begin{align*}
+    y^{2}-x^{2}-x^{3} &= 0 \\
+    -2x-3x^{2} &= 0 \\
+    2y &= 0
+\end{align*}
+Si $char(k)\neq2,3$, entonces $x,y=0$. Por otro lado, si $char(k)=2$ entonces $x=0$ por la segunda
+ecuación y así, por la primera ecuación, $y=0$. Para $char(k)=3$ el resultado es directo. El unico
+punto singular es $(0,0)$.
+
+\vspace{4mm}
+\noindent\textbf{Observación:} Sea $p\in k[x,y]$ homogeneo de grado $d$ y $k=\overline{k}$, 
+entonces
+\begin{equation*}
+    p=\prod_{i}(x-\lambda_{i}y)^{\alpha_{i}}
+\end{equation*}
+\begin{dfn}
+    Sea $V\subseteq\A_{k}^{2}$ una curva plana. Sea $p=(0,0)$, escribimos 
+    $F=F_{m}+F_{m+1}+\cdots+F_{n}$ con $m\leq n$. La \textbf{multiplicidad} de $V=\V(F)$ en $p$ es
+    $m_{p}(F):=m$.
+\end{dfn}
+\noindent\textbf{Observación:} Veamos que $p=(0,0)$ es no singular si y solo si $m_{p}(F)=1$. Si 
+$m_{p}(F)=2$ decimos que $p$ es punto doble, si $m_{p}(F)=3$ es punto triple y asi.
+\begin{dfn}
+    Sea $V\subseteq\A_{k}^{2}$ una curva plana. Sea $p=(0,0)$, escribimos 
+    $F=F_{m}+F_{m+1}+\cdots+F_{n}$ con $m\leq n$. Entonces
+    \begin{equation*}
+        F_{m}=\prod_{i}L_{i}^{\alpha_{i}}
+    \end{equation*}
+    con $L_{i}$ lineal y se llama \textbf{recta tangente} de $V$ en p y $\alpha_{i}$ se dice 
+    \textbf{multiplicidad de la tangente}. Si $\alpha_{i}=1$ para todo $i$, decimos que $p$ es 
+    \textbf{punto multiple 
+    ordinario}.
+\end{dfn}
+\begin{dfn}
+    Sea $V\subseteq\A_{k}^{2}$ una curva plana. Sea $p=(0,0)$, definimos la multiplicidad de 
+    $p=(a,b)$ en $V$ como
+    \begin{equation*}
+        m_{p}(F):=m_{(0,0)}\left(F^{T}\right)\hspace{4mm}\text{con }F^{T}=F(x+a,y+b)
+    \end{equation*}
+\end{dfn}
+
+\subsection{Multiplicidades y Anillos Locales}
+\begin{teo}
+    Sea $V$ una curva plana irreducible. Entonces $p$ un punto no singular de $V$ si y solo si
+    $\mathcal{O}_{p}(V)$ es un anillo de evaluación discreta.
+
+    \vspace{4mm}
+    \noindent En tal caso, si $L=ax+by+c$ es una recta no tangente en $p$, entonces su imagen en
+    $\mathcal{O}_{p}(V)$ es un parametro uniformizante.
+\end{teo}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
