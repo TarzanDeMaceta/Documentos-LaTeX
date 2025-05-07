@@ -1728,6 +1728,7 @@ lo anterior esta bien definido gracias a la desigualdad de las medias.
 Veamos que $\ip{N(\alpha(t))}{\alpha''(t)}$ solo depende de la dirección tangente $\alpha'(0)\in 
 T_{p}\Sigma$.
 
+\subsection{Secciones Normales}
 \begin{dfn}
     Sea $v\in T_{p}\Sigma$ unitario, definimos la \textbf{curvatura normal} de $\Sigma$ en $p$ en
     la dirección de $v$ por $k_{v}:=\I_{p}(v,v)$.
@@ -1908,6 +1909,126 @@ Lo que implica que $e=g=0$ y $f=-\frac{1}{\sqrt{1+u^{2}}}$. Finalmente
     k_{\Sigma}=\frac{0-\left(\frac{1}{1+u^{2}}\right)}{1+u^{2}}=-\frac{1}{(1+u^{2})^{2}}<0
     \text{ ,}\hspace{4mm}H_{\Sigma}=0
 \end{equation*}
+\begin{dfn}
+    Sea $\Sigma$ una superficie regular y un punto $p\in\Sigma$ se dice \textbf{umbilical} si 
+    existe $\lambda\in\R$ tal que
+    \begin{equation*}
+        \I_{p}(v,w)=\lambda\ip{v}{w}_{p}\hspace{4mm}\forall v,w\in T_{p}\Sigma
+    \end{equation*}
+    Se dice que $\Sigma$ es \textbf{totalmente umbilical} si todo $p\in\Sigma$ es punto umbilical.
+\end{dfn}
+\begin{prop}
+    Las siguientes afirmaciones son equivalentes
+    \begin{enumerate}
+        \item $\I_{p}=\lambda\ip{.}{.}_{p}=\lambda I_{p}$.
+        \item $A_{p}v=\lambda v\hspace{4mm}\forall v\in T_{p}\Sigma$.
+        \item $k_{1}(p)=k_{2}(p)=\lambda$.
+        \item Todas las curvaturas normales de $\Sigma$ en $p$ son iguales a $\lambda$.
+        \item $k_{\Sigma}(p)=\lambda^{2}=H_{\Sigma}^{2}$.
+    \end{enumerate}
+\end{prop}
+\begin{teo}
+    Sea $\Sigma$ una superficie regular totalmente umbilical y conexa, entonces $\Sigma$ esta 
+    contenida en un plano o una esfera.
+\end{teo}
+\begin{dem}
+    Sea $\varphi:\V\subseteq\R^{2}\to\R^{3}$ una parametrización local con $\V$ conexo. Sea 
+    $N:\varphi(\V)\to\mathbb{S}^{2}$ el campo normal unitario definido por $\varphi$.
+    \begin{enumerate}
+        \item Por la propiedad anterior, existe $\lambda:\V\to\R$ tal que
+        \begin{equation*}
+            -A_{\varphi(u,v)}=DN_{\varphi(u,v)}=\lambda(u,v)\cdot id_{T_{\varphi(u,v)}\Sigma}
+        \end{equation*}
+        Afirmamos que $\lambda$ es diferenciable, notemos que
+        \begin{align*}
+            \lambda(u,v)\varphi_{u} &= DN_{\varphi(u,v)}(\varphi_{u}(u,v))=
+            (N\circ\varphi)_{u}(u,v) \\
+            \lambda(u,v)\varphi_{v}(u,v)=(N\circ\varphi)_{v}(u,v)
+        \end{align*}
+        tomando producto interno de la primera ecuación con $\varphi_{u}$ y usando que 
+        $\abs{\varphi_{u}}=E\neq0$ tenemos que
+        \begin{equation*}
+            \lambda(u,v)=\frac{\ip{(N\circ\varphi)_{u}(u,v)}{\varphi_{u}(u,v)}}{E(u,v)}
+        \end{equation*}
+        por lo tanto $\lambda$ es diferenciable en $\V$.
+
+        \item Demostraremos que $\lambda_{u}=\lambda_{v}=0$. Derivando las ecuaciones en el item 
+        anterior, en $v$ y en $u$ respectivamente
+        \begin{align*}
+            & \lambda_{v}\varphi_{u}+\lambda\varphi_{uv}=(N\circ\varphi)_{uv} \\
+            & \lambda_{u}\varphi_{v}+\lambda\varphi_{vu}=(N\circ\varphi)_{vu}
+        \end{align*}
+        y por ende $\lambda_{v}\varphi_{u}=\lambda_{u}\varphi_{v}$ en $\V$, pero $\varphi_{u}$ y
+        $\varphi_{v}$ son linealmente independientes, es decir, $\lambda_{u}=\lambda_{v}=0$. Vemos
+        que $\lambda$ es constante $\lambda\equiv c$.
+
+        \item Si $c=0$, entonces $DN=0$ en $\varphi(\V)$. Luego $\varphi(\V)$ esta contenido en un
+        plano. Si $c\neq0$, definimos $f:\V\to\R^{3}$ por
+        \begin{equation*}
+            f(u,v):=\varphi(u,v)-\frac{1}{c}(N\circ\varphi)(u,v)
+        \end{equation*}
+        se tiene que $f_{u}=\varphi_{u}-\frac{1}{c}(N\circ\varphi)_{u}=0$ en $\V$, lo mismo para
+        $f_{v}$. Luego $f$ es constante, o sea, existe $p_{0}\in\R^{3}$ tal que
+        \begin{equation*}
+            \varphi(u,v)-p_{0}=\frac{1}{c}(N\circ\varphi)(u,v)
+        \end{equation*}
+        de este modo
+        \begin{equation*}
+            \abs{\varphi(u,v)-p_{0}}=\frac{1}{c}
+        \end{equation*}
+        en $\V$. Concluimos que $\varphi(\V)$ esta contenida en la esfera de centro $p_{0}$ y radio
+        $1/c$.
+
+        \item Este argumento demuestra que $\lambda:\Sigma\to\R$ tal que $\I_{p}=\lambda I_{p}$ es
+        localmente constante y por conexidad es constante. Además, también es localmente constante
+        la aplicación $F:\Sigma\to\R^{3}$ dada por
+        \begin{equation*}
+            F(p)=\lambda p-N(p)
+        \end{equation*}
+        Por lo tanto $F$ es constante y $\Sigma$ esta contenida en una esfera o un plano.
+    \end{enumerate}
+\end{dem}
+\begin{teo}
+    Sea $\Sigma\subseteq\R^{3}$ una superficie regular orientable compacta y se tiene que 
+    $H_{\Sigma}$ es constante, entonces $\Sigma$ es una esfera.
+\end{teo}
+\begin{teo}
+    Sea $\Sigma\subseteq\R^{3}$ una superficie regular orientable compacta y tal que $k_{\Sigma}$
+    es constante, entonces $\Sigma$ es una esfera.
+\end{teo}
+
+\subsection{Isometrías}
+\begin{dfn}
+    Un mapeo diferenciable $\phi:\Sigma\to\Sigma'$ entre superficies regulares es una 
+    \textbf{isometría local} si
+    \begin{equation*}
+        D\phi_{p}:T_{p}\Sigma\to T_{\phi(p)}\Sigma'
+    \end{equation*}
+    es una isometría lineal, es decir
+    \begin{equation*}
+        \ip{D\phi_{p}v}{D\phi_{p}w}_{\phi(p)}=\ip{v}{w}_{p}
+    \end{equation*}
+    para todo $v,w\in T_{p}\Sigma$ y todo $p\in\Sigma$.
+\end{dfn}
+\noindent\textbf{Observación:} Si $\phi$ es isometría local, $D\phi_{p}$ es inyectiva para todo 
+$p\in\Sigma$, luego es isomorfismo lineal. Por teorema de la función implica, $\phi$ es un 
+difeomorfismo local.
+
+\vspace{4mm}
+\noindent Si además $\phi$ es un difeomorfismo, se dice que $\phi$ es una \textbf{isometría}.
+
+\vspace{4mm}
+\noindent\textbf{Ejemplo:} Sea $F:\R^{3}\to\R^{3}$ un movimiento rigido, en otras palabras, 
+$F(p)=L_{p}+p_{0}$ con $L_{p}$ una isometría lineal y si $\Sigma\subseteq\R^{3}$ es superficie 
+regular entonces $F(\Sigma)=\Sigma'$ es una superficie regular y
+\begin{equation*}
+    \phi=F\Big|_{\Sigma}:\Sigma\to\Sigma'
+\end{equation*}
+es difeomorfismo. Además, para todo $p\in\Sigma$ y todo $v\in T_{p}\Sigma$
+\begin{equation*}
+    D\phi_{p}v=D(F\Big|_{\Sigma})_{p}v=DF(p)v=Lv
+\end{equation*}
+luego $D\phi_{p}:T_{p}\Sigma\to T_{\phi(p)}\Sigma'$ es una isometría lineal.
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
