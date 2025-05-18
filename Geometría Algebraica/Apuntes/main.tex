@@ -1314,6 +1314,46 @@ $m_{p}(F)=2$ decimos que $p$ es punto doble, si $m_{p}(F)=3$ es punto triple y a
     $\mathcal{O}_{p}(V)$ es un parametro uniformizante.
 \end{teo}
 
+\subsection{Número de Intersecciones}
+\newpage
+
+\section{Variedades Proyectivas}
+\subsection{Espacio Proyectivo}
+\begin{dfn}
+    Sea $k$ un cuerpo tal que $k=\overline{k}$. Definimos el \textbf{n-espacio proyectivo} sobre 
+    $k$, denotado por $\pr{n}$, como
+    \begin{equation*}
+        \pr{n}:=\frac{\A_{k}^{n+1}\setminus\{(0,\cdots,0)\}}{\sim}
+    \end{equation*}
+    donde $x\sim y$ si y solo si existe $\lambda\in k\setminus\{0\}$ tal que $x=\lambda y$. Un
+    elemento $p\in\pr{n}$ se dice \textbf{punto} y un representante de la clase se llama 
+    \textbf{coordenada homogénea} para $p$.
+\end{dfn}
+\noindent\textbf{Observación:} Un elemento en $\pr{n}$ típicamente se escribe por algún 
+representante de la clase, y este se escribe del modo que sigue $[x_{1},\cdots,x_{n+1}]$. 
+Consideremos el conjunto
+\begin{equation*}
+    U_{i}:=\left\{[x_{1},\cdots,x_{n+1}]\in\pr{n}:x_{i}\neq0\right\}
+\end{equation*}
+de este modo cada $p\in U_{i}$ se puede escribir de manera única como 
+$[x_{1},\cdots,x_{i-1},1,x_{i+1},\cdots,x_{n+1}]$. Notemos que $\pr{n}=\bigcup_{i=1}^{n+1}U_{i}$, 
+donde $U_{i}$ puede ser vista como una copia $\A_{k}^{n}$. Por conveniencia nos enfocaremos en
+$U_{n+1}$.
+\begin{dfn}
+    Sea
+    \begin{equation*}
+        H_{\infty}:=\pr{n}\setminus U_{n+1}=\left\{[x_{1},\cdots,x_{n+1}]\in\pr{n}:x_{n+1}=0
+        \right\}
+    \end{equation*}
+    Decimos que $H_{\infty}$ es el \textbf{hiperplano en el infinito}.
+\end{dfn}
+\noindent\textbf{Observación:} Notemos que existe una correspondecia entre $[x_{1},\cdots,x_{n},0]$
+y $[x_{1},\cdots,x_{n}]$, por lo que $H_{\infty}$ puede se identificado con $\pr{n-1}$, de este 
+modo $\pr{n}=U_{n+1}\cup H_{\infty}$ es la unión de un n-espacio afín y un conjunto que da todas 
+las direcciones del n-espacio afín.
+
+\subsection{Conjuntos Algebraicos Proyectivos}
+
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
 \end{document}
