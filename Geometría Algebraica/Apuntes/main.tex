@@ -1249,8 +1249,8 @@ $\varphi_{x}$.
 irreducible entonces $V=\V(F_{1})\cup\cdots\cup\V(F_{r})$ es su descomposición en irreducibles.
 Si $\alpha_{i}=1$ decimos que la componente $\V(F_{i})$ es \textbf{simple}.
 \begin{dfn}
-    Sea $V\subseteq\A_{k}^{2}$ una curva plana. Dado $p\in V$ decimos que es \textbf{no singular} 
-    si $F_{x}(p)\neq0$ o $F_{y}(p)\neq0$. En este caso la recta
+    Sea $V\subseteq\A_{k}^{2}$ una curva plana. Dado $p\in V=\V(F)$ decimos que es 
+    \textbf{no singular} si $F_{x}(p)\neq0$ o $F_{y}(p)\neq0$. En este caso la recta
     \begin{equation*}
         F_{x}(p)(x-a)+F_{y}(p)(y-b)=0\hspace{4mm}\text{con }p=(a,b)
     \end{equation*}
@@ -1297,8 +1297,8 @@ $m_{p}(F)=2$ decimos que $p$ es punto doble, si $m_{p}(F)=3$ es punto triple y a
     ordinario}.
 \end{dfn}
 \begin{dfn}
-    Sea $V\subseteq\A_{k}^{2}$ una curva plana. Sea $p=(0,0)$, definimos la multiplicidad de 
-    $p=(a,b)$ en $V$ como
+    Sea $V\subseteq\A_{k}^{2}$ una curva plana. Definimos la multiplicidad de $p=(a,b)$ en $V$ 
+    como
     \begin{equation*}
         m_{p}(F):=m_{(0,0)}\left(F^{T}\right)\hspace{4mm}\text{con }F^{T}=F(x+a,y+b)
     \end{equation*}
@@ -1306,15 +1306,101 @@ $m_{p}(F)=2$ decimos que $p$ es punto doble, si $m_{p}(F)=3$ es punto triple y a
 
 \subsection{Multiplicidades y Anillos Locales}
 \begin{teo}
-    Sea $V$ una curva plana irreducible. Entonces $p$ un punto no singular de $V$ si y solo si
+    Sea $V$ una curva plana irreducible. Entonces $p$ un punto no singular de $V=\V(F)$ si y solo si
     $\mathcal{O}_{p}(V)$ es un anillo de evaluación discreta.
 
-    \vspace{4mm}
+    \vspace{2mm}
     \noindent En tal caso, si $L=ax+by+c$ es una recta no tangente en $p$, entonces su imagen en
     $\mathcal{O}_{p}(V)$ es un parametro uniformizante.
 \end{teo}
+\begin{dem}
+    Supongamos que $p$ es un punto no singular de $V$ y $L$ una recta que pasa por $p$ que no es
+    tangente a $F$ en $p$. Podemos suponer que $p=(0,0)$ y que $y$ es la recta tangente y $L=X$. 
+    Basta mostrar que $x$ genera $m_{p}(V)$.
+
+    \vspace{2mm}
+    \noindent Notemos que $m_{p}(V)=(x,y)$ en $\mathcal{O}_{p}(V)$. Escribimos $F=Y+P(x,y)$ donde
+    $P(x,y)$ son términos de grado mayor. Luego, reescribimos $F=YG-X^{2}H$, donde 
+    $G=1+P_{1}(x,y)$ con $P_{1}(x,y)$ términos de grado mayor y $H\in k[x]$.
+
+    \vspace{2mm}
+    \noindent Entonces $yg=x^{2}h\in\Gamma(V)$, lo que implica que $y=x^{2}hg^{-1}\in(x)$, ya que
+    $g(p)\neq0$. Por lo tanto, $m_{p}(V)=(x,y)=(x)$.
+
+    \vspace{2mm}
+    \noindent La otra contención se sigue del siguiente teorema.
+\end{dem}
+\begin{teo}
+    Sea $p$ un punto de una curva irreducible $V=\V(F)$. Entonces para $n$ suficientemente grande, 
+    se tiene que
+    \begin{equation*}
+        m_{p}(F)=dim_{k}\left(\frac{m_{p}(V)^{n}}{m_{p}(V)^{n+1}}\right)
+    \end{equation*}
+    En particular, la multiplicidad de $F$ en $p$ depende solo del anillo local 
+    $\mathcal{O}_{p}(V)$.
+\end{teo}
+\noindent\textbf{Observación:} Notemos que si $\mathcal{O}_{p}(V)$ es un $DVR$, entonces, 
+$m_{p}(F)=1$ lo que implica que $p$ es no singular.
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} Sea $(x,y)\subseteq k[x,y]$, luego
+\begin{equation*}
+    dim_{k}\left(\frac{(x,y)}{(x,y)^{2}}\right)=2
+\end{equation*}
 
 \subsection{Número de Intersecciones}
+\noindent Sean $V=\V(F),W=\V(G)$ curvas planas y sea $p\in\A^{2}_{k}$. El objetivo de esta sección 
+es definir el número de Intersecciones de dos curvas $V$ y $W$, que será denotado por 
+$I(p,F\cap G)$. Comenzaremos listando $7$ propiedades que nos gustaría que tuviese el número de
+intersección
+\begin{enumerate}
+    \item[(1)] $I(p,F\cap G)$ es un entero no negativo para todo $F,G\in k[x,y]$ y $p\in\A^{2}$ si 
+    $F,G$ no tienen factores en común que pasen por $p$, de lo contrario decimos que 
+    $I(p,F\cap G)=\infty$.
+
+    \item[(2)] $I(p,F\cap G)=0$ si y solo si $p\not\in F\cap G$. Además, $I(p,F\cap G)$ solo 
+    depende de las componentes de $F,G$ que pasan por $p$.
+
+    \item[(3)] Si $T$ es un cambio afín de coordenadas en $\A^{2}$ y $T(q)=p$ entonces 
+    $I(p,F\cap G)=I(q,F^{T}\cap G^{T})$.
+
+    \item[(4)] $I(p,F\cap G)=I(p,G\cap F)$.
+    
+    \item[(5)] $I(p,F\cap G)\geq m_{p}(F)m_{p}(G)$, con igualdad si y solo si $F$ y $G$ no tienen
+    rectas tangentes en común en $p$.
+
+    \item[(6)] Si $F=\prod F_{i}^{r_{i}}$ y $G=\prod G_{j}^{s_{j}}$, entonces
+    \begin{equation*}
+        I(p,F\cap G)=\sum_{i,j}r_{i}s_{j}I(p,F_{i}\cap G_{j})
+    \end{equation*}
+    
+    \item[(7)] $I(p,F\cap G)=I(p,F\cap(G+AF))$ para todo $A\in k[x,y]$.
+\end{enumerate}
+\noindent El siguiente teorema asegura la existencia y unicidad del número de intersección, la
+demostración se encuentra en algebraic curves de Fulton.
+\begin{teo}
+    Existe un único número de intersección $I(p,F\cap G)$ definido para todas las curvas planas y
+    todos los puntos en $\A^{2}$, que satisface las siete propiedades. Además, esta dado por la
+    fórmula
+    \begin{equation*}
+        I(p,F\cap G)=dim_{k}\left(\frac{\mathcal{O}_{p}(\A^{2})}{(F,G)}\right)
+    \end{equation*}
+\end{teo}
+\noindent\textbf{Ejemplo:} Calcular el $I(p,F\cap G)$ donde $F=(x^{2}+y^{2})^{2}+3x^{2}y-y^{3}$ y
+$G=(x^{2}+y^{2})^{3}-4x^{2}y^{2}$ y $p=(0,0)$. Reemplacemos $G$ por $G-(x^{2}+y^{2})F
+=y((x^{2}+y^{2})(y^{2}-3x^{2})-4x^{2}y)=yE$, luego
+\begin{equation*}
+    I(p,F\cap G)=I(p,F\cap(G-(x^{2}+y^{2})E))=I(p,F\cap y)+I(p,F\cap E)
+\end{equation*}
+por la propiedad $(7)$ y $(6)$ respectivamente. Como $F=x^{4}+yA$, entonces por la propiedad 
+$(5), (7)$ y $(6)$ se sigue que $I(p,F\cap y)=I(p,x^{4}\cap y)=4$.
+
+\vspace{4mm}
+\noindent Reemplazamos $E$ por $E+3F=y(5x^{2}-3y^{2}+4y^{3}+4x^{2}y)=yH$, así
+\begin{equation*}
+    I(p,F\cap E)=I(p,F\cap y)+I(p,F\cap H)=4+6=10
+\end{equation*}
+por la propiedad $(7), (6)$ y $(5)$. Por lo tanto $I(p,F\cap G)=14$.
 \newpage
 
 \section{Variedades Proyectivas}
@@ -1353,6 +1439,143 @@ modo $\pr{n}=U_{n+1}\cup H_{\infty}$ es la unión de un n-espacio afín y un con
 las direcciones del n-espacio afín.
 
 \subsection{Conjuntos Algebraicos Proyectivos}
+\begin{dfn}
+    Un punto $p\in\pr{n}$ se dice \textbf{cero} de un polinomio $F\in\pvk{x}{n+1}$ si 
+    $F(x_{1},\cdots,x_{n+1})=0$ para toda coordenada homogénea $(x_{1},\cdots,x_{n+1})$ de $p$,
+    si es el caso, escribimos $F(p)=0$.
+\end{dfn}
+\begin{dfn}
+    Sea $S\subseteq\pvk{x}{n+1}$, definimos
+    \begin{equation*}
+        \V(S):=\{p\in\pr{n}:p\text{ es cero para todo }F\in S\}
+    \end{equation*}
+\end{dfn}
+\noindent\textbf{Observación:} Al igual que en el caso de espacio afín, si $I$ es el ideal generado
+por $S$ entonces $\V(I)=\V(S)$.
+\begin{dfn}
+    Decimos que $V=\V(I)$ es un \textbf{conjunto algebraico proyectivo} o conjunto algebraico en 
+    $\pr{n}$ si $\V(I)=\V(\{F_{j}^{(i)}\})$ donde $\{F_{j}^{(i)}\}$ es un conjunto finito de 
+    formas.
+\end{dfn}
+\begin{dfn}
+    Dado $X\subseteq\pr{n}$, definimos
+    \begin{equation*}
+        \I(X):=\{F\in\pvk{x}{n+1}:F(p)=0\text{ para todo }p\in X\}
+    \end{equation*}
+    el ideal $\I(X)$ se dice ideal de $X$.
+\end{dfn}
+\begin{dfn}
+    Un ideal $I\subseteq\pvk{x}{n+1}$ se dice \textbf{homogeneo} si para todo 
+    $F=\sum_{i}F_{i}\in I$, con $F_{i}$ una forma de grado $i$, entonces $F_{i}\in I$.
+\end{dfn}
+\noindent\textbf{Observación:} Para todo conjunto $X\subseteq\pr{n}$ se tiene que $\I(X)$ es un
+ideal homogeneo.
+\begin{prop}
+    Un ideal $I\subseteq\pvk{x}{n1}$ es homogeneo si y solo si es generado por un número finito de
+    formas.
+\end{prop}
+\begin{dem}
+    Supongamos que $I$ es homogeneo, luego $I=\gen{F^{(1)},\cdots,F^{(r)}}$, entonces $I$ es 
+    generado por $F^{(i)}_{j}$ donde $F^{(i)}=\sum_{j}F^{(i)}_{j}$.
+    
+    \vspace{4mm}
+    \noindent Sea $S=\{F^{\alpha}\}$ un conjunto de formas que generan $I$, con 
+    $gr(F^{\alpha})d_{\alpha}$. Sea $F=F_{m}+\cdots+F_{r}\in I$ y $gr(F_{i})=i$. Luego
+    \begin{equation*}
+        F=\sum A^{\alpha}F^{\alpha}
+    \end{equation*}
+    notamos que $F_{m}=\sum A^{\alpha}_{m-d_{\alpha}}F^{\alpha}$, entonces $F_{m}\in I$ lo que 
+    implica que $F_{i}\in I$ para $m\leq i\leq r$.
+\end{dem}
+\begin{dfn}
+    Un conjunto algebraico $V\subseteq\pr{n}$ es \textbf{reducible} si existen 
+    $V_{1},V_{2}\subseteq\pr{n}$ conjuntos algebraicos no triviales tales que $V_{i}\neq V$ y 
+    $V=V_{1}\cup V_{2}$. En caso contrario, decimos que $V$ es \textbf{irreducible}.
+\end{dfn}
+\noindent\textbf{Observación:} Al igual que en el caso afín, se tiene el resultado $V$ es 
+irreducible si y solo si $\I(V)$ es primo. Generalmente, se dice que un conjunto algebraico
+$V\subseteq\pr{n}$ irreducible es una \textbf{variedad proyectiva}.
+
+\vspace{4mm}
+\noindent Todo conjunto algebraico puede ser escrito de manera unica como unión de variedades 
+proyectivas, su \textbf{componentes irreducibles}.
+\begin{dfn}
+    Sea $V\subseteq\pr{n}$ un conjunto algebraico, definimos
+    \begin{equation*}
+        C(V):=\{(x_{1},\cdots,x_{n+1})\in\A^{n+1}:[x_{1},\cdots,x_{n+1}]\in V\text{ o }
+        (x_{1},\cdots,x_{n+1})=0\}
+    \end{equation*}
+    el \textbf{cono} sobre $V$.
+\end{dfn}
+\noindent Para evitar confusiones, denotaremos por $V_{p},I_{p}$ a las operaciones proyectivas y
+por $V_{a},I_{a}$ a las afines.
+\begin{teo}
+    (Nullstellensatz Proyectivo) Sea $I\subseteq\pvk{x}{n+1}$ un ideal homogeneo, entonces
+    \begin{enumerate}
+        \item $V_{p}(I)=\emptyset$ si y solo si existe un entero $N$ tal que $I$ contiene todas
+        las formas de grado mayor o igual que $N$.
+
+        \item Si $V_{p}(I)\neq\emptyset$ entonces $I_{p}(V_{p}(I))=Rad(I)$.
+    \end{enumerate}
+\end{teo}
+\noindent\textbf{Observación:}(Falta entender bien lo que dice)
+\begin{dfn}
+    Sea $V\subseteq\pr{n}$ una variedad proyectiva no vacía, entonces $\I(V)$ es primo, luego 
+    el anillo 
+    \begin{equation*}
+        \Gamma_{h}(V)=\frac{\pvk{x}{n+1}}{\I(V)}
+    \end{equation*}
+    es un dominio, llamado \textbf{anillo de coordenadas homogeneo} de $V$. Un elemento 
+    $f\in\Gamma_{h}(V)$ se dice \textbf{forma} de grado $d$, si existe una forma $F\in\pvk{x}{n+1}$ 
+    de grado $d$ tal que $[F]=f$.
+\end{dfn}
+\begin{prop}
+    Todo elemento $f\in\Gamma_{h}(V)$ puede ser escrito de manera unica como 
+    $f=f_{0}+\cdots+F_{m}$, con $f_{i}$ una forma de grado $i$.
+\end{prop}
+\begin{dem}
+    Sea $F\in\pvk{x}{n+1}$ tal que $[F]=f$, escribimos $F=\sum F_{i}$ entonces $f=\sum f_{i}$, 
+    donde $f_{i}$ es una forma de grado $i$. Supongamos que $f=\sum g_{i}$ donde $g_{i}=[G_{i}]$
+    con $G_{i}$ una forma de grado $i$. Luego
+    \begin{equation*}
+        F-\sum G_{i}=\sum(F_{i}-G_{i})\in I
+    \end{equation*}
+    como $\I(V)$ es homogeneo, se sigue que $F_{i}-G_{i}\in I$ lo que implica que $f_{i}=g_{i}$.
+\end{dem}
+\begin{dfn}
+    Sea $k_{h}(V)$ el cuerpo de fracciones de $\Gamma_{h}(V)$ y se le llama 
+    \textbf{cuerpo de funciones homogeneas} de $V$.
+\end{dfn}
+\noindent\textbf{Observación:} Notar que, a diferencia del caso afín, ningún elemento en 
+$\Gamma_{h}(V)$, a excepción de las constantes, determina una función. Sin embargo, si $f,g$ son 
+formas en $\Gamma_{h}(V)$ del mismo grado, entonces $f/g$ definen una función, al menos donde
+$g$ no es cero.
+\begin{dfn}
+    El \textbf{cuerpo de funciones} de $V$, denotado por $k(V)$, se define como
+    \begin{equation*}
+        k(V):=\left\{\frac{f}{g}:f,g\in\Gamma_{h}(V)\text{ son formas del mismo grado}\right\}
+    \end{equation*}
+    los elementos en $k(V)$ se dicen \textbf{funciones racionales} en $V$.
+\end{dfn}
+\noindent\textbf{Observación:} Notar que $k(V)$ es un subcuerpo de $k_{h}(V)$, se tiene la cadena
+$k\subset k(V)\subset k_{h}(V)$.
+\begin{dfn}
+    Sea $V\subseteq\pr{n}$ una variedad proyectiva no vacía. Sea $p\in V$, decimos que $z\in k(V)$
+    \textbf{esta definida} en $p$ si existen formas $f,g\in\Gamma_{h}(V)$ del mismo grado tales 
+    que $z=f/g$ y $g(p)\neq0$.
+\end{dfn}
+\begin{dfn}
+    Se define
+    \begin{equation*}
+        \mathcal{O}_{p}(V):=\{z\in k(V):z\text{ esta definida en }p\}
+    \end{equation*}
+    se dice el \textbf{anillo local} de $V$ en $p$.
+\end{dfn}
+\noindent\textbf{Observación:} Veamos que $\mathcal{O}_{p}(V)$ es un subanillo de $k(V)$, es un
+anillo local con ideal maximal
+\begin{equation*}
+    m_{p}(V)=\{z\in\mathcal{O}_{p}(V):z(p)=0\}
+\end{equation*}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
