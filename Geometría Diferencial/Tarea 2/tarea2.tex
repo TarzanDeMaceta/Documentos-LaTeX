@@ -1,0 +1,147 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{14cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Profesor: Pedro Gaspar -- Estudiante: Benjamín Mateluna}
+\end{minipage}
+\vspace{1ex}
+
+{\centerline{\bf Geometría Diferencial - MAT2860}
+\centerline{\bf Tarea 2}}
+\centerline{\bf 30 de mayo de 2025}
+
+\section*{Problema 1}
+\begin{enumerate}
+    \item Recordemos que se tiene el resultado
+    \begin{equation*}
+        K_{\Sigma}\circ X=\frac{eg-f^{2}}{EG-F^{2}}
+    \end{equation*}
+    como $F\equiv0$, vemos que
+    \begin{equation*}
+        (K_{\Sigma}\circ X)\cdot EG=eg-f^{2}
+    \end{equation*}
+    Por otro lado, se tienen las siguientes identidades para $E_{vv}$ y $G_{uu}$,
+    \begin{align*}
+        & E_{vv}=\pdv{^{2}}{v^{2}}\left(\ip{X_{u}}{X_{u}}\right)
+        =\pdv{}{v}\left(2\ip{X_{uv}}{X_{u}}\right)
+        =2\left(\ip{X_{uvv}}{X_{u}}+\ip{X_{uv}}{X_{uv}}\right) \\
+        & G_{uu}=\pdv{^{2}}{u^{2}}\left(\ip{X_{v}}{X_{v}}\right)
+        =\pdv{}{u}\left(2\ip{X_{vu}}{X_{v}}\right)
+        =2\left(\ip{X_{vuu}}{X_{v}}+\ip{X_{vu}}{X_{vu}}\right)
+    \end{align*}
+    Para la expresiones $\abs{(X_{uv})^{T}}^{2}$ y $\ip{(X_{uu})^{T}}{(X_{vv})^{T}}$, tenemos que
+    \begin{align*}
+        \abs{(X_{uv})^{T}}^{2} &= \ip{X_{uv}-\ip{X_{uv}}{N^{x}}N^{x}}
+        {X_{uv}-\ip{X_{uv}}{N^{x}}N^{x}} \\
+        &= \ip{X_{uv}-fN^{x}}{X_{uv}-fN^{x}}=\abs{X_{uv}}^{2}-f^{2}-f^{2}+f^{2}
+        =\abs{X_{uv}}^{2}-f^{2}
+    \end{align*}
+    y
+    \begin{align*}
+        \ip{(X_{uu})^{T}}{(X_{vv})^{T}} &= \ip{X_{uu}-\ip{X_{uu}}{N^{x}}N^{x}}{X_{vv}-\ip{X_{vv}}
+        {N^{x}}N^{x}} \\
+        &= \ip{X_{uu}-eN^{x}}{X_{vv}-gN^{x}}=\ip{X_{uu}}{X_{vv}}-eg-eg+eg=\ip{X_{uu}}{X_{vv}}-eg
+    \end{align*}
+    recordando que $e=\ip{N^{x}}{X_{uu}}$, $f=\ip{N^{x}}{X_{uv}}$ y $g=\ip{N^{x}}{X_{vv}}$. 
+    Además, tenemos lo siguiente como consecuencia de que la parametrización es ortogonal
+    \begin{align*}
+        0=\pdv{^{2}}{u\partial v}\left(\ip{X_{u}}{X_{v}}\right)
+        &= \pdv{}{u}\left(\ip{X_{uv}}{X_{v}}+\ip{X_{u}}{X_{vv}}\right) \\
+        &= \ip{X_{uvu}}{X_{v}}+\ip{X_{uv}}{X_{vu}}+\ip{X_{uu}}{X_{vv}}+\ip{X_{u}}{X_{vvu}}
+    \end{align*}
+    lo que implica que
+    \begin{equation*}
+        -\ip{X_{uu}}{X_{vv}}=\ip{X_{uvu}}{X_{v}}+\ip{X_{uv}}{X_{vu}}+\ip{X_{u}}{X_{vvu}}
+    \end{equation*}
+    Usando lo anterior, se sigue que
+    \begin{align*}
+        & -\frac{1}{2}\left(E_{vv}+G_{uu}\right)+\abs{(X_{uv})^{T}}^{2}-\ip{(X_{uu})^{T}}
+        {(X_{vv})^{T}} \\
+        &= -\ip{X_{uvv}}{X_{u}}-\ip{X_{uv}}{X_{uv}}-\ip{X_{vuu}}{X_{v}}-\ip{X_{vu}}{X_{vu}}
+        +\abs{X_{uv}}^{2}-f^{2}+eg-\ip{X_{uu}}{X_{vv}} \\
+        &= eg-f^{2}
+    \end{align*}
+    y se tiene lo pedido. (Para esta parte trabaje en conjunto con Ricardo Larraín)
+\newpage
+
+    \item Como $\{X_{u},X_{v},N\}$ forman una base de $\R^{3}$, existen $a,b,c\in\R$ tales que
+    \begin{equation*}
+        X_{uu}=aX_{u}+bX_{v}+cN
+    \end{equation*}
+    Notemos que $\ip{X_{uu}}{N^{x}}=e$, veamos las siguientes igualdades para $\ip{X_{uu}}{X_{u}}$ 
+    y $\ip{X_{uu}}{X_{v}}$
+    \begin{equation*}
+        \ip{X_{uu}}{X_{u}}=\frac{1}{2}\pdv{}{u}\left(\ip{X_{u}}{X_{u}}\right)=\frac{1}{2}E_{u}
+    \end{equation*}
+    y usando que $F\equiv0$ vemos que
+    \begin{equation*}
+        0=\pdv{}{u}\left(\ip{X_{u}}{X_{v}}\right)=\ip{X_{uu}}{X_{v}}+\ip{X_{u}}{X_{vu}}
+        =\ip{X_{uu}}{X_{v}}+\frac{1}{2}\pdv{}{v}\left(\ip{X_{u}}{X_{u}}\right)
+        =\ip{X_{uu}}{X_{v}}+\frac{1}{2}E_{v}
+    \end{equation*}
+    entonces tomando producto interno con $X_{u}$, $X_{v}$ y $N^{x}$ respectivamente y usando que
+    $F\equiv0$, $N^{x}$ es unitario y ortogonal a $\{X_{u}$,$X_{v}\}$, tenemos que
+    \begin{equation*}
+        a=\frac{\ip{X_{uu}}{X_{u}}}{\ip{X_{u}}{X_{u}}}=\frac{E_{u}}{2E}\hspace{1.5cm}
+        b=\frac{\ip{X_{uu}}{X_{v}}}{\ip{X_{v}}{X_{v}}}=-\frac{E_{v}}{2G}\hspace{1.5cm}
+        c=\ip{X_{uu}}{N^{x}}=e
+    \end{equation*}
+    Del mismo modo que antes, tenemos $X_{uv}=a_{0}X_{u}+b_{0}X_{v}+c_{0}N$, veamos que 
+    $\ip{X_{uv}}{N^{x}}=f$ y además
+    \begin{align*}
+        \ip{X_{uv}}{X_{v}} &= \frac{1}{2}\pdv{}{u}\left(\ip{X_{v}}{X_{v}}\right)
+        =\frac{1}{2}G_{u} \\
+        \ip{X_{uv}}{X_{u}} &= \frac{1}{2}\pdv{}{v}\left(\ip{X_{u}}{X_{u}}\right)
+        =\frac{1}{2}E_{v}
+    \end{align*}
+    luego
+    \begin{equation*}
+        a_{0}=\frac{\ip{X_{uv}}{X_{u}}}{\ip{X_{u}}{X_{u}}}=\frac{E_{v}}{2E}\hspace{1.5cm}
+        b_{0}=\frac{\ip{X_{uv}}{X_{v}}}{\ip{X_{v}}{X_{v}}}=\frac{G_{u}}{2G}\hspace{1.5cm}
+        c_{0}=\ip{X_{uv}}{N^{x}}=f
+    \end{equation*}
+    Queda ver $ X_{vv}=a_{1}X_{u}+b_{1}X_{v}+c_{1}N$. Recordemos que $\ip{X_{vv}}{N^{x}}=g$ y
+    adicionalmente
+    \begin{equation*}
+        \ip{X_{vv}}{X_{v}}=\frac{1}{2}\pdv{}{v}\left(\ip{X_{v}}{X_{v}}\right)=\frac{1}{2}G_{v}
+    \end{equation*}
+    por otro lado se tiene que
+    \begin{equation*}
+        0=\pdv{}{v}\left(\ip{X_{u}}{X_{v}}\right)=\ip{X_{uv}}{X_{v}}+\ip{X_{u}}{X_{vv}}
+        =\frac{1}{2}G_{u}+\ip{X_{u}}{X_{vv}}
+    \end{equation*}
+    entonces
+    \begin{equation*}
+        a_{0}=\frac{\ip{X_{vv}}{X_{u}}}{\ip{X_{u}}{X_{u}}}=-\frac{G_{u}}{2E}\hspace{1.5cm}
+        b_{0}=\frac{\ip{X_{vv}}{X_{v}}}{\ip{X_{v}}{X_{v}}}=\frac{G_{v}}{2G}\hspace{1.5cm}
+        c_{0}=\ip{X_{vv}}{N^{x}}=g
+    \end{equation*}
+    lo que demuestra lo pedido.
+
+    \item
+\end{enumerate}
+
+\section*{Problema 2}
+
+\section*{Problema 3}
+
+\section*{Problema 4}
+
+\section*{Problema 5}
+
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}
