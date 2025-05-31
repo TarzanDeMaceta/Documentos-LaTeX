@@ -23,28 +23,63 @@
 \centerline{\bf 30 de mayo de 2025}
 
 \section*{Problema 1}
-\noindent Sea
+\begin{lema}
+    Sea $\Sigma$ una superficie regular orientable. Entonces $p\in\Sigma$ es punto umbilical si y
+    solo si existe $\lambda\in\R$ tal que $e=\lambda E$, $f=\lambda F$ y $g=\lambda G$.
+\end{lema}
+\begin{dem}
+    Supongamos que $p\in\Sigma$ es punto umbilical entonces existe $\lambda\in\R$ tal que 
+    $\I(v,w)=\lambda I(v,w)$ para todo $v,w\in T_{p}\Sigma$, en particular se cumple para 
+    $X_{u},X_{v}$ y por lo tanto
+    \begin{equation*}
+        e=\I(X_{u},X_{u})=\lambda I(X_{u},X_{u})=\lambda E
+    \end{equation*}
+    del mismo modo se obtienen las otras igualdades. Supongamos que se tienen las igualdades 
+    mencionadas, luego, como la segunda forma fundamental esta determinada por sus coeficientes 
+    $e,f,g$ y los coeficientes $E,F,G$ determinante la primera forma, se sigue que $\I=\lambda I$ 
+    y por lo tanto $p$ es umbilical.
+\end{dem}
+
+\noindent Consideremos la parametrización del elipsoide $X:(0,\pi)\times(0,2\pi)\to\R^{3}$ dada por
 \begin{equation*}
-    \Sigma:=\left\{(x,y,z)\in\R^{3}:\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}+\frac{y^{2}}{c^{2}}
-    =1\right\}
-\end{equation*} 
-Definimos la función diferenciable $h:\R^{3}\to\R$ dada por
-\begin{equation*}
-    h(x,y,z):=\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}+\frac{y^{2}}{c^{2}}
+    X(u,v)=(asen(u)cos(v),bsen(u)sen(v),c\cdot cos(v))
 \end{equation*}
-Notemos que $\Sigma=h^{-1}(1)$ con $1$ valor regular de $h$. Luego definimos la orientación 
-del elipsoide dada por $N:\Sigma\to\mathbb{S}^{2}$ definida por
+Para cubrir todo el elipsoide también tomamos la parametrización
 \begin{equation*}
-    N(p):=\frac{\left(\frac{x}{a^{2}},\frac{y}{b^{2}},\frac{z}{c^{2}}\right)}
-    {\sqrt{\frac{x^{2}}{a^{4}}+\frac{y^{2}}{b^{4}}+\frac{z^{2}}{c^{4}}}}
+    X^{0}(u,v)=(acos(u), bsen(u)sen(v),csen(u)cos(v))
+\end{equation*}
+con $(u,v)\in(0,\pi)\times(-\frac{\pi}{2},3\frac{\pi}{2})$. Además se tiene que
+\begin{equation*}
+    e=\ip{N}{X_{uu}}=\ip{X_{uu}}{\frac{X_{u}\times X_{v}}{\abs{X_{u}\times X_{v}}}}
+    =\frac{\ip{X_{uu}}{X_{u}\times X_{v}}}{\abs{X_{u}\times X_{v}}}
 \end{equation*}
 Tenemos tres casos:
 \begin{enumerate}
-    \item Si $r=a=b=c>0$, entonces $\Sigma$ es una esfera de radio $r$ y por ende 
-    $N(p)=\frac{1}{r}p$ y por lo tanto $DN_{p}v=\frac{1}{r}v$ para todo $v\in T_{p}\Sigma$ y todo 
-    $p\in\Sigma$, luego, todo punto en $\Sigma$ es umbilical.
+    \item Si $a>b>c$. Veamos las derivadas de la parametrización, esto es
+    \begin{align*}
+        X_{u} &= (acos(u)cos(v),bcos(u)sen(v),-csen(u)) \\
+        X_{v} &= (-asen(u)sen(v),bsen(u)cos(v),0)
+    \end{align*}
+    Con ello calculamos los coeficientes de la primera forma fundamental,
+    \begin{align*}
+        E &= a^{2}cos^{2}(u)cos^{2}(v)+b^{2}cos^{2}(u)sen^{2}(v)+c^{2}sen^{2}(u) \\
+        F &= (b^{2}-a^{2})cos(u)cos(v)sen(u)sen(v) \\
+        G &= a^{2}sen^{2}(u)sen^{2}(v)+b^{2}sen^{2}(u)cos^{2}(v)
+    \end{align*}
+    Por otro lado vemos que
+    \begin{equation*}
+        X_{u}\times X_{v}=(bcsen^{2}(u)cos(v),acsen^{2}(u)sen(v),abcos(u)sen(u))
+    \end{equation*}
 
-    \item Si $a>b=c>0$, notemos que este caso es igual que $a=b>c>0$.
+    \item Si $a=b>c$,
+    
+    \item Si $a>b=c$, notemos que este caso es simetrico respecto de $a=b>c$, basta tomar una
+    rotación que intercambie las coordenadas respectivas y como toda rotación es isometría lineal,
+    se preserva la primera forma fundamental y por ende los puntos umbilicales, luego, en este caso
+    solo hay dos puntos umbilicales.
+
+    \item Si $a=b=c$, entonces la superficie es una esfera y por lo visto en clases todo punto es
+    umbilical.
 \end{enumerate}
 
 \section*{Problema 2}
@@ -241,7 +276,7 @@ Tenemos tres casos:
 
     \item Supongamos que $\Sigma$ es orientable, entonces existe un campo normal unitario continuo
     $N:\Sigma\to\mathbb{S}^{2}$. Sea $\gamma:[a,b]\to\Sigma$ una curva continua y cerrada. Por la
-    parte anterior existe una única función y continua $N_{\gamma}:[a,b]\to\mathbb{S}^{2}$ tal que 
+    parte anterior existe una única función continua $N_{\gamma}:[a,b]\to\mathbb{S}^{2}$ tal que 
     \begin{equation*}
         N(\gamma(a))=N_{\gamma}(a)\hspace{4mm}\text{y}\hspace{4mm}
         N_{\gamma}(t)\in(T_{\gamma(t)}\Sigma)^{\perp}
@@ -297,9 +332,10 @@ Tenemos tres casos:
 \end{enumerate}
 
 \section*{Problema 4}
-\noindent Si $p\in S_{r}$, es claro que $\Phi(p)=\phi(p)$, adicionalmente esta es la única extensión. Veamos que $\Phi:\R^{3}\setminus\{0\}\to
-\R^{3}\setminus\{0\}$ es invertible, como $\phi$ es isometría, en particular es invertible, 
-definimos $\psi:\R^{3}\setminus\{0\}\to\R^{3}\setminus\{0\}$ como sigue
+\noindent Si $p\in S_{r}$, es claro que $\Phi(p)=\phi(p)$, adicionalmente esta es la única 
+extensión. Veamos que $\Phi:\R^{3}\setminus\{0\}\to\R^{3}\setminus\{0\}$ es invertible, 
+como $\phi$ es isometría, en particular es invertible, definimos $\psi:\R^{3}\setminus\{0\}\to
+\R^{3}\setminus\{0\}$ como sigue
 \begin{equation*}
     \psi(p):=\frac{\abs{p}}{r}\phi^{-1}\left(\frac{p}{\abs{p}}r\right)
 \end{equation*}
@@ -334,7 +370,7 @@ notemos que
 donde la segunda igualdad se debe a que dado $v\in S_{r}$ se tiene que $\ip{D\phi_{v}w}{v}=0$, 
 además usamos el hecho de que $D\phi_{v}$ es isometría lineal. Por teorema de la función inversa
 se sigue que $\Phi$ es difeomorfismo local y como es biyectiva es difeomorfismo, así por ejercicio
-visto en clase existe un único movimiento rígido $F:\R^{3}\setminus\{0\}\to\R^{3}\setminus\{0\}$ 
+visto en clase existe un único movimiento rígido $F:\R^{3}\to\R^{3}$ 
 tal que $\Phi=F\big|_{\R^{3}\setminus\{0\}}$.
 
 \noindent Notemos que $F(S_{r})=\Phi(S_{r})=\phi(S_{r})=S_{r}$ y por lo tanto $F$ es una isometría 
