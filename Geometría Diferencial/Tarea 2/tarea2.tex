@@ -36,47 +36,128 @@
     \end{equation*}
     del mismo modo se obtienen las otras igualdades. Supongamos que se tienen las igualdades 
     mencionadas, luego, como la segunda forma fundamental esta determinada por sus coeficientes 
-    $e,f,g$ y los coeficientes $E,F,G$ determinante la primera forma, se sigue que $\I=\lambda I$ 
+    $e,f,g$ y los coeficientes $E,F,G$ determinan la primera forma, se sigue que $\I=\lambda I$ 
     y por lo tanto $p$ es umbilical.
 \end{dem}
 
 \noindent Consideremos la parametrización del elipsoide $X:(0,\pi)\times(0,2\pi)\to\R^{3}$ dada por
 \begin{equation*}
-    X(u,v)=(asen(u)cos(v),bsen(u)sen(v),c\cdot cos(v))
+    X(u,v)=(asen(u)cos(v),bsen(u)sen(v),c\cdot cos(u))
 \end{equation*}
-Para cubrir todo el elipsoide también tomamos la parametrización
-\begin{equation*}
-    X^{0}(u,v)=(acos(u), bsen(u)sen(v),csen(u)cos(v))
-\end{equation*}
-con $(u,v)\in(0,\pi)\times(-\frac{\pi}{2},3\frac{\pi}{2})$. Además se tiene que
+Además se tiene que
 \begin{equation*}
     e=\ip{N}{X_{uu}}=\ip{X_{uu}}{\frac{X_{u}\times X_{v}}{\abs{X_{u}\times X_{v}}}}
     =\frac{\ip{X_{uu}}{X_{u}\times X_{v}}}{\abs{X_{u}\times X_{v}}}
 \end{equation*}
-Tenemos tres casos:
+De manera análoga se tiene para los otros coeficientes de la segunda forma fundamental. Veamos las 
+derivadas de la parametrización, esto es
+\begin{align*}
+    X_{u} &= (acos(u)cos(v),bcos(u)sen(v),-csen(u)) \\
+    X_{v} &= (-asen(u)sen(v),bsen(u)cos(v),0)
+\end{align*}
+Con ello calculamos los coeficientes de la primera forma fundamental,
+\begin{align*}
+    E &= a^{2}cos^{2}(u)cos^{2}(v)+b^{2}cos^{2}(u)sen^{2}(v)+c^{2}sen^{2}(u) \\
+    F &= (b^{2}-a^{2})cos(u)cos(v)sen(u)sen(v) \\
+    G &= a^{2}sen^{2}(u)sen^{2}(v)+b^{2}sen^{2}(u)cos^{2}(v)
+\end{align*}
+Por otro lado vemos que
+\begin{equation*}
+    X_{u}\times X_{v}=(bcsen^{2}(u)cos(v),acsen^{2}(u)sen(v),abcos(u)sen(u))
+\end{equation*}
+Además, calculamos las derivadas de segundo orden,
+\begin{align*}
+    X_{uu} &= (-asen(u)cos(v),-bsen(u)sen(v),-c\cdot cos(u)) \\
+    X_{uv} &= (-acos(u)sen(v),bcos(u)cos(v),0) \\
+    X_{vv} &= (-asen(u)cos(v),-bsen(u)sen(v),0)
+\end{align*}
+Además, haciendo los calculos necesarios, será útil lo siguiente
+\begin{equation*}
+    \ip{X_{uu}}{X_{u}\times X_{v}}=-abcsen(u)\hspace{1.5cm}\ip{X_{uv}}{X_{u}\times X_{v}}=0
+    \hspace{1.5cm}\ip{X_{vv}}{X_{u}\times X_{v}}=-abcsen^{3}(u)
+\end{equation*}
+Como $u\in(0,\pi)$ entonces $sen(u)\neq0$ y por ende $e,g\neq0$. Por el lema, para los puntos 
+umbilicales se tiene que
+\begin{equation*}
+    \frac{E}{\ip{X_{uu}}{X_{u}\times X_{v}}}=\frac{E}{e\abs{X_{u}\times X_{v}}}
+    =\frac{E}{\lambda E\abs{X_{u}\times X_{v}}}=\frac{G}{\ip{X_{uu}}{X_{u}\times X_{v}}}
+\end{equation*}
+Por otro lado, como $\ip{X_{uv}}{X_{u}\times X_{v}}=0$ vemos que $F=f=0$ pues $\lambda\neq0$, de
+lo contrario $e,g=0$. Tenemos cuatro casos:
 \begin{enumerate}
-    \item Si $a>b>c$. Veamos las derivadas de la parametrización, esto es
-    \begin{align*}
-        X_{u} &= (acos(u)cos(v),bcos(u)sen(v),-csen(u)) \\
-        X_{v} &= (-asen(u)sen(v),bsen(u)cos(v),0)
-    \end{align*}
-    Con ello calculamos los coeficientes de la primera forma fundamental,
-    \begin{align*}
-        E &= a^{2}cos^{2}(u)cos^{2}(v)+b^{2}cos^{2}(u)sen^{2}(v)+c^{2}sen^{2}(u) \\
-        F &= (b^{2}-a^{2})cos(u)cos(v)sen(u)sen(v) \\
-        G &= a^{2}sen^{2}(u)sen^{2}(v)+b^{2}sen^{2}(u)cos^{2}(v)
-    \end{align*}
-    Por otro lado vemos que
+    \item Si $a>b>c$. Como $a\neq b$ tenemos que $cos(u)=0$ ó $cos(v)=0$ ó $sen(v)=0$. Afirmamos
+    que $sen(v)=0$. Supongamos que $cos(u)=0$, entonces por la ecuación del elipsoide vemos que
+    $sen^{2}(u)=1$, entonces $E=c^{2}$ y $G=a^{2}sen^{2}(v)+b^{2}cos^{2}(v)$ y
     \begin{equation*}
-        X_{u}\times X_{v}=(bcsen^{2}(u)cos(v),acsen^{2}(u)sen(v),abcos(u)sen(u))
+        \ip{X_{vv}}{X_{u}\times X_{v}}=-abcsen^{3}(u)=-abcsen(u)=\ip{X_{uu}}{X_{u}\times X_{v}}
+    \end{equation*}
+    de este modo, $E=G$ y por ende
+    \begin{equation*}
+        c^{2}=a^{2}sen^{2}(v)+b^{2}cos^{2}(v)=a^{2}sen^{2}(v)+b^{2}-b^{2}sen^{2}(v)
+        =(a^{2}-b^{2})sen^{2}(v)+b^{2}
+    \end{equation*}
+    despejando nos queda que $\frac{c^{2}-b^{2}}{a^{2}-b^{2}}=sen^{2}(v)$, lo que es una 
+    contradicción, concluimos que $cos(u)\neq0$. Supongamos que $cos(v)=0$, entonces 
+    $sen^{2}(v)=1$, tenemos las ecuaciones $E=b^{2}cos^{2}+c^{2}sen^{2}(u)$ y $G=a^{2}sen^{2}(u)$
+    igual que antes se sigue que
+    \begin{equation*}
+        a^{2}=b^{2}cos^{2}(u)+c^{2}sen^{2}(u)=b^{2}-b^{2}sen^{2}(u)+c^{2}sen^{2}(u)
+        =b^{2}+(c^{2}-b^{2})sen^{2}(u)
+    \end{equation*}
+    y por lo tanto $\frac{a^{2}-b^{2}}{c^{2}-b^{2}}=sen^{2}(u)$, esto es una contradicción con el
+    signo de ambas expresiones.
+    
+    Concluimos que $sen(v)=0$, entonces $v=\pi$ y por consiguiente $cos^{2}(v)=1$. Obtenemos que 
+    $E=a^{2}cos^{2}(u)+c^{2}sen^{2}(u)$ y $G=b^{2}sen^{2}(u)$, entonces
+    \begin{equation*}
+        \frac{a^{2}cos^{2}(u)+c^{2}sen^{2}(u)}{-abcsen(u)}=\frac{b^{2}sen^{2}(u)}{-abcsen^{3}(u)}
+        =\frac{b^{2}}{-abcsen(u)}
+    \end{equation*}
+    lo que implica que
+    \begin{equation*}
+        b^{2}=a^{2}cos^{2}(u)+c^{2}sen^{2}(u)=a^{2}-a^{2}sen^{2}(u)+c^{2}sen^{2}(u)
+        =a^{2}+(c^{2}-a^{2})sen^{2}(u)
+    \end{equation*}
+    así, despejando vemos que
+    \begin{equation*}
+        sen(u)=\pm\sqrt{\frac{a^{2}-b^{2}}{a^{2}-c^{2}}}
+    \end{equation*}
+    Usando la misma ecuación, pero despejando $cos^{2}(u)$ vemos que
+    \begin{equation*}
+        cos^{2}(u)=\pm\sqrt{\frac{b^{2}-c^{2}}{a^{2}-c^{2}}}
+    \end{equation*}
+    De este modo obtenemos cuatro puntos umbilicales, que tienen la siguiente forma
+    \begin{equation*}
+        \left(\pm a\sqrt{\frac{a^{2}-b^{2}}{a^{2}-c^{2}}},0,
+        \pm c\sqrt{\frac{b^{2}-c^{2}}{a^{2}-c^{2}}}\right)
     \end{equation*}
 
-    \item Si $a=b>c$,
+    \item Si $a=b>c$, entonces los coeficientes de la primera forma fundamental quedan como
+    \begin{equation*}
+        E=a^{2}cos^{2}(u)\hspace{2cm}F=0\hspace{2cm}G=a^{2}sen^{2}(v)
+    \end{equation*}
+    por otro lado el producto interno con el producto cruz queda como
+    \begin{equation*}
+        \ip{X_{uu}}{X_{u}\times X_{v}}=-a^{2}csen(u)\hspace{2cm}\ip{X_{uv}}{X_{u}\times X_{v}}=0
+        \hspace{2cm}\ip{X_{vv}}{X_{u}\times X_{v}}=-a^{2}csen^{3}(u)
+    \end{equation*}
+    Para los puntos umbilicales se tiene que
+    \begin{equation*}
+        \frac{a^{2}cos^{2}(u)+c^{2}sen^{2}(u)}{-a^{2}csen(u)}=\frac{a^{2}sen^{2}(u)}
+        {-a^{2}csen^{3}(u)}=\frac{a^{2}}{-a^{2}csen(u)}
+    \end{equation*}
+    obtenemos la ecuación
+    \begin{equation*}
+        a^{2}=a^{2}cos^{2}(u)+c^{2}sen^{2}(u)=a^{2}-a^{2}sen^{2}(u)+c^{2}sen^{2}
+        =a^{2}+(c^{2}-a^{2})sen^{2}(u)
+    \end{equation*}
+    lo que implica que $sen(u)=0$. Lo que implica que no hay puntos umbilicales en la imagen de la
+    parametrización y por lo tanto los puntos umbilicales son $(0,0,\pm c)$.
     
     \item Si $a>b=c$, notemos que este caso es simetrico respecto de $a=b>c$, basta tomar una
     rotación que intercambie las coordenadas respectivas y como toda rotación es isometría lineal,
     se preserva la primera forma fundamental y por ende los puntos umbilicales, luego, en este caso
-    solo hay dos puntos umbilicales.
+    solo hay dos puntos umbilicales, que son $(\pm a,0,0)$.
 
     \item Si $a=b=c$, entonces la superficie es una esfera y por lo visto en clases todo punto es
     umbilical.
@@ -133,7 +214,7 @@ Tenemos tres casos:
         +\abs{X_{uv}}^{2}-f^{2}+eg-\ip{X_{uu}}{X_{vv}} \\
         &= eg-f^{2}
     \end{align*}
-    y se tiene lo pedido. (Para esta parte trabaje en conjunto con Ricardo Larraín)
+    y se tiene lo pedido.
 
     \item Como $\{X_{u},X_{v},N\}$ forman una base de $\R^{3}$, existen $a,b,c\in\R$ tales que
     \begin{equation*}
@@ -236,32 +317,30 @@ Tenemos tres casos:
     =:V\subseteq\gamma^{-1}(X(\U))$. Dado $0<\delta<\varepsilon$ definimos $N_{\delta}^{x}:
     \U\to\mathbb{S}^{2}$ como sigue
     \begin{equation*}
-        N_{\delta}^{x}(u,v):=\frac{X_{u}\times X_{v}}{\abs{X_{u}\times X_{v}}}(u,v)
+        N_{\delta}^{x}(u,v):=\pm\frac{X_{u}\times X_{v}}{\abs{X_{u}\times X_{v}}}(u,v)
     \end{equation*}
-    Consideramos la función $N_{\delta}^{c}:=N_{\delta}^{x}\circ X^{-1}\circ
-    \gamma:V\to\mathbb{S}^{2}$ tal que $N_{\delta}^{c}(c)=N_{c}(c)$. Definimos 
+    escogemos el signo tal que $N_{\delta}^{x}(X^{-1}(\gamma(c)))=N_{c}(c)$. Definimos 
     $N_{\delta}:[0,\delta]\to\mathbb{S}^{2}$ como
     \begin{equation*}
         N_{\delta}(t):=\begin{cases}
             N_{c}(t) &\quad\text{si }t\in[a,c] \\
-            N_{\delta}^{c}(t) &\quad\text{si }t\in[c,c+\delta]
+            (N_{\delta}^{x}\circ X^{-1}\circ\gamma)(t) &\quad\text{si }t\in[c,c+\delta]
         \end{cases}
     \end{equation*}
     Por lema del pegamiento $N_{\delta}$ es una función continua, ya que 
-    $N_{\delta}^{c}(c)=N_{c}(c)$. Además, por construcción, cumple las hipotesis necesarias, luego
-    $[a,c+\varepsilon)\subset A$.
+    $N_{\delta}^{x}(X^{-1}(\gamma(c)))=N_{c}(c)$. Además, por construcción, cumple las hipotesis 
+    necesarias, luego $[a,c+\varepsilon)\subset A$.
 
     \noindent Veamos que $A$ es cerrado. Sea $(c_{n})_{n}\subseteq A$ tal que 
     $c_{n}$ converge a $c\in[a,b]$. Sea $(\U,X)$ una carta de $\gamma(c)$, por 
-    continuidad, existe $n\in\N$ tal que $\gamma(c_{n})\in X(\U)$. 
+    continuidad, existe $n\in\N$ tal que $\gamma([c_{n},c])\in X(\U)$. 
     
-    Definimos $N_{c}^{x}$ del mismo modo que antes. Sea $V:=\gamma^{-1}(X(\U))$ consideremos 
-    $N_{c}^{0}:=N_{c}^{x}\circ X^{-1}\circ\gamma:V\to\mathbb{S}^{2}$ tal que $N_{c}^{0}(c_{n})
-    =N_{c_{n}}(c_{n})$. Se define $N_{c}:[a,c]\to\mathbb{S}^{2}$ por
+    Definimos $N_{c}^{x}$ del mismo modo que antes tal que $N_{c}^{x}(c_{n})=N_{c_{n}}(c_{n})$. 
+    Se define $N_{c}:[a,c]\to\mathbb{S}^{2}$ por
     \begin{equation*}
         N_{c}(t):=\begin{cases}
             N_{c_{n}}(t) &\quad\text{si }t\in[a,c_{n}] \\
-            N_{c}^{0}(t) &\quad\text{si }t\in[c_{n},c]
+            (N_{c}^{x}\circ X^{-1}\circ\gamma)(t) &\quad\text{si }t\in[c_{n},c]
         \end{cases}
     \end{equation*}
     Al igual que antes, esta función es continua, por lema de pegamientos y cumple con las 
@@ -271,8 +350,8 @@ Tenemos tres casos:
     \noindent Veamos que la función $N_{\gamma}$ es unica, supongamos que existe $N'$ que 
     satisface las mismas condiciones, luego $(N_{\gamma}-N')^{-1}(0)$ y $(N_{\gamma}+N')^{-1}(0)$
     son cerrados disjuntos que separan $[a,b]$, pues $N_{\gamma}(t)=\pm N'(t)$. Como 
-    $N_{\gamma}(a)=N'(a)$, se sigue que $N_{\gamma}(t)=N'(t)$ para todo $t\in[a,b]$ lo que prueba 
-    la unicidad.
+    $N_{\gamma}(a)=N'(a)$, por conexidad, se sigue que $N_{\gamma}(t)=N'(t)$ para todo $t\in[a,b]$ 
+    lo que prueba la unicidad.
 
     \item Supongamos que $\Sigma$ es orientable, entonces existe un campo normal unitario continuo
     $N:\Sigma\to\mathbb{S}^{2}$. Sea $\gamma:[a,b]\to\Sigma$ una curva continua y cerrada. Por la
@@ -323,8 +402,8 @@ Tenemos tres casos:
         N_{\gamma}(1)=N_{\alpha}(0)=N_{\alpha}(1)=N_{\gamma_{0}}(1)
     \end{equation*}
     Veamos que $N$ es continua. Sea $p_{0}\in\Sigma$, sea $\gamma$ un camino que une $q$ con 
-    $p_{0}$, entonces por continuidad de $N_{\gamma}$ se sigue que $\lim\limits_{t\to b}
-    N(\gamma(t))=\lim\limits_{t\to b}N_{\gamma}(t)=N_{\gamma(b)}=N(p_{0})$. Como lo anterior es 
+    $p_{0}$, entonces por continuidad de $N_{\gamma}$ se sigue que $\lim\limits_{t\to 1}
+    N(\gamma(t))=\lim\limits_{t\to 1}N_{\gamma}(t)=N_{\gamma(1)}=N(p_{0})$. Como lo anterior es 
     independiente del camino, conluimos que
     \begin{equation*}
         \lim\limits_{p\to p_{0}}N(p)=N(p_{0})
@@ -332,14 +411,13 @@ Tenemos tres casos:
 \end{enumerate}
 
 \section*{Problema 4}
-\noindent Si $p\in S_{r}$, es claro que $\Phi(p)=\phi(p)$, adicionalmente esta es la única 
-extensión. Veamos que $\Phi:\R^{3}\setminus\{0\}\to\R^{3}\setminus\{0\}$ es invertible, 
-como $\phi$ es isometría, en particular es invertible, definimos $\psi:\R^{3}\setminus\{0\}\to
-\R^{3}\setminus\{0\}$ como sigue
+\noindent Si $p\in S_{r}$, es claro que $\Phi(p)=\phi(p)$. Veamos que $\Phi:\R^{3}\setminus\{0\}
+\to\R^{3}\setminus\{0\}$ es invertible, como $\phi$ es isometría, en particular es invertible, 
+definimos $\psi:\R^{3}\setminus\{0\}\to\R^{3}\setminus\{0\}$ como sigue
 \begin{equation*}
     \psi(p):=\frac{\abs{p}}{r}\phi^{-1}\left(\frac{p}{\abs{p}}r\right)
 \end{equation*}
-luego
+luego como $\abs{\phi}=r$,
 \begin{align*}
     \Phi\circ\psi(p) &= \Phi(\psi(p))=\Phi\left(\frac{\abs{p}}{r}\phi^{-1}
     \left(\frac{p}{\abs{p}}r\right)\right)=\frac{\abs{\frac{\abs{p}}{r}\phi^{-1}\left(\frac{p}
@@ -382,7 +460,7 @@ $\phi:=F\big|_{S_{r}}$ es un difeomorfismo y $D\phi_{p}$ es isometría lineal.
 \noindent Por último, queda ver que esta correspondencia es, de hecho, un morfismo de grupos. Sean
 $\phi,\psi$ isometrías de $S_{r}$ y $F,G$ sus correspondientes isometrías lineales de $\R^{3}$, es 
 claro que $F\circ G$ es isometría y dado $p\in S_{r}$ notamos que $(F\circ G)(p)=F(G(p))=F(\psi(p))
-=\phi(\psi(p))$, por unicidad $F\circ G$ es la isometría que corresponde a $\phi\circ\psi$. 
+=\phi(\psi(p))$, por unicidad, $F\circ G$ es la isometría que corresponde a $\phi\circ\psi$. 
 Concluimos que $Isom(S_{r})$ es isomorfo al grupo de isometrías lineales de $\R^{3}$.
 
 \section*{Problema 5}
@@ -400,7 +478,7 @@ Concluimos que $Isom(S_{r})$ es isomorfo al grupo de isometrías lineales de $\R
         =r^{2}sen(u)+r^{2}cos(u)=r^{2} \\[2mm]
         G &= \ip{X_{v}}{X_{v}}=(R+rcos(u))^{2}sen^{2}(v)+(R+rcos(u))^{2}cos^{2}(v)=(R+rcos(u))^{2}
     \end{align*}
-    Como $F\equiv0$, la parametrización es ortogonal y por el problema tenemos que
+    Como $F\equiv0$, la parametrización es ortogonal y por el problema 2 tenemos que
     \begin{equation*}
         (K_{\Sigma}\circ X)\sqrt{EG}=-\frac{1}{2}\left[\left(\frac{G_{u}}{\sqrt{EG}}\right)_{u}
         +\left(\frac{E_{v}}{\sqrt{EG}}\right)_{v}\right]
@@ -423,6 +501,8 @@ Concluimos que $Isom(S_{r})$ es isomorfo al grupo de isometrías lineales de $\R
         =\int_{0}^{2\pi}\int_{0}^{2\pi}cos(u)\hspace{1mm}du\hspace{1mm}dv=0
     \end{equation*}
 \end{enumerate}
+
+\noindent Colaboradores: Felipe Inostroza, Sergio Peña, Ricardo Larraín.
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 

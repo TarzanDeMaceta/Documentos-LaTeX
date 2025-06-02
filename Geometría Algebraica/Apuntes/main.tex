@@ -1578,6 +1578,66 @@ anillo local con ideal maximal
     m_{p}(V)=\{z\in\mathcal{O}_{p}(V):z(p)=0\}
 \end{equation*}
 
+\subsection{Variedades Proyetivas y Afines}
+\begin{dfn}
+    Sea $V\subseteq\A^{n}_{k}$ un conjunto algebraico e $I=\I(V)\subseteq k[x_{0},\cdots,x_{n-1}]$
+    definimos la \textbf{homogenización de $I$} como
+    \begin{equation*}
+        I^{*}:=\{F^{*}:F\in I\}\subseteq k[x_{0},\cdots,x_{n}]
+    \end{equation*}
+    Además, definimos la \textbf{clausura proyectiva de $V$} como $V^{*}:=\V(I^{*})\subseteq
+    \pr{n}$.
+\end{dfn}
+\noindent\textbf{Observación:} El ideal $I^{*}$ es homogeneo.
+
+\begin{dfn}
+    Dado $V\subseteq\pr{n}$ un conjunto algebraico proyectivo e $I=\I(V)\subseteq 
+    k[x_{0},\cdots,x_{n}]$, definimos la \textbf{deshomogenización de $I$} como
+    \begin{equation*}
+        I_{*}:=\{F_{*}:F\in I\}\subseteq k[x_{0},\cdots,x_{n-1}]
+    \end{equation*}
+    Adicionalmente, $V_{*}:=\V(I_{*})\subseteq\A^{n}_{k}\subseteq U_{n}$.
+\end{dfn}
+\noindent\textbf{Ejemplo:} Cuidado, si $I$ es finitamente generado su homogenización no es igual a
+homogenizar cada uno de sus generadores y tomar el ideal generado. Sea $V=\V(y-x^{2},z-x^{3})$ 
+que esta parametrizado por
+\begin{equation*}
+    \varphi(t)=(t,t^{2},t^{3})
+\end{equation*}
+Su ideal es $\I(V)=(y-x^{2},z-x^{3})$. Notemos que $z-xy\in I$, pero $zw-xy\not\in
+(wy-x^{2},w^{2}z-x^{3})$.
+
+\vspace{2mm}
+\noindent Vamos a considerar $\A^{n}_{k}$ como un subconjunto de $\pr{n}$ mediante la biyección 
+$\varphi:\A^{n}_{k}\to U_{n+1}$ dada por $\varphi(x_{1},\cdots,x_{n})=[x_{1},\cdots,x_{n},1]$. 
+Prontamente veremos que esta función define un isomorfismo entre ambas variedades algebraicas,
+con la topología de Zariski será un homeomorfismo.
+\begin{prop}
+    Se cumplen las siguientes afirmaciones
+    \begin{itemize}
+        \item[(1)] Si $V\subseteq\A^{n}_{k}$, entonces $\varphi(V)=V^{*}\cap U_{n+1}$ y 
+        $(V^{*})_{*}=V$.
+
+        \item[(2)] Si $V\subseteq W\subseteq\A^{n}_{k}$. Entonces $V^{*}\subseteq W^{*}
+        \subseteq\pr{n}$. Se cumple lo análogo para deshomogenización.
+
+        \item[(3)] Si $V$ es irreducible en $\A^{n}_{k}$, entonces $V^{*}$ es irreducible en 
+        $\pr{n}$.
+
+        \item[(4)] Si $V=\bigcup_{i}V_{i}$ es la descomposición en irreducibles de $V$ en 
+        $\A^{n}_{k}$, entonces $V^{*}=\bigcup_{i}V^{*}_{i}$ es la descomposición en irreducibles 
+        de $V^{*}$ en $\pr{n}$.
+
+        \item[(5)] Si $V\subseteq\A^{n}_{k}$, entonces $V^{*}$ es el conjunto algebraico mas 
+        pequeño que contiene a $\varphi_{n+1}(V)$.
+
+        \item[(6)] Si $V\subset\A^{n}_{k}$ es no vacío, entonces ninguna componente de $V^{*}$
+        esta contenida o contiene a $H_{\infty}$.
+
+        \item[(7)] Si $V\subseteq\pr{n}$ y ninguna componente de $V$ esta contenida o contiene a 
+        $H_{\infty}$ entonces $V_{*}\subset\A^{n}_{k}$ y $(V_{*})^{*}=V$.
+    \end{itemize}
+\end{prop}
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
 \end{document}
