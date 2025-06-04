@@ -1638,6 +1638,107 @@ con la topología de Zariski será un homeomorfismo.
         $H_{\infty}$ entonces $V_{*}\subset\A^{n}_{k}$ y $(V_{*})^{*}=V$.
     \end{itemize}
 \end{prop}
+
+\subsection{Espacio Multiproyectivo}
+\noindent Nos gustaría estudiar el producto de espacios proyectivos, esta no es una tarea tan 
+natural como en el caso afín, pues un punto en $(x,y)\in\pr{n}\times\pr{m}$ no tienen relación 
+entre sí. ¿Que significa que un polinomio se anule en $(x,y)$?
+
+\vspace{2mm}
+\noindent Escribiremos $k[x,y]$ como $k[x_{1},\cdots,x_{n+1},y_{1},\cdots,y_{m+1}]$.
+\begin{dfn}
+    Un polinomio $F\in k[x,y]$ se dice una \textbf{biforma de grado $(p,q)$}, si $F$ es una forma 
+    de grado $p$ (resp. q) en la variable $x$ (resp. y) con coeficientes en 
+    $k[y_{1},\cdots,y_{m+1}]$ (resp. $k[x_{1},\cdots,x_{n+1}]$).
+\end{dfn}
+\noindent\textbf{Observación:} Todo polinomio $F\in k[x,y]$ puede ser escrito de manera única como
+$F=\sum_{p,q}F_{p,q}$ donde $F_{p,q}$ es una biforma de grado $(p,q)$.
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} Consideremos $\pr{1}\times\pr{1}$ denotamos por $p\in\pr{1}\times\pr{1}$ 
+como $([x_{0},x_{1}],[y_{0},y_{1}])$, tomemos el polinomio $F=x_{0}^{3}y_{1}+y_{0}x_{1}^{3}$, que 
+es una biforma de grado $(3,1)$.
+\begin{dfn}
+    Sea $S\subset k[x_{1},\cdots,x_{n+1},y_{1},\cdots,y_{m+1}]$ un conjunto de biformas, definimos
+    \begin{equation*}
+        \V(S):=\{(x,y)\in\pr{n}\times\pr{m}:F(x,y)=0\text{ para todo }F\in S\}
+    \end{equation*}
+    Decimos que $V\subseteq\pr{n}\times\pr{m}$ es conjunto algebraico si $V=\V(S)$ para algún $S$.
+\end{dfn}
+\begin{dfn}
+    Dado $V\subseteq\pr{n}\times\pr{m}$, definimos
+    \begin{equation*}
+        \I(V):=\{F\in k[x,y]:F(x,y)=0\text{ para todo }(x,y)\in V\}
+    \end{equation*}
+\end{dfn}
+\noindent\textbf{Observación:} Si se define un ideal bihomogeneo, como es natural, resulta que 
+$\I(V)$ es un ideal bihomogeneo.
+
+\vspace{2mm}
+\noindent El resto de definiciones y resultados, presenten en los casos afín y proyectivo, se 
+extienden de manera natural al caso multiproyectivo.
+
+\newpage
+\section{Curvas Planas Proyectivas}
+\subsection{Definiciones}
+\begin{dfn}
+    Decimos que un conjunto algebrico $V\subseteq\pr{2}$ es una \textbf{curva plana proyectiva} si
+    $V=\V(F)$ con $F$ una forma grado $d$. El \textbf{grado de la curva} corresponde al grado del 
+    polinomio que la define.
+
+    \vspace{2mm}
+    \noindent Decimos que una curva de grado $1$ es una recta, una de grado $2$ una cónica, de 
+    grado $3$ una cúbica y de grado $4$ una cuártica.
+\end{dfn}
+\noindent\textbf{Observación:} Notemos que si $F$ es irreducible y $p\in V$ tal que $p=[x,y,1]$ 
+entonces $\Gamma_{h}(V)$ es dominio, entonces esta definido $\mathcal{O}_{p}(V)$. Además, se tiene 
+un isomorfismo canónico entre $\mathcal{O}_{p}(V)$ y $\mathcal{O}_{(x,y)}(V)$ identificando un 
+polinomio $F\in k[x,y,z]$ con $F_{*}\in k[x,y]$.
+
+\vspace{2mm}
+\noindent Desde este momento, supondremos que, $V=\V(F)$ con $F\in k[x,y,z]$ una forma.
+\begin{dfn}
+    Sea $p\in V$, decimos que $p$ es un punto \textbf{singular}, si $F_{x}(p)=F_{y}(p)=F_{z}=0$.
+\end{dfn}
+\noindent\textbf{Observación:} De la formula $dF=x_{1}F_{x_{1}}+x_{2}F_{x_{2}}+x_{3}F_{x_{3}}$, 
+deducimos que basta con que se anule en dos de las tres derivadas.
+\begin{dfn}
+    Sea $p\in V$, definimos la \textbf{multiplicidad} de $F$ en $p$, denotado por $m_{p}(F)$, como 
+    $m_{p}(F)=m_{p}(F_{*})$.
+\end{dfn}
+\noindent\textbf{Observación:} La multiplicidad es independiente de la carta afín escogida e 
+invariante bajo cambio de coordenadas proyectivo.
+
+\vspace{2mm}
+\noindent Si $V$ es una curva irreducible de grado $d$, sea $L$ una recta tal que $p\not\in L$, 
+consideramos
+\begin{equation*}
+    f=\frac{F}{L^{d}}\in \mathcal{O}_{p}(V)
+\end{equation*}
+Si $p$ es simple (no singular), es decir $m_{p}(V)=1$, entonces $\mathcal{O}_{p}(V)$ es un DVR, 
+denotamos por $ord_{p}^{F}$ la función de orden en $k(V)$.
+\begin{dfn}
+    Sean $F,G$ dos curvas planas proyectivas cualesquiera y sea $p\in\pr{2}$, definimos el 
+    \textbf{número de intersección} como
+    \begin{equation*}
+        I(p,F\cap G):=dim_{k}\left(\frac{O_{p}(\pr{2})}{(f,g)}\right)
+    \end{equation*}
+\end{dfn}
+\noindent\textbf{Observación:} De la definición de $f$, si $L'$ es otra recta tal que $p\not\in L'$
+entonces $\frac{L'}{L}$ es una unidad en $\mathcal{O}_{p}(\pr{2})$ y por lo tanto la definición del
+número de intersección es independiente de como se escoge $L$. Por otro lado, como en el caso afín
+este número cumple las mismas propiedades, con excepción de que en $(7)$ el polinomio $A$ debe ser
+una forma tal que $gr(A)=gr(G)-gr(F)$.
+\begin{dfn}
+    Decimos que una recta $L$, es \textbf{tangente} a una curva $V$ en $p$ si $I(p,F\cap L)
+    >m_{p}(F)$. Un punto multiple es \textbf{ordinario} en $F$ si $F$ tiene $m_{p}(F)$ rectas 
+    tangentes distintas en $p$.
+\end{dfn}
+\begin{dfn}
+    Dos curvas $F$ y $G$ se dicen \textbf{proyectivamente equivalentes}, si existe un cambio de 
+    coordenadas proyectivo $T$ tal que $G=F^{T}$.
+\end{dfn}
+
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
 \end{document}
