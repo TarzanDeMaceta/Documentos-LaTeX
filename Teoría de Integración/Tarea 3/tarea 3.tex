@@ -24,9 +24,106 @@
 
 \section*{Problema 1}
 \begin{enumerate}
-    \item 
-    \item 
-    \item 
+    \item Sea $t>0$, notemos que $e^{-tx^{2}}<e^{-tx}$ para $x>1$, es positiva y continua, luego
+    \begin{equation*}
+        I=\int_{0}^{\infty}e^{-tx^{2}}dx=\int_{(0,\infty)}e^{-tx^{2}}d\lambda(x)
+    \end{equation*}
+    entonces
+    \begin{align*}
+        I^{2} &= \left(\int_{(0,\infty)}e^{-tx^{2}}d\lambda(x)\right)
+        \left(\int_{(0,\infty)}e^{-ty^{2}}d\lambda(y)\right)
+        =\int_{(0,\infty)}e^{-ty^{2}}\left(\int_{(0,\infty)}e^{-tx^{2}}d\lambda(x)\right)
+        d\lambda(y) \\[2mm]
+        &= \int_{(0,\infty)}\left(\int_{(0,\infty)}e^{-t(x^{2}+y^{2})}d\lambda(x)\right)d\lambda(y)
+    \end{align*}
+    Como la función $e^{-t(x^{2}+y^{2})}$ es continua y positiva, por tonelli, vemos que
+    \begin{equation*}
+        I^{2}=\int_{(0,\infty)^{2}}e^{-t(x^{2}+y^{2})}(\lambda\otimes\lambda)dxdy
+    \end{equation*}
+    Consideremos el cambio de variables $x=rcos(\theta)$ y $y=rsen(\theta)$ con $r\in(0,\infty)$ y 
+    $\theta\in(0,\frac{\pi}{2})$ con determinante jacobiano igual a $r$, luego, por cambio de 
+    variables se sigue que
+    \begin{equation*}
+        I^{2}=\int_{(0,\infty)^{2}}e^{-t(x^{2}+y^{2})}(\lambda\otimes\lambda)dxdy
+        =\int_{\left(0,\frac{\pi}{2}\right)\times(0,\infty)}re^{-tr^{2}}(\lambda\otimes\lambda)
+        d\theta dr
+    \end{equation*}
+    por tonelli, vemos que
+    \begin{equation*}
+        I^{2}=\int_{\left(0,\frac{\pi}{2}\right)}\left(\int_{(0,\infty)}re^{-tr^{2}}
+        dr\right)d\theta
+        =\int_{0}^{\frac{\pi}{2}}\left(\int_{0}^{\infty}re^{-tr^{2}}
+        dr\right)d\theta
+        =\frac{\pi}{2}\int_{0}^{\infty}re^{-tr^{2}}dr
+    \end{equation*}
+    donde la segunda igualdad se debe a la continuidad y positividad. Utlizando el cambio de 
+    variable $u=tr^{2}$, observamos que
+    \begin{equation*}
+        \int_{0}^{\infty}re^{-tr^{2}}dr=\frac{1}{2t}\int_{0}^{\infty}e^{-u}du
+        =\frac{1}{2t}-e^{-u}\Big|_{0}^{\infty}=\frac{1}{2t}<\infty
+    \end{equation*}
+    De este modo,
+    \begin{equation*}
+        I^{2}=\frac{\pi}{4t}
+    \end{equation*}
+    concluimos que $g(t)=\frac{1}{2}\sqrt{\frac{\pi}{t}}$.
+    \newpage
+    
+    \item Consideremos la función $F(x,t)=e^{-x^{2}}cos(tx)$. Dado $t_{0}\in\R$ vemos que la 
+    función $F(x,t_{0})$ es continua y por ende medible, además, $\pdv{f}{t}$ existe para todo
+    $(x,t)\in\R^{2}$. Para $t=0$ notamos que
+    \begin{equation*}
+        f(0)=\int_{0}^{\infty}e^{-x^{2}}=\frac{\sqrt{\pi}}{2}
+    \end{equation*}
+    y por lo tanto $f(x,0)$ es integrable. Por otro lado,
+    \begin{equation*}
+        \abs{\pdv{f}{t}(x,t)}=\abs{-xe^{-x^{2}}sen(tx)}\leq \abs{x}e^{-x^{2}}=:g
+    \end{equation*}
+    es claro que $g$ es una función integrable, basta notar que su integral impropia es finita.
+    Luego, la función $f$ es diferenciable y como 
+    $\abs{F(x,t)}\leq e^{-x^{2}}$ se tiene que
+    \begin{align*}
+        f'(t) &= \dv{}{t}\left(\int_{0}^{\infty}e^{-x^{2}}cos(tx)dx\right)
+        =\dv{}{t}\left(\int_{(0,\infty)}e^{-x^{2}}cos(tx)d\lambda(x)\right)
+        =\int_{(0,\infty)}\pdv{}{t}\left(e^{-x^{2}}cos(tx)\right)d\lambda(x) \\[2mm]
+        &= \int_{(0,\infty)}-xe^{2}sen(tx)d\lambda(x)=\int_{0}^{\infty}-xe^{2}sen(tx)dx \\[2mm]
+        &=\frac{e^{-x^{2}}}{2}sen(tx)\Big|_{x=0}^{x=\infty}
+        -\frac{t}{2}\int_{0}^{\infty}e^{-x^{2}}cos(tx)dx=\frac{t}{2}f(t)
+    \end{align*}
+    Tenemos una EDO de variables separables $f'=-\frac{t}{2}f$ con condición inicial
+    $f(0)=\frac{\sqrt{\pi}}{2}$. Luego
+    \begin{equation*}
+        \int\frac{df}{f}=\int-\frac{t}{2}dt
+    \end{equation*}
+    se sigue que
+    \begin{equation*}
+        log(f)=-\frac{t^{2}}{4}+C\hspace{4mm}\text{entonces}\hspace{4mm}f=e^{-\frac{t^{2}}{4}+C}
+    \end{equation*}
+    evaluando en la condición inicial vemos que
+    \begin{equation*}
+        f(t)=\frac{\sqrt{\pi}}{2}e^{-\frac{t^{2}}{4}}
+    \end{equation*}
+    para todo $t\in\R$.
+    
+    \item Sean $0<a<b<\infty$. Notemos que
+    \begin{equation*}
+        \frac{e^{-ax}-e^{-bx}}{x}=\int_{a}^{b}e^{-tx}dt
+    \end{equation*}
+    La función $e^{-tx}$ es continua y positiva, por tonelli vemos que
+    \begin{align*}
+        \int_{(0,\infty)\times(a,b)}e^{-tx}dtdx &= \int_{(a,b)}\int_{(0,\infty)}e^{-tx}dxdt
+        =\int_{a}^{b}\int_{0}^{\infty}e^{-tx}dxdt=\int_{a}^{b}\int_{0}^{-\infty}-\frac{e^{u}}{t}
+        dudt \\[2mm]
+        &= \int_{a}^{b}-\frac{1}{t}e^{u}\Big|_{0}^{-\infty}dt=\int_{a}^{b}\frac{1}{t}dt
+        =log\left(\frac{b}{a}\right)
+    \end{align*}
+    la segunda igualdad se debe a la continuidad y que la función $e^{-tx}$ es positiva. 
+    Por otro lado tenemos que
+    \begin{equation*}
+        \int_{(0,\infty)\times(a,b)}e^{-tx}dtdx=\int_{(0,\infty)}\int_{(a,b)}e^{-tx}dtdx
+        =\int_{0}^{\infty}\int_{a}^{b}e^{-tx}dtdx=h(a,b)
+    \end{equation*}
+    Por lo tanto $h(a,b)=log\left(\frac{b}{a}\right)$.
 \end{enumerate}
 
 \section*{Problema 2}
@@ -40,9 +137,42 @@
 \section*{Problema 4}
 
 \section*{Problema 5}
+\noindent Sea $I=(c,d)\subseteq[a,b]$ un intervalo, como $g$ es absolutamente continua, por TFC 
+se sigue que
+\begin{equation*}
+    \lambda(g(I))=\lambda((g(c),g(d)))=g(d)-g(c)=\int_{(c,d)}g'd\lambda
+\end{equation*}
+además utilizamos el hecho de que $g$ es creciente y $g(I)$ un intervalo.
+Sea $(I_{n})_{n}$ intervalos disjuntos de a pares contenidos en $[a,b]$, entonces como $g$ es 
+estrictamente creciente, en particular es inyectiva, se sigue que $g(I_{n})$ son disjuntos de a 
+pares. Notemos que
+\begin{equation*}
+    \lambda\left(g\left(\bigcup_{n\in\N}I_{n}\right)\right)
+    =\lambda\left(\bigcup_{n\in\N}g(I_{n})\right)=\sum_{n\in\N}\lambda(g(I_{n}))
+    =\sum_{n\in\N}\int_{I_{n}}g'd\lambda=\int\sum_{n\in\N}\I_{n}g'd\lambda
+    =\int_{\bigcup_{n\in\N}}g'd\lambda
+\end{equation*}
+en donde para intercambiar la suma con la integral usamos teorema de convergencia dominada. Como
+todo abierto se puede escribir como unión numerable de intervalos abiertos disjuntos de a pares,
+lo anterior prueba el argumento para abiertos $U\subseteq[a,b]$.
 
+\vspace{2mm}
+\noindent Sea $G\in G_{\delta}$, luego existen $(U_{n})_{n}$ abiertos de $[a,b]$ tales que
+\begin{equation*}
+    G=\bigcap_{n\in\N}U_{n}
+\end{equation*}
+sin perdida de generalidad podemos suponer que estos abiertos estan encajonados. Como $[a,b]$ es
+compacto entonces $g([a,b])$ es compacto, así
+\begin{equation*}
+    \lambda(g(G))=\lambda\left(g\left(\bigcap_{n\in\N}U_{n}\right)\right)
+    =\lambda\left(\bigcap_{n\in\N}g(U_{n})\right)=\lim\limits_{n\to\infty}\lambda(g(U_{n}))
+    =\lim\limits_{n\to\infty}\int_{U_{n}}g'd\lambda=\int_{G}g'd\lambda
+\end{equation*}
+donde la última igualdad se debe al teorema de convergencia dominada, notando que $\I_{U_{n}}$ 
+converge a $\I_{G}$. Sea $E\subseteq[a,b]$ medible, existe $G\in G_{\delta}$ tal que 
+$\lambda(G\setminus E)=0$ lo que implica que 
 
-
+%($g(E)$ es medible para $E$ medible)
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
