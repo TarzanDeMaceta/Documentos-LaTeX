@@ -133,6 +133,84 @@
 \end{enumerate}
 
 \section*{Problema 3}
+\noindent En primer lugar, notemos que
+\begin{equation*}
+    I=\int_{[0,1]^{2}}\frac{1}{1-xy}(\lambda\otimes\lambda)(dxdy)=\int_{[0,1]^{2}}
+    \sum_{n\geq1}(xy)^{n-1}(\lambda\otimes\lambda)(dxdy)
+\end{equation*}
+como $xy$ es positiva en $[0,1]^{2}$, por convergencia monótona y tonelli se sigue que
+\begin{equation*}
+    I=\sum_{n\geq1}\int_{[0,1]^{2}}(xy)^{n-1}(\lambda\otimes\lambda)(dxdy)
+    =\sum_{n\geq1}\int_{[0,1]}\int_{[0,1]}x^{n-1}y^{n-1}dxdy
+    =\sum_{n\geq1}\left(\int_{[0,1]}x^{n-1}dx\right)\left(\int_{[0,1]}y^{n-1}dy\right)
+\end{equation*}
+la última igualdad se debe a la independencia entre las variables. Por continuidad, vemos que
+\begin{equation*}
+    I=\sum_{n\geq1}\left(\int_{0}^{1}x^{n-1}dx\right)\left(\int_{0}^{1}y^{n-1}dy\right)
+    =\sum_{n\geq1}\frac{1}{n^{2}}
+\end{equation*}
+Por otro lado, consideramos el cambio de variable $x=u+v$ e $y=u-v$ con determinante jacobiano 
+igual a $2$, luego la nueva región de integración $\rr$ esta determinado por
+\begin{equation*}
+    \rr:=\left\{(u,v)\in\R^{2}:0\leq u\leq\frac{1}{2},-u\leq v\leq u\right\}\cup
+    \left\{(u,v)\in\R^{2}:\frac{1}{2}\leq u\leq1,1+u\leq v\leq 1-u\right\}
+\end{equation*}
+Así,
+\begin{equation*}
+    I=\int_{\rr}\frac{2}{1-(u+v)(u-v)}(\lambda\otimes\lambda)(dxdy)
+    =2\int_{\rr}\frac{1}{1-u^{2}+v^{2}}(\lambda\otimes\lambda)(dxdy)
+\end{equation*}
+Diremos que $\rr_{+}:=\rr\cap\{v\geq0\}$. Por simetría respecto a $v$, vemos que
+\begin{equation*}
+    I=4\int_{\rr_{+}}\frac{1}{1-u^{2}+v^{2}}(\lambda\otimes\lambda)(dxdy)
+    =4\int_{[0,1]\times (R_{+})^{2}(u)}\frac{1}{1-u^{2}+v^{2}}(\lambda\otimes\lambda)(dxdy)
+\end{equation*}
+donde $(R_{+})^{2}(u)$ es la sección de $R_{+}$ respecto de $u$. Notemos que en la última igualdad 
+se utilizo que la función es continua y positiva. Así, por tonelli se sigue que
+\begin{equation*}
+    I=4\int_{[0,1]}\int_{(R_{+})^{2}(u)}\frac{1}{1-u^{2}+v^{2}}d\lambda(v)d\lambda(u)
+    =4\int_{0}^{1}\int_{0}^{f(u)}\frac{1}{1-u^{2}+v^{2}}dvdu
+\end{equation*}
+con $f$ función que describe el contorno superior de $\rr_{+}$ en función de u. Luego
+\begin{equation*}
+    I=4\left(\int_{0}^{\frac{1}{2}}\int_{0}^{u}\frac{1}{1-u^{2}+v^{2}}dvdu
+    +\int_{\frac{1}{2}}^{1}\int_{0}^{1-u}\frac{1}{1-u^{2}+v^{2}}dvdu\right)
+\end{equation*}
+consideramos $a=\sqrt{1-u^{2}}$ que esta bien definido pues $0\leq u\leq1$, así
+\begin{align*}
+    I &= 4\left(\int_{0}^{\frac{1}{2}}\int_{0}^{u}\frac{1}{a^{2}+v^{2}}dvdu
+    +\int_{\frac{1}{2}}^{1}\int_{0}^{1-u}\frac{1}{a^{2}+v^{2}}dvdu\right) \\[2mm]
+    &= 4\left(\int_{0}^{\frac{1}{2}}\frac{1}{a}arctan\left(\frac{v}{a}\right)\Big|_{0}^{u}du
+    +\int_{\frac{1}{2}}^{1}\frac{1}{a}arctan\left(\frac{v}{a}\right)\Big|_{0}^{1-u}du
+    \right) \\[2mm]
+    &= 4\left(\int_{0}^{\frac{1}{2}}\frac{1}{\sqrt{1-u^{2}}}arctan\left(\frac{u}{\sqrt{1-u^{2}}}
+    \right)du+\int_{\frac{1}{2}}^{1}\frac{1}{\sqrt{1-u^{2}}}arctan\left(\frac{1-u}{\sqrt{1-u^{2}}}
+    \right)du\right)=4(I_{1}+I_{2})
+\end{align*}
+Para $I_{1}$ integramos por partes, en efecto
+\begin{align*}
+    I_{1} &= arcsen(u)arctan\left(\frac{u}{\sqrt{1-u^{2}}}\right)\Big|_{0}^{\frac{1}{2}}
+    -\int_{0}^{\frac{1}{2}}arcsen(u)\frac{1}{1+\frac{u^{2}}{1-u^{2}}}\frac{1}{\sqrt{1-u^{2}}}
+    \frac{1}{1-u^{2}}du \\[2mm]
+    &=\frac{\pi}{6}\cdot\frac{\pi}{6}-\int_{0}^{\frac{1}{2}}arcsen(u)\frac{1}{\sqrt{1-u^{2}}}du
+    =\frac{\pi^{2}}{36}-\int_{0}^{\frac{\pi}{6}}t\hspace{1mm}dt=\frac{\pi^{2}}{36}
+    -\frac{t^{2}}{2}\Big|_{0}^{\frac{\pi}{6}}=\frac{\pi^{2}}{72}
+\end{align*}
+donde realizamos el cambio de variable $t=arcsen(u)$. Por otra parte, para $I_{2}$ consideramos el
+cambio de variable $u=cos(\theta)$ y entonces
+\begin{align*}
+    I_{2} &= -\int_{\frac{\pi}{3}}^{0}\frac{1}{sen(\theta)}arctan\left(
+    \frac{1-cos(\theta)}{sen(\theta)}\right)sen(\theta)\hspace{1mm}d\theta
+    =\int_{0}^{\frac{\pi}{3}}arctan\left(tan\left(\frac{\theta}{2}\right)\right)
+    \hspace{1mm}d\theta \\[2mm]
+    &= 2\int_{0}^{\frac{\pi}{6}}arctan(tan(w))\hspace{1mm}dw
+    =2\int_{0}^{\frac{\pi}{6}}w\hspace{1mm}dw=w^{2}\Big|_{0}^{\frac{\pi}{6}}=\frac{\pi^{2}}{36}
+\end{align*}
+Luego
+\begin{equation*}
+    I=4(I_{1}+I_{2})=\left(\frac{\pi^{2}}{72}+\frac{\pi^{2}}{36}\right)=4\cdot\frac{3\pi^{2}}{72}
+    =\frac{\pi^{2}}{6}
+\end{equation*}
 
 \section*{Problema 4}
 
@@ -157,7 +235,7 @@ todo abierto se puede escribir como unión numerable de intervalos abiertos disj
 lo anterior prueba el argumento para abiertos $U\subseteq[a,b]$.
 
 \vspace{2mm}
-\noindent Sea $G\in G_{\delta}$, luego existen $(U_{n})_{n}$ abiertos de $[a,b]$ tales que
+\noindent Sea $G\in G_{\delta}$, existen $(U_{n})_{n}$ abiertos de $[a,b]$ tales que
 \begin{equation*}
     G=\bigcap_{n\in\N}U_{n}
 \end{equation*}
@@ -172,7 +250,7 @@ donde la última igualdad se debe al teorema de convergencia dominada, notando q
 converge a $\I_{G}$. Sea $E\subseteq[a,b]$ medible, existe $G\in G_{\delta}$ tal que 
 $\lambda(G\setminus E)=0$ lo que implica que 
 
-%($g(E)$ es medible para $E$ medible)
+%($g(E)$ es medible para $E$ medible, g manda medida nula en medida nula)
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
