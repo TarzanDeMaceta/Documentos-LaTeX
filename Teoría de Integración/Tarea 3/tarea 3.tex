@@ -128,8 +128,153 @@
 
 \section*{Problema 2}
 \begin{enumerate}
-    \item 
-    \item 
+    \item El cambio de variables a coordenadas polares en $\R^{n}$, denotado por $\varphi_{n}$ 
+    esta dado por
+    \begin{align*}
+        x_{n} &= rsen(\theta_{n-1}) \\
+        x_{n-1} &= rcos(\theta_{n-1})sen(\theta_{n-2}) \\
+        &\vdots \\
+        x_{2} &= rcos(\theta_{n-1})cos(\theta_{n-2})\cdots cos(\theta_{2})sen(\theta_{1}) \\
+        x_{1} &= rcos(\theta_{n-1})cos(\theta_{n-2})\cdots cos(\theta_{2})cos(\theta_{1})
+    \end{align*}
+    Afirmamos que el determinante jacobiano del cambio de variables es
+    \begin{equation*}
+        J_{\varphi_{n}}(r,\theta_{1},\cdots,\theta_{n-1})=r^{n-1}
+        \prod_{i=2}^{n-1}(cos^{i-1}(\theta_{i}))
+    \end{equation*}
+    Procederemos por inducción sobre la dimensión. Para $n=1$ el resultado es inmediato, 
+    supongamos que se tiene para $n$. Debemos probar el resultado para $n+1$. Expandiendo por
+    cofactores notamos que
+    \begin{align*}
+        J_{\varphi_{n}} &= \begin{vmatrix}
+            \pdv{x_{1}}{r} & \pdv{x_{1}}{\theta_{1}} & \cdots & \pdv{x_{1}}{\theta_{n-1}} & 
+            \pdv{x_{1}}{\theta_{n}} \\[1mm]
+            \vdots & \vdots & \ddots & \vdots & \vdots \\[1mm]
+            \pdv{x_{n}}{r} & \pdv{x_{n}}{\theta_{1}} & \cdots & \pdv{x_{n}}{\theta_{n-1}} & 
+            \pdv{x_{n}}{\theta_{n}} \\[2mm]
+            \pdv{x_{n+1}}{r} & \pdv{x_{n+1}}{\theta_{1}} & \cdots & \pdv{x_{n+1}}{\theta_{n-1}} & 
+            \pdv{x_{n+1}}{\theta_{n}}
+        \end{vmatrix}=
+        \begin{vmatrix}
+            \pdv{x_{1}}{r} & \pdv{x_{1}}{\theta_{1}} & \cdots & \pdv{x_{1}}{\theta_{n-1}} & 
+            \pdv{x_{1}}{\theta_{n}} \\[1mm]
+            \vdots & \vdots & \ddots & \vdots & \vdots \\[1mm]
+            \pdv{x_{n}}{r} & \pdv{x_{n}}{\theta_{1}} & \cdots & \pdv{x_{n}}{\theta_{n-1}} & 
+            \pdv{x_{n}}{\theta_{n}} \\[2mm]
+            sen(\theta_{n}) & 0 & \cdots & 0 & rcos(\theta_{n})
+        \end{vmatrix} \\[2mm]
+        &= (-1)^{n}sen(\theta_{n})\begin{vmatrix}
+            \pdv{x_{1}}{\theta_{1}} & \cdots & \pdv{x_{1}}{\theta_{n-1}} & 
+            \pdv{x_{1}}{\theta_{n}} \\[1mm]
+            \vdots & \ddots & \vdots & \vdots \\[1mm]
+            \pdv{x_{n}}{\theta_{1}} & \cdots & \pdv{x_{n}}{\theta_{n-1}} & 
+            \pdv{x_{n}}{\theta_{n}}
+        \end{vmatrix}+rcos(\theta_{n})\begin{vmatrix}
+            \pdv{x_{1}}{r} & \pdv{x_{1}}{\theta_{1}} & \cdots & \pdv{x_{1}}{\theta_{n-1}} \\[1mm]
+            \vdots & \vdots & \ddots & \vdots \\[1mm]
+            \pdv{x_{n}}{r} & \pdv{x_{n}}{\theta_{1}} & \cdots & \pdv{x_{n}}{\theta_{n-1}}
+        \end{vmatrix}
+    \end{align*}
+    Vamos a identificar $(x_{1},\cdots,x_{n})$ con $(y_{1},\cdots,y_{n})$ y consideramos el cambio 
+    de variable $\varphi_{n}$. Notemos que $\pdv{x_{i}}{\theta_{j}}=cos(\theta_{n})\pdv{y_{i}}
+    {\theta_{j}}$ donde $1\leq i\leq n$ y $1\leq j\leq n-1$. Además, $\pdv{x_{i}}{\theta_{n}}
+    =-sen(\theta_{n})r\pdv{y_{i}}{r}$ con $1\leq i\leq n$ y también $\pdv{x_{i}}{r}
+    =cos(\theta_{n})\pdv{y_{i}}{r}$ para $1\leq i\leq n$. Luego,
+    \begin{equation*}
+        J_{\varphi_{n+1}} = (-1)^{n+1}rsen^{2}(\theta_{n})cos^{n-1}(\theta_{n})\begin{vmatrix}
+            \pdv{y_{1}}{\theta_{1}} & \cdots & \pdv{y_{1}}{\theta_{n-1}} & 
+            \pdv{y_{1}}{r} \\[1mm]
+            \vdots & \ddots & \vdots & \vdots \\[1mm]
+            \pdv{y_{n}}{\theta_{1}} & \cdots & \pdv{y_{n}}{\theta_{n-1}} & 
+            \pdv{y_{n}}{r}
+        \end{vmatrix}+rcos^{n+1}(\theta_{n})\begin{vmatrix}
+            \pdv{y_{1}}{r} & \pdv{y_{1}}{\theta_{1}} & \cdots & \pdv{y_{1}}{\theta_{n-1}} \\[1mm]
+            \vdots & \vdots & \ddots & \vdots \\[1mm]
+            \pdv{y_{n}}{r} & \pdv{y_{n}}{\theta_{1}} & \cdots & \pdv{y_{n}}{\theta_{n-1}}
+        \end{vmatrix}
+    \end{equation*}
+    Si permutamos $n-1$ columnas en la primer submatriz corresponde al jacobiano de $\varphi_{n}$,
+    adicionalmente, la segunda submatriz es exactamente igual al jacobiano de $\varphi_{n}$. 
+    Entonces
+    \begin{align*}
+        J_{\varphi_{n+1}} &= (-1)^{n+1}rsen^{2}(\theta_{n})cos^{n-1}(\theta_{n})(-1)^{n-1}
+        J_{\varphi_{n}}+rcos^{n+1}(\theta_{n})J_{\varphi_{n}} \\[2mm]
+        &= rcos^{n-1}(\theta_{n})J_{\varphi_{n}}(sen^{2}(\theta_{n})+cos^{2}(\theta_{n}))
+        =rcos^{n-1}(\theta_{n})J_{\varphi_{n}}
+    \end{align*}
+    Usando la hipotesis inductiva, nos queda
+    \begin{equation*}
+        J_{\varphi_{n+1}}=r^{n}\prod_{i=2}^{n}(cos^{i-1}(\theta_{i}))
+    \end{equation*}
+    
+    \item De la parte anterior consideramos el cambio de variable a coordenadas polares en 
+    $\R^{n}$. Tenemos lo siguiente
+    \begin{equation*}
+        I=\int_{\R^{n}}g(\abs{x})d\lambda(x)=\int_{(0,\infty)\times(0,2\pi)\times
+        (-\frac{\pi}{2},\frac{\pi}{2})^{n-2}}g(r)\abs{J_{\varphi_{n}}}drd\theta_{1}d\theta_{2}
+        \cdots d\theta_{n-1}
+    \end{equation*}
+    como la función sigue siendo positiva despues de aplicar el cambio de variable, por tonelli 
+    se sigue que
+    \begin{align*}
+        I &= \int_{(0,\infty)}\int_{(0,2\pi)}\int_{(-\frac{\pi}{2},\frac{\pi}{2})}\cdots
+        \int_{(-\frac{\pi}{2},\frac{\pi}{2})}g(r)\abs{J_{\varphi_{n}}}d\theta_{n-1}\cdots 
+        d\theta_{2}d\theta_{1}dr \\[2mm]
+        &= 2\pi\prod_{i=2}^{n-1}\left(\int_{(-\frac{\pi}{2},\frac{\pi}{2})}cos^{i-1}(\theta)
+        d\lambda(\theta)\right)\int_{(0,\infty)}g(r)r^{n-1}d\lambda(r) \\[2mm]
+        &= 2\pi\prod_{i=2}^{n-1}\left(\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}cos^{i-1}(\theta)
+        \hspace{1mm}d\theta\right)\int_{(0,\infty)}g(r)r^{n-1}d\lambda(r) \\[2mm]
+        &= 2\pi\prod_{i=2}^{n-1}\left(\int_{0}^{\pi}sen^{i-1}(\theta)
+        \hspace{1mm}d\theta\right)\int_{(0,\infty)}g(r)r^{n-1}d\lambda(r)
+    \end{align*}
+    en la última igualdad utilizamos que las variables son independientes entre sí, además, para
+    ahorrar notación eliminamos los índices de las varaibles $\theta$. Definimos
+    \begin{equation*}
+        I(m)=\int_{0}^{\pi}sen^{m}(\theta)\hspace{1mm}d\theta
+    \end{equation*}
+    para $m\in\N_{0}$. Afirmamos que
+    \begin{equation*}
+        I(2m)=\pi\prod_{k=1}^{m}\frac{2k-1}{2k}\hspace{4mm}\text{y}\hspace{4mm}
+        I(2m+1)=2\prod_{k=1}^{m}\frac{2k}{2k+1}
+    \end{equation*}
+    Probaremos lo anterior para el caso par, el otro caso es análogo. Sea $m=0$, el resultado es
+    directo. Supongamos que el resultado se tiene para $m$. Utilizando integración por partes se 
+    obtiene la recursión
+    \begin{align*}
+        \int_{0}^{\pi}sen^{2m+2}(\theta)\hspace{1mm}d\theta &= 
+        -\frac{cos(\theta)sen^{2m-1}(\theta)}{n}\Big|_{0}^{\pi}+\frac{2m+1}{2m+2}\int_{0}^{\pi}
+        sen^{2m}(\theta)\hspace{1mm}d\theta=\frac{2m+1}{2m+2}\int_{0}^{\pi}sen^{2m}(\theta)
+        \hspace{1mm}d\theta \\[2mm]
+        &= \frac{2m+1}{2m+2}\cdot\pi\prod_{k=1}^{m}\frac{2k-1}{2k}
+        =\pi\prod_{k=1}^{m+1}\frac{2k-1}{2k}
+    \end{align*}
+    Además observamos que
+    \begin{equation*}
+        I(2m-1)I(2m)=2\prod_{k=1}^{m-1}\frac{2k}{2k+1}\cdot\pi\prod_{k=1}^{m}\frac{2k-1}{2k}
+        =2\pi\cdot\frac{2m-1}{2m}\cdot\prod_{k=1}^{m-1}\frac{2k-1}{2k+1}
+        =2\pi\cdot\frac{2m-1}{2m}\cdot\frac{1}{2m-1}=\frac{\pi}{m}
+    \end{equation*}
+    Regresando al problema original, tenemos dos casos, $n-1$ es impar, es decir, $n-1=2k-1$, 
+    entonces
+    \begin{equation*}
+        2\pi\prod_{i=2}^{n-1}\left(\int_{0}^{\pi}sen^{i-1}(\theta)
+        \hspace{1mm}d\theta\right)
+        =2\pi\prod_{i=2}^{2k-1}I(i-1)=2\pi\prod_{j=1}^{k-1}I(2j-1)I(2j)
+        =2\pi\prod_{j=1}^{k-1}\frac{\pi}{j}=\frac{2\pi^{k}}{(k-1)!}
+    \end{equation*}
+    Supongamos que $n-1$ es par, lo que implica que $n-1=2k$, así
+    \begin{align*}
+        2\pi\prod_{i=2}^{n-1}\left(\int_{0}^{\pi}sen^{i-1}(\theta)
+        \hspace{1mm}d\theta\right) &= 2\pi\prod_{i=2}^{2k}I(i-1)=2\pi\cdot I(2k-1)
+        \prod_{i=2}^{2k-1}I(i-1)=2\pi\cdot\frac{\pi^{k-1}}{(k-1)!}
+        \cdot 2\prod_{j=1}^{k-1}\frac{2j}{2j+1} \\[2mm]
+        &= 4\pi^{k}\prod_{j=1}^{k-1}\frac{1}{j}\cdot\prod_{j=1}^{k-1}\frac{2j}{2j+1}
+        =\frac{2^{k+1}\pi^{k}}{(2k-1)!!}
+    \end{align*}
+    Concluimos que
+    \begin{equation*}
+        I=S_{n-1}\int_{(0,\infty)}g(r)r^{n-1}d\lambda(r)
+    \end{equation*}
 \end{enumerate}
 
 \section*{Problema 3}
