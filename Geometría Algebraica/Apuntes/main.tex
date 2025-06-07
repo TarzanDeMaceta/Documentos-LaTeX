@@ -1739,6 +1739,96 @@ una forma tal que $gr(A)=gr(G)-gr(F)$.
     coordenadas proyectivo $T$ tal que $G=F^{T}$.
 \end{dfn}
 
+\subsection{Sistemas Lineales de Curvas}
+\noindent La intención de esta sección es estudiar todas las curvas proyectivas de grado $d$. 
+Una forma $F$ de grado $d$ con variables $x,y,z$ tiene, por un argumento de conteo, 
+$N=\binom{d+2}{2}$ monomios. Luego, una curva $F$ es lo mismo que escoger $a_{1},\cdots,c_{N}\in k$
+no todos cero, además, $\lambda a_{1},\cdots,\lambda a_{N}$ determinan la misma curva.
+
+\vspace{2mm}
+\noindent Por el argumento anterior tenemos una correspondecia uno a uno entre las curvas de grado
+$d$ con los punto en $\pr{N-1}$.
+\begin{equation*}
+    \left\{\text{Curvas de grado d}\right\}\longleftrightarrow\pr{N-1}
+\end{equation*}
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Sea $d=1$, una recta $ax+by+cz$ corresponde a un punto $[a,b,c]\in\pr{2}$.
+    
+    \item Para $d=2$, las cónicas $ax^{2}+by^{2}+cz^{2}+dxy+exz+fyz$ corresponden a puntos 
+    $[a,b,c,d,e,f]\in\pr{5}$.
+\end{itemize}
+\begin{dfn}
+    Un sistema lineal de curvas de grado $d$ es una subvariedad lineal de $\pr{N-1}$. Decimos que
+    la dimensión del sistema es $n$, si el conjunto solución tiene dimensión $n$.
+\end{dfn}
+\begin{lema}\hspace{1mm}
+    \begin{enumerate}
+        \item Sea $p\in\pr{2}$ un punto fijo. El conjunto de curvas de grado $d$ que contienen a 
+        $p$ forma un hiperplano en $\pr{N-1}$.
+
+        \item Si $T:\pr{2}\to\pr{2}$ es un cambio de coordenadas proyectivo, entonces la función
+        $F\to F^{T}$ de curvas de grado $d$ a curvas de grado $d$ es un cambio de coordenadas 
+        proyectivo en $\pr{N-1}$
+    \end{enumerate}
+\end{lema}
+\begin{dem}\hspace{1mm}
+    \begin{enumerate}
+        \item Una curva $F$ de grado $d$, con $(a_{1},\cdots, a_{N})$ los puntos correspondientes
+        en $\pr{N-1}$, pasa por el punto $p$ si y solo si
+        \begin{equation*}
+            F(p)=\sum_{i=1}^{N}a_{i}M_{i}(x,y,z)=0
+        \end{equation*}
+        con $M_{i}$ un monomio sin constante de grado $d$. Como $M_{i}$ no son todos cero, los 
+        puntos $(a_{1},\cdots,a_{N})$ satisfacen la ecuación de un hiperplano.
+
+        \item La demostración es similar.
+    \end{enumerate}
+\end{dem}
+\begin{prop}
+    Sea $p\in\pr{2}$ y $r\leq d+1$. Luego
+    \begin{equation*}
+        V(d;rP):=\{F\in\pr{N-1}\text{ de grado }d:mp(F)\geq r\}\subseteq\pr{N-1}
+    \end{equation*}
+    es un sistema lineal de dimensión
+    \begin{equation*}
+        \frac{d(d+3)}{2}-\frac{r(r+1)}{2}
+    \end{equation*}
+\end{prop}
+\begin{dem}
+    Por el segundo resultado del lema anterior, podemos suponer que $p=[0,0,1]$. Sea $F$ una forma
+    de grado $d$, luego el término $cz^{d}$ es cero, es decir, $c=0$, escribimos
+    \begin{equation*}
+        F_{*}=f_{0}+f_{1}(x,y)+f_{2}(x,y)+\cdots+f_{d}(x,y)
+    \end{equation*}
+    como $F\in V(d;rP)$ se tiene que $f_{0}=f_{1}=f_{2}=\cdots=f_{r-1}=0$. Hay $\frac{r(r+1)}{2}$
+    coeficientes que deden ser cero. Luego la dimensión es
+    \begin{equation*}
+        \frac{d(d+3)}{2}-\frac{r(r+1)}{2}
+    \end{equation*}
+    Notemos que el conjunto corresponde a la intersección de hiperplanos y por ende es un sistema 
+    lineal. 
+\end{dem}
+\noindent Sean $p_{1},\cdots,p_{n}\in\pr{2}$ y sean $r_{1},\cdots,r_{n}\in\N$. Consideramos el
+sistema lineal
+\begin{equation*}
+    V(d;r_{1},p_{1},\cdots,r_{n}p_{n}):=\bigcap_{i}V(d;r_{i}p_{i})
+\end{equation*}
+\begin{teo}
+    Se tiene lo siguiente
+    \begin{enumerate}
+        \item El sistema lineal $V(d;r_{1},p_{1},\cdots,r_{n}p_{n})$ tiene dimensión al menos
+        \begin{equation*}
+            \frac{d(d+3)}{2}-\sum\frac{r_{i}(r_{i}+1)}{2}
+        \end{equation*}
+
+        \item Si $d\geq(\sum r_{i})-1$, entonces
+        \begin{equation*}
+            dim_{k}V(d;r_{1},p_{1},\cdots,r_{n}p_{n})=\frac{d(d+3)}{2}-\sum\frac{r_{i}(r_{i}+1)}{2}
+        \end{equation*}
+    \end{enumerate}
+\end{teo}
+
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
 \end{document}
