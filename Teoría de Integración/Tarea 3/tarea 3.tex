@@ -24,11 +24,11 @@
 
 \section*{Problema 1}
 \begin{enumerate}
-    \item Sea $t>0$, notemos que $e^{-tx^{2}}<e^{-tx}$ para $x>1$, es positiva y continua, luego
+    \item Sea $t>0$, dado que $e^{-tx^{2}}$ es continua y positiva, se tiene que
     \begin{equation*}
         I=\int_{0}^{\infty}e^{-tx^{2}}dx=\int_{(0,\infty)}e^{-tx^{2}}d\lambda(x)
     \end{equation*}
-    entonces
+    entonces, por independencia,
     \begin{align*}
         I^{2} &= \left(\int_{(0,\infty)}e^{-tx^{2}}d\lambda(x)\right)
         \left(\int_{(0,\infty)}e^{-ty^{2}}d\lambda(y)\right)
@@ -36,19 +36,19 @@
         d\lambda(y) \\[2mm]
         &= \int_{(0,\infty)}\left(\int_{(0,\infty)}e^{-t(x^{2}+y^{2})}d\lambda(x)\right)d\lambda(y)
     \end{align*}
-    Como la función $e^{-t(x^{2}+y^{2})}$ es continua y positiva, por tonelli, vemos que
+    Como la función $e^{-t(x^{2}+y^{2})}$ es continua y positiva, por tonelli vemos que
     \begin{equation*}
         I^{2}=\int_{(0,\infty)^{2}}e^{-t(x^{2}+y^{2})}(\lambda\otimes\lambda)dxdy
     \end{equation*}
     Consideremos el cambio de variables $x=rcos(\theta)$ y $y=rsen(\theta)$ con $r\in(0,\infty)$ y 
-    $\theta\in(0,\frac{\pi}{2})$ con determinante jacobiano igual a $r$, luego, por cambio de 
-    variables se sigue que
+    $\theta\in(0,\frac{\pi}{2})$ con determinante jacobiano igual a $r$, luego
     \begin{equation*}
         I^{2}=\int_{(0,\infty)^{2}}e^{-t(x^{2}+y^{2})}(\lambda\otimes\lambda)dxdy
         =\int_{\left(0,\frac{\pi}{2}\right)\times(0,\infty)}re^{-tr^{2}}(\lambda\otimes\lambda)
         d\theta dr
     \end{equation*}
-    por tonelli, vemos que
+    notemos que $re^{-tr^{2}}$ es continua y positiva cuando $r\in(0,\infty)$, así, por tonelli
+    vemos que
     \begin{equation*}
         I^{2}=\int_{\left(0,\frac{\pi}{2}\right)}\left(\int_{(0,\infty)}re^{-tr^{2}}
         dr\right)d\theta
@@ -60,7 +60,7 @@
     variable $u=tr^{2}$, observamos que
     \begin{equation*}
         \int_{0}^{\infty}re^{-tr^{2}}dr=\frac{1}{2t}\int_{0}^{\infty}e^{-u}du
-        =\frac{1}{2t}-e^{-u}\Big|_{0}^{\infty}=\frac{1}{2t}<\infty
+        =\frac{1}{2t}(-e^{-u})\Big|_{0}^{\infty}=\frac{1}{2t}<\infty
     \end{equation*}
     De este modo,
     \begin{equation*}
@@ -70,25 +70,25 @@
     \newpage
     
     \item Consideremos la función $F(x,t)=e^{-x^{2}}cos(tx)$. Dado $t_{0}\in\R$ vemos que la 
-    función $F(x,t_{0})$ es continua y por ende medible, además, $\pdv{f}{t}$ existe para todo
+    función $F(x,t_{0})$ es continua y por ende medible, además, $\pdv{F}{t}$ existe para todo
     $(x,t)\in\R^{2}$. Para $t=0$ notamos que
     \begin{equation*}
         f(0)=\int_{0}^{\infty}e^{-x^{2}}=\frac{\sqrt{\pi}}{2}
     \end{equation*}
-    y por lo tanto $f(x,0)$ es integrable. Por otro lado,
+    y por lo tanto $F(x,0)$ es integrable. Por otro lado,
     \begin{equation*}
-        \abs{\pdv{f}{t}(x,t)}=\abs{-xe^{-x^{2}}sen(tx)}\leq \abs{x}e^{-x^{2}}=:g
+        \abs{\pdv{F}{t}(x,t)}=\abs{-xe^{-x^{2}}sen(tx)}\leq \abs{x}e^{-x^{2}}=:g
     \end{equation*}
     es claro que $g$ es una función integrable, basta notar que su integral impropia es finita.
-    Luego, la función $f$ es diferenciable y como 
-    $\abs{F(x,t)}\leq e^{-x^{2}}$ se tiene que
+    Luego, la función $f$ es diferenciable y como $\abs{F(x,t)}\leq e^{-x^{2}}$ se tiene que
     \begin{align*}
         f'(t) &= \dv{}{t}\left(\int_{0}^{\infty}e^{-x^{2}}cos(tx)dx\right)
         =\dv{}{t}\left(\int_{(0,\infty)}e^{-x^{2}}cos(tx)d\lambda(x)\right)
         =\int_{(0,\infty)}\pdv{}{t}\left(e^{-x^{2}}cos(tx)\right)d\lambda(x) \\[2mm]
-        &= \int_{(0,\infty)}-xe^{2}sen(tx)d\lambda(x)=\int_{0}^{\infty}-xe^{2}sen(tx)dx \\[2mm]
+        &= \int_{(0,\infty)}-xe^{-x^{2}}sen(tx)d\lambda(x)=\int_{0}^{\infty}-xe^{-x^{2}}sen(tx)dx 
+        \\[2mm]
         &=\frac{e^{-x^{2}}}{2}sen(tx)\Big|_{x=0}^{x=\infty}
-        -\frac{t}{2}\int_{0}^{\infty}e^{-x^{2}}cos(tx)dx=\frac{t}{2}f(t)
+        -\frac{t}{2}\int_{0}^{\infty}e^{-x^{2}}cos(tx)dx=-\frac{t}{2}f(t)
     \end{align*}
     Tenemos una EDO de variables separables $f'=-\frac{t}{2}f$ con condición inicial
     $f(0)=\frac{\sqrt{\pi}}{2}$. Luego
@@ -128,7 +128,7 @@
 
 \section*{Problema 2}
 \begin{enumerate}
-    \item El cambio de variables a coordenadas polares en $\R^{n}$, denotado por $\varphi_{n}$ 
+    \item El cambio de variables a coordenadas polares en $\R^{n}$, denotado por $\varphi_{n}$, 
     esta dado por
     \begin{align*}
         x_{n} &= rsen(\theta_{n-1}) \\
@@ -175,7 +175,7 @@
             \pdv{x_{n}}{r} & \pdv{x_{n}}{\theta_{1}} & \cdots & \pdv{x_{n}}{\theta_{n-1}}
         \end{vmatrix}
     \end{align*}
-    Vamos a identificar $(x_{1},\cdots,x_{n})$ con $(y_{1},\cdots,y_{n})$ y consideramos el cambio 
+    Identificamos $(x_{1},\cdots,x_{n})$ con $(y_{1},\cdots,y_{n})$ y consideramos el cambio 
     de variable $\varphi_{n}$. Notemos que $\pdv{x_{i}}{\theta_{j}}=cos(\theta_{n})\pdv{y_{i}}
     {\theta_{j}}$ donde $1\leq i\leq n$ y $1\leq j\leq n-1$. Además, $\pdv{x_{i}}{\theta_{n}}
     =-sen(\theta_{n})r\pdv{y_{i}}{r}$ con $1\leq i\leq n$ y también $\pdv{x_{i}}{r}
@@ -193,7 +193,7 @@
             \pdv{y_{n}}{r} & \pdv{y_{n}}{\theta_{1}} & \cdots & \pdv{y_{n}}{\theta_{n-1}}
         \end{vmatrix}
     \end{equation*}
-    Si permutamos $n-1$ columnas en la primer submatriz corresponde al jacobiano de $\varphi_{n}$,
+    Si permutamos $n-1$ columnas en la primera submatriz corresponde al jacobiano de $\varphi_{n}$,
     adicionalmente, la segunda submatriz es exactamente igual al jacobiano de $\varphi_{n}$. 
     Entonces
     \begin{align*}
@@ -228,7 +228,7 @@
         \hspace{1mm}d\theta\right)\int_{(0,\infty)}g(r)r^{n-1}d\lambda(r)
     \end{align*}
     en la última igualdad utilizamos que las variables son independientes entre sí, además, para
-    ahorrar notación eliminamos los índices de las varaibles $\theta$. Definimos
+    ahorrar notación eliminamos los índices de las variables $\theta$. Definimos
     \begin{equation*}
         I(m)=\int_{0}^{\pi}sen^{m}(\theta)\hspace{1mm}d\theta
     \end{equation*}
@@ -242,7 +242,7 @@
     obtiene la recursión
     \begin{align*}
         \int_{0}^{\pi}sen^{2m+2}(\theta)\hspace{1mm}d\theta &= 
-        -\frac{cos(\theta)sen^{2m-1}(\theta)}{n}\Big|_{0}^{\pi}+\frac{2m+1}{2m+2}\int_{0}^{\pi}
+        -\frac{cos(\theta)sen^{2m-1}(\theta)}{2m+2}\Big|_{0}^{\pi}+\frac{2m+1}{2m+2}\int_{0}^{\pi}
         sen^{2m}(\theta)\hspace{1mm}d\theta=\frac{2m+1}{2m+2}\int_{0}^{\pi}sen^{2m}(\theta)
         \hspace{1mm}d\theta \\[2mm]
         &= \frac{2m+1}{2m+2}\cdot\pi\prod_{k=1}^{m}\frac{2k-1}{2k}
@@ -262,13 +262,13 @@
         =2\pi\prod_{i=2}^{2k-1}I(i-1)=2\pi\prod_{j=1}^{k-1}I(2j-1)I(2j)
         =2\pi\prod_{j=1}^{k-1}\frac{\pi}{j}=\frac{2\pi^{k}}{(k-1)!}
     \end{equation*}
-    Supongamos que $n-1$ es par, lo que implica que $n-1=2k$, así
+    Supongamos que $n-1$ es par y por tanto $n-1=2k$, así
     \begin{align*}
         2\pi\prod_{i=2}^{n-1}\left(\int_{0}^{\pi}sen^{i-1}(\theta)
         \hspace{1mm}d\theta\right) &= 2\pi\prod_{i=2}^{2k}I(i-1)=2\pi\cdot I(2k-1)
-        \prod_{i=2}^{2k-1}I(i-1)=2\pi\cdot\frac{\pi^{k-1}}{(k-1)!}
-        \cdot 2\prod_{j=1}^{k-1}\frac{2j}{2j+1} \\[2mm]
-        &= 4\pi^{k}\prod_{j=1}^{k-1}\frac{1}{j}\cdot\prod_{j=1}^{k-1}\frac{2j}{2j+1}
+        \prod_{i=2}^{2k-1}I(i-1)=\frac{2\pi^{k}}{(k-1)!}\cdot2\prod_{j=1}^{k-1}\frac{2j}{2j+1} 
+        \\[2mm]
+        &= 4\pi^{k}\cdot\prod_{j=1}^{k-1}\frac{2}{2j+1}
         =\frac{2^{k+1}\pi^{k}}{(2k-1)!!}
     \end{align*}
     Concluimos que
@@ -289,16 +289,16 @@ como $xy$ es positiva en $[0,1]^{2}$, por convergencia monótona y tonelli se si
     =\sum_{n\geq1}\int_{[0,1]}\int_{[0,1]}x^{n-1}y^{n-1}dxdy
     =\sum_{n\geq1}\left(\int_{[0,1]}x^{n-1}dx\right)\left(\int_{[0,1]}y^{n-1}dy\right)
 \end{equation*}
-la última igualdad se debe a la independencia entre las variables. Por continuidad, vemos que
+La última igualdad se debe a la independencia entre las variables. Por continuidad, vemos que
 \begin{equation*}
     I=\sum_{n\geq1}\left(\int_{0}^{1}x^{n-1}dx\right)\left(\int_{0}^{1}y^{n-1}dy\right)
     =\sum_{n\geq1}\frac{1}{n^{2}}
 \end{equation*}
-Por otro lado, consideramos el cambio de variable $x=u+v$ e $y=u-v$ con determinante jacobiano 
+Por otro lado, consideremos el cambio de variable $x=u+v$ e $y=u-v$ con determinante jacobiano 
 igual a $2$, luego la nueva región de integración $\rr$ esta determinado por
 \begin{equation*}
     \rr:=\left\{(u,v)\in\R^{2}:0\leq u\leq\frac{1}{2},-u\leq v\leq u\right\}\cup
-    \left\{(u,v)\in\R^{2}:\frac{1}{2}\leq u\leq1,1+u\leq v\leq 1-u\right\}
+    \left\{(u,v)\in\R^{2}:\frac{1}{2}\leq u\leq1,u-1\leq v\leq 1-u\right\}
 \end{equation*}
 Así,
 \begin{equation*}
@@ -310,8 +310,8 @@ Diremos que $\rr_{+}:=\rr\cap\{v\geq0\}$. Por simetría respecto a $v$, vemos qu
     I=4\int_{\rr_{+}}\frac{1}{1-u^{2}+v^{2}}(\lambda\otimes\lambda)(dxdy)
     =4\int_{[0,1]\times (R_{+})^{2}(u)}\frac{1}{1-u^{2}+v^{2}}(\lambda\otimes\lambda)(dxdy)
 \end{equation*}
-donde $(R_{+})^{2}(u)$ es la sección de $R_{+}$ respecto de $u$. Notemos que en la última igualdad 
-se utilizo que la función es continua y positiva. Así, por tonelli se sigue que
+donde $(R_{+})^{2}(u)$ es la sección de $R_{+}$ respecto de $u$. Como $1-u^{2}+v^{2}$ es continua 
+salvo un conjunto de medida nula y positiva, por tonelli se sigue que
 \begin{equation*}
     I=4\int_{[0,1]}\int_{(R_{+})^{2}(u)}\frac{1}{1-u^{2}+v^{2}}d\lambda(v)d\lambda(u)
     =4\int_{0}^{1}\int_{0}^{f(u)}\frac{1}{1-u^{2}+v^{2}}dvdu
@@ -373,14 +373,17 @@ si $n$ es par entonces $f_{\alpha,\beta}(x_{n})=0$, de lo contrario,
     f_{\alpha,\beta}(x_{n})=\frac{2^{\frac{\alpha}{\beta}}}{\pi^{\frac{\alpha}{\beta}}}\cdot
     \frac{1}{n^{\frac{\alpha}{\beta}}}
 \end{equation*}
-Consideramos la partición $\Pi_{n}=\{x_{i}\}_{i=0}^{n}$, sin perdida de generalidad, supongamos que 
-$n$ es impar, entoces $n=2k-1$, luego
-\begin{equation*}
-    V(f,\Pi_{n})=\sum_{i=1}^{n}\abs{f(x_{i})-f(x_{i-1})}\geq\sum_{j=1}^{k}\abs{f(x_{2j-1})}
+Consideramos la partición $\Pi_{n}=\{y_{i}\}_{i=0}^{n}$ donde $y_{0}=x_{0}$ e $y_{i}=x_{n+1-i}$, 
+sin perdida de generalidad, supongamos que $n$ es impar, entoces $n=2k-1$, luego
+\begin{align*}
+    V(f,\Pi_{n}) &= \sum_{i=1}^{n}\abs{f(y_{i})-f(y_{i-1})}\geq\sum_{j=1}^{k}\abs{f(x_{2j-1})}
     =\sum_{j=1}^{k}\frac{2^{\frac{\alpha}{\beta}}}{\pi^{\frac{\alpha}{\beta}}}\cdot
     \frac{1}{(2j-1)^{\frac{\alpha}{\beta}}}=\frac{2^{\frac{\alpha}{\beta}}}
-    {\pi^{\frac{\alpha}{\beta}}}\sum_{j=1}^{k}\frac{1}{(2j-1)^{\frac{\alpha}{\beta}}}
-\end{equation*}
+    {\pi^{\frac{\alpha}{\beta}}}\sum_{j=1}^{k}\frac{1}{(2j-1)^{\frac{\alpha}{\beta}}} \\
+    &\geq\frac{2^{\frac{\alpha}{\beta}}}
+    {\pi^{\frac{\alpha}{\beta}}}\sum_{j=1}^{k}\frac{1}{(2j)^{\frac{\alpha}{\beta}}}
+    =\frac{1}{\pi^{\frac{\alpha}{\beta}}}\sum_{j=1}^{k}\frac{1}{j^{\frac{\alpha}{\beta}}}
+\end{align*}
 como $\alpha\leq\beta$, la última suma diverge cuando $n\to\infty$ y por lo tanto 
 $f_{\alpha,\beta}$ no es de variación acotada.
 
@@ -399,7 +402,7 @@ $\varepsilon>0$ suficientemente pequeño. Luego, se tiene que
     \abs{f_{\alpha,\beta}'(x)}dx\leq\int_{0}^{1}\abs{f_{\alpha,\beta}'(x)}dx
 \end{equation*}
 donde la segunda integral es impropia, que esta bien definida ya que $f_{\alpha,\beta}'$ es 
-Riemann integrable en todo intervalo de la forma $[b,1]$, por continuidad. Veamos que
+Riemann integrable en todo intervalo de la forma $[b,1]$ con $b>0$, por continuidad. Veamos que
 \begin{equation*}
     \int_{0}^{1}\abs{f_{\alpha,\beta}'(x)}dx=\int_{0}^{1}\abs{\alpha x^{\alpha-1}sen(x^{-\beta})
     -\beta x^{\alpha-\beta-1}cos(x^{-\beta})}\hspace{1mm}dx\leq\alpha\int_{0}^{1}x^{\alpha-1}
@@ -426,27 +429,28 @@ Concluimos que $f_{\alpha,\beta}$ es de variación acotada.
     $\varepsilon$ es arbitrario, concluimos que $\lambda(g(E))=0$.
 \end{dem}
 
-\noindent Sea $I=(c,d)\subseteq[a,b]$ un intervalo, como $g$ es absolutamente continua, por TFC 
+\noindent Sea $I\subseteq[a,b]$ un intervalo con extremos $c<d$. Como $g$ es continua y creciente
+$g(I)=(g(c),g(d))$, además, por absoluta continuidad y TFC se sigue que
+, como $g$ es absolutamente continua, por TFC 
 se sigue que
 \begin{equation*}
     \lambda(g(I))=\lambda((g(c),g(d)))=g(d)-g(c)=\int_{(c,d)}g'd\lambda
 \end{equation*}
-además utilizamos el hecho de que $g$ es creciente y $g(I)$ un intervalo.
 Sea $(I_{n})_{n}$ intervalos disjuntos de a pares contenidos en $[a,b]$, entonces como $g$ es 
-estrictamente creciente, en particular es inyectiva, se sigue que $g(I_{n})$ son disjuntos de a 
-pares. Notemos que
+estrictamente creciente, en particular, es inyectiva lo que implica que $g(I_{n})$ son disjuntos 
+de a pares. Notemos que
 \begin{equation*}
     \lambda\left(g\left(\bigcup_{n\in\N}I_{n}\right)\right)
     =\lambda\left(\bigcup_{n\in\N}g(I_{n})\right)=\sum_{n\in\N}\lambda(g(I_{n}))
     =\sum_{n\in\N}\int_{I_{n}}g'd\lambda=\int\sum_{n\in\N}\I_{n}g'd\lambda
-    =\int_{\bigcup_{n\in\N}}g'd\lambda
+    =\int_{\bigcup_{n\in\N}I_{n}}g'd\lambda
 \end{equation*}
-en donde para intercambiar la suma con la integral usamos teorema de convergencia dominada. Como
+en donde para intercambiar la serie con la integral usamos teorema de convergencia dominada. Como
 todo abierto se puede escribir como unión numerable de intervalos abiertos disjuntos de a pares,
 lo anterior prueba el argumento para abiertos $U\subseteq[a,b]$.
 
 \vspace{2mm}
-\noindent Sea $G\in G_{\delta}$, existen $(U_{n})_{n}$ abiertos de $[a,b]$ tales que
+\noindent Sea $G\in G_{\delta}$, existen $(U_{n})_{n}$ abiertos tales que
 \begin{equation*}
     G=\bigcap_{n\in\N}U_{n}
 \end{equation*}
@@ -463,7 +467,7 @@ converge a $\I_{G}$.
 \vspace{2mm}
 \noindent Sea $E\subseteq[a,b]$ medible, existe $G\in G_{\delta}$ tal que 
 $\lambda(G\setminus E)=0$, por el lema tenemos que $\lambda(g(G\setminus E))=0$, como $g$ es 
-continua, inyectiva y $[a,b]$ es compacto se sigue que $\lambda(g(E))=\lambda(g(G))$, entonces
+continua, inyectiva y $[a,b]$ es compacto se tiene que $\lambda(g(E))=\lambda(g(G))$, entonces
 \begin{equation*}
     \lambda(g(E))=\lambda(g(G))=\int_{G}g'\hspace{1mm}d\lambda=\int_{E}g'\hspace{1mm}d\lambda
     +\int_{G\setminus E}g'\hspace{1mm}d\lambda=\int_{E}g'\hspace{1mm}d\lambda
