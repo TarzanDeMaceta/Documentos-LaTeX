@@ -358,8 +358,74 @@ Luego
 \end{equation*}
 
 \section*{Problema 4}
+\noindent Afirmamos que $f_{\alpha,\beta}$ es de variación acotada si y solo si $\alpha>\beta$. 
+En efecto, supongamos que $\alpha\leq\beta$, definimos la sucesión $(x_{n})_{n\in\N}$ dada por
+\begin{equation*}
+    x_{n}:=\frac{1}{(\frac{\pi}{2} n)^{\frac{1}{\beta}}}
+\end{equation*}
+con $x_{0}:=0$. Notemos que $x_{n}\leq1$ para todo $n\in\N$ y además
+\begin{equation*}
+    f_{\alpha,\beta}(x_{n})=\frac{2^{\frac{\alpha}{\beta}}}{\pi^{\frac{\alpha}{\beta}}}\cdot
+    \frac{1}{n^{\frac{\alpha}{\beta}}}sen\left(\frac{\pi}{2} n\right)
+\end{equation*}
+si $n$ es par entonces $f_{\alpha,\beta}(x_{n})=0$, de lo contrario,
+\begin{equation*}
+    f_{\alpha,\beta}(x_{n})=\frac{2^{\frac{\alpha}{\beta}}}{\pi^{\frac{\alpha}{\beta}}}\cdot
+    \frac{1}{n^{\frac{\alpha}{\beta}}}
+\end{equation*}
+Consideramos la partición $\Pi_{n}=\{x_{i}\}_{i=0}^{n}$, sin perdida de generalidad, supongamos que 
+$n$ es impar, entoces $n=2k-1$, luego
+\begin{equation*}
+    V(f,\Pi_{n})=\sum_{i=1}^{n}\abs{f(x_{i})-f(x_{i-1})}\geq\sum_{j=1}^{k}\abs{f(x_{2j-1})}
+    =\sum_{j=1}^{k}\frac{2^{\frac{\alpha}{\beta}}}{\pi^{\frac{\alpha}{\beta}}}\cdot
+    \frac{1}{(2j-1)^{\frac{\alpha}{\beta}}}=\frac{2^{\frac{\alpha}{\beta}}}
+    {\pi^{\frac{\alpha}{\beta}}}\sum_{j=1}^{k}\frac{1}{(2j-1)^{\frac{\alpha}{\beta}}}
+\end{equation*}
+como $\alpha\leq\beta$, la última suma diverge cuando $n\to\infty$ y por lo tanto 
+$f_{\alpha,\beta}$ no es de variación acotada.
+
+\vspace{2mm}
+\noindent Supongamos que $\alpha>\beta$. Definimos $f_{n}:=\I_{\{0\}\cup\left[\frac{1}{n},1\right]}
+f_{\alpha,\beta}$. Es claro que $f_{n}$ converge puntualmente a $f_{\alpha,\beta}$, así
+\begin{equation*}
+    V(f,[0,1])\leq\liminf\limits_{n\to\infty}V(f_{n},[0,1])
+\end{equation*}
+Dado $n\in\N$, notemos que $V(f_{n},[0,1])=V(f_{n},\left[0,\frac{1}{n}\right])
++V(f_{n},\left[\frac{1}{n},1\right])=V(f_{n},\left[\frac{1}{n},1\right])$. La función $f_{n}$ se 
+puede extender de modo que sea diferenciable en $(\frac{1}{n}-\varepsilon,1+\varepsilon)$ con 
+$\varepsilon>0$ suficientemente pequeño. Luego, se tiene que
+\begin{equation*}
+    V\left(f_{n},\left[\frac{1}{n},1\right]\right)\leq\int_{\frac{1}{n}}^{1}
+    \abs{f_{\alpha,\beta}'(x)}dx\leq\int_{0}^{1}\abs{f_{\alpha,\beta}'(x)}dx
+\end{equation*}
+donde la segunda integral es impropia, que esta bien definida ya que $f_{\alpha,\beta}'$ es 
+Riemann integrable en todo intervalo de la forma $[b,1]$, por continuidad. Veamos que
+\begin{equation*}
+    \int_{0}^{1}\abs{f_{\alpha,\beta}'(x)}dx=\int_{0}^{1}\abs{\alpha x^{\alpha-1}sen(x^{-\beta})
+    -\beta x^{\alpha-\beta-1}cos(x^{-\beta})}\hspace{1mm}dx\leq\alpha\int_{0}^{1}x^{\alpha-1}
+    \hspace{1mm}dx+\beta\int_{0}^{1}x^{\alpha-\beta-1}\hspace{1mm}dx
+\end{equation*}
+La integral que esta a la izquierda es convergente, ya que $\alpha>0$ y por ende $\alpha-1>-1$. Por 
+otro lado, como $\alpha>\beta$, se tiene que $\alpha-\beta-1>-1$ lo que implica que la integral de 
+la derecha es convergente. De este modo,
+\begin{equation*}
+    V(f,[0,1])\leq\liminf\limits_{n\to\infty}V(f_{n},[0,1])\leq
+    \int_{0}^{1}\abs{f_{\alpha,\beta}'(x)}dx<\infty
+\end{equation*}
+Concluimos que $f_{\alpha,\beta}$ es de variación acotada.
 
 \section*{Problema 5}
+\begin{lema}
+    Sea $g:[a,b]\to\R$ una función creciente y absolutamente continua. Sea $E\subseteq[a,b]$ un
+    conjunto de medida nula, entonces $\lambda(g(E))=0$.
+\end{lema}
+\begin{dem}
+    Sea $\varepsilon>0$, como $E$ es medible, existe $G\supseteq E$ abierto tal que 
+    $\lambda(G)<\delta$ para todo $\delta>0$, como $g$ es creciente y absolutamente continua, 
+    existe $\delta>0$ y $G$ abierto tal que $\lambda(g(E))\leq\lambda(g(G))<\varepsilon$. Dado que
+    $\varepsilon$ es arbitrario, concluimos que $\lambda(g(E))=0$.
+\end{dem}
+
 \noindent Sea $I=(c,d)\subseteq[a,b]$ un intervalo, como $g$ es absolutamente continua, por TFC 
 se sigue que
 \begin{equation*}
@@ -385,15 +451,23 @@ lo anterior prueba el argumento para abiertos $U\subseteq[a,b]$.
     G=\bigcap_{n\in\N}U_{n}
 \end{equation*}
 sin perdida de generalidad podemos suponer que estos abiertos estan encajonados. Como $[a,b]$ es
-compacto entonces $g([a,b])$ es compacto, así
+compacto entonces $g([a,b])$ es compacto y entonces $g(U_{1})<\infty$, así
 \begin{equation*}
     \lambda(g(G))=\lambda\left(g\left(\bigcap_{n\in\N}U_{n}\right)\right)
     =\lambda\left(\bigcap_{n\in\N}g(U_{n})\right)=\lim\limits_{n\to\infty}\lambda(g(U_{n}))
     =\lim\limits_{n\to\infty}\int_{U_{n}}g'd\lambda=\int_{G}g'd\lambda
 \end{equation*}
 donde la última igualdad se debe al teorema de convergencia dominada, notando que $\I_{U_{n}}$ 
-converge a $\I_{G}$. Sea $E\subseteq[a,b]$ medible, existe $G\in G_{\delta}$ tal que 
-$\lambda(G\setminus E)=0$ lo que implica que 
+converge a $\I_{G}$. 
+
+\vspace{2mm}
+\noindent Sea $E\subseteq[a,b]$ medible, existe $G\in G_{\delta}$ tal que 
+$\lambda(G\setminus E)=0$, por el lema tenemos que $\lambda(g(G\setminus E))=0$, como $g$ es 
+continua, inyectiva y $[a,b]$ es compacto se sigue que $\lambda(g(E))=\lambda(g(G))$, entonces
+\begin{equation*}
+    \lambda(g(E))=\lambda(g(G))=\int_{G}g'\hspace{1mm}d\lambda=\int_{E}g'\hspace{1mm}d\lambda
+    +\int_{G\setminus E}g'\hspace{1mm}d\lambda=\int_{E}g'\hspace{1mm}d\lambda
+\end{equation*}
 
 %($g(E)$ es medible para $E$ medible, g manda medida nula en medida nula)
 
