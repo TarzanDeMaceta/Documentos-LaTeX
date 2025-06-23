@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{14cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Profesor: Pedro Gaspar -- Estudiante: Benjamín Mateluna}
+\end{minipage}
+\vspace{1ex}
+
+{\centerline{\bf Geomtría Diferencial - MAT2860}
+\centerline{\bf Tarea I3}}
+\centerline{\bf 26 de junio de 2025}
+
+\section*{Problema 1}
+\begin{enumerate}
+    \item 
+    \item 
+\end{enumerate}
+
+\section*{Problema 2}
+\noindent El toro, puede ser parametrizado por $X:(0,2\pi)\times(0,2\pi)\to\R^{3}$ dada por
+\begin{equation*}
+    X(u,v)=((R+rcos(u))cos(v),(R+rcos(u))sen(v),rsen(u))
+\end{equation*}
+Si intersectamos con el plano $z=1$, entonces $rsen(u)=c$ y por lo tanto
+\begin{equation*}
+    rcos(u)=\pm\sqrt{r^{2}-c^{2}}:=c'
+\end{equation*}
+que esta bien definida pues $c\in[-r,r]$. Bajo esta restricción definimos
+\begin{equation*}
+    \eta:=R+rcos(u)=R+c'>0
+\end{equation*}
+Consideramos la curva $\alpha:(0,2\pi\eta)\to\R^{3}$ parametrizada por el arco dada por
+\begin{equation*}
+    \alpha(t)=\left(\eta cos\left(\frac{t}{\eta}\right),\eta sen\left(\frac{t}{\eta}\right),
+    c\right)
+\end{equation*}
+Buscamos calcular su curvatura geodésica, en primer lugar debemos calcular la aplicación de gauss
+de la superficie, para ello vemos lo siguiente
+\begin{align*}
+    X_{u}(u,v) &= (-rsen(u)cos(v),-rsen(u)sen(v),rcos(u)) \\
+    X_{v}(u,v) &= (-(R+rcos(u))sen(v),(R+rcos(u))cos(v),0)
+\end{align*}
+entonces
+\begin{equation*}
+    (X_{u}\times X_{v})(u,v)=(-(R+rcos(u))rcos(u)cos(v),-(R+rcos(u))rcos(u)sen(v),
+    -(R+rcos(u))rsen(v))
+\end{equation*}
+y además $\abs{(X_{u}\times X_{v})(u,v)}=(R+rcos(u))$. Usando que $u$ es tal que $rsen(u)=c$, se
+sigue que
+\begin{equation*}
+    N(\alpha(t))=-\frac{1}{r}\left(c'cos\left(\frac{t}{\eta}\right),
+    c'sen\left(\frac{t}{\eta}\right),c\right)
+\end{equation*}
+Por otro lado vemos que
+\begin{equation*}
+    \alpha'(t)=\left(-sen\left(\frac{t}{\eta}\right),cos\left(\frac{t}{\eta}\right),0\right)
+    \hspace{4mm}\text{y entonces}\hspace{4mm}
+    \alpha''(t)=-\frac{1}{\eta}\left(cos\left(\frac{t}{\eta}\right),
+    sen\left(\frac{t}{\eta}\right),0\right)
+\end{equation*}
+Nuestro objetivo ahora es determinar $\nabla_{\alpha'}\alpha'(t)$, para ello observemos que
+\begin{equation*}
+    \ip{\alpha''}{N\circ\alpha}(t)=\frac{c'}{r\eta}
+\end{equation*}
+de este modo
+\begin{align*}
+    \nabla_{\alpha'}\alpha'(t) &= \alpha''(t)-\ip{\alpha''}{N\circ\alpha}(t)N(\alpha(t)) \\[2mm]
+    &= -\frac{1}{\eta}\left(cos\left(\frac{t}{\eta}\right),
+    sen\left(\frac{t}{\eta}\right),0\right)+\frac{c'}{r^{2}\eta}
+    \left(c'cos\left(\frac{t}{\eta}\right),c'sen\left(\frac{t}{\eta}\right),c\right) \\[2mm]
+    &= \left(\frac{-c^{2}}{r^{2}\eta}cos\left(\frac{t}{\eta}\right),
+    \frac{-c^{2}}{r^{2}\eta}sen\left(\frac{t}{\eta}\right),\frac{cc'}{r^{2}\eta}\right)
+\end{align*}
+donde usamos que
+\begin{equation*}
+    \frac{c'^{2}}{r^{2}\eta}-\frac{1}{\eta}=\frac{r^{2}-c^{2}-r^{2}}{r^{2}\eta}
+    =\frac{-c^{2}}{r^{2}\eta}
+\end{equation*}
+adicionalmente se tiene que
+\begin{equation*}
+    N(\alpha(t))\times\alpha'(t)=-\frac{c'}{r}\left(-cos\left(\frac{t}{\eta}\right),
+    sen\left(\frac{t}{\eta}\right),1\right)
+\end{equation*}
+por último, se tiene que
+\begin{equation*}
+    K_{g}=[\nabla_{\alpha'}\alpha']=-\frac{c}{r^{2}\eta}\cdot\frac{-c'}{r}\left(-ccos^{2}
+    \left(\frac{t}{\eta}\right)+csen^{2}\left(\frac{t}{\eta}\right)-c'\right)
+    =-\frac{cc'}{r^{3}\eta}\left(ccos\left(\frac{2t}{\eta}\right)+c'\right)
+\end{equation*}
+
+\section*{Problema 3}
+
+\section*{Problema 4}
+\begin{enumerate}
+    \item Notemos que
+    \begin{align*}
+        \omega_{p}(v) &= \ip{v}{\frac{Jp}{\abs{p}^{2}}}=\frac{1}{\abs{p}^{2}}\ip{v}{
+            \begin{pmatrix}
+                -y \\
+                x
+            \end{pmatrix}
+            }=\frac{1}{\abs{p}^{2}}(-v_{1}y+v_{2}x) \\[2mm]
+        &= \frac{1}{\abs{p}^{2}}(-dx(v)y+dy(v)x)=\frac{-y}{x^{2}+y^{2}}dx(v)
+        +\frac{x}{x^{2}+y^{2}}dy(v)
+    \end{align*}
+    conlcuimos que
+    \begin{equation*}
+        \omega_{p}=\frac{-y}{x^{2}+y^{2}}dx+\frac{x}{x^{2}+y^{2}}dy
+    \end{equation*}
+    además, para $p\in\R^{3}\setminus\{0\}$ las funciones
+    \begin{equation*}
+        \omega_{1}:=\frac{-y}{x^{2}+y^{2}}\hspace{4mm}\text{y}
+        \hspace{4mm}\omega_{2}:=\frac{x}{x^{2}+y^{2}}
+    \end{equation*}
+    son diferenciables, y por lo tanto la 1-forma $\omega_{p}$ es diferenciable.
+    
+    \item Veamos la siguiente expresión
+    \begin{align*}
+        d\omega &= \left(\pdv{\omega_{1}}{x}dx+\pdv{\omega_{1}}{y}dy\right)\land dx
+        +\left(\pdv{\omega_{2}}{x}dx+\pdv{\omega_{2}}{y}dy\right)\land dy
+        =\left(\pdv{\omega_{2}}{x}dx-\pdv{\omega_{1}}{y}dy\right)dx\land dy \\[2mm]
+        &= \left(\frac{y^{2}-x^{2}}{(x^{2}+y^{2})^{2}}
+        -\frac{y^{2}-x^{2}}{(x^{2}+y^{2})^{2}}\right)dx\land dy=0
+    \end{align*}
+    
+    \item Para finalizar, tenemos que
+    \begin{align*}
+        \int_{0}^{1}\omega_{\gamma(t)}(\gamma'(t))\hspace{1mm}dt &= \int_{0}^{1}
+        -\frac{\gamma_{2}(t)}{\gamma_{1}^{2}(t)+\gamma_{2}^{2}(t)}\cdot\gamma_{1}'(t)
+        +\frac{\gamma_{1}(t)}{\gamma_{1}^{2}(t)+\gamma_{2}^{2}(t)}\cdot\gamma_{2}'(t)
+        =\int_{0}^{1}F(\gamma(t))\cdot\gamma'(t)\hspace{1mm}dt \\[2mm]
+        &= \int_{\gamma}F(x,y)\hspace{1mm}ds
+    \end{align*}
+    es decir, la integral corresponde a la integral de línea del campo vectorial 
+    $F(x,y)=(\omega_{1},\omega_{2})(x,y)$ sobre la curva $\gamma$.
+\end{enumerate}
+
+\section*{Problema 5}
+\begin{enumerate}
+    \item Se tiene lo siguiente
+    \begin{align*}
+        (\omega_{ij})_{p}(v) &= \ip{DE_{i}(p)v}{E_{j}(p)}
+        =\ip{\sum_{k=1}^{3}\pdv{E_{i}}{x_{k}}(p)v_{k}}{E_{j}(p)}
+        =\sum_{k=1}^{3}\ip{\pdv{E_{i}}{x_{k}}}{E_{j}(p)}v_{k} \\[2mm]
+        &= \sum_{k=1}^{3}\ip{\pdv{E_{i}}{x_{k}}}{E_{j}}(p)(dx_{k})_{p}(v)
+        =\left(\sum_{k=1}^{3}\ip{\pdv{E_{i}}{x_{k}}}{E_{j}}(p)(dx_{k})_{p}\right)(v)
+    \end{align*}
+    es decir,
+    \begin{equation*}
+        \omega_{ij}=\ip{\pdv{E_{i}}{x}}{E_{j}}dx+\ip{\pdv{E_{i}}{y}}{E_{j}}dy
+        +\ip{\pdv{E_{i}}{z}}{E_{j}}dz
+    \end{equation*}
+    
+    como las funciones $E_{i}$ y el producto interno son diferenciables, concluimos que 
+    $\omega_{ij}$ es una 1-forma diferenciable.
+
+    \item Se sigue que
+    \begin{align*}
+        (\omega_{i})_{p}(v)=\ip{v}{E_{i}(p)}=\sum_{k=1}^{3}(E_{i})_{k}(p)v_{k}
+        =\sum_{k=1}^{3}(E_{i})_{k}(p)(dx_{k})(v)
+    \end{align*}
+    entonces
+    \begin{equation*}
+        \omega_{i}=(E_{i})_{1}dx+(E_{i})_{2}dy+(E_{i})_{3}dz
+    \end{equation*}
+    
+    por la misma razón que antes, la 1-forma $\omega_{i}$ es diferenciable. Por otro lado ...
+
+    \item 
+\end{enumerate}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}
