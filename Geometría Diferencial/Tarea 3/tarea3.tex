@@ -23,8 +23,95 @@
 \centerline{\bf 26 de junio de 2025}
 
 \section*{Problema 1}
+Probaremos un resultado previo sobre transporte paralelo y curvas geodesicas en la esfera.
+\begin{lema}
+    Sea $\alpha:I\to\mathbb{S}^{2}$ una curva de la forma $\alpha(t)=usen(t)+vcos(t)$ donde $u,v$ 
+    son ortonormales, entonces $P_{\alpha,t_{0},t_{1}}(w)=w+\ip{w}{\alpha'(t_{0})}(\alpha'(t_{1})
+    -\alpha'(t_{0}))$.
+\end{lema}
+\begin{dem}
+    Empezamos observando que $\alpha$ es una curva geodésica. Notemos que 
+    $\ip{\alpha'(t)}{\alpha(t)}=0$ para todo $t\in I$ y además $\alpha''=-\alpha$. Sea 
+    $w\in T_{p}\mathbb{S}^{2}$ donde $p=\alpha(t_{0})$ y sea $Y:I\to\mathbb{S}^{2}$ el único campo 
+    paralelo a lo largo de $\alpha$ tal que $Y(t_{0})=w$, como $Y$ en particular es campo tangente 
+    se tiene que
+    \begin{equation*}
+        Y(t)\in T_{\alpha(t)}\mathbb{S}^{2}=(\alpha(t))^{\perp}
+    \end{equation*}
+    es decir, $\ip{Y(t)}{\alpha(t)}=0$ para todo $t\in I$, lo que implica que $\ip{Y}{\alpha'}
+    =-\ip{Y'}{\alpha}$. Notemos que
+    \begin{equation*}
+        0=\nabla_{\alpha'}Y=Y'-\ip{Y'}{\alpha}\alpha
+    \end{equation*}
+    tomando producto interno con $\alpha'$ vemos que
+    \begin{equation*}
+        \ip{Y'}{\alpha'}=\ip{Y'}{\alpha}\ip{\alpha}{\alpha'}=0
+    \end{equation*}
+    de este modo
+    \begin{equation*}
+        \dv{}{t}(\ip{Y}{\alpha'})=\ip{Y'}{\alpha'}+\ip{Y}{\alpha''}=-\ip{Y}{\alpha}=0
+    \end{equation*}
+    luego la función $\ip{Y}{\alpha'}$ es constante, evaluando en $t_{0}$ vemos que 
+    $\ip{Y'}{\alpha}=-\ip{Y}{\alpha'}\equiv-\ip{w}{\alpha'(t_{0})}$. Tenemos que
+    \begin{equation*}
+        Y'(t)=\ip{w}{\alpha'(t_{0})}\alpha''(t)
+    \end{equation*}
+    integrando a ambos lados vemos que
+    \begin{equation*}
+        Y(t)-Y(t_{0})=Y(t)-w=\ip{w}{\alpha'(t_{0})}(\alpha'(t)-\alpha'(t_{0}))
+    \end{equation*}
+    lo que concluye la demostración.
+\end{dem}
+
 \begin{enumerate}
-    \item 
+    \item Notemos que
+    \begin{equation*}
+        \gamma_{1}(s)=\begin{pmatrix}
+            0 \\ 0 \\ 1
+        \end{pmatrix}cos(s)+\begin{pmatrix}
+            1 \\ 0 \\ 0
+        \end{pmatrix}sen(s)\hspace{4mm}\text{y}\hspace{4mm}\gamma_{2}(s)=\begin{pmatrix}
+            0 \\ 0 \\ 1
+        \end{pmatrix}cos(s)+\begin{pmatrix}
+            cos(\theta) \\ sen(\theta) \\ 0
+        \end{pmatrix}sen(s)
+    \end{equation*}
+    además, los vectores que describen cada curva son ortonormales. Por otro lado se tiene que
+    \begin{equation*}
+        \gamma_{1}'(s)=(cos(s),0,sen(s))\hspace{4mm}\text{y}\hspace{4mm}\gamma_{2}'(s)
+        =(cos(\theta)cos(s),sen(\theta)cos(s),-sen(s))
+    \end{equation*}
+    Así, por el lema tenemos lo siguiente
+    \begin{align*}
+        P_{\gamma_{1},0,\pi}(w_{0}) &= w_{0}+\ip{w_{0}}{\gamma_{1}'(0)}
+        (\gamma_{1}'(\pi)-\gamma_{1}'(0)) \\[2mm]
+        &= w_{0}+\ip{w_{0}}{
+            \begin{pmatrix}
+                1 \\ 0 \\ 0
+            \end{pmatrix}
+        }\left(\begin{pmatrix}
+            -1 \\ 0 \\ 0
+        \end{pmatrix}-\begin{pmatrix}
+            1 \\ 0 \\ 0
+        \end{pmatrix}\right)=w_{0}+w_{01}\begin{pmatrix}
+            -2 \\ 0 \\ 0
+        \end{pmatrix}=w_{1}
+    \end{align*}
+    por otro lado
+    \begin{align*}
+        P_{\gamma_{2},0,\pi}(w_{0}) &= w_{0}+\ip{w_{0}}{\gamma_{2}'(0)}
+        (\gamma_{2}'(\pi)-\gamma_{2}'(0)) \\[2mm]
+        &= w_{0}+\ip{w_{0}}{
+            \begin{pmatrix}
+                cos(\theta) \\ sen(\theta) \\ 0
+            \end{pmatrix}
+        }\left(\begin{pmatrix}
+            -cos(\theta) \\ -sen(\theta) \\ 0
+        \end{pmatrix}-\begin{pmatrix}
+            cos(\theta) \\ sen(\theta) \\ 0
+        \end{pmatrix}\right)=w_{2}
+    \end{align*}
+
     \item 
 \end{enumerate}
 
@@ -57,7 +144,7 @@ entonces
     (X_{u}\times X_{v})(u,v)=(-(R+rcos(u))rcos(u)cos(v),-(R+rcos(u))rcos(u)sen(v),
     -(R+rcos(u))rsen(v))
 \end{equation*}
-y además $\abs{(X_{u}\times X_{v})(u,v)}=(R+rcos(u))$. Usando que $u$ es tal que $rsen(u)=c$, se
+y además $\abs{(X_{u}\times X_{v})(u,v)}=(R+rcos(u))r$. Usando que $u$ es tal que $rsen(u)=c$, se
 sigue que
 \begin{equation*}
     N(\alpha(t))=-\frac{1}{r}\left(c'cos\left(\frac{t}{\eta}\right),
@@ -90,14 +177,15 @@ donde usamos que
 \end{equation*}
 adicionalmente se tiene que
 \begin{equation*}
-    N(\alpha(t))\times\alpha'(t)=-\frac{c'}{r}\left(-cos\left(\frac{t}{\eta}\right),
-    sen\left(\frac{t}{\eta}\right),1\right)
+    N(\alpha(t))\times\alpha'(t)=-\frac{1}{r}\left(-ccos\left(\frac{t}{\eta}\right),
+    csen\left(\frac{t}{\eta}\right),c\right)
 \end{equation*}
 por último, se tiene que
 \begin{equation*}
-    K_{g}=[\nabla_{\alpha'}\alpha']=-\frac{c}{r^{2}\eta}\cdot\frac{-c'}{r}\left(-ccos^{2}
-    \left(\frac{t}{\eta}\right)+csen^{2}\left(\frac{t}{\eta}\right)-c'\right)
-    =-\frac{cc'}{r^{3}\eta}\left(ccos\left(\frac{2t}{\eta}\right)+c'\right)
+    K_{g}=[\nabla_{\alpha'}\alpha']=-\frac{1}{r}\cdot\frac{-c}{r^{2}\eta}
+    \left(-c^{2}cos^{2}\left(\frac{t}{\eta}\right)+c^{2}sen^{2}\left(\frac{t}{\eta}\right)-c'^{2}
+    \right)
+    =-\frac{c}{r^{3}\eta}\left(c^{2}cos\left(\frac{2t}{\eta}\right)+c'^{2}\right)
 \end{equation*}
 
 \section*{Problema 3}

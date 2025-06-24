@@ -89,8 +89,66 @@
     un intervalo abierto $I\subseteq[a,b]$ tal que $f(x)\neq-u''(x)+u(x)$ para todo $x\in I$. Esto
     contradice que la igualdad sea en casi todas partes.
 
-    \item 
-    \item 
+    \item Sea $u\in H$, entonces existe $(u_{n})_{n\in\N}\subseteq \cc_{0}^{\infty}[a,b]$ tal que
+    $u_{n}\to u$ con la norma $\norm{\cdot}_{H}$. En particular, la sucesión $u_{n}$ es de cauchy,
+    además, se tiene que
+    \begin{equation*}
+        \norm{u_{n}}_{H}^{2}=\int\abs{u_{n}}^{2}+\abs{u_{n}'}^{2}d\lambda
+        \geq\int\abs{u_{n}'}^{2}d\lambda=\norm{u_{n}'}_{L^{2}}^{2}
+    \end{equation*}
+    entonces, la sucesión $v_{n}:=u_{n}'\in\cc_{0}^{\infty}[a,b]$ es de cauchy según la norma en 
+    $L^{2}$. Como este espacio es un espacio métrico completo, existe $v\in L_{0}^{2}$ tal que
+    \begin{equation*}
+        \lim\limits_{n\to\infty}\int\abs{v'_{n}-v}^{2}d\lambda=0
+    \end{equation*}
+    Afirmamos que $v$ es la función buscada. Sea $w\in\cc_{0}^{\infty}[a,b]$, entonces
+    \begin{equation*}
+        \int v_{n}w\hspace{1mm}d\lambda=\int u_{n}'w\hspace{1mm}d\lambda=u_{n}w\Big|_{a}^{b}
+        -\int u_{n}w'\hspace{1mm}d\lambda=-\int u_{n}w'\hspace{1mm}d\lambda
+    \end{equation*}
+    Basta demostrar que $v_{n}w$ y $u_{n}w'$ convergen a $vw$ y $uw'$ en $L^{1}$ respectivamente.
+    En efecto, por hölder tenemos que
+    \begin{equation*}
+        \int\abs{v_{n}w-vw}\hspace{1mm}d\lambda=\int\abs{v_{n}-v}\abs{w}\hspace{1mm}d\lambda
+        \leq\norm{v_{n}-v}_{2}\norm{w}_{2}
+    \end{equation*}
+    y por otro lado
+    \begin{equation*}
+        \int\abs{u_{n}w'-uw'}\hspace{1mm}d\lambda=\int\abs{u_{n}-u}\abs{w'}\hspace{1mm}d\lambda
+        \leq\norm{u_{n}-u}_{2}\norm{w'}_{2}\leq\norm{u_{n}-u}_{H}\norm{w'}_{2}
+    \end{equation*}
+    como $w\in\cc_{0}^{\infty}[a,b]$ vemos que $\norm{w}_{2},\norm{w'}_{2}<\infty$ y usando la 
+    convergencia en $H$ y $L^{2}$ se tiene le resultado. Resta ver que $v$ es única. Supongamos, 
+    por contradicción, que existe $\widehat{v}\in\cc_{0}^{\infty}[a,b]$ tal que
+    \begin{equation*}
+        \int \widehat{v}w\hspace{1mm}d\lambda=-\int uw'\hspace{1mm}d\lambda
+    \end{equation*}
+    para toda $w\in\cc_{0}^{\infty}[a,b]$. Entonces para toda $w\in\cc_{0}^{\infty}[a,b]$, se 
+    tiene que
+    \begin{equation*}
+        \int vw\hspace{1mm}d\lambda=\int\widehat{v}w\hspace{1mm}d\lambda
+        \hspace{4mm}\text{lo que implica que}\hspace{4mm}
+        \int(v-\widehat{v})w\hspace{1mm}d\lambda=0
+    \end{equation*}
+    por el mismo argumento que antes, para todo $c<d$ con $c,d\in(a,b)$ se tiene que
+    \begin{equation*}
+        \int_{[c,d]}v-\widehat{v}\hspace{1mm}d\lambda=0
+    \end{equation*}
+    concluimos que $v=\widehat{v}$ $\lambda-ctp$, lo que prueba la unicidad en $L^{2}$.
+    
+    \item Sean $u,w\in H$, existe $(w_{n})_{n\in\N}\in\cc_{0}^{\infty}$ tal que $w_{n}\to w$ según 
+    la norma $\norm{\cdot}_{H}$. Por la parte anterior, tenemos que
+    \begin{equation*}
+        \int u'w_{n}\hspace{1mm}d\lambda=-\int uw_{n}'\hspace{1mm}d\lambda
+    \end{equation*}
+    Por el mismo argumento que antes, sabemos que $\norm{u'w_{n}-u'w}_{1}\leq\norm{w_{n}-w}_{H}
+    \norm{u'}_{2}$ y además $\norm{uw_{n}'-uw'}_{1}\leq\norm{u}_{2}\norm{w_{n}'-w'}_{2}$ y por lo 
+    tanto
+    \begin{equation*}
+        \int u'w\hspace{1mm}d\lambda=\lim\limits_{n\to\infty}\int u'w_{n}\hspace{1mm}d\lambda
+        =\lim\limits_{n\to\infty}-\int uw_{n}'\hspace{1mm}d\lambda=\int uw'\hspace{1mm}d\lambda
+    \end{equation*}
+    
     \item 
 \end{enumerate}
 
