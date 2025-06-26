@@ -81,9 +81,10 @@ Probaremos un resultado previo sobre transporte paralelo y curvas geodesicas en 
         \gamma_{1}'(s)=(cos(s),0,sen(s))\hspace{4mm}\text{y}\hspace{4mm}\gamma_{2}'(s)
         =(cos(\theta)cos(s),sen(\theta)cos(s),-sen(s))
     \end{equation*}
-    Así, por el lema tenemos lo siguiente
+    Dado $w_{0}\in T_{\gamma_{1}(0)}\mathbb{S}^{2}=T_{\gamma_{2}(0)}\mathbb{S}^{2}$ entonces 
+    $w_{0}=(x_{0},y_{0},0)$, así, por el lema tenemos lo siguiente
     \begin{align*}
-        P_{\gamma_{1},0,\pi}(w_{0}) &= w_{0}+\ip{w_{0}}{\gamma_{1}'(0)}
+        w_{1}=P_{\gamma_{1},0,\pi}(w_{0}) &= w_{0}+\ip{w_{0}}{\gamma_{1}'(0)}
         (\gamma_{1}'(\pi)-\gamma_{1}'(0)) \\[2mm]
         &= w_{0}+\ip{w_{0}}{
             \begin{pmatrix}
@@ -93,13 +94,15 @@ Probaremos un resultado previo sobre transporte paralelo y curvas geodesicas en 
             -1 \\ 0 \\ 0
         \end{pmatrix}-\begin{pmatrix}
             1 \\ 0 \\ 0
-        \end{pmatrix}\right)=w_{0}+w_{01}\begin{pmatrix}
+        \end{pmatrix}\right)=w_{0}+x_{0}\begin{pmatrix}
             -2 \\ 0 \\ 0
-        \end{pmatrix}=w_{1}
+        \end{pmatrix}=\begin{pmatrix}
+            -x_{0} \\ y_{0} \\ 0
+        \end{pmatrix}
     \end{align*}
     por otro lado
     \begin{align*}
-        P_{\gamma_{2},0,\pi}(w_{0}) &= w_{0}+\ip{w_{0}}{\gamma_{2}'(0)}
+        w_{2}=P_{\gamma_{2},0,\pi}(w_{0}) &= w_{0}+\ip{w_{0}}{\gamma_{2}'(0)}
         (\gamma_{2}'(\pi)-\gamma_{2}'(0)) \\[2mm]
         &= w_{0}+\ip{w_{0}}{
             \begin{pmatrix}
@@ -109,7 +112,11 @@ Probaremos un resultado previo sobre transporte paralelo y curvas geodesicas en 
             -cos(\theta) \\ -sen(\theta) \\ 0
         \end{pmatrix}-\begin{pmatrix}
             cos(\theta) \\ sen(\theta) \\ 0
-        \end{pmatrix}\right)=w_{2}
+        \end{pmatrix}\right)\\
+        &= \begin{pmatrix}
+            x_{0}-2x_{0}cos^{2}(\theta)+y_{0}cos(\theta)sen(\theta) \\
+            0
+        \end{pmatrix}
     \end{align*}
 
     \item 
@@ -120,73 +127,72 @@ Probaremos un resultado previo sobre transporte paralelo y curvas geodesicas en 
 \begin{equation*}
     X(u,v)=((R+rcos(u))cos(v),(R+rcos(u))sen(v),rsen(u))
 \end{equation*}
-Si intersectamos con el plano $z=1$, entonces $rsen(u)=c$ y por lo tanto
-\begin{equation*}
-    rcos(u)=\pm\sqrt{r^{2}-c^{2}}:=c'
-\end{equation*}
-que esta bien definida pues $c\in[-r,r]$. Bajo esta restricción definimos
-\begin{equation*}
-    \eta:=R+rcos(u)=R+c'>0
-\end{equation*}
-Consideramos la curva $\alpha:(0,2\pi\eta)\to\R^{3}$ parametrizada por el arco dada por
-\begin{equation*}
-    \alpha(t)=\left(\eta cos\left(\frac{t}{\eta}\right),\eta sen\left(\frac{t}{\eta}\right),
-    c\right)
-\end{equation*}
-Buscamos calcular su curvatura geodésica, en primer lugar debemos calcular la aplicación de gauss
-de la superficie, para ello vemos lo siguiente
+con derivadas parciales
 \begin{align*}
     X_{u}(u,v) &= (-rsen(u)cos(v),-rsen(u)sen(v),rcos(u)) \\
     X_{v}(u,v) &= (-(R+rcos(u))sen(v),(R+rcos(u))cos(v),0)
 \end{align*}
-entonces
+entonces el campo normal definido por la parametrización es
 \begin{equation*}
     (X_{u}\times X_{v})(u,v)=(-(R+rcos(u))rcos(u)cos(v),-(R+rcos(u))rcos(u)sen(v),
     -(R+rcos(u))rsen(v))
 \end{equation*}
-y además $\abs{(X_{u}\times X_{v})(u,v)}=(R+rcos(u))r$. Usando que $u$ es tal que $rsen(u)=c$, se
-sigue que
+y además $\abs{X_{u}\times X_{v}}=r(R+rcos(u))$. Sea $u_{0}\in[0,2\pi]$ tal que $rsen(u_{0})=c$, 
+que existe pues $c\in[-r,r]$. Consideramos $\eta:=(R+rcos(u_{0}))$, definimos la curva p.p.a 
+$\alpha:(0,2\pi\eta)\to\R^{3}$ dada por
 \begin{equation*}
-    N(\alpha(t))=-\frac{1}{r}\left(c'cos\left(\frac{t}{\eta}\right),
-    c'sen\left(\frac{t}{\eta}\right),c\right)
+    \alpha(t):=X\left(u_{0},\frac{t}{\eta}\right)=\left(\eta cos\left(\frac{t}{\eta}\right),
+    \eta sen\left(\frac{t}{\eta}\right),rsen(u_{0})\right)
+\end{equation*}
+entonces, suponiendo que la parametrización es positiva
+\begin{equation*}
+    (N\circ\alpha)(t)=(N^{x}\circ X^{-1}\circ\alpha)(t)=N^{x}\left(u_{0},\frac{t}{\eta}\right)
+    =\left(cos(u_{0})cos\left(\frac{t}{\eta}\right),cos(u_{0})sen\left(\frac{t}{\eta}\right),
+    sen(u_{0})\right)
 \end{equation*}
 Por otro lado vemos que
 \begin{equation*}
-    \alpha'(t)=\left(-sen\left(\frac{t}{\eta}\right),cos\left(\frac{t}{\eta}\right),0\right)
+    \alpha'=\left(-sen\left(\frac{t}{\eta}\right),cos\left(\frac{t}{\eta}\right),0\right)
     \hspace{4mm}\text{y entonces}\hspace{4mm}
     \alpha''(t)=-\frac{1}{\eta}\left(cos\left(\frac{t}{\eta}\right),
     sen\left(\frac{t}{\eta}\right),0\right)
 \end{equation*}
 Nuestro objetivo ahora es determinar $\nabla_{\alpha'}\alpha'(t)$, para ello observemos que
 \begin{equation*}
-    \ip{\alpha''}{N\circ\alpha}(t)=\frac{c'}{r\eta}
+    \ip{\alpha''}{N\circ\alpha}=\frac{1}{\eta}\begin{pmatrix}
+        cos(t/\eta) \\ sen(t/\eta) \\ 0
+    \end{pmatrix}\cdot\begin{pmatrix}
+        cos(u_{0})cos(t/\eta) \\ cos(u_{0})sen(t/\eta) \\ sen(u_{0})
+    \end{pmatrix}=\frac{cos(u_{0})}{\eta}
 \end{equation*}
 de este modo
 \begin{align*}
-    \nabla_{\alpha'}\alpha'(t) &= \alpha''(t)-\ip{\alpha''}{N\circ\alpha}(t)N(\alpha(t)) \\[2mm]
-    &= -\frac{1}{\eta}\left(cos\left(\frac{t}{\eta}\right),
-    sen\left(\frac{t}{\eta}\right),0\right)+\frac{c'}{r^{2}\eta}
-    \left(c'cos\left(\frac{t}{\eta}\right),c'sen\left(\frac{t}{\eta}\right),c\right) \\[2mm]
-    &= \left(\frac{-c^{2}}{r^{2}\eta}cos\left(\frac{t}{\eta}\right),
-    \frac{-c^{2}}{r^{2}\eta}sen\left(\frac{t}{\eta}\right),\frac{cc'}{r^{2}\eta}\right)
+    \nabla_{\alpha'}\alpha' &= \alpha''-\ip{\alpha''}{N\circ\alpha}N\circ\alpha
+    =-\frac{1}{\eta}\begin{pmatrix}
+        cos(t/\eta) \\ sen(t/\eta) \\ 0
+    \end{pmatrix}+\frac{cos(u_{0})}{\eta}\begin{pmatrix}
+        cos(u_{0})cos(t/\eta) \\ cos(u_{0})sen(t/\eta) \\ sen(u_{0})
+    \end{pmatrix} \\[2mm]
+    &= \frac{1}{\eta}\begin{pmatrix}
+        cos(t/\eta)(cos^{2}(u_{0})-1) \\ sen(t/\eta)(cos^{2}(u_{0})-1) \\ cos(u_{0})sen(u_{0})
+    \end{pmatrix}
 \end{align*}
-donde usamos que
-\begin{equation*}
-    \frac{c'^{2}}{r^{2}\eta}-\frac{1}{\eta}=\frac{r^{2}-c^{2}-r^{2}}{r^{2}\eta}
-    =\frac{-c^{2}}{r^{2}\eta}
-\end{equation*}
 adicionalmente se tiene que
 \begin{equation*}
-    N(\alpha(t))\times\alpha'(t)=-\frac{1}{r}\left(-ccos\left(\frac{t}{\eta}\right),
-    csen\left(\frac{t}{\eta}\right),c\right)
+    N\circ\alpha\times\alpha'=\begin{pmatrix}
+        cos(t/\eta)sen(u_{0}) \\ sen(t/\eta)sen(u_{0}) \\ -cos(u_{0})
+    \end{pmatrix}
 \end{equation*}
 por último, se tiene que
-\begin{equation*}
-    K_{g}=[\nabla_{\alpha'}\alpha']=-\frac{1}{r}\cdot\frac{-c}{r^{2}\eta}
-    \left(-c^{2}cos^{2}\left(\frac{t}{\eta}\right)+c^{2}sen^{2}\left(\frac{t}{\eta}\right)-c'^{2}
-    \right)
-    =-\frac{c}{r^{3}\eta}\left(c^{2}cos\left(\frac{2t}{\eta}\right)+c'^{2}\right)
-\end{equation*}
+\begin{align*}
+    K_{g} &= [\nabla_{\alpha'}\alpha']=\frac{1}{\eta}\begin{pmatrix}
+        cos(t/\eta)(cos^{2}(u_{0})-1) \\ sen(t/\eta)(cos^{2}(u_{0})-1) \\ cos(u_{0})sen(u_{0})
+    \end{pmatrix}\cdot\begin{pmatrix}
+        cos(t/\eta)sen(u_{0}) \\ sen(t/\eta)sen(u_{0}) \\ -cos(u_{0})
+    \end{pmatrix} \\[2mm]
+    &= \frac{1}{\eta}\left((cos^{2}(u_{0})-1)sen(u_{0})-cos^{2}(u_{0})sen(u_{0})\right)
+    =\frac{-sen(u_{0})}{R+rcos(u_{0})}
+\end{align*}
 
 \section*{Problema 3}
 
@@ -237,36 +243,92 @@ por último, se tiene que
 
 \section*{Problema 5}
 \begin{enumerate}
-    \item Se tiene lo siguiente
+    \item Veamos que $\omega_{ij}$ es una 1-forma, sea $p\in W$, sean $u,v\in\R^{3}$ y 
+    $\alpha\in\R$, entonces
     \begin{align*}
-        (\omega_{ij})_{p}(v) &= \ip{DE_{i}(p)v}{E_{j}(p)}
-        =\ip{\sum_{k=1}^{3}\pdv{E_{i}}{x_{k}}(p)v_{k}}{E_{j}(p)}
-        =\sum_{k=1}^{3}\ip{\pdv{E_{i}}{x_{k}}}{E_{j}(p)}v_{k} \\[2mm]
-        &= \sum_{k=1}^{3}\ip{\pdv{E_{i}}{x_{k}}}{E_{j}}(p)(dx_{k})_{p}(v)
-        =\left(\sum_{k=1}^{3}\ip{\pdv{E_{i}}{x_{k}}}{E_{j}}(p)(dx_{k})_{p}\right)(v)
+        (\omega_{ij})_{p}(u+\alpha v) &= \ip{DE_{i}(p)(u+\alpha v)}{E_{j}(p)}
+        =\ip{DE_{i}(p)u+\alpha DE_{i}(p)v}{E_{j}(p)} \\[2mm]
+        &= \ip{DE_{i}(p)u}{E_{j}(p)}+\alpha\ip{DE_{i}(p)v}{E_{j}(p)}
+        =(\omega_{ij})_{p}(v)+\alpha(\omega_{ij})_{p}(v)
+    \end{align*}
+    Por otro lado, notemos que
+    \begin{align*}
+        (\omega_{ij})_{p}(v) &= \ip{DE_{i}(p)v}{E_{j}(p)}=\ip{\sum_{i=1}^{3}\pdv{E_{i}}
+        {x_{k}}(p)v_{k}}{E_{j}(p)}=\sum_{i=1}^{3}\ip{\pdv{E_{i}}{x_{k}}}{E_{j}(p)}v_{k} \\[2mm]
+        &= \sum_{i=1}^{3}\ip{\pdv{E_{i}}{x_{k}}}{E_{j}}(p)(dx_{k})_{p}(v)
     \end{align*}
     es decir,
     \begin{equation*}
         \omega_{ij}=\ip{\pdv{E_{i}}{x}}{E_{j}}dx+\ip{\pdv{E_{i}}{y}}{E_{j}}dy
         +\ip{\pdv{E_{i}}{z}}{E_{j}}dz
     \end{equation*}
-    
     como las funciones $E_{i}$ y el producto interno son diferenciables, concluimos que 
-    $\omega_{ij}$ es una 1-forma diferenciable.
-
-    \item Se sigue que
+    $\omega_{ij}$ es una 1-forma diferenciable. Queda chequear que $\omega_{ij}=-\omega_{ji}$, en
+    efecto, sea $p\in W$ y $v\in\R^{3}$, entonces
+    \begin{equation*}
+        0=D\ip{E_{i}}{E_{j}}(p)v=\ip{DE_{i}(p)v}{E_{j}(p)}+\ip{E_{i}}{DE_{j}(p)v}
+        =\omega_{ij}+\omega_{ji}
+    \end{equation*}
+    lo que prueba lo pedido.
+    
+    \item Sea $\{e_{j}\}_{j=1}^{3}$ la base canónica de $\R^{3}$. En primer lugar, tenemos que
+    \begin{equation*}
+        E_{i}=\sum_{j=1}^{3}\beta_{ij}e_{j}
+        \hspace{4mm}\text{donde }\beta_{ij}(p)=e_{j}^{*}(E_{i}(p))
+    \end{equation*}
+    además, se tiene que $D\beta_{ij}=d\beta_{ij}$, en efecto, dado $p\in W$ y $v\in\R^{3}$
+    \begin{equation*}
+        (d\beta_{ij})_{p}(v)=\pdv{\beta_{ij}}{x}(p)v_{1}+\pdv{\beta_{ij}}{y}(p)v_{2}
+        +\pdv{\beta_{ij}}{z}(p)v_{3}=D\beta_{ij}(p)v
+    \end{equation*}
+    lo que implica que
+    \begin{equation*}
+        DE_{i}=D\left(\sum_{j=1}^{3}\beta_{ij}e_{j}\right)=\sum_{j=1}^{3}D\beta_{ij}e_{j}
+        =\sum_{j=1}^{3}d\beta_{ij}e_{j}
+    \end{equation*}
+    Por otro lado, como $(E_{j}(p))_{j=1}^{3}$ es base ortonormal de $\R^{3}$, dado $p\in W$ y 
+    $v\in\R^{3}$ se obtiene que
+    \begin{equation*}
+        DE_{i}(p)v=\sum_{k=1}^{3}\ip{DE_{i}(p)v}{E_{k}(p)}E_{k}(p)
+        =\sum_{k=1}^{3}(\omega_{ik})_{p}(v)E_{k}(p)
+        \hspace{4mm}\text{es decir, }DE_{i}=\sum_{k=1}^{3}\omega_{ik}E_{k}
+    \end{equation*}
+    de este modo,
+    \begin{equation*}
+        DE_{i}=\sum_{k=1}^{3}\omega_{ik}E_{k}
+        =\sum_{k=1}^{3}\omega_{ik}\left(\sum_{j=1}^{3}\beta_{kj}e_{j}\right)
+        =\sum_{j=1}^{3}\left(\sum_{k=1}^{3}\omega_{ik}\beta_{kj}\right)e_{j}
+    \end{equation*}
+    comparando las dos expresiones para $DE_{i}$ y usando que $\{e_{j}\}_{j=1}^{3}$ es base, 
+    concluimos que
+    \begin{equation*}
+        d\beta_{ij}=\sum_{k=1}^{3}\omega_{ik}\beta_{kj}
+    \end{equation*}
+    Además, por la expresión para $E_{i}$, vemos que
+    \begin{equation*}
+        \omega_{i}=\sum_{j=1}^{3}\beta_{ij}dx_{j}
+    \end{equation*}
+    derivando se sigue que
     \begin{align*}
-        (\omega_{i})_{p}(v)=\ip{v}{E_{i}(p)}=\sum_{k=1}^{3}(E_{i})_{k}(p)v_{k}
-        =\sum_{k=1}^{3}(E_{i})_{k}(p)(dx_{k})(v)
+        d\omega_{i} &= d\left(\sum_{j=1}^{3}\beta_{ij}dx_{j}\right)
+        =\sum_{j=1}^{3}d\beta_{ij}\land dx_{j}+\beta_{ij}d(dx_{j})
+        =\sum_{j=1}^{3}d\beta_{ij}\land dx_{j} \\[2mm]
+        &= \sum_{j=1}^{3}\left(\sum_{k=1}^{3}\omega_{ik}\beta_{kj}\right)\land dx_{j}
+        =\sum_{k=1}^{3}\omega_{ik}\land\left(\sum_{j=1}^{3}\beta_{kj}dx_{j}\right)
+        =\sum_{k=1}^{3}\omega_{ik}\land\omega_{k}=\sum_{k=1}^{3}\omega_{k}\land\omega_{ki}
     \end{align*}
+
+    \item Notemos lo siguiente
+    \begin{equation*}
+        0=d(d\beta_{ij})=\sum_{k=1}^{3}d(\omega_{ik}\beta_{kj})
+        =\sum_{k=1}^{3}d\beta_{kj}\land\omega_{ik}+\sum_{k=1}^{3}d\omega_{ik}\beta_{kj}
+    \end{equation*}
     entonces
     \begin{equation*}
-        \omega_{i}=(E_{i})_{1}dx+(E_{i})_{2}dy+(E_{i})_{3}dz
+        \sum_{k=1}^{3}d\omega_{ik}\beta_{kj}=\sum_{k=1}^{3}\omega_{ik}\land d\beta_{kj}
+        =\sum_{k=1}^{3}\omega_{ik}\land\sum_{s=1}^{3}\omega_{ks}\beta_{sj}
     \end{equation*}
-    
-    por la misma razón que antes, la 1-forma $\omega_{i}$ es diferenciable. Por otro lado ...
-
-    \item 
+    (entender mejor idea de las matrices)
 \end{enumerate}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia

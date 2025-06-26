@@ -49,7 +49,7 @@
         \hspace{4mm}\text{con }I\subseteq\{1,\cdots,n\}
     \end{equation*}
     Por otro lado, como $\#\Sigma=2^{n}$, la unión numerable de elementos en $\Sigma$ sigue 
-    estando en $\Sigma$ pues en realidad es finita. 
+    estando en $\Sigma$ pues en realidad es una unión finita de los conjuntos $E_{i}$. 
     
     Sabemos que suma de medibles y poderación de medibles es medible y por lo tanto $M$ es un
     subespacio vectorial de $H$. Queda probar que es cerrado. Vamos a probar que dada $f\in M$ se 
@@ -62,14 +62,13 @@
     \begin{equation*}
         f^{-1}(\{a\})=\bigcup_{i\in I}E_{i}\hspace{4mm}\text{con }I\subseteq\{1,\cdots,n\}
     \end{equation*}
-    Sea $b\neq a$, entonces
+    Sea $b\neq a$, entonces si $b\in f(\Omega)$
     \begin{equation*}
         f^{-1}(\{b\})=\bigcup_{j\in J}E_{j}\hspace{4mm}\text{con }J\subseteq\{1,\cdots,n\}
     \end{equation*}
-    Entonces $I\cap J=\emptyset$, de lo contrario, $\emptyset=f^{-1}(\{a\}\cap\{b\})
-    =f^{-1}(\{b\})\cap f^{-1}(\{a\})\neq\emptyset$, lo cual es una contradicción. Así, $f$ asume
-    finitos valores puesto que la colección $(E_{i})_{i=1}^{n}$ es finita, lo que prueba la 
-    afirmación.
+    Como $f^{-1}(\{b\})\cap f^{-1}(\{a\})=f^{-1}(\{a\}\cap\{b\})=\emptyset$, concluimos que 
+    $I\cap J=\emptyset$, así, $f$ asume finitos valores, puesto que la colección 
+    $(E_{i})_{i=1}^{n}$ es finita, lo que prueba la afirmación.
 
     Sean $f,g\in M$, observemos que
     \begin{equation*}
@@ -85,7 +84,7 @@
         =\sum_{i=1}^{n}\abs{f_{i}-g_{i}}^{2}\mu(E_{i})
     \end{equation*}
 
-    Sea $(f_{m})_{n\in\N}\subseteq M$ tal que $f_{m}\to f\in L^{2}$. En particular, la sucesión 
+    Sea $(f_{m})_{m\in\N}\subseteq M$ tal que $f_{m}\to f\in L^{2}$. En particular, la sucesión 
     $f_{m}$ es de cauchy, entonces por lo anterior mencionado, la sucesión $(a_{m})_{m\in\N}
     \subseteq\C^{n}$ donde $a_{m}:=(a_{m,1},\cdots,a_{m,n})$ y
     \begin{equation*}
@@ -114,8 +113,8 @@
     \begin{equation*}
         g=\sum_{i=1}^{n} a_{i}\I_{E_{i}}
     \end{equation*}
-    y además $\ip{f-g}{h}=0$ para todo $h\in V$. En particular, si tomamos $h=\I_{E_{i}}$, lo que
-    implica que
+    y además $\ip{f-g}{h}=0$ para todo $h\in V$. En particular, si tomamos $h=\I_{E_{i}}$, 
+    resulta que
     \begin{equation*}
         \int_{E_{i}}f-g\hspace{1mm}d\mu=0
         \hspace{4mm}\text{y entonces}\hspace{4mm}
@@ -124,11 +123,11 @@
     en otras palabras
     \begin{equation*}
         c_{i}=\frac{1}{\mu(E_{i})}\int_{E_{i}}f\hspace{1mm}d\mu
-        =\frac{\ip{f}{\I_{E_{i}}}}{\mu(E_{i})}
+        =\frac{\ip{f}{\I_{E_{i}}}_{L^{2}}}{\mu(E_{i})}
     \end{equation*}
     conluimos que
     \begin{equation*}
-        g=\sum_{i=1}^{n}\frac{\ip{f}{\I_{E_{i}}}}{\mu(E_{i})}\I_{E_{i}}
+        g=\sum_{i=1}^{n}\frac{\ip{f}{\I_{E_{i}}}_{L^{2}}}{\mu(E_{i})}\I_{E_{i}}
     \end{equation*}
 
 \end{enumerate}
@@ -157,9 +156,9 @@
         &= \int_{[a,b]}-u''v_{n}+uv_{n}\hspace{1mm}d\lambda
     \end{align*}
     Existe $M>0$ tal que $v_{n}\leq M$ para todo $n\in\N$, entonces $\abs{v_{n}f}\leq M\abs{f}$ y 
-    además $v_{n}f$ converge puntualmente a $\I_{[c,d]}f$, por el mismo argumento se tiene para 
-    $\I_{[c,d]}(-u''+u)$. De este modo, como $f,u\in\cc_{0}^{\infty}[a,b]$, por teorema de 
-    convergencia dominada se sigue que
+    además $v_{n}f$ converge puntualmente a $\I_{[c,d]}f$, por el mismo argumento se tiene un 
+    resultado similar para $\I_{[c,d]}(-u''+u)$. De este modo, como $f,u\in\cc_{0}^{\infty}[a,b]$, 
+    por teorema de convergencia dominada se sigue que
     \begin{equation*}
         \int_{[c,d]}f\hspace{1mm}d\lambda=\lim\limits_{n\to\infty}
         \int_{[a,b]}fv_{n}\hspace{1mm}d\lambda=\lim\limits_{n\to\infty}
@@ -182,7 +181,7 @@
     entonces, la sucesión $v_{n}:=u_{n}'\in\cc_{0}^{\infty}[a,b]$ es de cauchy según la norma en 
     $L^{2}$. Como este espacio es un espacio métrico completo, existe $v\in L_{0}^{2}$ tal que
     \begin{equation*}
-        \lim\limits_{n\to\infty}\int\abs{v'_{n}-v}^{2}d\lambda=0
+        \lim\limits_{n\to\infty}\int\abs{v_{n}-v}^{2}d\lambda=0
     \end{equation*}
     Afirmamos que $v$ es la función buscada. Sea $w\in\cc_{0}^{\infty}[a,b]$, entonces
     \begin{equation*}
@@ -201,8 +200,8 @@
         \leq\norm{u_{n}-u}_{2}\norm{w'}_{2}\leq\norm{u_{n}-u}_{H}\norm{w'}_{2}
     \end{equation*}
     como $w\in\cc_{0}^{\infty}[a,b]$ vemos que $\norm{w}_{2},\norm{w'}_{2}<\infty$ y usando la 
-    convergencia en $H$ y $L^{2}$ se tiene el resultado. Resta ver que $v$ es única. Supongamos, 
-    por contradicción, que existe $\widehat{v}\in\cc_{0}^{\infty}[a,b]$ tal que
+    convergencia en $H$ y $L^{2}$ se tiene el resultado. Resta ver que $v$ es única. Sea 
+    $\widehat{v}\in L_{0}^{2}$ tal que
     \begin{equation*}
         \int \widehat{v}w\hspace{1mm}d\lambda=-\int uw'\hspace{1mm}d\lambda
     \end{equation*}
@@ -219,8 +218,8 @@
     \end{equation*}
     concluimos que $v=\widehat{v}$ $\lambda-ctp$, lo que prueba la unicidad en $L^{2}$.
     
-    \item Sean $u,w\in H$, existe $(w_{n})_{n\in\N}\in\cc_{0}^{\infty}$ tal que $w_{n}\to w$ según 
-    la norma $\norm{\cdot}_{H}$. Por la parte anterior, tenemos que
+    \item Sean $u,w\in H$, existe $(w_{n})_{n\in\N}\in\cc_{0}^{\infty}[a,b]$ tal que $w_{n}\to w$ 
+    según la norma $\norm{\cdot}_{H}$. Por la parte anterior, tenemos que
     \begin{equation*}
         \int u'w_{n}\hspace{1mm}d\lambda=-\int uw_{n}'\hspace{1mm}d\lambda
     \end{equation*}
@@ -232,7 +231,18 @@
         =\lim\limits_{n\to\infty}-\int uw_{n}'\hspace{1mm}d\lambda=\int uw'\hspace{1mm}d\lambda
     \end{equation*}
     
-    \item En $H$ definimos el siguiente producto interno
+    \item Como resultado previo, vamos a demostrar la linealidad de la derivada débil. Sean 
+    $u,v\in H$ y $\alpha\in\R$, existen $u_{n},v_{n}\in\cc_{0}^{\infty}[a,b]$ sucesiones tales que
+    $u_{n}\to u$ y $v_{n}\to v$ en $H$. Dada $w\in\cc_{0}^{\infty}[a,b]$ se sigue que
+    \begin{equation*}
+        -\int(u_{n}+\alpha v_{n})w'\hspace{1mm}d\lambda
+        =\int(u_{n}+\alpha v_{n})'w\hspace{1mm}d\lambda
+        =\int u_{n}'w\hspace{1mm}d\lambda+\alpha\int v_{n}'w\hspace{1mm}d\lambda
+    \end{equation*}
+    haciendo $n\to\infty$ y usando linealidad de la integral, por unicidad, concluimos que 
+    $(u+\alpha v)'=u'+\alpha v'$.
+    
+    En $H$ definimos el siguiente producto interno
     \begin{equation*}
         \ip{u}{v}_{H}=\int uv+u'v'\hspace{1mm}d\lambda
         \hspace{4mm}\text{para }u,v\in H
@@ -246,10 +256,9 @@
         =\int uv+u'v'\hspace{1mm}d\lambda+\alpha\int wv+w'v'\hspace{1mm}d\lambda
         =\ip{u}{v}+\alpha\ip{w}{v}
     \end{equation*}
-    Donde usamos que $(u+\alpha w)'=u'+\alpha w'$, que se sigue de la unicidad de la derivada 
-    débil y tanto de la linealidad de la derivada en el sentido clásico como de la linealidad de 
-    la integral. Así, $H$ es un espacio de Hilbert, pues con la norma $\norm{\cdot}_{H}$ es un 
-    espacio métrico completo. Sea $f\in L^{2}$. Definimos el funcional $I:H\to\R$ dado por
+    Donde usamos la linealidad de la derivada débil. Así, $H$ es un espacio de Hilbert, pues con 
+    la norma $\norm{\cdot}_{H}$ es un espacio métrico completo. Sea $f\in L^{2}$. Definimos el 
+    funcional $I:H\to\R$ dado por
     \begin{equation*}
         I(v):=\int fv\hspace{1mm}d\lambda
     \end{equation*}
