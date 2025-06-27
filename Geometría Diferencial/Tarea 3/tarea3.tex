@@ -23,7 +23,8 @@
 \centerline{\bf 26 de junio de 2025}
 
 \section*{Problema 1}
-Probaremos un resultado previo sobre transporte paralelo y curvas geodesicas en la esfera.
+\noindent Probaremos un resultado previo sobre transporte paralelo y curvas geodésicas en la 
+esfera.
 \begin{lema}
     Sea $\alpha:I\to\mathbb{S}^{2}$ una curva de la forma $\alpha(t)=usen(t)+vcos(t)$ donde $u,v$ 
     son ortonormales, entonces $P_{\alpha,t_{0},t_{1}}(w)=w+\ip{w}{\alpha'(t_{0})}(\alpha'(t_{1})
@@ -63,63 +64,131 @@ Probaremos un resultado previo sobre transporte paralelo y curvas geodesicas en 
     lo que concluye la demostración.
 \end{dem}
 
+\noindent Sea $\{e_{i}\}_{i=1}^{3}$ la base canonica de $\R^{3}$. Sea $w_{0}\in 
+T_{p}\mathbb{S}^{2}=(0,0,1)^{\perp}$, digamos que $w_{0}=ae_{1}+be_{2}$.
 \begin{enumerate}
     \item Notemos que
     \begin{equation*}
-        \gamma_{1}(s)=\begin{pmatrix}
-            0 \\ 0 \\ 1
-        \end{pmatrix}cos(s)+\begin{pmatrix}
-            1 \\ 0 \\ 0
-        \end{pmatrix}sen(s)\hspace{4mm}\text{y}\hspace{4mm}\gamma_{2}(s)=\begin{pmatrix}
-            0 \\ 0 \\ 1
-        \end{pmatrix}cos(s)+\begin{pmatrix}
-            cos(\theta) \\ sen(\theta) \\ 0
-        \end{pmatrix}sen(s)
+        \gamma_{1}=sen(s)e_{1}+cos(s)e_{3}\hspace{4mm}\text{y}\hspace{4mm}
+        \gamma_{2}=sen(s)w_{1}+cos(s)e_{3}
     \end{equation*}
-    además, los vectores que describen cada curva son ortonormales. Por otro lado se tiene que
+    donde $w_{1}=(cos(\theta),sen(\theta),0)$. Claramente $e_{3}$ y $w_{1}$ son ortonormales, 
+    además
     \begin{equation*}
-        \gamma_{1}'(s)=(cos(s),0,sen(s))\hspace{4mm}\text{y}\hspace{4mm}\gamma_{2}'(s)
-        =(cos(\theta)cos(s),sen(\theta)cos(s),-sen(s))
+        \gamma_{1}'=(cos(s),0,-sen(s))\hspace{4mm}\text{y}\hspace{4mm}
+        \gamma_{2}'=(cos(\theta)cos(s),sen(\theta)cos(s),-sen(s))
     \end{equation*}
-    Dado $w_{0}\in T_{\gamma_{1}(0)}\mathbb{S}^{2}=T_{\gamma_{2}(0)}\mathbb{S}^{2}$ entonces 
-    $w_{0}=(x_{0},y_{0},0)$, así, por el lema tenemos lo siguiente
+    Como $P_{\gamma,t_{0},t_{1}}:T_{\gamma(t_{0})}\Sigma\to T_{\gamma(t_{1})}\Sigma$ es una 
+    transformación lineal y $\{e_{1},e_{2}\}$ es base de $T_{p}\mathbb{S}^{2}$, se sigue que
     \begin{align*}
-        w_{1}=P_{\gamma_{1},0,\pi}(w_{0}) &= w_{0}+\ip{w_{0}}{\gamma_{1}'(0)}
-        (\gamma_{1}'(\pi)-\gamma_{1}'(0)) \\[2mm]
-        &= w_{0}+\ip{w_{0}}{
-            \begin{pmatrix}
-                1 \\ 0 \\ 0
-            \end{pmatrix}
-        }\left(\begin{pmatrix}
-            -1 \\ 0 \\ 0
-        \end{pmatrix}-\begin{pmatrix}
-            1 \\ 0 \\ 0
-        \end{pmatrix}\right)=w_{0}+x_{0}\begin{pmatrix}
-            -2 \\ 0 \\ 0
+        P_{\gamma_{1},0,\pi}(w_{o}) &= P_{\gamma_{1},0,\pi}(ae_{1}+be_{2})
+        =aP_{\gamma_{1},0,\pi}(e_{1})+bP_{\gamma_{1},0,\pi}(e_{2})
+        =aP_{\gamma_{1},0,\pi}(\gamma_{1}'(0))+bP_{\gamma_{1},0,\pi}(e_{2}) \\[2mm]
+        &= a\gamma_{1}'(\pi)+bP_{\gamma_{1},0,\pi}(e_{2})=-ae_{1}+bP_{\gamma_{1},0,\pi}(e_{2})
+    \end{align*}
+    y usando el lema, notamos que
+    \begin{equation*}
+        P_{\gamma_{1},0,\pi}(e_{2})=e_{2}+\ip{e_{2}}{\gamma_{1}'(0)}
+        (\gamma_{1}'(\pi)-\gamma_{1}'(0))=e_{2}+0(\gamma_{1}'(\pi)-\gamma_{1}'(0))=e_{2}
+    \end{equation*}
+    entonces
+    \begin{equation*}
+        w_{1}=P_{\gamma_{1},0,\pi}(w_{o})=-ae_{1}+be_{2}
+    \end{equation*}
+    Por otro lado, del mismo modo que antes, se tiene que
+    \begin{equation*}
+        P_{\gamma_{2},0,\pi}(w_{o})=aP_{\gamma_{2},0,\pi}(e_{1})
+        +bP_{\gamma_{2},0,\pi}(e_{2})
+    \end{equation*}
+    por el lema, observamos lo siguiente
+    \begin{equation*}
+        P_{\gamma_{2},0,\pi}(e_{1})=e_{1}+\ip{e_{1}}{\gamma_{2}'(0)}
+        (\gamma_{2}'(\pi)-\gamma_{2}'(0))=\begin{pmatrix}
+            1-2cos^{2}(\theta) \\ -2cos(\theta)sen(\theta) \\ 0
+        \end{pmatrix}=-\begin{pmatrix}
+            cos(2\theta) \\ sen(2\theta) \\ 0
+        \end{pmatrix}
+    \end{equation*}
+    y
+    \begin{equation*}
+        P_{\gamma_{2},0,\pi}(e_{2})=e_{2}+\ip{e_{2}}{\gamma_{2}'(0)}
+        (\gamma_{2}'(\pi)-\gamma_{2}'(0))=\begin{pmatrix}
+            -2cos(\theta)sen(\theta) \\ 1-2sen^{2}(\theta) \\ 0
         \end{pmatrix}=\begin{pmatrix}
-            -x_{0} \\ y_{0} \\ 0
+            -sen(2\theta) \\ cos(2\theta) \\ 0
         \end{pmatrix}
-    \end{align*}
-    por otro lado
-    \begin{align*}
-        w_{2}=P_{\gamma_{2},0,\pi}(w_{0}) &= w_{0}+\ip{w_{0}}{\gamma_{2}'(0)}
-        (\gamma_{2}'(\pi)-\gamma_{2}'(0)) \\[2mm]
-        &= w_{0}+\ip{w_{0}}{
-            \begin{pmatrix}
-                cos(\theta) \\ sen(\theta) \\ 0
-            \end{pmatrix}
-        }\left(\begin{pmatrix}
-            -cos(\theta) \\ -sen(\theta) \\ 0
-        \end{pmatrix}-\begin{pmatrix}
-            cos(\theta) \\ sen(\theta) \\ 0
-        \end{pmatrix}\right)\\
-        &= \begin{pmatrix}
-            x_{0}-2x_{0}cos^{2}(\theta)+y_{0}cos(\theta)sen(\theta) \\
-            0
-        \end{pmatrix}
-    \end{align*}
+    \end{equation*}
+    entonces
+    \begin{equation*}
+        w_{2}=P_{\gamma_{2},0,\pi}(w_{o})=-a\begin{pmatrix}
+            cos(2\theta) \\ sen(2\theta) \\ 0
+        \end{pmatrix}+b\begin{pmatrix}
+            -sen(2\theta) \\ cos(2\theta) \\ 0
+        \end{pmatrix}=\begin{pmatrix}
+            cos(2\theta) & -sen(2\theta) & 0 \\ sen(2\theta) & cos(2\theta) & 0 \\ 0 & 0 & 1
+        \end{pmatrix}w_{1}
+    \end{equation*}
+    luego el ángulo entre $w_{1}$ y $w_{2}$ es de $2\theta$.
 
-    \item 
+    \item Notemos que
+    \begin{equation*}
+        \widehat{\gamma_{2}}=(cos(\theta)sen(\pi-s),sen(\theta)sen(\pi-s),cos(\pi-s))
+        =(cos(\theta)sen(s),sen(\theta)sen(s),-cos(s))
+    \end{equation*}
+    y entonces $\widehat{\gamma_{2}}'=(cos(\theta)cos(s),sen(\theta)cos(s),sen(s))$, además
+    $\beta'=(-sen(s),cos(s),0)$.
+    
+    Debemos calcular
+    \begin{equation*}
+        v_{0}=P_{\widehat{\gamma_{2}},\pi/2,\pi}(P_{\beta,0,\theta}
+        (P_{\gamma_{1},0,\pi/2}(w_{0})))
+    \end{equation*}
+    Por el mismo argumento que antes, notamos que
+    \begin{equation*}
+        v_{0}^{1}:=P_{\gamma_{1},0,\pi/2}(w_{0})
+        =aP_{\gamma_{1},0,\pi/2}(e_{1})+bP_{\gamma_{1},0,\pi/2}(e_{2})=a\gamma_{1}'(\pi/2)+be_{2}
+        =-ae_{3}+be_{2}
+    \end{equation*}
+    luego
+    \begin{equation*}
+        v_{0}^{2}:=P_{\beta,0,\theta}(v_{0}^{1})=-aP_{\beta,0,\theta}(e_{3})
+        +bP_{\beta,0,\theta}(e_{2})
+    \end{equation*}
+    usando el lema tenemos que $P_{\beta,0,\theta}(e_{3})=e_{3}$ y además
+    \begin{equation*}
+        P_{\beta,0,\theta}(e_{2})=e_{2}+\ip{e_{2}}{\beta'(0)}(\beta'(\theta)-\beta'(0))
+        =e_{2}+\beta'(\theta)-e_{2}=\beta'(\theta)
+    \end{equation*}
+    entonces $v_{0}^{2}=-ae_{3}+b\beta'(\theta)$. Queda ver
+    \begin{equation*}
+        v_{0}=P_{\widehat{\gamma_{2}},\pi/2,\pi}(v_{0}^{2})
+        =-aP_{\widehat{\gamma_{2}},\pi/2,\pi}(e_{3})
+        +bP_{\widehat{\gamma_{2}},\pi/2,\pi}(\beta'(\theta))
+    \end{equation*}
+    usando nuevamente el lema, tenemos que
+    \begin{equation*}
+        P_{\widehat{\gamma_{2}},\pi/2,\pi}(e_{3})=e_{3}
+        +\ip{e_{3}}{\widehat{\gamma_{2}}'(\pi/2)}
+        (\widehat{\gamma_{2}}'(0)-\widehat{\gamma_{2}}'(\pi/2))
+        =e_{3}+\widehat{\gamma_{2}}'(0)-e_{3}=\widehat{\gamma_{2}}'(0)
+    \end{equation*}
+    y
+    \begin{equation*}
+        P_{\widehat{\gamma_{2}},\pi/2,\pi}(\beta'(\theta))
+        =\beta'(\theta)+\ip{\beta'(\theta)}{\widehat{\gamma_{2}}'(\pi/2)}
+        (\widehat{\gamma_{2}}'(0)-\widehat{\gamma_{2}}'(\pi/2))=\beta'(\theta)
+    \end{equation*}
+    de este modo
+    \begin{equation*}
+        v_{0}=-a\widehat{\gamma_{2}}'(0)+b\beta'(\theta)=-a\begin{pmatrix}
+            -cos(\theta) \\ -sen(\theta) \\ 0
+        \end{pmatrix}+b\begin{pmatrix}
+            -sen(\theta) \\ cos(\theta) \\ 0
+        \end{pmatrix}=\begin{pmatrix}
+            cos(\theta) & -sen(\theta) & 0 \\ sen(\theta) & cos(\theta) & 0 \\ 0 & 0 & 1
+        \end{pmatrix}w_{0}
+    \end{equation*}
+    y por lo tanto el ángulo entre $w_{0}$ y $v_{0}$ es $\theta$.
 \end{enumerate}
 
 \section*{Problema 2}
@@ -177,7 +246,7 @@ de este modo
         cos(t/\eta)(cos^{2}(u_{0})-1) \\ sen(t/\eta)(cos^{2}(u_{0})-1) \\ cos(u_{0})sen(u_{0})
     \end{pmatrix}
 \end{align*}
-adicionalmente se tiene que
+adicionalmente tenemos que
 \begin{equation*}
     N\circ\alpha\times\alpha'=\begin{pmatrix}
         cos(t/\eta)sen(u_{0}) \\ sen(t/\eta)sen(u_{0}) \\ -cos(u_{0})
@@ -195,7 +264,46 @@ por último, se tiene que
 \end{align*}
 
 \section*{Problema 3}
+\noindent Proponemos la siguiente definición para un poligono geodésico.
+\begin{dfn}
+    Decimos que $P\subseteq\Sigma$ es un $n$-poligono geodésico si $P$ es homeomorfo a 
+    $D=\overline{B_{1}(0)}\subseteq\R^{2}$ y $\partial P$ esta parametrizada por 
+    $\gamma:I\to\Sigma$ una curva diferenciable a trozos tal que
+    \begin{equation*}
+        \partial P=\gamma(I)=\bigcup_{i=1}^{n}\gamma_{i}([a_{i},b_{i}])
+    \end{equation*}
+    donde $\gamma_{i}:[a_{i},b_{i}]\to\Sigma$ es una curva geodésica tal que $\gamma_{i}(b_{i})
+    =\gamma_{i+1}(a_{i+1})$ y $\gamma_{i}'(b_{i}^{-})\neq\pm\gamma_{i+1}'(a_{i+1}^{+})$ para 
+    $i=1,\cdots,n$ con la convención de que $i+1=1$ si $i=n$.
+\end{dfn}
 
+\noindent Sea $P\subseteq S^{2}(r)$ un $n$-poligono geodésico. Como $D$ no es homeomorfo a la 
+$\mathbb{S}^{2}$, pues esta última es una variedad sin borde, se tiene que $P\neq S^{2}(r)$, así,
+existe $p\in S^{2}(r)\setminus P$.
+
+\vspace{2mm}
+\noindent Consideremos $O\in O(3)$ tal que $O(0,0,r)=p$ y la proyección estereográfica 
+$\overline{X}:\R^{2}\to S^{2}(r)\setminus\{(0,0,r)\}$. Definimos 
+$X:=O\circ\overline{X}:\R^{2}\to S^{2}(r)$, notemos que $X$ es parametrización ortogonal de 
+$S^{2}(r)$, pues $\overline{X}$ es parametrización ortogonal de $S^{2}(r)$ y $O$ es una 
+transformación lineal ortogonal, luego, por gauss bonnet, vemos que
+\begin{align*}
+    2\pi=\sum_{i=1}^{n}\int_{a_{i}}^{b_{i}}K_{g}\hspace{1mm}ds
+    +\iint_{P}(K_{S^{2}(r)}\circ X)\sqrt{EG}\hspace{1mm}dudv+\sum_{i=1}^{n}\theta_{i}
+\end{align*}
+donde $\theta_{i}\in[-\pi,\pi]$ es el ángulo orientado de $\gamma_{i}'(b_{i})\in 
+T_{\gamma_{i}(b_{i}^{-})}S^{2}(r)$ a $\gamma_{i+1}(a_{i+1}^{+})\in T_{\gamma_{i+1}}S^{2}(r)$. Como
+la curvatura gaussiana es independiente de la parametrización, sabemos que $K_{S^{2}(r)}\circ X
+=1/r^{2}$, además, por lo visto en clases, obtenemos que
+\begin{equation*}
+    2\pi=\iint_{P}\frac{1}{r^{2}}\sqrt{EG}\hspace{1mm}dudv+\sum_{i=1}^{n}\theta_{i}
+    =\frac{1}{r^{2}}Area(P)+\sum_{i=1}^{n}\pi-\alpha_{i}
+\end{equation*}
+donde $\alpha_{i}$ son los ángulos interiores del $n$-poligono geodesico, así
+\begin{equation*}
+    2\pi+\sum_{i=1}^{n}\alpha_{i}=\frac{1}{r^{2}}Area(P)+n\pi
+\end{equation*}
+ 
 \section*{Problema 4}
 \begin{enumerate}
     \item Notemos que
@@ -213,12 +321,12 @@ por último, se tiene que
     \begin{equation*}
         \omega_{p}=\frac{-y}{x^{2}+y^{2}}dx+\frac{x}{x^{2}+y^{2}}dy
     \end{equation*}
-    además, para $p\in\R^{3}\setminus\{0\}$ las funciones
+    además, para $p\in\R^{2}\setminus\{0\}$ las funciones
     \begin{equation*}
         \omega_{1}:=\frac{-y}{x^{2}+y^{2}}\hspace{4mm}\text{y}
         \hspace{4mm}\omega_{2}:=\frac{x}{x^{2}+y^{2}}
     \end{equation*}
-    son diferenciables, y por lo tanto la 1-forma $\omega_{p}$ es diferenciable.
+    son diferenciables, y por lo tanto la 1-forma $\omega$ es diferenciable.
     
     \item Veamos la siguiente expresión
     \begin{align*}
@@ -267,7 +375,7 @@ por último, se tiene que
     efecto, sea $p\in W$ y $v\in\R^{3}$, entonces
     \begin{equation*}
         0=D\ip{E_{i}}{E_{j}}(p)v=\ip{DE_{i}(p)v}{E_{j}(p)}+\ip{E_{i}}{DE_{j}(p)v}
-        =\omega_{ij}+\omega_{ji}
+        =(\omega_{ij})_{p}(v)+(\omega_{ji})_{p}(v)
     \end{equation*}
     lo que prueba lo pedido.
     
@@ -327,9 +435,29 @@ por último, se tiene que
     \begin{equation*}
         \sum_{k=1}^{3}d\omega_{ik}\beta_{kj}=\sum_{k=1}^{3}\omega_{ik}\land d\beta_{kj}
         =\sum_{k=1}^{3}\omega_{ik}\land\sum_{s=1}^{3}\omega_{ks}\beta_{sj}
+        =\sum_{s=1}^{3}\left(\sum_{k=1}^{3}\omega_{ik}\land\omega_{ks}\right)\beta_{sj}
+        \hspace{4mm}(*)
     \end{equation*}
-    (entender mejor idea de las matrices)
+    Sea $p\in W$ y $v\in\R^{3}$, definimos las matrices $d\Omega:=((d\omega_{ik})_{p}(v))
+    _{i,k=1}^{3}$ y $B:=(\beta_{rj}(p))_{r,j=1}^{3}$, como $\{E_{r}\}_{r=1}^{3}$ forma una base
+    ortonormal para todo $p\in W$, la matriz $B$ es ortogonal para todo $p\in W$, en particular 
+    tenemos que es invertible. Consideremos además la matriz
+    \begin{equation*}
+        \Omega=\left(\sum_{k=1}^{3}(\omega_{ik})_{p}(v)\land(\omega_{ks})_{p}(v)\right)
+        _{i,s=1}^{3}
+    \end{equation*}
+    luego el producto en $(*)$ puede ser resumido como $(d\Omega B)_{ij}=(\Omega B)_{ij}$, 
+    y por ende tenemos la igualdad de matrices $d\Omega B=\Omega B$, lo que implica que
+    $d\Omega=\Omega$ y dado que $p$ y $v$ son arbitrarios concluimos que
+    \begin{equation*}
+        d\omega_{ij}=\sum_{k=1}^{3}\omega_{ik}\land\omega_{kj}
+    \end{equation*}
+    y se tiene lo pedido.
 \end{enumerate}
+
+\vspace{2mm}
+\noindent Colaboradores: Sergio Peña, Ricardo Larraín y Felipe Inostroza. Queria dar especiales
+agradeciemientos a Felipe Inostroza por el Lema 0.1.
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
