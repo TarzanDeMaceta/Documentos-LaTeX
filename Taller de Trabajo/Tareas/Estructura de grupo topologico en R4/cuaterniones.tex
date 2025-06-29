@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\title{Estructura de grupo topológico en $S^{3}$ y $\mathbb{P}^{3}_{\R}$}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent Queremos definir una operación binaria que es multiplicativa bajo la norma para ello 
+buscamos definir un producto en $\R^{4}$, un análogo a la multiplicación compleja en $\R^{2}$. 
+Dado $x\in\R^{4}$ lo denotamos por $x=(a,u)$ donde $a\in\R$ y $u\in\R^{3}$. Sean 
+$(a,u),(b,v)\in\R^{4}$, definimos
+\begin{equation*}
+    (a,u)(b,v):=(a,u)\cdot(b,v):=(ab-\ip{u}{v},av+bu+u\times v)
+\end{equation*}
+En primer lugar, demostramos la identidad $(\lambda(a,u))(\mu(b,v))=\lambda\mu((a,u)(b,v))$.
+En efecto,
+\begin{align*}
+    (\lambda(a,u))(\mu(b,v)) &= (\lambda a\mu b-\ip{\lambda u}{\mu v},\lambda a\mu v
+    +\mu b\lambda u+(\lambda u)\times(\mu v)) \\[2mm]
+    &= \lambda\mu((a,u)(b,v))
+\end{align*}
+Notemos que $\norm{(a,u)(a,-u)}^{2}=\norm{(a,u)}^{4}$ y además
+\begin{align*}
+    \norm{(a,u)(b,v)}^{2} &= \norm{(ab-\ip{u}{v},av+bu+u\times v)}^{2} \\[2mm]
+    &= a^{2}b^{2}-2ab\ip{u}{v}+\ip{u}{v}^{2}+a^{2}\norm{v}^{2}+b^{2}\norm{u}^{2}+2ab\ip{u}{v}
+    +\norm{u}^{2}\norm{v}^{2}-\ip{u}{v}^{2} \\[2mm]
+    &= (a^{2}+\norm{u}^{2})(b^{2}+\norm{v}^{2})=\norm{(a,u)}^{2}\norm{(b,v)}^{2}
+\end{align*}
+Ahora que tenemos las propiedades deseadas veamos que con esta operación $\R^{4}\setminus\{0\}$
+forma un grupo. Afirmamos que el elemento neutro es el $(1,0)$. Sea 
+$(a,u)\in\R^{4}$, entonces
+\begin{equation*}
+    (a,u)(1,0)=(a-\ip{u}{0},a0+u+u\times0)=(a,u)
+\end{equation*}
+del mismo modo se tiene que $(1,0)(a,u)=(a,u)$. El inverso viene dado por 
+$\frac{1}{\norm{(a,u)}^{2}}(a,-u)$, por lo mencionado anteriormente vemos que
+\begin{equation*}
+    (a,u)\frac{(a,-u)}{\norm{(a,u)}^{2}}=\frac{1}{\norm{(a,u)}^{2}}(a,u)(a,-u)
+    =\frac{1}{\norm{(a,u)}^{2}}(\norm{(a,u)}^{2},0)=(1,0)
+\end{equation*}
+analogamente se tiene la otra igualdad. Resta ver la asociatividad, sean $(b,v),(c,w)\in\R^{4}$, 
+luego
+\begin{align*}
+    ((a,u)(b,v))(c,w) &= (ab-\ip{u}{v},av+bu+u\times v)(c,w) \\[2mm]
+    &= ((ab-\ip{u}{v})c-\ip{(av+bu+u\times v)}{w}, \\[2mm]
+    &\hspace{5mm}(ab-\ip{u}{v})w+c(av+bu+u\times v)+(av+bu+u\times v)\times w)
+\end{align*}
+Usando la anticonmutatividad del producto cruz y la identidad $A\times(B\times C)
+=B\ip{A}{C}-C\ip{A}{B}$ vemos que
+\begin{equation*}
+    (u\times v)\times w=-w\times(u\times v)=-u\ip{w}{v}+v\ip{w}{u}
+\end{equation*}
+entonces $v\ip{u}{w}-w\ip{u}{v}=u\times(v\times w)$, usando la alternancia del determinante 
+resulta que $\ip{w}{u\times v}=\ip{u}{v\times w}$ y dado que el producto cruz distribuye sobre la
+suma se sigue que
+\begin{align*}
+    ((a,u)(b,v))(c,w) &= (a(bc-\ip{v}{w})-\ip{u}{cv+bw+v\times w}, \\[2mm]
+    &\hspace{5mm}(bc-\ip{v}{w})u+a(bw+cv+v\times w)+u\times(bw+cv+v\times w)) \\[2mm]
+    &= (a,u)((b,v)(c,w))
+\end{align*}
+
+\noindent Con la topología usual de $\R^{4}$ probaremos que esta operación le da estructura de 
+grupo topológico a $\R^{4}\setminus\{0\}$.
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}
