@@ -26,15 +26,22 @@ En efecto,
     +\mu b\lambda u+(\lambda u)\times(\mu v)) \\[2mm]
     &= \lambda\mu((a,u)(b,v))
 \end{align*}
-Notemos que $\norm{(a,u)(a,-u)}^{2}=\norm{(a,u)}^{4}$ y además
+Notemos que
 \begin{align*}
     \norm{(a,u)(b,v)}^{2} &= \norm{(ab-\ip{u}{v},av+bu+u\times v)}^{2} \\[2mm]
     &= a^{2}b^{2}-2ab\ip{u}{v}+\ip{u}{v}^{2}+a^{2}\norm{v}^{2}+b^{2}\norm{u}^{2}+2ab\ip{u}{v}
     +\norm{u}^{2}\norm{v}^{2}-\ip{u}{v}^{2} \\[2mm]
     &= (a^{2}+\norm{u}^{2})(b^{2}+\norm{v}^{2})=\norm{(a,u)}^{2}\norm{(b,v)}^{2}
 \end{align*}
-Ahora que tenemos las propiedades deseadas veamos que con esta operación $\R^{4}\setminus\{0\}$
-forma un grupo. Afirmamos que el elemento neutro es el $(1,0)$. Sea 
+y además
+\begin{align*}
+    ((a,u)+(b,v))(c,w) &= (a+b,u+v)(c,w)=((a+b)c-\ip{u+v}{w},(a+b)w+c(u+v)+(u+v)\times w) \\[2mm]
+    &= (a,u)(c,w)+(b,v)(c,w)
+\end{align*}
+Donde la ultima igualdad se obtiene de que el producto cruz distribuye sobre la suma. Igualmente 
+se tiene para $(c,w)((a,u)+(b,v))=(c,w)(a,u)+(c,w)(b,v)$. Ahora que tenemos las propiedades 
+deseadas veamos que con esta operación $\R^{4}\setminus\{0\}$ forma un grupo. Afirmamos que el 
+elemento neutro es el $(1,0)$. Sea
 $(a,u)\in\R^{4}$, entonces
 \begin{equation*}
     (a,u)(1,0)=(a-\ip{u}{0},a0+u+u\times0)=(a,u)
@@ -43,7 +50,7 @@ del mismo modo se tiene que $(1,0)(a,u)=(a,u)$. El inverso viene dado por
 $\frac{1}{\norm{(a,u)}^{2}}(a,-u)$, por lo mencionado anteriormente vemos que
 \begin{equation*}
     (a,u)\frac{(a,-u)}{\norm{(a,u)}^{2}}=\frac{1}{\norm{(a,u)}^{2}}(a,u)(a,-u)
-    =\frac{1}{\norm{(a,u)}^{2}}(\norm{(a,u)}^{2},0)=(1,0)
+    =\frac{1}{\norm{(a,u)}^{2}}(\norm{(a,u)}^{2},-au+au-u\times u)=(1,0)
 \end{equation*}
 analogamente se tiene la otra igualdad. Resta ver la asociatividad, sean $(b,v),(c,w)\in\R^{4}$, 
 luego
@@ -67,7 +74,56 @@ suma se sigue que
 \end{align*}
 
 \noindent Con la topología usual de $\R^{4}$ probaremos que esta operación le da estructura de 
-grupo topológico a $\R^{4}\setminus\{0\}$.
+grupo topológico a $\R^{4}\setminus\{0\}$. Como este último, en particular es espacio métrico
+inducido por la norma euclideana, dotamos al espacio 
+$\R^{4}\setminus\{0\}\times\R^{4}\setminus\{0\}$ de la métrica del máximo. Sea $\tau_{max}$ la 
+topología inducida por esta métrica, adicionalmente, consideramos $\tau_{prod}$ la topología 
+producto inducida por el espacio topológico $\R^{4}\setminus\{0\}$. Probaremos que estas 
+topologías son iguales.
+
+\vspace{2mm}
+\noindent Sea $(x_{0},y_{0})\in\R^{4}\setminus\{0\}\times\R^{4}\setminus\{0\}$ y $r,r'\in\R^{+}$. 
+En primer lugar, afirmamos que $B_{r}(x_{0},y_{0})=B_{r}(x_{0})\times B_{r}(y_{0})$ según las 
+métricas correspondientes. En efecto, se tiene que $(x,y)\in B_{r}(x_{0},y_{0})$ si y solo si 
+$\norm{x_{0}-x}<r$ y $\norm{y_{0}-y}<r$ o equivalentemente $(x,y)\in B_{r}(x_{0})\times 
+B_{r}(y_{0})$. Lo anterior implica que $\tau_{max}\subseteq\tau_{top}$. Por otro lado, 
+consideramos el abierto básico de $\tau_{prod}$ dado por $B_{r}(x_{0})\times B_{r'}(y_{0})$ veamos 
+que es abierto según $\tau_{max}$, sea $(x,y)\in B_{r}(x_{0})\times B_{r'}(y_{0})$, existe 
+$d\in\R^{+}$ tal que
+\begin{equation*}
+    B_{d}(x)\subseteq B_{r}(x_{0})
+    \hspace{4mm}\text{y además}\hspace{4mm}
+    B_{d}(y)\subseteq B_{r'}(y_{0})
+\end{equation*}
+de este modo $B_{d}(x,y)\subseteq B_{r}(x_{0})\times B_{r'}(y_{0})$. Concluimos que 
+$\tau_{max}=\tau_{prod}$.
+
+\vspace{2mm}
+\noindent Sean $(x_{0},y_{0}),(x,y)\in\R^{4}\setminus\{0\}\times\R^{4}\setminus\{0\}$. Notemos lo 
+siguiente
+\begin{align*}
+    \norm{(a_{0},u_{0})(b_{0},v_{0})-(a,u)(b,v)} &= \norm{(a_{0},u_{0})(b_{0},v_{0})
+    +(a_{0},u_{0})(b,v)-(a_{0},u_{0})(b,v)-(a,u)(b,v)} \\[2mm]
+    &\leq \norm{(a_{0},u_{0})}\cdot\norm{(b_{0},v_{0})-(b,v)}
+    +\norm{(b,v)}\cdot\norm{(a_{0},u_{0})-(a,u)}
+\end{align*}
+así, tomando
+\begin{equation*}
+    \delta:=\min\left\{\frac{\varepsilon}{2\norm{(a_{0},u_{0})}},
+    \frac{\varepsilon}{2(\norm{(b_{0},v_{0})}+1)},1\right\}
+\end{equation*}
+
+\vspace{2mm}
+\noindent se tiene la continuidad de la función $m:\R^{4}\setminus\{0\}\times\R^{4}\setminus\{0\}
+\to\R^{4}\setminus\{0\}$ dada por $m(x,y):=xy$. Por otro lado como la proyección es continua y la
+norma también y no se anula en $\R^{4}\setminus\{0\}$ entonces la función $\varphi:
+\R^{4}\setminus\{0\}\to\R^{4}\setminus\{0\}$ dada por $\varphi(x):=x^{-1}$ es continua. Usando la
+propiedad universal de la topología de subespacio concluimos que $\mathbb{S}^{3}$ es grupo 
+topológico.
+
+\vspace{2mm}
+\noindent Como $(\lambda x)(\mu y)=\lambda\mu xy$ para $\lambda,\mu\in\R\setminus\{0\}$, usando la
+propiedad de la topología cociente se tiene que $\mathbb{P}_{\R}^{3}$ es también grupo topológico.
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
