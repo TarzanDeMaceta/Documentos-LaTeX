@@ -5,17 +5,17 @@
 \nocite{*} % Comentar si quiero citar
 %\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
 
-\title{Estructura de grupo topológico en $S^{3}$ y $\mathbb{P}^{3}_{\R}$}
+\title{Estructura de grupo topológico en $\mathbb{S}^{3}$ y $\mathbb{P}^{3}_{\R}$}
 \author{}
 \date{}
 
 \begin{document}
 \maketitle
 
-\noindent Queremos definir una operación binaria que es multiplicativa bajo la norma para ello 
-buscamos definir un producto en $\R^{4}$, un análogo a la multiplicación compleja en $\R^{2}$. 
-Dado $x\in\R^{4}$ lo denotamos por $x=(a,u)$ donde $a\in\R$ y $u\in\R^{3}$. Sean 
-$(a,u),(b,v)\in\R^{4}$, definimos
+\noindent Queremos definir una operación binaria en $\R^{4}\setminus\{0\}$ que es multiplicativa 
+con la norma, para ello buscamos definir un producto en $\R^{4}$, un análogo a la multiplicación 
+compleja en $\R^{2}$. Dado $x\in\R^{4}$ lo denotamos por $x=(a,u)$ donde $a\in\R$ y $u\in\R^{3}$. 
+Sean $(a,u),(b,v)\in\R^{4}$, definimos
 \begin{equation*}
     (a,u)(b,v):=(a,u)\cdot(b,v):=(ab-\ip{u}{v},av+bu+u\times v)
 \end{equation*}
@@ -26,7 +26,7 @@ En efecto,
     +\mu b\lambda u+(\lambda u)\times(\mu v)) \\[2mm]
     &= \lambda\mu((a,u)(b,v))
 \end{align*}
-Notemos que
+Por otro lado, en busca de nuestro objetivo, notemos que
 \begin{align*}
     \norm{(a,u)(b,v)}^{2} &= \norm{(ab-\ip{u}{v},av+bu+u\times v)}^{2} \\[2mm]
     &= a^{2}b^{2}-2ab\ip{u}{v}+\ip{u}{v}^{2}+a^{2}\norm{v}^{2}+b^{2}\norm{u}^{2}+2ab\ip{u}{v}
@@ -38,7 +38,7 @@ y además
     ((a,u)+(b,v))(c,w) &= (a+b,u+v)(c,w)=((a+b)c-\ip{u+v}{w},(a+b)w+c(u+v)+(u+v)\times w) \\[2mm]
     &= (a,u)(c,w)+(b,v)(c,w)
 \end{align*}
-Donde la ultima igualdad se obtiene de que el producto cruz distribuye sobre la suma. Igualmente 
+Donde la ultima igualdad se obtiene de que el producto cruz distribuye sobre la suma. Similarmente 
 se tiene para $(c,w)((a,u)+(b,v))=(c,w)(a,u)+(c,w)(b,v)$. Ahora que tenemos las propiedades 
 deseadas veamos que con esta operación $\R^{4}\setminus\{0\}$ forma un grupo. Afirmamos que el 
 elemento neutro es el $(1,0)$. Sea
@@ -86,7 +86,7 @@ topologías son iguales.
 En primer lugar, afirmamos que $B_{r}(x_{0},y_{0})=B_{r}(x_{0})\times B_{r}(y_{0})$ según las 
 métricas correspondientes. En efecto, se tiene que $(x,y)\in B_{r}(x_{0},y_{0})$ si y solo si 
 $\norm{x_{0}-x}<r$ y $\norm{y_{0}-y}<r$ o equivalentemente $(x,y)\in B_{r}(x_{0})\times 
-B_{r}(y_{0})$. Lo anterior implica que $\tau_{max}\subseteq\tau_{top}$. Por otro lado, 
+B_{r}(y_{0})$. Lo anterior implica que $\tau_{max}\subseteq\tau_{prod}$. Por otro lado, 
 consideramos el abierto básico de $\tau_{prod}$ dado por $B_{r}(x_{0})\times B_{r'}(y_{0})$ veamos 
 que es abierto según $\tau_{max}$, sea $(x,y)\in B_{r}(x_{0})\times B_{r'}(y_{0})$, existe 
 $d\in\R^{+}$ tal que
@@ -115,15 +115,16 @@ así, tomando
 
 \vspace{2mm}
 \noindent se tiene la continuidad de la función $m:\R^{4}\setminus\{0\}\times\R^{4}\setminus\{0\}
-\to\R^{4}\setminus\{0\}$ dada por $m(x,y):=xy$. Por otro lado como la proyección es continua y la
-norma también y no se anula en $\R^{4}\setminus\{0\}$ entonces la función $\varphi:
+\to\R^{4}\setminus\{0\}$ dada por $m(x,y):=xy$. Por otro lado, como la proyección es continua, la
+norma también y esta no se anula en $\R^{4}\setminus\{0\}$ entonces la función $\varphi:
 \R^{4}\setminus\{0\}\to\R^{4}\setminus\{0\}$ dada por $\varphi(x):=x^{-1}$ es continua. Usando la
-propiedad universal de la topología de subespacio concluimos que $\mathbb{S}^{3}$ es grupo 
-topológico.
+propiedad universal de la topología de subespacio y que el producto es multiplicativo con la 
+norma, concluimos que $\mathbb{S}^{3}$ es grupo topológico.
 
 \vspace{2mm}
 \noindent Como $(\lambda x)(\mu y)=\lambda\mu xy$ para $\lambda,\mu\in\R\setminus\{0\}$, usando la
-propiedad de la topología cociente se tiene que $\mathbb{P}_{\R}^{3}$ es también grupo topológico.
+propiedad universal de la topología cociente se tiene que $\mathbb{P}_{\R}^{3}$ es también grupo 
+topológico.
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
