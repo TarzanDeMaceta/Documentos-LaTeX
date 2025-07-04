@@ -117,14 +117,40 @@ así, tomando
 \noindent se tiene la continuidad de la función $m:\R^{4}\setminus\{0\}\times\R^{4}\setminus\{0\}
 \to\R^{4}\setminus\{0\}$ dada por $m(x,y):=xy$. Por otro lado, como la proyección es continua, la
 norma también y esta no se anula en $\R^{4}\setminus\{0\}$ entonces la función $\varphi:
-\R^{4}\setminus\{0\}\to\R^{4}\setminus\{0\}$ dada por $\varphi(x):=x^{-1}$ es continua. Usando la
-propiedad universal de la topología de subespacio y que el producto es multiplicativo con la 
-norma, concluimos que $\mathbb{S}^{3}$ es grupo topológico.
+\R^{4}\setminus\{0\}\to\R^{4}\setminus\{0\}$ dada por $\varphi(x):=x^{-1}$ es continua.
 
 \vspace{2mm}
-\noindent Como $(\lambda x)(\mu y)=\lambda\mu xy$ para $\lambda,\mu\in\R\setminus\{0\}$, usando la
-propiedad universal de la topología cociente se tiene que $\mathbb{P}_{\R}^{3}$ es también grupo 
-topológico.
+\noindent En $\mathbb{S}^{3}$ definimos $m:\mathbb{S}^{3}\times\mathbb{S}^{3}\to\mathbb{S}^{3}$
+por $m(x,y)=xy$ que esta bien definida ya que $\norm{xy}=\norm{x}\cdot\norm{y}=1$ y resulta 
+continua por la propiedad universal de la topología de subespacio. Por otro lado consideramos 
+$\varphi:\mathbb{S}^{3}\to\mathbb{S}^{3}$ dada por $\varphi(x)=x^{-1}$ que esta bien definida 
+puesto que
+\begin{equation*}
+    1=\norm{(1,0)}=\norm{x\cdot x^{-1}}=\norm{x}\cdot\norm{x^{-1}}=\norm{x^{-1}}
+\end{equation*}
+y por la misma razón que $m$ es una función continua.
+
+\vspace{2mm}
+\noindent Consideremos el diagrama
+
+\centerline{
+    \xymatrix{
+        \R^{4}\setminus\{0\}\times\R^{4}\setminus\{0\} \ar[d]_{\pi\times\pi} \ar[rd]^{\pi\circ m} 
+        \\
+        \mathbb{P}^{3}_{\R}\times\mathbb{P}^{3}_{\R} & \mathbb{P}^{3}_{\R}
+    }
+}
+\vspace{2mm}
+\noindent Notemos que la función $\pi\times\pi$ es cociente y sabemos que $(\lambda x)(\mu y)
+=\lambda\mu (xy)$, luego la función $\pi\circ m$ es constante en las fibras de $\pi\times\pi$ y 
+por la propiedad universal de la topología cociente, existe $\widetilde{m}:\mathbb{P}^{3}_{\R}
+\times\mathbb{P}^{3}_{\R}\to\mathbb{P}^{3}_{\R}$ continua tal que $\widetilde{m}([x],[y])=[xy]$. 
+Del mismo modo la función $\widetilde{\varphi}:\mathbb{P}^{3}_{\R}\to\mathbb{P}^{3}_{\R}$ dada por
+$\widetilde{\varphi}([x])=[x^{-1}]$ es continua. 
+
+\vspace{2mm}
+\noindent La estructura de grupo en ambos casos se tiene del hecho de que $\cdot$ da estructura de 
+grupo a $\R^{4}\setminus\{0\}$.
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
