@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{14cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Profesor: Mauricio Bustamante -- Estudiante: Benjamín Mateluna}
+\end{minipage}
+\vspace{1ex}
+
+{\centerline{\bf Taller de Trabajo - MAT3094}
+\centerline{\bf Informe Taller de Trabajo}}
+\centerline{\bf 04 de agosto de 2025}
+
+\newpage
+\tableofcontents
+% Nueva página que contiene el índice, que referencia todo el contenido visto
+% durante el taller.
+
+\newpage
+\section*{Introducción}
+% Agregar texto sobre el contexto del taller del trabajo, su motivación, algunos preambulos
+% y resultados o resumen de lo trabajado durante el taller. Mencionar los libros en los que o
+% fuentes en los que se basa el informe.
+
+\newpage
+\section{Preliminares}
+\subsection{Simplices} % Munkres
+\subsection{Complejos Simpliciales y Mapas Simpliciales} % Munkres
+\subsection{Complejos Simpliciales Abstractos} % Munkres
+\subsection{Revisión de Grupos Abelianos} % MUnkres
+\subsection{Grupos de Homología} % Munkres
+\subsection{Categorías y Funtores} % Munkres
+
+% Escribir sobre los preliminares para poder definir el grupo de cohomología y hablar del funtor
+% hom.
+
+\newpage
+\section{Cohomología}
+\subsection{El Funtor Hom}
+\begin{dfn}
+    Sean $A$ y $G$ grupos abelianos, entonces el conjunto $Hom(A,G)$ que consiste en todos los
+    morfismos de $A$ a $G$ es un grupo abeliano con la operación $(\varphi+\psi)(a)
+    :=\varphi(a)+\psi(a)$.
+\end{dfn}
+
+\vspace{2mm}
+\noindent Hay que probar que esta operación esta bien definida, esto es, debemos verificar que 
+$\varphi+\psi$ es un morfismo de $A$ a $G$, notemos que
+\begin{equation*}
+    (\varphi+\psi)(a+b)=\varphi(a+b)+\psi(a+b)=\varphi(a)+\psi(a)+\varphi(b)+\psi(b)
+    =(\varphi+\psi)(a)+(\varphi+\psi)(b)
+\end{equation*}
+La identidad en $Hom(A,G)$ resulta ser el morfismo trivial y el inverso de $\varphi$ es 
+$-\varphi$.
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} % Desarrollar el ejemplo de munkres
+
+\begin{dfn}
+    Un morfismo $f:A\to B$ da resultado a un \textbf{morfismo dual} $\widetilde{f}:Hom(B,G)\to 
+    Hom(A,G)$. Donde $\widetilde{f}$ le asigna a un morfismo $\varphi:B\to G$ el morfismo 
+    $\widetilde{f}(\varphi)=\varphi\circ f$.
+\end{dfn}
+
+\vspace{2mm}
+\noindent Se verifica que $\widetilde{f}$ esta bien definido, en otras palabras, que 
+$\widetilde{f}(\varphi)$ es un morfismo. Para $G$ fijo, la asignación $A\to Hom(A,G)$ y 
+$f\to\widetilde{f}$ define un funtor contravariante de la categoría de grupos abelianos y morfismos
+a si mismo.
+
+\subsection{Grupo de Cohomología Simplicial}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografía
+
+\end{document}
