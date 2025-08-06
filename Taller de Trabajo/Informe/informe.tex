@@ -20,7 +20,7 @@
 
 {\centerline{\bf Taller de Trabajo - MAT3094}
 \centerline{\bf Informe Taller de Trabajo}}
-\centerline{\bf 04 de agosto de 2025}
+\centerline{\bf 05 de agosto de 2025}
 
 \newpage
 \tableofcontents
@@ -29,57 +29,111 @@
 
 \newpage
 \section*{Introducción}
+\phantomsection
+\addcontentsline{toc}{section}{Introducción}
 % Agregar texto sobre el contexto del taller del trabajo, su motivación, algunos preambulos
 % y resultados o resumen de lo trabajado durante el taller. Mencionar los libros en los que o
 % fuentes en los que se basa el informe.
 
 \newpage
-\section{Preliminares}
-\subsection{Simplices} % Munkres
-\subsection{Complejos Simpliciales y Mapas Simpliciales} % Munkres
-\subsection{Complejos Simpliciales Abstractos} % Munkres
-\subsection{Revisión de Grupos Abelianos} % MUnkres
-\subsection{Grupos de Homología} % Munkres
-\subsection{Categorías y Funtores} % Munkres
-
-% Escribir sobre los preliminares para poder definir el grupo de cohomología y hablar del funtor
-% hom.
-
-\newpage
-\section{Cohomología}
-\subsection{El Funtor Hom}
+\section{Homología y Cohomología}
+\subsection{Complejos de Cadenas}
 \begin{dfn}
-    Sean $A$ y $G$ grupos abelianos, entonces el conjunto $Hom(A,G)$ que consiste en todos los
-    morfismos de $A$ a $G$ es un grupo abeliano con la operación $(\varphi+\psi)(a)
-    :=\varphi(a)+\psi(a)$.
+    Un \textbf{complejo de cadenas} es una secuencia de grupos abelianos y homomorfismos
+    \begin{equation*}
+        \cdots\xrightarrow[]{}C_{3}\xrightarrow[]{d_{3}}C_{2}\xrightarrow[]{d_{2}}C_{1}
+        \xrightarrow[]{d_{1}}C_{0}\xrightarrow[]{d_{0}}0
+    \end{equation*}
+    tales que $d_{i}\circ d_{i+1}=0$ para todo $i$. Se denota por la tupla $(C_{*},d_{*}^{C})$
+\end{dfn}
+
+\begin{dfn}
+    Un \textbf{complejo de cocadenas} es una secuencia de grupos abelianos y homomorfismos
+    \begin{equation*}
+        0\xrightarrow[]{}C^{0}\xrightarrow[]{d^{0}}C^{1}\xrightarrow[]{d^{1}}C^{2}
+        \xrightarrow[]{d^{2}}C^{3}\to\cdots
+    \end{equation*}
+    tal que $d^{i+1}\circ d^{i}=0$ para todo $i$. Se denota por la tupla $(C^{*},d_{C}^{*})$.
+\end{dfn}
+
+\noindent\textbf{Observación:} Los morfismos $d_{i}$ y $d^{i}$ se conocen como diferenciales. Por 
+la condición dada, observamos que $im\hspace{1mm}d_{i+1}\subseteq ker\hspace{1mm}d_{i}$ (resp.
+$im\hspace{1mm}d^{i}\subseteq ker\hspace{1mm}d_{i+1}$). Los elementos en $\kr{d_{i}}$ se dicen
+\textbf{ciclos} (resp. \textbf{cociclos}) y los elementos de $\im{d_{i}}$ se llaman 
+\textbf{fronteras} (resp. \textbf{cofronteras}).
+
+\begin{dfn}
+    La \textbf{homología} de un complejo de cadenas $C$ es
+    \begin{equation*}
+        H_{i}(C_{*})=\frac{\kr{d_{i}}}{\im{d_{i+1}}}
+    \end{equation*}
+    Un elemento en $H_{i}(C_{*})$ se conoce como \textbf{clase de homología}.
+\end{dfn}
+
+\begin{dfn}
+    La \textbf{cohomología} de un complejo de cocadenas $C$ es
+    \begin{equation*}
+        H_{i}(C^{*})=\frac{\kr{d_{i}}}{\im{d_{i-1}}}
+    \end{equation*}
+    Un elemento en $H_{i}(C^{*})$ se conoce como \textbf{clase de cohomología}.
+\end{dfn}
+
+\begin{dfn}
+    Sean $(C,d_{C})$ y $(D,d_{D})$ complejos de cadenas, un \textbf{mapeo de cadena}, denotado por 
+    $C_{*}\to D_{*}$ es una colección de morfismos $f_{n}:C_{n}\to D_{n}$ tales que $d_{n}^{D}
+    \circ f_{n}=f_{n-1}\circ d_{n}^{C}$. En otras palabras, el siguiente diagrama conmuta
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            C_{n} \ar[d]^{d_{n}^{C}} \ar[r]^{f_{n}} & D_{n} \ar[d]^{d_{n}^{D}} \\
+            C_{n-1} \ar[r]^{f_{n-1}} & D_{n-1}
+        }
+    }
 \end{dfn}
 
 \vspace{2mm}
-\noindent Hay que probar que esta operación esta bien definida, esto es, debemos verificar que 
-$\varphi+\psi$ es un morfismo de $A$ a $G$, notemos que
-\begin{equation*}
-    (\varphi+\psi)(a+b)=\varphi(a+b)+\psi(a+b)=\varphi(a)+\psi(a)+\varphi(b)+\psi(b)
-    =(\varphi+\psi)(a)+(\varphi+\psi)(b)
-\end{equation*}
-La identidad en $Hom(A,G)$ resulta ser el morfismo trivial y el inverso de $\varphi$ es 
-$-\varphi$.
+\noindent La definición para \textbf{mapeo de cocadena} es análogo.
 
-\vspace{2mm}
-\noindent\textbf{Ejemplo:} % Desarrollar el ejemplo de munkres
+\begin{lema}
+    Sea $f_{*}:C_{*}\to D_{*}$ un mapeo de cadena, entonces $f_{*}:H_{n}(C_{*})\to H_{n}(D_{*})$
+    dado por $[x]\to [f_{n}(x)]$ es un morfismo bien definido.
+\end{lema}
+\begin{proof}
+    En primer lugar, debemos verificar que dado un ciclo entonces $f$ lo mapea a un ciclo. 
+    Sea $x\in\kr{d_{n}^{C}}$. Luego,
+    \begin{equation*}
+        d_{n}^{C}(f_{n}(x))=f_{n-1}(d_{n}^{C}(x))=f_{n-1}(0)=0
+    \end{equation*}
+    Por lo tanto, $f_{n}(x)\in\kr{d_{n}^{D}}$. Veamos que esta bien definido, sean 
+    $x,y\in\kr{d_{n}^{C}}$ tales que $[x]=[y]$, entonces $x-y=d_{n+1}^{C}(z)$ para $z\in C_{i+1}$.
+    De este modo, $f_{n}(x)-f_{n}(y)=f_{n}(d_{n+1}^{C}(z))=d_{n+1}^{D}(f_{n+1}(z))$ es una 
+    frontera. Así, $[f_{n}(x)]=[f_{n}(y)]$.
+\end{proof}
+
+\noindent Un resultado análogo se tiene para un mapeo de cocadena.
+
+\subsection{Homología y Cohomología Singular}
+\noindent La idea ahora es definir, dado un espacio topologico $X$, un complejo de cadenas 
+$C_{*}(X)$, y para cada función continua $f:X\to Y$, construir un mapeo de cadena $f_{*}:C_{*}(X)
+\to C_{*}(Y)$. Para luego, obtener los grupos de homología $H_{*}(X)$ de cada espacio y los mapeos
+$f_{*}:H_{*}(X)\to H_{*}(Y)$.
+
+\noindent Para esta construcción se utilizara homología singular. La ventaja de este vía, es que
+la definicón es una proppiedad instrinseca del espacio, sin embargo, resulta casi imposible 
+calcular los complejos de cadenas y por ende, los grupos de homología.
+
+\noindent Todos los resultados de la sección pueden ser dualizados, tomando el funtor Hom.
 
 \begin{dfn}
-    Un morfismo $f:A\to B$ da resultado a un \textbf{morfismo dual} $\widetilde{f}:Hom(B,G)\to 
-    Hom(A,G)$. Donde $\widetilde{f}$ le asigna a un morfismo $\varphi:B\to G$ el morfismo 
-    $\widetilde{f}(\varphi)=\varphi\circ f$.
+    Un \textbf{n-simplice estándar} es
+    \begin{equation*}
+        \nabla^{n}=\left\{
+            (t_{0},\cdots,t_{n})\in\R^{n+1}:t_{i}\geq0,\hspace{1mm}\sum t_{i}=1
+        \right\}
+    \end{equation*}
 \end{dfn}
 
-\vspace{2mm}
-\noindent Se verifica que $\widetilde{f}$ esta bien definido, en otras palabras, que 
-$\widetilde{f}(\varphi)$ es un morfismo. Para $G$ fijo, la asignación $A\to Hom(A,G)$ y 
-$f\to\widetilde{f}$ define un funtor contravariante de la categoría de grupos abelianos y morfismos
-a si mismo.
-
-\subsection{Grupo de Cohomología Simplicial}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografía
 
