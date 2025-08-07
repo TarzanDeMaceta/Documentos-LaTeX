@@ -128,12 +128,119 @@ calcular los complejos de cadenas y por ende, los grupos de homología.
 \begin{dfn}
     Un \textbf{n-simplice estándar} es
     \begin{equation*}
-        \nabla^{n}=\left\{
+        \Delta^{n}=\left\{
             (t_{0},\cdots,t_{n})\in\R^{n+1}:t_{i}\geq0,\hspace{1mm}\sum t_{i}=1
         \right\}
     \end{equation*}
 \end{dfn}
 
+\noindent\textbf{Observación:} La \textbf{i-esima cara} de $\Delta^{n}$ es 
+$\Delta^{n}_{i}=\{(t_{0},\cdots,t_{n})\in\Delta^{n}:t_{i}=0\}$. Notamos que un $n-$simplice tiene
+$n+1$ caras. Cada cara luce como un $(n-1)-$simplice. De hecho, mediante el mapeo
+\begin{align*}
+    \delta_{i}:\Delta^{n-1} &\to \Delta^{n} \\
+    (t_{0},\cdots,t_{n-1}) &\to (t_{0},\cdots,t_{i-1},0,t_{i},\cdots,t_{n-1})
+\end{align*}
+resulta ser homeomorfa a $\Delta^{n-1}$.
+
+\begin{dfn}
+    Sea $X$ un espacio topologico. Un \textbf{n-simplice singular} en $X$ es una función continua
+    $\sigma:\Delta^{n}\to X$.
+\end{dfn}
+
+\noindent Dado un espacio $X$, tenemos una colección de $n-$simplices, vamos a considerar el grupo
+abeliano libre generado por este conjunto para construir un complejo de cadenas y así los grupos
+de homología.
+
+\begin{dfn}
+    (\textbf{Complejo de cadena singular}) Definimos
+    \begin{equation*}
+        C_{n}(X):=\left\{\sum n_{\sigma}\sigma\hspace{1mm}|\hspace{1mm}\sigma:\Delta^{n}\to X
+        \text{, }n_{\sigma}\in\Z\hspace{1mm}
+        \text{ nulo salvo finitos casos}\right\}
+    \end{equation*}
+    Junto con los diferenciales $d_{n}:C_{n}(X)\to C_{n-1}(X)$ dada por
+    \begin{equation*}
+        \sigma\to\sum_{i=0}^{n}(-1)^{i}\sigma\circ\delta_{i}
+    \end{equation*}
+    que se extiende linealmente.
+\end{dfn}
+
+\noindent Para chequear que efectivamente tenemos una complejo de cadenas, tenemos los siguientes 
+resultados
+\begin{lema}
+    Sea $i<j$, entonces $\delta_{j}\circ\delta_{i}=\delta_{i}\circ\delta_{j-1}$.
+\end{lema}
+\begin{proof}
+    Sea $x=(t_{0},\cdots,t_{n-2})\in\Delta^{n-2}$, notemos que
+    \begin{equation*}
+        \delta_{j}\circ\delta_{i}(x)
+        =(t_{0},\cdots,t_{i-1},0,t_{i},\cdots,t_{j-2},0,t_{j-1},\cdots,t_{n-2})
+        =\delta_{i}\circ\delta_{j-1}(x)
+    \end{equation*}
+    lo que prueba el resultado.
+\end{proof}
+
+\begin{cor}
+    El morfismo $d_{n-1}\circ d_{n}:C_{n}(X)\to C_{n-2}(X)$ es trivial.
+\end{cor}
+\begin{proof}
+    Basta probar para cada elemento en la base, es decir, $\sigma:\Delta^{n}\to X$. Tenemos que
+    \begin{equation*}
+        d_{n-1}\circ d_{n}(\sigma)=\sum_{i=0}^{n-1}(-1)^{i}\sum_{j=0}^{n}(-1)^{j}
+        \sigma\circ\delta_{j}\circ\delta_{i}
+    \end{equation*}
+    Usando el lema anterior, vemos que
+    \begin{align*}
+        d_{n-1}\circ d_{n}(\sigma) &= \sum_{i<j}(-1)^{i+j}\sigma\circ\delta_{j}\circ\delta_{i}
+        +\sum_{i\geq j}(-1)^{i+j}\sigma\circ\delta_{j}\circ\delta_{i} \\
+        &= \sum_{i<j}(-1)^{i+j}\sigma\circ\delta_{i}\circ\delta_{j-1}
+        +\sum_{i\geq j}(-1)^{i+j}\sigma\circ\delta_{j}\circ\delta_{i}
+    \end{align*}
+    haciendo un cambio de índice en la primera expresión, resulta que
+    \begin{equation*}
+        d_{n-1}\circ d_{n}(\sigma)=\sum_{i\leq j}(-1)^{i+j+1}\sigma\circ\delta_{i}\circ\delta_{j}
+        +\sum_{i\geq j}(-1)^{i+j}\sigma\circ\delta_{j}\circ\delta_{i}=0
+    \end{equation*}
+\end{proof}
+
+\noindent Con lo anterior podemos definir la homología singular de un espacio
+
+\begin{dfn}
+    La \textbf{homología singular} de un espacio topologico $X$ es la homología del complejo de
+    cadenas $C_{*}(X)$, es decir,
+    \begin{equation*}
+        H_{i}(X):=H_{i}(C_{*}(X),d_{*})=\frac{\kr{d_{i}}}{\im{d_{i+1}}}
+    \end{equation*}
+\end{dfn}
+
+\noindent Para definir un complejo de cocadenas debemos trabajar un poco mas. Definimos el grupo 
+abeliano
+\begin{equation*}
+    C^{n}(X)=Hom(C_{n}(X),\Z)
+\end{equation*}
+con la operación de grupo dada por $(\psi+\varphi)(a)=\psi(a)+\varphi(a)$ con $\psi,\varphi\in 
+C_{n}(X)$, se verifica que $\psi+\varphi$ es morfismo. Consideramos el operador dual de $d_{n}$,
+denotado por $d^{n}:C^{n}(X)\to C^{n+1}(X)$ y dado por $d^{n}(\varphi):=\varphi\circ d_{n+1}$. 
+Observamos que
+\begin{equation*}
+    0\xrightarrow[]{}C^{0}(X)\xrightarrow[]{d^{0}}C^{1}(X)\xrightarrow[]{d^{1}}\cdots
+\end{equation*}
+es un complejo de cocadenas, ya que $d^{n+1}(d^{n}(\varphi))=\varphi\circ d_{n+1}\circ d_{n+2}
+=\varphi\circ0=0$. Así, la \textbf{cohomología singular} se define como
+\begin{equation*}
+    H^{i}(X):=H^{i}(C^{*}(X),d^{*})=\frac{\kr{d^{i}}}{\im{d^{i-1}}}
+\end{equation*}
+
+\begin{prop}
+    Sea $f:X\to Y$ una función continua de espacios topologicos, entonces las funciones
+    \begin{align*}
+        f_{n}:C_{n}(X) &\to C_{n}(Y)\htext{dada por} \\
+        \sigma &\to f\circ\sigma
+    \end{align*}
+    da un mapeo de cadena. Como consecuencia del primer lema, induce un mapeo en la homología 
+    (cohomología).
+\end{prop}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografía
 
