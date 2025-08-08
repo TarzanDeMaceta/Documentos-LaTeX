@@ -236,11 +236,96 @@ es un complejo de cocadenas, ya que $d^{n+1}(d^{n}(\varphi))=\varphi\circ d_{n+1
     Sea $f:X\to Y$ una función continua de espacios topologicos, entonces las funciones
     \begin{align*}
         f_{n}:C_{n}(X) &\to C_{n}(Y)\htext{dada por} \\
-        \sigma &\to f\circ\sigma
+        \sum_{\sigma}n_{\sigma}\sigma &\to \sum_{\sigma}n_{\sigma}f\circ\sigma
     \end{align*}
-    da un mapeo de cadena. Como consecuencia del primer lema, induce un mapeo en la homología 
-    (cohomología).
+    da un mapeo de cadena.
 \end{prop}
+\begin{proof}
+    Debemos chequear que $d_{n}^{D}\circ f_{n}=f_{n-1}\circ d_{n}^{C}$. Basta probar para la base,
+    notemos que
+    \begin{equation*}
+        d_{n}^{D}(f_{n}(\sigma))=d_{n}^{D}(f\circ\sigma)
+        =\sum_{i=0}^{n}(-1)^{i}(f\circ\sigma)\circ\delta_{i}
+        =\sum_{i=0}^{n}(-1)^{i}f\circ(\sigma\circ\delta_{i})=f(d_{n}^{C}(\sigma))
+        =f_{n-1}(d_{n}^{C}(\sigma))
+    \end{equation*}
+\end{proof}
+
+\noindent\textbf{Observación:} Por el primer lema, obtenemos una colección de morfismos entre los 
+grupos de homología. Por otro lado, dada $g:Y\to Z$ una función continua, afirmamos que el 
+siguiente diagrama conmuta
+
+\vspace{2mm}
+\centerline{
+    \xymatrix{
+        H_{n}(X) \ar[r]^{(g\circ f)_{*}} \ar[d]_{f_{*}} & H_{n}(Z) \\
+        H_{n}(Y) \ar[ru]_{g_{*}}
+    }
+}
+\vspace{2mm}
+
+\noindent En efecto, sea $\sigma\in C_{n}(X)$ un elemento de la base, entonces 
+$(g\circ f)_{*}(\sigma)=g\circ f\circ\sigma=g(f_{*}(\sigma))=g_{*}(f_{*}(\sigma))$. Adicionalmente,
+directo de la definición, se obtiene que
+\begin{equation*}
+    (id_{X})_{*}=id_{H_{n}(X)}:H_{n}(X)\to H_{n}(X)
+\end{equation*}
+De lo anterior, se deduce la siguiente proposición.
+
+\vspace{2mm}
+\begin{prop}
+    Sea $f:X\to Y$ un homeomorfismo, entonces $f_{*}:H_{n}(X)\to H_{n}(Y)$ es un isomorfismo de 
+    grupos abelianos.
+\end{prop}
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo: } Consideremos el espacio de un punto $pt=\{*\}$. Existe un único 
+simplice singular $\sigma_{n}:\Delta^{n}\to pt$, lo que implica que $\sigma_{n}\circ\delta_{i}
+=\sigma_{n-1}$. Entonces, el grupo libre $C_{n}(pt)\cong\Z$ y esta generado por $\sigma_{n}$.
+Notemos que
+\begin{equation*}
+    d_{n}(\sigma_{n})=\sum_{i=0}^{n}(-1)^{i}\sigma_{n}\circ\delta_{i}=\begin{cases}
+        \sigma_{n-1} &\quad\text{si }n\text{ es par} \\
+        0 &\quad\text{si }n\text{ es impar}
+    \end{cases}
+\end{equation*}
+Luego, el complejo de cadenas se ve como sigue,
+\begin{equation*}
+    \cdots\xrightarrow[]{}\Z\xrightarrow[]{1}\Z\xrightarrow[]{0}\Z\xrightarrow[]{1}\Z
+    \xrightarrow[]{0}\Z\xrightarrow[]{}0
+\end{equation*}
+El grupo de homología y cohomología del complejo es como sigue
+\begin{equation*}
+    H^{n}(pt)=H_{n}(pt)=\begin{cases}
+        \Z & \quad\text{si }n=0 \\
+        0 & \quad\text{si }n>0
+    \end{cases}
+\end{equation*}
+
+\vspace{2mm}
+\begin{lema}
+    Sea $X$ un espacio arcoconexo y no vacío, entonces $H_{0}(X)\cong\Z$.
+\end{lema}
+\begin{proof}
+    Se define el morfismo $\varphi: C_{0}(X)\to\Z$ dado por
+    \begin{equation*}
+        \sum n_{\sigma}\sigma\to\sum n_{\sigma}
+    \end{equation*}
+    Como $X$ es no vacío el morfismo es sobreyectivo. Afirmamos que $\kr{\varphi}=\im{d_{1}}$, en
+    efecto, sea $\sigma\in C_{1}(X)$, luego
+    \begin{equation*}
+        \varphi(d_{1}(\sigma))=\varphi(\sigma\circ\delta_{0}-\sigma\circ\delta_{1})=1-1=0
+    \end{equation*}
+    Por otro lado, supongamos que $\sum n_{\sigma}\sigma\in\kr{\varphi}$. Sea $x_{0}\in X$, 
+    consideremos el $0-$simplice singular $\sigma:\Delta^{0}\to X$. Como el espacio es arcoconexo
+    existe $\tau_{\sigma}:\Delta^{1}\to X$ tal que $\tau_{\sigma}\circ\delta_{0}=\sigma$ y 
+    $\tau_{\sigma}\circ\delta_{1}=x_{0}$, así
+    \begin{equation*}
+        d_{1}\left(\sum n_{\sigma}\tau_{\sigma}\right)=\sum n_{\sigma}(\sigma-x_{0})
+        =\sum n_{\sigma}\sigma-\left(\sum n_{\sigma}\right)x_{0}=\sum n_{\sigma}\sigma
+    \end{equation*}
+    Por lo tanto, por primer teorema de isomorfismo, se tiene el resultado.
+\end{proof}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografía
 
