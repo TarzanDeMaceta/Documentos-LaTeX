@@ -29,10 +29,193 @@
 \section*{Motivación}
 \phantomsection
 \addcontentsline{toc}{section}{Motivación}
+\noindent Dados dos espacios topológicos $X$ e $Y$ ¿Cuando son homeomorfos?. Decimos que dos 
+espacios son \textbf{homeomorfos} si existe $f:X\to Y$ continua, biyectiva y con inversa 
+constinua. La topología algebraica ataca esta pregunta de la siguiente forma:
+\begin{enumerate}
+    \item Asigna a cada espacio topológico $X$ un objeto algebraico $G(X)$.
+    \item Aigna a cada función continua $f:X\to Y$ un homomorfismo $G(f):G(X)\to G(Y)$ tal que
+    \begin{enumerate}
+        \item $G(f\circ g)=G(f)\circ G(g)$
+        \item $G(id_{X})=id_{G(X)}$
+    \end{enumerate}
+\end{enumerate}
+\noindent\textbf{Observación:} Ambas condiciones implican que si $f:X\to Y$ es homeomorfismo, 
+entonces $G(f):G(X)\to G(Y)$ es isomorfismo. A veces los $G$ que se construyen satisfacen la 
+propiedad extra que si $X$ se puede ''deformar continuamente'' en $Y$ entonces $G(X)\cong G(Y)$.
+
+\vspace{2mm}
+\noindent Decimos que $G$ es un \textbf{invariante homotópico}.(Faltan ejemplos - c1)
+
+\vspace{2mm}
+\begin{dfn}
+    Una \textbf{homotopía} entre dos funciones continuas $f,g:X\to Y$ es una función continua 
+    $H:X\times[0,1]\to Y$ tal que $H(x,0)=f(x)$ y $H(x,1)=g(x)$ para todo $x\in X$.
+\end{dfn}
+\noindent\textbf{Notación:} La función $H_{t}:X\to Y$ esta dada por $H_{t}(x):=H(x,t)$. Una 
+homotopía de $f$ a $g$ se denota por $f\sim g$.
+
+\vspace{2mm}
+\begin{prop}
+    Ser homotópico es una relación de equivalencia en $\mathcal{C}(X,Y)$.
+\end{prop}
+
+\vspace{2mm}
+\begin{dfn}
+    Decimos que $f:X\to Y$ es una \textbf{equivalencia homotópica}, si existe $g:Y\to X$ tal que 
+    $g\circ f\sim id_{X}$ y $f\circ g\sim id_{Y}$
+\end{dfn}
+\noindent En tal caso, $X$ e $Y$ se dicen homotópicamente equivalentes o que tienen el mismo tipo 
+de homotopía y se denota por $X\sim Y$.
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:}
+\begin{itemize}
+    \item Sea $f:X\to Y$ un homeomorfismo, en particular, tomando $g=f^{-1}$, se sigue que es 
+    equivalencia homotópica.
+
+    \item Se tiene que $\{0\}\sim\R^{n}$, consideremos la inclusión $i:\to\{0\}\to\R^{n}$, 
+    afirmamos que es $i$ es equivalencia homotópica. En efecto, se verifica que $\pi:\R^{n}\to
+    \{0\}$ es una inversa homotópica. Por un lado $\pi\circ i=id_{\{0\}}$ y por otro 
+    $i\circ\pi=0$. Notamos que $H(x,t)=tx$ con $t\in[0,1]$ es una homotopía entre $0$ y 
+    $id_{\R^{n}}$.
+
+    \item Veamos que $\R^{n}\setminus\{0\}\sim\s^{n-1}$. Probaremos que la función 
+    $i:\s^{n-1}\to\R^{n}\setminus\{0\}$ es equivalencia homotópica. En efecto,
+    \begin{align*}
+        \pi:\R^{n}\setminus\{0\} &\to \s^{n-1} \\
+        x &\to \frac{x}{\abs{x}}
+    \end{align*}
+    es inversa homotópica. Es claro que $\pi\circ i=id_{s^{n-1}}$. Definimos
+    \begin{equation*}
+        H(x,t):=t\frac{x}{\abs{x}}+(1-t)x
+    \end{equation*}
+    Notamos que $H(x,0)=x$ y $H(x,1)=\frac{x}{\abs{x}}$, es decir, $H$ es una homotopia entre 
+    $i\circ\pi$ e $id_{\R^{n}\setminus\{0\}}$. Además, se verifica que 
+    $im(H)\subseteq\R^{n}\setminus\{0\}$.
+\end{itemize}
 
 \newpage
-\section{Preliminares}
-\subsection{Homotopía}
+\section{Homología Simplicial}
+\noindent Queremos asignarle a un espacio topológico $X$ arbitrario, grupos abelianos 
+$H_{0}(X),H_{1}(X),\cdots$ tal que si $X\sim Y$, entonces $H_{i}(X)\cong H_{i}(Y)$ para todo $i$.
+Ituitivamente, $H_{k}(X)$ estará generado por ciertos subespacios de $X$ de dimensión $k$.
+
+\vspace{2mm}
+\noindent Habrá una relación de equvalencia, $A,B\subseteq X$ de dimensión $k$ serán equivalentes
+si hay un subespacio de $X$ de dimensión $k+1$ cuyo borde es $A\cup B$. (Falta ejemplo - c1)
+
+\vspace{2mm}
+\noindent Hay que restringir la clase de espacios a una con nociones de dimensión, borde, etc. 
+Estos serán los complejos simpliciales. Necesitamos, adicionalmente, un objeto algebraico que 
+capture esas nociones, esto corresponde a los complejos de cadenas.
+
+\subsection{Complejos de Cadenas}
+\begin{dfn}
+    Un \textbf{complejo de cadenas} es una sucesión de grupos abelianos y homomorfismos
+    \begin{equation*}
+        \cdots\xrightarrow[]{}C_{3}\xrightarrow[]{d_{3}}C_{2}\xrightarrow[]{d_{2}}
+        C_{1}\xrightarrow[]{d_{1}}C_{0}\xrightarrow[]{d_{0}}0
+    \end{equation*}
+    tal que $d_{i}\circ d_{i+1}=0$ para todo $i$. Se denota por $(C_{*},d_{*})$.
+\end{dfn}
+\noindent\textbf{Observación:} Notemos que $\im{d_{i+1}}\subseteq\kr{d_{i}}\subseteq C_{i}$. Dado 
+que los grupos son abelianos, esta observación permite definir el siguiente objeto.
+
+\vspace{2mm}
+\begin{dfn}
+    El \textbf{i-ésimo grupo de homología} de $(C_{*},d_{*})$ se define por
+    \begin{equation*}
+        H_{i}(C_{i}):=\frac{\kr{d_{i}}}{\im{d_{i+1}}}
+    \end{equation*}
+\end{dfn}
+
+\vspace{2mm}
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item Si $A$ un grupo abeliano, entonces
+    \begin{equation*}
+        \cdots\xrightarrow[]{}0\xrightarrow[]{}0\xrightarrow[]{}A\xrightarrow[]{}
+        0\xrightarrow[]{}\cdots\xrightarrow[]{}0\xrightarrow[]{}0
+    \end{equation*}
+    es un complejo de cadenas donde $C_{i}=A$. Entonces
+    \begin{equation*}
+        H_{j}(C_{*})=\begin{cases}
+            0 & \quad\text{si }j\neq i \\
+            A & \quad\text{si }j=i
+        \end{cases}
+    \end{equation*}
+
+    \item Consideremos la cadena exacta
+    \begin{equation*}
+        \cdots\xrightarrow[]{}0\xrightarrow[]{}\Z\xrightarrow[]{\cdot2}
+        \Z\xrightarrow[]{\pi}\Z_{2}\xrightarrow[]{}0
+    \end{equation*}
+    entonces $H_{j}(C_{*})=0$ para todo $i$.
+
+    \item Veamos que
+    \begin{equation*}
+        \cdots\xrightarrow[]{\cdot0}\Z\xrightarrow[]{\cdot2}\Z\xrightarrow[]{\cdot0}
+        \Z\xrightarrow[]{}0
+    \end{equation*}
+    es un complejo de cadenas. La homología asociadas son $H_{0}(C_{*})=\Z$, $H_{1}(C_{*})=\Z_{2}$
+    y $H_{k}(C_{*})=0$.
+\end{itemize}
+
+\noindent Nuestro objetivo será asociar un complejo de cadenas a un espacio topológico $X$ 
+arbitrario.
+
+\subsection{Complejos Simpliciales}
+\begin{dfn}
+    Dados $n+1$ puntos $\{v_{0},\cdots,v_{n}\}\in\R^{\omega}$ son \textbf{afínmente 
+    independientes}, si generan un $n-$plano afín, es decir, $\{v_{1}-v_{0},\cdots,v_{n}-v_{0}\}$
+    es un conjunto linealmente independiente, esto es
+    \begin{equation*}
+        \sum_{i=0}^{n}t_{i}v_{i}=0\hhtext{y}\sum_{i=0}^{n}t_{i}=0
+        \hhtext{entonces}t_{i}=0\text{ para todo }i
+    \end{equation*}
+\end{dfn}
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} Dos puntos son afínmente independientes. Tres puntos son afínmente 
+independientes si y solo si no son colineales. (Falta ejemplo dibujo - c1)
+
+\vspace{2mm}
+\begin{dfn}
+    Si $\{v_{0},\cdots,v_{n}\}$ son afínmente independientes, ellos definen el \textbf{n-simplejo}
+    \begin{equation*}
+        \sigma=\gen{v_{0},\cdots,v_{n}}=\left\{x=\sum_{i=0}^{n}t_{i}v_{i},\hspace{2mm}
+        \sum_{i=0}^{n}t_{i}=1\hhtext{y}t_{i}\geq0\right\}
+    \end{equation*}
+\end{dfn}
+
+\noindent Decimos que $\sigma$ es el $n-$simplejo generado por $v_{0},\cdots,v_{n}$. Los puntos 
+$v_{i}$ se llaman \textbf{vértices} de $\sigma$. Una \textbf{cara} de un simplejo $\sigma$ es 
+un simplejo $\tau$ generado por un subconjunto de $\{v_{0},\cdots,v_{n}\}$ y lo denotamos por 
+$\tau\leq\sigma$. Si el subconjunto es propio, se dice que $\tau$ es una \textbf{cara propia}.
+
+\vspace{2mm}
+\noindent La \textbf{frontera} de un $n-$simplejo $\sigma$ es la unión de todas sus caras propias, 
+se denota por $\partial\sigma$, el \textbf{interior} de $\sigma$ es $int(\sigma):=
+\sigma\setminus\partial\sigma$.
+
+\vspace{2mm}
+\begin{dfn}
+    Un \textbf{complejo simplicial} (geométrico) $K$ es un conjunto de simplejos tales que
+    \begin{enumerate}
+        \item Si $\sigma\in K$ y $\tau\leq\sigma$ entonces $\tau\in K$.
+        \item Si $\sigma,\tau\in K$ entonces $\sigma\cap\tau=\emptyset$ ó $\sigma\cap\tau$ es una
+        cara de $\sigma$ y de $\tau$.
+    \end{enumerate}
+\end{dfn}
+\noindent El \textbf{poliedro} asociado a un complejo simplicial $K$ es 
+$\abs{K}:=\bigcup_{\sigma\in K}\sigma$. Un espacio topológico $X$ se llama un poliedro si existe
+un complejo simplicial $K$ y un homeomorfismo $f:\abs{K}\to X$. Al par $(K,f)$ se le llama una 
+\textbf{triangulación} de $X$.
+
+\vspace{2mm}
+\noindent\textbf{Observación:} Si $X$ es triangulable, entonces es Hausdorff por que $\abs{K}$ 
+lo es. (Faltan ejemplos - c2)
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
