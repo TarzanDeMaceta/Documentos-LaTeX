@@ -107,6 +107,30 @@ $Y$. Por simetría, vemos que también hay una inyección de las componentes arc
 $X$, así, por cantor bernstein, ambos conjuntos estan en correspondencia uno a uno.
 
 \section*{Problema 3}
+\begin{lema}
+    Sea $A\subset\R^{2}$ un conjunto finito de puntos, entonces $X:=\R^{2}\setminus A$ es 
+    arcoconexo.
+\end{lema}
+\begin{proof}
+    Digamos que $A=\{x_{1},\cdots,x_{n}\}$. Como $A$ es finito, existe $\varepsilon>0$ tal que 
+    $B_{\varepsilon}(x_{i})\cap A=x_{i}$ para todo $1\leq i\leq n$. Sean $x,y\in X$, en $\R^{2}$ 
+    consideremos el segmento de recta $L_{xy}:=(1-t)x+ty$ con $t\in[0,1]$. Si
+    $L_{xy}\cap A=\emptyset$ no hay nada que probar, supongamos que existe $i$ tal que 
+    $x_{i}\in L_{xy}\cap A$.
+
+    \vspace{2mm}
+    \noindent Sea $v\in (L_{xy}-x)^{\perp}$, existe $\delta>0$ tal que $\overline{B_{\delta}(x_{i})}
+    \subseteq B_{\varepsilon}(x_{i})$ y $\delta v$
+\end{proof}
+
+Nuevamente, por 
+    finitud, resulta que $\abs{L_{xy}\cap A}<\infty$.
+
+Sea $f\in\C[x_{1},\cdots,x_{n}]$, definimos $\mathbb{V}(f):=\{x\in\C^{n}:f(x)=0\}$. Notemos que
+\begin{equation*}
+    Conf_{n}(\C)=\C^{n}\setminus\bigcup_{i,j}\mathbb{V}(x_{i}-x_{j})
+\end{equation*}
+Sean $x,y\in Conf_{n}(\C)$, en $\C^{n}$ consideremos la recta $L_{xy}:=\mathbb{V}()$
 
 \section*{Problema 4}
 
