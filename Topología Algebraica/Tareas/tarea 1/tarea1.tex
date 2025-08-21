@@ -106,33 +106,132 @@ lo cual es una contradicción.
 $Y$. Por simetría, vemos que también hay una inyección de las componentes arcoconexas de $Y$ en 
 $X$, así, por cantor bernstein, ambos conjuntos estan en correspondencia uno a uno.
 
+\vspace{2mm}
+\noindent Notemos que $D^{1}$ es arcoconexo ya que es convexo, luego la cantidad de componentes 
+componentes arcoconexas es uno. Por otro lado, veamos que $\{0,1\}$ no es conexo, pues la 
+topología topología inducida es la discreta y por lo tanto hay dos componentes conexas. De este
+modo, no existe equivalencia homotópica entre $D^{1}$ y $\S^{0}$.
+
 \section*{Problema 3}
 \begin{lema}
     Sea $A\subset\R^{2}$ un conjunto finito de puntos, entonces $X:=\R^{2}\setminus A$ es 
     arcoconexo.
 \end{lema}
 \begin{proof}
-    Digamos que $A=\{x_{1},\cdots,x_{n}\}$. Como $A$ es finito, existe $\varepsilon>0$ tal que 
-    $B_{\varepsilon}(x_{i})\cap A=x_{i}$ para todo $1\leq i\leq n$. Sean $x,y\in X$, en $\R^{2}$ 
-    consideremos el segmento de recta $L_{xy}:=(1-t)x+ty$ con $t\in[0,1]$. Si
-    $L_{xy}\cap A=\emptyset$ no hay nada que probar, supongamos que existe $i$ tal que 
+    Digamos que $A=\{x_{1},\cdots,x_{n}\}$. Como $A$ es finit, existe $\varepsilon>0$ tal que
+    $B_{\varepsilon}(x_{i})\cap A=x_{i}$ para todo $1\leq i\leq n$. Sean $x,y\in X$, en $\R^{2}$
+    consideramos el segmento de recta $L_{xy}:=\{(1-t)x+ty:t\in[0,1]\}$. Si 
+    $L_{xy}\cap A=\emptyset$ es vacío, no hay nada que probar, supongamos que existe $i$ tal que
     $x_{i}\in L_{xy}\cap A$.
 
     \vspace{2mm}
-    \noindent Sea $v\in (L_{xy}-x)^{\perp}$, existe $\delta>0$ tal que $\overline{B_{\delta}(x_{i})}
-    \subseteq B_{\varepsilon}(x_{i})$ y $\delta v$
+    \noindent Sea $v\in(L_{xy}-x)\perp$ y definimos $L_{xy}^{*}:=\{tv+x_{i}:t\in\R\}$. Existe 
+    $\delta>0$ tal que $\overline{B_{\delta}(x_{i})}\subseteq B_{\varepsilon}(x_{i})$, sean 
+    $u,v\in L_{xy}\cap\partial B_{\delta(x_{i})}$ y $w\in L_{xy}^{*}\cap\partial 
+    B_{\delta}(x_{i})$ que existen pues $L_{xy}\cap L_{xy}^{*}$ contienen a $x_{i}$, además 
+    $u,v,w$ no son colineales ya que $L_{xy}\cap L_{xy}^{*}=x_{i}$.
+
+    \vspace{2mm}
+    \noindent Sean $t_{0}<t_{1}$ tales que $u=(1-t_{0})x+t_{0}y$ y $v=(1-t_{1})x+t_{1}y$. 
+    Consideramos
+    \begin{equation*}
+        L=L_{xu}\cdot L_{uw}\cdot L_{wv}\cdot L_{vy}
+    \end{equation*}
+    donde $\cdot$ es la operación de concatenación. Como $t_{0}<t_{1}$, vemos que 
+    $x_{i}\not\in L_{xu}\cup L_{vy}$. Además, como $u\in L_{xy}\cap L_{uw}$ y 
+    $v\in L_{xy}\cap L_{wv}$, entonces $x_{i}\not\in L_{uw}\cdot L_{wv}$ y por convexidad resulta
+    que
+    \begin{equation*}
+        L_{uw}\cdot L_{wv}\cap A=\emptyset
+    \end{equation*}
+    Si $(L_{xu}\cup L_{vy})\cap\emptyset$ entonces $L$ es el camino buscado, de lo contrario, 
+    repetimos el procedimiento para cada punto en la intersección, por finitud, concluimos.
+
+    \vspace{2mm}
+    \begin{center}
+        \begin{tikzpicture} %Ilustrción de la demostración%
+            \filldraw[color=black, fill=white, dashed] (0,0,0) circle (1.5);
+            \filldraw[color=black, fill=white, thick] (0,0,0) circle (1);
+            
+            \coordinate (x_{i}) at (0,0);
+            \coordinate (u) at ({-sqrt(2)/2},{-sqrt(2)/2});
+            \coordinate (v) at ({sqrt(2)/2},{sqrt(2)/2});
+            \coordinate (w) at (-{sqrt(2)/2},{sqrt(2)/2});
+
+            \draw ($2*(u)$) -- ($2*(v)$);
+            \draw (w) -- (x_{i});
+            \draw (w) -- (u);
+            \draw (w) -- (v);
+
+            \filldraw (x_{i}) circle (1pt) node[anchor=north west]{$x_{i}$};
+            \filldraw (u) circle (1pt) node[anchor=east]{$u$};
+            \filldraw (v) circle (1pt) node[anchor=south]{$v$};
+            \filldraw (w) circle (1pt) node[anchor=south]{$w$};
+        \end{tikzpicture}
+    \end{center}
+    En la figura se muestra la situación.
 \end{proof}
 
-Nuevamente, por 
-    finitud, resulta que $\abs{L_{xy}\cap A}<\infty$.
-
-Sea $f\in\C[x_{1},\cdots,x_{n}]$, definimos $\mathbb{V}(f):=\{x\in\C^{n}:f(x)=0\}$. Notemos que
+\noindent Sea $f\in\C[x_{1},\cdots,x_{n}]$, definimos $\mathbb{V}:=\{x\in\C^{n}:f(x)=0\}$. Notemos 
+que
 \begin{equation*}
     Conf_{n}(\C)=\C^{n}\setminus\bigcup_{i,j}\mathbb{V}(x_{i}-x_{j})
 \end{equation*}
-Sean $x,y\in Conf_{n}(\C)$, en $\C^{n}$ consideremos la recta $L_{xy}:=\mathbb{V}()$
+Sean $x,y\in Conf_{n}(\C)$, en $\C^{n}$ consideramos la recta $L_{xy}:=\{(x-y)z+y:z\in\C\}$, como
+$\mathbb{V}(x_{i}-x_{j})$ es un hiperplano de dimensión $n-1$, se tiene que 
+$L_{xy}\cap\mathbb{V}(x_{i}-x_{j})$ es vacío, un punto o $L_{xy}$. Dado que $x,y\in Conf_{n}(\C)$, 
+vemos que $\abs{L_{xy}\cap\mathbb{V}(x_{i}-x_{j})}\leq1$, así
+\begin{equation*}
+    \abs{L_{xy}\cap\bigcup_{i,j}\mathbb{V}(x_{i}-x_{j})}\leq\sum_{i,j}\abs{L_{xy}
+    \cap\mathbb{V}(x_{i}-x_{j})}\leq n^{2}
+\end{equation*}
+Notemos que $L_{xy}\cong\C$ con la identificación $w\to(x-y)w+y$, pero también $\C\cong\R^{2}$, 
+entonces $L_{xy}\setminus\bigcup\mathbb{V}(x_{i}-x_{j})\cong\R^{2}\setminus A$ con $A$ un 
+subconjunto finito.
 
 \section*{Problema 4}
+\begin{enumerate}
+    \item Sea $X=\R$ con la topología discreta. Supongamos, por contradicción, que existe $(K,f)$
+    tales que $f:\abs{K}\to\R$ es homeomorfismo. Como $\abs{K}$ es segundo contable, pues 
+    $\R^{\infty}$ es segundo contable, entonces $X$ es segundo contable, lo cual es una 
+    contradicción.
+
+    \item Probaremos un resultado previo.
+    \begin{lema}
+        Sea $X$ un espacio separable. Entonces todo conjunto discreto es numerable.
+    \end{lema}
+    \begin{proof}
+        Sea $B\subseteq X$ un denso numerable. Sea $A\subseteq X$ un subconjunto discreto. Sea 
+        $x\in A$, como $A$ es discreto, existe $U_{x}\subseteq X$ vecindad de $x$ tal que 
+        $U_{x}\cap A=x$. Por densidad, existe $b_{x}\in U_{x}\cap B$. Definimos la función
+        \begin{align*}
+            f:A &\to B \\
+            x &\to b_{x}
+        \end{align*}
+        Si $x\neq y$ entonces $U_{x}\cap U_{y}=\emptyset$, luego la función $f$ es inyectiva.
+    \end{proof}
+
+    \noindent Sea $X=\ell^{\infty}(\N)$ con la topología inducida por la norma. Sea 
+    $S\subseteq\N$, definimos
+    \begin{equation*}
+        x_{S}=(x_{n})_{n}\hhtext{con}x_{n}:=\begin{cases}
+            1 &\quad\text{ si }n\in S \\
+            0 &\quad\text{ si no}
+        \end{cases}
+    \end{equation*}
+    Consideramos $A=\{x_{S}:S\subseteq\N\}$, notemos que $A$ es no numerable y además si $S\neq T$ se tiene que
+    \begin{equation*}
+        \norm{x_{S}-x_{T}}_{\infty}=1
+    \end{equation*}
+    es decir, $A$ es discreto, por el lema llegamos a una contradicción, lo que concluye el 
+    resultado.
+
+    \item Demostraremos un lema previo.
+    \begin{lema}
+        Sea $K$ un complejo simplicial con finitos vértices. Entonces $\abs{K}$ es localmente 
+        arcoconexo.
+    \end{lema}
+\end{enumerate}
 
 \section*{Problema 5}
 \noindent Debemos triangular tres espacios, que son los siguientes
