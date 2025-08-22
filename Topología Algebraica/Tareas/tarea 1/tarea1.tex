@@ -110,7 +110,7 @@ $X$, así, por cantor bernstein, ambos conjuntos estan en correspondencia uno a 
 \noindent Notemos que $D^{1}$ es arcoconexo ya que es convexo, luego la cantidad de componentes 
 componentes arcoconexas es uno. Por otro lado, veamos que $\{0,1\}$ no es conexo, pues la 
 topología topología inducida es la discreta y por lo tanto hay dos componentes conexas. De este
-modo, no existe equivalencia homotópica entre $D^{1}$ y $\S^{0}$.
+modo, no existe equivalencia homotópica entre $D^{1}$ y $\s^{0}$.
 
 \section*{Problema 3}
 \begin{lema}
@@ -194,7 +194,7 @@ subconjunto finito.
     \item Sea $X=\R$ con la topología discreta. Supongamos, por contradicción, que existe $(K,f)$
     tales que $f:\abs{K}\to\R$ es homeomorfismo. Como $\abs{K}$ es segundo contable, pues 
     $\R^{\infty}$ es segundo contable, entonces $X$ es segundo contable, lo cual es una 
-    contradicción.
+    contradicción. Claramente $X$ es Hausdorff.
 
     \item Probaremos un resultado previo.
     \begin{lema}
@@ -219,30 +219,68 @@ subconjunto finito.
             0 &\quad\text{ si no}
         \end{cases}
     \end{equation*}
-    Consideramos $A=\{x_{S}:S\subseteq\N\}$, notemos que $A$ es no numerable y además si $S\neq T$ se tiene que
+    Consideramos $A=\{x_{S}:S\subseteq\N\}$, notemos que $A$ es no numerable y además si $S\neq T$ 
+    se tiene que
     \begin{equation*}
         \norm{x_{S}-x_{T}}_{\infty}=1
     \end{equation*}
     es decir, $A$ es discreto, por el lema llegamos a una contradicción, lo que concluye el 
-    resultado.
+    resultado. Como $\ell^{\infty}(\N)$ es espacio métrico es Hausdorff.
 
     \item Demostraremos un lema previo.
     \begin{lema}
         Sea $K$ un complejo simplicial con finitos vértices. Entonces $\abs{K}$ es localmente 
         arcoconexo.
     \end{lema}
+    \begin{proof}
+        Sea $x\in\abs{K}$, existe $\varepsilon_{x}>0$, tal que
+        \begin{equation*}
+            B_{\varepsilon_{x}}(x)\cap\sigma\neq\emptyset\hhtext{entonces}x\in\sigma
+            \text{, a saber}\hspace{4mm}\varepsilon_{x}:=\frac{1}{2}\min_{x\not\in\sigma}
+            \{d(x,\sigma)\}
+        \end{equation*}
+        que está bien definido pues $K$ es finito. Sean $x\in\sigma$ y 
+        $0<\varepsilon<\varepsilon_{x}$, como $\sigma$ y $B_{\varepsilon}(x)$ son convexos, 
+        entonces $B_{\varepsilon}\cap\sigma$ es convexo, en particular, es arcoconexo. Luego,
+        \begin{equation*}
+            B_{\varepsilon}(x)\cap K=\bigcup_{x\in\sigma}B_{\varepsilon}\cap\sigma
+        \end{equation*}
+        es arcoconexo por ser unión de arcoconexos con $x$ un punto común. Consideramos
+        \begin{equation*}
+            \mathcal{B}:=\{B_{\varepsilon}(x):x\in\abs{K}\text{ y }0<\varepsilon<\varepsilon_{x}\}
+        \end{equation*}
+        Notemos que $\mathcal{B}$ es base y por lo dicho anteriormente cada abierto es arcoconexo.
+    \end{proof}
+
+    \noindent Consideremos el espacio
+    \begin{equation*}
+        X:=\overline{\left\{\left(x,sen\left(\frac{1}{x}\right)\right):x\in(0,1]\right\}}
+    \end{equation*}
+    conocido como el seno del topologo. Sabemos que $X$ es conexo, pero no es arcoconexo, y por 
+    tanto no es localmente arcoconexo. Sea $(K,f)$ una triangulación de $X$ tal que $K$ es finito,
+    entonces, por el lema, $\abs{K}$ es localmente arcoconexo, esto es una contradicción. Como $X$
+    es subespacio de un espacio Hausdorff, entonces es Hausdorff.
 \end{enumerate}
 
+\newpage
 \section*{Problema 5}
 \noindent Debemos triangular tres espacios, que son los siguientes
 \begin{enumerate}
-    \item En $\R^{2}$ consideramos los puntos $v_{0}=(1,1)$, $v_{1}=(-1,1)$, $v_{2}=(-1,-1)$ y 
-    $v_{3}=(1,-1)$. Y sean $\sigma_{0}=\gen{v_{0},v_{1}}$, $\sigma_{1}=\gen{v_{0},v_{3}}$, 
-    $\sigma_{2}=\gen{v_{2},v_{1}}$ y $\sigma_{3}=\gen{v_{2},v_{3}}$ los $1-$simplices generados
-    por los vértices. Sea $K:=\bigcup\{\sigma_{i},v_{i}\}$, es claro que $K$ es complejo 
-    simplicial.
+    \item En $\R^{2}$ consideremos los puntos y los simplices
+    \begin{equation*}
+        \begin{matrix}
+            v_{0}=(1,1) & v_{1}=(-1,1) \\
+            v_{2}=-(1,1) & v_{3}=(1,-1)
+        \end{matrix}
+        \hspace{2cm}\begin{matrix}
+            \sigma_{0}=\gen{v_{0},v_{1}} & \sigma_{1}=\gen{v_{1},v_{2}} \\
+            \sigma_{2}=\gen{v_{2},v_{3}} & \sigma_{3}=\gen{v_{0},v_{3}}
+        \end{matrix}
+    \end{equation*}
+    Como los puntos son distintos de a pares, los simplices están bien definidos, además es 
+    sencillo verificar que $K=\bigcup_{i\geq0}\{\sigma_{i},v_{i}\}$ es un complejo simplicial.
     \begin{center} % Triangulación del circulo
-        \begin{tikzpicture}[scale=1.5]
+        \begin{tikzpicture}
             \draw (1,1) -- (-1,1);
             \draw (1,1) -- (1,-1);
             \draw (-1,-1) -- (-1,1);
@@ -256,26 +294,22 @@ subconjunto finito.
             \filldraw[color=black, fill=white, thick] (0,0) circle (1);
         \end{tikzpicture}
     \end{center}
-    Probaremos que $\abs{K}\cong\s^{1}$. Denotamos por $\abs{\cdot}$ la norma euclideana y 
-    $\norm{\cdot}$ a la norma que corresponde al máximo del valor absoluto de cada entrada. 
-    Consideramos la función
-    \begin{align*}
-        f:\abs{K} &\to \s^{1}\htext{dada por} \\
-        x &\to \frac{x}{\abs{x}}
-    \end{align*}
-    que resulta ser continua ya que $\abs{K}\subseteq\R^{2}\setminus\{0\}$. Afirmamos que 
-    $g:\s^{1}\to\abs{K}$ dada por
+    Afirmamos que $\abs{K}\cong\s^{1}$. Denotaremos por $\abs{\cdot}$ a la norma euclideana y 
+    $\norm{\cdot}$ a la norma que corresponde a la norma del máximo. Consideramos la función 
+    $f:\abs{K}\to\s^{1}$ dada por $f(x):=x/\abs{x}$ que resulta ser continua y esta bien definida 
+    ya que $\abs{K}\subseteq\R^{2}\setminus\{0\}$. Afirmamos que $g:\s^{1}\to\abs{K}$ dada por 
+    $g(x):=x/\norm{x}$ es la inversa de $f$ y es continua.
+
+    \vspace{2mm}
+    \noindent Notemos que $g$ esta bien definida puesto que 
+    $\{x\in\R^{2}\setminus\{0\}:\norm{x}=1\}=\abs{K}$. Como $\norm{\cdot}$ y $\abs{\cdot}$ son 
+    normas equivalentes, inducen la misma topología y por lo tanto $g$ es continua pues 
+    $\s^{1}\subseteq\R^{2}\setminus\{0\}$. Luego,
     \begin{equation*}
-        g(x):=\frac{x}{\norm{x}}
-    \end{equation*}
-    Notemos que $g$ esta bien definida, ya que $\{x\in\R^{2}\setminus\{0\}:\norm{x}=1\}=\abs{K}$. 
-    Como $\norm{\cdot}$ y $\abs{\cdot}$ son normas equivalentes, inducen la misma topología y por
-    lo tanto $g$ es continua ya que $\s^{1}\subseteq\R^{2}\setminus\{0\}$. Luego,
-    \begin{equation*}
-        f\circ g(x)=f\left(\frac{x}{\norm{x}}\right)
+        (f\circ g)(x)=f\left(\frac{x}{\norm{x}}\right)
         =\frac{\frac{x}{\norm{x}}}{\abs{\frac{x}{\norm{x}}}}=x
     \end{equation*}
-    es decir, $f\circ g=id_{\s^{1}}$. Del mismo modo, $g\circ f=id_{\abs{K}}$. Lo que prueba que
+    es decir, $f\circ g=id_{\s^{1}}$. Del mismo modo, $g\circ f=id_{\abs{K}}$. Lo que prueba que 
     $(K,f)$ es una triangulación de $\s^{1}$. Así, la característica de Euler de la triangulación
     es $V-E+F=4-4+0=0$.
 
