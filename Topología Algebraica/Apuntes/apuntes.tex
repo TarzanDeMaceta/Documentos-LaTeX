@@ -45,7 +45,44 @@ entonces $G(f):G(X)\to G(Y)$ es isomorfismo. A veces los $G$ que se construyen s
 propiedad extra que si $X$ se puede ''deformar continuamente'' en $Y$ entonces $G(X)\cong G(Y)$.
 
 \vspace{2mm}
-\noindent Decimos que $G$ es un \textbf{invariante homotópico}.(Faltan ejemplos - c1)
+\noindent Decimos que $G$ es un \textbf{invariante homotópico}.
+
+\noindent\textbf{Ejemplos:}
+\begin{enumerate}
+    \item Tenemos los espacios
+    \begin{center} %Ilustraciones de la esfera y el toro
+        \begin{tikzpicture}[scale=0.9]
+            \coordinate (A) at (0,0,0);
+            \coordinate (B) at (-1,0,0);
+            \coordinate (C) at (1,0,0);
+
+            \filldraw[color=black, fill=white, thick] (A) circle (1);
+            \draw (B) arc (240:300:2);
+            \draw[dashed] (C) arc (60:120:2);
+        \end{tikzpicture}
+        %
+        \hspace{2cm}
+        %
+        \begin{tikzpicture}[scale=0.9]
+            \coordinate (A) at (0,0);
+            \coordinate (B) at (-1.5,0.1);
+            \coordinate (C) at (1,-0.1);
+
+            \draw[thick] (A) ellipse (2cm and 1cm);
+            \draw[thick] (B) arc (240:300:3);
+            \draw[thick] (C) arc (60:120:2);
+        \end{tikzpicture}
+    \end{center}
+    Mas adelante veremos que la homología le asigna a la esfera el grupo $\{e\}$ y al toro 
+    $\Z^{2}$. En general, una superficie de genero $g$ tendrá el grupo $\Z^{2g}$.
+
+    \item ¿Cuando $\R^{n}$ y $\R^{m}$ son homeomorfos? Si $n\neq$, el grupo de homología de 
+    $\R^{n}$ será $\{e\}$ y por el contrario, para $\R^{m}$ va a ser $\Z$ y por lo tanto $R^{n}$ y
+    $\R^{m}$ son homeomorfos si y solo si $n=m$.
+
+    \item Un ejemplo particular, para el circulo se tiene que $\pi_{1}(\s^{1})=\Z$ pero 
+    $\pi_{1}(\s^{2})=\{e\}$ y por lo tanto los espacios no son homeomorfos.
+\end{enumerate}
 
 \vspace{2mm}
 \begin{dfn}
@@ -59,7 +96,40 @@ homotopía de $f$ a $g$ se denota por $f\sim g$.
 \begin{prop}
     Ser homotópico es una relación de equivalencia en $\mathcal{C}(X,Y)$.
 \end{prop}
+\begin{proof}
+    Debemos probar tres cosas
+    \begin{enumerate}
+        \item La relación es reflexiva. Sea $f:X\to Y$, consideramos la homotopía constante, esto
+        es $H(x,t):=f(x)$ es continua ya que
 
+        \centerline{
+            \xymatrix{
+                X\times[0,1] \ar[r]^-{\pi_{X}} \ar@/_0.8pc/[rr]_{H} & X \ar[r]^-{f} & Y
+            }
+        }
+        \item Simetría. Supongamos que $f\sim g$, consideramos $H'(x,t)=H(x,1-t)$ y es continua
+        por que
+        
+        \vspace{2mm}
+        \centerline{
+            \xymatrixcolsep{3pc}\xymatrix{
+                X\times[0,1] \ar[r]^-{id\times(1-t)} \ar@/_1.1pc/[rr]_{H'} & X\times[0,1]
+                \ar[r]^-{H} & Y
+            }
+        }
+        \item Por último, la transitividad. Sean $f\sim g$ y $g\sim h$, Definimos 
+        $H*G:X\times[0,1]\to Y$ dada por
+        \begin{equation*}
+            H*G(x,t):=\begin{cases}
+                H(x,2t) &\quad\text{ si}\hspace{2mm}0\leq t\leq\frac{1}{2} \\
+                G(x,2t-1) &\quad\text{ si}\hspace{2mm}\frac{1}{2}\leq t\leq1
+            \end{cases}
+        \end{equation*}
+        que resulta continua por el lema del pegado.
+    \end{enumerate}
+\end{proof}
+
+\newpage
 \vspace{2mm}
 \begin{dfn}
     Decimos que $f:X\to Y$ es una \textbf{equivalencia homotópica}, si existe $g:Y\to X$ tal que 
@@ -70,7 +140,7 @@ de homotopía y se denota por $X\sim Y$.
 
 \vspace{2mm}
 \noindent\textbf{Ejemplo:}
-\begin{itemize}
+\begin{enumerate}
     \item Sea $f:X\to Y$ un homeomorfismo, en particular, tomando $g=f^{-1}$, se sigue que es 
     equivalencia homotópica.
 
@@ -93,7 +163,7 @@ de homotopía y se denota por $X\sim Y$.
     Notamos que $H(x,0)=x$ y $H(x,1)=\frac{x}{\abs{x}}$, es decir, $H$ es una homotopia entre 
     $i\circ\pi$ e $id_{\R^{n}\setminus\{0\}}$. Además, se verifica que 
     $im(H)\subseteq\R^{n}\setminus\{0\}$.
-\end{itemize}
+\end{enumerate}
 
 \newpage
 \section{Homología Simplicial}
@@ -162,9 +232,59 @@ que los grupos son abelianos, esta observación permite definir el siguiente obj
     y $H_{k}(C_{*})=0$.
 \end{itemize}
 
-\noindent Nuestro objetivo será asociar un complejo de cadenas a un espacio topológico $X$ 
-arbitrario.
+\begin{dfn}
+    Sean $(C_{*},\partial_{*})$ y $(D_{*},\partial_{*})$ dos complejos de cadenas. Un 
+    \textbf{mapeo de cadenas} es una colección de homomorfismos $f_{n}:C_{n}\to D_{n}$ tal que 
+    $\partial_{n}f_{n}=f_{n-1}\partial_{n}$ para todo $n$, es decir, el siguiente diagrama conmuta
 
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            C_{n} \ar[r]^{\partial_{n}} \ar[d]^{f_{n}} & C_{n-1} \ar[d]^{f_{n-1}} \\
+            D_{n} \ar[r]^{\partial_{n}} & D_{n-1}
+        }
+    }
+    y se denota por $(f):C_{*}\to D_{*}$.
+\end{dfn}
+
+\vspace{2mm}
+\begin{lema}
+    Si $(f):C_{*}\to D_{*}$ es un mapeo de cadenas, entonces la asignación 
+    $f_{*}:H_{n}(C_{*})\to H_{n}(D_{*})$ dada por
+    \begin{equation*}
+        f_{*}([x])=[f_{n}(x)]
+    \end{equation*}
+    esta bien definida y es un homomorfismo de grupos.
+\end{lema}
+\begin{proof}
+    Sea $x\in ker\partial_{n}$ entonces $\partial_{n}f_{n}(x)=f_{n-1}\partial_{n}(x)
+    =f_{n-1}(0)=0$. Así, $f_{n}(x)\in\kr{\partial_{n}}$ y por tanto la expresión tiene sentido. Si
+    $[x]=[y]$ entonces $x-y=\partial_{n}(z)$ para $z\in C_{n+1}$, se sigue que 
+    $f_{n}(x)-f_{n}(y)=f_{n}\partial_{n+1}(z)=\partial_{n+1}f_{n+1}(z)$. Concluimos que 
+    $[f_{n}(x)]=[f_{n}(y)]$.
+\end{proof}
+
+\noindent\textbf{Ejemplo:}
+Consideremos la siguiente situación
+
+\centerline{
+    \xymatrix{
+        \cdots \ar[r] & 0 \ar[r]^{0} \ar[d] & \Z \ar[r]^{3} \ar[d]^{id} & 
+        \Z \ar[r]^{0} \ar[d]^{\pi} & \Z \ar[r] \ar[d]^{id} & 0 & C_{*} \ar[d]^{(f)} \\
+        \cdots \ar[r] & 0 \ar[r]^{0} & \Z \ar[r]^{3} & \Z_{3} \ar[r]^{0} & \Z \ar[r] & 0 & D_{*}
+    }
+}
+\vspace{2mm}
+\noindent Entonces $f_{*}:H_{2}(C_{*})=0\to H_{2}(D_{*})=\Z$ es el morfismo trivial. Mientras que
+$\pi_{*}:H_{1}(C_{*})=\Z_{3}\to H_{1}(D_{*})=\Z_{3}$ es la identidad.
+
+\vspace{2mm}
+\noindent Nuestro objetivo será asociar un complejo de cadenas a un espacio topológico $X$ 
+arbitrario, lo que nos dara un grupo de homología para cada dimensión, además dada $f:X\to Y$ una
+función continua, nos gustaría obtener un mapeo de cadenas y por tanto un homomorfismo entre los
+grupos de homología de cada espacio.
+
+\newpage
 \subsection{Complejos Simpliciales}
 \begin{dfn}
     Dados $n+1$ puntos $\{v_{0},\cdots,v_{n}\}\in\R^{\omega}$ son \textbf{afínmente 
@@ -199,6 +319,21 @@ $\tau\leq\sigma$. Si el subconjunto es propio, se dice que $\tau$ es una \textbf
 se denota por $\partial\sigma$, el \textbf{interior} de $\sigma$ es $int(\sigma):=
 \sigma\setminus\partial\sigma$.
 
+\begin{center}
+    \begin{tikzpicture} %Un 2-simplejo
+        \coordinate (A) at (0,0);
+        \coordinate (B) at (2,0);
+        \coordinate (C) at (1,2);
+
+        \draw[very thick] (A) -- (B) -- (C) -- cycle;
+        \fill[color=orange, opacity=0.3] (A) -- (B) -- (C) -- cycle;
+
+        \filldraw (C) circle (2pt) node[anchor=west]{$v_{2}$};
+        \filldraw (B) circle (2pt) node[anchor=west]{$v_{1}$};
+        \filldraw (A) circle (2pt) node[anchor=east]{$v_{0}$};
+    \end{tikzpicture}
+\end{center}
+
 \vspace{2mm}
 \begin{dfn}
     Un \textbf{complejo simplicial} (geométrico) $K$ es un conjunto de simplejos tales que
@@ -215,7 +350,216 @@ un complejo simplicial $K$ y un homeomorfismo $f:\abs{K}\to X$. Al par $(K,f)$ s
 
 \vspace{2mm}
 \noindent\textbf{Observación:} Si $X$ es triangulable, entonces es Hausdorff por que $\abs{K}$ 
-lo es. (Faltan ejemplos - c2)
+lo es.
+
+\begin{center}
+    \begin{tikzpicture} %Ejemplo de complejo simplicial
+        \coordinate (A) at (0,0);
+        \coordinate (B) at (2,0);
+        \coordinate (C) at (3,1);
+        \coordinate (D) at (1.5,1.5);
+        \coordinate (E) at (4,0.5);
+        \coordinate (F) at (3.5,-0.5);
+
+        \draw (A) -- (B) -- (D) -- cycle;
+        \draw (D) -- (C) -- (B);
+        \draw[dashed] (A) -- (C);
+        \draw[color=orange] (B) -- (E) -- (C);
+        \draw[color=orange] (E) -- (F);
+
+        \filldraw (A) circle (1pt);
+        \filldraw (B) circle (1pt);
+        \filldraw (C) circle (1pt);
+        \filldraw (D) circle (1pt);
+        \filldraw[color=orange] (E) circle (1pt);
+        \filldraw[color=orange] (F) circle (1pt);
+
+        \node at (2,-1) {(1)};
+    \end{tikzpicture}
+    %
+    \hspace{2cm}
+    %
+    \begin{tikzpicture} %Ejemplo de un no complejo simplicial
+        \coordinate (A) at (0,0);
+        \coordinate (B) at (2,0);
+        \coordinate (C) at (1,2);
+        \coordinate (D) at (1.5,1);
+        \coordinate (E) at (3,1.5);
+
+        \draw (A) -- (B) -- (C) -- cycle;
+        \draw[color=orange] (C) -- (D) -- (E) -- cycle;
+
+        \filldraw (A) circle (1pt) node[anchor=east]{$v_{0}$};
+        \filldraw (B) circle (1pt) node[anchor=west]{$v_{1}$};
+        \filldraw (C) circle (1pt) node[anchor=south]{$v_{2}$};
+        \filldraw (D) circle (1pt) node[anchor=north west]{$w_{0}$};
+        \filldraw (E) circle (1pt) node[anchor=west]{$w_{0}$};
+
+        \node at (1,-1) {(2)};
+    \end{tikzpicture}
+\end{center}
+\noindent La figura $(1)$ corresponde a un complejo simplicial, mientras que la figura $(2)$ no
+es un complejo simplicial ya que los simplices que la componen no se pegan bien.
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} Consideremos el complejo simplicial $K$ formado por los simplices 
+$\sigma=\gen{\pm e_{1},\pm e_{2}, \pm e_{3}}$ y sus respectivas caras. Consideremos 
+$f:\abs{K}\to\s^{2}$ por $f(x):=x/\abs{x}$, entonces $(K,f)$ es una triangulación de la 
+$2-$esfera.
+
+\begin{center}
+    \begin{tikzpicture}[scale=0.9] %Representación del complejo simplicial
+        \coordinate (O) at (0,0);
+        \coordinate (A) at (-0.5,-1);
+        \coordinate (B) at (1,0);
+        \coordinate (C) at (0,1);
+
+        \draw (O) -- ($1.5*(A)$);
+        \draw (O) -- ($1.5*(B)$);
+        \draw (O) -- ($1.5*(C)$);
+
+        \draw[dashed] (O) -- ($-1.5*(A)$);
+        \draw[dashed] (O) -- ($-1.5*(B)$);
+        \draw[dashed] (O) -- ($-1.5*(C)$);
+
+        \draw[orange] (A) -- (B) -- (C) -- cycle;
+        \draw[orange] (A) -- (B) -- ($-1*(C)$) -- cycle;
+        \draw[orange] (A) -- ($-1*(B)$) -- (C) -- cycle;
+        \draw[orange] ($-1*(A)$) -- (B) -- (C) -- cycle;
+
+        \draw[orange, dashed] ($-1*(B)$) -- ($-1*(C)$);
+        \draw[orange, dashed] ($-1*(B)$) -- ($-1*(A)$);
+        \draw[orange, dashed] ($-1*(A)$) -- ($-1*(C)$);
+
+        \filldraw (A) circle (1pt) node[anchor=north west]{$e_{1}$};
+        \filldraw (B) circle (1pt) node[anchor=north west]{$e_{2}$};
+        \filldraw (C) circle (1pt) node[anchor=south west]{$e_{3}$};
+    \end{tikzpicture}
+\end{center}
+Lo anterior se puede generalizar a $\s^{n}$.
+
+\vspace{2mm}
+\begin{dfn}
+    Sean $K$ y $L$ complejos simpliciales. Un \textbf{mapeo simplicial} de $K$ a $L$ es una 
+    función $f:V_{K}\to V_{L}$ tal que si $\sigma=\gen{v_{\alpha_{0}},\cdots,v_{\alpha_{n}}}$ es
+    un simplejo en $K$ entonces
+    \begin{equation*}
+        \{f(v_{\alpha_{0}}),\cdots,f(v_{\alpha_{n}})\}
+    \end{equation*}
+    genera un simplice en $L$, al cual llamamos $f(\sigma)$. Notación $f:K\to L$.
+\end{dfn}
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} Sea $\triangle^{n}=\gen{e_{1},\cdots,e_{n+1}}\subseteq\R^{n+1}
+\subseteq\R^{\infty}$. Entonces las funciones $f:\triangle^{1}\to\triangle^{2}$ y 
+$g:\triangle^{2}\to\triangle^{1}$ dadas por $f(e_{i})=e_{i}$ y $g(e_{1})=g(e_{3})=e_{1}$, 
+$g(e_{2})=e_{2}$ son mapeos simpliciales.
+
+\vspace{2mm}
+\begin{lema}
+    Sea $f:K\to L$ un mapeo simplicial. Entonces induce una función continua 
+    $\abs{f}:\abs{K}\to\abs{L}$.
+\end{lema}
+\begin{proof}
+    Sea $\sigma\in K$, digamos que $\sigma=\gen{v_{\alpha_{0}},\cdots,v_{\alpha_{n}}}$ y Definimos
+    \begin{align*}
+        f_{\sigma}:\sigma &\to \abs{L} \\
+        \sum_{i=0}^{k}t_{i}v_{i} &\to \sum_{i=0}^{k}t_{i}f(v_{i})
+    \end{align*}
+    que es continua por que es lineal en los $t_{i}$. Se observa que si $\tau\leq\sigma$ entonces
+    $f_{\tau}=f_{\sigma}\big|_{\tau}$. Ahora tomamos $\sigma$ y $\sigma'$, entonces
+    \begin{equation*}
+        f_{\sigma}\big|_{\sigma\cap\sigma'}=f_{\sigma\cap\sigma'}
+        =f_{\sigma'}\big|_{\sigma\cap\sigma'}
+    \end{equation*}
+    entonces $\abs{f}:=\bigcup_{\sigma\in K}$ es una función continua de $\abs{K}$ en $\abs{L}$.
+\end{proof}
+\noindent Se verifica también que $\abs{g\circ f}=\abs{g}\circ\abs{f}$. Un mapeo simplicial puede
+ser definido también como una función continua $f:\abs{K}\to\abs{L}$ que manda vértices en
+vértices y es lineal en sus caras.
+
+\newpage
+\subsection{Homología Simplicial}
+\noindent Dado $K$ un complejo simplicial finito, esto es, que tiene un número finito de vértices. 
+Elegimos un orden total en el conjunto de vértices, digamos $v_{0}<v_{1}<\cdots<v_{n}$.
+
+\vspace{2mm}
+\begin{dfn}
+    (\textbf{Complejo de cadenas simplicial}) Consideremos los grupos abelianos
+    \begin{equation*}
+        C_{n}(K):=\left\{\sum n_{\sigma}\sigma:\sigma=\gen{v_{\alpha_{0}},\cdots,v_{\alpha_{n}}}
+        \text{ tal que}\hspace{2mm}v_{\alpha_{0}}<\cdots<v_{\alpha_{n}}
+        \text{ y}\hspace{2mm}n_{\sigma}\in\Z
+        \text{ nulo salvo finitos casos}\right\}
+    \end{equation*}
+    y los diferenciales $\partial_{n}:C_{n}(K)\to C_{n-1}(K)$ se define en la base por
+    \begin{equation*}
+        \partial_{n}\gen{v_{\alpha_{0}},\cdots,v_{\alpha_{n}}}
+        =\sum_{i=0}^{n}(-1)^{i}\gen{v_{\alpha_{0}},\cdots,\widehat{v_{\alpha_{i}}},
+        \cdots,v_{\alpha_{n}}}
+    \end{equation*}
+    donde $\gen{v_{\alpha_{0}},\cdots,\widehat{v_{\alpha_{i}}},\cdots,v_{\alpha_{n}}}:=
+    \gen{v_{\alpha_{0}},\cdots,v_{\alpha_{i-1}},v_{\alpha_{i+1}},\cdots,v_{\alpha_{n}}}$. Se 
+    extiende linealmente al resto del grupo.
+\end{dfn}
+
+\vspace{2mm}
+\begin{teo}
+    La tupla $(C_{*}(K),\partial_{*})$ es un complejo de cadenas, además, la homología del 
+    complejo no depende del orden en el conjunto de vértices.
+\end{teo}
+
+\vspace{2mm}
+\begin{dfn}
+    Sea $K$ un complejo simplicial finito. El \textbf{i-ésimo grupo de homología simplicial} de 
+    $K$ es
+    \begin{equation*}
+        H_{i}(K):=H_{i}(C_{*}(K))=\frac{\kr{\partial_{i}}}{\im{\partial_{i+1}}}
+    \end{equation*}
+\end{dfn}
+
+\noindent\textbf{Ejemplo:} Sea $K=\{\gen{v_{0},v_{1}},\{v_{0}\},\{v_{1}\}\}$ y consideramos el 
+orden $v_{0}<v_{1}$. El complejo corresponde a un segmento de recta, notemos que 
+$3v_{0}-5v_{1}\in C_{0}(K)$, con la identificación $v_{0}=(1,0)$ y $v_{1}=(0,1)$ vemos que 
+$C_{0}(K)\cong\Z\oplus\Z$, esta identificación no es canónica, es decir, depende de la base que 
+escojamos y sus imagenes correspondientes.
+
+\noindent Por otro lado $C_{1}(K)\cong\Z$ con la identificación $\gen{v_{0},v_{1}}=1$. 
+Adicionalmente, se tiene que $C_{i}(K)=0$ para $i>1$. Luego,
+
+\vspace{2mm}
+\centerline{
+    \xymatrix{
+        0 \ar[r] & C_{1}(K) \ar[r]^{\partial_{1}} & C_{0}(K) \ar[r]^-{0} & 0
+    }
+}
+\noindent donde $\partial_{1}\gen{v_{0},v_{1}}=v_{1}-v_{2}\in C_{0}(K)$. COn las identificaciones 
+que hicimos resulta que $\partial_{1}(1)=(-1,1)$. De este modo queda la cadena
+
+\vspace{2mm}
+\centerline{
+    \xymatrix{
+        0 \ar[r] & \Z \ar[r]^-{\partial_{1}} & \Z\oplus\Z \ar[r]^-{0} & 0
+    }
+}
+\noindent Así $H_{0}(K)\cong\Z$, $H_{1}(K)=0$, $H_{i}(K)=0$ para $i>0$.
+
+\vspace{2mm}
+\noindent Se invita a calcular la homología de un $n-$simplejo. Hasta ahora hemos definido todo en
+base a $\Z$, pero se puede definir homología simplicial de manera análoga para cualquier anillo 
+$R$.
+
+\begin{lema}
+    Sea $f:K\to L$ un mapeo simplicial, entonces las funciones
+    \begin{align*}
+        f_{n}:C_{n}(K) &\to C_{n}(L) \\
+        \gen{v_{\alpha_{0}},\cdots,v_{\alpha_{n}}} &\to \begin{cases}
+            \gen{f(v_{\alpha_{0}}),\cdots,f(v_{\alpha_{n}})} &\quad\text{ si son distintos} \\
+            0 &\quad\text{ si no lo son}
+        \end{cases}
+    \end{align*}
+    forman un mapeo de cadena.
+\end{lema}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
