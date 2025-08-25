@@ -118,7 +118,7 @@ modo, no existe equivalencia homotópica entre $D^{1}$ y $\s^{0}$.
     arcoconexo.
 \end{lema}
 \begin{proof}
-    Digamos que $A=\{x_{1},\cdots,x_{n}\}$. Como $A$ es finit, existe $\varepsilon>0$ tal que
+    Digamos que $A=\{x_{1},\cdots,x_{n}\}$. Como $A$ es finito, existe $\varepsilon>0$ tal que
     $B_{\varepsilon}(x_{i})\cap A=x_{i}$ para todo $1\leq i\leq n$. Sean $x,y\in X$, en $\R^{2}$
     consideramos el segmento de recta $L_{xy}:=\{(1-t)x+ty:t\in[0,1]\}$. Si 
     $L_{xy}\cap A=\emptyset$ es vacío, no hay nada que probar, supongamos que existe $i$ tal que
@@ -279,8 +279,8 @@ subconjunto finito.
     \end{equation*}
     Como los puntos son distintos de a pares, los simplices están bien definidos, además es 
     sencillo verificar que $K=\bigcup_{i\geq0}\{\sigma_{i},v_{i}\}$ es un complejo simplicial.
-    \begin{center} % Triangulación del circulo
-        \begin{tikzpicture}
+    \begin{center}
+        \begin{tikzpicture} %Triangulación del circulo
             \draw (1,1) -- (-1,1);
             \draw (1,1) -- (1,-1);
             \draw (-1,-1) -- (-1,1);
@@ -313,12 +313,33 @@ subconjunto finito.
     $(K,f)$ es una triangulación de $\s^{1}$. Así, la característica de Euler de la triangulación
     es $V-E+F=4-4+0=0$.
 
-    \item En $\R^{3}$ tomemos los puntos de la forma $(\pm1,\pm1,\pm1)$ que en total son $8$ y son
-    vértices del cubo $[-1,1]^{3}$. Definimos el complejo simplicial $K$ que tiene por poliedro al
-    cubo y que esta representado en la siguiente figura
-
-    \begin{center} % Triangulación de la esfera
-        \begin{tikzpicture}[scale=1.5]
+    \item En $\R^{3}$ definimos los simplices y sus respectivos vértices
+    \begin{equation*}
+        \begin{array}{ll}
+            v_{0}=(1,1,1) & v_{1}=(1,1,-1) \\
+            v_{2}=(1,-1,-1) & v_{3}=(1,-1,1) \\
+            v_{4}=(-1,1,1) & v_{5}=(-1,1,-1) \\
+            v_{6}=(-1,-1,-1) &v_{7}=(-1,-1,1)
+        \end{array}
+        %
+        \hspace{2cm}
+        %
+        \begin{array}{lll}
+            \sigma_{0}=\gen{v_{0},v_{1},v_{3}} & \sigma_{1}=\gen{v_{1},v_{2},v_{3}} 
+            & \sigma_{2}=\gen{v_{0},v_{3},v_{4}} \\
+            \sigma_{3}=\gen{v_{0},v_{1},v_{4}} & \sigma_{4}=\gen{v_{1},v_{4},v_{5}} 
+            & \sigma_{5}=\gen{v_{3},v_{4},v_{7}} \\
+            \sigma_{6}=\gen{v_{4},v_{5},v_{7}} & \sigma_{7}=\gen{v_{5},v_{6},v_{7}} 
+            & \sigma_{8}=\gen{v_{3},v_{6},v_{7}} \\
+            \sigma_{9}=\gen{v_{2},v_{3},v_{6}} & \sigma_{10}=\gen{v_{1},v_{2},v_{6}} 
+            & \sigma_{11}=\gen{v_{1},v_{5},v_{6}} \\
+        \end{array}
+    \end{equation*}
+    Dado que los puntos $v_{i}$ no son colineales de a tres, vemos que cada $\sigma_{i}$ es un 
+    simplice. Es sencillo ver que el conjunto $K$ formado por dichos simplices y sus respectivas 
+    caras es un complejo simplicial.
+    \begin{center}
+        \begin{tikzpicture}[scale=1.5] %Triangulación de la esfera
             \filldraw[color=black, fill=white, thick] (0,0,0) circle (1);
             
             \coordinate (A) at (1,1,1);
@@ -358,12 +379,11 @@ subconjunto finito.
             \filldraw (H) circle (1pt) node[anchor=south west]{$v_{7}$};
         \end{tikzpicture}
     \end{center}
-    Los puntos $v_{i}$ corresponden a los vértices del complejo, los segmentos a los $1-$simplejos 
-    y también se consideran los $2-$simplejos encerrados por tres segmentos, por ejemplo, el 
-    simplice $\sigma=\gen{v_{0},v_{3},v_{4}}$. Afirmamos que $\abs{K}\cong\s^{2}$. Del mismo modo 
-    que antes definimos la función continua $f:\abs{K}\to\s^{2}$ dada por
+    
+    Afirmamos que $\abs{K}\cong\s^{2}$. Del mismo modo que antes definimos la función continua 
+    $f:\abs{K}\to\s^{2}$ dada por
     \begin{equation*}
-        f(x)=\frac{x}{\abs{x}}
+        f(x):=\frac{x}{\abs{x}}
     \end{equation*}
     con inversa continua $g:\s^{2}\to\abs{K}$ dada por
     \begin{equation*}
@@ -373,12 +393,123 @@ subconjunto finito.
     respectivamente. Concluimos que $(K,f)$ es una triangulación de $\s^{2}$ cuya característica
     de Euler es $V-E+F=8-18+12=2$.
 
-    \item -
+    \item Consideramos los puntos
+    \begin{equation*}
+        \begin{array}{lll}
+            v_{0}=(1,0,0) & u_{0}=(-1,0,0) & w_{0}=(0,1,0) \\
+            v_{1}=(2,-\frac{1}{2},1) & u_{1}=(-2,-\frac{1}{2},1) & w_{1}=(0,2,1) \\
+            v_{2}=(2,-\frac{1}{2},-1) & u_{2}=(-2,-\frac{1}{2},-1) & w_{2}=(0,2,-1)
+        \end{array}
+    \end{equation*}
     
-    \vspace{2mm}
-    \noindent Triangulamos $[0,1]^{2}$ del siguiente modo,
-    \begin{center} % Triangulación del cuadrado
-        \begin{tikzpicture}[scale=2.3]
+    A partir de estos puntos definimos el complejo simplicial $K$ que se muestra en la siguiente
+    figura. Se toman en cuenta tanto vértices, como aristas y caras.
+    \begin{center}
+        \begin{tikzpicture}[scale=0.6] %Complejo simplicial K homeomorfo al toro
+            \draw (-1.5,3.5) -- (5.5,3.5);
+            \draw[dashed] (-1.5,3.5) -- (-1.,2.5);
+            \draw[dashed] (-1.,2.5) -- (-1.5,1.5);
+            \draw (-1.,2.5) -- (5.,2.5);
+            \draw[dashed] (5.5,3.5) -- (5.,2.5);
+            \draw[dashed] (5.,2.5) -- (5.5,1.5);
+            \draw (-1.5,1.5) -- (5.5,1.5);
+            \draw (-1.5,3.5) -- (-1.5,1.5);
+            \draw (5.5,3.5) -- (5.5,1.5);
+            \draw[dashed] (5.,2.5) -- (2.209699462447651,-0.004690804599365735);
+            \draw[dashed] (-1.,2.5) -- (2.209699462447651,-0.004690804599365735);
+            \draw (2.,0.5) -- (-1.5,3.5);
+            \draw (-1.5,1.5) -- (2.,-1.5);
+            \draw (2.,0.5) -- (5.5,3.5);
+            \draw (2.,-1.5) -- (5.5,1.5);
+            \draw[dashed] (2.,0.5) -- (2.209699462447651,-0.004690804599365735);
+            \draw (2.,0.5) -- (2.,-1.5);
+            \draw[dashed] (2.209699462447651,-0.004690804599365735) -- (2.,-1.5);
+            \draw[dashed] (-1.5,3.5) -- (5.5,1.5);
+            \draw (-1.,2.5) -- (5.5,3.5);
+            \draw (-1.5,1.5) -- (5.,2.5);
+            \draw (-1.5,1.5) -- (2.,0.5);
+            \draw (2.,-1.5) -- (5.5,3.5);
+            \draw[dashed] (2.209699462447651,-0.004690804599365735) -- (5.5,1.5);
+            \draw[dashed] (2.,0.5) -- (5.,2.5);
+            \draw[dashed] (-1.,2.5) -- (2.,-1.5);
+            \draw[dashed] (-1.5,3.5) -- (2.209699462447651,-0.004690804599365735);
+
+            \begin{scriptsize}
+                \draw [fill=black] (2.,-1.5) circle (1.5pt) node[anchor=north]{$w_{2}$};
+                \draw [fill=black] (2.,0.5) circle (1.5pt) node[anchor=south]{$w_{1}$};
+                \draw [fill=black] (2.2,0) circle (1.5pt) node[anchor=north east]{$w_{0}$};
+                \draw [fill=black] (5.5,3.5) circle (1.5pt) node[anchor=west]{$v_{1}$};
+                \draw [fill=black] (5.5,1.5) circle (1.5pt) node[anchor=west]{$v_{2}$};
+                \draw [fill=black] (5.,2.5) circle (1.5pt) node[anchor=north]{$v_{0}$};
+                \draw [fill=black] (-1.5,3.5) circle (1.5pt) node[anchor=east]{$u_{1}$};
+                \draw [fill=black] (-1.5,1.5) circle (1.5pt) node[anchor=east]{$u_{2}$};
+                \draw [fill=black] (-1.,2.5) circle (1.5pt) node[anchor=north]{$u_{0}$};
+            \end{scriptsize}
+        \end{tikzpicture}
+        %
+        \hspace{1cm}
+        %
+        \begin{tikzpicture}[scale=1.5] %Representación del complejo simplicial K sin pegar extremos
+            \coordinate (A) at (0,0);
+            \coordinate (B) at (0,1);
+            \coordinate (C) at (-1/4,1/2);
+
+            \coordinate (D) at (1,0);
+            \coordinate (E) at (1,1);
+            \coordinate (F) at (3/4,1/2);
+
+            \coordinate (G) at (2,0);
+            \coordinate (H) at (2,1);
+            \coordinate (I) at (7/4,1/2);
+
+            \coordinate (J) at (3,0);
+            \coordinate (K) at (3,1);
+            \coordinate (L) at (11/4,1/2);
+
+            \draw (A) -- (J) -- (L) -- (K) -- (B) -- (C) -- cycle;
+            \draw (J) -- (K);
+            \draw (C) -- (L);
+
+            \draw[dashed] (A) -- (B);
+
+            \draw (D) -- (F) -- (E);
+            \draw[dashed] (D) -- (E);
+
+            \draw (G) -- (I) -- (H);
+            \draw[dashed] (G) -- (H);
+
+            \draw (C) -- (E);
+            \draw (A) -- (F) -- (H);
+            \draw (D) -- (I) -- (K);
+            \draw (G) -- (L);
+
+            \draw[dashed] (B) -- (D);
+            \draw[dashed] (E) -- (G);
+            \draw[dashed] (H) -- (J);
+
+            \filldraw (A) circle (0.75pt) node[anchor=north]{$w_{2}$};
+            \filldraw (B) circle (0.75pt) node[anchor=south]{$w_{1}$};
+            \filldraw (C) circle (0.75pt) node[anchor=east]{$w_{0}$};
+
+            \filldraw (J) circle (0.75pt) node[anchor=north]{$w_{2}$};
+            \filldraw (K) circle (0.75pt) node[anchor=south]{$w_{1}$};
+            \filldraw (L) circle (0.75pt) node[anchor=west]{$w_{0}$};
+
+            \filldraw (D) circle (0.75pt) node[anchor=north]{$u_{2}$};
+            \filldraw (E) circle (0.75pt) node[anchor=south]{$u_{1}$};
+            \filldraw (F) circle (0.75pt) node[anchor=south east]{$u_{0}$};
+
+            \filldraw (G) circle (0.75pt) node[anchor=north]{$v_{2}$};
+            \filldraw (H) circle (0.75pt) node[anchor=south]{$v_{1}$};
+            \filldraw (I) circle (0.75pt) node[anchor=south east]{$v_{0}$};
+        \end{tikzpicture}
+    \end{center}
+    En la segunda figura se muestra el complejo simplicial cortandolo en los vértices 
+    $w_{0},w_{1}$ y $w_{2}$. Como los puntos de a ternas no son colineales vemos que cada simplice
+    esta bien definido, además, cada simplice se pega bien. Por lo tanto $K$ esta bien definido.
+    Por otro lado, triangulamos el cuadrado $\square:=[-1,1]^{2}$ del siguiente modo
+    \begin{center}
+        \begin{tikzpicture}[scale=2] %Triangulación del cuadrado
             \coordinate (A) at (0,0);
             \coordinate (B) at (1,0);
             \coordinate (C) at (1,1);
@@ -432,11 +563,11 @@ subconjunto finito.
         \end{tikzpicture}
     \end{center}
     Donde cada vértice corresponde a un par ordenado con coordenadas en el conjunto 
-    $\{0,1/3,2/3,1\}$, denotaremos por $V_{\square}$ al conjunto de vértices. Definimos 
-    $f:V_{\square}\to V$ de modo que cada vértice en $V_{\square}$ se mapea a $\abs{K}$ como en la 
-    siguiente figura,
-    \begin{center} % Triangulación del cuadrado
-        \begin{tikzpicture}[scale=2.3]
+    $\{0,1/3,2/3,1\}$, denotaremos por $V_{\square}$ al conjunto de vértices. Definimos el mapeo
+    simplicial $f:V_{\square}\to V_{K}$ de modo que cada vértice en $V_{\square}$ se mapea a 
+    $\abs{K}$ como en la siguiente figura,
+    \begin{center}
+        \begin{tikzpicture}[scale=2.2] %Mapeo simplicial del cuadrado al complejo simplicial K
             \coordinate (A) at (0,0);
             \coordinate (B) at (1,0);
             \coordinate (C) at (1,1);
@@ -489,181 +620,34 @@ subconjunto finito.
             \filldraw (2/3,1/3) circle (0.75pt) node[anchor=south west]{$v_{2}$};
         \end{tikzpicture}
     \end{center}
-    Luego, $f$ se extiende linealmente a una función continua continua de $[0,1]^{2}$ a $\abs{K}$.
-    Como $f$ es sobreyectiva en vértices, se tiene que $f$ es cociente. Así, la función realiza 
-    las siguientes acciones sobre $[0,1]^{2}$
-    \begin{center} % Triangulación del cuadrado
-        \begin{tikzpicture}[scale=2.3]
-            \coordinate (A) at (0,0);
-            \coordinate (B) at (1,0);
-            \coordinate (C) at (1,1);
-            \coordinate (D) at (0,1);
-            
-            \coordinate (E) at (1/3,0);
-            \coordinate (F) at (2/3,0);
-            
-            \coordinate (G) at (1,1/3);
-            \coordinate (H) at (1,2/3);
-
-            \coordinate (I) at (2/3,1);
-            \coordinate (J) at (1/3,1);
-
-            \coordinate (K) at (0,2/3);
-            \coordinate (L) at (0,1/3);
-
-            \draw (A) -- (B) -- (C) -- (D) -- cycle;
-            
-            \draw (E) -- (J);
-            \draw (F) -- (I);
-            \draw (G) -- (L);
-            \draw (H) -- (K);
-            
-            \draw (E) -- (L);
-            \draw (F) -- (K);
-            \draw (B) -- (D);
-            \draw (H) -- (I);
-            \draw (G) -- (J);
-
-            \filldraw (A) circle (0.75pt) node[anchor=east]{$w_{0}$};
-            \filldraw (B) circle (0.75pt) node[anchor=west]{$w_{0}$};
-            \filldraw (C) circle (0.75pt) node[anchor=west]{$w_{0}$};
-            \filldraw (D) circle (0.75pt) node[anchor=east]{$w_{0}$};
-
-            \filldraw (K) circle (0.75pt) node[anchor=east]{$w_{1}$};
-            \filldraw (H) circle (0.75pt) node[anchor=west]{$w_{1}$};
-            
-            \filldraw (L) circle (0.75pt) node[anchor=east]{$w_{2}$};
-            \filldraw (G) circle (0.75pt) node[anchor=west]{$w_{2}$};
-
-            \filldraw (E) circle (0.75pt) node[anchor=south west]{$u_{0}$};
-            \filldraw (J) circle (0.75pt) node[anchor=south west]{$u_{0}$};
-            \filldraw (1/3,2/3) circle (0.75pt) node[anchor=south west]{$u_{1}$};
-            \filldraw (1/3,1/3) circle (0.75pt) node[anchor=south west]{$u_{2}$};
-
-            \filldraw (F) circle (0.75pt) node[anchor=south west]{$v_{0}$};
-            \filldraw (I) circle (0.75pt) node[anchor=south west]{$v_{0}$};
-            \filldraw (2/3,2/3) circle (0.75pt) node[anchor=south west]{$v_{1}$};
-            \filldraw (2/3,1/3) circle (0.75pt) node[anchor=south west]{$v_{2}$};
-        \end{tikzpicture}
-        $\to$
-        % Paso intermedio de la triangulación del toro
-        \begin{tikzpicture}[scale=1.5]
-        \coordinate (A) at (0,0);
-        \coordinate (B) at (0,1);
-        \coordinate (C) at (-1/4,1/2);
-
-        \coordinate (D) at (1,0);
-        \coordinate (E) at (1,1);
-        \coordinate (F) at (3/4,1/2);
-
-        \coordinate (G) at (2,0);
-        \coordinate (H) at (2,1);
-        \coordinate (I) at (7/4,1/2);
-
-        \coordinate (J) at (3,0);
-        \coordinate (K) at (3,1);
-        \coordinate (L) at (11/4,1/2);
-
-        \draw (A) -- (J) -- (L) -- (K) -- (B) -- (C) -- cycle;
-        \draw (J) -- (K);
-        \draw (C) -- (L);
-
-        \draw[dashed] (A) -- (B);
-
-        \draw (D) -- (F) -- (E);
-        \draw[dashed] (D) -- (E);
-
-        \draw (G) -- (I) -- (H);
-        \draw[dashed] (G) -- (H);
-
-        \draw (C) -- (E);
-        \draw (A) -- (F) -- (H);
-        \draw (D) -- (I) -- (K);
-        \draw (G) -- (L);
-
-        \draw[dashed] (B) -- (D);
-        \draw[dashed] (E) -- (G);
-        \draw[dashed] (H) -- (J);
-
-        \filldraw (A) circle (0.75pt) node[anchor=north]{$w_{2}$};
-        \filldraw (B) circle (0.75pt) node[anchor=south]{$w_{1}$};
-        \filldraw (C) circle (0.75pt) node[anchor=east]{$w_{0}$};
-
-        \filldraw (J) circle (0.75pt) node[anchor=north]{$w_{2}$};
-        \filldraw (K) circle (0.75pt) node[anchor=south]{$w_{1}$};
-        \filldraw (L) circle (0.75pt) node[anchor=west]{$w_{0}$};
-
-        \filldraw (D) circle (0.75pt) node[anchor=north]{$u_{2}$};
-        \filldraw (E) circle (0.75pt) node[anchor=south]{$u_{1}$};
-        \filldraw (F) circle (0.75pt) node[anchor=south east]{$u_{0}$};
-
-        \filldraw (G) circle (0.75pt) node[anchor=north]{$v_{2}$};
-        \filldraw (H) circle (0.75pt) node[anchor=south]{$v_{1}$};
-        \filldraw (I) circle (0.75pt) node[anchor=south east]{$v_{0}$};
-        \end{tikzpicture}
-    \end{center}
+    Luego, $f$ induce una función continua continua de $\square$ a $\abs{K}$, que llamaremos $f$. 
+    Notemos que $f$ es sobreyectiva en vértices, afirmamos que $f$ es sobreyectiva, en efecto, 
+    dado $x\in\abs{K}$ se tiene que
+    \begin{equation*}
+        x=\sum t_{i}q_{i}\hhtext{entonces}x=f(y)=f\left(\sum t_{i}p_{i}\right)
+    \end{equation*}
+    donde $q_{i}\in\{u_{j},v_{j},w_{j}\}_{j=0}^{2}$ y tal que $f(p_{i})=q_{i}$. Como $\square$ es 
+    compacto y $\abs{K}$ es Hausdorff, concluimos que $f$ es cociente.
 
     \vspace{2mm}
-    \begin{center} % Triangulación del toro
-        \begin{tikzpicture}[scale=0.8]
-            \draw (-1.5,3.5) -- (5.5,3.5);
-            \draw[dashed] (-1.5,3.5) -- (-1.,2.5);
-            \draw[dashed] (-1.,2.5) -- (-1.5,1.5);
-            \draw (-1.,2.5) -- (5.,2.5);
-            \draw[dashed] (5.5,3.5) -- (5.,2.5);
-            \draw[dashed] (5.,2.5) -- (5.5,1.5);
-            \draw (-1.5,1.5) -- (5.5,1.5);
-            \draw (-1.5,3.5) -- (-1.5,1.5);
-            \draw (5.5,3.5) -- (5.5,1.5);
-            \draw[dashed] (5.,2.5) -- (2.209699462447651,-0.004690804599365735);
-            \draw[dashed] (-1.,2.5) -- (2.209699462447651,-0.004690804599365735);
-            \draw (2.,0.5) -- (-1.5,3.5);
-            \draw (-1.5,1.5) -- (2.,-1.5);
-            \draw (2.,0.5) -- (5.5,3.5);
-            \draw (2.,-1.5) -- (5.5,1.5);
-            \draw[dashed] (2.,0.5) -- (2.209699462447651,-0.004690804599365735);
-            \draw (2.,0.5) -- (2.,-1.5);
-            \draw[dashed] (2.209699462447651,-0.004690804599365735) -- (2.,-1.5);
-            \draw[dashed] (-1.5,3.5) -- (5.5,1.5);
-            \draw (-1.,2.5) -- (5.5,3.5);
-            \draw (-1.5,1.5) -- (5.,2.5);
-            \draw (-1.5,1.5) -- (2.,0.5);
-            \draw (2.,-1.5) -- (5.5,3.5);
-            \draw[dashed] (2.209699462447651,-0.004690804599365735) -- (5.5,1.5);
-            \draw[dashed] (2.,0.5) -- (5.,2.5);
-            \draw[dashed] (-1.,2.5) -- (2.,-1.5);
-            \draw[dashed] (-1.5,3.5) -- (2.209699462447651,-0.004690804599365735);
-
-            \begin{scriptsize}
-                \draw [fill=black] (2.,-1.5) circle (1.5pt) node[anchor=north]{$w_{2}$};
-                \draw [fill=black] (2.,0.5) circle (1.5pt) node[anchor=south]{$w_{1}$};
-                \draw [fill=black] (2.2,0) circle (1.5pt) node[anchor=north west]{$w_{0}$};
-                \draw [fill=black] (5.5,3.5) circle (1.5pt) node[anchor=west]{$v_{1}$};
-                \draw [fill=black] (5.5,1.5) circle (1.5pt) node[anchor=west]{$v_{2}$};
-                \draw [fill=black] (5.,2.5) circle (1.5pt) node[anchor=west]{$v_{0}$};
-                \draw [fill=black] (-1.5,3.5) circle (1.5pt) node[anchor=east]{$u_{1}$};
-                \draw [fill=black] (-1.5,1.5) circle (1.5pt) node[anchor=east]{$u_{2}$};
-                \draw [fill=black] (-1.,2.5) circle (1.5pt) node[anchor=east]{$u_{0}$};
-            \end{scriptsize}
-        \end{tikzpicture}
-    \end{center}
-    Sea $\pi$ la proyección a $\mathbb{T}^{2}$. Veamos que $f$ es constante en las fibras de 
-    $\pi$ y viceversa. (...). Así, por propiedad universal de topología cociente, $f$ induce una 
-    función continua $\rho:\abs{K}\to\mathbb{T}^{2}$ y del mismo modo $\pi$ induce una función 
-    $h:\mathbb{T}^{2}\to\abs{K}$ también continua. Tenemos el siguiente diagrama,
+    Sea $\pi$ la proyección de $\square$ a $\mathbb{T}^{2}$. Veamos que $f$ es constante en las 
+    fibras de $\pi$ y viceversa. Sea $t\in[0,1]$, notemos que $f(1,t)=f(0,t)$ y $f(t,0)=f(t,1)$, 
+    lo que prueba la doble contención. Así, por propiedad universal de topología cociente, $f$ 
+    induce una función continua $\rho:\abs{K}\to\mathbb{T}^{2}$ y del mismo modo $\pi$ induce una 
+    función $h:\mathbb{T}^{2}\to\abs{K}$ también continua. Tenemos el siguiente diagrama,
     
     \vspace{2mm}
     \centerline{
         \xymatrix{
-            [0,1]^{2} \ar[d]^{\pi} \ar[rd]^{f} \\
-            \mathbb{T}^{2} \ar@{-->}[r]^{h} & \abs{K} \ar@{-->}@/^/[l]^{\rho}
+             & [0,1]^{2} \ar[ld]_{\pi} \ar[rd]^{f} \\
+            \mathbb{T}^{2} \ar@{-->}[rr]^{h} & & \abs{K} \ar@{-->}@/^/[ll]^{\rho}
         }
     }
     Veamos que $h$ es la inversa de $\rho$. Sabemos que $\rho\circ f=\pi$ y $h\circ\pi=f$. Luego,
-    sea $y\in\abs{K}$, existe $x\in[0,1]^{2}$ tal que $y=f(x)$, así 
+    sea $y\in\abs{K}$, existe $x\in\square$ tal que $y=f(x)$, así 
     $h\circ\rho(y)=h\circ\rho\circ f(x)=h\circ\pi(x)=f(x)=y$, por otro lado, 
     $\rho\circ h([x])=\rho\circ h\circ\pi(x)=\rho\circ f(x)=[x]$. Por lo tanto, $(K,\rho)$ es una 
-    triangulación del toro. La característica de Euler es $V-E+F=9-$.
+    triangulación del toro. La característica de Euler es $V-E+F=9-27+18=0$.
 \end{enumerate}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
