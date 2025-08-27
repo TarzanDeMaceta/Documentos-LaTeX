@@ -173,7 +173,7 @@ Ituitivamente, $H_{k}(X)$ estará generado por ciertos subespacios de $X$ de dim
 
 \vspace{2mm}
 \noindent Habrá una relación de equvalencia, $A,B\subseteq X$ de dimensión $k$ serán equivalentes
-si hay un subespacio de $X$ de dimensión $k+1$ cuyo borde es $A\cup B$. (Falta ejemplo - c1)
+si hay un subespacio de $X$ de dimensión $k+1$ cuyo borde es $A\cup B$.
 
 \vspace{2mm}
 \noindent Hay que restringir la clase de espacios a una con nociones de dimensión, borde, etc. 
@@ -183,11 +183,16 @@ capture esas nociones, esto corresponde a los complejos de cadenas.
 \subsection{Complejos de Cadenas}
 \begin{dfn}
     Un \textbf{complejo de cadenas} es una sucesión de grupos abelianos y homomorfismos
-    \begin{equation*}
-        \cdots\xrightarrow[]{}C_{3}\xrightarrow[]{d_{3}}C_{2}\xrightarrow[]{d_{2}}
-        C_{1}\xrightarrow[]{d_{1}}C_{0}\xrightarrow[]{d_{0}}0
-    \end{equation*}
-    tal que $d_{i}\circ d_{i+1}=0$ para todo $i$. Se denota por $(C_{*},d_{*})$.
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & C_{3} \ar[r]^{\partial_{3}} & C_{2} \ar[r]^{\partial_{2}} & 
+            C_{1} \ar[r]^{\partial_{1}} & C_{0} \ar[r] & 0
+        }
+    }
+    \vspace{2mm}
+    \noindent tal que $d_{i}\circ d_{i+1}=0$ para todo $i$. Se denota por $(C_{*},d_{*})$.
 \end{dfn}
 \noindent\textbf{Observación:} Notemos que $\im{d_{i+1}}\subseteq\kr{d_{i}}\subseteq C_{i}$. Dado 
 que los grupos son abelianos, esta observación permite definir el siguiente objeto.
@@ -204,10 +209,14 @@ que los grupos son abelianos, esta observación permite definir el siguiente obj
 \noindent\textbf{Ejemplos:}
 \begin{itemize}
     \item Si $A$ un grupo abeliano, entonces
-    \begin{equation*}
-        \cdots\xrightarrow[]{}0\xrightarrow[]{}0\xrightarrow[]{}A\xrightarrow[]{}
-        0\xrightarrow[]{}\cdots\xrightarrow[]{}0\xrightarrow[]{}0
-    \end{equation*}
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & 0 \ar[r] & 0 \ar[r] & A \ar[r] & 0 \ar[r] & \cdots \ar[r] & 0
+        }
+    }
+    \vspace{2mm}
     es un complejo de cadenas donde $C_{i}=A$. Entonces
     \begin{equation*}
         H_{j}(C_{*})=\begin{cases}
@@ -217,17 +226,25 @@ que los grupos son abelianos, esta observación permite definir el siguiente obj
     \end{equation*}
 
     \item Consideremos la cadena exacta
-    \begin{equation*}
-        \cdots\xrightarrow[]{}0\xrightarrow[]{}\Z\xrightarrow[]{\cdot2}
-        \Z\xrightarrow[]{\pi}\Z_{2}\xrightarrow[]{}0
-    \end{equation*}
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & 0 \ar[r] & \Z \ar[r]^{\cdot2} & \Z \ar[r]^{\pi} & \Z_{2} \ar[r] & 0
+        }
+    }
+    \vspace{2mm}
     entonces $H_{j}(C_{*})=0$ para todo $i$.
 
     \item Veamos que
-    \begin{equation*}
-        \cdots\xrightarrow[]{\cdot0}\Z\xrightarrow[]{\cdot2}\Z\xrightarrow[]{\cdot0}
-        \Z\xrightarrow[]{}0
-    \end{equation*}
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & \Z \ar[r]^{\cdot2} & \Z \ar[r]^{\cdot0} & \Z \ar[r] & 0
+        }
+    }
+    \vspace{2mm}    
     es un complejo de cadenas. La homología asociadas son $H_{0}(C_{*})=\Z$, $H_{1}(C_{*})=\Z_{2}$
     y $H_{k}(C_{*})=0$.
 \end{itemize}
@@ -244,7 +261,7 @@ que los grupos son abelianos, esta observación permite definir el siguiente obj
             D_{n} \ar[r]^{\partial_{n}} & D_{n-1}
         }
     }
-    y se denota por $(f):C_{*}\to D_{*}$.
+    \noindent y se denota por $(f):C_{*}\to D_{*}$.
 \end{dfn}
 
 \vspace{2mm}
@@ -267,6 +284,7 @@ que los grupos son abelianos, esta observación permite definir el siguiente obj
 \noindent\textbf{Ejemplo:}
 Consideremos la siguiente situación
 
+\vspace{2mm}
 \centerline{
     \xymatrix{
         \cdots \ar[r] & 0 \ar[r]^{0} \ar[d] & \Z \ar[r]^{3} \ar[d]^{id} & 
@@ -277,6 +295,22 @@ Consideremos la siguiente situación
 \vspace{2mm}
 \noindent Entonces $f_{*}:H_{2}(C_{*})=0\to H_{2}(D_{*})=\Z$ es el morfismo trivial. Mientras que
 $\pi_{*}:H_{1}(C_{*})=\Z_{3}\to H_{1}(D_{*})=\Z_{3}$ es la identidad.
+
+\vspace{2mm}
+\noindent\textbf{Observación:} Sea $(g):D_{*}\to G_{*}$ un mapeo de cadenas, entonces 
+$(g\circ f):C_{*}\to G_{*}$ es un mapeo de cadenas y el siguiente diagrama conmuta
+
+\vspace{2mm}
+\centerline{
+    \xymatrix{
+        H_{n}(C_{*}) \ar[rr]^{(g\circ f)_{*}} \ar[rd]^{f_{*}} & & H_{n}(G_{*}) \\
+         & H_{n}(D_{*}) \ar[ru]^{g_{*}}
+    }
+}
+\vspace{2mm}
+\noindent Notemos que $\partial_{n}g_{n} f_{n}=g_{n-1}\partial_{n}f_{n}=g_{n-1}f_{n-1}
+\partial_{n}$. Por otro lado, tenemos que $(g\circ f)_{*}([x])=[(g\circ f)(x)]=g_{*}([f(x)])=
+(g_{*}\circ f_{*})([x])$, lo que prueba la afirmación.
 
 \vspace{2mm}
 \noindent Nuestro objetivo será asociar un complejo de cadenas a un espacio topológico $X$ 
@@ -298,7 +332,7 @@ grupos de homología de cada espacio.
 
 \vspace{2mm}
 \noindent\textbf{Ejemplo:} Dos puntos son afínmente independientes. Tres puntos son afínmente 
-independientes si y solo si no son colineales. (Falta ejemplo dibujo - c1)
+independientes si y solo si no son colineales.
 
 \vspace{2mm}
 \begin{dfn}
@@ -346,7 +380,7 @@ se denota por $\partial\sigma$, el \textbf{interior} de $\sigma$ es $int(\sigma)
 \noindent El \textbf{poliedro} asociado a un complejo simplicial $K$ es 
 $\abs{K}:=\bigcup_{\sigma\in K}\sigma$. Un espacio topológico $X$ se llama un poliedro si existe
 un complejo simplicial $K$ y un homeomorfismo $f:\abs{K}\to X$. Al par $(K,f)$ se le llama una 
-\textbf{triangulación} de $X$.
+\textbf{triangulación} de $X$. Denotamos por $V_{K}$ al conjunto de vértices de los simplices.
 
 \vspace{2mm}
 \noindent\textbf{Observación:} Si $X$ es triangulable, entonces es Hausdorff por que $\abs{K}$ 
@@ -436,7 +470,6 @@ $2-$esfera.
         \filldraw (C) circle (1pt) node[anchor=south west]{$e_{3}$};
     \end{tikzpicture}
 \end{center}
-Lo anterior se puede generalizar a $\s^{n}$.
 
 \vspace{2mm}
 \begin{dfn}
@@ -472,7 +505,8 @@ $g(e_{2})=e_{2}$ son mapeos simpliciales.
         f_{\sigma}\big|_{\sigma\cap\sigma'}=f_{\sigma\cap\sigma'}
         =f_{\sigma'}\big|_{\sigma\cap\sigma'}
     \end{equation*}
-    entonces $\abs{f}:=\bigcup_{\sigma\in K}$ es una función continua de $\abs{K}$ en $\abs{L}$.
+    entonces $\abs{f}:=\bigcup_{\sigma\in K}f_{\sigma}$ es una función continua de $\abs{K}$ en 
+    $\abs{L}$.
 \end{proof}
 \noindent Se verifica también que $\abs{g\circ f}=\abs{g}\circ\abs{f}$. Un mapeo simplicial puede
 ser definido también como una función continua $f:\abs{K}\to\abs{L}$ que manda vértices en
@@ -518,36 +552,87 @@ Elegimos un orden total en el conjunto de vértices, digamos $v_{0}<v_{1}<\cdots
     \end{equation*}
 \end{dfn}
 
-\noindent\textbf{Ejemplo:} Sea $K=\{\gen{v_{0},v_{1}},\{v_{0}\},\{v_{1}\}\}$ y consideramos el 
-orden $v_{0}<v_{1}$. El complejo corresponde a un segmento de recta, notemos que 
-$3v_{0}-5v_{1}\in C_{0}(K)$, con la identificación $v_{0}=(1,0)$ y $v_{1}=(0,1)$ vemos que 
-$C_{0}(K)\cong\Z\oplus\Z$, esta identificación no es canónica, es decir, depende de la base que 
-escojamos y sus imagenes correspondientes.
+\noindent\textbf{Ejemplos:}
+\begin{enumerate}
+    \item Sea $K=\{\gen{v_{0},v_{1}},\{v_{0}\},\{v_{1}\}\}$ y consideramos el 
+    orden $v_{0}<v_{1}$. El complejo corresponde a un segmento de recta, notemos que 
+    $3v_{0}-5v_{1}\in C_{0}(K)$, con la identificación $v_{0}=(1,0)$ y $v_{1}=(0,1)$ vemos que 
+    $C_{0}(K)\cong\Z\oplus\Z$, esta identificación no es canónica, es decir, depende de la base 
+    que escojamos y sus imagenes correspondientes.
 
-\noindent Por otro lado $C_{1}(K)\cong\Z$ con la identificación $\gen{v_{0},v_{1}}=1$. 
-Adicionalmente, se tiene que $C_{i}(K)=0$ para $i>1$. Luego,
+    \vspace{2mm}
+    \noindent Por otro lado, $C_{1}(K)\cong\Z$ con la identificación $\gen{v_{0},v_{1}}=1$. 
+    Adicionalmente, se tiene que $C_{i}(K)=0$ para $i>1$. Luego,
 
-\vspace{2mm}
-\centerline{
-    \xymatrix{
-        0 \ar[r] & C_{1}(K) \ar[r]^{\partial_{1}} & C_{0}(K) \ar[r]^-{0} & 0
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & C_{1}(K) \ar[r]^{\partial_{1}} & C_{0}(K) \ar[r]^-{0} & 0
+        }
     }
-}
-\noindent donde $\partial_{1}\gen{v_{0},v_{1}}=v_{1}-v_{2}\in C_{0}(K)$. COn las identificaciones 
-que hicimos resulta que $\partial_{1}(1)=(-1,1)$. De este modo queda la cadena
+    \vspace{2mm}
+    \noindent donde $\partial_{1}\gen{v_{0},v_{1}}=v_{1}-v_{2}\in C_{0}(K)$. Con las 
+    identificaciones que hicimos resulta que $\partial_{1}(1)=(-1,1)$. De este modo queda la 
+    cadena
 
-\vspace{2mm}
-\centerline{
-    \xymatrix{
-        0 \ar[r] & \Z \ar[r]^-{\partial_{1}} & \Z\oplus\Z \ar[r]^-{0} & 0
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & \Z \ar[r]^-{\partial_{1}} & \Z\oplus\Z \ar[r]^-{0} & 0
+        }
     }
-}
-\noindent Así $H_{0}(K)\cong\Z$, $H_{1}(K)=0$, $H_{i}(K)=0$ para $i>0$.
+    \vspace{2mm}
+    \noindent Así $H_{0}(K)\cong\Z$, $H_{1}(K)=0$, $H_{i}(K)=0$ para $i>0$.
+
+    \item Sean $v_{0},v_{1},v_{2}$ puntos no colineales. Consideramos $\sigma=\gen
+    {v_{0},v_{1},v_{2}}$ y $K:=\{\tau\leq\sigma\}$ definimos el orden $v_{0}<v_{1}<v_{2}$. Notemos
+    que
+    \begin{align*}
+        C_{0}(K) &= \Z\{v_{0},v_{1},v_{2}\} \\
+        C_{1}(K) &= \Z\{\gen{v_{0},v_{1}},\gen{v_{1},v_{2}},\gen{v_{0},v_{2}}\} \\
+        C_{2}(K) &= \Z\{\gen{v_{0},v_{1},v_{2}}\}
+    \end{align*}
+    Entonces $\partial_{0}=0$,
+    \begin{equation*}
+        \partial_{1}=\begin{cases}
+            \partial\gen{v_{0},v_{1}}=v_{1}-v_{0} \\
+            \partial\gen{v_{1},v_{2}}=v_{2}-v_{1} \\
+            \partial\gen{v_{0},v_{3}}=v_{3}-v_{0}
+        \end{cases}\hhtext{y}
+        \partial_{2}\gen{v_{0},v_{1},v_{2}}=\gen{v_{1},v_{2}}-\gen{v_{0},v_{2}}+\gen{v_{0},v_{1}}
+    \end{equation*}
+    Realizando las identificaciones $v_{i}=e_{i+1}$ para $i=0,1,2$, $\gen{v_{0},v_{1},v_{2}}=1$,
+    $\gen{v_{0},v_{1}}=e_{1},\gen{v_{1},v_{2}}=e_{2}$ y $\gen{v_{0},v_{2}}=e_{3}$ resulta que
+    $C_{0}(K)\cong\Z^{3},C_{1}(K)\cong\Z^{3}$ y $C_{2}(K)\cong\Z$. Tenemos
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & 0 \ar[r] & C_{2}(K) \ar[r]^{\partial_{2}} & C_{1}(K) 
+            \ar[r]^{\partial_{1}} & C_{0}(K) \ar[r] & 0
+        }
+    }
+    \vspace{2mm}
+    donde
+    \begin{equation*}
+        \partial_{2}=\begin{pmatrix}
+            1 \\ 1 \\ -1
+        \end{pmatrix}
+        \hhtext{y}
+        \partial_{1}=\begin{pmatrix}
+            -1 & 0 & -1 \\ 1 & -1 & 0 \\ 0 & 1 & 1
+        \end{pmatrix}
+    \end{equation*}
+
+    Claramente $H_{i}(K)=0$ para $i>2$. Además, $\kr{\partial_{2}}$, entonces $H_{2}(K)=0$. 
+    Notemos que $\im{\partial_{2}}\cong\Z$ y $\kr{\partial_{1}}\cong\Z$, luego $H_{1}(K)=0$. Por
+    otro lado, $\im{\partial_{1}}\cong\Z^{2}$. Por ende $H_{0}(K)\cong\Z$.
+\end{enumerate}
 
 \vspace{2mm}
-\noindent Se invita a calcular la homología de un $n-$simplejo. Hasta ahora hemos definido todo en
-base a $\Z$, pero se puede definir homología simplicial de manera análoga para cualquier anillo 
-$R$.
+\noindent\textbf{Comentario:} Se invita a calcular la homología de un $n-$simplejo. Hasta ahora 
+hemos definido todo respecto a $\Z$, pero se puede definir homología simplicial de manera análoga 
+para cualquier anillo $R$.
 
 \begin{lema}
     Sea $f:K\to L$ un mapeo simplicial, entonces las funciones

@@ -327,6 +327,138 @@ El grupo de homología y cohomología del complejo es como sigue
     Por lo tanto, por primer teorema de isomorfismo, se tiene el resultado.
 \end{proof}
 
+\section{Herramientas Útiles de Homología y Cohomología}
+\subsection{Invarianza Homotópica}
+\begin{teo}
+    Sean $f,g:X\to Y$ funciones homotópicas. Entonces, inducen el mismo morfismo en homología y
+    cohomología, es decir,
+    \begin{equation*}
+        f_{*}=g_{*}:H_{*}(X)\to H_{*}(Y)
+    \end{equation*}
+    análogamente se tiene que $f^{*}=g^{*}$
+\end{teo}
+
+\begin{cor}
+    Sea $f:X\to Y$ una equivalencia homotópica, entonces $f_{*}:H_{*}(X)\to H_{*}(Y)$ y 
+    $f^{*}:H^{*}(X)\to H^{*}(Y)$ son isomorfismos.
+\end{cor}
+\begin{proof}
+    Sea $g:Y\to X$ una inversa homotópica, entonces
+    \begin{equation*}
+        g_{*}\circ f_{*}=(g\circ f)_{*}=(id_{X})_{*}=id_{H_{*}(X)}
+    \end{equation*}
+    Similarmente, tenemos que $f_{*}\circ g_{*}=id_{H_{*}(Y)}$. Entonces $f_{*}$ es un isomorfismo
+    con inversa $g_{*}$. El caso de cohomología es análogo.
+\end{proof}
+
+\noindent\textbf{Ejemplo:} Como $\R^{n}$ es homotópico a un punto, resulta que
+\begin{equation*}
+    H^{i}(\R^{n})=H_{i}(\R^{n})=\begin{cases}
+        \Z &\quad\text{si }i=0 \\
+        0 &\quad\text{si }i>0
+    \end{cases}
+\end{equation*}
+
+\subsection{Mayer-Vietoris}
+\noindent El siguiente resultado permite calcular el grupo de homología y cohomología de manera 
+indirecta, esto, mediante el cálculo de dichos grupos de espacios mas pequeños que conforman al 
+espacio ambiente, la información estará codificada en una secuencia exacta.
+
+\begin{teo}
+    Sea $X=A\cup B$ con $A$ y $B$ conjuntos abiertos. Se tienen las inclusiones
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            A\cap B \ar[r]^-{i_{A}} \ar[d]^-{i_{B}} & A \ar[d]^-{j_{A}} \\
+            B \ar[r]^-{j_{B}} & X
+        }
+    }
+    \vspace{2mm}
+    Entonces, existen homomorfismos $\partial_{MV}:H_{n}(X)\to H_{n-1}(A\cap B)$ tales que la 
+    siguiente secuencia es exacta
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrixcolsep{3pc}\xymatrix{
+            \ar[r]^-{\partial_{MV}} & H_{n}(A\cap B) \ar[r]^-{i_{A*}\oplus i_{B*}} 
+            & H_{n}(A)\oplus H_{n}(B) \ar[r]^-{j_{A*}-j_{B*}} 
+            & H_{n}(X) \ar `[dl] `[l] `[llld]_{\partial_{MV}} `[r] [dlllr] & \\
+            & H_{n-1}(A\cap B) \ar[r]^-{i_{A*}\oplus i_{B*}} 
+            & H_{n-1}(A)\oplus H_{n-1}(B) \ar[r]^-{j_{A*}-j_{B*}} & H_{n-1}(X) \ar[r] & \cdots \\
+            & \cdots \ar[r] & H_{0}(A)\oplus H_{0}(B) \ar[r]^-{j_{A*}-j_{B*}} & H_{0}(X) \ar[r] 
+            & 0
+        }
+    }
+    \vspace{2mm}
+    Es mas, la secuencia de Mayer-Vietoris es natural, es decir, si $f:X=A\cup B\to Y=U\cap V$ 
+    cumple que $f(A)\subseteq U$ y $f(B)\subseteq V$, entonces el diagrama
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrixcolsep{3pc}\xymatrix{
+            H_{n+1}(X) \ar[d]^{f_{*}} \ar[r]^-{\partial_{MV}} 
+            & H_{n}(A\cap B) \ar[d]^{f|_{A\cap B*}} \ar[r]^-{i_{A*}\oplus i_{B*}}
+            & H_{n}(A)\oplus H_{n}(B) \ar[d]^{f|_{A*}\oplus f|_{B*}} \ar[r]^-{j_{A*}-j_{B*}} 
+            & H_{n}(X) \ar[d]^{f_{*}} \\
+            H_{n+1}(Y) \ar[r]^-{\partial_{MV}} & H_{n}(U\cap V) \ar[r]^-{i_{U*}\oplus i_{V*}}
+            & H_{n}(U)\oplus H_{n}(V) \ar[r]^-{j_{U*}-j_{V*}} & H_{n}(Y)
+        }
+    }
+    conmuta.
+\end{teo}
+
+\subsection{Homología Relativa}
+\begin{dfn}
+    Sea $A\subseteq X$. El morfismo $i_{n}:C_{n}\to C_{n}(X)$ es inyectivo, definimos
+    \begin{equation*}
+        C_{n}(X,A):=\frac{C_{n}(X)}{C_{n}(A)}
+    \end{equation*}
+    el diferencial $d_{n}:C_{n}(X)\to C_{n-1}(X)$ se restringe al mapa $C_{n}(A)\to C_{n-1}(A)$,
+    lo que define un morfismo $d_{n}:C_{n}(X,A)\to C_{n-1}(X,A)$, dado por 
+    $d_{n}([c]):=[d_{n}(c)]$. La \textbf{homología relativa} esta dada por
+    \begin{equation*}
+        H_{n}(X,A):=H_{n}(C_{*}(X,A))
+    \end{equation*}
+\end{dfn}
+
+\begin{teo}
+    Existen homomorfismos $\partial:H_{n}(X,A)\to H_{n-1}(A)$ dados por mapear $\left[[c]\right]$
+    a $[d_{n}(c)]$. Mas aún, la siguiente secuencia es exacta
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r]^-{\partial} & H_{n}(A) \ar[r]^-{i_{*}} & H_{n}(X) \ar[r]^-{q_{*}} 
+            & H_{n}(X,A) \ar `[dl] `[l] `[llld]_{\partial} `[l] [dlllr] \\
+            & H_{n-1}(A) \ar[r]^-{i_{*}} & H_{n-1}(X) \ar[r]^-{q_{*}} & H_{n-1}(X,A) \ar[r] 
+            & \cdots \\
+            & \cdots \ar[r] & H_{0}(X) \ar[r]^-{q_{*}} & H_{0}(X,A) \ar[r] & 0
+        }
+    }
+    \vspace{2mm}
+    donde $q_{*}$ es el morfismo inducido por el cociente $q:C_{*}(X)\to C_{*}(X,A)$.
+\end{teo}
+
+\begin{dfn}
+    Sean $(X,A)$ y $(Y,B)$ espacios topologicos con $A\subseteq X$ y $B\subseteq Y$. Un \textbf{
+    mapa de pares} es una función continua $f:X\to Y$ tal que $f(A)\subseteq B$.
+\end{dfn}
+
+\vspace{2mm}
+\noindent Tales mapas inducen un morfismo $f_{*}:H_{n}(X,A)\to H_{n}(X,A)$ tal que la secuencia 
+exacta de homología relativa es natural.
+
+\subsection{Teorema de Escisión}
+\begin{teo}
+    Sea $(X,A)$ un par de espacios y $Z\subseteq A$ tal que $\overline{Z}\subseteq int(A)$ tomando
+    la clausura en $X$. Entonces el morfismo
+    \begin{equation*}
+        H_{n}(X\setminus Z,A\setminus Z)\to H_{n}(X,A)
+    \end{equation*}
+    es un isomorfismo.
+\end{teo}
+
 %\printbibliography % Quitar el comentado si quiero usar bibliografía
 
 \end{document}
