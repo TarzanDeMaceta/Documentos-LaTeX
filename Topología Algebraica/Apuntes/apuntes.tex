@@ -192,16 +192,18 @@ capture esas nociones, esto corresponde a los complejos de cadenas.
         }
     }
     \vspace{2mm}
-    \noindent tal que $d_{i}\circ d_{i+1}=0$ para todo $i$. Se denota por $(C_{*},d_{*})$.
+    \noindent tal que $\partial_{i}\circ \partial_{i+1}=0$ para todo $i$. Se denota por 
+    $(C_{\sbullet},\partial_{\sbullet})$.
 \end{dfn}
-\noindent\textbf{Observación:} Notemos que $\im{d_{i+1}}\subseteq\kr{d_{i}}\subseteq C_{i}$. Dado 
-que los grupos son abelianos, esta observación permite definir el siguiente objeto.
+\noindent\textbf{Observación:} Notemos que $\im{\partial_{i+1}}\subseteq\kr{\partial_{i}}
+\subseteq C_{i}$. Dado que los grupos son abelianos, esta observación permite definir el siguiente 
+objeto.
 
 \vspace{2mm}
 \begin{dfn}
-    El \textbf{i-ésimo grupo de homología} de $(C_{*},d_{*})$ se define por
+    El \textbf{i-ésimo grupo de homología} de $(C_{\sbullet},\partial_{\sbullet})$ se define por
     \begin{equation*}
-        H_{i}(C_{i}):=\frac{\kr{d_{i}}}{\im{d_{i+1}}}
+        H_{i}(C_{i}):=\frac{\kr{\partial_{i}}}{\im{\partial_{i+1}}}
     \end{equation*}
 \end{dfn}
 
@@ -219,7 +221,7 @@ que los grupos son abelianos, esta observación permite definir el siguiente obj
     \vspace{2mm}
     es un complejo de cadenas donde $C_{i}=A$. Entonces
     \begin{equation*}
-        H_{j}(C_{*})=\begin{cases}
+        H_{j}(C_{\sbullet})=\begin{cases}
             0 & \quad\text{si }j\neq i \\
             A & \quad\text{si }j=i
         \end{cases}
@@ -234,7 +236,7 @@ que los grupos son abelianos, esta observación permite definir el siguiente obj
         }
     }
     \vspace{2mm}
-    entonces $H_{j}(C_{*})=0$ para todo $i$.
+    entonces $H_{j}(C_{\sbullet})=0$ para todo $i$.
 
     \item Veamos que
     
@@ -245,14 +247,15 @@ que los grupos son abelianos, esta observación permite definir el siguiente obj
         }
     }
     \vspace{2mm}    
-    es un complejo de cadenas. La homología asociadas son $H_{0}(C_{*})=\Z$, $H_{1}(C_{*})=\Z_{2}$
-    y $H_{k}(C_{*})=0$.
+    es un complejo de cadenas. La homología asociadas son $H_{0}(C_{\sbullet})=\Z$, 
+    $H_{1}(C_{\sbullet})=\Z_{2}$ y $H_{k}(C_{\sbullet})=0$.
 \end{itemize}
 
 \begin{dfn}
-    Sean $(C_{*},\partial_{*})$ y $(D_{*},\partial_{*})$ dos complejos de cadenas. Un 
-    \textbf{mapeo de cadenas} es una colección de homomorfismos $f_{n}:C_{n}\to D_{n}$ tal que 
-    $\partial_{n}f_{n}=f_{n-1}\partial_{n}$ para todo $n$, es decir, el siguiente diagrama conmuta
+    Sean $(C_{\sbullet},\partial_{\sbullet})$ y $(D_{\sbullet},\partial_{\sbullet})$ dos complejos 
+    de cadenas. Un \textbf{mapeo de cadenas} es una colección de homomorfismos 
+    $f_{n}:C_{n}\to D_{n}$ tal que $\partial_{n}f_{n}=f_{n-1}\partial_{n}$ para todo $n$, es 
+    decir, el siguiente diagrama conmuta
 
     \vspace{2mm}
     \centerline{
@@ -261,13 +264,13 @@ que los grupos son abelianos, esta observación permite definir el siguiente obj
             D_{n} \ar[r]^{\partial_{n}} & D_{n-1}
         }
     }
-    \noindent y se denota por $(f):C_{*}\to D_{*}$.
+    \noindent y se denota por $f_{\sbullet}:C_{\sbullet}\to D_{\sbullet}$.
 \end{dfn}
 
 \vspace{2mm}
 \begin{lema}
-    Si $(f):C_{*}\to D_{*}$ es un mapeo de cadenas, entonces la asignación 
-    $f_{*}:H_{n}(C_{*})\to H_{n}(D_{*})$ dada por
+    Si $f_{\sbullet}:C_{\sbullet}\to D_{\sbullet}$ es un mapeo de cadenas, entonces la asignación 
+    $f_{*}:H_{n}(C_{\sbullet})\to H_{n}(D_{\sbullet})$ dada por
     \begin{equation*}
         f_{*}([x])=[f_{n}(x)]
     \end{equation*}
@@ -288,23 +291,27 @@ Consideremos la siguiente situación
 \centerline{
     \xymatrix{
         \cdots \ar[r] & 0 \ar[r]^{0} \ar[d] & \Z \ar[r]^{3} \ar[d]^{id} & 
-        \Z \ar[r]^{0} \ar[d]^{\pi} & \Z \ar[r] \ar[d]^{id} & 0 & C_{*} \ar[d]^{(f)} \\
-        \cdots \ar[r] & 0 \ar[r]^{0} & \Z \ar[r]^{3} & \Z_{3} \ar[r]^{0} & \Z \ar[r] & 0 & D_{*}
+        \Z \ar[r]^{0} \ar[d]^{\pi} & \Z \ar[r] \ar[d]^{id} & 0 
+        & C_{\sbullet} \ar[d]^{f_{\sbullet}} \\
+        \cdots \ar[r] & 0 \ar[r]^{0} & \Z \ar[r]^{3} & \Z_{3} \ar[r]^{0} & \Z \ar[r] & 0 
+        & D_{\sbullet}
     }
 }
 \vspace{2mm}
-\noindent Entonces $f_{*}:H_{2}(C_{*})=0\to H_{2}(D_{*})=\Z$ es el morfismo trivial. Mientras que
-$\pi_{*}:H_{1}(C_{*})=\Z_{3}\to H_{1}(D_{*})=\Z_{3}$ es la identidad.
+\noindent Entonces $f_{*}:H_{2}(C_{\sbullet})=0\to H_{2}(D_{\sbullet})=\Z$ es el morfismo trivial. 
+Mientras que $\pi_{*}:H_{1}(C_{\sbullet})=\Z_{3}\to H_{1}(D_{\sbullet})=\Z_{3}$ es la identidad.
 
 \vspace{2mm}
-\noindent\textbf{Observación:} Sea $(g):D_{*}\to G_{*}$ un mapeo de cadenas, entonces 
-$(g\circ f):C_{*}\to G_{*}$ es un mapeo de cadenas y el siguiente diagrama conmuta
+\noindent\textbf{Observación:} Sea $g_{\sbullet}:D_{\sbullet}\to G_{\sbullet}$ un mapeo de 
+cadenas, entonces $(g\circ f)_{\sbullet}:C_{\sbullet}\to G_{\sbullet}$ es un mapeo de cadenas y el 
+siguiente diagrama conmuta
 
 \vspace{2mm}
 \centerline{
     \xymatrix{
-        H_{n}(C_{*}) \ar[rr]^{(g\circ f)_{*}} \ar[rd]^{f_{*}} & & H_{n}(G_{*}) \\
-         & H_{n}(D_{*}) \ar[ru]^{g_{*}}
+        H_{n}(C_{\sbullet}) \ar[rr]^{(g\circ f)_{*}} \ar[rd]^{f_{*}} & 
+        & H_{n}(G_{\sbullet}) \\
+        & H_{n}(D_{\sbullet}) \ar[ru]^{g_{*}}
     }
 }
 \vspace{2mm}
@@ -539,8 +546,8 @@ Elegimos un orden total en el conjunto de vértices, digamos $v_{0}<v_{1}<\cdots
 
 \vspace{2mm}
 \begin{teo}
-    La tupla $(C_{*}(K),\partial_{*})$ es un complejo de cadenas, además, la homología del 
-    complejo no depende del orden en el conjunto de vértices.
+    La tupla $(C_{\sbullet}(K),\partial_{\sbullet})$ es un complejo de cadenas, además, la 
+    homología del complejo no depende del orden en el conjunto de vértices.
 \end{teo}
 
 \vspace{2mm}
@@ -548,7 +555,7 @@ Elegimos un orden total en el conjunto de vértices, digamos $v_{0}<v_{1}<\cdots
     Sea $K$ un complejo simplicial finito. El \textbf{i-ésimo grupo de homología simplicial} de 
     $K$ es
     \begin{equation*}
-        H_{i}(K):=H_{i}(C_{*}(K))=\frac{\kr{\partial_{i}}}{\im{\partial_{i+1}}}
+        H_{i}(K):=H_{i}(C_{\sbullet}(K))=\frac{\kr{\partial_{i}}}{\im{\partial_{i+1}}}
     \end{equation*}
 \end{dfn}
 
@@ -634,6 +641,7 @@ Elegimos un orden total en el conjunto de vértices, digamos $v_{0}<v_{1}<\cdots
 hemos definido todo respecto a $\Z$, pero se puede definir homología simplicial de manera análoga 
 para cualquier anillo $R$.
 
+\vspace{2mm}
 \begin{lema}
     Sea $f:K\to L$ un mapeo simplicial, entonces las funciones
     \begin{align*}
