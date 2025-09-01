@@ -319,6 +319,131 @@ siguiente diagrama conmuta
 \partial_{n}$. Por otro lado, tenemos que $(g\circ f)_{*}([x])=[(g\circ f)(x)]=g_{*}([f(x)])=
 (g_{*}\circ f_{*})([x])$, lo que prueba la afirmación.
 
+\begin{dfn}
+    Sean $i_{\sbullet}:A_{\sbullet}\to B_{\sbullet}$ y $j_{\sbullet}:B_{\sbullet}\to C_{\sbullet}$
+    dos mapeos de cadenas. Decismo que forman una sucesión exacta corta si la secuencia
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & A_{n} \ar[r]^{i_{n}} & B_{n} \ar[r]^{j_{n}} & C_{n} \ar[r] & 0
+        }
+    }
+    \vspace{2mm}
+    \noindent es exacta y corta de grupos abelianos libres para todo $n\in\N$. Lo anotamos como
+    $0\to A_{\sbullet}\to B_{\sbullet}\to C_{\sbullet}\to0$.
+\end{dfn}
+
+\begin{teo}[Lema de la serpiente]
+    Sea $0\to A_{\sbullet}\to B_{\sbullet}\to C_{\sbullet}\to0$ una secuencia de complejos de 
+    cadenas, entonces existen morfismos
+    \begin{equation*}
+        \delta_{n}:H_{n}(C_{\sbullet})\to H_{n-1}(A_{\sbullet})
+    \end{equation*}
+    tal que
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            \ar[r]^-{\delta_{n+1}} & H_{n}(A_{\sbullet}) \ar[r]^{i_{*}} 
+            & H_{n}(B_{\sbullet}) \ar[r]^{j_{*}} & H_{n}(C_{\sbullet}) 
+            \ar `[dl] `[l] `[llld]_{\delta_{n}} `[d] [dll] \\
+            & H_{n-1}(A_{\sbullet}) \ar[r]^{i_{*}} & H_{n-1}(B_{\sbullet}) \ar[r]^{j_{*}} 
+            & H_{n-1}(C_{\sbullet}) \ar[r] & \cdots \\
+            & \cdots \ar[r] & H_{0}(B_{\sbullet}) \ar[r] & H_{0}(C_{\sbullet}) \ar[r] & 0 
+        }
+    }
+\end{teo}
+
+\begin{proof}
+    Vamos a hacer un cacería de diagramas (:D). Consideremos el diagrama
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            & \vdots \ar[d] & \vdots \ar[d] & \vdots \ar[d] & \\
+            0 \ar[r] & A_{n+1} \ar[r]^{i} \ar[d]^{\partial} & B_{n+1} \ar[r]^{j} \ar[d]^{\partial} 
+            & C_{n+1} \ar[r] \ar[d]^{\partial} & 0 \\
+            0 \ar[r] & A_{n} \ar[r]^{i} \ar[d]^{\partial} & B_{n} \ar[r]^{j} \ar[d]^{\partial} 
+            & C_{n} \ar[r] \ar[d]^{\partial} & 0 \\
+            0 \ar[r] & A_{n-1} \ar[r]^{i} \ar[d] & B_{n-1} \ar[r]^{j} \ar[d] 
+            & C_{n-1} \ar[r] \ar[d] & 0 \\
+            & \vdots & \vdots & \vdots &
+        }
+    }
+    \vspace{2mm}
+    \noindent Primero debemos definir $\delta_{n}:H_{n}(C_{\sbullet})\to H_{n-1}(A_{\sbullet})$.
+    Sea $[c]\in H_{n}(C_{\sbullet})$ entonces $c\in\kr{\partial}\subseteq C_{n}$. Como $j$ es 
+    sobre, existe $b\in B_{n}$ tal que $j(b)=c$. Consideramos $\partial b$ y notamos que
+    \begin{equation*}
+        j\partial(b)=\partial j(b)=\partial c=0
+    \end{equation*}
+    entonces existe un único $a\in A_{n-1}$ tal que $i(a)=\partial b$. Verificamos que 
+    $i\partial(a)=\partial i(a)=\partial^{2}b=0$ y como $i$ es inyectiva vemos que 
+    $\partial a=0$. Afirmamos que $\delta_{n}:H_{n}(C_{\sbullet})\to H_{n-1}(A_{\sbullet})$ por
+    \begin{equation*}
+        \delta_{n}([c])=[a]
+    \end{equation*}
+    cumple lo buscado. Debemos demostrar lo siguiente
+    \begin{enumerate}
+        \item No depende de la elección de $b$. Sea $b'$ tal que $j(b')=c$ entonces 
+        $j(b'-b)=c-c=0$, existe único $a_{0}$ tal que $i(a_{0})=b'-b$. Por otro lado, existe $a'$
+        tal que
+        \begin{equation*}
+            i(a')=\partial b'=\partial b+\partial i(a_{0})=\partial b+i\partial(a_{0})
+        \end{equation*}
+        entonces $i(a'-\partial a_{0})=\partial b=i(a)$, por inyectividad, $a'-\partial a_{0}=a$,
+        lo que implica que $[a]=[a']$.
+
+        \item No depende de la elección del representante de $[c]$. Sea $c'=c+\partial c''
+        =j(b)+\partial j(b'')=j(b)+j\partial(b'')$, diremos $b'=b+\partial b''$, notemos que
+        $\partial b'=\partial b+\partial^{2}b''=\partial b$. El mismo $a\in A_{n-1}$ satisface
+        $i(a)=\partial b'$. Entonces $\delta_{n}[c]=[a]=\delta_{n}[c']$.
+
+        \item La función $\delta_{n}$ es morfismo, es decir
+        \begin{equation*}
+            \delta_{n}([c]+[c'])=\delta_{n}[c]+\delta_{n}[c']
+        \end{equation*}
+        Notar que si $j(b)=c$ y $j(b')=c'$ entonces $j(b+b')=c+c'$, existen únicos 
+        $a,a'\in A_{n-1}$ tales que $i(a+a')=\partial(b+b'')$ y así
+        \begin{equation*}
+            \partial_{n}([c+c'])=[a+a']=[a]+[a']
+        \end{equation*}
+
+        \item Exactitud en $H_{n}(C_{\sbullet})$ y $H_{n}(A_{\sbullet})$. Veamos que 
+        $\im{j_{*}}\subseteq\kr{\delta_{n}}$. Sea $j_{*}[b]$ con $\partial b=0$. Entonces
+        \begin{equation*}
+            \delta_{n}j_{*}[b]=\delta_{n}[j(b)]
+        \end{equation*}
+        Existe único $a\in A_{n-1}$ tal que $i(a)=\partial b=0$, entonces $a=0$ y por lo tanto
+        $\delta_{n}j_{*}[b]=[a]=0$. Queda ver que $\kr{\delta_{n}}\subseteq\im{j_{*}}$. Sea
+        $[c]\in\kr{\delta_{n}}$ con $\partial c=0$. Por definición de $\delta_{n}$, para cada
+        $b$ tal que $j(b)=c$ hay un único $a\in A_{n-1}$ tal que $i(a)=\partial b$.
+
+        \noindent Como $\delta_{n}[c]=[a]=0$ se sigue que $a=\partial a'$ y entonces 
+        $\partial b=i(a)=i\partial(a')=\partial i(a')$, así $b-i(a')\in\kr{\partial}$, es decir
+        $b-i(a')$ representa una clase de homología.
+
+        \noindent Ahora $j(b-i(a'))=j(b)=c$, por ende, $j_{*}[b-i(a')]=[c]$. Para 
+        $H_{n}(A_{\sbullet})$ la demostración es similar.
+
+        \item Exactitud en $H_{n}(B_{\sbullet})$. Sea $[a]\in\im{i_{*}}$ con $\partial a=0$, 
+        entonces
+        \begin{equation*}
+            j_{*}i_{*}[a]=[j_{n}i_{n}(a)]=0
+        \end{equation*}
+        y por lo tanto $\im{i_{*}}\subseteq\kr{j_{*}}$. Sea $[b]\in\kr{j_{*}}$ con 
+        $\partial b=0$, entonces $j_{*}[b]=[j(b)]=0$, lo que implica que $j(b)=\partial c'
+        =\partial j(b')=j\partial(b')$, existe único $a\in A_{n-1}$ tal que $b-\partial b'=i(a)$,
+        además
+        \begin{equation*}
+            i\partial(a)=\partial i(a)=\partial b+\partial^{2}b'=0
+        \end{equation*}
+        entonces $\partial a=0$. Luego $i_{*}[a]=[b]$. Concluimos que $im{i_{*}}=\kr{j_{*}}$.
+    \end{enumerate}
+    Lo que concluye el teorema.
+\end{proof}
+
 \vspace{2mm}
 \noindent Nuestro objetivo será asociar un complejo de cadenas a un espacio topológico $X$ 
 arbitrario, lo que nos dara un grupo de homología para cada dimensión, además dada $f:X\to Y$ una
@@ -515,9 +640,16 @@ $g(e_{2})=e_{2}$ son mapeos simpliciales.
     entonces $\abs{f}:=\bigcup_{\sigma\in K}f_{\sigma}$ es una función continua de $\abs{K}$ en 
     $\abs{L}$.
 \end{proof}
-\noindent Se verifica también que $\abs{g\circ f}=\abs{g}\circ\abs{f}$. Un mapeo simplicial puede
-ser definido también como una función continua $f:\abs{K}\to\abs{L}$ que manda vértices en
-vértices y es lineal en sus caras.
+\noindent Sea $g:L\to J$ un mapeo simplicial, entonces $g\circ f$ es mapeo simplicial, ya que $f$
+mapea vértices de un simplice a vértices de un simplice y del mismo modo lo hace $g$, además se 
+tiene lo siguiente
+\begin{equation*}
+    \abs{g\circ f}(x)=\abs{g\circ f}\left(\sum t_{i}v_{\alpha_{i}}\right)
+    =\sum t_{i}(g\circ f)(v_{\alpha_{i}})=\sum t_{i}g(f(v_{\alpha_{i}}))=(\abs{g}\circ\abs{f})(x)
+\end{equation*}
+es decir, $\abs{g\circ f}=\abs{g}\circ\abs{f}$. Un mapeo simplicial puede ser definido también 
+como una función continua $f:\abs{K}\to\abs{L}$ que manda vértices en vértices y es lineal en sus 
+caras.
 
 \newpage
 \subsection{Homología Simplicial}
@@ -653,6 +785,189 @@ para cualquier anillo $R$.
     \end{align*}
     forman un mapeo de cadena.
 \end{lema}
+
+\noindent Por lo tanto, $f$ induce un morfismo entre los grupos de homología de los complejos
+simpliciales
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} Consideremos los complejos simpliciales
+\begin{center}
+    \begin{tikzpicture} %Complejo simplicial K%
+        \coordinate (O) at (0,0);
+        \filldraw[color=black, fill=white, thick] (O) circle (1);
+        
+        \coordinate (A) at (1,0);
+        \coordinate (B) at ({sqrt(2)/2},{sqrt(2)/2});
+        \coordinate (C) at (0,1);
+        \coordinate (D) at (-{sqrt(2)/2},{sqrt(2)/2});
+        \coordinate (E) at (-1,0);
+        \coordinate (F) at (-{sqrt(2)/2},-{sqrt(2)/2});
+        \coordinate (G) at (0,-1);
+        \coordinate (H) at ({sqrt(2)/2},-{sqrt(2)/2});
+
+        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- (G) -- (H) -- cycle;
+
+        \filldraw (A) circle (1pt) node[anchor=west]{$v_{0}$};
+        \filldraw (B) circle (1pt) node[anchor=south west]{$v_{1}$};
+        \filldraw (C) circle (1pt) node[anchor=south]{$v_{2}$};
+        \filldraw (D) circle (1pt) node[anchor=south east]{$v_{3}$};
+        \filldraw (E) circle (1pt) node[anchor=east]{$v_{4}$};
+        \filldraw (F) circle (1pt) node[anchor=north east]{$v_{5}$};
+        \filldraw (G) circle (1pt) node[anchor=north]{$v_{6}$};
+        \filldraw (H) circle (1pt) node[anchor=north west]{$v_{7}$};
+
+        \filldraw ($(O)-(2,1)$) node{K};
+    \end{tikzpicture}
+    %
+    \hspace{2cm}
+    %
+    \begin{tikzpicture} %Complejo simplicial L
+        \coordinate (O) at (0,0);
+        \filldraw[color=black, fill=white, thick] (O) circle (1);
+
+        \coordinate (A) at (1,0);
+        \coordinate (B) at (0,1);
+        \coordinate (C) at (-1,0);
+        \coordinate (D) at (0,-1);
+
+        \draw (A) -- (B) -- (C) -- (D) -- cycle;
+
+        \filldraw (A) circle (1pt) node[anchor=west]{$w_{0}$};
+        \filldraw (B) circle (1pt) node[anchor=south]{$w_{1}$};
+        \filldraw (C) circle (1pt) node[anchor=east]{$w_{2}$};
+        \filldraw (D) circle (1pt) node[anchor=north]{$w_{3}$};
+
+        \filldraw ($(O)-(2,1)$) node{L};
+    \end{tikzpicture}
+\end{center}
+Consideramos los ordenes $v_{0}<v_{1}<\cdots<v_{7}$ y $w_{0}<w_{1}<w_{2}<w_{3}$ y definimos 
+$f:K\to L$ por $f(v_{i})=f(v_{i+4})=w_{i}$ para $i=0,1,2,3$. Veamos quien es 
+$f_{*}:H_{1}(K)\to H_{1}(L)$. En primer lugar, sabemos que
+\begin{equation*}
+    H_{1}(K)=ker(C_{1}(K)\to C_{0}(K))=ker\begin{pmatrix}
+        -1 & 0 & 0 & -1 \\ 1 & -1 & 0 & 0 \\ 0 & 1 & -1 & 0 \\ 0 & 0 & 1 & 1
+    \end{pmatrix}=\gen{\begin{pmatrix}
+        1 \\ 1 \\ 1 \\ -1
+    \end{pmatrix}}\cong\Z
+\end{equation*}
+Similarmente $H_{1}(K)\cong\Z$. Entonces
+\begin{equation*}
+    f_{*}(\gen{v_{0},v_{1}}+\cdots+\gen{v_{6},v_{7}}-\gen{v_{0},v_{7}})
+    =2(\gen{w_{0},w_{1}}+\gen{w_{1},w_{2}}+\gen{w_{2},w_{3}}-\gen{w_{0},w_{3}})
+\end{equation*}
+luego $f_{*}:H_{1}(K)\xrightarrow{\cdot2} H_{1}(L)$. Por otro lado, notemos que 
+$H_{0}(K)\cong H_{0}(L)\cong\Z$, ya que todo par de vértices en el complejo esta conectado por una
+secuencia de aristas, luego $f_{*}([v_{0}])=[w_{0}]$, entonces 
+$f_{*}:H_{0}(K)\xrightarrow{} H_{0}(L)$ es isomorfismo.
+
+\vspace{2mm}
+\begin{teo}[Mayer-Vietoris]
+    Sea $K$ un complejo simplicial y $M,N$ subcomplejos de $K$ que cubren a $K$, es decir, 
+    $M\cup N=K$. Se tienen los mapeos
+    
+    \centerline{
+        \xymatrix{
+            M\cap N \ar[d]^-{i_{M}} \ar[r]^-{i_{N}} & N \ar[d]^-{j_{N}} \\
+            M \ar[r]^-{j_{M}} & K
+        }
+    }
+
+    \vspace{2mm}
+    Existen morfismos $\delta_{n}:H_{n}(K)\to H_{n-1}(K)$ tales que la secuencia
+
+    \centerline{
+        \xymatrixcolsep{3pc}\xymatrix{
+            \ar[r]^-{\delta_{n+1}} & H_{n}(M\cap N) \ar[r]^-{i_{M*}\oplus i_{N*}} 
+            & H_{n}(M)\oplus H_{n}(N) \ar[r]^-{j_{M*}-j_{N*}} & H_{n}(K) 
+            \ar `[dl] `[l] `[llld]_{\delta_{n}} `[d] [dll] \\
+            & H_{n-1}(M\cap N) \ar[r]^-{i_{M*}\oplus i_{N*}} 
+            & H_{n-1}(M)\oplus H_{n-1}(N) \ar[r]^-{j_{M*}-j_{N*}} & H_{n-1}(K) \ar[r] & \cdots \\
+            & \cdots \ar[r] & H_{0}(M)\oplus H_{0}(N) \ar[r]^-{j_{M*}-j_{N*}} 
+            & H_{0}(K) \ar[r] & 0
+        }
+    }
+    es exacta.
+\end{teo}
+
+\begin{proof}
+    Verificaremos que
+    
+    \centerline{
+        \xymatrixcolsep{3pc}\xymatrix{
+            0 \ar[r] & C_{n}(M\cap N) \ar[r]^-{i_{M}\oplus i_{N}} 
+            & C_{n}(M)\oplus C_{n}(N) \ar[r]^-{j_{M}-j_{N}} & C_{n}(K) \ar[r] & 0
+        }
+    }
+
+    \vspace{2mm}
+    es una secuencia exacta corta de grupos abelianos para todo $n\in\N$. En efecto, como $C_{n}$
+    es libremente generado por los $n-$simplices e $i$ es inyectiva, entonces 
+    $i_{M*}\oplus i_{N*}$ es inyectiva. Además, $j_{M*}-j_{N*}$ es sobreyectiva por hipotesis y
+    es directo que $\im{i_{M*}\oplus i_{N*}}\subseteq\kr{j_{M*}-j_{N*}}$. Resta ver que
+    \begin{equation*}
+        \kr{j_{M*}-j_{N*}}\subseteq\im{i_{M*}\oplus i_{N*}}
+    \end{equation*}
+    Sea $(x,y)\in\kr{j_{M*}-j_{N*}}$ entonces $j_{M*}(x)=j_{N*}(y)$, es decir, $x$ e $y$ se 
+    escriben como suma de simplices en $N$ y $M$ respectivamente, entonces 
+    $(x,y)\in\im{i_{M*}\oplus i_{N*}}$. Así, usando el lema de la serpiente, concluimos.
+\end{proof}
+
+\noindent\textbf{Ejemplo:}
+Consideremos la siguiente situación
+\begin{center}
+    \begin{tikzpicture} %Ejemplo de Mayer Vietoris
+        \coordinate (O) at (0,0);
+        
+        \coordinate (A) at (-1,1);
+        \coordinate (B) at (-2,0);
+        \coordinate (C) at (-1,-1);
+
+        \coordinate (D) at (1,1);
+        \coordinate (E) at (2,0);
+        \coordinate (F) at (1,-1);
+
+        \draw (O) -- (A) -- (B) -- (C) -- cycle;
+        \draw (O) -- (D) -- (E) -- (F) -- cycle;
+        \filldraw (O) circle (1pt) node[anchor=north]{$u_{0}$};
+        
+        \filldraw (A) circle (1pt) node[anchor=south]{$v_{1}$};
+        \filldraw (B) circle (1pt) node[anchor=east]{$v_{2}$};
+        \filldraw (C) circle (1pt) node[anchor=north]{$v_{3}$};
+
+        \filldraw (D) circle (1pt) node[anchor=south]{$w_{1}$};
+        \filldraw (E) circle (1pt) node[anchor=west]{$w_{2}$};
+        \filldraw (F) circle (1pt) node[anchor=north]{$w_{3}$};
+
+        \draw[dashed] (0,1.5) -- (0,-1.5);
+        \filldraw (-2,-1) node{$M$};
+        \filldraw (2,-1) node{$N$};
+        \filldraw (3.5,0) node{$=K$};
+    \end{tikzpicture}
+\end{center}
+Notemos que $H_{1}(M)\cong\Z$ y $H_{1}(N)\cong\Z$, además $M\cap N=\{u_{0}\}$, entonces usando
+mayer vietoris nos queda que
+
+\vspace{2mm}
+\centerline{
+    \xymatrix{
+        0 \ar[r] & 0 \ar[r] & \Z\oplus\Z \ar[r] & H_{1}(K) 
+        \ar `[dl] `[l] `[llld] `[d] [dll] \\
+        & \Z \ar[r]^-{\varphi} & \Z\oplus\Z \ar[r]^{\phi} & H_{0}(K) \ar[r] & 0
+    }
+}
+
+\vspace{2mm}
+\noindent Para $i>2$ notamos que $H_{i}(K)=0$, por otro lado el morfismo $\varphi(1)=(1,1)$ ya que
+manda generador en generador, esto por que todo par de puntos en $M$ y $N$ estan relacionados por
+un camino de aristas. De este modo,
+\begin{equation*}
+    H_{0}(K)\cong\frac{\Z\oplus\Z}{\ker{\phi}}=\frac{\Z\oplus\Z}{\im{\varphi}}
+    \cong\frac{\Z\oplus\Z}{\Z}\cong\Z
+    \hhtext{y}
+    H_{1}(K)\cong\Z\oplus\Z
+\end{equation*}
+donde el último isomorfismo se da por que $\varphi$ es inyectiva, es decir, el morfismo 
+$H_{1}(K)\to\Z$ es trivial.
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
