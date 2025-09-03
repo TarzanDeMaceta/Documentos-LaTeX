@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{hyperref}
 \usepackage{Style}
+\setcounter{MaxMatrixCols}{20}
 
 \nocite{*} % Comentar si quiero citar
 %\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
@@ -22,15 +23,196 @@
 \centerline{\bf Tarea 2}}
 \centerline{\bf 05 de septiembre de 2025}
 
-\section*{Problema 1}
+\section*{Problema 3} 
+\noindent Por simplicidad en el argumento, denotaremos los morfismos $A_{i}\to A_{i+1}$ y 
+$B_{i}\to B_{i+1}$ como $\partial$, además, como ambas secuencias son exactas, resulta que 
+$\partial^{2}a=\partial\circ\partial (a)=0$. Veamos que $\kr{f_{3}}=0$. Sea $a\in\kr{f_{3}}$,
+notemos que
+\begin{equation*}
+    0=\partial f_{3}(a)=f_{4}\partial(a)=0\hhtext{entonces}\partial a=0
+\end{equation*}
+Como $a\in\kr\partial$, existe $a'\in A_{2}$ tal que $\partial a'=a$, luego $\partial f_{2}(a')
+=f_{3}\partial(a')=f_{3}(a)=0$. Por exactitud, existe $b'\in B_{1}$ tal que $\partial b'
+=f_{2}(a')$, como $f_{1}$ es isomorfismo, existe $a''\in A_{1}$ tal que $b'=f_{1}(a'')$, como los
+diagramas conmutan vemos que
+\begin{equation*}
+    a''=f^{-1}_{1}(b')\hhtext{entonces}\partial a''=\partial f^{-1}_{1}(b')=f^{-1}_{2}\partial(b')
+\end{equation*}
+recordemos que $\partial b'=f_{2}(a')$, es decir, $\partial a''=a'$, luego 
+$0=\partial^{2}a''=\partial a'=a$.
 
-\section*{Problema 2}
-
-\section*{Problema 3}
+\vspace{2mm}
+\noindent Sea $b\in B_{3}$, consideramos $\partial b\in B_{4}$, entonces 
+$f^{-1}_{4}(\partial b)\in A_{4}$, por conmutatividad de los diagramas, vemos que 
+$\partial f_{4}^{-1}(\partial b)=f_{5}^{-1}(\partial^{2}b)=0$, luego, por exactitud, existe
+$a\in A_{3}$ tal que $\partial a=f_{4}^{-1}(\partial b)$,
+\begin{equation*}
+    \partial(f_{3}(a)-b)=\partial f_{3}(a)-\partial b=f_{4}\partial(a)-\partial b=0
+\end{equation*}
+así, existe $b'\in B_{2}$ tal que $\partial b'=f_{3}(a)-b$, definimos 
+$a'=f_{2}^{-1}(b')\in A_{2}$, de este modo,
+\begin{equation*}
+    f_{3}(a)-b=\partial b'=\partial f_{2}(a')=f_{3}(\partial a')
+\end{equation*}
+en resumen, $f_{3}(a-\partial a')=b$. Concluimos que $f_{3}$ es isomorfismo.
 
 \section*{Problema 4}
+\noindent Asignamos el orden a los vértices tal que $i<i+1$.
+\begin{enumerate}
+    \item\textbf{Definición:} Notemos que el complejo simplicial es conexo, luego, el 
+    argumento presentado en el problema 5, es invariante del anillo utilizado, entonces 
+    $H_{0}(K)\cong R$ donde $R=\Z,\Z_{2},\Q$. Adicionalmente, $C_{i}=0$ para $i>2$, ya que no hay
+    $i-$simplices. Basta calcular $H_{i}(K)$ para $i=1,2$. Tenemos el complejo de cadenas
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & C_{2} \ar[r]^{\partial_{2}} & C_{1} \ar[r]^{\partial_{1}} & C_{0} \ar[r] 
+            & 0
+        }
+    }
+    Para encontrar los grupos de homología basta calcular $\kr{\partial_{2}},\im{\partial_{2}}$ y
+    $\ker{\partial_{1}}$. A cada vértice en $C_{0}(K)$ le asignamos el vector canónico de la 
+    siguiente manera $i=e_{i+1}$, a cada $1-$simplice le asignamos un vector como sigue,
+    \begin{equation*}
+        \begin{array}{llll}
+            \gen{0,1}=e_{1} & \gen{1,2}=e_{6} & \gen{2,3}=e_{10} & \gen{3,4}=e_{13} \\
+            \gen{0,2}=e_{2} & \gen{1,3}=e_{7} & \gen{2,4}=e_{11} & \gen{3,5}=e_{14} \\
+            \gen{0,3}=e_{3} & \gen{1,4}=e_{8} & \gen{2,5}=e_{12} & \gen{4,5}=e_{15} \\
+            \gen{0,4}=e_{4} & \gen{1,5}=e_{9} \\
+            \gen{0,5}=e_{5}
+        \end{array}
+    \end{equation*}
+    Luego, la acción de $\partial_{1}$ esta representado por la matriz
+    
+    \vspace{1mm}
+    \begin{equation*}
+        \begin{pmatrix}
+            -1 & -1 & -1 & -1 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            1 & 0 & 0 & 0 & 0 & -1 & -1 & -1 & -1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & -1 & -1 & -1 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & -1 & -1 & 0 \\
+            0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & -1 \\
+            0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 1
+        \end{pmatrix}
+    \end{equation*}
+
+    \vspace{1mm}
+    Sean $c_{i}$ las columnas de la matriz, notemos que $c_{i}-c_{1}=c_{i+4}$ para $1<i<6$, 
+    $c_{i}-c_{6}=c_{i+3}$ para $6<i<10$, $c_{i}-c_{10}=c_{i+2}$ para $i=11,12$ y 
+    $c_{14}-c_{13}=c_{15}$. Lo anterior nos dice que las primeras cinco columnas generan la imagen
+    de $\partial_{1}$, luego, el kernel tiene dimensión 10. Además, las relaciones nos dan los 
+    vectores que generan y tienen la forma $1,-1,-1$, no necesariamente juntos y el resto son 
+    ceros, se sigue que $\kr{\partial_{1}}\cong R^{10}$, donde $R=\Z,\Z_{2},\Q$.
+
+    \vspace{1mm}
+    Queda estudiar la acción de $\partial_{2}$.
+\end{enumerate}
 
 \section*{Problema 5}
+\noindent Dado $K$ un complejo simplicial finito, sean $v,w\in V_{K}$, decimos que $v\sim_{p}w$ si
+y solo si $v$ esta conectado a $w$ ó $v=w$, es decir, si existe una sucesión de $1-$simplices
+$\gen{w_{0},w_{1}},\cdots,\gen{w_{k-1},w_{k}}$ tales que $w_{0}=v$ y $w_{k}=w$. 
+
+\vspace{1mm}
+\noindent Por definición resulta que $x\sim_{p}x$, además, notemos que si $v\sim_{p}w$ entonces 
+$w\sim_{p}v$ basta tomar $\omega_{i}:=w_{k-i}$. Por otro lado, si $v\sim_{p}w$ y $w\sim_{p}u$, 
+entonces la sucesión
+\begin{equation*}
+    \gen{w_{0},w_{1}},\cdots,\gen{w_{k-1},w_{k}},\gen{\omega_{0},\omega_{1}},\cdots,
+    \gen{\omega_{j-1},\omega_{j}}
+\end{equation*}
+donde $w_{0}=v$, $w_{k}=w$, $\omega_{0}=w$ y $\omega_{j}=u$ es una sucesión que conecta $v$ con 
+$u$, en otras palabras, $v\sim_{p}u$.
+
+\vspace{2mm}
+\begin{dfn}[Componente Conexa]
+    Sea $K$ un complejo simplicial finito y $v\in V_{K}$, definimos su componente conexa
+    como
+    \begin{equation*}
+        [v]_{c}:=\{\sigma\in K:\sigma=\gen{v_{0},v_{1},\cdots,v_{r}}\hhtext{y}v\sim_{p}v_{i}\}
+    \end{equation*}
+\end{dfn}
+
+\noindent\textbf{Observación:} Si $[v]_{c}=K$, entonces el complejo simplicial es conexo. Sea 
+$w\in V_{K}$ tal que $w\in[v]_{c}$, entonces $v\sim_{p}w$. Luego, dado $\sigma
+=\gen{v_{0},\cdots,v_{r}}\in[w]_{c}$ se tiene que $v\sim_{p}v_{i}$, se sigue que 
+$[w]_{c}\subseteq[v]_{c}$, de manera similar obtenemos que $[v]_{c}\subseteq[w]_{c}$. Por lo tanto
+$[w]_{c}=[v]_{c}$.
+
+\vspace{1mm}
+\noindent Veamos que dado $v\in V_{K}$, se tiene que $[v]_{c}$ es un subcomplejo simplicial de 
+$K$. En efecto, sea $\sigma\in[v]_{c}$ y $\tau\leq\sigma$, si $v_{i}$ es un vértice de $\tau$ 
+entonces es vértice de $\sigma$, luego $v\sim_{p}v_{i}$, lo que implica que $\tau\in[v]_{c}$. La
+segunda propiedad se cumple trivialmente. Por lo tanto, una componente conexa es un subcomplejo 
+simplicial conexo de $K$ y la unión de dos componentes conexas también es subcomplejo simplicial, 
+puesto que un simplice esta en una componente conexa o en la otra, pero no en ambas.
+
+\vspace{1mm}
+\noindent Como $\sim_{p}$ es una relación de equivalencia, particiona el conjunto de vértices,
+junto con lo anterior hemos probado que las componentes conexas particionan al complejo 
+simplicial.
+
+\vspace{2mm}
+\noindent Debemos probar lo siguiente:
+\begin{enumerate}
+    \item \textbf{Si $K$ es conexo, entonces $\abs{K}$ arcoconexo}. Sean $x,y\in\abs{K}$, 
+    existen $\sigma_{x},\sigma_{y}\in K$ tales que $x\in\sigma_{x}$ e $y\in\sigma_{y}$, sean 
+    $v_{x}\in\sigma_{x}$ y $v_{y}\in\sigma_{y}$ vértices de $K$. Existe una sucesión
+    \begin{equation*}
+        \gen{w_{0},w_{1}},\cdots,\gen{w_{k-1},w_{k}}
+    \end{equation*}
+    tal que $w_{0}=v_{x}$ y $w_{k}=v_{y}$, consideramos la función $f_{i}:[0,1]\to\abs{K}$ dada 
+    por $f_{i}(t):=(1-t)w_{i}+tw_{i+1}$ que esta bien definida por que $\gen{w_{i},w_{i+1}}$ es 
+    convexo y es continua. Del mismo modo, como $\sigma_{x}$ es convexo, la función 
+    $f_{x}:[0,1]\to\abs{K}$ dada por $f_{x}(t):=(1-t)x+tv_{x}$ esta bien definida. De manera
+    análoga definimos $f_{y}$, pero $f_{y}(0)=v_{y}$ y $f_{y}(1)=y$. Luego,
+    \begin{equation*}
+        f:=f\sbullet f_{0}\sbullet f_{1}\sbullet\cdots\sbullet f_{k-1}\sbullet f_{y}
+    \end{equation*}
+    donde $\sbullet$ es la operación de concatenación. Es una función continua, por lema del 
+    pegamiento, y tal que $f(0)=x$ y $f(1)=y$.
+    
+    \vspace{1mm}
+    Concluimos que $\abs{K}$ es arcoconexo.
+
+    \item \textbf{Probar que $H_{0}(K)\cong\Z^{\text{\#componentes conexas}}$}. Como $K$ es 
+    finito, hay finitas componentes conexas, procederemos por inducción en el número de 
+    componentes conexas.
+
+    \vspace{1mm}
+    Supongamos que $K$ tiene una componente conexa, entonces $K$ es conexo. Dado $v\in V_{K}$, 
+    basta probar que $[v]=[w]$ en $H_{0}(K)$ para todo $w\in V_{K}$. Como $K$ es conexo, existe
+    una sucesión
+    \begin{equation*}
+        \gen{w_{0},w_{1}},\cdots,\gen{w_{k-1},w_{k}}
+    \end{equation*}
+    tal que $w_{0}=v$ y $w_{k}=w$, entonces
+    \begin{equation*}
+        \partial\left(\sum_{i=0}^{k-1}\gen{w_{i},w_{i+1}}\right)
+        =\sum_{i=0}^{k-1}\partial\gen{w_{i},w_{i+1}}=\sum_{i=0}^{k-1}w_{i+1}-w_{i}=w_{k}-w_{0}=w-v
+    \end{equation*}
+    luego $w-v\in\im{\partial}$. Entonces $H_{0}(K)\cong\Z$.
+
+    \vspace{1mm}
+    Sea $n$ el número de componentes conexas. Sean $M_{i}$ las componentes conexas de $K$, 
+    consideramos los subcomplejos simpliciales
+    \begin{equation*}
+        M=M_{n} \hhtext{y} N=\bigcup_{i=1}^{n-1}M_{i}
+    \end{equation*}
+    Por Mayer-Vietoris, se tiene la secuencia exacta
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & H_{0}(M)\oplus H_{0}(N) \ar[r] & H_{0}(K) \ar[r] & 0
+        }
+    }
+    entonces
+    \begin{equation*}
+        H_{0}(K)\cong H_{0}(M)\oplus H_{0}(N)\cong\Z\oplus\Z^{n-1}\cong\Z^{n}
+    \end{equation*}
+\end{enumerate}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
