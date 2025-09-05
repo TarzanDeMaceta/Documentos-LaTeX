@@ -107,6 +107,142 @@ en resumen, $f_{3}(a-\partial a')=b$. Concluimos que $f_{3}$ es isomorfismo.
 
     \vspace{1mm}
     Queda estudiar la acción de $\partial_{2}$.
+
+    \item\textbf{Mayer-Vietoris:} Para Mayer-Vietoris consideramos los siguientes subcomplejos
+    simpliciales,
+    \begin{center}
+        \begin{tikzpicture}[scale=1.2] %Subcomplejo M
+            \coordinate (A) at (-1.5,1.5);
+            \coordinate (B) at (1.5,1.5);
+            \coordinate (C) at (0,-1);
+
+            \coordinate (D) at (0,1.5);
+            \coordinate (E) at (-0.75,0.25);
+            \coordinate (F) at (0.75,0.25);
+
+            \draw (A) -- (B) -- (C) -- cycle;
+            \draw (D) -- (E) -- (F) -- cycle;
+
+            \filldraw (-1.5,-1) node{$M$};
+            
+            \filldraw (A) circle (1pt) node[anchor=east]{$2$};
+            \filldraw (B) circle (1pt) node[anchor=west]{$1$};
+            \filldraw (C) circle (1pt) node[anchor=north]{$0$};
+
+            \filldraw (D) circle (1pt) node[anchor=south]{$3$};
+            \filldraw (E) circle (1pt) node[anchor=north east]{$5$};
+            \filldraw (F) circle (1pt) node[anchor=north west]{$4$};
+        \end{tikzpicture}
+        %
+        \hspace{1cm}
+        %
+        \begin{tikzpicture} %Subcomplejo N
+            \filldraw[color=black, fill=white, thick] circle (1.5);
+
+            \coordinate (A) at ({-3*sqrt(3)/4},{3/4});
+            \coordinate (B) at ({3*sqrt(3)/4},{3/4});
+            \coordinate (C) at (0,-1.5);
+
+            \coordinate (D) at (0,1.5);
+            \coordinate (E) at ({-3*sqrt(3)/4},{-3/4});
+            \coordinate (F) at ({3*sqrt(3)/4},{-3/4});
+
+            \coordinate (G) at (0,{3/4});
+            \coordinate (H) at ({-3*sqrt(3)/8},{-3/8});
+            \coordinate (I) at ({3*sqrt(3)/8},{-3/8});
+
+            \draw (A) -- (B) -- (C) -- cycle;
+            
+            \draw (D) -- (G);
+            \draw (E) -- (H);
+            \draw (F) -- (I);
+
+            \filldraw (-2,-1.5) node{$N$};
+
+            \filldraw (A) circle (1pt) node[anchor=south east]{$2$};
+            \filldraw (B) circle (1pt) node[anchor=south west]{$1$};
+            \filldraw (C) circle (1pt) node[anchor=north]{$0$};
+
+            \filldraw (D) circle (1pt) node[anchor=south]{$0$};
+            \filldraw (E) circle (1pt) node[anchor=north east]{$1$};
+            \filldraw (F) circle (1pt) node[anchor=north west]{$2$};
+
+            \filldraw (G) circle (1pt) node[anchor=north]{$3$};
+            \filldraw (H) circle (1pt) node[anchor=south west]{$5$};
+            \filldraw (I) circle (1pt) node[anchor=south east]{$4$};
+        \end{tikzpicture}
+    \end{center}
+    Por el lema, se tiene que $H_{0}(M)=\Z$ y $H_{i}(M)=0$ para $i>0$ y además, 
+    $H_{i}(M\cap N)=\Z$ para $i=0,1$ . Por otro lado, para $N$, consideramos la subdivisión en 
+    complejos simpliciales, como sigue,
+    \begin{center}
+        \begin{tikzpicture} %Primer subcomplejo de N
+            \coordinate (A) at (0,1.5);
+            \coordinate (B) at (-1,0);
+            \coordinate (C) at (0,-1.5);
+            \coordinate (D) at (1,0);
+
+            \draw (A) -- (B) -- (C) -- (D) -- cycle;
+            \draw (B) -- (D);
+
+            \filldraw (A) circle (1pt) node[anchor=south]{$4$};
+            \filldraw (B) circle (1pt) node[anchor=east]{$2$};
+            \filldraw (C) circle (1pt) node[anchor=north]{$5$};
+            \filldraw (D) circle (1pt) node[anchor=west]{$1$};
+
+            \filldraw (-1.5,-1.5) node{$N_{m}$};
+        \end{tikzpicture}
+        %
+        \hspace{1cm}
+        %
+        \begin{tikzpicture} %Segundo subcomplejo de N
+            \coordinate (A) at (-2,1.5);
+            \coordinate (B) at (-3,0);
+            \coordinate (C) at (-1,-1.5);
+            \coordinate (D) at (-1,0);
+
+            \draw (A) -- (B) -- (C) -- (D) -- cycle;
+            \draw (B) -- (D);
+
+            \filldraw (A) circle (1pt) node[anchor=south]{$5$};
+            \filldraw (B) circle (1pt) node[anchor=east]{$1$};
+            \filldraw (C) circle (1pt) node[anchor=north]{$3$};
+
+            \coordinate (A) at (0,1.5);
+            \coordinate (B) at (-1,0);
+            \coordinate (C) at (-1,-1.5);
+            \coordinate (D) at (1,0);
+
+            \draw (A) -- (B) -- (C) -- (D) -- cycle;
+            \draw (B) -- (D);
+
+            \filldraw (A) circle (1pt) node[anchor=south]{$4$};
+            \filldraw (B) circle (1pt) node[anchor=south]{$0$};
+            \filldraw (C) circle (1pt) node[anchor=north]{$3$};
+            \filldraw (D) circle (1pt) node[anchor=west]{$2$};
+
+            \filldraw (-3,-1.5) node{$N_{n}$};
+        \end{tikzpicture}
+    \end{center}
+    Nuevamente, por el lema, se sigue que $H_{0}(N_{m})=H_{0}(N_{n})=\Z$ y $0$ en otro caso. 
+    Por otro lado, $H_{0}(N_{m}\cap N_{n})=\Z^{2}$ y $0$ en otro caso. Entonces usando 
+    Mayer-Vietoris resulta que
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & 0 \ar[r] & H_{2}(N) \ar[r] & 0\\
+        }
+    }
+    \vspace{1mm}
+    es decir, $H_{2}(N)=0$, para $i=1$ vemos que
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & 0 \ar[r] & H_{1}(N) \ar[r] & \Z^{2} \ar[r]^{\varphi} & \Z^{2}
+        }
+    }
 \end{enumerate}
 
 \section*{Problema 5}
