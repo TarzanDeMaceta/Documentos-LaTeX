@@ -21,7 +21,7 @@
 
 {\centerline{\bf Topología Algebraica - MAT2850}
 \centerline{\bf Tarea 2}}
-\centerline{\bf 07 de septiembre de 2025}
+\centerline{\bf 09 de septiembre de 2025}
 
 \section*{Problema 3}
 \noindent Por simplicidad del argumento, denotaremos los morfismos $A_{i}\to A_{i+1}$ y 
@@ -74,14 +74,16 @@ tiene que dicho complejo simplicial es conexo gracias a la segunda propiedad.
 
 \vspace{2mm}
 \begin{lema}
-    Sea $\Omega$ una colección finita de $2-$simplices que se pega bien. Sea $K$ el complejo 
-    simplicial asociado a $\Omega$, entonces $H_{0}(K)=\Z$ y es trivial en otro caso.
+    Sea $\Omega$ una colección finita de $2-$simplices que se pega bien o que consiste de solo un
+    $2-$simplice. Sea $K$ el complejo simplicial asociado a $\Omega$, entonces $H_{0}(K)=\Z$ y es 
+    trivial en otro caso.
 \end{lema}
 \begin{proof}
     Procederemos por inducción sobre el número de $2-$simplices en la colección. Para $n=1$ ya
     esta probado. Supongamos que se cumple para $n-1$, por definición, existe $\sigma\in\Omega$ 
-    tal que $\Omega\setminus\{\sigma\}$ se pega bien, sea $M$ el complejo simplicial asociado. Sea
-    $N$ el complejo simplicial que consiste en las caras de $\sigma$.
+    tal que $\Omega\setminus\{\sigma\}$ se pega bien o consiste de un $2-$simplice, sea $M$ el 
+    complejo simplicial asociado. Sea $N$ el complejo simplicial que consiste en las caras de 
+    $\sigma$.
 
     \vspace{1mm}
     Como $\Omega$ se pega bien, existe un único $2-$simplice $\tau\in\Omega$ tal que 
@@ -97,9 +99,10 @@ tiene que dicho complejo simplicial es conexo gracias a la segunda propiedad.
     }
     
     \vspace{1mm}
-    Notemos que el generador en $M\cap N$ se mapea a un generador tanto en $M$ como en $N$, vía el
-    morfismo inducido por la inclusión. Entonces, $\varphi=(1,1)$, lo que implica que 
-    $H_{1}(K)=0$, ya que $\kr{\varphi}=0$, lo que concluye la demostración.
+    Notemos, por conexidad, que el generador en $H_{0}(M\cap N)$ se mapea al generador tanto en 
+    $H_{0}(M)$ como en $H_{0}(N)$, vía el morfismo inducido por la inclusión. Entonces, 
+    $\varphi=(1,1)$, lo que implica que $H_{1}(K)=0$, ya que $\kr{\varphi}=0$, lo que concluye la 
+    demostración.
 \end{proof}
 
 \newpage
@@ -209,6 +212,7 @@ anillos $\Z,\Z_{2}$ y $\Q$. El lema anterior es válido para $R$.
             \coordinate (F) at (0.75,0.25);
 
             \draw (A) -- (B) -- (C) -- cycle;
+            \fill[color=gray, opacity=0.2] (A) -- (B) -- (C) -- cycle;
             \draw (D) -- (E) -- (F) -- cycle;
 
             \filldraw (-1.5,-1) node{$M$};
@@ -225,7 +229,7 @@ anillos $\Z,\Z_{2}$ y $\Q$. El lema anterior es válido para $R$.
         \hspace{1cm}
         %
         \begin{tikzpicture}[scale=0.8] %Subcomplejo N
-            \filldraw[color=black, fill=white, thick] circle (1.5);
+            \filldraw[color=black, fill=gray, fill opacity=0.2] circle (1.5);
 
             \coordinate (A) at ({-3*sqrt(3)/4},{3/4});
             \coordinate (B) at ({3*sqrt(3)/4},{3/4});
@@ -245,6 +249,9 @@ anillos $\Z,\Z_{2}$ y $\Q$. El lema anterior es válido para $R$.
             \draw (E) -- (H);
             \draw (F) -- (I);
 
+            \fill[color=white] (A) -- (B) -- (C) -- cycle;
+            \draw (A) -- (B) -- (C) -- cycle;
+
             \filldraw (-2,-1.5) node{$N$};
 
             \filldraw (A) circle (1pt) node[anchor=south east]{$2$};
@@ -260,9 +267,10 @@ anillos $\Z,\Z_{2}$ y $\Q$. El lema anterior es válido para $R$.
             \filldraw (I) circle (1pt) node[anchor=south east]{$4$};
         \end{tikzpicture}
     \end{center}
-    Por el lema, se tiene que $H_{0}(M)=R$ y es trivial en otro caso, además, vemos que 
-    $H_{i}(M\cap N)=R$ para $i=0,1$ y es cero en otro caso. Por otro lado, para $N$, consideramos 
-    la subdivisión en complejos simpliciales como sigue,
+    Por el lema, se tiene que $H_{0}(M)=R$ y es trivial en otro caso, además,  como 
+    $\abs{M\cap N}$ es homeomorfo a $\mathbb{S}^{1}$, vemos que $H_{i}(M\cap N)=R$ para $i=0,1$ y 
+    es cero para $i>1$. Por otro lado, para $N$, consideramos la subdivisión en complejos 
+    simpliciales como sigue,
     \begin{center}
         \begin{tikzpicture}[scale=0.9] %Primer subcomplejo de N
             \coordinate (A) at (0,1.5);
@@ -271,6 +279,7 @@ anillos $\Z,\Z_{2}$ y $\Q$. El lema anterior es válido para $R$.
             \coordinate (D) at (1,0);
 
             \draw (A) -- (B) -- (C) -- (D) -- cycle;
+            \fill[color=gray, opacity=0.2] (A) -- (B) -- (C) -- (D) -- cycle;
             \draw (B) -- (D);
 
             \filldraw (A) circle (1pt) node[anchor=south]{$4$};
@@ -290,6 +299,7 @@ anillos $\Z,\Z_{2}$ y $\Q$. El lema anterior es válido para $R$.
             \coordinate (D) at (-1,0);
 
             \draw (A) -- (B) -- (C) -- (D) -- cycle;
+            \fill[color=gray, opacity=0.2] (A) -- (B) -- (C) -- (D) -- cycle;
             \draw (B) -- (D);
 
             \filldraw (A) circle (1pt) node[anchor=south]{$5$};
@@ -302,6 +312,7 @@ anillos $\Z,\Z_{2}$ y $\Q$. El lema anterior es válido para $R$.
             \coordinate (D) at (1,0);
 
             \draw (A) -- (B) -- (C) -- (D) -- cycle;
+            \fill[color=gray, opacity=0.2] (A) -- (B) -- (C) -- (D) -- cycle;
             \draw (B) -- (D);
 
             \filldraw (A) circle (1pt) node[anchor=south]{$4$};
@@ -312,10 +323,12 @@ anillos $\Z,\Z_{2}$ y $\Q$. El lema anterior es válido para $R$.
             \filldraw (-3,-1.5) node{$N_{n}$};
         \end{tikzpicture}
     \end{center}
-    Nuevamente, por el lema, se sigue que $H_{0}(N_{m})=H_{0}(N_{n})=R$ y es trivial en otro caso.
-    Por otro lado, $H_{0}(N_{m}\cap N_{n})$ consiste en la unión disjunta de dos $1-$simplices,
-    luego, $H_{0}(N_{m}\cap N_{n})=R^{2}$ y es cero en otro caso. Entonces, usando Mayer-Vietoris
-    resulta que
+    Nuevamente, por el lema, se sigue que $H_{0}(N_{m})=H_{0}(N_{n})=R$ y 
+    $H_{i}(N_{n})=H_{0}(N_{m})=0$ para $i>0$. Veamos que $H_{0}(N_{m}\cap N_{n})$ consiste en la 
+    unión disjunta de dos $1-$simplices, luego, $H_{0}(N_{m}\cap N_{n})=R^{2}$ y como 
+    $\partial_{1}$ es inyectivo obtenemos que $H_{1}(N_{m}\cap N_{n})=0$, como no hay 
+    $i-$simplices con $i>1$, se sigue que $H_{i}(N_{m}\cap N_{m})=0$. Entonces, usando 
+    Mayer-Vietoris resulta que
 
     \vspace{2mm}
     \centerline{
@@ -330,13 +343,14 @@ anillos $\Z,\Z_{2}$ y $\Q$. El lema anterior es válido para $R$.
     \vspace{2mm}
     \centerline{
         \xymatrix{
-            0 \ar[r] & 0 \ar[r] & H_{1}(N) \ar[r] & R^{2} \ar[r]^{\varphi} & R^{2}
+            0 \ar[r] & H_{1}(N) \ar[r] & R^{2} \ar[r]^{\varphi} & R^{2}
         }
     }
     \vspace{1mm}
-    Como $N_{m}\cap N_{n}$ posee dos componentes conexas, es generado por dos elementos, por ende,
-    cada generador se mapea a un generador tanto en $H_{0}(N_{m})$ como en $H_{0}(N_{n})$ vía el
-    morfismo inducido por la inclusión, lo que implica que
+    Como $N_{m}\cap N_{n}$ posee dos componentes conexas, entonces $H_{0}(N_{m}\cap N_{n})$ es 
+    generado por dos elementos, y por conexidad, cada generador se mapea al generador tanto en 
+    $H_{0}(N_{m})$ como en $H_{0}(N_{n})$ vía el morfismo inducido por la inclusión, lo que 
+    implica que
     \begin{equation*}
         \varphi=\begin{pmatrix}
             1 & 1 \\ 1 & 1
@@ -358,18 +372,18 @@ anillos $\Z,\Z_{2}$ y $\Q$. El lema anterior es válido para $R$.
     Notemos que el mapeo $H_{1}(M\cap N)\to H_{1}(M)$ es trivial, mientras que el generador en 
     $H_{1}(M\cap N)$, a saber,
     \begin{equation*}
-        \tau=\gen{1,4}-\gen{0,4}+\gen{0,5}+\gen{2,5}-\gen{2,3}-\gen{1,3}
+        \tau=\gen{1,4}-\gen{0,4}+\gen{0,5}-\gen{2,5}+\gen{2,3}-\gen{1,3}
     \end{equation*}
-    se mapea dos veces al generador en $H_{1}(N)$ que es $\sigma=\gen{0,1}+\gen{1,2}-\gen{0,2}$.
+    se mapea a dos veces el generador en $H_{1}(N)$ que es $\sigma=\gen{0,1}+\gen{1,2}-\gen{0,2}$.
     En efecto, notemos que
     \begin{equation*}
         \partial_{2}(\gen{0,2,3}+\gen{0,1,3}-\gen{0,2,4}+\gen{0,1,5}+\gen{1,2,5}-\gen{0,2,3})=
         2\sigma-\tau
     \end{equation*}
     De este modo, $\kr{\psi}=0$ para $\Z$ y $\Q$, mientras que $\kr{\psi}=\Z_{2}$ para $\Z_{2}$.
-    Luego, $\im{\psi}=2\Z$, $\im{\psi}=\Q$ y finalmente $\im{\psi}=0$ cuando vemos los 
-    coeficientes en $\Z,\Q$ y $\Z_{2}$ respectivamente. Por otro lado, por la misma razón que 
-    antes, $\varphi=(1,1)$, es decir, $\kr{\varphi}=0$ para $R$ y entonces $\phi$ es sobreyectivo. 
+    Además, $\im{\psi}=2\Z$, $\im{\psi}=\Q$ y $\im{\psi}=0$ cuando vemos los coeficientes en 
+    $\Z,\Q$ y $\Z_{2}$ respectivamente. Por otro lado, por la misma razón que antes, 
+    $\varphi=(1,1)$, es decir, $\kr{\varphi}=0$ para $R$ y entonces $\phi$ es sobreyectivo. 
     Por primer teorema de isomorfismo y exactitud, concluimos que
     \begin{equation*}
         H_{i}(K;\Z_{2})=\begin{cases}
