@@ -651,6 +651,170 @@ es decir, $\abs{g\circ f}=\abs{g}\circ\abs{f}$. Un mapeo simplicial puede ser de
 como una función continua $f:\abs{K}\to\abs{L}$ que manda vértices en vértices y es lineal en sus 
 caras.
 
+\vspace{2mm}
+\noindent Daremos un par de definiciones útiles para mas adelante, que están relacionadas con la 
+noción de aproximar una función continua por un mapeo simplicial.
+
+\vspace{2mm}
+\begin{dfn}
+    Sea $x\in\abs{K}$. El \textbf{portador} de $x$ es el simplejo de $K$ mas pequeño (en términos
+    de inclusión) que contiene a $x$. Se denota por $carr(x)$.
+\end{dfn}
+\noindent\textbf{Ejemplo:} Veamos el siguiente complejo
+\begin{center}
+    \begin{tikzpicture}[scale=1.5] %Ejemplo concreto del portador
+        \coordinate (O) at (0,0);
+        \coordinate (A) at (1,0.5);
+        \coordinate (B) at (-1,0.5);
+        \coordinate (C) at (0,1.5);
+
+        \draw (O) -- (A) -- (C) -- cycle;
+        \draw (O) -- (B) -- (C) -- cycle;
+
+        \fill[color=orange, opacity=0.3] (O) -- (A) -- (C) -- cycle;
+        \fill[color=orange, opacity=0.3] (O) -- (B) -- (C) -- cycle;
+
+        \filldraw (B) circle (1pt) node[anchor=north]{$0$};
+        \filldraw (A) circle (1pt) node[anchor=north]{$2$};
+        \filldraw (O) circle (1pt) node[anchor=north]{$3$};
+        \filldraw (C) circle (1pt) node[anchor=south]{$1$};
+
+        \filldraw (0,0.75) circle (1pt) node[anchor=east]{$y$};
+        \filldraw (0.3,0.75) circle (1pt) node[anchor=west]{$x$};
+    \end{tikzpicture}
+\end{center}
+Entonces $carr(y)=\gen{1,3}$, $carr(x)=\gen{1,2,3}$ y $carr(4)=\gen{4}$.
+
+\vspace{1mm}
+\noindent\textbf{Observación:} Notemos que $y\in carr(x)$ si y solo si $carr(y)\subseteq carr(x)$.
+
+\begin{dfn}
+    Sea $f:\abs{K}\to\abs{L}$ una función continua. Una \textbf{aproximación simplicial} a $f$ es 
+    un mapeo simplicial $g:K\to L$ tal que
+    \begin{equation*}
+        g(x)\in carr(f(x))\text{ para todo }x\in\abs{K}
+    \end{equation*}
+\end{dfn}
+\noindent\textbf{Ejemplo:}
+\begin{center}
+    \begin{tikzpicture} %Complejo simplicial K%
+        \coordinate (A) at (1,0);
+        \coordinate (B) at ({sqrt(2)/2},{sqrt(2)/2});
+        \coordinate (C) at (0,1);
+        \coordinate (D) at (-{sqrt(2)/2},{sqrt(2)/2});
+        \coordinate (E) at (-1,0);
+        \coordinate (F) at (-{sqrt(2)/2},-{sqrt(2)/2});
+        \coordinate (G) at (0,-1);
+        \coordinate (H) at ({sqrt(2)/2},-{sqrt(2)/2});
+
+        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- (G) -- (H) -- cycle;
+
+        \filldraw (A) circle (1pt) node[anchor=west]{$v_{0}$};
+        \filldraw (B) circle (1pt) node[anchor=south west]{$v_{1}$};
+        \filldraw (C) circle (1pt) node[anchor=south]{$v_{2}$};
+        \filldraw (D) circle (1pt) node[anchor=south east]{$v_{3}$};
+        \filldraw (E) circle (1pt) node[anchor=east]{$v_{4}$};
+        \filldraw (F) circle (1pt) node[anchor=north east]{$v_{5}$};
+        \filldraw (G) circle (1pt) node[anchor=north]{$v_{6}$};
+        \filldraw (H) circle (1pt) node[anchor=north west]{$v_{7}$};
+
+        \filldraw ($(O)-(2,1)$) node{K};
+    \end{tikzpicture}
+    %
+    \hspace{2cm}
+    %
+    \begin{tikzpicture} %Complejo simplicial L
+        \coordinate (A) at (1,0);
+        \coordinate (B) at (0,1);
+        \coordinate (C) at (-1,0);
+        \coordinate (D) at (0,-1);
+
+        \draw (A) -- (B) -- (C) -- (D) -- cycle;
+
+        \filldraw (A) circle (1pt) node[anchor=west]{$w_{0}$};
+        \filldraw (B) circle (1pt) node[anchor=south]{$w_{1}$};
+        \filldraw (C) circle (1pt) node[anchor=east]{$w_{2}$};
+        \filldraw (D) circle (1pt) node[anchor=north]{$w_{3}$};
+
+        \filldraw ($(O)-(2,1)$) node{L};
+    \end{tikzpicture}
+\end{center}
+El poliedro asociado a cada complejo es $\s^{1}$, consideramos la función continua $f(z)=z^{2}$,
+una aproximación simplicial es $g(v_{i})=g(v_{i+4})=w_{i}$ para $0\leq i\leq3$.
+
+\newpage
+\begin{dfn}
+    Sea $K$ un complejo simplicial. La primera subdivisión baricéntrica $K'$ de $K$ es el complejo
+    simplicial $K'$ cuyos
+    \begin{itemize}
+        \item Vértices son los baricentros $\hat{\sigma}$ de los simpleces $\sigma$ de $K$.
+        \item Un $n-$simplice de $K'$ es 
+        $\gen{\hat{\sigma_{0}},\hat{\sigma_{1}},\cdots,\hat{\sigma_{n}}}$ si 
+        $\sigma_{0}<\sigma_{1}<\cdots<\sigma_{n}$ (Son caras propias).
+    \end{itemize}
+    Una $r-$ésima división baricéntrica se define recursivamente $K^{(r)}:=(K^{(r-1)})'$.
+    Recordemos que si $\sigma=\gen{v_{0},\cdots,v_{n}}$ entonces 
+    $\hat{\sigma}=\frac{1}{n+1}\sum v_{i}$.
+\end{dfn}
+
+\vspace{2mm}
+\begin{prop}
+    Sea $K$ un complejo simplicial entonces $\abs{K'}=\abs{K}$.
+\end{prop}
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} Algunos ejemplos de división baricéntrica de dos simplices.
+\begin{center}
+    \begin{tikzpicture}[scale=1.5] %División de un 1-simplice
+        \coordinate (A) at (0,0);
+        \coordinate (B) at (1,1);
+        \coordinate (C) at (0.5,0.5);
+
+        \draw (A) -- (B);
+
+        \filldraw (A) circle (1pt) node[anchor=east]{$v_{0}$};
+        \filldraw (B) circle (1pt) node[anchor=west]{$v_{1}$};
+        \filldraw (C) circle (1pt) node[anchor=north west]{$\widehat{\gen{v_{0},v_{1}}}$};
+
+        \filldraw (0,-0.5) node[]{};
+    \end{tikzpicture}
+    %
+    \hspace{2cm}
+    %
+    \begin{tikzpicture}[scale=1.5] %División de un 2-simplice
+        \coordinate (A) at (-1,0);
+        \coordinate (B) at (1,0);
+        \coordinate (C) at (0,1);
+
+        \coordinate (D) at (0,0);
+        \coordinate (E) at (0.5,0.5);
+        \coordinate (F) at (-0.5,0.5);
+
+        \coordinate (G) at (0,{1/3});
+
+        \fill[color=orange, opacity=0.3] (A) -- (B) -- (C) -- cycle;
+        
+        \draw (A) -- (D) -- (G) -- cycle;
+        \draw (A) -- (F) -- (G) -- cycle;
+
+        \draw (B) -- (D) -- (G) -- cycle;
+        \draw (B) -- (E) -- (G) -- cycle;
+
+        \draw (C) -- (E) -- (G) -- cycle;
+        \draw (C) -- (F) -- (G) -- cycle;
+
+        \filldraw (A) circle (1pt) node[anchor=east]{$v_{0}$};
+        \filldraw (B) circle (1pt) node[anchor=west]{$v_{2}$};
+        \filldraw (C) circle (1pt) node[anchor=south]{$v_{1}$};
+
+        \filldraw (D) circle (1pt) node[anchor=north]{$\widehat{\gen{v_{0},v_{2}}}$};
+        \filldraw (E) circle (1pt) node[anchor=south west]{$\widehat{\gen{v_{1},v_{2}}}$};
+        \filldraw (F) circle (1pt) node[anchor=south east]{$\widehat{\gen{v_{0},v_{1}}}$};
+        \filldraw (G) circle (1pt);
+    \end{tikzpicture}
+\end{center}
+donde el punto central del segundo ejemplo es $\widehat{\gen{v_{0},v_{1},v_{2}}}$.
+
 \newpage
 \subsection{Homología Simplicial}
 \noindent Dado $K$ un complejo simplicial finito, esto es, que tiene un número finito de vértices. 
@@ -790,7 +954,7 @@ para cualquier anillo $R$.
 simpliciales
 
 \vspace{2mm}
-\noindent\textbf{Ejemplo:} Consideremos los complejos simpliciales
+\noindent\textbf{Ejemplo:} Definimos los siguientes complejos simpliciales
 \begin{center}
     \begin{tikzpicture} %Complejo simplicial K%
         \coordinate (O) at (0,0);
@@ -840,8 +1004,8 @@ simpliciales
         \filldraw ($(O)-(2,1)$) node{L};
     \end{tikzpicture}
 \end{center}
-Consideramos los ordenes $v_{0}<v_{1}<\cdots<v_{7}$ y $w_{0}<w_{1}<w_{2}<w_{3}$ y definimos 
-$f:K\to L$ por $f(v_{i})=f(v_{i+4})=w_{i}$ para $i=0,1,2,3$. Veamos quien es 
+Para cada complejo se da el orden que sigue $v_{0}<v_{1}<\cdots<v_{7}$ y $w_{0}<w_{1}<w_{2}<w_{3}$ 
+y definimos $f:K\to L$ por $f(v_{i})=f(v_{i+4})=w_{i}$ para $i=0,1,2,3$. Veamos quien es 
 $f_{*}:H_{1}(K)\to H_{1}(L)$. En primer lugar, sabemos que
 \begin{equation*}
     H_{1}(K)=ker(C_{1}(K)\to C_{0}(K))=ker\begin{pmatrix}
@@ -968,6 +1132,69 @@ un camino de aristas. De este modo,
 \end{equation*}
 donde el último isomorfismo se da por que $\varphi$ es inyectiva, es decir, el morfismo 
 $H_{1}(K)\to\Z$ es trivial.
+
+\begin{teo}
+    Sea $f:\abs{K}\to\abs{L}$ una función continua. Entonces $f$ induce un homomorfismo
+    \begin{equation*}
+        f_{*}:H_{*}(K)\to H_{*}(L)
+    \end{equation*}
+    tal que $(g\circ f)_{*}=g_{*}\circ f_{*}$ e $id_{*}=id_{H_{*}(K)}$, donde 
+    $g:\abs{L}\to\abs{M}$ es continua.
+\end{teo}
+
+\noindent\textbf{Observación:} Con esto se tendría que $H_{*}(K)$ es invariante topológico. Se
+probara en dos pasos. Veremos que toda función $f$ continua se puede "aproximar" a una función $g$
+simplicial, también hay que comprobar que $f_{*}:=g_{*}$ es independiente de la función simplicial
+escogida.
+
+\begin{teo}[Aproximación Simplicial]
+    Sean $K,L$ complejos simpliciales finitos y $f:\abs{K}\to\abs{L}$ una función continua. 
+    Entonces existe $r\in\N$ y una aproximación simplicial a $f$
+    \begin{equation*}
+        g:K^{(r)}\to L
+    \end{equation*}
+\end{teo}
+
+\noindent A partir de esta aproximación simplicial, se cumplen dos propiedades importantes, que 
+son
+\begin{enumerate}
+    \item $f$ es homotópica a $g$. Notemos que $g(x),f(x)\in carr(f(x))$, entonces el segmento 
+    entre $g(x)$ y $f(x)$ está en $carr(f(x))$ porque es un conjunto convexo. Definimos
+    \begin{align*}
+        \abs{K}\times[0,1] &\to \abs{L}\\
+        (x,t) &\to tg(x)+(1-t)f(x)
+    \end{align*}
+
+    \item Sean $f_{1}:\abs{K}\to\abs{L}$, $f_{2}:\abs{L}\to\abs{M}$ continuas y $g_{1}:K\to L$, 
+    $g_{2}:L\to M$ aproximaciones simpliciales de $f_{i}$, entonces $g_{2}\circ g_{1}$ es
+    aproximación simplicial de $f_{2}\circ f_{1}$.
+
+    Se tiene que
+    \begin{equation*}
+        g_{2}g_{1}(x)\in g_{2}(carr(f_{1}(x)))=carr(g_{2}f_{1}(x))\subseteq carr(f_{2}f_{1}(x))
+    \end{equation*}
+\end{enumerate}
+
+\begin{prop}
+    Sea $id:\abs{K'}\to\abs{K}$, la función $a:V_{K'}\to V_{K}$ dada por 
+    $a(\hat{\sigma})=v\in V_{\sigma}$ cumple que
+    \begin{enumerate}
+        \item Define una aproximación simplicial de la identidad.
+        \item Toda aproximación simplicial $g:K'\to K$ de la identidad es de esta forma.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    Veamos que $a$ es un mapeo simplicial. Sea $\sigma
+    =\gen{\hat{\sigma_{0}},\cdots,\hat{\sigma_{n}}}\in K'$, entonces 
+    $a(\hat{\sigma_{i}})=v_{i}\in V_{\sigma_{i}}$. Sabemos que $\sigma_{i}<\sigma_{i+1}$
+    para $0\leq i\leq n-1$, lo que implica que $V_{i}\subset V_{i+1}$, en particular, 
+    $V=\{v_{0},\cdots,v_{n}\}\subseteq V_{\sigma_{n}}$, luego, $V$ genera una cara de 
+    $\sigma_{n}$, es decir, un simplice en $\abs{K}$.
+
+    \vspace{1mm}
+    Sea $x\in\abs{K'}$, debemos probar que $a(x)\in carr(id(x))$. En efecto, 
+\end{proof}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
