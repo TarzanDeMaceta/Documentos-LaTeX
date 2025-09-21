@@ -130,12 +130,11 @@
         \F(f)(\xi)=e^{-\frac{\xi^{2}}{2}}
     \end{equation*}
     
-    \item (Reescribir)
-    Supongamos que $f$ es indicatriz de algún $E\subseteq\R$ medible, luego,
+    \item Supongamos que $f=\I_{E}$, para algún $E\in\mathcal{L}$. Entonces,
     \begin{equation*}
         \F(f)(\xi)=\int_{\R}f(x)e^{-ix\xi}\hspace{1mm}dx=\int_{E}e^{-ix\xi}\hspace{1mm}dx
     \end{equation*}
-    Supongamos que $E=I=(a,b)$ donde $a<b$, entonces
+    Supongamos que $E=I$ es un intervalo, donde $inf(I)=a$ y $sup(I)=b$, tenemos que
     \begin{equation*}
         \F(f)(\xi)=\int_{a}^{b}e^{-ix\xi}\hspace{1mm}dx=-\frac{e^{-ix\xi}}{i\xi}\Big|_{a}^{b}
         =\frac{e^{-ia\xi}}{i\xi}-\frac{e^{-ib\xi}}{i\xi}\xrightarrow[\abs{\xi}\to+\infty]{}0
@@ -143,7 +142,7 @@
     Para una colección finita de intervalos disjuntos de a pares el resultado es inmediato, este
     se puede extender a una colección numerable de intervalos disjuntos de a pares. Sea 
     $O\subseteq\R$ un conjunto abierto, luego, se escribe como unión numerable de intervalos 
-    disjuntos de a pares, entonces
+    abiertos disjuntos de a pares, se tiene que
     \begin{equation*}
         \F(\I_{O})(\xi)\xrightarrow[\abs{\xi}\to+\infty]{}0
     \end{equation*}
@@ -153,12 +152,11 @@
         \abs{\int_{G}e^{-ix\xi}\hspace{1mm}dx-\int_{E}e^{-ix\xi}\hspace{1mm}dx}
         =\abs{\int_{G\setminus E}e^{-ix\xi}\hspace{1mm}dx}\leq\lambda(G\setminus E)<\varepsilon
     \end{equation*}
-    lo que implica que
+    Aca estamos usando que $f\in L^{1}(\R)$, es decir, $\lambda(E),\lambda(G)<\infty$. Lo anterior 
+    implica que 
     \begin{equation*}
         \abs{\lim\limits_{\abs{\xi}\to+\infty}\int_{E}e^{-ix\xi}\hspace{1mm}dx}\leq\varepsilon
-    \end{equation*}
-    para todo $\varepsilon>0$, se sigue que
-    \begin{equation*}
+        \htext{para todo}\varepsilon>0\text{, se sigue que}
         \lim\limits_{\abs{\xi}\to+\infty}\int_{E}e^{-ix\xi}\hspace{1mm}dx=0
     \end{equation*}
     Sea $s\in L^{1}(\R)$ una función simple, el resultado es directo, en efecto,
@@ -168,12 +166,19 @@
         \lim\limits_{\abs{\xi}\to+\infty}\int_{A_{i}}e^{-ix\xi}\hspace{1mm}dx=0
     \end{equation*}
     Sea $f\in L^{1}(\R)$, entonces existe $(s_{n})_{n}$ tal que $s_{n}\xrightarrow[n\to\infty]{}f$
-    en $L^{1}(\R)$, notemos que
+    en $L^{1}(\R)$, para todo $\xi\in\R$ notamos que
     \begin{equation*}
         \abs{\F(f)(\xi)}-\abs{\F(s_{n})(\xi)}\leq\abs{\F(f)(\xi)-\F(s_{n})(\xi)}
         \leq\int_{\R}\abs{f(x)-s_{n}(x)}\hspace{1mm}dx
     \end{equation*}
-    Luego, existe $N\in\N$ tal que $\abs{\F(f)(\xi)}$
+    Luego, dado $\varepsilon>0$, existe $N\in\N$ tal que si $\abs{\xi}>N$ entonces 
+    $\abs{\F(s_{n})(\xi)}<\varepsilon/2$ y si $n\geq N$ se obtiene que 
+    $\norm{f-s_{n}}_{L^{1}}<\varepsilon/2$, así
+    \begin{equation*}
+        \abs{\F(f)(\xi)}\leq\abs{\F(s_{n})(\xi)}+\int_{\R}\abs{f(x)-s_{n}(x)}\hspace{1mm}dx
+        <\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon
+    \end{equation*}
+    lo que prueba lo pedido.
     
     \item Veamos que es lineal, sean $f,g\in L^{1}(\R)$ y $\alpha\in\C$, entonces por linealidad
     de la intregal, vemos que
@@ -226,10 +231,157 @@
 \subsection{Fórmula de inversión}
 \begin{enumerate}
     \item Sobre la transformada de Fourier
+    \begin{dfn}
+        Se define la función $\phi(x)=\frac{1}{\sqrt{2\pi}}e^{-x^{2}/2}$ y la familia de funciones
+        $\phi_{\varepsilon}(x):=\varepsilon^{-1}\phi(x\varepsilon^{-1})$ para $\varepsilon>0$.
+    \end{dfn}
+    \vspace{1mm}
+    \noindent\textbf{Observación:} Vemos que $\norm{\phi}_{L^{1}}=1$.
+
+    \vspace{2mm}
+    \begin{lema}
+        Sea $f\in L^{1}(\R)\cap\mathcal{C}(\R)$. Luego,
+        \begin{equation*}
+            \lim\limits_{\varepsilon\to0^{+}}(f*\phi_{\varepsilon})(x)=f(x)
+        \end{equation*}
+    \end{lema}
+    \begin{proof}
+        Veamos que
+        \begin{equation*}
+            (f*\phi_{\varepsilon})(x)=\frac{1}{\varepsilon}
+            \int_{\R}f(t)\phi\left(\frac{x-t}{\varepsilon}\right)\hspace{1mm}dt
+            =\int_{\R}f(x-t\varepsilon)\phi(t)\hspace{1mm}dt
+        \end{equation*}
+        De este modo, resulta que
+        \begin{equation*}
+            \abs{(f*\phi_{\varepsilon})(x)-f(x)}
+            =\abs{\int_{\R}f(x-t\varepsilon)\phi(t)\hspace{1mm}dt
+            -\int_{\R}f(x)\phi(t)\hspace{1mm}dt}
+            \leq\int_{\R}\abs{f(x-t\varepsilon)-f(x)}\cdot\phi(t)\hspace{1mm}dt
+        \end{equation*}
+        Por continuidad tenemos que $f(x-t\varepsilon)\xrightarrow[]{\varepsilon\to0^{+}}f(x)$,
+        por teorema de convergencia dominada concluimos que $\abs{(f*\phi_{\varepsilon})(x)-f(x)}
+        \xrightarrow[\varepsilon\to0^{+}]{}0$ lo que prueba lo buscado. En esta última parte 
+        utilizamos que $\norm{f}_{\infty}<\infty$ y que $\phi$ es integrable.
+    \end{proof}
+    
+    \begin{lema}
+        Sean $f,g\in L^{1}$ tales que $\F(f),\F(g)\in L^{1}$, entonces 
+        $\sqrt{2\pi}\cdot\F(fg)=\F(f)*\F(g)$.
+    \end{lema}
+\begin{proof}
+    Notemos que
+    \begin{equation*}
+        \F(fg)(\xi)=\frac{1}{\sqrt{2\pi}}\int_{\R}e^{-ix\xi}f(x)g(x)\hspace{1mm}dx
+        =\frac{1}{2\pi}\int_{\R}e^{-ix\xi}
+        \left(\int_{\R}e^{ix\eta}\F(f)(\eta)\hspace{1mm}d\eta\right)g(x)\hspace{1mm}dx
+    \end{equation*}
+    donde usamos que $(\F^{-1}\circ\F)(f)=f$, que se tiene por el problema 1.2.1. Luego, por 
+    Fubini vemos que
+    \begin{align*}
+        \F(fg)(\xi) &= \frac{1}{2\pi}\int_{\R}\int_{\R}e^{-ix(\xi-\eta)}
+        \F(f)(\eta)g(x)\hspace{1mm}d\eta\hspace{1mm}dx
+        =\frac{1}{2\pi}\int_{\R}\int_{\R}e^{-ix(\xi-\eta)}
+        \F(f)(\eta)g(x)\hspace{1mm}dx\hspace{1mm}d\eta \\[2mm]
+        &= \frac{1}{2\pi}\int_{\R}\F(f)(\eta)
+        \left(\int_{\R}e^{-ix(\xi-\eta)}g(x)\hspace{1mm}dx\right)\hspace{1mm}d\eta
+        =\frac{1}{\sqrt{2\pi}}\int_{\R}\F(f)(\eta)\F(g)(\xi-\eta)\hspace{1mm}d\eta
+        =\frac{1}{\sqrt{2\pi}}(\F(f)*\F(g))(\xi)
+    \end{align*}
+\end{proof}
+
     \begin{enumerate}
-        \item 
+        \item Para probar la inyectividad basta verificar que $\F^{-1}\circ\F=id_{L^{1}}$, sea 
+        $f\in\mathcal{S}(\R)$. Definimos
+        \begin{equation*}
+            g_{x,\varepsilon}(t):=\phi(\varepsilon t)e^{ixt}
+            \htext{para}x\in\R\text{ y }\varepsilon>0
+        \end{equation*}
+        Dado que $\phi\in L^{1}(\R)$, entonces $g_{x,\varepsilon}\in L^{1}(\R)$, luego, su 
+        transformada de Fourier es
+        \begin{equation*}
+            \F(g_{x,\varepsilon})(\xi)
+            =\frac{1}{\sqrt{2\pi}}\int_{\R}e^{-it\xi}e^{ixt}\phi(\varepsilon t)\hspace{1mm}dt
+            =\frac{1}{\varepsilon\sqrt{2\pi}}
+            \int_{\R}e^{-it(\frac{\xi-x}{\varepsilon})}\phi(t)\hspace{1mm}dt
+            =\varepsilon^{-1}\F(\phi)\left(\frac{\xi-x}{\varepsilon}\right)
+            =\phi_{\varepsilon}(x-\xi)
+        \end{equation*}
+        donde en el último paso usamos la paridad de $\phi$. Por otro lado, la función $G(\xi,t)
+        :=g_{x,\varepsilon}(\xi)e^{-it\xi}f(t)$ es $\lambda\otimes\lambda$ integrable por Tonelli, 
+        así, por Fubini tenemos que
+        \begin{align*}
+            \int_{\R}g_{x,\varepsilon}(\xi)\hat{f}(\xi)\hspace{1mm}d\xi
+            &= \int_{\R}\int_{\R}
+            g_{x,\varepsilon}(\xi)e^{-it\xi}f(t)\hspace{1mm}dt\hspace{1mm}d\xi
+            =\int_{\R}\int_{\R}g_{x,\varepsilon}(\xi)e^{-it\xi}f(t)\hspace{1mm}d\xi\hspace{1mm}dt 
+            \\[2mm]
+            &= \int_{\R}\F(g_{x,\varepsilon})(t)f(t)\hspace{1mm}dt
+            =\int_{\R}f(t)\phi_{\varepsilon}(x-t)\hspace{1mm}dt=(f*\phi_{\varepsilon})(x)
+        \end{align*}
+        Por teorema de convergencia dominada, apelando a que $\hat{f}\in L^{1}(\R)$ ya que 
+        $f\in\mathcal{S}(\R)$ y utilizando el lema 1.1, concluimos que
+        \begin{equation*}
+            (\F^{-1}\circ\F)(f)(x)=\int_{\R}e^{ix\xi}\hat{f}(\xi)\hspace{1mm}d\xi
+            =\int_{\R}\lim\limits_{\varepsilon\to0^{+}}
+            g_{x,\varepsilon}(\xi)\hat{f}(\xi)\hspace{1mm}d\xi
+            =\lim\limits_{\varepsilon\to0^{+}}(f*\phi_{\varepsilon})(x)=f(x)
+        \end{equation*}
+        Por el mismo argumento que antes, $\F^{-1}$ es continua, además 
+        $L^{1}(\R)=\overline{C_{c}^{\infty}(\R)}\subseteq\overline{\mathcal{S}(\R)}
+        \subseteq L^{1}(\R)$. Por continuidad y densidad resulta que $(\F^{-1}\circ\F)(f)=f$ 
+        para toda $f\in L^{1}(\R)$.
         
-        \item 
+        \item Supongamos, por contradicción, que $\F$ es sobreyectiva, por el punto anterior y el
+        teorema del mapa abierto, resulta que $\F^{-1}$ es un operador lineal acotado. Definimos
+        $f_{n}=\I_{[-n,n]}\in L^{1}$ para $n\in\N$, veamos que
+        \begin{equation*}
+            \F^{-1}(f_{n})(x)=\frac{1}{\sqrt{2\pi}}\int_{-n}^{n}e^{ix\xi}\hspace{1mm}d\xi
+            =\frac{2sen(nx)}{\sqrt{2\pi}x}
+            \hhtext{entonces}
+            \F\left(\frac{2sen(nx)}{\sqrt{2\pi}x}\right)=f_{n}\htext{para todo}n\in\N
+        \end{equation*}
+        donde usamos nuevamente que $\F$ es invertible. Consideramos la sucesión
+        \begin{equation*}
+            g_{n}(x):=\frac{2sen(nx)}{\sqrt{2\pi}x}\cdot\frac{2sen(x)}{\sqrt{2\pi}x}\in L^{1}
+            \htext{para}n\in\N
+        \end{equation*}
+        Por el lema 1.2 y lo mostrado previamente, obtenemos que
+        \begin{equation*}
+            \F\left(g_{n}\right)(\xi)=\frac{1}{\sqrt{2\pi}}
+            \F\left(\frac{2sen(nx)}{\sqrt{2\pi}x}\right)
+            *\F\left(\frac{2sen(x)}{\sqrt{2\pi}x}\right)=\frac{1}{\sqrt{2\pi}}(f_{n}*f_{1})(\xi)
+            \in\mathcal{C}_{0}
+        \end{equation*}
+        Por otro lado,
+        \begin{equation*}
+            (f_{n}*f_{1})(\xi)=\int_{\R}\I_{[-n,n]}(t)\I_{[-1,1]}(\xi-t)\hspace{1mm}dt
+            =\int_{\R}\I_{[-n,n]}(t)\I_{[\xi-1,\xi+1]}(t)\hspace{1mm}dt
+            =\lambda([-n,n]\cap[\xi-1,\xi+1])\leq2
+        \end{equation*}
+        por lo tanto $\norm{f_{n}*f_{1}}_{\infty}\leq2$ para todo $n\in\N$. Veamos que 
+        $\norm{g_{n}}_{L^{1}}\xrightarrow[]{n\to\infty}\infty$, en efecto,
+        \begin{align*}
+            \norm{g_{n}}_{L^{1}}
+            &= \frac{2}{\pi}\int_{\R}\frac{\abs{sen(nx)sen(x)}}{x^{2}}\hspace{1mm}dx
+            =\frac{2n}{\pi}\int_{\R}\frac{\abs{sen(x)sen(\frac{x}{n})}}{x^{2}}\hspace{1mm}dx 
+            \\[2mm]
+            &= \frac{4n}{\pi}\int_{0}^{\infty}
+            \frac{\abs{sen(x)sen(\frac{x}{n})}}{x^{2}}\hspace{1mm}dx
+            \geq\frac{4n}{\pi}\int_{0}^{n}
+            \frac{\abs{sen(x)sen(\frac{x}{n})}}{x^{2}}\hspace{1mm}dx
+        \end{align*}
+        Como $sen(x)\geq x-\frac{x^{3}}{6}\geq\frac{5}{6}t$ para $x\in[0,1]$, se sigue que 
+        $sen(\frac{x}{n})\geq\frac{5x}{6n}$ para $x\in[0,n]$. Entonces
+        \begin{equation*}
+            \norm{g_{n}}_{L^{1}}\geq\frac{4n}{\pi}\int_{0}^{n}
+            \frac{\abs{sen(x)sen(\frac{x}{n})}}{x^{2}}\hspace{1mm}dx
+            \geq\frac{10}{3\pi}\int_{0}^{n}
+            \frac{\abs{sen(x)}}{x}\hspace{1mm}dx\xrightarrow[]{n\to\infty}\infty
+        \end{equation*}
+        Pero existe $C>0$ tal que $\norm{g_{n}}_{L^{1}}=\norm{(\F^{-1}\circ\F)(g_{n})}_{L^{1}}
+        \leq C\norm{\F(g_{n})}_{\infty}=C\norm{f_{n}*f_{1}}_{\infty}\leq2$ para todo 
+        $n\in\N$, esta contradicción prueba la afirmación.
     
     \end{enumerate}
     \item\textbf{Aplicación a la resolución de EDP.}
@@ -265,6 +417,7 @@
 
 \newpage
 \subsection{La transformada de Fourier en \texorpdfstring{$L^{2}(\mathbb{R})$}{}}
+\noindent (No realice este ejercicio)
 
 \newpage
 \subsection{La transformada de Fourier en \texorpdfstring{$\mathcal{S}(\R)$}{}}
@@ -289,8 +442,8 @@
     \end{equation*}
 \end{proof}
 
-\noindent\textbf{Observación:} Iterando el argumento, llegamos a que $(f*g)^{(n)}(x)$ para 
-$(f^{(n)}*g)(x)$ para todo $n\in\N$.
+\noindent\textbf{Observación:} Iterando el argumento, llegamos a que 
+$(f*g)^{(n)}(x)=(f^{(n)}*g)(x)$ para todo $n\in\N$.
 
 \begin{enumerate}
     \item Sean $f,g\in S(\R)$ y $\alpha\in\C$, dados $k,l\in\N$ tenemos que
@@ -496,7 +649,7 @@ $(f^{(n)}*g)(x)$ para todo $n\in\N$.
     \vspace{1mm}
     \noindent Basta probar que $span\hspace{0.5mm}\B$ es denso en el conjunto de las funciones 
     continuas soporte compacto. Sea $K\subseteq[0,2\pi)$ un conjunto compacto, probaremos que 
-    $span\hspace{0.5mm}\B$ es denso en $\mathcal{C}(K,\C)$ usando Stone-Weiertras. Claramente
+    $span\hspace{0.5mm}\B$ es denso en $\mathcal{C}(K,\C)$ usando Stone-Weierstrass. Claramente
     $span\hspace{0.5mm}\B$ es una subálgebra de $\mathcal{C}(K,\C)$ en la cual 
     $\overline{f}\in span\hspace{0.5mm}\B$ si $f\in span\hspace{0.5mm}\B$. Veamos que separa 
     puntos, sean $x,y\in K$ distintos, consideramos la función
@@ -517,23 +670,30 @@ $(f^{(n)}*g)(x)$ para todo $n\in\N$.
 \end{proof}
 
 \newpage
-\noindent\textbf{Observación:} (Pendiente - intercambiar integral con suma)
+\noindent\textbf{Observación:} Como el producto interno es continuo respecto a la norma tenemos
+que
+\begin{equation*}
+    \int_{\R}\varphi\sum_{n\in\Z}\psi_{n}\hspace{1mm}d\lambda
+    =\sum_{n\in\Z}\int_{\R}\varphi\cdot\psi_{n}\hspace{1mm}d\lambda
+    \htext{para toda} \varphi\in L^{2}([0,2\pi))\text{ y }(\psi_{n})_{n}\subset L^{2}([0,2\pi))
+\end{equation*}
+Siempre que $\sum\psi_{n}$ converja en $L^{2}$. Esto se usará en múltiples ocasiones.
 
 \begin{enumerate}
-    \item Basta probar que $\F$ es isometría con inversa por la derecha. Veamos lo primero, sea 
-    $\psi\in\ell^{2}(\Z)$, entonces
+    \item Basta probar que $\F$ es isometría con inversa por la derecha, esto es, que sea 
+    sobreyectiva. Veamos lo primero, sea $\psi\in\ell^{2}(\Z)$, entonces
     \begin{equation*}
         \norm{\F(\psi)}_{L^{2}}^{2}
         =\frac{1}{2\pi}\norm{\sum_{n\in\Z}e^{-in\xi}\psi(n)}_{L^{2}}^{2}
         =\frac{1}{2\pi}\sum_{n\in\Z}\norm{e^{-in\xi}\psi(n)}_{L^{2}}^{2}
         =\sum_{n\in\Z}\abs{\psi(n)}^{2}=\norm{\psi}_{\ell^{2}}^{2}
     \end{equation*}
-    En la segunda igualdad usamos teorema de pitagoras y que $\sqrt{2\pi}\cdot\B$ es conjunto 
+    En la segunda igualdad usamos teorema de pitágoras y que $\sqrt{2\pi}\cdot\B$ es conjunto 
     ortogonal, por lo tanto $\F$ es isometría. Queda ver el segundo punto, sea 
     $f\in L^{2}([0,2\pi))$, entonces por el lema
     \begin{equation*}
         f(x)=\sum_{n\in\Z}\frac{a_{n}}{\sqrt{2\pi}}e^{inx}
-        \htext{ esta identidad se usara en múltiples ocasiones}
+        \htext{ esta identidad se usará en múltiples ocasiones}
     \end{equation*}
     luego,
     \begin{align*}
