@@ -166,7 +166,7 @@ de homotopía y se denota por $X\sim Y$.
 \end{enumerate}
 
 \newpage
-\section{Homología Simplicial}
+\section{Homología}
 \noindent Queremos asignarle a un espacio topológico $X$ arbitrario, grupos abelianos 
 $H_{0}(X),H_{1}(X),\cdots$ tal que si $X\sim Y$, entonces $H_{i}(X)\cong H_{i}(Y)$ para todo $i$.
 Ituitivamente, $H_{k}(X)$ estará generado por ciertos subespacios de $X$ de dimensión $k$.
@@ -321,7 +321,7 @@ siguiente diagrama conmuta
 
 \begin{dfn}
     Sean $i_{\sbullet}:A_{\sbullet}\to B_{\sbullet}$ y $j_{\sbullet}:B_{\sbullet}\to C_{\sbullet}$
-    dos mapeos de cadenas. Decismo que forman una sucesión exacta corta si la secuencia
+    dos mapeos de cadenas. Decimos que forman una sucesión exacta corta si la secuencia
 
     \vspace{2mm}
     \centerline{
@@ -330,7 +330,7 @@ siguiente diagrama conmuta
         }
     }
     \vspace{2mm}
-    \noindent es exacta y corta de grupos abelianos libres para todo $n\in\N$. Lo anotamos como
+    \noindent es exacta y corta de grupos abelianos libres para todo $n\in\N$. Lo denotamos como
     $0\to A_{\sbullet}\to B_{\sbullet}\to C_{\sbullet}\to0$.
 \end{dfn}
 
@@ -442,6 +442,27 @@ siguiente diagrama conmuta
         entonces $\partial a=0$. Luego $i_{*}[a]=[b]$. Concluimos que $im{i_{*}}=\kr{j_{*}}$.
     \end{enumerate}
     Lo que concluye el teorema.
+\end{proof}
+
+\begin{dfn}
+    Sean $f_{\sbullet},g_{\sbullet}:C_{\sbullet}\to D_{\sbullet}$ mapeos de cadenas. Una 
+    \textbf{homotopía de cadenas} es una colección de morfismos
+    \begin{align*}
+        h_{n}:C_{n}\to C_{n+1}\htext{tal que} \\
+        f_{n}-g_{n}=\partial h_{n}+h_{n-1}\partial
+    \end{align*}
+    Lo denotamos como $f_{\sbullet}\sim g_{\sbullet}$.
+\end{dfn}
+
+\begin{prop}
+    Sea $f_{\sbullet}\sim g_{\sbullet}$ entonces $f_{*}=g_{*}$.
+\end{prop}
+\begin{proof}
+    Sea $[x]\in H_{n}(C_{\bullet})$, por definición, sabemos que $\partial x=0$, luego
+    \begin{equation*}
+        (f_{*}-g_{*})([x])=[(f-g)(x)]=[(\partial h+h\partial)(x)]=[\partial hx]=0
+    \end{equation*}
+    lo que prueba la afirmación.
 \end{proof}
 
 \vspace{2mm}
@@ -685,8 +706,31 @@ noción de aproximar una función continua por un mapeo simplicial.
 \end{center}
 Entonces $carr(y)=\gen{1,3}$, $carr(x)=\gen{1,2,3}$ y $carr(4)=\gen{4}$.
 
-\vspace{1mm}
+\vspace{2mm}
 \noindent\textbf{Observación:} Notemos que $y\in carr(x)$ si y solo si $carr(y)\subseteq carr(x)$.
+Sea $\sigma\in K$, entonces $\sigma=carr(x)$ si y solo si $x\in int(\sigma)$, esto es una 
+caracterización útil del portador.
+
+\vspace{2mm}
+\noindent En efecto, si $\sigma=carr(x)$, supongamos, por contradicción, que $x\in\partial\sigma$,
+entonces $x\in\tau<\sigma$, como $K$ es complejo, $\tau\in K$. Por otro lado, si 
+$x\in int(\sigma)$, sea $\tau\in K$ tal que $x\in\tau$, luego $\tau\cap\sigma$ es una cara de 
+$\sigma$, pero $x\in\tau\cap\sigma$ lo que implica que $\sigma=\tau\cap\sigma\subseteq\tau$, es
+decir, $\sigma=carr(x)$.
+
+\vspace{2mm}
+\begin{prop}
+    Sea $g:K\to L$ un mapeo simplicial, entonces $g(carr(x))=carr(g(x))$.
+\end{prop}
+\begin{proof}
+    Por la observación anterior, basta probar que $g(x)\in int(g(carr(x)))$, sean $v_{i}\in V_{K}$
+    tales que $\gen{v_{1},\cdots,v_{n}}=carr(x)$, luego
+    \begin{equation*}
+        x=\sum_{i=1}^{n}t_{i}v_{i}\htext{donde}t_{i}>0\text{ para todo }i\text{, entonces}
+        \hspace{4mm}g(x)=\sum_{i=0}^{n}t_{i}g(v_{i})\in g(carr(x))
+    \end{equation*}
+    como $t_{i}>0$ vemos que $g(x)\in int(g(carr(x)))$.
+\end{proof}
 
 \begin{dfn}
     Sea $f:\abs{K}\to\abs{L}$ una función continua. Una \textbf{aproximación simplicial} a $f$ es 
@@ -695,7 +739,7 @@ Entonces $carr(y)=\gen{1,3}$, $carr(x)=\gen{1,2,3}$ y $carr(4)=\gen{4}$.
         g(x)\in carr(f(x))\text{ para todo }x\in\abs{K}
     \end{equation*}
 \end{dfn}
-\noindent\textbf{Ejemplo:}
+\noindent\textbf{Ejemplo:} Se definen los siguientes complejos simpliciales,
 \begin{center}
     \begin{tikzpicture} %Complejo simplicial K%
         \coordinate (A) at (1,0);
@@ -742,10 +786,10 @@ Entonces $carr(y)=\gen{1,3}$, $carr(x)=\gen{1,2,3}$ y $carr(4)=\gen{4}$.
 El poliedro asociado a cada complejo es $\s^{1}$, consideramos la función continua $f(z)=z^{2}$,
 una aproximación simplicial es $g(v_{i})=g(v_{i+4})=w_{i}$ para $0\leq i\leq3$.
 
-\newpage
+\vspace{2mm}
 \begin{dfn}
-    Sea $K$ un complejo simplicial. La primera subdivisión baricéntrica $K'$ de $K$ es el complejo
-    simplicial $K'$ cuyos
+    Sea $K$ un complejo simplicial. La \textbf{primera subdivisión baricéntrica $K'$ de $K$} es el 
+    complejo simplicial $K'$ cuyos
     \begin{itemize}
         \item Vértices son los baricentros $\hat{\sigma}$ de los simpleces $\sigma$ de $K$.
         \item Un $n-$simplice de $K'$ es 
@@ -939,15 +983,17 @@ para cualquier anillo $R$.
 
 \vspace{2mm}
 \begin{lema}
-    Sea $f:K\to L$ un mapeo simplicial, entonces las funciones
+    Sea $f:K\to L$ un mapeo simplicial, definimos los morfismos
     \begin{align*}
         f_{n}:C_{n}(K) &\to C_{n}(L) \\
         \gen{v_{\alpha_{0}},\cdots,v_{\alpha_{n}}} &\to \begin{cases}
-            \gen{f(v_{\alpha_{0}}),\cdots,f(v_{\alpha_{n}})} &\quad\text{ si son distintos} \\
+            sign(\varphi)\gen{f(v_{\varphi(\alpha_{0})}),\cdots,f(v_{\varphi(\alpha_{n})})} 
+            &\quad\text{ si son distintos} \\
             0 &\quad\text{ si no lo son}
         \end{cases}
     \end{align*}
-    forman un mapeo de cadena.
+    donde $\varphi$ es un permutación tal que $\varphi(\alpha_{0})<\cdots<\varphi(\alpha_{n})$. 
+    Entonces, la colección, es un mapeo de cadena.
 \end{lema}
 
 \noindent Por lo tanto, $f$ induce un morfismo entre los grupos de homología de los complejos
@@ -1143,9 +1189,9 @@ $H_{1}(K)\to\Z$ es trivial.
 \end{teo}
 
 \noindent\textbf{Observación:} Con esto se tendría que $H_{*}(K)$ es invariante topológico. Se
-probara en dos pasos. Veremos que toda función $f$ continua se puede "aproximar" a una función $g$
-simplicial, también hay que comprobar que $f_{*}:=g_{*}$ es independiente de la función simplicial
-escogida.
+probara en dos pasos. Veremos que toda función $f$ continua se puede ``aproximar'' a una función 
+$g$ simplicial, también hay que comprobar que $f_{*}:=g_{*}$ es independiente de la función 
+simplicial escogida.
 
 \begin{teo}[Aproximación Simplicial]
     Sean $K,L$ complejos simpliciales finitos y $f:\abs{K}\to\abs{L}$ una función continua. 
@@ -1188,13 +1234,90 @@ son
     Veamos que $a$ es un mapeo simplicial. Sea $\sigma
     =\gen{\hat{\sigma_{0}},\cdots,\hat{\sigma_{n}}}\in K'$, entonces 
     $a(\hat{\sigma_{i}})=v_{i}\in V_{\sigma_{i}}$. Sabemos que $\sigma_{i}<\sigma_{i+1}$
-    para $0\leq i\leq n-1$, lo que implica que $V_{i}\subset V_{i+1}$, en particular, 
-    $V=\{v_{0},\cdots,v_{n}\}\subseteq V_{\sigma_{n}}$, luego, $V$ genera una cara de 
+    para $0\leq i\leq n-1$, lo que implica que $V_{\sigma_{i}}\subset V_{\sigma_{i+1}}$, en 
+    particular, $V=\{v_{0},\cdots,v_{n}\}\subseteq V_{\sigma_{n}}$, luego, $V$ genera una cara de 
     $\sigma_{n}$, es decir, un simplice en $\abs{K}$.
 
-    \vspace{1mm}
-    Sea $x\in\abs{K'}$, debemos probar que $a(x)\in carr(id(x))$. En efecto, 
+    \vspace{2mm}
+    Sea $x\in\abs{K'}$, sean $\hat{\sigma_{i}}\in K'$ tales que 
+    $\gen{\hat{\sigma_{1}},\cdots,\hat{\sigma_{n}}}=carr(x)$, luego,
+    \begin{equation*}
+        x=\sum_{i=1}^{n}t_{i}\hat{\sigma_{i}}\htext{donde}t_{i}>0\text{ para todo }i
+    \end{equation*}
+    en particular, $t_{n}>0$, como $\hat{\sigma_{n}}=\frac{1}{n+1}\sum v_{i}$ donde 
+    $\gen{v_{1},\cdots,v_{n}}=\sigma_{n}$, entonces $x$ se escribe como combinación convexa de los
+    $v_{i}$ donde cada poderación es positiva, luego $x\in int(\sigma_{n})$, en otras palabras,
+    $carr(id(x))=\sigma_{n}$.
+
+    \vspace{2mm}
+    Lo anterior prueba que $a$ es una aproximación de la identidad. Por otro lado, si $g$ es una
+    aproximación simplicial de la identidad, entonces
+    \begin{equation*}
+        g(\hat{\sigma})\in carr(id(\hat{\sigma}))=\sigma
+    \end{equation*}
+    entonces $g(\hat{\sigma})\in V_{\sigma}$, por que $g$ es mapeo simplicial.
 \end{proof}
+
+\vspace{2mm}
+\begin{lema}
+    Si $f,g:K\to L$ son aproximaciones simpliciales de alguna función continua $\abs{K}\to\abs{L}$
+    entonces $g_{*}=f_{*}$.
+\end{lema}
+
+\vspace{2mm}
+\begin{lema}
+    Sea $a:K'\to K$ una aproximación simplicial de $id:\abs{K'}\to\abs{K}$. Entonces 
+    $a_{*}:H_{n}(K')\to H_{n}(K)$ es un isomorfismo para todo $n\in\N$.
+\end{lema}
+
+\noindent Si iteramos, $a_{r}:K^{(r)}\to K$ entonces $a_{r*}:H_{n}(K^{(r)})\to H_{n}(K)$ es 
+isomorfismo para todo $n\in\N$.
+
+\begin{teo}
+    Sea $f:\abs{K}\to\abs{L}$ una función continua, entonces el homomorfismo
+    \begin{equation*}
+        f_{*}:=s\circ a_{r*}^{-1}:H_{n}(K)\to H_{n}(L)
+    \end{equation*}
+    donde $s$ es aproximación simplicial de $f$. Cumple que
+    \begin{enumerate}
+        \item No depende de $s$ ni de $r$.
+        \item Si $g:\abs{L}\to\abs{M}$ es continua, entonces $(f\circ g)_{*}=f_{*}\circ g_{*}$.
+    \end{enumerate}
+\end{teo}
+\noindent La demostración de $(1)$ es inmediata de los dos lemas previos y $(2)$ es directo de la
+segunda propiedad que se tiene del teorema de aproximación simplicial. Con esto, ya podemos 
+afirmar que la homología simplicial es un invariante topológico.
+
+\newpage
+\subsection{Homología Singular}
+
+\newpage
+\subsection{Homología Relativa}
+
+\newpage
+\subsection{Resultados de Homología}
+
+\newpage
+\section{Cohomología}
+
+\subsection{Complejos de Cocadenas}
+
+\newpage
+\subsection{Cohomología Singular y Simplicial}
+
+\newpage
+\subsection{Producto Cup}
+
+\newpage
+\subsection{Anillo de Cohomología}
+
+\newpage
+\subsection{Dualidad de Poincaré y Fórmula de Künneth}
+
+\newpage
+\section{Grupo Fundamental}
+
+\subsection{Primer Grupo Fundamental}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
