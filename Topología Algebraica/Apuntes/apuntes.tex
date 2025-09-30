@@ -465,6 +465,58 @@ siguiente diagrama conmuta
     lo que prueba la afirmación.
 \end{proof}
 
+\begin{prop}[Lema del 5]
+    Considerar el siguiente diagrama conmutativo
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            A_{1} \ar[r] \ar[d]^{f_{1}} & A_{2} \ar[r] \ar[d]^{f_{2}} 
+            & A_{3} \ar[r] \ar[d]^{f_{3}} & A_{4} \ar[r] \ar[d]^{f_{4}} & A_{5} \ar[d]^{f_{5}} \\
+            B_{1} \ar[r] & B_{2} \ar[r] & B_{3} \ar[r] & B_{4} \ar[r] & B_{5}
+        }
+    }
+
+    \vspace{2mm}
+    \noindent donde las filas son secuencias exactas y cada cuadrado conmuta. Si 
+    $f_{1},f_{2},f_{4}$ y $f_{5}$ son isomorfismos, entonces $f_{3}$ es isomorfismo.
+\end{prop}
+
+\begin{proof}
+    Por simplicidad del argumento, denotaremos los morfismos $A_{i}\to A_{i+1}$ y 
+    $B_{i}\to B_{i+1}$ como $\partial$. Debido a que ambas secuencias son exactas, resulta que 
+    $\partial^{2}a=\partial\circ\partial (a)=0$. Veamos que $\kr{f_{3}}=0$. Sea $a\in\kr{f_{3}}$,
+    notemos que
+    \begin{equation*}
+        0=\partial f_{3}(a)=f_{4}\partial(a)\hhtext{entonces}\partial a=0
+    \end{equation*}
+    Como $a\in\kr\partial$, existe $a'\in A_{2}$ tal que $\partial a'=a$, luego 
+    $\partial f_{2}(a')=f_{3}\partial(a')=f_{3}(a)=0$. Por exactitud, existe $b'\in B_{1}$ tal que 
+    $\partial b'=f_{2}(a')$, puesto que $f_{1}$ es isomorfismo, existe $a''\in A_{1}$ tal que 
+    $b'=f_{1}(a'')$, usando que los diagramas conmutan vemos que
+    \begin{equation*}
+        a''=f^{-1}_{1}(b')\hhtext{entonces}\partial a''=\partial f^{-1}_{1}(b')
+        =f^{-1}_{2}\partial(b')
+    \end{equation*}
+    recordemos que $\partial b'=f_{2}(a')$, es decir, $\partial a''=a'$, luego 
+    $0=\partial^{2}a''=\partial a'=a$.
+
+    \vspace{2mm}
+    \noindent Sea $b\in B_{3}$, consideramos $\partial b\in B_{4}$, entonces 
+    $f^{-1}_{4}(\partial b)\in A_{4}$, por conmutatividad del diagrama, se sigue que
+    $\partial f_{4}^{-1}(\partial b)=f_{5}^{-1}(\partial^{2}b)=0$, luego, por exactitud, existe
+    $a\in A_{3}$ tal que $\partial a=f_{4}^{-1}(\partial b)$. Observemos que,
+    \begin{equation*}
+        \partial(f_{3}(a)-b)=\partial f_{3}(a)-\partial b=f_{4}\partial(a)-\partial b=0
+    \end{equation*}
+    Así, existe $b'\in B_{2}$ tal que $\partial b'=f_{3}(a)-b$, definimos 
+    $a'=f_{2}^{-1}(b')\in A_{2}$, de este modo,
+    \begin{equation*}
+        f_{3}(a)-b=\partial b'=\partial f_{2}(a')=f_{3}(\partial a')
+    \end{equation*}
+    En resumen, $f_{3}(a-\partial a')=b$. Concluimos que $f_{3}$ es isomorfismo.
+\end{proof}
+
 \vspace{2mm}
 \noindent Nuestro objetivo será asociar un complejo de cadenas a un espacio topológico $X$ 
 arbitrario, lo que nos dara un grupo de homología para cada dimensión, además dada $f:X\to Y$ una
@@ -673,14 +725,18 @@ como una función continua $f:\abs{K}\to\abs{L}$ que manda vértices en vértice
 caras.
 
 \vspace{2mm}
-\noindent Daremos un par de definiciones útiles para mas adelante, que están relacionadas con la 
-noción de aproximar una función continua por un mapeo simplicial.
-
-\vspace{2mm}
 \begin{dfn}
     Sea $x\in\abs{K}$. El \textbf{portador} de $x$ es el simplejo de $K$ mas pequeño (en términos
     de inclusión) que contiene a $x$. Se denota por $carr(x)$.
 \end{dfn}
+
+\vspace{2mm}
+\begin{dfn}
+    Sea $w\in V_{K}$. El conjunto $St_{K}(w):=\{x\in\abs{K}:w\in carr(x)\}$ le decimos la 
+    \textbf{estrella de $w$}.
+\end{dfn}
+
+\vspace{2mm}
 \noindent\textbf{Ejemplo:} Veamos el siguiente complejo
 \begin{center}
     \begin{tikzpicture}[scale=1.5] %Ejemplo concreto del portador
@@ -704,7 +760,7 @@ noción de aproximar una función continua por un mapeo simplicial.
         \filldraw (0.3,0.75) circle (1pt) node[anchor=west]{$x$};
     \end{tikzpicture}
 \end{center}
-Entonces $carr(y)=\gen{1,3}$, $carr(x)=\gen{1,2,3}$ y $carr(4)=\gen{4}$.
+Entonces $carr(y)=\gen{1,3}$, $carr(x)=\gen{1,2,3}$ y $carr(3)=\gen{3}$.
 
 \vspace{2mm}
 \noindent\textbf{Observación:} Notemos que $y\in carr(x)$ si y solo si $carr(y)\subseteq carr(x)$.
@@ -717,6 +773,9 @@ entonces $x\in\tau<\sigma$, como $K$ es complejo, $\tau\in K$. Por otro lado, si
 $x\in int(\sigma)$, sea $\tau\in K$ tal que $x\in\tau$, luego $\tau\cap\sigma$ es una cara de 
 $\sigma$, pero $x\in\tau\cap\sigma$ lo que implica que $\sigma=\tau\cap\sigma\subseteq\tau$, es
 decir, $\sigma=carr(x)$.
+
+\noindent Por otro lado, usando lo anterior vemos que $St_{K}(w)=\bigcup_{w\in\sigma\in K}
+int(\sigma)$, entonces la estrella de un vértice es un abierto en $\abs{K}$.
 
 \vspace{2mm}
 \begin{prop}
@@ -992,8 +1051,8 @@ para cualquier anillo $R$.
             0 &\quad\text{ si no lo son}
         \end{cases}
     \end{align*}
-    donde $\varphi$ es un permutación tal que $\varphi(\alpha_{0})<\cdots<\varphi(\alpha_{n})$. 
-    Entonces, la colección, es un mapeo de cadena.
+    donde $\varphi$ es una permutación tal que $f(v_{\varphi(\alpha_{0})})<\cdots
+    <f(v_{\varphi(\alpha_{n})})$. Entonces, la colección, es un mapeo de cadena.
 \end{lema}
 
 \noindent Por lo tanto, $f$ induce un morfismo entre los grupos de homología de los complejos
@@ -1258,17 +1317,50 @@ son
     entonces $g(\hat{\sigma})\in V_{\sigma}$, por que $g$ es mapeo simplicial.
 \end{proof}
 
+\begin{lema}[Lema del número de Lebesgue]
+    Sea $X$ un espacio métrico compacto y $\mathcal{U}$ un cubrimiento abierto de $X$. Entonces 
+    existe $\delta>0$ tal que para todo $x\in X$ se tiene que $B_{\delta}(x)\subseteq U$ para 
+    algún $U\in\mathcal{U}$.
+\end{lema}
+
 \vspace{2mm}
 \begin{lema}
     Si $f,g:K\to L$ son aproximaciones simpliciales de alguna función continua $\abs{K}\to\abs{L}$
     entonces $g_{*}=f_{*}$.
 \end{lema}
 
+\begin{proof}
+    Sea $h_{n}:C_{n}(K)\to C_{n+1}(L)$ dada por $h_{n}(\gen{v_{0},\cdots,v_{n}})
+    =\sum_{i=0}^{n}(-1)^{i}\sigma_{i}$ donde
+    \begin{equation*}
+        \sigma_{i}=\begin{cases}
+            sign(\varphi_{i})\gen{f(v_{\varphi_{i}(0)}),\cdots,
+            f(v_{\varphi_{i}(i)}),g(v_{\varphi_{i}(i)}),\cdots,g(v_{\varphi_{i}(n)})} 
+            &\quad\text{si son distintos} \\
+            0 &\quad\text{si no lo son}
+        \end{cases}
+    \end{equation*}
+    y $\varphi_{i}$ es una permutación tal que $f(v_{\varphi_{i}(0)})<\cdots<f(v_{\varphi_{i}(i)})
+    <g(v_{\varphi_{i}(i)})<\cdots<g(v_{\varphi_{i}(n)})$. Así, la colección de morfismos 
+    $(h_{n})_{n}$ define una homotopía de cadenas entre $f$ y $g$.
+\end{proof}
+
 \vspace{2mm}
 \begin{lema}
     Sea $a:K'\to K$ una aproximación simplicial de $id:\abs{K'}\to\abs{K}$. Entonces 
-    $a_{*}:H_{n}(K')\to H_{n}(K)$ es un isomorfismo para todo $n\in\N$.
+    $a_{*}:H_{i}(K')\to H_{i}(K)$ es un isomorfismo para todo $n\in\N$.
 \end{lema}
+
+\begin{proof}
+    Procederemos por doble inducción en
+    \begin{equation*}
+        m=dim\hspace{1mm}K
+        \hhtext{y}
+        n=\#\text{de simplices de K de dim maximal}
+    \end{equation*}
+    Supongamos que $m=0$, es directo que $a_{*}$ es isomorfismo. Por otro lado, si $n=1$, entonces
+    $K$ es un simplice
+\end{proof}
 
 \noindent Si iteramos, $a_{r}:K^{(r)}\to K$ entonces $a_{r*}:H_{n}(K^{(r)})\to H_{n}(K)$ es 
 isomorfismo para todo $n\in\N$.
@@ -1276,7 +1368,7 @@ isomorfismo para todo $n\in\N$.
 \begin{teo}
     Sea $f:\abs{K}\to\abs{L}$ una función continua, entonces el homomorfismo
     \begin{equation*}
-        f_{*}:=s\circ a_{r*}^{-1}:H_{n}(K)\to H_{n}(L)
+        f_{*}:=s_{*}\circ a_{r*}^{-1}:H_{n}(K)\to H_{n}(L)
     \end{equation*}
     donde $s$ es aproximación simplicial de $f$. Cumple que
     \begin{enumerate}
@@ -1284,9 +1376,166 @@ isomorfismo para todo $n\in\N$.
         \item Si $g:\abs{L}\to\abs{M}$ es continua, entonces $(f\circ g)_{*}=f_{*}\circ g_{*}$.
     \end{enumerate}
 \end{teo}
-\noindent La demostración de $(1)$ es inmediata de los dos lemas previos y $(2)$ es directo de la
-segunda propiedad que se tiene del teorema de aproximación simplicial. Con esto, ya podemos 
-afirmar que la homología simplicial es un invariante topológico.
+
+\begin{proof}
+    (Pendiente)
+\end{proof}
+
+\begin{lema}
+    Sea $K$ un complejo simplicial finito. Entonces, existe $\varepsilon>0$ tal que si 
+    $f,g:\abs{K}\to\abs{L}$ son funciones continuas que satisfacen
+    \begin{equation*}
+        \sup_{x\in\abs{K}}\norm{f(x)-g(x)}<\varepsilon
+    \end{equation*}
+    entonces $f_{*}=g_{*}$.
+\end{lema}
+
+\begin{proof}
+    Sea $\{St_{L}(w)\}_{w\in V_{K}}$, que es un cubrimiento abierto de $\abs{L}$. Por el lema de
+    Lebesgue, existe $\varepsilon>0$ tal que
+    \begin{equation*}
+        B_{2\varepsilon}(y)\subseteq St_{L}(w)\htext{para todo}w\in V_{L}
+    \end{equation*}
+    Sean $f,g$ continuas como en el enunciado. Consideramos $\{f^{-1}(B_{\varepsilon}(y))\}$, que
+    es un cubrimiento abierto de $\abs{K}$, entonces, existe $\delta>0$ tal que
+    \begin{equation*}
+        f(B_{\delta}(x))\subseteq B_{\varepsilon}(y)\subseteq St_{L}(w)
+        \hhtext{y}
+        g(B_{\delta}(x))\subseteq B_{2\varepsilon}(y)\subseteq St_{L}(w)
+    \end{equation*}
+    Subdividimos $K$ de modo que
+    \begin{equation*}
+        \max\{\abs{v_{i}-v_{j}}:v_{i},v_{j}\in V_{K^{(r)}}\}<\frac{\delta}{2}
+    \end{equation*}
+    entonces
+    \begin{equation*}
+        f(St_{K^{(r)}}(v))\subseteq B_{\varepsilon}(y)\subseteq St_{L}(w)
+        \hhtext{y}
+        g(St_{K^{(r)}}(v))\subseteq B_{2\varepsilon}(y)\subseteq St_{L}(w)
+    \end{equation*}
+    Sea $s:V_{K^{(r)}}\to V_{L}$ dada por $s(v)=w$, luego, define una aproximación simplicial de
+    $f$ y de $g$.
+\end{proof}
+
+\begin{teo}[Invarianza Homotópica]
+    Sean $f,g:\abs{K}\to\abs{L}$ funciones continuas homotópicas, entonces $f_{*}=g_{*}$.
+\end{teo}
+
+\begin{proof}
+    Sea $H\abs{K}\times[0,1]\to\abs{L}$ una homotopía de $f$ a $g$. Entonces $H$ es uniformemente
+    continua. Sea $\varepsilon>0$ como en el lema, existe $\delta>0$ tal que
+    \begin{equation*}
+        \text{si }\abs{t-s}<\delta\hhtext{entonces}\norm{H(x,t)-H(x,s)}<\varepsilon
+    \end{equation*}
+    Sea $0=t_{0}<t_{1}<\cdots<t_{r}=1$ tal que $\abs{t_{i}-t_{i-1}}<\delta$. Definimos 
+    $h_{i}(x):=H(x,t_{i})$ entonces como $\norm{h_{i}(x)-h_{i-1}(x)}<\varepsilon$ por el lema
+    $(h_{i})_{*}=(h_{i-1})_{*}$.
+\end{proof}
+
+\vspace{2mm}
+\begin{cor}
+    Sea $f:\abs{K}\to\abs{L}$ una equivalencia homotópica, entonces $f_{*}:H_{i}(K)\to H_{i}(Y)$
+    es isomorfismo para todo i.
+\end{cor}
+
+\vspace{2mm}
+\begin{dfn}
+    Sea $X$ un espacio topológico. Una \textbf{triangulación homotópica} es un par $(K,h)$ donde 
+    $K$ es un complejo simplicial finito y $h:\abs{K}\to X$ es una equivalencia homotópica.
+\end{dfn}
+
+\vspace{2mm}
+\begin{dfn}
+    Sea $X$ un espacio con triangulación homotópica, definimos $H_{i}(X):=H_{i}(K)$.
+\end{dfn}
+
+\vspace{2mm}
+\begin{lema}
+    Esta definición no depende de la triangulación homotópica.
+\end{lema}
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} Tenemos que
+\begin{equation*}
+    H_{i}(\R^{n})=H_{i}(\{pt\})=\begin{cases}
+        \Z &\quad\text{si }i=0 \\
+        0 &\quad\text{si }i>0
+    \end{cases}
+\end{equation*}
+
+\newpage
+\subsection{Resultados de Homología}
+\begin{teo}[Invarianza del Dominio]
+    $\R^{n}$ es homeomorfo a $\R^{m}$ si y solo si $n=m$.
+\end{teo}
+
+\begin{proof}
+    El resultado es conocido y sencillo de probar para $n=1$. Supongamos que $n>1$. Entonces
+    \begin{equation*}
+        H_{i}(\R^{n}\setminus\{0\})\cong H_{i}(\s^{n-1})=\begin{cases}
+            \Z &\quad\text{si }i=0,n-1 \\
+            0 &\quad\text{si }i\neq0,2
+        \end{cases}
+    \end{equation*}
+    lo que prueba el resultado.
+\end{proof}
+
+\begin{teo}[Teorema Fundamental del Álgebra]
+    Sea $p\in\C[x]$ no constante. Entonces existe una raíz en $\C$.
+\end{teo}
+
+\begin{proof}
+    Supongamos, por contradicción, que $p$ no posee raices. Sea $r>0$, definimos
+    \begin{align*}
+        p:S_{r}^{1}=\{z\in\C:\abs{z}=r\} &\to \C\setminus\{0\} \\
+        z &\to p(z)
+    \end{align*}
+    Sea $H:S_{r}^{1}\times[0,1]\to\C\setminus\{0\}$ dada por $H(z,t)=p(tz)$, resulta ser una
+    homotopía de $p(z)$ a la función constante $cta_{0}(z)=a_{0}$, entonces
+    \begin{equation*}
+        p_{*}=0:H_{1}(\s^{1})\to H_{1}(\C\setminus\{0\})
+    \end{equation*}
+    Buscamos que la función $S_{r_{0}}^{1}\times[0,1]\to\C\setminus\{0\}$ tal que
+    \begin{equation*}
+        G(z,t)=z^{n}+t(a_{n-1}z^{n-1}+\cdots+a_{1}z+a_{0})
+    \end{equation*}
+    este bien definida para algún $r_{0}$ y $t\in[0,1]$. Notemos que si
+    \begin{equation*}
+        z^{n}+t(a_{n-1}z^{n-1}+\cdots+a_{1}z+a_{0})=0
+        \hhtext{entonces}
+        t=\frac{\abs{z}^{n}}{\abs{a_{n-1}z^{n-1}+\cdots+a_{1}z+a_{0}}}
+    \end{equation*}
+    luego, si $r_{0}>\max\{1,\sum\abs{a_{i}}\}$, entonces
+    \begin{align*}
+        t=\frac{\abs{z}^{n}}{\abs{a_{n-1}z^{n-1}+\cdots+a_{1}z+a_{0}}}
+        \geq\frac{r_{0}^{n}}{r_{0}^{n-1}(\sum\abs{a_{i}})}=\frac{r_{0}}{\sum\abs{a_{i}}}>1
+    \end{align*}
+    que es lo que queriamos. Así, $G$ define una homotopía entre $p(z)$ a $q(z)=z^{n}$. Luego,
+    $q:S_{r_{0}}^{1}\to\C\setminus\{0\}\sim S_{r_{0}}^{1}$ induce multiplicación por $n$ en 
+    $H_{1}$, entonces $p_{*}=0$ y $p_{*}=q_{*}=n$, entonces $n=0$.
+\end{proof}
+
+\begin{teo}[Teorema del Punto Fijo de Brower]
+    Sea $f:D^{n}\to D^{n}$ una función continua, entonces tiene un punto fijo.
+\end{teo}
+
+\begin{proof}
+    (Pendiente)
+\end{proof}
+
+\begin{teo}[Borsuk-Ulam]
+    Sea $f:\s^{n}\to\R^{n}$ una función continua, entonces existe $x\in\s^{n}$ tal que 
+    $f(x)=f(-x)$.
+\end{teo}
+
+\begin{proof}
+    (Pendiente)
+\end{proof}
+
+\vspace{2mm}
+\begin{cor}
+    Sea $n\in\N$, entonces $\s^{n}$ no se puede encajar en $\R^{n}$.
+\end{cor}
 
 \newpage
 \subsection{Homología Singular}
@@ -1295,7 +1544,214 @@ afirmar que la homología simplicial es un invariante topológico.
 \subsection{Homología Relativa}
 
 \newpage
-\subsection{Resultados de Homología}
+\subsection{Superficies}
+\begin{dfn}
+    Una $2-$variedad se dice \textbf{superficie}.
+\end{dfn}
+
+\vspace{2mm}
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+    \item $\s^{2}$ es una superficie triangulable, donde $K=\partial\Delta^{3}$ da una 
+    triangulación.
+
+    \item $T^{2}$ es una superficie triangulable, donde
+    \begin{center}
+        \begin{tikzpicture}[scale=2.5] %Triangulación del Toro
+            \coordinate (A) at (0,0);
+            \coordinate (B) at (1,0);
+            \coordinate (C) at (1,1);
+            \coordinate (D) at (0,1);
+            
+            \coordinate (E) at (1/3,0);
+            \coordinate (F) at (2/3,0);
+            
+            \coordinate (G) at (1,1/3);
+            \coordinate (H) at (1,2/3);
+
+            \coordinate (I) at (2/3,1);
+            \coordinate (J) at (1/3,1);
+
+            \coordinate (K) at (0,2/3);
+            \coordinate (L) at (0,1/3);
+
+            \draw (A) -- (B) -- (C) -- (D) -- cycle;
+            
+            \draw (E) -- (J);
+            \draw (F) -- (I);
+            \draw (G) -- (L);
+            \draw (H) -- (K);
+            
+            \draw (E) -- (L);
+            \draw (F) -- (K);
+            \draw (B) -- (D);
+            \draw (H) -- (I);
+            \draw (G) -- (J);
+
+            \filldraw (A) circle (0.75pt) node[anchor=east]{$w_{0}$};
+            \filldraw (B) circle (0.75pt) node[anchor=west]{$w_{0}$};
+            \filldraw (C) circle (0.75pt) node[anchor=west]{$w_{0}$};
+            \filldraw (D) circle (0.75pt) node[anchor=east]{$w_{0}$};
+
+            \filldraw (K) circle (0.75pt) node[anchor=east]{$w_{1}$};
+            \filldraw (H) circle (0.75pt) node[anchor=west]{$w_{1}$};
+            
+            \filldraw (L) circle (0.75pt) node[anchor=east]{$w_{2}$};
+            \filldraw (G) circle (0.75pt) node[anchor=west]{$w_{2}$};
+
+            \filldraw (E) circle (0.75pt) node[anchor=south west]{$u_{0}$};
+            \filldraw (J) circle (0.75pt) node[anchor=south west]{$u_{0}$};
+            \filldraw (1/3,2/3) circle (0.75pt) node[anchor=south west]{$u_{1}$};
+            \filldraw (1/3,1/3) circle (0.75pt) node[anchor=south west]{$u_{2}$};
+
+            \filldraw (F) circle (0.75pt) node[anchor=south west]{$v_{0}$};
+            \filldraw (I) circle (0.75pt) node[anchor=south west]{$v_{0}$};
+            \filldraw (2/3,2/3) circle (0.75pt) node[anchor=south west]{$v_{1}$};
+            \filldraw (2/3,1/3) circle (0.75pt) node[anchor=south west]{$v_{2}$};
+        \end{tikzpicture}
+    \end{center}
+    es una triangulación.
+
+    \item $\R\mathbb{P}^{2}$ es una superficie triangulable, con
+    \begin{center}
+        \begin{tikzpicture} %Triangulación del plano proyectivo real
+            \filldraw[color=black, fill=white] circle (1.5);
+
+            \coordinate (A) at ({-3*sqrt(3)/4},{3/4});
+            \coordinate (B) at ({3*sqrt(3)/4},{3/4});
+            \coordinate (C) at (0,-1.5);
+
+            \coordinate (D) at (0,1.5);
+            \coordinate (E) at ({-3*sqrt(3)/4},{-3/4});
+            \coordinate (F) at ({3*sqrt(3)/4},{-3/4});
+
+            \coordinate (G) at (0,{3/4});
+            \coordinate (H) at ({-3*sqrt(3)/8},{-3/8});
+            \coordinate (I) at ({3*sqrt(3)/8},{-3/8});
+
+            \draw (A) -- (B) -- (C) -- cycle;
+            \draw (G) -- (H) -- (I) -- cycle;
+            
+            \draw (D) -- (G);
+            \draw (E) -- (H);
+            \draw (F) -- (I);
+
+            \filldraw (-2,-1.5) node{$N$};
+
+            \filldraw (A) circle (1pt) node[anchor=south east]{$2$};
+            \filldraw (B) circle (1pt) node[anchor=south west]{$1$};
+            \filldraw (C) circle (1pt) node[anchor=north]{$0$};
+
+            \filldraw (D) circle (1pt) node[anchor=south]{$0$};
+            \filldraw (E) circle (1pt) node[anchor=north east]{$1$};
+            \filldraw (F) circle (1pt) node[anchor=north west]{$2$};
+
+            \filldraw (G) circle (1pt);
+            \filldraw (H) circle (1pt);
+            \filldraw (I) circle (1pt);
+            
+            \filldraw ($(G)-(0,0.1)$) node[anchor=north]{$3$};
+            \filldraw ($(H)+(0.1,0)$) node[anchor=south west]{$5$};
+            \filldraw ($(I)-(0.1,0)$) node[anchor=south east]{$4$};
+        \end{tikzpicture}
+    \end{center}
+    una triangulación.
+\end{itemize}
+
+\noindent A partir de estas superficies podemos construir otras superficies, las sumas conexas. 
+Sean $X_{1}$ y $X_{2}$ superficies triangulables. Sean $K_{1},K_{2}$ complejos simpliciales tales
+que $\abs{K_{i}}\cong X_{i}$. Consideramos $\varphi_{i}:\Delta^{2}\to \abs{K_{i}}$ encajes 
+simpliciales, es decir, $\varphi_{i}$ es un mapeo simplicial tal que $\varphi_{i}(\Delta^{2})$ es 
+homeomorfo a un $2-$simplice de $K_{i}$. Consideramos la triangulación de 
+$\partial\Delta^{2}\times\Delta^{1}$ como sigue
+\begin{center}
+    \begin{tikzpicture}%Triangulación del espacio descrito
+        \coordinate (A) at (0,0);
+        \coordinate (B) at (1,-0.5);
+        \coordinate (C) at (1.5,0.5);
+
+        \coordinate (D) at (0,2);
+        \coordinate (E) at (1,1.5);
+        \coordinate (F) at (1.5,2.5);
+
+        \draw (A) -- (B) -- (C);
+        \draw[dashed] (A) -- (C);
+
+        \draw (D) -- (E) -- (F) -- cycle;
+        \draw (A) -- (D);
+        \draw (B) -- (E);
+        \draw (C) -- (F);
+
+        \draw (D) -- (B) -- (F);
+        \draw[dashed] (D) -- (C);
+
+        \filldraw (3,0) node{$=:\tau$};
+    \end{tikzpicture}
+\end{center}
+Definimos $X_{1}\#X_{2}$, la suma conexa, como el espacio homeomorfo a $\abs{K_{1}\#K_{2}}$ donde
+\begin{equation*}
+    K_{1}\#K_{2}:=(K_{1}\setminus\varphi_{1}(\Delta^{2}))\sqcup\tau
+    \sqcup(K_{2}\setminus\varphi(\Delta^{2}))/\sim
+\end{equation*}
+y $\sim$ es tal que $\varphi_{1}(x)\sim(x,0)$ y $\varphi_{2}(x)\sim(x,1)$ para 
+$x\in\partial\Delta^{2}$.
+
+\vspace{2mm}
+\begin{prop}
+    $K_{1}\#K_{2}$ es un complejo simplicial. Mas aún, su realización geométrica, $X_{1}\#X_{2}$
+    es una superficie.
+\end{prop}
+
+\vspace{2mm}
+\begin{dfn}
+    Sea $S_{1}:=T^{2}$ y $S_{g}:=S_{g-1}\#T^{2}$ para $g>1$. Del mismo modo, 
+    $N_{0}:=\R\mathbb{P}^{2}$ y $N_{g}:=N_{g-1}\#\R\mathbb{P}^{2}$.
+\end{dfn}
+
+\noindent Luego, usando Mayer-Vietoris es fácil verificar que
+\begin{equation*}
+    H_{i}(S_{g})=\begin{cases}
+        \Z &\quad\text{si }i=0,2 \\
+        \Z^{2g} &\quad\text{si }i=1 \\
+        0 &\quad\text{si }i>2
+    \end{cases}
+    \hspace{2cm}
+    H_{i}(S_{g})=\begin{cases}
+        \Z &\quad\text{si }i=0 \\
+        \Z_{2}\oplus\Z^{g} &\quad\text{si }i=1 \\
+        0 &\quad\text{si }i>1
+    \end{cases}
+\end{equation*}
+
+\begin{teo}[Teorema de Clasificación de Superficies]
+    Sean $X,Y$ superficies triangulables compactas. Entonces $X$ es homeomorfa a $Y$ si y solo si
+    $H_{i}(X)\cong H_{i}(Y)$ para todo $i$.
+\end{teo}
+
+\vspace{2mm}
+\begin{dfn}
+    Sea $X$ una superficie compacta. Es \textbf{orientable} si $H_{2}(X)\cong\Z$ y es \textbf{no 
+    orientable} si $H_{2}(X)\cong0$. El \textbf{género} de una superficie es
+    \begin{equation*}
+        \begin{cases}
+            \frac{rango(H_{1})}{2} &\quad\text{ si es orientable} \\
+            rango(H_{2}) &\quad\text{ si no es orientable}
+        \end{cases}
+    \end{equation*}
+\end{dfn}
+
+\vspace{2mm}
+\begin{cor}
+    Sean $X,Y$ superficies orientables. Entonces $X\cong Y$ si y solo si $\chi(X)=\chi(Y)$.
+\end{cor}
+
+\noindent A partir de lo anterior, Poincaré se pregunto si sucedia lo mismo para variedades de
+dimensión $3$, en otras palabras $X\cong Y$ si y solo si $H_{i}(X)\cong H_{i}(Y)$ para todo $i$. 
+La respuesta es no, el mismo dio un ejemplo. Existe una $3-$variedad $\Sigma$ compacta tal que
+$H_{i}(\Sigma)\cong H_{i}(\s^{3})$ que no es homeomorfa a $\s^{3}$.
+
+\vspace{2mm}
+\noindent Para distinguir $\Sigma$ de $\s^{3}$ se invento el grupo fundamental.
 
 \newpage
 \section{Cohomología}
@@ -1318,6 +1774,124 @@ afirmar que la homología simplicial es un invariante topológico.
 \section{Grupo Fundamental}
 
 \subsection{Primer Grupo Fundamental}
+\noindent Sea $I=[0,1]$ y $X$ un espacio topológico.
+
+\vspace{2mm}
+\begin{dfn}
+    Un \textbf{camino} entre $x_{0}$ y $x_{1}$ en $X$ es una función continua $\alpha:I\to X$ tal 
+    que $\alpha(0)=x_{0}$ y $\alpha(1)=x_{1}$. Si $\alpha(0)=\alpha(1)=x_{0}$ se dice 
+    \textbf{lazo basado} en $x_{0}$.
+\end{dfn}
+
+\vspace{2mm}
+\noindent Denotamos por $ctx_{0}$ al lazo constante basado en $x_{0}$. Los caminos se pueden 
+\textbf{concatenar}, si $\alpha$ y $\beta$ son caminos, entonces
+\begin{equation*}
+    (\alpha*\beta)(t):=\begin{cases}
+        \alpha(2t) &\quad\text{ si}\hspace{2mm}0\leq t\leq\frac{1}{2} \\
+        \beta(2t-1) &\quad\text{ si}\hspace{2mm}\frac{1}{2}\leq t\leq1
+    \end{cases}
+\end{equation*}
+es un camino entre $\alpha(0)$ y $\beta(1)$.
+
+\vspace{2mm}
+\begin{dfn}
+    Una \textbf{homotopía relativa} a $\{0,1\}$ entre caminos $\alpha,\beta:I\to X$ de $x_{0}$ a 
+    $x_{1}$ es una homotopía $H:I\times[0,1]\to X$ entre $\alpha$ y $\beta$ tal que $H(0,t)=x_{0}$ 
+    y $H(1,t)=x_{1}$ para todo $t\in[0,1]$.
+\end{dfn}
+
+\vspace{2mm}
+\begin{dfn}
+    Sea $X$ un espacio topológico y $x_{0}\in X$. Sea $\pi_{1}(X,x_{0})$ el conjunto de clases de 
+    homotopía relativa a $\{0,1\}$ de lazos en $X$ basados en $x_{0}$.
+\end{dfn}
+
+\begin{teo}
+    Sea $X$ un espacio topológico y $x_{0}\in X$. La operación
+    \begin{align*}
+        *:\pi_{1}(X,x_{0})\times\pi_{1}(X,x_{0}) &\to \pi_{1}(X,x_{0}) \\
+        [\alpha]*[\beta] &\to [\alpha*\beta]
+    \end{align*}
+    está bien definida y junto con el elemento $e:=[ctx_{0}]$ dan estructura de grupo a 
+    $\pi_{1}(X,x_{0})$.
+\end{teo}
+
+\begin{proof}
+    Debemos probar cuatro puntos
+    \begin{itemize}
+        \item La operación esta bien definida. Sean $\alpha\sim\alpha'$ y $\beta\sim\beta'$ lazos
+        basados en $x_{0}$, entonces $\alpha*\beta\sim\alpha'*\beta'$. Definimos 
+        $F:I\times[0,1]\to X$
+        \begin{equation*}
+            F(s,t):=\begin{cases}
+                H(2s,t) &\quad\text{ si}\hspace{4mm}0\leq s\leq\frac{1}{2} \\
+                G(2s-1,t) &\quad\text{ si}\hspace{4mm}\frac{1}{2}\leq s\leq1
+            \end{cases}
+        \end{equation*}
+        donde $H$ y $G$ son homotopías relativas entre $\alpha, \alpha'$ y $\beta,\beta'$ 
+        respectivamente. Luego, $F(s,0)=(\alpha*\beta)(s)$ y $F(s,1)=(\alpha'*\beta')(s)$, es 
+        decir, $F$ es una homología relativa entre $\alpha*\beta$ y $\alpha'*\beta'$.
+
+        \item El elemento $e$ es neutro. Sea $\alpha$ un lazo basado en $x_{0}$. Definimos
+        \begin{equation*}
+            H(s,t):=\begin{cases}
+                \alpha\left(\frac{2s}{t+1}\right) 
+                &\quad\text{ si}\hspace{2mm}0\leq s\leq\frac{1}{2} \\
+                x_{0} &\quad\text{ si}\hspace{2mm}\frac{1}{2}\leq s\leq1
+            \end{cases}
+        \end{equation*}
+        Es directo que $H$ es una homotopía relativa entre $\alpha*ctx_{0}$ y $\alpha$.
+
+        \item Existencia de inverso. Definimos $\alpha^{-1}(s)=\alpha(1-s)$, por demostrar que
+        $[\alpha]*[\alpha^{-1}]=e$, esto es, $\alpha*\alpha^{-1}\sim ctx_{0}$. Definimos
+        \begin{equation*}
+            H(s,t):=\begin{cases}
+                \alpha(2s) &\quad\text{si}\hspace{2mm}0\leq s\leq\frac{1-t}{2} \\
+                \alpha(1-t) &\quad\text{si}\hspace{2mm}\frac{1-t}{2} \leq s\leq\frac{1+t}{2} \\
+                \alpha^{-1}(2s-1) &\quad\text{si}\hspace{2mm}\frac{1+t}{2}\leq s\leq1
+            \end{cases}
+        \end{equation*}
+        Se verifica que $H$ es una homotopía relativa entre ambos lazos.
+
+        \item Sean $\alpha,\beta,\gamma$ lazos basos en $x_{0}$, entonces la función
+        \begin{equation*}
+            H(s,t):=\begin{cases}
+                \alpha\left(\frac{4s}{1+t}\right) 
+                &\quad\text{si}\hspace{2mm}0\leq s\leq\frac{1+t}{4} \\
+                \beta\left(4s-1-t\right) 
+                &\quad\text{si}\hspace{2mm}\frac{1+t}{4}\leq s\leq\frac{2+t}{4} \\
+                \gamma\left(1-4\frac{1-s}{2-t}\right) 
+                &\quad\text{si}\hspace{2mm}\frac{2+t}{4}\leq s\leq1
+            \end{cases}
+        \end{equation*}
+        es una homotopía relativa entre $(\alpha*\beta)*\gamma$ y $\alpha*(\beta*\gamma)$.
+    \end{itemize}
+\end{proof}
+
+\begin{dfn}
+    El \textbf{grupo fundamental} de $X$ en $x_{0}$ es $\pi_{1}(X,x_{0})$.
+\end{dfn}
+
+\vspace{2mm}
+\begin{dfn}
+    Un \textbf{espacio punteado} es una tupla $(X,x_{0})$ donde $x_{0}\in X$. Un \textbf{morfismo} 
+    entre espacios punteados $(X,x_{0})$ y $(Y,y_{0})$ es una función continua
+    \begin{equation*}
+        f:X\to Y\htext{tal que}f(x_{0})=y_{0}
+    \end{equation*}
+    Una \textbf{homotopía punteada} es una homotopía $H$ entre $X$ e $Y$ tal que 
+    $H(x_{0},t)=y_{0}$ para todo $t\in[0,1]$.
+\end{dfn}
+
+\vspace{2mm}
+\noindent\textbf{Observación:} Sea $f$ un morfismo, entonces induce un homomorfismo
+\begin{align*}
+    f_{*}:\pi_{1}(X,x_{0}) &\to \pi_{1}(Y,y_{0}) \\
+    [\alpha] &\to [f\circ\alpha]
+\end{align*}
+Además, $(f\circ g)_{*}=f_{*}\circ g_{*}$ y $id_{*}=id_{\pi_{1}(X,x_{0})}$, entonces $\pi_{1}$ es
+invariante topológico.
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
