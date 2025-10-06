@@ -2,6 +2,7 @@
 
 #Ignoro el template, no es necesario subir
 Template
+Taller de Trabajo/
 
 # Ignoramos todas la extensiones que no nos interesan
 *.bbl
@@ -15,3 +16,4 @@ Template
 *.fdb_latexmk
 *.toc
 *.png
+*.zip

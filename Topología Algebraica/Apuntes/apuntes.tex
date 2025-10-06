@@ -1756,10 +1756,115 @@ $H_{i}(\Sigma)\cong H_{i}(\s^{3})$ que no es homeomorfa a $\s^{3}$.
 \newpage
 \section{Cohomología}
 
-\subsection{Complejos de Cocadenas}
+\subsection{Cohomología Singular}
+\begin{dfn}
+    Un \textbf{complejo de cocadenas} es una secuencia de grupos de abelianos y homomorfismos
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & C^{0} \ar[r]^{\partial^{0}} & C^{1} \ar[r]^{\partial^{1}} 
+            & C^{2} \ar[r]^{\partial^{2}} & C^{3} \ar[r]^{\partial^{3}} & \cdots
+        }
+    }
 
-\newpage
-\subsection{Cohomología Singular y Simplicial}
+    \vspace{2mm}
+    \noindent tales que $\partial^{i+1}\circ\partial^{i}=0$. Se denota por 
+    $(C^{\sbullet},\partial^{\sbullet})$.
+\end{dfn}
+
+\noindent\textbf{Observación:} Al igual que en complejos de cadenas, los morfismos $\partial^{i}$
+se llaman \textbf{diferenciales}, los elementos en $\im{\partial^{i}}$ se dicen 
+\textbf{cofronteras} y en $\ker{\partial^{i}}$ se dicen \textbf{cociclos}. Además, es claro que 
+$\im{\partial^{i}}\subseteq\kr{\partial^{i+1}}$.
+
+\vspace{2mm}
+\begin{dfn}
+    El \textbf{$i-$ésimo grupo de cohomología} de $(C^{\sbullet},\partial^{\sbullet})$ se define
+    por 
+    \begin{equation*}
+        H^{i}(C^{\sbullet}):=\frac{\kr{\partial^{i}}}{\im{\partial^{i-1}}}
+    \end{equation*}
+    Un elemento en $H^{i}(C^{\sbullet})$ se conoce como \textbf{clase de cohomología}.
+\end{dfn}
+
+\vspace{2mm}
+\noindent\textbf{Ejemplo:} Recordemos el complejo de cadenas
+
+\vspace{2mm}
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & 0 \ar[r] & \Z \ar[r]^{\cdot2} & \Z \ar[r]^{\cdot0} & \Z \ar[r] & 0
+        }
+    }
+
+\vspace{2mm}
+\noindent Donde $H_{0}(C_{\sbullet})=\Z$, $H_{1}(C_{\sbullet})=\Z_{2}$ y $H_{k}(C_{\sbullet})=0$. 
+Definimos $C^{i}:=Hom(C_{i},\Z)$ y los diferenciales $\partial^{i}(\varphi)
+:=\varphi\circ\partial_{i+1}$, notemos que $\partial^{i+1}\circ\partial^{i}(\varphi)
+=\varphi\circ\partial_{i+1}\circ\partial_{i+2}=0$. Así, tenemos el complejo de cocadenas
+
+\vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & C^{0} \ar[r]^{\cdot0} & C^{1} \ar[r]^{\cdot{2}} & C^{2} \ar[r]^{\cdot0} 
+            & 0 \ar[r] & \cdots
+        }
+    }
+
+\vspace{2mm}
+\noindent Como $C^{i}\cong\Z$ para $i=0,1,2$, entonces $H^{0}(C^{\sbullet})=\Z$, 
+$H^{1}(C^{\sbullet})=0$ y $H^{2}(C^{\sbullet})=\Z_{2}$.
+
+\vspace{2mm}
+\begin{dfn}
+    Sean $(C^{\sbullet},\partial^{\sbullet})$ y $(D^{\sbullet},\partial^{\sbullet})$ complejos de
+    cocadenas, un \textbf{mapeo de cocadenas}, es una colección $(f^{n})_{n}$ de morfismos
+    $f_{n}:C_{n}\to D_{n}$ tales que $\partial^{n}\circ f^{n}=f^{n+1}\circ\partial^{n}$. En otras
+    palabras, el diagrama
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            C^{n} \ar[r]^{f^{n}} \ar[d]^{\partial^{n}} & D^{n} \ar[d]^{\partial^{n}} \\
+            C^{n+1} \ar[r]^{f^{n+1}} & D^{n+1}
+        }
+    }
+    \noindent conmuta.
+\end{dfn}
+
+\begin{lema}
+    Sea $(f^{n})_{n}$ un mapeo de cocadenas, entonces $f^{*}:H^{n}(C^{\sbullet})\to 
+    H^{n}(D^{\sbullet})$ dado por $[x]\to[f^{n}(x)]$ es un morfismo que está bien definido.
+\end{lema}
+
+\noindent La demostración de este lema es análoga al caso de complejo de cadenas. Previamente,
+definimos el complejo de cadenas singular y los respectivos diferenciales. Usando la idea vista en
+el ejemplo vamos a definir la cohomología singular.
+
+\vspace{2mm}
+\begin{dfn}
+    Sea $X$ un espacio topológico. Definimos los grupos $C^{i}(X):=Hom(C_{i}(X),\Z)$ y los 
+    diferenciales $\partial^{i}:C^{i}(X)\to C^{i+1}(X)$ dados por $\partial^{i}(\varphi)
+    :=\varphi\circ\partial_{i+1}$. El \textbf{complejo de cocadenas singular} es
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & C^{0}(X) \ar[r]^{\partial^{0}} & C^{1}(X) \ar[r]^{\partial^{1}} 
+            & C^{2}(X) \ar[r]^{\partial^{2}} & C^{3}(X) \ar[r]^{\partial^{3}} & \cdots
+        }
+    }
+
+    \vspace{2mm}
+    \noindent El \textbf{$i-$ésimo grupo de cohomología} esta dado por
+    \begin{equation*}
+        H^{i}(X):=H^{i}(C^{\sbullet}(X))
+    \end{equation*}
+\end{dfn}
+
+\noindent\textbf{Observación:} No es cierto en general que $H^{i}(X)=Hom(H_{i}(X),\Z)$, basta 
+regresar al ejemplo y notar que $H_{1}(C_{\sbullet})=\Z_{2}\neq0=H^{1}(C^{\sbullet})$.
 
 \newpage
 \subsection{Producto Cup}
