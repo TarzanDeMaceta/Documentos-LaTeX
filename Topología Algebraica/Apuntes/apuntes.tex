@@ -247,8 +247,8 @@ objeto.
         }
     }
     \vspace{2mm}    
-    es un complejo de cadenas. La homología asociadas son $H_{0}(C_{\sbullet})=\Z$, 
-    $H_{1}(C_{\sbullet})=\Z_{2}$ y $H_{k}(C_{\sbullet})=0$.
+    es un complejo de cadenas. Los grupos de homología asociados son $H_{0}(C_{\sbullet})=\Z$, 
+    $H_{1}(C_{\sbullet})=\Z_{2}$ y $H_{k}(C_{\sbullet})=0$ para $k\neq0,1$.
 \end{itemize}
 
 \begin{dfn}
@@ -1997,6 +1997,38 @@ es un camino entre $\alpha(0)$ y $\beta(1)$.
 \end{align*}
 Además, $(f\circ g)_{*}=f_{*}\circ g_{*}$ y $id_{*}=id_{\pi_{1}(X,x_{0})}$, entonces $\pi_{1}$ es
 invariante topológico.
+
+\begin{teo}[Invarianza Homotópica]
+    Sea $f:X\to Y$ equivalencia homotópica, entonces
+    \begin{equation*}
+        f_{*}:\pi_{1}(X,x_{0})\to\pi_{1}(Y,f(x_{0}))
+    \end{equation*}
+    es isomorfismo.
+\end{teo}
+
+\begin{lema}
+    Sea $\gamma:[0,1]\to X$ camino tal que $\gamma(0)=x_{0}$ y $\gamma(1)=x_{1}$. Entonces la 
+    función
+    \begin{align*}
+        \gamma_{\#}:\pi(X,x_{0}) &\to \pi_{1}(X,x_{1}) \\
+        [\alpha] &\to [\gamma^{-1}*\alpha*\gamma]
+    \end{align*}
+    esta bien definida y es isomorifsmo. Es más, si $\gamma\sim\gamma'$ entonces $\gamma_{\#}
+    =\gamma'_{\#}$
+\end{lema}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{proof} (Teorema)
+    
+\end{proof}
+
+\begin{dfn}
+    Un espacio $X$ se dice simplemente conexo, si es arcoconexo y $\pi_{1}(X,x_{0})=0$ para algún 
+    $x_{0}\in X$.
+\end{dfn}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
