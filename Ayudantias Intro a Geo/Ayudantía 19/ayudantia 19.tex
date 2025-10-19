@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{14cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Profesor: Giancarlo Urzúa -- Ayudante: Benjamín Mateluna}
+\end{minipage}
+\vspace{1ex}
+
+{\centerline{\bf Introducción a la Geometría - MAT1304}
+\centerline{\bf Ayudantía 19}}
+\centerline{\bf 20 de octubre de 2025}
+
+\vspace{1cm}
+\noindent\textbf{Problema 1.} Halle el máximo común divisor de los siguientes pares de polinomios
+y halle una combinación del lema de Bézout en cada caso
+
+\begin{enumerate}
+    \item $x^{4}+x^{3}+x^{2}+1$ y $x^{3}+1$ en $\R[x]$.
+    
+    \item $x^{3}+2x-i$ y $x^{2}+1$ en $\C[x]$.
+\end{enumerate}
+
+\begin{dfn}
+    Sea $F\in\C[x,y]$, se dice homogéneo si existe $\lambda\in\C$ tal que 
+    $F(\lambda x,\lambda y)=\lambda^{n}F(x,y)$ para algún $n\in\N$.
+\end{dfn}
+
+\vspace{5mm}
+\noindent\textbf{Problema 2.} Demuestre que todo polinomio homogéneo en $\C[x,y]$ se puede 
+escribir como el producto de polinomios lineales homogéneos.
+
+\vspace{5mm}
+\noindent\textbf{Problema 3.} Demuestre que $y^{2}-x^{3}$ es irreducible en $\C[x,y]$.
+
+\vspace{5mm}
+\noindent\textbf{Problema 4.} Sean $f,g\in k[x,y]$, demuestre que
+\begin{enumerate}
+    \item El conjunto de ceros de $fg$ es igual a la unión del conjunto de ceros de $f$ y $g$.
+    \item Si $k=\R$, el conjunto de ceros de $f^{2}+g^{2}$ es igual a la intersección del conjunto 
+    de ceros de $f$ y $g$.
+\end{enumerate}
+
+\vspace{5mm}
+\noindent\textbf{Problema 5.} Halle el lugar geométrico de todos los puntos que equidistan del
+origen y $(-1,1)$. Después, grafiquelo en el plano.
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}

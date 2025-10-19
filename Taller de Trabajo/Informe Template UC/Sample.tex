@@ -894,6 +894,303 @@ exacta de homología relativa es natural.
     \end{equation*}
 \end{teo}
 
+\subsection{Aplicaciones} \hspace{2mm}
+
+\vspace{2mm}
+\noindent En esta parte vamos a utilizar los resultados previos para calcular grupos de homología
+y obtener algunos resultados. Empezaremos con las esferas.
+
+\begin{ej}
+    Consideramos los abiertos $A=\S^{1}\setminus\{N\}$ y $B=\S^{1}\setminus\{S\}$. Notemos que 
+    $A\cong\R\sim pt$ y del mismo modo $B\sim pt$. Por otro lado, $A\cap B\cong\R\sqcup\R
+    \sim pt\sqcup pt$. Por Mayer-Vietoris, para $i>1$ tenemos la secuencia exacta
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrixcolsep{1.5pc}\xymatrix{
+            H_{i}(A\cap B) \ar[r] & H_{i}(A)\oplus H_{i}(B) \ar[r] & H_{i}(\S^{1}) \ar[r] 
+            & H_{i-1}(A\cap B)
+        }
+    }
+    \vspace{2mm}
+    \noindent Donde $H_{i}(A\cap B)=H_{i}(A)\oplus H_{i}(B)=H_{i-1}(A\cap B)=0$, lo que implica
+    que $H_{i}(\S^{1})=0$ para $i>1$, además como es arcoconexo resulta que $H_{0}(\S^{1})=\Z$.
+    Queda el caso cuando $i=1$, se tiene la secuencia exacta
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrixcolsep{3pc}\xymatrix{
+            H_{1}(A)\oplus H_{1}(B) \ar[r] & H_{1}(\S^{1}) \ar[r]^-{\delta} 
+            & H_{0}(A\cap B) \ar[r]^-{i_{A*}\oplus i_{B*}} & H_{0}(A)\oplus H_{0}(B)
+        }
+    }
+    \vspace{2mm}
+    \noindent Como $H_{1}(A)\oplus H_{1}(B)=0$, el morfismo $\delta$ es inyectivo y por lo tanto
+    $H_{1}(\S^{1})$ es isomorfo a su imagen vía $\delta$, por exactitud, esta resulta ser el
+    kernel de $i_{A*}\oplus i_{B*}$.
+
+    \noindent El grupo $H_{0}(A\cap B)$ tiene dos generadores, digamos $p$ y $q$, que corresponden
+    a un punto en cada componente de $A\cap B$. Como $A$ es arcoconexo, resulta que 
+    $i_{A*}(p)=i_{A*}(q)$, del mismo modo $i_{B*}(p)=i_{B*}(q)$, entonces el morfismo 
+    $i_{A*}\oplus i_{B*}$ esta representado matricialmente por
+    \begin{equation*}
+        \begin{pmatrix}
+            \hspace{2mm} 1 & \hspace{2mm} 1 \hspace{2mm} \\
+            \hspace{2mm} 1 & \hspace{2mm} 1 \hspace{2mm}
+        \end{pmatrix}
+    \end{equation*}
+    lo que implica que
+    \begin{equation*}
+        H_{1}(\S^{1})\cong\im{\delta}=\kr{i_{A*}\oplus i_{B*}}\cong\Z
+    \end{equation*}
+\end{ej}
+
+\begin{ej}
+    Afirmamos que
+    \begin{equation*}
+        H_{i}(\S^{n})=\begin{cases}
+            \Z &\quad\text{ si} \hspace{2mm} i=0,n \\
+            0 &\quad\text{ si} \hspace{2mm} i\neq0,n
+        \end{cases}
+    \end{equation*}
+    Procederemos por inducción sobre $n$, el caso base ya fue demostrado, supongamos que se 
+    cumple para $n-1$ con $n>1$. Sea $A=\S^{n}\setminus\{N\}$ y $B=\S^{n}\setminus\{S\}$. Notemos 
+    que
+    \begin{equation*}
+        A\cong\R^{n}\sim pt
+        \hhtext{y}
+        B\cong\R^{n}\sim pt
+    \end{equation*}
+    además, $A\cap B\cong\R^{n-1}\times\S^{n-1}\cong\S^{n-1}$. Por Mayer-Vietoris, para $i>2$,
+    tenemos la secuencia exacta
+        
+    \vspace{2mm}
+    \centerline{
+        \xymatrixcolsep{3pc}\xymatrix{
+            H_{i}(A)\oplus H_{i}(B) \ar[r] & H_{i}(\S^{1}) \ar[r]^-{\delta} 
+            & H_{i-1}(A\cap B) \ar[r]^-{i_{A*}\oplus i_{B*}} & H_{i-1}(A)\oplus H_{i-1}(B)
+        }
+    }
+    \vspace{2mm}
+    \noindent Para $i>1$, el morfismo $\delta$ es isomorfismo y por lo tanto $H_{i}(\S^{1})
+    \cong H_{0}(A\cap B)\cong H_{0}(\S^{n-1})$. Por otro lado si $i=1$, el morfismo $\delta$ es
+    inyectivo y por un argumento similar al usado en el ejemplo anterior, el morfismo
+    $i_{A*}\oplus i_{B*}$ esta representado por
+    \begin{equation*}
+        \begin{pmatrix}
+            \hspace{2mm} 1 \hspace{2mm} \\
+            \hspace{2mm} 1 \hspace{2mm}
+        \end{pmatrix}
+    \end{equation*}
+    entonces $H_{1}(\S^{n})\cong0$ y por arcoconexidad concluimos.
+\end{ej}
+
+\section{Cohomología}
+
+\subsection{Cohomología Singular}
+
+\begin{dfn}
+    Un complejo de cocadenas es una secuencia de grupos de abelianos y homomorfismos
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & C^{0} \ar[r]^{\partial^{0}} & C^{1} \ar[r]^{\partial^{1}} 
+            & C^{2} \ar[r]^{\partial^{2}} & C^{3} \ar[r]^{\partial^{3}} & \cdots
+        }
+    }
+    \vspace{2mm}
+    \noindent tales que $\partial^{i+1}\circ\partial^{i}=0$. Se denota por 
+    $(C^{\sbullet},\partial^{\sbullet})$.
+\end{dfn}
+
+\begin{obs}
+    Al igual que en complejos de cadenas, los morfismos $\partial^{i}$
+    se llaman diferenciales, los elementos en $\im{\partial^{i}}$ se dicen 
+    cofronteras y en $\ker{\partial^{i}}$ se dicen cociclos. Además, es claro 
+    que $\im{\partial^{i}}\subseteq\kr{\partial^{i+1}}$.
+\end{obs}
+
+\begin{dfn}
+    El $i-$ésimo grupo de cohomología de $(C^{\sbullet},\partial^{\sbullet})$ se define
+    por 
+    \begin{equation*}
+        H^{i}(C^{\sbullet}):=\frac{\kr{\partial^{i}}}{\im{\partial^{i-1}}}
+    \end{equation*}
+    Un elemento en $H^{i}(C^{\sbullet})$ se conoce como clase de cohomología.
+\end{dfn}
+
+\begin{ej}
+    Recordemos el complejo de cadenas
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & 0 \ar[r] & \Z \ar[r]^{\cdot2} & \Z \ar[r]^{\cdot0} & \Z \ar[r] & 0
+        }
+    }
+
+    \vspace{2mm}
+    \noindent Donde $H_{0}(C_{\sbullet})=\Z$, $H_{1}(C_{\sbullet})=\Z_{2}$ y 
+    $H_{k}(C_{\sbullet})=0$. Definimos $C^{i}:=Hom(C_{i},\Z)$ y los diferenciales 
+    $\partial^{i}(\varphi):=\varphi\circ\partial_{i+1}$, notemos que 
+    $\partial^{i+1}\circ\partial^{i}(\varphi)=\varphi\circ\partial_{i+1}\circ\partial_{i+2}=0$. 
+    Así, tenemos el complejo de cocadenas
+
+    \vspace{2mm}
+        \centerline{
+            \xymatrix{
+                0 \ar[r] & C^{0} \ar[r]^{\cdot0} & C^{1} \ar[r]^{\cdot{2}} & C^{2} \ar[r]^{\cdot0} 
+                & 0 \ar[r] & \cdots
+            }
+        }
+
+    \vspace{2mm}
+    \noindent Como $C^{i}\cong\Z$ para $i=0,1,2$, entonces $H^{0}(C^{\sbullet})=\Z$, 
+    $H^{1}(C^{\sbullet})=0$ y $H^{2}(C^{\sbullet})=\Z_{2}$.
+\end{ej}
+
+\vspace{2mm}
+\begin{dfn}
+    Sean $(C^{\sbullet},\partial^{\sbullet})$ y $(D^{\sbullet},\partial^{\sbullet})$ complejos de
+    cocadenas, un mapeo de cocadenas, es una colección $(f^{n})_{n}$ de morfismos
+    $f_{n}:C_{n}\to D_{n}$ tales que $\partial^{n}\circ f^{n}=f^{n+1}\circ\partial^{n}$. En otras
+    palabras, el diagrama
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            C^{n} \ar[r]^{f^{n}} \ar[d]^{\partial^{n}} & D^{n} \ar[d]^{\partial^{n}} \\
+            C^{n+1} \ar[r]^{f^{n+1}} & D^{n+1}
+        }
+    }
+    \noindent conmuta.
+\end{dfn}
+
+\begin{lema}
+    Sea $(f^{n})_{n}$ un mapeo de cocadenas, entonces $f^{*}:H^{n}(C^{\sbullet})\to 
+    H^{n}(D^{\sbullet})$ dado por $[x]\to[f^{n}(x)]$ es un morfismo que está bien definido.
+\end{lema}
+
+\noindent La demostración de este lema es análoga al caso de complejo de cadenas. Previamente,
+definimos el complejo de cadenas singular y los respectivos diferenciales. Usando la idea vista en
+el ejemplo vamos a definir la cohomología singular.
+
+\begin{dfn}
+    Sea $X$ un espacio topológico. Definimos los grupos $C^{i}(X):=Hom(C_{i}(X),\Z)$ y los 
+    diferenciales $\partial^{i}:C^{i}(X)\to C^{i+1}(X)$ dados por $\partial^{i}(\varphi)
+    :=\varphi\circ\partial_{i+1}$. El complejo de cocadenas singular es
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & C^{0}(X) \ar[r]^{\partial^{0}} & C^{1}(X) \ar[r]^{\partial^{1}} 
+            & C^{2}(X) \ar[r]^{\partial^{2}} & C^{3}(X) \ar[r]^{\partial^{3}} & \cdots
+        }
+    }
+    \vspace{2mm}
+    \noindent El $i-$ésimo grupo de cohomología esta dado por
+    \begin{equation*}
+        H^{i}(X):=H^{i}(C^{\sbullet}(X))
+    \end{equation*}
+\end{dfn}
+
+\begin{obs}
+    No es cierto en general que $H^{i}(X)=Hom(H_{i}(X),\Z)$.
+\end{obs}
+
+\noindent Los resultados de homología pueden ser extendidos de manera análoga a cohomología, 
+dualizando el complejo de cadenas singular.
+
+\begin{dfn}
+    Sea $A$ un grupo abeliano y $X$ un espacio, definimos los grupos
+    \begin{equation*}
+        C^{\sbullet}(X;A)=Hom(C_{\sbullet};A)
+    \end{equation*}
+    con el diferencial $\partial:C^{i}(X;A)\to C^{i+1}(X;A)$ dado por $\partial^{i}(\varphi)
+    =\varphi\circ\partial_{i+1}$. Esto define un complejo de cocadenas, la cohomología asociada
+    \begin{equation*}
+        H^{n}(X;A):=H^{n}(C^{\sbullet}(X;A))
+    \end{equation*}
+    se dice cohomología de $X$ con coeficientes en $A$.
+\end{dfn}
+
+\begin{obs}
+    Notemos que si $A$ es un anillo conmutativo, entonces $H^{n}(X;A)$ es un $A-$módulo.
+\end{obs}
+
+\subsection{Producto Cup} \hspace{2mm}
+
+\vspace{2mm}
+\noindent La notación $\sigma|_{[\tau]}$ donde $\tau$ es un subconjunto de los vértices 
+$\Delta^{n}$, se entiende como la restricción de sigma al simplice generado por $\tau$, claramente
+$\sigma|_{[\tau]}$ es un $\abs{\tau}-$simplice singular.
+
+\begin{dfn}
+    Sea $R$ un anillo conmutativo y $X$ un espacio. Sea $\phi\in C^{k}(X;R)$ y 
+    $\psi\in C^{l}(X;R)$. Definimos $\phi\smile\psi\in C^{k+l}(X;R)$ por
+    \begin{equation*}
+        (\phi\smile\psi)(\sigma)
+        =\phi(\sigma|_{[v_{0},\cdots,v_{k}]})\psi(\sigma|_{[v_{k},\cdots,v_{k+l}]})
+    \end{equation*}
+    donde $\sigma\in C_{k+l}(X)$ un simplice singular. Este morfismo se extiende linealmente.
+\end{dfn}
+
+\noindent Es directo de la definición, que el producto cup es bilineal y es asociativo, pues la
+multiplicación en $R$ lo es.
+
+\begin{lema}
+    Sean $\phi\in C^{k}(X;R)$ y $\psi\in C^{l}(X;R)$, entonces
+    \begin{equation*}
+        d(\phi\smile\psi)=d\phi\smile\psi+(-1)^{k}\phi\smile d\phi
+    \end{equation*}
+\end{lema}
+
+\begin{cor}
+    El producto cup induce un morfismo
+    \begin{align*}
+        \smile:H^{k}(X;R)\times H^{l}(X;R) &\to H^{k+l}(X;R) \\
+        ([\phi],[\psi]) &\to [\phi\smile\psi]
+    \end{align*}
+\end{cor}
+
+\begin{proof}
+    Sean $\phi\in C^{k}(X;R)$ y $\psi\in C^{l}(X;R)$ cociclos y dado $\phi'\in C^{k}(X;R)$ un 
+    cociclo tal que $[\phi]=[\phi']$, entonces $\phi'=\phi+d\phi''$, luego
+    \begin{align*}
+        \phi'\smile\psi &= (\phi+d\phi'')\smile\psi=\phi\smile\psi+d\phi''\smile\psi \\
+        &= \phi\smile\psi+d(\phi''\smile\psi)-(-1)^{k+1}\phi''\smile d\psi \\
+        &= \phi\smile\psi+d(\phi''\smile\psi)
+    \end{align*}
+    el otro caso es análogo.
+\end{proof}
+
+\noindent Definimos el mapa $1:C_{0}(X)\to R$ tal que $1(\sigma)=1$ para toda $0-$cadena, entonces
+\begin{equation*}
+    [1]\smile[\phi]=[\phi]
+\end{equation*}
+De este modo, definimos $H^{*}(X;R)=\bigoplus_{n\in\N}H^{n}(X;R)$ que junto con el producto cup y
+el elemento $[1]$ forman un anillo con unidad. Aquí el producto cup se extiende linealmente. 
+Este se conoce como el anillo de cohomología $X$ con coeficientes en $R$.
+
+\vspace{2mm}
+\noindent El anillo de cohomología no es necesariamente conmutativo, pero el siguiente lema nos 
+entrega un expresión para intercambiar los términos.
+
+\begin{lema}
+    Sean $\alpha\in H^{k}(X;R)$ y $\beta\in H^{l}(X;R)$ entonces
+    \begin{equation*}
+        \alpha\smile\beta=(-1)^{kl}\beta\smile\alpha
+    \end{equation*}
+\end{lema}
+
+\noindent Además, el producto cup es natural, lo que se expresa en la proposición que sigue.
+
+\begin{lema}
+    Sea $f:X\to Y$ una función continua entre espacios y $\alpha,\beta\in H^{*}(Y;R)$ entonces
+    $f^{*}(\alpha\smile\beta)=f^{*}(\alpha)\smile f^{*}(\beta)$.
+\end{lema}
+
 \newpage
 \begin{thebibliography}{1}
     \bibitem{1}
