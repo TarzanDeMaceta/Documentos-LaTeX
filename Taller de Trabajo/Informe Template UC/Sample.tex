@@ -63,6 +63,7 @@
 \def \Z {\mathbb{Z}}
 \def \N {\mathbb{N}}
 \def \S {\mathbb{S}}
+\def \H {\mathbb{H}}
 
 \endlocaldefs
 
@@ -1189,6 +1190,85 @@ entrega un expresión para intercambiar los términos.
 \begin{lema}
     Sea $f:X\to Y$ una función continua entre espacios y $\alpha,\beta\in H^{*}(Y;R)$ entonces
     $f^{*}(\alpha\smile\beta)=f^{*}(\alpha)\smile f^{*}(\beta)$.
+\end{lema}
+
+\begin{dfn}
+    Sean $\pi_{X}:X\times Y\to X$ y $\pi_{Y}:X\times Y\to Y$ los mapas de proyección. Se define
+    \begin{align*}
+        \times:H^{k}(X;R)\times H^{l}(Y;R) &\to H^{k+l}(X\times Y;R)
+        \htext{dada por} \\
+        (a,b) &\to \pi_{X}^{*}(a)\smile\pi_{Y}^{*}(b)
+    \end{align*}
+\end{dfn}
+
+\noindent Denotamos $\times(a,b)$ por $a\times b$. Por la naturalidad de $\pi_{X}^{*}, 
+\pi_{Y}^{*}$ y la bilinealidad del producto cup, resulta que $\times$ es bilineal, por la 
+propiedad universal del producto tensorial, se induce el morfismo
+\begin{equation*}
+    \times:H^{k}(X;R)\otimes_{R}H^{l}(Y;R)\to H^{k+l}(X\times Y;R)
+\end{equation*}
+tal que $\times(a\otimes b)=\pi_{X}^{*}(a)\smile\pi_{Y}^{*}(b)$.
+
+\begin{teo}[Fórmula de Künneth]
+    
+\end{teo}
+
+\section{H-espacios y Álgebras de Hopf}
+
+\begin{dfn}
+    Sea $X$ espacio topológico. Decimos que es $H-$espacio si existe una aplicación continua
+    \begin{equation*}
+        \mu:X\times X\to X
+    \end{equation*}
+    y un elemento $e\in X$ llamada identidad tal que los mapas $\varphi(x)=\mu(x,e)$ y 
+    $\psi(x)=\mu(e,x)$ son homotópicos a la identidad relativo a $\{e\}$.
+\end{dfn}
+
+\noindent Podemos restringir algo mas la definición,
+\begin{itemize}
+    \item Decimos que $\mu$ es asociativa homotopica si es tal que $\mu(x,\mu(y,z))$ y 
+    $\mu(\mu(x,y),z)$ son homotópicas relativo a $\{(e,e,e)\}$.
+
+    \item Existe inversa homotópica, si existe $\varphi:X\to X$ con $\varphi(e)=e$ tal que los
+    mapas $x\to\mu(x,\varphi(x)),\mu(\varphi(x),x)$ son homotópicas a la función constante $e$
+    relativo a $\{e\}$.
+\end{itemize}
+
+Un $H-$grupo es un $H-$espacio que es homotópico asociativo y existe inversa homotópica.
+
+\begin{obs}
+    Lo anterior implica que $\mu(e,e)=e$.
+\end{obs}
+
+\begin{ej}
+    Todo grupo topológico, en particular, es un $H-$espacio. Por ejemplo, $\S^{1}$, $\S^{3}$, 
+    $\R$, $\C$ o $\H$.
+\end{ej}
+
+\begin{dfn}
+    Un anillo $A$ se dice álgebra de Hopf si es álgebra graduada y que satisface las siguientes
+    propiedades
+    \begin{enumerate}
+        \item Hay una identidad $1\in A^{0}$ tal que el mapa $R\to A^{0}$ dado por $r\to r\cdot1$
+        es isomorfismo.
+        
+        \item Existe un mapa diagonal o coproducto
+        \begin{equation*}
+            \triangle:A\to A\otimes_{R}A
+        \end{equation*}
+        un morfismo de algebras graduadas que satisface
+        \begin{equation*}
+            \triangle(\alpha)
+            =\alpha\otimes1+1\otimes\alpha+\sum_{i}\alpha'_{i}\otimes\alpha''_{n-i}
+        \end{equation*}
+        donde $\abs{\alpha'_{i}},\abs{\alpha''_{n-i}}>0$ para todo $\alpha$ con $\abs{\alpha}>0$.
+    \end{enumerate}
+\end{dfn}
+
+\begin{lema}
+    Sea $R$ un anillo y $X$ un $H-$espacio arcoconexo tal que $H^{n}(X;R)$ es un $R-$módulo 
+    finitamente generado para todo $n\in\N$. Entonces $X$ induce un álgebra de Hopf en el anillo
+    de cohomología. 
 \end{lema}
 
 \newpage

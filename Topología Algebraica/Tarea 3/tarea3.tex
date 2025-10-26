@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{14cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Profesor: Mauricio Bustamante -- Estudiante: Benjamín Mateluna}
+\end{minipage}
+\vspace{1ex}
+
+{\centerline{\bf Topología Álgebraica - MAT2850}
+\centerline{\bf Tarea 4}}
+\centerline{\bf 07 de noviembre de 2025}
+
+\section*{Problema 1}
+\begin{enumerate}
+    \item En primer lugar veamos que $\sbullet$ esta bien definida, es decir, dados $\alpha,\beta$
+    caminos basados en $x_{0}$ tales que $[\alpha]=[\beta]$, entonces
+    $\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha]
+    =\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\beta]$. En efecto, por levantamiento de 
+    homotopías relativas, se sigue que $\widehat{\alpha}(1)=\widehat{\beta}(1)$, lo que implica 
+    que
+    \begin{equation*}
+        \widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha]=\widehat{\alpha}(1)
+        =\widehat{\beta}(1)=\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\beta]
+    \end{equation*}
+
+    Además, como $p\widehat{\alpha}=\alpha$, se sigue que $\widehat{\alpha}(1)\in p^{-1}(x_{0})$. 
+    Veamos que $\sbullet$ induce una acción por la derecha de $\pi_{1}(X,x_{0})$ en 
+    $p^{-1}(x_{0})$. Sea $\widehat{x}\in p^{-1}(x_{0})$ y $ct_{x_{0}}$ el lazo constante basado
+    en $x_{0}$. Notemos que el lazo $ct_{\widehat{x}}$ levanta a $ct_{x_{0}}$, luego 
+    $\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[ct_{x_{0}}]=ct_{\widehat{x}}(1)=\widehat{x}$.
+
+    \vspace{1mm}
+    Sean $\alpha,\beta$ lazos basados en $x_{0}$ y $\widehat{x}\in p^{-1}(x_{0})$. Afirmamos que
+    $[p(\widehat{\alpha}^{-1}*\widehat{\alpha*\beta})]=[\beta]$ en $\pi_{1}(X,x_{0})$. En primer
+    lugar, vemos que
+    \begin{equation*}
+        p(\widehat{\alpha}^{-1}*\widehat{\alpha*\beta})(0)=\alpha(1)=x_{0}
+        \hhtext{y}
+        p(\widehat{\alpha}^{-1}*\widehat{\alpha*\beta})(1)=\beta(1)=x_{0}
+    \end{equation*}
+    por lo que la expresión tiene sentido. Por otro lado, notemos que 
+    $p(\widehat{\alpha}^{-1}*\widehat{\alpha*\beta})=p(\widehat{\alpha}^{-1})*\alpha*\beta$ y
+    adicionalmente tenemos que
+    \begin{equation*}
+        [\alpha]*[p\widehat{\alpha^{-1}}]=[ct_{x_{0}}]=p_{*}[ct_{\widehat{x}}]
+        =p_{*}[\widehat{\alpha}*\widehat{\alpha}^{-1}]=[p(\widehat{\alpha}*\widehat{\alpha}^{-1})]
+        =[p\widehat{\alpha}*p\widehat{\alpha}^{-1}]=[p\widehat{\alpha}]*[p\widehat{\alpha}^{-1}]
+        =[\alpha]*[p\widehat{\alpha}^{-1}]
+    \end{equation*}
+    lo que implica que $p\widehat{\alpha}^{-1}\sim\alpha^{-1}$, lo que prueba la afirmación. Así,
+    se tiene lo siguiente
+    \begin{equation*}
+        (\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha(1)])
+        \hspace{1mm}{\sbullet}\hspace{1mm}[\beta]
+        =\widehat{\alpha}(1)\hspace{1mm}{\sbullet}\hspace{1mm}[\beta]
+        =\widehat{\alpha}(1)\hspace{1mm}{\sbullet}\hspace{1mm}[
+            p(\widehat{\alpha}^{-1}*\widehat{\alpha*\beta})
+        ]=\widehat{\alpha*\beta}(1)=\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha*\beta]
+    \end{equation*}
+    Notar que $\widehat{\alpha}^{-1}*\widehat{\alpha*\beta}(0)=\widehat{\alpha}(1)$.
+    
+    \item Supongamos que $\widehat{X}$ es arcoconexo, sean $\widehat{x}_{1},\widehat{x}_{2}\in 
+    p^{-1}(x_{0})$, existe $\widehat{\gamma}:[0,1]\to\widehat{X}$ continua tal que 
+    $\widehat{\gamma}(0)=\widehat{x}_{1}$ y $\widehat{\gamma}(1)=\widehat{x}_{2}$. Definimos 
+    $\gamma=p\widehat{\gamma}$, un lazo basado en $x_{0}$, entonces
+    \begin{equation*}
+        \widehat{x}_{1}\hspace{1mm}{\sbullet}\hspace{1mm}[\gamma]
+        =\widehat{\gamma}(1)=\widehat{x}_{2}
+    \end{equation*}
+
+    Por otro lado, supongamos que $\sbullet$ es transitiva. Sean 
+    $\widehat{x},\widehat{y}\in\widehat{X}$, tenemos dos casos, 
+    $\widehat{x},\widehat{y}\in p^{-1}(x_{0})$ para algún $x_{0}\in X$, entonces, existe un lazo 
+    $\gamma$ basado en $x_{0}$ tal que $\widehat{\gamma}(0)=\widehat{x}$ y
+    \begin{equation*}
+        \widehat{\gamma}(1)=\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\gamma]=\widehat{y}
+    \end{equation*}
+    por lo tanto, $\widehat{\gamma}$ es el camino buscado. En cambio, si 
+    $\widehat{x}\in p^{-1}(x)$ e $\widehat{y}\in p^{-1}(y)$ con $x\neq y$, como $X$ es arcoconexo,
+    existe un camino $\gamma$ de modo que $\gamma(0)=x$ y $\gamma(1)=y$. Por lema del 
+    levantamiento $\widehat{\gamma}(0)=\widehat{x}$ y $\widehat{\gamma}(1)
+    =\widehat{y'}\in p^{-1}(y)$ y por el caso anterior concluimos.
+    
+    \item Debemos probar que dado $\widehat{x}\in\widehat{X}$ se tiene que
+    \begin{equation*}
+        p_{*}(\pi_{1}(\widehat{X},\widehat{x}))=S_{\widehat{x}}
+    \end{equation*}
+    donde $S_{\widehat{x}}$ es el estabilizador de $\widehat{x}$. Sea 
+    $[\alpha]\in S_{\widehat{x}}$, entonces $\widehat{x}
+    =\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha]=\widehat{\alpha}(1)$, como 
+    $p\widehat{\alpha}=\alpha$, concluimos que 
+    $[\alpha]\in p_{*}(\pi_{1}(\widehat{X},\widehat{x}))$. Sea 
+    $[\alpha]\in p_{*}(\pi_{1}(\widehat{X},\widehat{x}))$, entonces existe un lazo basado en 
+    $\widehat{x}$, digamos $\widehat{\alpha}$, tal que $[p\widehat{\alpha}]=[\alpha]$, entonces
+    \begin{equation*}
+        \widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha]
+        =\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[p\widehat{\alpha}]=\widehat{\alpha}(1)
+        =\widehat{x}
+    \end{equation*}
+    
+    \item Usando la parte anterior y orbita establizador, resulta que
+    \begin{equation*}
+        \abs{\frac{\pi_{1}(X,x_{0})}{p_{*}(\pi_{1}(\widehat{X},\widehat{x}))}}
+        =\abs{O_{\widehat{x}}}=\abs{p^{-1}(x_{0})}
+    \end{equation*}
+    donde en la última igualdad usamos que la acción es transitiva, o equivalentemente, que 
+    $\widehat{X}$ es arcoconexo.
+\end{enumerate}
+
+\section*{Problema 2}
+
+\section*{Problema 3}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}
