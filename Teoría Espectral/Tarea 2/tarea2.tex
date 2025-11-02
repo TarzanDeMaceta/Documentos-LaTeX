@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{14cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Profesora: Amal Taarabt -- Estudiante: Benjamín Mateluna}
+\end{minipage}
+\vspace{1ex}
+
+{\centerline{\bf Teoría Espectral - MAT2820}
+\centerline{\bf Tarea 2}}
+\centerline{\bf 04 de noviembre de 2025}
+
+\section*{Operadores compactos}
+
+\begin{enumerate}
+    \item La función $T_{K}$ es claramente lineal. Observemos que por lema del pegado la función 
+    $K$ es continua, para ver que $T_{K}\in\B(H)$, nos damos $f\in L^{2}([0,1])$ y por la 
+    desigualdad de hölder, se sigue que
+    \begin{align*}
+        \norm{T_{K}f}_{L^{2}}^{2} &= \int_{0}^{1}\abs{T_{K}f(x)}^{2}\hspace{1mm}dx
+        =\int_{0}^{1}\abs{\int_{0}^{1}K(x,y)f(y)\hspace{1mm}dy}^{2}\hspace{1mm}dx \\
+        &\leq \int_{0}^{1}\left(
+            \int_{0}^{1}\abs{K(x,y)}^{2}\abs{f(y)}^{2}\hspace{1mm}dy\right)\hspace{1mm}dx
+        \leq\left(\max_{(x,y)\in[0,1]^{2}}\abs{K(x,y)}\right)^{2}\norm{f}_{L^{2}}^{2}<\infty
+    \end{align*}
+    Por lo tanto, el operador $T_{K}$ es acotado. Para ver que es autoadjunto en primer lugar
+    veamos que $K(x,y)=K(y,x)$ para todo $(x,y)\in[0,1]^{2}$ y además $K([0,1]^{2})\subseteq\R$,
+    luego, por Fubini se tiene que
+    \begin{align*}
+        \ip{T^{*}f}{g}_{L^{2}} &= \ip{f}{Tg}_{L^{2}}
+        =\int_{0}^{1}\overline{f(x)}T_{K}g(x)\hspace{1mm}dx
+        =\int_{0}^{1}\overline{f(x)}\left(
+            \int_{0}^{1}K(x,y)g(y)\hspace{1mm}dy\right)\hspace{1mm}dx \\
+        &= \int_{0}^{1}\int_{0}^{1}\overline{f(x)}K(x,y)g(y)\hspace{1mm}dy\hspace{1mm}dx
+        =\int_{0}^{1}\int_{0}^{1}\overline{K(y,x)f(x)}g(y)\hspace{1mm}dx\hspace{1mm}dy \\
+        &= \int_{0}^{1}\overline{T_{K}f(y)}g(y)\hspace{1mm}dy=\ip{T_{K}f}{g}_{L^{2}}
+    \end{align*}
+    para toda $f,g\in L^{2}([0,1])$, lo que implica que $T_{K}$ es autoadjunto.
+    
+    \item Sea $f\in L^{2}([0,1])$ y $(x_{n})_{n\in\N}\subseteq[0,1]$ tal que 
+    $x_{n}\xrightarrow[n\to\infty]{}x\in[0,1]$. Como $K$ es continua, para todo $y\in[0,1]$, se 
+    tiene que $K(x_{n},y)f(y)\xrightarrow[n\to\infty]{} K(x,y)f(y)$, además
+    \begin{equation*}
+        \abs{K(x_{n},y)f(y)}\leq\norm{K}_{\infty}\abs{f(y)}=:g
+    \end{equation*}
+    y como $L^{2}([0,1])\subseteq L^{1}([0,1])$ la función $g$ es integrable. Así, por teorema de
+    convergencia dominada resulta que
+    \begin{equation*}
+        \lim\limits_{n\to\infty}T_{K}f(x_{n})
+        =\lim\limits_{n\to\infty}\int_{0}^{1}K(x_{n},y)f(y)\hspace{1mm}dy
+        =\int_{0}^{1}\lim\limits_{n\to\infty}K(x_{n},y)f(y)\hspace{1mm}dy
+        =\int_{0}^{1}K(x,y)f(y)\hspace{1mm}dy=T_{K}f(x)
+    \end{equation*}
+    Concluimos que $T_{K}(L^{2})\subseteq\C([0,1])$.
+    
+    \item \hspace{1mm}
+    \begin{enumerate}
+        \item Sea $(f_{n})_{n\in\N}$ una sucesión acotada, entonces existe $M>0$ tal que 
+        $\norm{f_{n}}_{L^{2}}\leq M$ para todo $n\in\N$. Por lo visto en el primer ejercicio, 
+        sabemos que
+        \begin{equation*}
+            \norm{T_{K}f_{n}}_{L^{2}}^{2}\leq\norm{K}_{\infty}^{2}\cdot\norm{f_{n}}_{L^{2}}^{2}
+            \leq\norm{K}_{\infty}^{2}\cdot M^{2}
+        \end{equation*}
+        es decir, la sucesión $(T_{K}f_{n})_{n\in\N}$ es acotada. Veamos que es equicontinua. Dado
+        que $[0,1]^{2}$ es compacto, en realidad se tiene que $K$ es uniformemente continua, sea
+        $x_{0}\in[0,1]$ y $\varepsilon>0$, existe $\delta>0$ tal que si
+        \begin{equation*}
+            \abs{x_{0}-x}<\delta \hhtext{entonces}
+            \abs{K(x_{0},y)-K(x,y)}<\frac{\varepsilon}{M} \htext{para todo}y\in[0,1]
+        \end{equation*}
+        Dado $n\in\N$, observemos que
+        \begin{equation*}
+            \abs{T_{K}f_{n}(x_{0})-T_{K}f_{n}(x)}
+            \leq\int_{0}^{1}\abs{K(x_{0},y)-K(x,y)}\cdot\abs{f_{n}(y)}\hspace{1mm}dy
+            <\frac{\varepsilon}{M}\cdot\norm{f_{n}}_{L^{1}}\leq\varepsilon
+        \end{equation*}
+        Por el teorema de Arzela Ascoli se tiene el resultado.
+        
+        \item Sabemos que $\B=\{\varphi_{n}=e^{2\pi inx}:n\in\Z\}$ es una base ortonormal de 
+        $L^{2}([0,1])$, dado $n\in\Z$, vemos que
+        \begin{equation*}
+            T_{K}\varphi_{n}(x)=\int_{0}^{1}K(x,y)\varphi_{n}(y)\hspace{1mm}dy
+            =\int_{0}^{x}y(1-x)e^{2\pi iny}\hspace{1mm}dy
+            +\int_{x}^{1}x(1-y)e^{2\pi iny}\hspace{1mm}dy=:I_{1}+I_{2}
+        \end{equation*}
+        Por un lado tenemos que
+        \begin{equation*}
+            I_{1}=(1-x)\int_{0}^{x}ye^{2\pi iny}\hspace{1mm}dy
+            =(1-x)\left(\frac{ye^{2\pi iny}}{2\pi in}\Big|_{0}^{x}
+            -\frac{1}{2\pi in}\int_{0}^{x}e^{2\pi iny}\hspace{1mm}dy\right)
+            =(1-x)\left(\frac{xe^{2\pi inx}}{2\pi in}-\frac{e^{2\pi inx}-1}{(2\pi in)^{2}}
+            \right)
+        \end{equation*}
+        y por el otro lado
+        \begin{equation*}
+            I_{2}=x\int_{x}^{1}(1-y)e^{2\pi iny}\hspace{1mm}dy
+            =x\left(\frac{(1-y)e^{2\pi iny}}{2\pi in}\Big|_{x}^{1}
+            +\frac{1}{2\pi in}\int_{x}^{1}e^{2\pi iny}\hspace{1mm}dy\right)
+            =x\left(-\frac{(1-x)e^{2\pi inx}}{2\pi in}
+            +\frac{e^{2\pi in}-e^{2\pi inx}}{(2\pi in)^{2}}\right)
+        \end{equation*}
+        entonces
+        \begin{equation*}
+            T_{K}\varphi_{n}(x)=\frac{c_{n}(x)}{(2\pi in)^{2}}
+            \htext{donde}\abs{c_{n}(x)}\leq4
+            \htext{para todo}x\in[0,1]
+        \end{equation*}
+        de este modo obtenemos que
+        \begin{equation*}
+            \sum_{n\in\Z}\norm{T_{K}\varphi_{n}}_{L^{2}}
+            \leq16\sum_{n\in\Z}\frac{1}{(2\pi in)^{4}}<\infty
+        \end{equation*}
+        Por lo tanto $T_{K}$ es un operador de Hilbert Schmidt, por ejercicio de la guía, 
+        concluimos que es compacto.
+    \end{enumerate}
+    
+    \item 
+    
+    \item De la parte anterior sabemos que si $\lambda\in\R^{*}$ es autovalor y $f$ su 
+    correspondiente autovector, entonces satisface la EDO,
+    \begin{equation*}
+        f''+\frac{1}{\lambda}f=0
+    \end{equation*}
+    de ayudantía, sabemos que una solución de la EDO anterior se ve como 
+    $f(x)=Acos(\frac{x}{\sqrt{\lambda}})+Bsen(\frac{x}{\sqrt{\lambda}})$, como $f(0)=0$ se tiene
+    que $A=0$, por otro lado, si $\varphi(x)=sen(\frac{x}{\sqrt{\lambda}})$ entonces
+    \begin{equation*}
+        T_{K}\varphi(x)=\int_{0}^{1}K(x,y)sen\left(\frac{y}{\sqrt{\lambda}}\right)\hspace{1mm}dy
+        =\int_{0}^{x}y(1-x)sen\left(\frac{y}{\sqrt{\lambda}}\right)\hspace{1mm}dy
+        +\int_{x}^{1}x(1-y)sen\left(\frac{y}{\sqrt{\lambda}}\right)\hspace{1mm}dy=:I_{1}+I_{2}
+    \end{equation*}
+    donde,
+    \begin{equation*}
+        I_{1}=(1-x)\left(-\sqrt{\lambda}ycos\left(\frac{y}{\sqrt{\lambda}}\right)\Big|_{0}^{x}
+        +\sqrt{\lambda}\int_{0}^{x}cos\left(\frac{y}{\sqrt{\lambda}}\right)\hspace{1mm}dy\right)
+        =(1-x)\left(-\sqrt{\lambda}xcos\left(\frac{x}{\sqrt{\lambda}}\right)
+        +\lambda sen\left(\frac{x}{\sqrt{\lambda}}\right)\right)
+    \end{equation*}
+    y
+    \begin{equation*}
+        I_{2}=x\left(-(1-y)\sqrt{\lambda}cos\left(\frac{y}{\sqrt{\lambda}}\right)\Big|_{x}^{1}
+        +\sqrt{\lambda}\int_{x}^{1}cos\left(\frac{y}{\sqrt{\lambda}}\right)\hspace{1mm}dy\right)
+        =x\left((1-x)\sqrt{\lambda}cos\left(\frac{x}{\sqrt{\lambda}}\right)
+        +\lambda sen\left(\frac{x}{\sqrt{\lambda}}\right)\right)
+    \end{equation*}
+    
+    \item 
+    
+    \item Usando lo anterior y el hecho de que $T_{K}$ es autoadjunto, resulta que
+    \begin{equation*}
+        \norm{T_{K}}_{\B(L^{2})}=r(T_{K})=\sup_{\lambda\in\sigma(T_{K})}\abs{\lambda}
+        =\sup_{\lambda\in\sigma_{p}(T_{K})}\abs{\lambda}=\frac{1}{\pi^{2}}
+    \end{equation*}
+    
+    \item 
+    
+    \item \textbf{Teorema de Mercer}
+    \begin{enumerate}
+        \item (Pendiente)
+        
+        \item Sabemos que
+        \begin{equation*}
+            \sigma_{p}(T_{K})=\left\{\lambda_{n}=\frac{1}{k^{2}\pi^{2}}:k\in\N\right\}
+        \end{equation*}
+        Por otro lado, tenemos que
+        \begin{equation*}
+            \int_{0}^{1}K(x,x)\hspace{1mm}dx=\int_{0}^{1}x(1-x)\hspace{1mm}dx
+            =\left(\frac{x^{2}}{2}-\frac{x^{3}}{3}\right)\Big|_{0}^{1}=\frac{1}{6}
+        \end{equation*}
+        así, por el teorema de Mercer, concluimos que
+        \begin{equation*}
+            \sum_{n\in\N}\frac{1}{n^{2}}=\pi^{2}\sum_{n\in\N}\lambda_{n}
+            =\pi^{2}\int_{0}^{1}K(x,x)\hspace{1mm}dx=\frac{\pi^{2}}{6}
+        \end{equation*}
+    \end{enumerate}
+\end{enumerate}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}

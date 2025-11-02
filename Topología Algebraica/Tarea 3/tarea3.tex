@@ -62,7 +62,7 @@
     lo que implica que $p\widehat{\alpha}^{-1}\sim\alpha^{-1}$, lo que prueba la afirmación. Así,
     se tiene lo siguiente
     \begin{equation*}
-        (\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha(1)])
+        (\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha])
         \hspace{1mm}{\sbullet}\hspace{1mm}[\beta]
         =\widehat{\alpha}(1)\hspace{1mm}{\sbullet}\hspace{1mm}[\beta]
         =\widehat{\alpha}(1)\hspace{1mm}{\sbullet}\hspace{1mm}[
@@ -121,7 +121,77 @@
 
 \section*{Problema 2}
 
+\noindent El problema planteado es similar al problema 1.IV, pero faltan condiciones.
+
 \section*{Problema 3}
+
+\noindent Consideremos la función $f:[0,1]^{2}\to[0,1]^{2}$ definida por
+\begin{equation*}
+    f(x,y):=\begin{cases}
+        (x,1-2y) &\quad\text{si} \hspace{1mm} 0\leq y\leq\frac{1}{2} \\
+        (x,2y-1) &\quad\text{si} \hspace{1mm} \frac{1}{2}\leq y\leq1
+    \end{cases}
+\end{equation*}
+y por lema del pegado, vemos que $f$ es continua. Tenemos el diagrama
+
+\vspace{2mm}
+\centerline{
+    \xymatrix{
+        [0,1]^{2} \ar[r]^{f} \ar[d]^{\pi_{\T^{2}}} \ar[rd]^{\phi} & [0,1]^{2} \ar[d]^{\pi_{K}} \\
+        \T^{2} & K
+    }
+}
+\vspace{2mm}
+\noindent donde $\phi=\pi_{K}\circ f$. Queremos que $\phi$ descienda a un función continua entre
+$\T^{2}$ y $K$, veamos que es constante en las fibras de $\pi_{\T^{2}}$. Sea $t\in[0,1]$, sabemos
+que $(0,t)\sim(1,t)$. Si $t\leq\frac{1}{2}$, entonces $f(0,t)=(0,1-2t)\sim(1,1-2t)=f(1,t)$, del
+mismo modo para $t\geq\frac{1}{2}$. Por otro lado, tenemos que $(t,0)\sim(t,1)$, luego
+$f(t,0)=(t,1)=f(t,1)$.
+
+\vspace{1mm}
+\noindent Sea $\varphi:\T^{2}\to K$ la función inducida por $\phi$, afirmamos que 
+$(T^{2},\varphi)$ es un espacio cubriente regular de $K$. Bajo lo anterior, concluimos que
+\begin{equation*}
+    \Z^{2}\cong\pi_{1}(\T^{2},x_{0})\cong\varphi_{*}(\pi_{1}(\T^{2},x_{0}))\unlhd\pi_{1}(K,y_{0})
+\end{equation*}
+con $y_{0}=\varphi(x_{0})$. Lo anterior concluye el ejercicio.
+
+\vspace{1mm}
+\noindent Para probar la afirmación, debemos demostrar los siguientes dos puntos
+\begin{enumerate}
+    \item La tupla $(\T^{2},\varphi)$ es un espacio cubriente de $K$.
+    
+    \item El cubrimiento es regular, esto es equivalente a probar que el grupo 
+    $\triangle(\T^{2},\varphi)$ actúa transitivamente en $\varphi^{-1}(x_{0})$ para algún 
+    $x_{0}\in K$. Definimos la función continua $g:[0,1]^{2}\to[0,1]^{2}$ por $g(x,y)=(x,1-y)$, 
+    se tiene el diagrama
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            [0,1]^{2} \ar[r]^{g} \ar[d]^{\pi_{\T^{2}}} \ar[rd]^{\rho}
+            & [0,1]^{2} \ar[d]^{\pi_{\T^{2}}} \\
+            \T^{2} & \T^{2}
+        }
+    }
+    \vspace{2mm}
+
+    donde $\rho:=\pi_{\T^{2}}\circ g$. Sea $t\in[0,1]$, entonces $g(0,t)=(0,1-t)\sim(1,1-t)
+    =g(1,t)$ y además $g(t,1)=(t,0)\sim(t,1)=g(t,0)$, lo que implica que $\rho$ desciende a una
+    función continua $r:\T^{2}\to\T^{2}$, más aún, como $g$ es homeomorfismo también lo es $r$.
+    Por otro lado, sea $(x,y)$ tal que $y\geq\frac{1}{2}$, se sigue que
+    \begin{equation*}
+        \varphi([x,y])=[x,2y-1]=[x,1-2(1-y)]=\varphi([x,1-y])=\varphi\circ r([x,y])
+    \end{equation*}
+    similarmente se tiene para $y\leq\frac{1}{2}$. Concluimos que $r\in\triangle(\T^{2},\varphi)$.
+    Consideramos $x_{0}=[\frac{1}{2},\frac{1}{3}]$, luego
+    \begin{equation*}
+        \varphi^{-1}(x_{0})=\left\{\left[\frac{1}{2},\frac{1}{3}\right], 
+        \left[\frac{1}{2},\frac{2}{3}\right]\right\}
+    \end{equation*}
+    Notar que $r([\frac{1}{2},\frac{1}{3}])=[\frac{1}{2},\frac{2}{3}]$ y viceversa. Por ende, 
+    $\triangle(\T^{2},\varphi)$ actúa transitivamente en $\varphi^{-1}(x_{0})$.
+\end{enumerate}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 

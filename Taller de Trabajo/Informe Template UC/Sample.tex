@@ -559,8 +559,9 @@ de homología.
     que se extiende linealmente.
 \end{dfn}
 
-\noindent Al complejo $(C_{\sbullet}(X),\partial_{\sbullet})$ se le llama complejo de cadena 
-singular. Aunque debemos verificar que $\partial^{2}=0$, lo que se muestra en el siguiente lema.
+\noindent Al complejo $(C_{\sbullet}(X),\partial_{\sbullet})$ lo llamamos complejo de cadena 
+singular. Para ver que el complejo esta bien definido debemos verificar que $\partial^{2}=0$, lo 
+que se muestra en el siguiente lema.
 
 \begin{lema}
     El morfismo $d_{n-1}\circ d_{n}:C_{n}(X)\to C_{n-2}(X)$ es trivial.
@@ -600,8 +601,8 @@ arbitrario.
 \end{dfn}
 
 \noindent Hemos cumplido con una parte del objetivo inicial, ahora nos gustaría, dada una función
-continua $f:X\to Y$ entre espacios topológicos, un morfismo entre sus grupos de homología, para 
-ello la siguiente proposición.
+continua $f:X\to Y$ entre espacios topológicos, obtener un morfismo entre sus grupos de homología, 
+para ello la siguiente proposición.
 
 \begin{prop}
     Sea $f:X\to Y$ un función continua entre espacios topológicos, entonces las funciones
@@ -624,17 +625,17 @@ ello la siguiente proposición.
 \begin{obs}
     Juntando lo anterior y un resultado previo, la función $f$ induce un morfismo de grupos
     $f_{*}:H_{n}(X)\to H_{n}(Y)$, más aún, si $f$ es homeomorfismo, entonces $f_{*}$ es 
-    isomorfismo. Por ende, los grupos de homología son un invariante topológico.
+    isomorfismo. Por lo tanto, los grupos de homología son un invariante topológico.
 \end{obs}
 
-\noindent Lo bueno de esta construcción, a diferencia de otras construcciones, es que las 
-definiciones no dependen de otra cosa más que el espacio topológico, es decir, de los abiertos del 
-espacio. Pero esto viene con un precio a pagar, es prácticamente imposible calcular estos grupos 
-usando únicamente la definición. Sin embargo, podemos calcular unos pocos ejemplos que resultarán 
-útiles mas adelante.
+\noindent Lo bueno de esta construcción, a diferencia de otras, es que las 
+definiciones no dependen de otra cosa más que el espacio topológico, es decir, de los abiertos 
+presentes en la topología. Pero esto viene con un precio a pagar, es prácticamente imposible 
+calcular estos grupos usando únicamente la definición. Sin embargo, podemos calcular unos pocos 
+ejemplos que resultarán útiles mas adelante.
 
 \begin{ej}
-    Sea $X=pt=\{*\}$, el espacio que consiste de un punto. Entonces, existe un único simplice
+    Sea $X=pt=\{*\}$, el espacio que consiste de un punto. Entonces, existe un único $n-$simplice
     singular, digamos, $\sigma_{n}:\Delta^{n}\to pt$, lo que implica que 
     $\sigma_{n}\circ\delta_{i}=\sigma_{n-1}$, luego
     \begin{equation*}
@@ -735,6 +736,7 @@ homología relativa, escición e invarianza homotópica.
     \end{equation*}
     es isomorfismo.
 \end{cor}
+
 \begin{proof}
     Sea $g:Y\to X$ una inversa homotópica, entonces
     \begin{equation*}
@@ -753,8 +755,6 @@ Como $\R^{n}$ es homotópico a un punto, resulta que
         \end{cases}
     \end{equation*}
 \end{ej}
-
-\subsection{Mayer-Vietoris}
 
 \begin{teo}[Mayer-Vietoris]
     Sea $X=A\cup B$ con $A$ y $B$ conjuntos abiertos. Se tienen las inclusiones
@@ -1006,15 +1006,13 @@ y obtener algunos resultados. Empezaremos con las esferas.
 \end{dfn}
 
 \begin{obs}
-    Al igual que en complejos de cadenas, los morfismos $\partial^{i}$
-    se llaman diferenciales, los elementos en $\im{\partial^{i}}$ se dicen 
-    cofronteras y en $\ker{\partial^{i}}$ se dicen cociclos. Además, es claro 
-    que $\im{\partial^{i}}\subseteq\kr{\partial^{i+1}}$.
+    Al igual que en complejos de cadenas, los morfismos $\partial^{i}$ se llaman diferenciales, 
+    los elementos en $\im{\partial^{i}}$ se dicen cofronteras y en $\ker{\partial^{i}}$ se dicen 
+    cociclos. Además, es claro que $\im{\partial^{i}}\subseteq\kr{\partial^{i+1}}$.
 \end{obs}
 
 \begin{dfn}
-    El $i-$ésimo grupo de cohomología de $(C^{\sbullet},\partial^{\sbullet})$ se define
-    por 
+    El $i-$ésimo grupo de cohomología de $(C^{\sbullet},\partial^{\sbullet})$ se define por 
     \begin{equation*}
         H^{i}(C^{\sbullet}):=\frac{\kr{\partial^{i}}}{\im{\partial^{i-1}}}
     \end{equation*}
@@ -1073,9 +1071,9 @@ y obtener algunos resultados. Empezaremos con las esferas.
     H^{n}(D^{\sbullet})$ dado por $[x]\to[f^{n}(x)]$ es un morfismo que está bien definido.
 \end{lema}
 
-\noindent La demostración de este lema es análoga al caso de complejo de cadenas. Previamente,
-definimos el complejo de cadenas singular y los respectivos diferenciales. Usando la idea vista en
-el ejemplo vamos a definir la cohomología singular.
+\noindent La demostración de este lema es análoga al caso de complejo de cadena. Previamente,
+definimos el complejo de cadenas y los respectivos diferenciales en base a un complejo de cadena, 
+usando la idea vista en el ejemplo vamos a definir la cohomología singular.
 
 \begin{dfn}
     Sea $X$ un espacio topológico. Definimos los grupos $C^{i}(X):=Hom(C_{i}(X),\Z)$ y los 
