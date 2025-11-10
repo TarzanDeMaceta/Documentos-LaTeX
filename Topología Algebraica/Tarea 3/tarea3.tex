@@ -35,16 +35,16 @@
         =\widehat{\beta}(1)=\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\beta]
     \end{equation*}
 
-    Además, como $p\widehat{\alpha}=\alpha$, se sigue que $\widehat{\alpha}(1)\in p^{-1}(x_{0})$. 
+    Además, como $p\widehat{\alpha}=\alpha$, se tiene que $\widehat{\alpha}(1)\in p^{-1}(x_{0})$. 
     Veamos que $\sbullet$ induce una acción por la derecha de $\pi_{1}(X,x_{0})$ en 
-    $p^{-1}(x_{0})$. Sea $\widehat{x}\in p^{-1}(x_{0})$ y $ct_{x_{0}}$ el lazo constante basado
-    en $x_{0}$. Notemos que el lazo $ct_{\widehat{x}}$ levanta a $ct_{x_{0}}$, luego 
-    $\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[ct_{x_{0}}]=ct_{\widehat{x}}(1)=\widehat{x}$.
+    $p^{-1}(x_{0})$. Sea $\widehat{x}\in p^{-1}(x_{0})$, notemos que el lazo $ct_{\widehat{x}}$ 
+    levanta al lazo constante $ct_{x_{0}}$, luego $\widehat{x}\hspace{1mm}{\sbullet}
+    \hspace{1mm}[ct_{x_{0}}]=ct_{\widehat{x}}(1)=\widehat{x}$.
 
     \vspace{1mm}
-    Sean $\alpha,\beta$ lazos basados en $x_{0}$ y $\widehat{x}\in p^{-1}(x_{0})$. Afirmamos que
-    $[p(\widehat{\alpha}^{-1}*\widehat{\alpha*\beta})]=[\beta]$ en $\pi_{1}(X,x_{0})$. En primer
-    lugar, vemos que
+    Sean $\alpha,\beta$ lazos basados en $x_{0}$ y sea $\widehat{x}\in p^{-1}(x_{0})$. Afirmamos 
+    que $[p(\widehat{\alpha}^{-1}*\widehat{\alpha*\beta})]=[\beta]$ en $\pi_{1}(X,x_{0})$. En 
+    primer lugar, observamos que
     \begin{equation*}
         p(\widehat{\alpha}^{-1}*\widehat{\alpha*\beta})(0)=\alpha(1)=x_{0}
         \hhtext{y}
@@ -59,7 +59,7 @@
         =[p\widehat{\alpha}*p\widehat{\alpha}^{-1}]=[p\widehat{\alpha}]*[p\widehat{\alpha}^{-1}]
         =[\alpha]*[p\widehat{\alpha}^{-1}]
     \end{equation*}
-    lo que implica que $p\widehat{\alpha}^{-1}\sim\alpha^{-1}$, lo que prueba la afirmación. Así,
+    y por lo tanto $p\widehat{\alpha}^{-1}\sim\alpha^{-1}$, lo que prueba la afirmación. Así,
     se tiene lo siguiente
     \begin{equation*}
         (\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha])
@@ -67,43 +67,42 @@
         =\widehat{\alpha}(1)\hspace{1mm}{\sbullet}\hspace{1mm}[\beta]
         =\widehat{\alpha}(1)\hspace{1mm}{\sbullet}\hspace{1mm}[
             p(\widehat{\alpha}^{-1}*\widehat{\alpha*\beta})
-        ]=\widehat{\alpha*\beta}(1)=\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha*\beta]
+        ]=(\widehat{\alpha*\beta})(1)=\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha*\beta]
     \end{equation*}
-    Notar que $\widehat{\alpha}^{-1}*\widehat{\alpha*\beta}(0)=\widehat{\alpha}(1)$.
+    Notar que $(\widehat{\alpha}^{-1}*\widehat{\alpha*\beta})(0)=\widehat{\alpha}(1)$.
     
-    \item Supongamos que $\widehat{X}$ es arcoconexo, sean $\widehat{x}_{1},\widehat{x}_{2}\in 
+    \item Supongamos que $\widehat{X}$ es arcoconexo y sean $\widehat{x}_{1},\widehat{x}_{2}\in 
     p^{-1}(x_{0})$, existe $\widehat{\gamma}:[0,1]\to\widehat{X}$ continua tal que 
     $\widehat{\gamma}(0)=\widehat{x}_{1}$ y $\widehat{\gamma}(1)=\widehat{x}_{2}$. Definimos 
-    $\gamma=p\widehat{\gamma}$, un lazo basado en $x_{0}$, entonces
+    $\gamma=p\widehat{\gamma}$ que es un lazo basado en $x_{0}$, entonces
     \begin{equation*}
         \widehat{x}_{1}\hspace{1mm}{\sbullet}\hspace{1mm}[\gamma]
         =\widehat{\gamma}(1)=\widehat{x}_{2}
     \end{equation*}
 
-    Por otro lado, supongamos que $\sbullet$ es transitiva. Sean 
-    $\widehat{x},\widehat{y}\in\widehat{X}$, tenemos dos casos, 
-    $\widehat{x},\widehat{y}\in p^{-1}(x_{0})$ para algún $x_{0}\in X$, entonces, existe un lazo 
-    $\gamma$ basado en $x_{0}$ tal que $\widehat{\gamma}(0)=\widehat{x}$ y
+    Por otro lado, supongamos que $\sbullet$ es transitiva. Sean $\widehat{x},\widehat{y}
+    \in\widehat{X}$, tenemos dos casos, el primero es si $\widehat{x},\widehat{y}
+    \in p^{-1}(x_{0})$ para algún $x_{0}\in X$, entonces, existe un lazo $\gamma$ basado en 
+    $x_{0}$ tal que $\widehat{\gamma}(0)=\widehat{x}$ y
     \begin{equation*}
         \widehat{\gamma}(1)=\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\gamma]=\widehat{y}
     \end{equation*}
-    por lo tanto, $\widehat{\gamma}$ es el camino buscado. En cambio, si 
-    $\widehat{x}\in p^{-1}(x)$ e $\widehat{y}\in p^{-1}(y)$ con $x\neq y$, como $X$ es arcoconexo,
-    existe un camino $\gamma$ de modo que $\gamma(0)=x$ y $\gamma(1)=y$. Por lema del 
-    levantamiento $\widehat{\gamma}(0)=\widehat{x}$ y $\widehat{\gamma}(1)
-    =\widehat{y'}\in p^{-1}(y)$ y por el caso anterior concluimos.
+    por lo tanto, $\widehat{\gamma}$ es el camino buscado. El segundo caso es cuando $\widehat{x}
+    \in p^{-1}(x)$ e $\widehat{y}\in p^{-1}(y)$ con $x\neq y$. Como $X$ es arcoconexo, existe un 
+    camino $\gamma$ de modo que $\gamma(0)=x$ y $\gamma(1)=y$. Por lema del levantamiento existe 
+    $\widehat{\gamma}$ un levantamiento de $\gamma$ tal que $\widehat{\gamma}(0)=\widehat{x}$ y 
+    $\widehat{\gamma}(1)=\widehat{y}'\in p^{-1}(y)$ y por el caso anterior concluimos.
     
     \item Debemos probar que dado $\widehat{x}\in\widehat{X}$ se tiene que
     \begin{equation*}
         p_{*}(\pi_{1}(\widehat{X},\widehat{x}))=S_{\widehat{x}}
     \end{equation*}
-    donde $S_{\widehat{x}}$ es el estabilizador de $\widehat{x}$. Sea 
-    $[\alpha]\in S_{\widehat{x}}$, entonces $\widehat{x}
-    =\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha]=\widehat{\alpha}(1)$, como 
-    $p\widehat{\alpha}=\alpha$, concluimos que 
-    $[\alpha]\in p_{*}(\pi_{1}(\widehat{X},\widehat{x}))$. Sea 
-    $[\alpha]\in p_{*}(\pi_{1}(\widehat{X},\widehat{x}))$, entonces existe un lazo basado en 
-    $\widehat{x}$, digamos $\widehat{\alpha}$, tal que $[p\widehat{\alpha}]=[\alpha]$, entonces
+    donde $S_{\widehat{x}}$ es el estabilizador de $\widehat{x}$. Sea $[\alpha]
+    \in S_{\widehat{x}}$, entonces $\widehat{x}=\widehat{x}\hspace{1mm}{\sbullet}
+    \hspace{1mm}[\alpha]=\widehat{\alpha}(1)$, como $p\widehat{\alpha}=\alpha$, concluimos que 
+    $[\alpha]\in p_{*}(\pi_{1}(\widehat{X},\widehat{x}))$. Sea $[\alpha]
+    \in p_{*}(\pi_{1}(\widehat{X},\widehat{x}))$, por ende existe un lazo basado en $\widehat{x}$, 
+    digamos $\widehat{\alpha}$, tal que $[p\widehat{\alpha}]=[\alpha]$, entonces
     \begin{equation*}
         \widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[\alpha]
         =\widehat{x}\hspace{1mm}{\sbullet}\hspace{1mm}[p\widehat{\alpha}]=\widehat{\alpha}(1)
@@ -125,72 +124,175 @@
 
 \section*{Problema 3}
 
-\noindent Consideremos la función $f:[0,1]^{2}\to[0,1]^{2}$ definida por
+\noindent Para $(x,y)\in[0,1]^{2}$, definimos las funciones $f_{0}(x,y)=(x,2y)$ cuando 
+$y\leq\frac{1}{2}$ y $f_{1}(x,y)=(1-x,2y-1)$ cuando $y\geq\frac{1}{2}$, claramente cada una es 
+continua en su respectivo dominio, luego, las funciones $\phi_{i}:=\pi_{K}\circ f_{i}$ son 
+continuas. Definimos $\phi:[0,1]^{2}\to K$ por
 \begin{equation*}
-    f(x,y):=\begin{cases}
-        (x,1-2y) &\quad\text{si} \hspace{1mm} 0\leq y\leq\frac{1}{2} \\
-        (x,2y-1) &\quad\text{si} \hspace{1mm} \frac{1}{2}\leq y\leq1
+    \phi(x,y)=\begin{cases}
+        \phi_{0}(x,y)=[x,2y] &\quad\text{ si }0\leq y\leq\frac{1}{2} \\
+        \phi_{1}(x,y)=[1-x,2y-1] &\quad\text{ si }\frac{1}{2}\leq y \leq1
     \end{cases}
 \end{equation*}
-y por lema del pegado, vemos que $f$ es continua. Tenemos el diagrama
+Veamos que este bien definida, sea $t\in[0,1]$, entonces $\phi_{0}(t,\frac{1}{2})=[t,1]$ y
+$\phi_{1}(t,\frac{1}{2})=[1-t,0]$, así, por lema del pegado, la función $\phi$ es continua. 
+Tenemos el diagrama
 
 \vspace{2mm}
 \centerline{
     \xymatrix{
-        [0,1]^{2} \ar[r]^{f} \ar[d]^{\pi_{\T^{2}}} \ar[rd]^{\phi} & [0,1]^{2} \ar[d]^{\pi_{K}} \\
-        \T^{2} & K
+        [0,1]^{2} \ar[d]^{\pi_{\T^{2}}} \ar[rd]^{\phi} \\
+        \T^{2} \ar@{-->}[r] & K
     }
 }
 \vspace{2mm}
-\noindent donde $\phi=\pi_{K}\circ f$. Queremos que $\phi$ descienda a un función continua entre
-$\T^{2}$ y $K$, veamos que es constante en las fibras de $\pi_{\T^{2}}$. Sea $t\in[0,1]$, sabemos
-que $(0,t)\sim(1,t)$. Si $t\leq\frac{1}{2}$, entonces $f(0,t)=(0,1-2t)\sim(1,1-2t)=f(1,t)$, del
-mismo modo para $t\geq\frac{1}{2}$. Por otro lado, tenemos que $(t,0)\sim(t,1)$, luego
-$f(t,0)=(t,1)=f(t,1)$.
+\noindent Nos gustaría que $\phi$ sea constante en las fibras de $\pi_{\T^{2}}$. Sea $t\in[0,1]$,
+entonces $\phi(t,0)=[t,0]$ y $\phi(t,1)=[1-t,1]$, es decir, $\phi(t,0)=\phi(t,1)$. Por otro lado,
+si $t\leq\frac{1}{2}$ vemos que $\phi(0,t)=[0,2t]$ y $\phi(1,t)=[1,2t]$, en otras palabras, 
+$\phi(0,t)=\phi(1,t)$ y de manera análoga se tiene que $\phi(0,t)=\phi(1,t)$ cuando 
+$t\geq\frac{1}{2}$. Sea $p:\T^{2}\to K$ la función inducida por $\phi$, lo anterior se resume en 
+que el siguiente diagrama conmuta
 
-\vspace{1mm}
-\noindent Sea $\varphi:\T^{2}\to K$ la función inducida por $\phi$, afirmamos que 
-$(T^{2},\varphi)$ es un espacio cubriente regular de $K$. Bajo lo anterior, concluimos que
+\vspace{2mm}
+\centerline{
+    \xymatrix{
+        [0,1]\times[0,\frac{1}{2}] \ar[r]^-{f_{0}} \ar[rd]^-{\phi_{0}} \ar[d]^{\pi_{\T^{2}}}
+        & [0,1]^{2} \ar[d]^-{\pi_{K}}
+        & [0,1]\times[\frac{1}{2},1] \ar[l]_-{f_{1}} \ar[ld]_-{\phi_{1}} \ar[d]^{\pi_{\T^{2}}} \\
+        \T^{2} \ar[r]^-{p} & K & \T^{2} \ar[l]_-{p}
+    }
+}
+\vspace{2mm}
+\noindent Afirmamos que $(\T^{2},p)$ es un espacio cubriente regular de $K$. Bajo lo anterior, 
+concluimos que
 \begin{equation*}
-    \Z^{2}\cong\pi_{1}(\T^{2},x_{0})\cong\varphi_{*}(\pi_{1}(\T^{2},x_{0}))\unlhd\pi_{1}(K,y_{0})
+    \Z^{2}\cong\pi_{1}(\T^{2},x_{0})\cong p_{*}(\pi_{1}(\T^{2},x_{0}))\unlhd\pi_{1}(K,y_{0})
 \end{equation*}
-con $y_{0}=\varphi(x_{0})$. Lo anterior concluye el ejercicio.
+con $y_{0}=p(x_{0})$. Lo que finaliza el ejercicio.
 
 \vspace{1mm}
-\noindent Para probar la afirmación, debemos demostrar los siguientes dos puntos
+\noindent Para probar la afirmación, demostramos los siguientes puntos:
 \begin{enumerate}
-    \item La tupla $(\T^{2},\varphi)$ es un espacio cubriente de $K$.
+    \item La tupla $(\T^{2},p)$ es un espacio cubriente de $K$. Usaremos fuertemente el lema que 
+    nos dice que una función continua y sobreyectiva es cociente si y solo si la imagen de un 
+    abierto saturado es un abierto. Esto fue probado en el curso de Topología. Una definición de 
+    conjunto saturado es que se puede escribir como unión de fibras y una propiedad importante es
+    $q^{-1}(q(U))=U$ para toda función $q$ sobreyectiva y todo conjunto saturado.
+
+    \vspace{1mm}
+    \noindent Consideremos el abierto $(0,1)^{2}\subseteq[0,1]^{2}$ que es saturado bajo 
+    $\pi_{K}$, por que las relaciones se encuentran en $\partial[0,1]^{2}$. Entonces 
+    $U=\pi_{K}((0,1)^{2})$ es abierto en $K$. Por otro lado, los abiertos
+    \begin{equation*}
+        f_{0}^{-1}((0,1)^{2})=(0,1)\times(0,1/2)=U_{0}
+        \hhtext{y}
+        f_{1}^{-1}((0,1)^{2})=(0,1)\times(1/2,1)=U_{1}
+    \end{equation*}
+    son saturados bajo $\pi_{\T^{2}}$.
     
+    \vspace{1mm}
+    \noindent Sean $V_{0}=\pi_{\T^{2}}(U_{0})$ y $V_{1}=\pi_{\T{{2}}}(U_{1})$, afirmamos que 
+    $p^{-1}(U)=V_{0}\sqcup V_{1}$. Notemos, por conmutatividad de los diagramas, que
+    \begin{align*}
+        p^{-1}(U) &= \pi_{\T^{2}}(\phi^{-1}(U))=\pi_{\T^{2}}(\phi_{0}^{-1}(U)
+        \cup\phi_{1}^{-1}(U))
+        =\pi_{\T^{2}}(f_{0}^{-1}(\pi_{K}^{-1}(U))\cup f_{1}^{-1}(\pi_{K}^{-1}(U))) \\[2mm]
+        &= \pi_{\T^{2}}(f_{0}^{-1}((0,1)^{2})\cup f_{1}^{-1}((0,1)^{2}))
+        =\pi_{\T^{2}}(U_{0}\cup U_{1})=V_{0}\cup V_{1}
+    \end{align*}
+    La unión es disjunta por que si $[x,y]\in V_{0}\cap V_{1}$, entonces 
+    $(x,y)\in U_{0}\cap U_{1}$, lo que es imposible.
+    
+    \vspace{1mm}
+    Un conjunto cerrado en $(0,1)^{2}$ es 
+    acotado y por lo tanto compacto, entonces la función $\pi_{K}\big|_{(0,1)^{2}}:(0,1)^{2}\to U$ 
+    es cociente. Como la función $f_{i}:U_{i}\to(0,1)^{2}$ es homeomorfismo con inversa constante 
+    en las fibras de $\pi_{K}\big|_{(0,1)^{2}}$, se sigue que $p:V_{i}\to U$ es homeomorfismo. La 
+    discusión anterior muestra que se cumple la condición de cubriente para todo punto 
+    $[x,y]\in U$, es decir, $(x,y)\in(0,1)^{2}$.
+
+    \newpage
+    \vspace{1mm}
+    El conjunto $W=([0,\frac{1}{4})\cup(\frac{3}{4},1])\times(0,1)$ es un abierto saturado en 
+    $[0,1]^{2}$ bajo $\pi_{K}$ por que $(0,t),(1,t)\in W$ para todo $t\in(0,1)$, entonces 
+    $U=\pi_{K}(W)$ es abierto en $K$. Luego, los abiertos
+    \begin{equation*}
+        V_{0}=\pi_{\T^{2}}(([0,1/4)\cup(3/4,1])\times(0,1/2))
+        \hhtext{y}
+        V_{1}=\pi_{\T^{2}}(([0,1/4)\cup(3/4,1])\times(1/2,1))
+    \end{equation*}
+    cumplen que $p^{-1}(U)=V_{0}\sqcup V_{1}$ con $p:V_{i}\to U$ homeomorfismo. El argumento es 
+    idéntico al anterior.
+
+    Tomamos el abierto saturado $W=[0,1]\times([0,\frac{1}{4})\cup(\frac{3}{4},1])$, para el 
+    abierto $U=\pi_{K}(W)$ definimos los abiertos
+    \begin{equation*}
+        V_{0}=\pi_{\T^{2}}([0,1]\times(3/8,5/8))
+        \hhtext{y}
+        V_{1}=\pi_{\T^{2}}([0,1]\times([0,1/8)\cup(7/8,1]))
+    \end{equation*}
+    de manera similar, se obtiene que $p^{-1}(U)=V_{0}\sqcup V_{1}$. Sin embargo, no es tan claro
+    que $p:V_{i}\to U$ es homeomorfismo. Definimos la función $g:W\to V_{0}$ 
+    dada por
+    \begin{equation*}
+        g(x,y)=\begin{cases}
+            [1-x,\frac{1}{2}(y+1)] &\quad\text{ si }0\leq y<\frac{1}{4} \\
+            [x,\frac{1}{2}y] &\quad\text{ si }\frac{3}{4}<y\leq1
+        \end{cases}
+    \end{equation*}
+    que es continua por lema del pegado. Un argumento idéntico al utilizado previamente nos dice 
+    que $g$ es constante en las fibras de $\pi_{K}:W\to U$ . Sea $\varphi:U\to V_{0}$ la función
+    inducida por $g$, veamos que $\varphi$ es la inversa de $p:V_{0}\to U$. Claramente $\varphi(U)
+    \subseteq V_{0}$, por otro lado, dado $[x,y]$ con $y\leq\frac{1}{2}$ implica
+    \begin{equation*}
+        p\circ\varphi([x,y])=p([1-x,1/2(y+1)])=[x,y]
+        \hhtext{y}
+        \varphi\circ p([x,y])=\varphi([x,2y])=[x,y]
+    \end{equation*}
+    de manera similar resulta que $p\circ\varphi=id_{U}$ y 
+    $\varphi\circ p=id_{V_{0}}$ para $y\geq\frac{1}{2}$, concluimos que $p:V_{0}\to U$ es 
+    homeomorfismo. Análogamente obtenemos que $p:V_{1}\to U$ es homeomorfismo.
+
     \item El cubrimiento es regular, esto es equivalente a probar que el grupo 
-    $\triangle(\T^{2},\varphi)$ actúa transitivamente en $\varphi^{-1}(x_{0})$ para algún 
-    $x_{0}\in K$. Definimos la función continua $g:[0,1]^{2}\to[0,1]^{2}$ por $g(x,y)=(x,1-y)$, 
-    se tiene el diagrama
-    
+    $\triangle(\T^{2},p)$ actúa transitivamente en $p^{-1}(x_{0})$ para algún $x_{0}\in K$.
+    Definimos la función $\psi:[0,1]^{2}\to\T^{2}$ por
+    \begin{equation*}
+        \psi(x,y)=\begin{cases}
+            [1-x,y+\frac{1}{2}] &\quad\text{ si }0\leq y\leq\frac{1}{2} \\
+            [1-x,y-\frac{1}{2}] &\quad\text{ si }\frac{1}{2}\leq y \leq1
+        \end{cases}
+    \end{equation*}
+    Veamos que esta bien definida, en efecto, dado $t\in[0,1]$ vemos que 
+    $\psi(t,\frac{1}{2})=[1-t,0]$ y $\psi(t,\frac{1}{2})=[1-t,1]$. Por la misma razón que antes, 
+    la función $\psi$ es continua. Tenemos el diagrama
+
     \vspace{2mm}
     \centerline{
         \xymatrix{
-            [0,1]^{2} \ar[r]^{g} \ar[d]^{\pi_{\T^{2}}} \ar[rd]^{\rho}
-            & [0,1]^{2} \ar[d]^{\pi_{\T^{2}}} \\
-            \T^{2} & \T^{2}
+            [0,1]^{2} \ar[d]^{\pi_{\T^{2}}} \ar[rd]^{\psi} \\
+            \T^{2} \ar@{-->}[r] & \T^{2}
         }
     }
     \vspace{2mm}
-
-    donde $\rho:=\pi_{\T^{2}}\circ g$. Sea $t\in[0,1]$, entonces $g(0,t)=(0,1-t)\sim(1,1-t)
-    =g(1,t)$ y además $g(t,1)=(t,0)\sim(t,1)=g(t,0)$, lo que implica que $\rho$ desciende a una
-    función continua $r:\T^{2}\to\T^{2}$, más aún, como $g$ es homeomorfismo también lo es $r$.
-    Por otro lado, sea $(x,y)$ tal que $y\geq\frac{1}{2}$, se sigue que
+    \noindent Sea $t\in[0,1]$, luego $\psi(t,0)=[1-t,\frac{1}{2}]$ y 
+    $\psi(t,1)=[1-t,\frac{1}{2}]$, lo que implica que $\psi(t,0)=\psi(t,1)$. Si $t\leq\frac{1}{2}$
+    notamos que $\psi(0,t)=[1,t+\frac{1}{2}]$ y $\psi(1,t)=[0,t+\frac{1}{2}]$, es decir, 
+    $\psi(0,t)=\psi(1,t)$, del mismo modo se tiene el resultado cuando $t\geq\frac{1}{2}$. 
+    
+    \vspace{1mm}
+    Por lo tanto, la función $\psi$ desciende a una función continua $h:\T^{2}\to\T^{2}$ que 
+    verifica $h^{2}=id$. Afirmamos que $h\in\triangle(\T^{2},p)$, en efecto, para 
+    $y\leq\frac{1}{2}$ se sigue que
     \begin{equation*}
-        \varphi([x,y])=[x,2y-1]=[x,1-2(1-y)]=\varphi([x,1-y])=\varphi\circ r([x,y])
+        ph([x,y])=p([1-x,y+1/2])=[x,2y]=p([x,y])
     \end{equation*}
-    similarmente se tiene para $y\leq\frac{1}{2}$. Concluimos que $r\in\triangle(\T^{2},\varphi)$.
-    Consideramos $x_{0}=[\frac{1}{2},\frac{1}{3}]$, luego
+    similarmente se tiene para $t\geq\frac{1}{2}$. Consideramos el punto $x_{0}=[0,0]\in K$. 
+    Luego,
     \begin{equation*}
-        \varphi^{-1}(x_{0})=\left\{\left[\frac{1}{2},\frac{1}{3}\right], 
-        \left[\frac{1}{2},\frac{2}{3}\right]\right\}
+        p^{-1}(x_{0})=\left\{\left[0,0\right],\left[1,\frac{1}{2}\right]\right\}\subseteq\T^{2}
     \end{equation*}
-    Notar que $r([\frac{1}{2},\frac{1}{3}])=[\frac{1}{2},\frac{2}{3}]$ y viceversa. Por ende, 
-    $\triangle(\T^{2},\varphi)$ actúa transitivamente en $\varphi^{-1}(x_{0})$.
+    Notar que $h([0,0])=[1,\frac{1}{2}]$ y $h([1,\frac{1}{2}])=[0,0]$, Por ende, 
+    $\triangle(\T^{2},p)$ actúa transitivamente en $p^{-1}(x_{0})$.
 \end{enumerate}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia

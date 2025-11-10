@@ -27,7 +27,7 @@
 \begin{enumerate}
     \item La función $T_{K}$ es claramente lineal. Observemos que por lema del pegado la función 
     $K$ es continua, para ver que $T_{K}\in\B(H)$, nos damos $f\in L^{2}([0,1])$ y por la 
-    desigualdad de hölder, se sigue que
+    desigualdad de Jensen, se sigue que
     \begin{align*}
         \norm{T_{K}f}_{L^{2}}^{2} &= \int_{0}^{1}\abs{T_{K}f(x)}^{2}\hspace{1mm}dx
         =\int_{0}^{1}\abs{\int_{0}^{1}K(x,y)f(y)\hspace{1mm}dy}^{2}\hspace{1mm}dx \\
@@ -55,7 +55,7 @@
     \begin{equation*}
         \abs{K(x_{n},y)f(y)}\leq\norm{K}_{\infty}\abs{f(y)}=:g
     \end{equation*}
-    y como $L^{2}([0,1])\subseteq L^{1}([0,1])$ la función $g$ es integrable. Así, por teorema de
+    y como $L^{2}([0,1])\subseteq L^{1}([0,1])$, la función $g$ es integrable. Así, por teorema de
     convergencia dominada resulta que
     \begin{equation*}
         \lim\limits_{n\to\infty}T_{K}f(x_{n})
@@ -63,7 +63,7 @@
         =\int_{0}^{1}\lim\limits_{n\to\infty}K(x_{n},y)f(y)\hspace{1mm}dy
         =\int_{0}^{1}K(x,y)f(y)\hspace{1mm}dy=T_{K}f(x)
     \end{equation*}
-    Concluimos que $T_{K}(L^{2})\subseteq\C([0,1])$.
+    Concluimos que $T_{K}(L^{2})\subseteq\mathcal{C}([0,1])$.
     
     \item \hspace{1mm}
     \begin{enumerate}
@@ -71,8 +71,10 @@
         $\norm{f_{n}}_{L^{2}}\leq M$ para todo $n\in\N$. Por lo visto en el primer ejercicio, 
         sabemos que
         \begin{equation*}
-            \norm{T_{K}f_{n}}_{L^{2}}^{2}\leq\norm{K}_{\infty}^{2}\cdot\norm{f_{n}}_{L^{2}}^{2}
-            \leq\norm{K}_{\infty}^{2}\cdot M^{2}
+            \abs{T_{K}f_{n}(x)}^{2}
+            \leq\int_{0}^{1}\abs{K(x,y)}^{2}\abs{f_{n}(y)}^{2}\hspace{1mm}dy
+            \leq\norm{K}^{2}_{\infty}\cdot\norm{f_{n}}^{2}_{L^{2}}
+            \leq\norm{K}^{2}_{\infty}\cdot M^{2}<\infty
         \end{equation*}
         es decir, la sucesión $(T_{K}f_{n})_{n\in\N}$ es acotada. Veamos que es equicontinua. Dado
         que $[0,1]^{2}$ es compacto, en realidad se tiene que $K$ es uniformemente continua, sea
@@ -120,23 +122,50 @@
         \end{equation*}
         de este modo obtenemos que
         \begin{equation*}
-            \sum_{n\in\Z}\norm{T_{K}\varphi_{n}}_{L^{2}}
+            \sum_{n\in\Z}\norm{T_{K}\varphi_{n}}_{L^{2}}^{2}
             \leq16\sum_{n\in\Z}\frac{1}{(2\pi in)^{4}}<\infty
         \end{equation*}
         Por lo tanto $T_{K}$ es un operador de Hilbert Schmidt, por ejercicio de la guía, 
         concluimos que es compacto.
     \end{enumerate}
     
-    \item 
-    
-    \item De la parte anterior sabemos que si $\lambda\in\R^{*}$ es autovalor y $f$ su 
-    correspondiente autovector, entonces satisface la EDO,
+    \item Sea $\lambda\in\R^{*}$ un autovalor y $f\in L^{2}([0,1])$ un autovector, entonces
     \begin{equation*}
-        f''+\frac{1}{\lambda}f=0
+        \int_{0}^{x}y(1-x)f(y)\hspace{1mm}dy+\int_{x}^{1}x(1-y)f(y)\hspace{1mm}dy
+        =T_{K}f(x)=\lambda f(x)
     \end{equation*}
-    de ayudantía, sabemos que una solución de la EDO anterior se ve como 
-    $f(x)=Acos(\frac{x}{\sqrt{\lambda}})+Bsen(\frac{x}{\sqrt{\lambda}})$, como $f(0)=0$ se tiene
-    que $A=0$, por otro lado, si $\varphi(x)=sen(\frac{x}{\sqrt{\lambda}})$ entonces
+    como $f\in L^{2}([0,1])\subseteq L^{1}([0,1])$, entonces $f$ es absolutamente continua, en 
+    particular, es continua y por lo tanto por teorema fundamental del cálculo resulta que $f$ es
+    diferenciable, luego
+    \begin{equation*}
+        \lambda f'(x)=-\int_{0}^{x}yf(y)\hspace{1mm}dy+x(1-x)f(x)+\int_{x}^{1}(1-y)f(y)\hspace{1mm}dy
+        -x(1-x)f(x)=-\int_{0}^{x}yf(y)\hspace{1mm}dy+\int_{x}^{1}(1-y)f(y)\hspace{1mm}dy
+    \end{equation*}
+    por la misma razón que antes obtenemos que $f'$ es continua y diferenciable, así
+    \begin{equation*}
+        \lambda f''(x)=-xf(x)-(1-x)f(x)=-f(x)
+    \end{equation*}
+    Notar que $f''$ es continua por que $f$ lo es. Por otro lado, veamos que 
+    $\lambda f(0)=T_{K}f(0)=0$ y $\lambda f(1)=T_{K}f(1)=0$, lo anterior resulta en la siguiente 
+    EDO con condiciones iniciales
+    \begin{equation*}
+        \begin{cases}
+            f''(x)+\frac{1}{\lambda}f(x)=0 \htext{para todo}x\in[0,1] \\
+            f(0)=f(1)=0
+        \end{cases}
+    \end{equation*}
+    con $f\in\mathcal{C}^{2}([0,1])$.
+    
+    \item Asumiendo que $T_{K}$ es positivo, implica que si $\lambda\in\R^{*}$ es autovalor 
+    entonces $\lambda\geq0$. Sea $f\in L^{2}([0,1])$ un autovector correspondiente a $\lambda$. De
+    la parte anterior sabemos que $f$ satisface la EDO $f''+\frac{1}{\lambda}f=0$ con condiciones 
+    iniciales $f(0)=f(1)=0$, de ayudantía, la solución viene dada por
+    \begin{equation*}
+        f(x)=Acos\left(\frac{x}{\sqrt{\lambda}}\right)+Bsen\left(\frac{x}{\sqrt{\lambda}}\right)
+        \htext{con A,B constantes}
+    \end{equation*}
+    Evaluando en las condiciones iniciales vemos que $0=f(0)=A$, verifiquemos que 
+    $\varphi(x)=sen(\frac{x}{\sqrt{\lambda}})$ es autovector,
     \begin{equation*}
         T_{K}\varphi(x)=\int_{0}^{1}K(x,y)sen\left(\frac{y}{\sqrt{\lambda}}\right)\hspace{1mm}dy
         =\int_{0}^{x}y(1-x)sen\left(\frac{y}{\sqrt{\lambda}}\right)\hspace{1mm}dy
@@ -156,24 +185,149 @@
         =x\left((1-x)\sqrt{\lambda}cos\left(\frac{x}{\sqrt{\lambda}}\right)
         +\lambda sen\left(\frac{x}{\sqrt{\lambda}}\right)\right)
     \end{equation*}
+
+\newpage
+    de este modo $T_{K}\varphi=\lambda\varphi$. Aplicando la segunda condición inicial, vemos que
+    \begin{equation*}
+        0=f(1)=sen\left(\frac{1}{\sqrt{\lambda}}\right)
+        \hhtext{entonces}\frac{1}{\sqrt{\lambda}}=n\pi \text{ con }n\in\N,
+        \htext{luego}\lambda=\frac{1}{n^{2}\pi^{2}}
+    \end{equation*}
     
-    \item 
+    \item Como $T_{K}$ es un operador autoadjunto y compacto y por lo tanto 
+    $\sigma(T_{K})\setminus\{0\}$ es vacío, son finitos autovalores o corresponde a una sucesión 
+    decreciente de autovalores tales que convergen a 0. De la parte anterior sabemos que
+    \begin{equation*}
+        \left\{\lambda_{n}=\frac{1}{n^{2}\pi^{2}}:n\in\N\right\}=\sigma_{p}(T_{K})
+        \subseteq\sigma(T_{K})
+    \end{equation*}
+    lo que implica que $\overline{\sigma_{p}(T_{K})}=\sigma(T_{K})$.
     
     \item Usando lo anterior y el hecho de que $T_{K}$ es autoadjunto, resulta que
     \begin{equation*}
         \norm{T_{K}}_{\B(L^{2})}=r(T_{K})=\sup_{\lambda\in\sigma(T_{K})}\abs{\lambda}
-        =\sup_{\lambda\in\sigma_{p}(T_{K})}\abs{\lambda}=\frac{1}{\pi^{2}}
+        =\sup_{\lambda\in\overline{\sigma_{p}(T_{K})}}\abs{\lambda}=\frac{1}{\pi^{2}}
     \end{equation*}
     
-    \item 
+    \item Notemos que $K(x,y)=\min\{x,y\}-xy$. Por otro lado, para $x\in[0,1]$, definimos 
+    $\varphi_{t}(x)=\I_{\{t\leq x\}}(t)-x$. Veamos que
+    \begin{align*}
+        \int_{0}^{1}\varphi_{t}(x)\varphi_{t}(y)\hspace{1mm}dt
+        &= \int_{0}^{1}(\I_{\{t\leq x\}}(t)-x)(\I_{\{t\leq y\}}(t)-y)\hspace{1mm}dt \\
+        &= \int_{0}^{1}\I_{\{t\leq x,t\leq y\}}(t)\hspace{1mm}dt
+        -y\int_{0}^{1}\I_{\{t\leq x\}}(t)\hspace{1mm}dt
+        -x\int_{0}^{1}\I_{\{t\leq y\}}(t)\hspace{1mm}dt+\int_{0}^{1}xy\hspace{1mm}dt \\
+        &= \min\{x,y\}-xy=K(x,y)
+    \end{align*}
+    De este modo, por tonelli y usando que $\abs{\varphi_{t}(x)}\leq2$, la función 
+    $\varphi_{t}(x)\varphi_{t}(y)\overline{f(x)}f(y)$ es integrable para toda $f\in L^{2}([0,1])
+    \subseteq L^{1}([0,1])$, así por Fubini vemos que
+    \begin{align*}
+        \ip{T_{K}f}{f} &= \int_{[0,1]^{2}}K(x,y)\overline{f(x)}f(y)\hspace{1mm}dy\hspace{1mm}dx
+        =\int_{[0,1]^{3}}\varphi_{t}(x)\varphi_{t}(y)\overline{f(x)}f(y) 
+        \hspace{1mm}dt\hspace{1mm}dy\hspace{1mm}dx \\
+        &= \int_{0}^{1}\left(\overline{\int_{0}^{1}\varphi_{t}(x)f(x)\hspace{1mm}dx}
+        \cdot\int_{0}^{1}\varphi_{t}(y)f(y)\hspace{1mm}dy\right)\hspace{1mm}dt
+        =\int_{0}^{1}\abs{\int_{0}^{1}\varphi_{t}(x)f(x)\hspace{1mm}dx}^{2}\hspace{1mm}dt\geq0
+    \end{align*}
+    Hemos concluido que $T_{K}$ es un operador positivo.
     
     \item \textbf{Teorema de Mercer}
+    
+    \begin{lema}
+        Sea $\{e_{\alpha}\}_{\alpha\in J}$ un conjunto ortonormal en $\mathcal{H}$. Si 
+        $(\{e_{\alpha}\}_{\alpha\in J})^{\perp}=\{0\}$ entonces $\{e_{\alpha}\}_{\alpha\in J}$
+        es una base ortonormal de $\mathcal{H}$. Con $\mathcal{H}$ espacio de Hilbert.
+    \end{lema}
+    
+    \begin{proof}
+        Sea $M=span(\{e_{\alpha}\}_{\alpha\in J})$, tenemos que $\overline{M}^{\perp}
+        =(\{e_{\alpha}\}_{\alpha\in J})^{\perp}$, además se tiene que $\mathcal{H}
+        =\overline{M}\oplus(\{e_{\alpha}\}_{\alpha\in J})^{\perp}=\overline{M}$, lo que implica 
+        que $\{e_{\alpha}\}_{\alpha\in J}$ es una base ortonormal.
+    \end{proof}
+
+    \begin{lema}
+        Sea $\{\psi_{n}\}_{n\in\N}$ una base ortonormal de $L^{2}([0,1])$, entonces 
+        $\{\overline{\psi_{n}}\psi_{j}\}_{n,j\in\N}$ es una base ortonormal de $L^{2}([0,1])^{2}$.
+    \end{lema}
+
+    \begin{proof}
+        Por Fubini, vemos que
+        \begin{align*}
+            \ip{\overline{\psi_{n}}\psi_{j}}{\overline{\psi_{m}}\psi_{i}}_{L^{2}}
+            =\int_{0}^{1}\int_{0}^{1}\psi_{n}(x)
+            \overline{\psi_{j}(y)}\overline{\psi_{m}(x)}\psi_{i}(y)\hspace{1mm}dx\hspace{1mm}dy
+            =\int_{0}^{1}\overline{\psi_{m}(x)}\psi_{n}(x)\hspace{1mm}dx
+            \cdot\int_{0}^{1}\overline{\psi_{j}(y)}\psi_{i}(y)\hspace{1mm}dy=\delta_{nm}\delta_{ij}
+        \end{align*}
+        lo que implica que el conjunto es ortonormal, para ver que es base, por el primer lema 
+        basta probar que dado $f\in L^{2}([0,1]^{2})$ tal que si 
+        $\ip{f}{\overline{\psi_{n}}\psi_{j}}_{L^{2}}=0$ para todo $n,j\in\N$ entonces $f=0$. Para
+        $y\in[0,1]$ definimos $f^{y}(x)=f(x,y)$, que esta en $L^{2}([0,1])$ para casi todo 
+        $y\in[0,1]$. Dado $n\in\N$, definimos
+        \begin{equation*}
+            F_{n}(y)=\ip{\overline{f^{y}}}{\psi_{n}}_{L^{2}([0,1])},
+            \htext{que es medible por Fubini}
+        \end{equation*}
+        Por Cauchy-Schwarz y Fubini notamos que
+        \begin{equation*}
+            \norm{F_{n}}^{2}_{L^{2}([0,1])}
+            =\int_{0}^{1}\abs{\ip{\overline{f^{y}}}{\psi_{n}}_{L^{2}([0,1])}}^{2}\hspace{1mm}dy
+            \leq\int_{0}^{1}\norm{f^{y}}^{2}_{L^{2}([0,1])}\hspace{1mm}dy
+            =\int_{0}^{1}\int_{0}^{1}\abs{f(x,y)}^{2}\hspace{1mm}dx\hspace{1mm}dy
+            =\norm{f}_{L^{2}([0,1]^{2})}
+        \end{equation*}
+        Además, veamos que $\ip{F_{n}}{\psi_{j}}_{L^{2}([0,1])}
+        =\ip{f}{\overline{\psi_{n}}\psi_{j}}_{L^{2}([0,1]^{2})}=0$ para todo $n,j\in\N$. Como 
+        $\psi_{j}$ es base, $F_{n}(y)=0$ para casi todo $y\in[0,1]$ y todo $n\in\N$, lo que 
+        implica que $f^{y}=0$ para casi todo $y\in[0,1]$, nuevamente por que $\psi_{n}$ es base,
+        se sigue que $\norm{f}^{2}_{L^{2}([0,1]^{2})}=0$.
+    \end{proof}
+    
     \begin{enumerate}
-        \item (Pendiente)
+        \item Sea $K:[0,1]^{2}\to\R$ una función continua y simétrica. Sea 
+        $T_{k}:L^{2}[(0,1)]\to L^{2}([0,1])$ definido como al inicio, con kernel $K$ que también 
+        es positivo. Como $K$ es continua, simétrica y positivo implica que el operador $T_{K}$ es 
+        lineal, acotado, autoadjunto, compacto y positivo. Sea $\{\psi_{n}\}_{n\in\N}$ una base 
+        ortonormal de autovectores de $T_{K}$ y $\{\lambda_{n}\}_{n\in\N}$ sus respectivos 
+        autovalores.
+
+        \vspace{1mm}
+        Por el segundo lema se tiene que $\{\overline{\psi_{n}}\psi_{j}\}_{n,j\in\N}$ es base 
+        ortonormal de $L^{2}([0,1]^{2})$, entonces
+        \begin{equation*}
+            K(x,y)=\sum_{n,j\in\N}\ip{K}{\overline{\psi_{n}}\psi_{j}}_{L^{2}}
+            \overline{\psi_{n}(x)}\psi_{j}(y)
+        \end{equation*}
+        por Fubini, notamos lo siguiente
+        \begin{align*}
+            \ip{K}{\overline{\psi_{n}}\psi_{j}}_{L^{2}}
+            &= \int_{0}^{1}\int_{0}^{1}K(x,y)\overline{\psi_{n}(x)}\psi_{j}(y)
+            \hspace{1mm}dx\hspace{1mm}dy
+            =\int_{0}^{1}\overline{T_{K}\psi_{n}(y)}\psi_{j}(y)\hspace{1mm}dy \\
+            &= \lambda_{n}\int_{0}^{1}\overline{\psi_{n}(y)}\psi_{j}(y)\hspace{1mm}dy
+            =\lambda_{n}\ip{\psi_{n}}{\psi_{j}}=\lambda_{n}\delta_{nj}
+        \end{align*}
+        de este modo,
+        \begin{equation*}
+            K(x,y)=\sum_{n,j\in\N}\lambda_{n}\delta_{nj}\overline{\psi_{n}(x)}\psi_{j}(y)
+            =\sum_{n\in\N}\lambda_{n}\overline{\psi_{n}(x)}\psi_{n}(y)
+            \htext{en particular, }
+            K(x,x)=\sum_{n\in\N}\lambda_{n}\abs{\psi_{n}(x)}^{2}
+        \end{equation*}
+        Por otro lado, como el producto interno es continuo respecto a la norma en $L^{2}$, se 
+        sigue que
+        \begin{equation*}
+            \sum_{n\in\N}\lambda_{n}
+            =\sum_{n\in\N}\lambda_{n}\int_{0}^{1}\abs{\psi_{n}(x)}^{2}\hspace{1mm}dx
+            =\int_{0}^{1}\sum_{n\in\N}\lambda_{n}\abs{\psi_{n}(x)}^{2}\hspace{1mm}dx
+            =\int_{0}^{1}K(x,x)\hspace{1mm}dx
+        \end{equation*}
         
         \item Sabemos que
         \begin{equation*}
-            \sigma_{p}(T_{K})=\left\{\lambda_{n}=\frac{1}{k^{2}\pi^{2}}:k\in\N\right\}
+            \sigma_{p}(T_{K})=\left\{\lambda_{n}=\frac{1}{n^{2}\pi^{2}}:n\in\N\right\}
         \end{equation*}
         Por otro lado, tenemos que
         \begin{equation*}
