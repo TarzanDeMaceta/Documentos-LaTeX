@@ -1,0 +1,97 @@
+% Paquetes
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{mathtools}
+\usepackage{dsfont}
+\usepackage{tikz}
+\usepackage[all]{xy}
+\usepackage{mathrsfs}
+
+%\usepackage{biblatex} % Quitar el comentado si quiero usar bibliografia
+%\usepackage{csquotes} % Este igual
+
+% ----- Comandos nuevos -----
+    \newcommand{\ds}{\displaystyle}
+    \newcommand{\norm}[1]{\left \lVert #1\right \rVert}
+    \newcommand{\dv}[2]{\frac{d#1}{d#2}}
+    \newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}
+    \newcommand{\abs}[1]{\left|#1 \right|}
+    \newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+    \newcommand{\gen}[1]{\left\langle{#1}\right\rangle}
+
+    \newcommand{\A}{\mathbb{A}}
+    \newcommand{\C}{\mathbb{C}}
+    \newcommand{\R}{\mathbb{R}}
+    \newcommand{\K}{\mathbb{K}}
+    \newcommand{\Q}{\mathbb{Q}}
+    \newcommand{\Z}{\mathbb{Z}}
+    \newcommand{\N}{\mathbb{N}}
+    \newcommand{\D}{\mathbb{D}}
+    \newcommand{\I}{\mathbb{I}}
+    
+    \newcommand{\V}{\mathcal{V}}
+    \newcommand{\B}{\mathcal{B}}
+    \newcommand{\J}{\mathcal{J}}
+
+    \newcommand{\htext}[1]{\hspace{4mm}\text{#1 }}
+    \newcommand{\hhtext}[1]{\hspace{4mm}\text{#1}\hspace{4mm}}
+    \newcommand{\im}[1]{im\hspace{1mm}#1}
+    \newcommand{\kr}[1]{ker\hspace{1mm}#1}
+    \newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+    
+    % --- Teoremas ---
+        \newtheoremstyle{mystyle} %Nombre
+        {2pt} %Espacio arriba
+        {2pt} %Espacio abajo
+        {\itshape} %Fuente del cuerpo
+        {0pt} %Sangría del título
+        {\bfseries} %
+        {:} %Puntuación despues del título
+        {.5em} %Espacio despues del título
+        {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}} %Estilo del título
+
+        \theoremstyle{mystyle} %Cambio el estilo de theorem
+        
+        \newtheorem{teo}{Teorema}[section]
+        \newtheorem{prop}[teo]{Proposición}
+        \newtheorem{lema}[teo]{Lema}
+        
+        \newtheorem*{cor}{Corolario}
+        \newtheorem*{dfn}{Definición}
+        \newtheorem*{obs}{Observación}
+        \newtheorem*{sol}{Solución}
+
+% ----- Fomato de texto -----
+    \geometry{left=1.5cm, bottom=1.5cm, top=1cm, right=1.5cm}
+
+    \renewcommand{\theenumi}{\arabic{enumi}}
+    \renewcommand{\labelenumi}{({\theenumi})}
+    \renewcommand{\theenumii}{\alph{enumii}}
+    \renewcommand{\labelenumii}{({\theenumii})}
+
+% ----- Cajas de color ----- (Para la caja con color es necesario el paquete de tcolorbox)
+
+\tcolorboxenvironment{teo}{
+    enforce breakable,
+    toprule = 0.2pt,
+    bottomrule = 0.2pt,
+    leftrule = 1mm,
+    rightrule = 1mm,
+    colback = teal!50!red!30!white,
+    colframe = teal!60!red,
+    arc = 0mm
+} % Teorema
+
+% Para enmarcar mas claramente el ambiente de una demostración
+\tcolorboxenvironment{proof}{
+    blanker,
+    enforce breakable,
+    left=5mm,
+    before skip=10pt,
+    after skip=10pt,
+    borderline west={0.5mm}{0pt}{black}
+}
