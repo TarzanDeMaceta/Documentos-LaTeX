@@ -1,0 +1,822 @@
+\documentclass[aop]{imsart2}
+
+%% Packages
+\RequirePackage{amsthm,amsmath,amsfonts,amssymb}
+\RequirePackage[numbers]{natbib}
+\RequirePackage[colorlinks, citecolor=blue, urlcolor=blue]{hyperref}
+\RequirePackage{graphicx}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+%% Arregla error al intentar usar un tamaño de font no disponible
+\usepackage{anyfontsize}
+
+\usepackage{tikz} %% Se utiliza para hacer gráficos
+\usepackage[all]{xy} %% Para los diagramas conmutativos
+\usetikzlibrary{calc}
+
+\usepackage{graphicx} %% Requerido para insertar imagenes
+
+\startlocaldefs
+
+\theoremstyle{plain}
+\newtheorem{axioma}{Axioma}
+\newtheorem{af}[axioma]{Afirmación}
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{lema}[teo]{Lema}
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{cor}[teo]{Corolario}
+
+\theoremstyle{remark}
+\newtheorem{dfn}[teo]{Definición}
+\newtheorem*{ej}{Ejemplo}
+\newtheorem*{obs}{Observación}
+
+%% Nuevos comandos específicos, necesarios para simplificar la escritura
+
+%% Norma y valor absoluto
+\newcommand{\norm}[1]{\left \lVert #1\right \rVert}
+\newcommand{\abs}[1]{\left|#1 \right|}
+
+%% Derivada y derivada parcial
+\newcommand{\dv}[2]{\Crac{d#1}{d#2}}
+\newcommand{\pdv}[2]{\Crac{\partial#1}{\partial#2}}
+
+%% Producto interno y conjunto generador
+\newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\gen}[1]{\left\langle{#1}\right\rangle}
+
+%% Otros
+\newcommand{\htext}[1]{\hspace{4mm}\text{#1 }}
+\newcommand{\hhtext}[1]{\hspace{4mm}\text{#1}\hspace{4mm}}
+\newcommand{\im}[1]{im\hspace{1mm}#1}
+\newcommand{\kr}[1]{ker\hspace{1mm}#1}
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+
+%% Simplificar comandos
+
+\def \ds {\displaystyle}
+\def \C {\mathbb{C}}
+\def \R {\mathbb{R}}
+\def \Q {\mathbb{Q}}
+\def \Z {\mathbb{Z}}
+\def \N {\mathbb{N}}
+\def \S {\mathbb{S}}
+
+\def \A {\mathcal{A}}
+\def \B {\mathcal{B}}
+\def \c {\mathcal{C}}
+\def \F {\mathcal{F}}
+\def \H {\mathcal{H}}
+\def \K {\mathcal{K}}
+\def \M {\mathcal{M}}
+
+\endlocaldefs
+
+\begin{document}
+
+\begin{titlepage}
+    \hspace*{-3cm}
+    \raisebox{-1cm}[0pt][0pt]{
+        \includegraphics[width=0.4\textwidth]{logo_universidad2.png}
+    }
+
+    \vspace{2cm}
+    \begin{center}
+        {\Large Pontificia Universidad Católica de Chile}
+        
+        \vspace{2cm}
+        {\Huge \bfseries Algebras de Banach de Operadores}
+        
+        \vspace{1.5cm}
+        {\Large Benjamín Mateluna}
+        
+        \vspace{1.5cm}
+        {\Large Docente: Amal Taarabt}
+        \vfill
+        
+        {\large \today \par}
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+\section*{Resumen} \hspace{1mm}
+
+\vspace{1mm}
+\noindent En el presente informe estudiaremos las Algebras de Banach, que resultarán ser una
+generalización de $\B(\H)$, el espacio de operadores lineales acotados con dominio $\H$. Muchos de
+los resultados vistos en clases se extenderán a estos espacios, adicionalmente, estudiaremos la
+transformada de Gelfand y como coincide con la transformada de Fourier en $L^{1}(\R)$. Por último,
+exploraremos las $\C^{*}-$algebras y el teorema de Gelfand-Naimark, que relaciona las 
+$\C^{*}-$algebras con las funciones continuas de un espacio compacto.
+
+\section{Preliminares: Topología débil} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent Dado $X$ un espacio de Banach, recordemos que $X^{*}$ simboliza el espacio dual de $X$,
+que corresponde al espacio de funcionales lineales acotados de $X$, y que también es un espacio de 
+Banach. El problema de este espacio es que la bola unitaria, denotada por $\B_{X^{*}}$, no es 
+compacta bajo la topología inducida por la norma, por eso, nos gustaría encontrar una topología
+tal que $\B_{X^{*}}$ sea un conjunto compacto.
+
+\vspace{1mm}
+\noindent Para cada $x\in X$, definimos el funcional lineal $\varphi_{x}:X^{*}\to\C$ definido por 
+$f\mapsto\varphi_{x}(f)=f(x)$, notar que estos mapas son continuos con la norma usual en $X^{*}$. 
+Consideramos la colección $(\varphi_{x})_{x\in X}$ para la siguiente definición.
+
+\begin{dfn}
+    La topologíá débil$-^{*}$, denotada por $\sigma(X^{*},X)$, es la topología más pequeña tal que
+    la colección $(\varphi_{x})_{x\in X}$ de funcionales lineales es continua. En otras palabras,
+    es la topología generada por la sub-base
+    \[
+        \c=\{\varphi_{x}^{-1}(U):x\in X \hhtext{y} U\subseteq\C \text{ es abierto}\}
+    \]
+\end{dfn}
+
+\noindent En un momento veremos que $\B_{X^{*}}$ es un conjunto compacto con esta topología, la
+ventaja de esto es garantizar la existencia de funciones, por ejemplo, en problemas de 
+minimización.
+
+\begin{prop}
+    La topología débil$-^{*}$ $\sigma(X^{*},X)$ es Hausdorff.
+\end{prop}
+
+\begin{proof}
+    Sean $f_{1},f_{2}\in X^{*}$ tal que $f_{1}\neq f_{2}$, entonces existe $x\in X$ tal que 
+    $f_{1}(x)\neq f_{2}(x)$. Como $\C$ es Hausdorff, existen vecindades disjuntas $U_{1},U_{2}
+    \subseteq\C$ de $f_{1}(x)$ y $f_{2}(x)$ respectivamente. Luego, los abiertos
+    \[
+        f_{1}\in\varphi_{x}^{-1}(U_{1}) \qquad \text{y} \qquad f_{2}\in\varphi_{x}^{-1}(U_{2})
+    \]
+    son abiertos disjuntos, y por lo tanto, la topología débil$-^{*}$ $\sigma(X^{*},X)$ es 
+    Hausdorff.
+\end{proof}
+
+\begin{prop}
+    Sean $(f_{n})_{n}\subseteq X^{*}$, entonces $f_{n}\to f$ con la topología débil$-^{*}$ si y 
+    solo si $f_{n}(x)\to f_{n}(x)$ para todo $x\in X$.
+\end{prop}
+
+\noindent La demostración de este resultado se encuentra en \cite{Brezis} (\textit{Brezis, 
+Proposición 3.13}).
+
+\begin{teo}[Banach-Alaoglu]
+    La bola unitaria $\B_{X^{*}}$ es un conjunto compacto con la topología débil$-^{*}$ 
+    $\sigma(X^{*},X)$.
+\end{teo}
+
+\noindent La demostración de este teorema se encuentra en \cite{Brezis} (\textit{Brezis, 
+Teorema 3.16}).
+
+\newpage
+
+\section{Algebras de Banach} \hspace{1mm}
+
+\vspace{1mm}
+\noindent En esta sección hablaremos sobre las algebras de Banach, que son espacio de Banach 
+equipados con una multiplicación que también es un morfismo bilineal. Además, veremos como 
+resultados vistos en $\B(\H)$, el espacio de operadores lineales y acotados sobre un espacio de 
+Hilbert $\H$, se extienden naturalmente a estos espacios.
+
+\subsection{Definiciones} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent Un álgebra sobre $\C$ es un espacio vectorial $\A$ sobre $\C$ que viene dotado de una
+multiplicación de modo que $\A$ es un anillo, más aún, esta operación es un morfismo bilineal, 
+notar que $\C$ puede ser considerada como un álgebra sobre $\C$. Un morfismo de algebras es un
+morfismo de anillos y un morfismo lineal.
+
+\begin{dfn}
+    Un álgebra de Banach es un álgebra $\A$ sobre $\C$ que posee una norma, $\norm{\cdot}$, como
+    espacio vectorial con la cual es un espacio de Banach tal que para todo $a,b\in\A$ se
+    cumple
+    \[
+        \norm{ab}\leq\norm{a}\cdot\norm{b}
+    \]
+    Decimos que la norma es multiplicativa. Si $\A$ tiene una unidad, $e$, entonces $\norm{e}=1$.
+\end{dfn}
+
+\begin{obs}
+    Notar que si $x_{n}\to x$ e $y_{n}\to y$ entonces $x_{n}y_{n}\to xy$, en efecto, observemos 
+    que
+    \[
+        x_{n}y_{n}-xy=(x_{n}-x)y_{n}+x(y_{n}-y)
+    \]
+    Y usando desigualdad triangular y que la norma es multiplicativa se tiene la afirmación. Lo 
+    anterior muestra que la multiplicación es un mapa continuo.
+\end{obs}
+
+\noindent Notemos que $\C$ puede ser visto como una subálgebra de $\A$ vía la identificación
+$\alpha\mapsto\alpha e$ que satisface $\norm{\alpha e}=\abs{\alpha}$, es decir, el mapa es un
+isomorfismo isométrico. A partir de este momento, denotaremos la unidad en un álgebra por $1$ y a
+un elemento $\alpha e$ como $\alpha$.
+
+\vspace{1mm}
+\noindent La ausencia de identidad en un álgebra se puede ``arreglar'' y la siguiente proposición 
+nos dice como.
+
+\begin{prop} \label{adj unidad}
+    Sea $\A$ un álgebra de Banach sin unidad, sea $\A_{1}=\A\times\C$. Definimos las operaciones
+    algebraicas en $\A_{1}$ como sigue
+    \begin{enumerate}
+        \item $(a,\alpha)+(b,\beta)=(a+b,\alpha+\beta)$
+        \item $\beta(a,\alpha)=(\beta a,\beta\alpha)$
+        \item $(a,\alpha)(b,\beta)=(ab+\alpha b+\beta a,\alpha\beta)$
+    \end{enumerate}
+    Se define la norma $\norm{(a,\alpha)}:=\norm{a}+\abs{\alpha}$. Entonces $\A_{1}$ es un álgebra
+    de Banach con unidad $(0,1)$ y $a\mapsto(a,0)$ un isomorfismo isométrico de $\A$ en $\A_{1}$.
+\end{prop}
+
+\begin{proof}
+    Verificar las propiedades para ser álgebra es un cálculo sencillo. Veamos que la norma es 
+    multiplicativa. Sean $(a,\alpha),(b,\beta)\in\A_{{1}}$, entonces
+    \begin{align*}
+        \norm{(a,\alpha)(b,\beta)} &= \norm{(ab+\alpha b+\beta a,\alpha\beta)}
+        =\norm{ab+\alpha b+\beta a}+\abs{\alpha\beta} \\
+        &\leq \norm{a}\norm{b}+\abs{\beta}\norm{a}+\abs{\alpha}\norm{b}+\abs{\alpha}\abs{\beta}
+        =\norm{(a,\alpha)(b,\beta)}
+    \end{align*}
+    Tampoco es díficil chequear que $\A_{1}$ es un espacio de Banach. Que el mapa $a\mapsto(a,0)$
+    es un isomorfismo isométrico es directo.
+\end{proof}
+
+\noindent La anterior proposición nos permite asumir, a partir de ahora, que toda álgebra de 
+Banach tiene una unidad. En caso contrario, siempre existe una álgebra de Banach con unidad, que 
+contiene al álgebra original como subálgebra.
+
+\begin{ej}
+    Sea $X$ un espacio compacto, entonces $\A=\c(X)$ es un álgebra de Banach con la multiplicación 
+    dada por $(fg)(x)=f(x)g(x)$ para todo $f,g\in\A$ y $x\in X$. El álgebra $\A$ es abelina y 
+    posee una unidad, que corresponde a la función constante $1$.
+\end{ej}
+
+\begin{ej}
+    Sea $(X,\F,\mu)$ un espacio de medida $\sigma-$finita. El espacio $L^{\infty}(\mu)$ es un 
+    álgebra de Banach conmutativa con unidad si la multiplicación esta definida igual que en el 
+    ejemplo anterior.
+\end{ej}
+
+\begin{ej}
+    Sea $\H$ un espacio de Hilbert, entonces $\A=\B(\H)$ es un álgebra de Banach, donde la 
+    multiplicación corresponde a la composición de operadores y tiene una unidad que es el 
+    operador identidad. Para $dim_{\C}(\H)\geq2$ el espacio no es conmutativo.
+
+    \vspace{1mm}
+    \noindent El espacio $\K(\H)\subseteq\B(\H)$, el conjunto de operadores compactos, es un 
+    álgebra de Banach sin unidad si $\H$ es un espacio de dimensión infinita.
+\end{ej}
+
+\begin{ej}
+    Consideremos el espacio $L^{1}(\R)$. Definimos la multiplicación en $L^{1}$ como
+    \[
+        (f*g)(x)=\int_{\R}f(t)g(x-t)\hspace{1mm}dt
+    \]
+    para $f,g\in L^{1}$. Sabemos que $L^{1}$ es un espacio de Banach y que la convolución cumple
+    con las propiedades de un álgebra conmutativa, también recordemos que 
+    \[
+        \norm{f*g}_{L^{1}}\leq\norm{f}_{L^{1}}\norm{g}_{L^{1}}
+    \]
+    es decir, $L^{1}$ es un álgebra de Banach conmutativa. Más aún, por la proposición \ref{adj 
+    unidad}, el espacio $L^{1}\times\C$ es un álgebra de Banach conmutativa con unidad.
+\end{ej}
+
+\subsection{Ideales y elementos invertibles} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent Exploraremos más en profundidad la estructura algebraica de un álgebra de Banach, 
+especificamente, veremos la noción de ideal, que será idéntica a la que encontramos en anillos.
+Además, estudiaremos resultados relacionados a elementos invertibles.
+
+\begin{dfn}
+    Sea $\A$ un álgebra. Un ideal por la izquierda (resp. derecha) es una subálgebra $\M$ de $\A$
+    tal que $ax\in\M$ (resp. $xa\in\M$) para todo $a\in\A$ y $x\in\M$. Un ideal bilateral es una
+    subálgebra de $\A$ que es ideal por la izquierda y por la derecha.
+
+    \vspace{1mm}
+    \noindent Decimos que un ideal es maximal, si no existe un ideal propio que lo contenga.
+\end{dfn}
+
+\noindent Un resultado algebraico que será útil más adelante es el siguiente
+
+\begin{prop}
+    Sea $\A$ un álgebra de Banach, entonces todo ideal propio por izquierda, por derecha o 
+    bilateral esta contenido en un ideal maximal del mismo tipo.
+\end{prop}
+
+\noindent Esta proposición es una aplicación del lema Zorn y es un resultado meramente algebraico
+y por lo tanto no se demostrará en este infrome, ya que no es nuestro propósito.
+
+\begin{dfn}
+    Sea $a\in\A$ con $\A$ un álgebra, se dice que $a$ es invertible por la izquierda (resp. 
+    derecha) si existe un elemento $x\in\A$ tal que $xa=1$ (resp. $ax=1$). Decimos que es 
+    invertible si es invertible por izquierda y por derecha.
+\end{dfn}
+
+\noindent En cada caso, definimos los siguientes conjuntos
+\begin{align*}
+    G_{l} &:= \{a\in\A:a \text{ es invertible por izquierda}\} \\
+    G_{r} &:= \{a\in\A:a \text{ es invertible por derecha}\}
+\end{align*}
+Y $G=G_{l}\cap G_{r}$ es el conjunto de los elementos invertibles.
+
+\begin{obs}
+    Si $a\in\A$ es invertible, entonces existe un único elemento, denotado por $a^{-1}$, tal que 
+    $aa^{-1}=a^{-1}a=1$. Adicionalmente, notemos que si $\M$ es un ideal propio entonces no puede
+    contener elementos invertibles.
+\end{obs}
+
+\begin{lema}
+    Sea $\A$ un álgebra de Banach y $a\in\A$ tal que $\norm{a}<1$, entonces $1-a\in G$.
+\end{lema}
+
+\begin{proof}
+    Inductivamente vemos que $\norm{a^{n}}\leq\norm{a}^{n}$, entonces como $\A$ en particular es 
+    un espacio de Banach, la serie $\sum_{n\in\N}^{\infty}a^{n}$ es convergente en $\A$ y además
+    \[
+        (1-a)\sum_{n\in\N}^{\infty}a^{n}
+        =\lim\limits_{m\to\infty}\left(\sum_{n=0}^{m}a^{n}-\sum_{n=0}^{m}a^{n+1}\right)
+        =\lim\limits_{m\to\infty}1-a^{m+1}=1
+    \]
+    La otra igualdad es análoga.
+\end{proof}
+
+\begin{teo} \label{cl spec}
+    Sea $\A$ un álgebra de Banach. Entonces los conjuntos $G_{l}$, $G_{r}$ y $G$ son abiertos, 
+    además, el mapa $a\mapsto a^{-1}$ de $G$ en $G$ es continuo.
+\end{teo}
+
+\begin{proof}
+    Sea $a\in G_{l}$, entonces existe $x\in\A$ tal que $xa=1$. Sea $u\in\A$ de modo que 
+    $\norm{u-a}<\norm{x}^{-1}$, luego, $\norm{xu-1}=\norm{x(u-a)}<1$, por el lema anterior el
+    elemento $xu$ es invertible, definimos $v:=(xu^{-1})x$ y es directo que $vu=1$. Esto prueba
+    que $G_{l}$ es abierto y similarmente $G_{r}$ es abierto, concluimos que $G=G_{l}\cap G_{r}$ 
+    es abierto.
+
+    \vspace{1mm}
+    \noindent Queda probar que $a\mapsto a^{-1}$ es continuo, para ello, basta probar que si
+    $a_{n}\to1$ entonces $a_{n}^{-1}\to1$. Sea $a_{n}\to a$, por continuidad vemos que 
+    $a_{n}a^{-1}\to1$, lo que implica que $aa_{n}^{-1}\to1$ y nuevamente por continuidad 
+    $a_{n}^{-1}\to a^{-1}$.
+
+    \vspace{1mm}
+    \noindent Dado $\varepsilon>0$, consideramos $\delta<\min\{1,\varepsilon/(1+\varepsilon)\}$.
+    Supongamos que $\norm{a_{n}-1}<\delta$, del lema anterior, $a_{n}^{-1}=(1-(1-a_{n}))^{-1}
+    =\sum_{m\in\N}(1-a_{n})^{m}$, así
+    \[
+        \norm{a_{n}^{-1}-1}=\norm{\sum_{m\geq1}(1-a_{n})^{m}}
+        \leq\sum_{m\geq1}\norm{1-a_{n}}^{m}<\frac{\delta}{1-\delta}<\varepsilon
+    \]
+\end{proof}
+
+\noindent Durante la demostración utilizamos dos argumentos que vale la pena enunciar.
+
+\begin{cor}
+    Sea $\A$ un álgebra de Banach, dado $a\in\A$, se cumple lo siguiente:
+    \begin{enumerate}
+        \item Si $\norm{a}<1$, entonces $(1-a)^{-1}=\sum_{n\in\N}(1-a)^{n}$.
+        \item Si $xa=1$ y $\norm{u-a}<\norm{x}^{-1}$, entonces $u$ es invertible por la izquierda.
+    \end{enumerate}
+\end{cor}
+
+\subsection{El espectro} %% Esta parte esta lista
+
+\begin{dfn}
+    Sea $\A$ un álgebra de Banach y $a\in\A$, el espectro de $a$, denotado por $\sigma(a)$, esta 
+    definido por
+    \[
+        \sigma(a):=\{\alpha\in\C:a-\alpha \text{ no es invertible}\}
+    \]
+    Análogamente se definen los espectros por izquierda y por derecha, denotados por 
+    $\sigma_{l}(a)$ y $\sigma_{r}(a)$ respectivamente.
+
+    \vspace{1mm}
+    \noindent El conjunto resolvente de $a$ se define como $\rho(a)=\C\setminus\sigma(a)$. 
+    Similarmente se tienen el conjunto resolvente por izquierda y por derecha, denotados por 
+    $\rho_{l}(a)$ y $\rho_{r}(a)$ respectivamente.
+\end{dfn}
+
+\begin{obs}
+    El mapa $\alpha\mapsto a-\alpha$ es una función continua y notemos que $\rho(a)$ es la 
+    preimagen de $G$ bajo esta función, entonces $\rho(a)$ es abierto y $\sigma(a)$ es cerrado.
+\end{obs}
+
+\begin{ej}
+    Sea $X$ un espacio compacto. Consideremos $f\in\c(X)$, luego $\sigma(f)=f(X)$. En efecto, si
+    $\alpha=f(x_{0})$, la función $f-\alpha$ tiene un cero y por lo tanto no es invertible, de 
+    este modo $f(X)\subseteq\sigma(f)$. Por otro lado, si $\alpha\not\in f(X)$, entonces 
+    $f-\alpha$ no se anula y por ende $(f-\alpha)^{-1}$ esta bien definida y es continua, lo que
+    prueba $\sigma(f)\subseteq f(X)$.
+\end{ej}
+
+\begin{ej}
+    Sea $\H$ un espacio de Hilbert. Dado $T\in\B(\H)$, sabemos que
+    \[
+        \rho(T)=\{\alpha:T-\alpha \text{ es biyección}\}
+    \]
+    Por el teorema del mapa abierto resulta que $(T-\alpha)^{-1}\in\B(\H)$ para todo 
+    $\alpha\in\rho(T)$, y por otro lado, si $T-\alpha$ es invertible claramente es biyectivo. Así, 
+    ambas nociones de espectro y conjunto resolvente coinciden.
+\end{ej}
+
+\begin{teo} \label{comp spec}
+    Sea $\A$ un álgebra de Banach, entonces para cada $a\in\A$, $\sigma(a)$ es un conjunto 
+    compacto no vacío. Más aún, si $\abs{\alpha}>\norm{a}$ entonces $\alpha\in\rho(a)$
+    y el mapa dado por $z\mapsto(z-a)^{-1}$ es una función analítica definida en $\rho(a)$.
+\end{teo}
+
+\begin{proof}
+    Sea $\alpha\in\C$ tal que $\abs{\alpha}>\norm{a}$, notemos que $\alpha-a=\alpha(1-a/\alpha)$ 
+    donde $\norm{a/\alpha}<1$. Lo que implica que $1-a\alpha^{-1}$ es invertible, se sigue que
+    $a-\alpha$ es invertible y por lo tanto $\alpha\in\rho(a)$. De este modo
+    \[
+        \sigma(a)\subseteq\{\alpha\in\C:\abs{\alpha}\leq\norm{a}\}
+    \]
+    Como $\sigma(a)$ es cerrado, concluimos que es compacto. Para el segundo punto, definimos
+    $F:\rho(a)\to\A$ por $F(z)=(z-a)^{-1}$. Notamos la identidad
+    \[
+        x^{-1}-y^{-1}=x^{-1}(y-x)y^{-1} \qquad \text{para todo }x,y\in G
+    \]
+    Reemplazamos $x=\alpha+h-a$ e $y=\alpha-a$, donde $\alpha\in\rho(a)$ y $h\in\C$ tal que
+    $h\neq0$ y $\alpha+h\in\rho(a)$. Entonces
+    \[
+        \frac{F(\alpha+h)-F(\alpha)}{h}=\frac{(\alpha+h-a)^{-1}(-h)(\alpha-a)^{-1}}{h}
+        =-(\alpha+h-a)^{-1}(\alpha-a)^{-1}
+    \]
+    Por continuidad tenemos que $F'(\alpha)=-(\alpha-a)^{-2}$, en otras palabras, $F$ es analítica 
+    en $\rho(a)$. La función $F$ puede ser reescrita como $F(z)=z^{-1}(1-az^{-1})^{-1}$, pero 
+    $(1-az^{-1})\to1$ cuando $z\to\infty$, porque $\norm{a}<\infty$. Lo anterior implica que
+    $F(z)\to0$ cuando $z\to\infty$.
+
+    \vspace{1mm}
+    \noindent Supongamos, por contradicción, que $\sigma(a)=\emptyset$, entonces la función $F$ es
+    entera y por Teorema de Liouville es constante, sin embargo, $F\not\equiv0$, ya que cero no es
+    invertible. Lo anterior prueba que $\sigma(a)$ es no vacío. 
+\end{proof}
+
+\begin{cor}[Gelfand-Mazur]
+    Sea $\A$ un álgebra de Banach tal que todo elemento no cero es invertible. Entonces $\A$ 
+    consiste en múltiplos escalares de la identidad y por lo tanto $\A$ es isometricamente
+    isomorfo a $\C$.
+\end{cor}
+
+\begin{proof}
+    Sea $a\in\A$, existe $\lambda\in\sigma(a)$ tal que $a-\lambda\not\in G$, es decir,
+    $a=\lambda$.
+\end{proof}
+
+\begin{dfn}
+    Sea $\A$ un álgebra de Banach y $a\in\A$, el radio espectral de $a$, denotado por $r(a)$, se 
+    define por
+    \[
+        r(a):=\sup\{\abs{\alpha}:\alpha\in\sigma(a)\}
+    \]
+\end{dfn}
+
+\noindent Dado que $\sigma(a)$ es no vacío, el radio espectral esta bien definido, más aún, por
+compacidad resulta ser finito. La siguiente proposición permite calcular el radio espectral
+explícitamente,
+
+\begin{prop}
+    Sea $\A$ un álgebra de Banach y $a\in\A$, entonces el límite 
+    $\lim\norm{a^{n}}^{\frac{1}{n}}$ existe y
+    \[
+        r(a)=\lim\limits_{n\to\infty}\norm{a^{n}}^{1/n}
+    \]
+\end{prop}
+
+\noindent La demostración de este resultado se encuentra en \cite{Conway} (\textit{Conway, 
+Proposición 3.8})
+
+\subsection{Algebras de Banach conmutativas} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent En este apartado nos enfocaremos en algebras de Banach conmutativas, el principal 
+objeto de estudio serán los morfismos de algebras $h:\A\to\C$, que llamaremos morfismos, donde 
+$\A$ es un álgebra de Banach.
+objetivo.
+
+\begin{prop} \label{h y ker}
+    Sea $\A$ un álgebra de Banach conmutativa y $\M$ un ideal maximal, entonces existe un morfismo
+    $h:\A\to\C$ tal que $\M=\kr{h}$.
+\end{prop}
+
+\noindent La demostración de este resultado se encuentra en \cite{Conway} (\textit{Conway, 
+Proposición 8.2}). El siguiente resultado es fundamental para nuestro objetivo.
+
+\begin{prop}
+    Sea $\A$ es un álgebra de Banach y $h:\A\to\C$ un morfismo no trivial, entonces $\norm{h}=1$.
+\end{prop}
+
+\begin{proof}
+    Sean $a\in\A$ y $\lambda=h(a)$. Supongamos que $\abs{\lambda}>\norm{a}$, entonces por \ref
+    {comp spec} $1-a/\lambda$ es invertible. Sea $b=(1-a\lambda^{-1})^{-1}$, notemos que
+    $1=b(1-a/\lambda)=b-ba/\lambda$ y como $h(1)=1$, vemos lo siguiente
+    \[
+        1=h(b-ba/\lambda)=h(b)-h(b)h(a)/\lambda=h(b)-h(b)=0
+    \]
+    que es una contradicción. De este modo tenemos que $\norm{a}\geq\abs{\lambda}=\abs{h(a)}$, 
+    así, $\norm{h}\leq1$. Por otro lado, como $h(1)=1$, observamos que $\norm{h}=1$.
+\end{proof}
+
+\noindent La proposición anterior nos dice que todo morfismo es continuo, es más, la norma es
+siempre igual a $1$, por ende, todo morfismo es un funcional lineal continuo y la anterior 
+observación da pie a la siguiente definición.
+
+\begin{dfn}
+    Sea $\A$ un álgebra de Banach conmutativa. Denotamos por $\Sigma$ a la colección de morfismos
+    no triviales. Dotamos a este conjunto con la topología débil$-^{*}$, como subconjunto de 
+    $\A^{*}$. Este espacio se llama el espacio ideal maximal de $\A$.
+\end{dfn}
+
+\noindent El teorema de Banach-Alaoglu nos permite demostrar lo siguiente.
+
+\begin{teo} \label{Sigma}
+    Sea $\A$ un álgebra de Banach conmutativa, entonces su espacio ideal maximal $\Sigma$ es un 
+    espacio compacto y Hausdorff. Más aún, si $a\in\A$, entonces
+    \[
+        \sigma(a)=\Sigma(a):=\{h(a):h\in\Sigma\}
+    \]
+\end{teo}
+
+\begin{proof}
+    Para el primer punto, basta probar que $\Sigma$ es cerrado bajo la topología débil$-^{*}$, ya
+    que es subconjunto de $\B_{\A^{*}}$, que bajo esta topología es un conjunto compacto.
+
+    \vspace{1mm}
+    \noindent Sea $(h_{n})_{n}$ una sucesión en $\Sigma$ y $h\in\B_{A^{*}}$ tal que $h_{n}\to h$
+    con la topología débil$-^{*}$. Sean $a,b\in\A$, entonces
+    \[
+        h(ab)=\lim\limits_{n\to\infty}h_{n}(ab)=\lim\limits_{n\to\infty}h_{n}(a)h_{n}(b)
+        =h(a)h(b)
+    \]
+    Y del mismo modo $h(1)=1$. Lo que implica que $h\in\Sigma$, hemos concluido que $\Sigma$ es 
+    compacto.
+
+    \vspace{1mm}
+    \noindent Para el segundo punto, dado $h\in\Sigma$ y $\lambda=h(a)$, tenemos que 
+    $a-\lambda\in\kr{h}$, entonces $a-\lambda$ no es invertible, en otras palabras, $\Sigma(a)
+    \subseteq\sigma(a)$. Por otro lado, si $a-\lambda$ no es invertible, el ideal $(a-\lambda)$ es 
+    propio, entonces existe un ideal maximal $\M$ en $\A$ tal que $(a-\lambda)\subseteq\M$, por
+    \ref{h y ker}, existe $h$ morfismo de modo que $\M=\kr{h}$, en particular
+    \[
+        0=h(a-\lambda)=h(a)-\lambda
+    \]
+    Lo que concluye la demostración.
+\end{proof}
+
+\begin{dfn}
+    Sea $\A$ un álgebra de Banach con espacio ideal maximal $\Sigma$. Dado $a\in\A$, la 
+    transformada de Gelfand de $a$ es la función $\hat{a}:\Sigma\to\C$ definida por 
+    $\hat{a}(h)=h(a)$.
+\end{dfn}
+
+\begin{teo}
+    Sea $\A$ un álgebra de Banach con espacio ideal maximal $\Sigma$, entonces 
+    $\hat{a}\in\c(\Sigma)$ para todo $a\in\A$. El mapa $a\to\hat{a}$ de $\A\to\c(\Sigma)$ es un 
+    morfismo de algebras continuo con norma $1$. Más aún, para cada $a\in\A$, se tiene que
+    \[
+        \norm{\hat{a}}_{\infty}=\lim\limits_{n\to\infty}\norm{a^{n}}^{1/n}
+    \]
+\end{teo}
+
+\begin{proof}
+    Sea $(h_{n})_{n}\subseteq\Sigma$ y $h\in\Sigma$ tales que $h_{n}\to h$ con la topología 
+    débil$-^{*}$. Entonces, dado $a\in\A$, se tiene que
+    \[
+        \hat{a}(h_{n})=h_{n}(a)\to h(a)=\hat{a}(h)
+    \]
+    Lo que prueba la continuidad. Se define $\gamma:\A\to\c(\Sigma)$ por $\gamma(a)=\hat{a}$, sean
+    $a,b\in\A$, luego
+    \[
+        \gamma(ab)(h)=\hat{ab}(h)=h(ab)=h(a)h(b)=\hat{a}(h)\hat{b}(h)
+    \]
+    Por lo tanto $\gamma(ab)=\gamma(a)\gamma(b)$. Del mismo modo se prueba que $\gamma$ es lineal,
+    es decir, $\gamma$ es un morfismo de algebras. Sabemos que $\abs{\hat{a}(h)}=\abs{h(a)}
+    \leq\norm{a}$, así, $\norm{\gamma(a)}_{\infty}=\norm{\hat{a}}_{\infty}\leq\norm{a}$ y por ende
+    la función $\gamma$ es continua, es más, $\norm{\gamma}\leq1$ y como $\gamma(1)=1$, se tiene 
+    $\norm{\gamma}=1$.
+
+    \vspace{1mm}
+    \noindent Por el teorema anterior, dado $a\in\A$, resulta que
+    \[
+        \norm{\hat{a}}_{\infty}=\sup_{\lambda\in\Sigma(a)}\abs{\lambda}
+        =\sup\{\abs{\lambda}:\lambda\in\sigma(a)\}=r(a)=\lim\limits_{n\to\infty}\norm{a^{n}}^{1/n}
+    \]
+\end{proof}
+
+\newpage
+
+\section{\texorpdfstring{$\C^{*}$}{}-Algebras} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent En esta sección, en primer lugar, hablaremos de algebras con una operación adicional, la
+involución, que encuentra similitudes con el operador adjunto en $\B(\H)$. Además, presentaremos
+el resultado principal del presente trabajo que nos permitirá trabajar aplicaciones de la teoría.
+
+\vspace{1mm}
+\noindent Sea $\A$ un álgebra de Banach, una involución es un mapa $a\mapsto a^{*}$ de $\A$ en 
+$\A$ tal que las siguientes propiedades se cumplen para todo $a,b\in\A$ y $\alpha\in\C$
+\begin{enumerate}
+    \item $(a^{*})^{*}=a$.
+    \item $(ab)^{*}=b^{*}a^{*}$.
+    \item $(\alpha a+b)^{*}=\overline{\alpha}a^{*}+b^{*}$.
+\end{enumerate}
+Notemos que $1^{*}a=(1^{*}a)^{**}=(a^{*}1)^{*}=a$ y análogamente $a1^{*}=a$, por unicidad, 
+concluimos que $1^{*}=1$.
+
+\begin{dfn}
+    Una $\C^{*}-$álgebra es un álgebra de Banach $\A$, con una involución tal que para todo 
+    $a\in\A$
+    \[
+    \norm{a^{*}a}=\norm{a}^{2}
+    \]
+\end{dfn}
+
+\begin{dfn}
+    Sean $\A$ y $\B$ \hspace{2mm} $\C^{*}-$algebras y $v:\A\to\B$, se dice $^{*}-$morfismo si $v$ 
+    es un morfismo de algebras tal que $v(a^{*})=v(a)^{*}$.
+\end{dfn}
+
+\begin{ej}
+    Sea $X$ un espacio compacto, luego, $\c(X)$ es una $\C^{*}-$álgebra donde $f^{*}(x)
+    =\overline{f(x)}$ para $f\in\c(X)$ y $x\in X$.
+\end{ej}
+
+\begin{ej}
+    Sea $\H$ un espacio de Hilbert, entonces $\B(\H)$ es una $\C^{*}-$álgebra donde para cada 
+    $A\in\B(\H)$, $A^{*}$ es el operador adjunto de $A$.
+\end{ej}
+
+\begin{prop}
+    Sea $\A$ una $\C^{*}-$álgebra y $a\in\A$, entonces $\norm{a^{*}}=\norm{a}$.
+\end{prop}
+
+\begin{proof}
+    Notemos que $\norm{a}^{2}=\norm{a^{*}a}\leq\norm{a^{*}}\norm{a}$, lo que implica que $\norm{a}
+    \leq\norm{a^{*}}$. Usando que $a=a^{**}$ y reemplazando $a^{*}$ por $a$ se tiene la otra
+    desigualdad.
+\end{proof}
+
+\begin{dfn}
+    Sea $\A$ una $\C^{*}-$álgebra y $a\in\A$, entonces se dice hermitiano si $a=a^{*}$, normal si
+    $a^{*}a=aa^{*}$ y unitario si $a^{*}a=aa^{*}=1$.
+\end{dfn}
+
+\begin{prop}
+    Sea $\A$ una $\C^{*}-$álgebra y $a\in\A$,
+    \begin{enumerate}
+        \item Si $a$ es invertible, entonces $a^{*}$ es invertible y $(a^{*})^{-1}=(a^{-1})^{*}$.
+        
+        \item Entonces $a=x+iy$ con $x,y\in\A$ hermitianos.
+        
+        \item Si $a$ es un elemento unitario de $\A$, entonces $\norm{a}=1$.
+        
+        \item Sea $\B$ una $\C^{*}-$álgebra y $f:\A\to\B$ un $*-$morfismo, entonces $\norm{f(a)}
+        \leq\norm{a}$.
+        
+        \item Si $a$ es un elemento hermitiano, entonces $\norm{a}=r(a)$.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    Notar que $a^{*}(a^{-1})^{*}=(a^{-1}a)^{*}=1$ y la otra igualadad es idéntica. Para el segundo
+    punto basta tomar
+    \[
+        x=\frac{a+a^{*}}{2} \qquad \text{y} \qquad y=\frac{a-a^{*}}{2i}
+    \]
+    Si $a$ es unitario, entonces $1=\norm{a^{*}a}=\norm{a}^{2}$. Supongamos que $a=a^{*}$, luego,
+    $\norm{a^{2}}=\norm{a^{*}a}=\norm{a}^{2}$ e inductivamente $\norm{a^{2^{n}}}=\norm{a}^{2^{n}}$
+    para $n\geq1$. Entonces $\norm{a^{2^{n}}}^{1/2^{n}}=\norm{a}$ y como
+    \[
+        r(a)=\lim \norm{a^{2^{n}}}^{1/2^{n}}=\norm{a}
+    \]
+    Se tiene último punto. Veamos el cuarto punto, sea $a\in\A$, afirmamos que $\sigma(f(a))
+    \subseteq\sigma(a)$ y por definición se sigue que $r(f(a))\leq r(a)$. Usando que $a^{*}a$ es 
+    hermitiano, vemos que
+    \[
+        \norm{f(a)}^{2}=\norm{f(a^{*}a)}=r(f(a^{*}a))\leq r(a^{*}a)=\norm{a^{*}a}=\norm{a}^{2}
+    \]
+    Probemos la afirmación, sea $\alpha\in\rho(a)$ entonces $a-\alpha$ es invertible, es sencillo
+    probar que $f(x^{-1})=(f(x))^{-1}$ con $x\in\A$ un elemento invertible, entonces se verifica
+    que
+    \[
+        (f(a)-\alpha)^{-1}=(f(a-\alpha))^{-1}=f((a-\alpha)^{-1})
+    \]
+    De este modo, $\sigma(f(a))\subseteq\sigma(a)$.
+\end{proof}
+
+\noindent Veremos resultados sobre morfismos de álgebra $h:\A\to\C$ que nos permitirán llegar al 
+resultado final.
+
+\begin{prop}
+    Sea $\A$ una $\C^{*}-$álgebra y $h:\A\to\C$ un morfismo de álgebra no trivial, entonces:
+    \begin{enumerate}
+        \item $h(a)\in\R$ siempre y cuando $a=a^{*}$.
+        
+        \item $h(a^{*})=\overline{h(a)}$ para todo $a\in\A$.
+        
+        \item $h(a^{*}a)\geq0$ para todo $a\in\A$.
+        
+        \item Si $u$ es unitario, entonces $\abs{h(u)}=1$.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    Sabemos que $\norm{h}=1$. Supongamos que $a=a^{*}$ y sea $t\in\R$, notemos que
+    \[
+        \abs{h(a+it)}^{2}\leq\norm{a+it}^{2}=\norm{(a+it)^{*}(a+it)}\leq\norm{a}^{2}+t^{2}
+    \]
+    y sean $\alpha,\beta\in\R$ tales que $h(a)=\alpha+i\beta$, entonces
+    \[
+        \norm{a}^{2}+t^{2}\geq\abs{\alpha+i(\beta+t)}^{2}=\alpha^{2}+\beta^{2}+2\beta t+t^{2}
+    \]
+    para todo $t\in\R$. Si $\beta\neq0$, tomando $t\to\pm\infty$, dependiendo del signo de $\beta$
+    se llega a una contradicción, es decir, $h(a)\in\R$.
+
+    \vspace{1mm}
+    \noindent Para el segundo punto, existen $x,y\in\A$ hermitianos tales que $a=x+iy$, usando que
+    $a^{*}=x-iy$ se tiene el resultado. Además, del punto anterior se sigue que 
+    $h(a^{*}a)=h(a^{*})h(a)=\abs{h(a)}^{2}\geq0$. Finalmente, si $u$ es unitario
+    \[
+        \abs{h(u)}^{2}=h(u^{*})h(u)=h(u^{*}u)=h(1)=1
+    \]
+\end{proof}
+
+\noindent Notemos que $\C$ puede ser visto como una $\C^{*}$-álgebra. La proposición anterior 
+anterior nos permite concluir que todo morfismo de álgebra no trivial $h:\A\to\C$ es un 
+$*-$morfismo. Usando lo anterior y \ref{Sigma}, concluimos el siguiente corolario
+
+\begin{cor}
+    Sea $\A$ una $\C^{*}-$álgebra conmutativa y $a$ un elemento hermitiano de $\A$, entonces
+    $\sigma(a)\subseteq\R$.
+\end{cor}
+
+\noindent Con todo lo anterior podemos enunciar y demostrar el teorema principal.
+
+\begin{teo}[Gelfand-Naimark]
+    Sea $\A$ una $\C^{*}-$álgebra conmutativa y $\Sigma$ su espacio ideal maximal, entonces la 
+    transformada de Gelfand $\gamma:\A\to\c(\Sigma)$ es un $^{*}-$isomorfismo isométrico.
+\end{teo}
+
+\begin{proof}
+    Sea $a\in\A$ y $h\in\Sigma$, entonces $\hat{a^{*}}(h)=h(a^{*})=\overline{h(a)}
+    =\overline{\hat{a}(h)}$, esto es, $\hat{a^{*}}=\overline{\hat{a}}$, por lo tanto la 
+    transformada de Gelfand es un $^{*}-$morfismo. Adicionalmente,
+    \[
+        \norm{a}^{2}=\norm{a^{*}a}=\norm{\widehat{a^{*}a}}_{\infty}
+        =\norm{\abs{\hat{a}}^{2}}_{\infty}=\norm{\hat{a}}^{2}_{\infty}
+    \]
+    Lo que implica que $\gamma$ es una isometría. Dado que la transformada de Gelfand es una
+    isometría, su imagen es cerrada, de este modo basta probar que su conjunto imagen es denso.
+
+    \vspace{1mm}
+    \noindent Procederemos por el teorema de Stone-Weierstrass. Recordemos que $\hat{1}=1$, 
+    entonces $\gamma(\A)$ es una subálgebra de $\c(\Sigma)$ que contiene las constantes. Dado que 
+    $\gamma$ es un $^{*}-$morfismo, la imagen es cerrada bajo conjugación compleja. Resta ver que 
+    separa puntos en $\Sigma$. Sean $h_{1},h_{2}\in\Sigma$ distintos, entonces existe $a\in\A$ tal 
+    que $h_{1}(a)\neq h_{2}(a)$, dicho de otro modo, $\hat{a}(h_{1})\neq\hat{a}(h_{2})$.
+\end{proof}
+
+\section{Aplicaciones} \hspace{1mm}
+
+\hspace{1mm}
+\noindent Finalmente en esta sección veremos aplicaciones de lo estudiado, especificamente,
+demostraremos que la transformada de Gelfand coincide con la transformada de Fourier en 
+$L^{1}(\R)$. También aplicaremos el teorema de Gelfand-Naimark en problemas físicos.
+
+\begin{ej}
+    Sea $\A=L^{1}(\R)$ con una unidad adjunta. Definimos la transformada de Fourier en $L^{1}(\R)$
+    como
+    \[
+        \F(f)(\xi)=\int_{\R}e^{-ix\xi}f(x)\hspace{1mm}dx=:\hat{f}(\xi)
+    \]
+    Que es un morfismo lineal tal que $\widehat{f*g}=\hat{f}\hat{g}$. Luego, la función 
+    $h:L^{1}(\R)\to\C$ dada por
+    \[
+        h_{\xi}(f+\alpha)=\hat{f}(\xi)+\alpha \qquad \text{es un morfismo}
+    \]
+    con $\xi\in[0,\infty]$, si $\xi=\infty$ decimos que $\hat{f}(\xi)=0$.
+\end{ej}
+
+\begin{ej}
+    (Gelfand-Naimark)
+\end{ej}
+
+\newpage
+
+\begin{thebibliography}{2}
+    \bibitem{Conway}
+        \textsc{Conway, John B.} (2007). 
+        \textit{A Course in Functional Analysis}, 2nd ed. Springer.
+
+    \bibitem{Brezis}
+        \textsc{Brezis, H.} (2011). 
+        \textit{
+            Functional Analysis, Sobolev Spaces and Partial Differential Equations
+        }, 1st ed. Springer.
+\end{thebibliography}
+
+\end{document}

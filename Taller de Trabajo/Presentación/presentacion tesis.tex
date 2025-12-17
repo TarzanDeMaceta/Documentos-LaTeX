@@ -1,0 +1,386 @@
+\documentclass[11pt, %t,
+	aspectratio=169
+]{beamer}
+
+\usepackage{booktabs} % Se usa para \toprule, \midrule y \bottomrule mejorar reglas en las tablas
+\usepackage{palatino}
+\usepackage[default]{opensans}
+\usepackage[spanish]{babel}
+
+\usepackage[all]{xy} %% Para los diagramas conmutativos
+
+\usepackage{animate}
+\usepackage{tikz}
+
+%% Comandos o definiciones nuevas
+\theoremstyle{plain}
+\newtheorem{axioma}{Axioma}
+\newtheorem{af}[axioma]{Afirmación}
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{lema}[teo]{Lema}
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{cor}[teo]{Corolario}
+
+\theoremstyle{remark}
+\newtheorem{dfn}[teo]{Definición}
+\newtheorem*{ej}{Ejemplo}
+\newtheorem*{obs}{Observación}
+
+%% Nuevos comandos específicos, necesarios para simplificar la escritura
+
+%% Norma y valor absoluto
+\newcommand{\norm}[1]{\left \lVert #1\right \rVert}
+\newcommand{\abs}[1]{\left|#1 \right|}
+
+%% Derivada y derivada parcial
+\newcommand{\dv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}
+
+%% Producto interno y conjunto generador
+\newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\gen}[1]{\left\langle{#1}\right\rangle}
+
+%% Otros
+\newcommand{\htext}[1]{\hspace{4mm}\text{#1 }}
+\newcommand{\hhtext}[1]{\hspace{4mm}\text{#1}\hspace{4mm}}
+\newcommand{\im}[1]{im\hspace{1mm}#1}
+\newcommand{\kr}[1]{ker\hspace{1mm}#1}
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+
+%% Simplificar comandos
+\def \ds {\displaystyle}
+\def \C {\mathbb{C}}
+\def \R {\mathbb{R}}
+\def \Q {\mathbb{Q}}
+\def \Z {\mathbb{Z}}
+\def \N {\mathbb{N}}
+\def \S {\mathbb{S}}
+\def \H {\mathbb{H}}
+\def \P {\mathbb{P}}
+\def \T {\mathbb{T}}
+
+\def \U {\mathcal{U}}
+
+%% Indica la carpeta donde se ubican las imágenes
+\graphicspath{{Images/}{Images/homotopía/}}
+
+%% Tema del Beamer
+\usetheme{Berlin}
+
+%% Otras configuraciones
+\usefonttheme{default}
+\useinnertheme{circles}
+\setbeamertemplate{footline}
+
+%% Presentación de la disertación/defensa
+\title{
+	Obstrucciones homotópicas a la existencia de estructuras de grupo topológico
+}
+
+\subtitle{Tesis de Pregrado}
+\author{Benjamín Mateluna Medina}
+\institute{
+	Pontificia Universidad Católica de Chile \\ \smallskip \textit{bmateluna@uc.cl}
+}
+\date{\today}
+
+%% Inicio del código...
+\begin{document}
+
+%% Diapositiva --- Presentación
+\begin{frame}
+	\titlepage
+\end{frame}
+
+%% Resumen del trabajo/tesis
+\begin{frame} %% Esta parte esta lista
+	\frametitle{Resumen}
+	Estudiaremos la noción de grupo topológico, analizaremos obstrucciones topológicas para que un
+	espacio admita dicha estructura. Se usarán herramientas de la topología algebraica, tales como
+	\pause
+
+	\begin{itemize}
+		\itemsep0.5em
+		
+		\item Cohomología singular \pause
+		
+		\item Espacios cubrientes \pause
+		
+		\item Grupo fundamental \pause
+	\end{itemize}
+	Uno de los resultados principales, consecuencias de otros tres, es que la única superficie
+	(una $2-$variedad) compacta y conexa que es grupo topológico es el toro. También veremos que
+	ninguna esfera de dimensión par lo es.
+\end{frame}
+
+%% Diapositiva --- Estructura de la Disertación
+\begin{frame}
+	\frametitle{Esquema de la Presentación}
+	
+	\tableofcontents
+\end{frame}
+
+%% Dar a conocer el objetivo de la tesis e introducir la noción de grupos topologicos
+\section{Introducción}
+
+%% Definimos el objeto principal a estudiar.
+\subsection{Grupo topológico} %% Esta parte esta lista
+
+\begin{frame}
+	\frametitle{Grupo Topológico}
+	¿Qué es un grupo topológico? 
+	
+	\vspace{1mm}
+	Un \emph{grupo topológico} es un espacio $X$, equipado con una aplicación continua,
+	\[
+		m:X\times X\to X
+	\]
+	y un elemento $e\in X$ que actúa como la identidad, de modo que $(X,m,e)$ es grupo. Además,
+	exigimos que que el mapa de inversión
+	\[
+		\varphi:X\to X, \qquad \varphi(x)=x^{-1}
+	\]
+	sea continuo.
+\end{frame}
+
+%% Ejemplos para familiarizarse con el concepto
+\subsection{Ejemplos} %% Esta parte esta lista
+
+\begin{frame}
+	\frametitle{Ejemplos}
+	Los primeros ejemplos surgen de manera natural, como $\R$, $\C$, $GL_{n}(\R)$ ó $GL_{n}(\C)$ 
+	son grupos topológicos. Menos trivial, también tenemos los espacios
+	
+	%% Ejemplos menos triviales, el círculo y el toro, explicar ejemplos
+	\begin{figure}
+		\begin{minipage}[b]{0.4\linewidth}
+			\centering
+			\includegraphics[scale=0.15]{circulo.png}
+			\caption{El círculo ó $\S^{1}$}
+		\end{minipage}
+		\hspace{1mm}
+		\begin{minipage}[b]{0.4\linewidth}
+			\centering
+			\includegraphics[scale=0.1]{toro.png}
+			\caption{El toro ó $\T^{2}$}
+		\end{minipage}
+	\end{figure}
+\end{frame}
+
+%% Ejemplos no triviales
+\begin{frame}
+	Para los siguientes ejemplos requerimos de los cuaterniones, denotados por $\H$, que 
+	corresponden a los elementos de la forma
+	\[
+		q=a+bi+cj+dk \qquad \text{con }a,b,c,d\in\R
+	\]
+	donde $i^{2}=j^{2}=k^{2}=ijk=-1$. \pause
+
+	\vspace{1mm}
+	Se suman coordenada a coordenada y se pueden multiplicar usando las relaciones dadas (como los 
+	números complejos). Forman un álgebra de división, equipado con una norma, que corresponde a 
+	la norma en $\R^{4}$, por lo que la identificación
+	\[
+		(a,b,c,d)\mapsto q=a+bi+cj+dk
+	\]
+	es isometría.
+\end{frame}
+
+\begin{frame}
+	Al igual que con $\S^{1}$, la norma es multiplicativa y por lo tanto $\S^{3}\subseteq
+	\H\setminus\{0\}$ es subgrupo. La multiplicación y el mapa de inversión son continuos, luego
+	$\S^{3}$ es grupo topológico. \pause
+
+	\vspace{1mm}
+	Podemos, además, definir una estructura de grupo topológico en $\R\P^{3}=\S^{3}/\{\pm1\}$ 
+	usando la multiplicación en $\S^{3}$, que desciende a una en $\R\P^{3}$, ya que $\{\pm1\}$ 
+	esta en el centro.
+
+	\centerline{
+    \xymatrix{
+            \S^{3}\times\S^{3} \ar[d]_{\pi\times\pi} 
+            \ar[rd]^{\pi\circ m} \\
+            \R\P^{3}\times\R\P^{3} \ar@{-->}[r] & \R\P^{3}
+        }
+    }
+    \vspace{2mm}
+	La construcción de los últimos dos ejemplos no es sencilla.
+\end{frame}
+
+\section*{}
+%% Conectar el tema anterior, ejemplos, con el siguiente, obstrucciones topológicas
+\begin{frame}
+	\begin{center}
+		{\huge \textbf{¿Qué obstrucciones topológicas surgen para ser grupo topológico?}}
+		
+		\vspace{2mm}
+		Buscamos condiciones necesarias que debe cumplir un espacio para tener dicha estructura.
+	\end{center}
+\end{frame}
+
+%% Obstrucciones para ser grupo topológico
+\section{Obstrucciones}
+
+\subsection{Grupo fundamental} %% Esta parte esta lista
+
+%% Grupo fundamental
+\begin{frame}
+	\begin{center}
+		{\huge \textbf{Grupo Fundamental}}
+	\end{center}
+
+	\centering
+	\includegraphics[scale=0.3]{lazo basado.png}
+	%\animategraphics[loop,autoplay,width=0.3\textwidth]{45}{frame-}{001}{141}
+\end{frame}
+
+%% El grupo fundamental es abeliano
+\begin{frame}
+	La primera obstrucción que aparece y también la más accesible se enuncia en el teorema que 
+	sigue:
+
+	\begin{alertblock}{Teorema}
+		Sea $X$ un grupo topológico arcoconexo. Entonces $\pi_{1}(X,e)$ es abeliano.
+	\end{alertblock}
+
+	El primer no ejemplo que surge es $\S^{1}\vee\S^{1}$, cuyo grupo fundamental es $F_{2}$. 
+	También, es posible calcular los grupos fundamentales de las superficies
+	\[
+		\T^{2}\#\T^{2}\#\cdots\#\T^{2} \qquad y \qquad \R\P^{2}\#\R\P^{2}\#\cdots\#\R\P^{2}
+	\]
+	Que corresponden a las superficies de género $g>1$, en ambos casos, los grupos fundamentales
+	no son abelianos.
+\end{frame}
+
+\subsection{Espacios cubrientes} %% Esta parte esta lista
+
+%% Espacios cubrientes
+\begin{frame}
+	\begin{center}
+		{\huge \textbf{Espacios cubrientes}}
+	\end{center}
+
+	\centering
+	\includegraphics[scale=0.25]{espacio-cubriente.png}
+\end{frame}
+
+%% El cubriente universal es grupo topológico
+\begin{frame}
+	De la mano de la primera obstrucción, surge la teoría de espacios cubrientes como una manera 
+	de calcular el grupo fundamental de un espacio. Sin embargo, nuestro interés radica en el 
+	siguiente teorema:
+
+	\begin{alertblock}{Teorema}
+		El cubriente universal de un grupo topológico es grupo topológico.
+	\end{alertblock}
+
+	Para nuestro objetivo buscamos el cubriente universal del plano proyectivo ($\R\P^{2}$), que
+	resulta ser $\S^{2}$ y más adelante veremos que este último no es grupo topológico. Así, el 
+	plano proyectivo tampoco es grupo topológico.
+\end{frame}
+
+\subsection{Cohomología singular} %% Esta parte esta lista
+
+%% Cohomología singular
+\begin{frame}
+	\begin{center}
+		{\huge \textbf{Cohomología singular}}
+	\end{center}
+
+	\centering
+	\includegraphics[scale=0.2]{simplice-singular.png}
+\end{frame}
+
+%% El anillo de cohomología es álgebra de hopf
+\begin{frame}{Anillo de Cohomología}
+	Dado un anillo conmutativo $R$, a un espacio $X$ le asignamos un $R-$módulo, denotado por 
+	$H^{n}(X;R)$, para cada $n\in\N$. En conjunto, forman el anillo de cohomología
+	\[
+		H^{*}(X;R):=\bigoplus_{n\in\N}H^{n}(X;R)
+	\]
+	Que tiene estructura de álgebra graduada. \pause Por ejemplo, los anillos de cohomología de 
+	$\S^{n}$ y $\T^{2}$ son isomorfos, como algebras graduadas, a lo siguiente:
+	\[
+		H^{*}(\S^{n};\Z)\cong\Z[x]/(x^{2}) \qquad \text{donde } \abs{x}=n
+	\]
+	y
+	\[
+		H^{*}(\T^{2};\Z)\cong\Z[x,y]/(x^{2},y^{2},xy+yx) \qquad \text{donde } \abs{x},\abs{y}=1
+	\]
+\end{frame}
+
+\begin{frame}{Algebras de Hopf}
+	\begin{dfn}
+		Sea $A$ un álgebra graduada, se dice álgebra de Hopf si cumple:
+		\begin{enumerate}
+			\item Existe una unidad $1\in A_{0}$ tal que el morfismo $R\to A_{0}$ dado por 
+			$r\mapsto r\cdot1$ es isomorfismo.
+
+			\item Existe un morfismo de algebras graduadas $\triangle:A\to A\otimes A$, llamado
+			coproducto, que satisface
+			\[
+				\triangle(\alpha)=\alpha\otimes1+1\otimes\alpha
+				+\sum_{i}\alpha'_{i}\otimes\alpha''_{n-i}
+			\]
+			donde $\abs{\alpha'_{i}}$, $\abs{\alpha''_{n-i}}>0$ para todo $\alpha\in A_{n}$ con
+			$n>0$.
+		\end{enumerate}
+	\end{dfn}
+\end{frame}
+
+\begin{frame}
+	\begin{alertblock}{Teorema}
+		Sea $X$ un grupo topológico arcoconexo tal que $H^{n}(X;R)$ es un $R-$módulo libre f.g. 
+		para todo $n\in\N$. Entonces $H^{*}(X;R)$ es un álgebra de Hopf.
+	\end{alertblock} \pause
+	En el caso de $\S^{n}$ el coproducto viene dado por $\triangle(x)=x\otimes1+1\otimes x$.
+	Como $\triangle$ es morfismo de algebras, resulta que
+	\[
+		0=\triangle(x^{2})=2\cdot x\otimes x \hspace{4mm}\text{cuando $\abs{x}$ par}
+		\qquad y \qquad
+		\triangle(x^{2})=0 \hspace{4mm}\text{cuando $\abs{x}$ impar}
+	\]
+	En el primer caso vemos que $2=0$ en $\Z$. \pause Concluimos que
+	\begin{alertblock}{Teorema}
+		Sea $n\in\N$. Si $\S^{n}$ es grupo topológico entonces $n$ es impar.
+	\end{alertblock}
+\end{frame}
+
+%% Implicancias de las obstrucciones en superficies
+\section{Superficies} %% Esta parte esta lista
+
+\begin{frame}{Superficies}
+	Hasta ahora tenemos que el toro $\T^{2}$ es una superficie compacta y conexa que es grupo
+	topológico. Por otro lado, hemos descartado otras superficies como $\S^{2}$, $\R\P^{2}$ y 
+	superficies de género $g>1$, el siguiente teorema las clasifica:
+
+	\begin{exampleblock}{Teorema de clasificación de superficies}
+		Toda superficie, no vacía, compacta y conexa es homeomorfa a una de las siguientes
+		\begin{enumerate}
+			\item La $2-$esfera, es decir, $\S^{2}$.
+			\item Superficies orientables de género $g$.
+			\item Superficies no orientables de género $g$.
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+\section{Generalización} %% Esta parte esta lista
+
+%% Nota al pie de página
+\begin{frame}{Nota al pie de página}
+	En un ánimo de generalizar los resultados, podemos relajar la noción de grupo topológico hasta 
+	homotopía. Introducimos los $H-$espacios:
+
+	\begin{dfn}
+		Sea $X$ un espacio topológico. Decimos que $X$ es un $H$-espacio si existe una aplicación
+		continua $\mu: X\times X \to X$ y un elemento $e\in X$ (identidad) tales que los mapeos
+		\begin{equation*}
+			\phi(x)=\mu(x,e), \qquad \psi(x)=\mu(e,x)
+		\end{equation*}
+		son homotópicos a la identidad, relativos a $\{e\}$.
+	\end{dfn}
+\end{frame}
+
+%% 1min y 40seg por diapositiva
+
+\end{document} 

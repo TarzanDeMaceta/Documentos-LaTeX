@@ -1,0 +1,369 @@
+\documentclass[11pt, %t,
+	aspectratio=169
+]{beamer}
+
+\usepackage{booktabs} % Se usa para \toprule, \midrule y \bottomrule mejorar reglas en las tablas
+\usepackage{palatino}
+\usepackage[default]{opensans}
+\usepackage[spanish]{babel}
+
+\usepackage[all]{xy} %% Para los diagramas conmutativos
+
+\usepackage{animate}
+\usepackage{tikz}
+
+%% Comandos o definiciones nuevas
+\theoremstyle{plain}
+\newtheorem{axioma}{Axioma}
+\newtheorem{af}[axioma]{Afirmación}
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{lema}[teo]{Lema}
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{cor}[teo]{Corolario}
+
+\theoremstyle{remark}
+\newtheorem{dfn}[teo]{Definición}
+\newtheorem*{ej}{Ejemplo}
+\newtheorem*{obs}{Observación}
+
+%% Nuevos comandos específicos, necesarios para simplificar la escritura
+
+%% Norma y valor absoluto
+\newcommand{\norm}[1]{\left \lVert #1\right \rVert}
+\newcommand{\abs}[1]{\left|#1 \right|}
+
+%% Derivada y derivada parcial
+\newcommand{\dv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}
+
+%% Producto interno y conjunto generador
+\newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\gen}[1]{\left\langle{#1}\right\rangle}
+
+%% Otros
+\newcommand{\htext}[1]{\hspace{4mm}\text{#1 }}
+\newcommand{\hhtext}[1]{\hspace{4mm}\text{#1}\hspace{4mm}}
+\newcommand{\im}[1]{im\hspace{1mm}#1}
+\newcommand{\kr}[1]{ker\hspace{1mm}#1}
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+
+%% Simplificar comandos
+
+\def \ds {\displaystyle}
+\def \C {\mathbb{C}}
+\def \R {\mathbb{R}}
+\def \Q {\mathbb{Q}}
+\def \Z {\mathbb{Z}}
+\def \N {\mathbb{N}}
+\def \S {\mathbb{S}}
+
+\def \A {\mathcal{A}}
+\def \B {\mathcal{B}}
+\def \c {\mathcal{C}}
+\def \F {\mathcal{F}}
+\def \H {\mathcal{H}}
+\def \K {\mathcal{K}}
+\def \M {\mathcal{M}}
+%% Indica la carpeta donde se ubican las imágenes
+\graphicspath{{Images/}{Images/homotopía/}}
+
+%% Tema del Beamer
+\usetheme{Berlin}
+
+%% Otras configuraciones
+\usefonttheme{default}
+\useinnertheme{circles}
+\setbeamertemplate{footline}
+
+%% Presentación de la disertación/defensa
+\title{
+	Algebras de Banach de operadores
+}
+
+\subtitle{Examen Teoría Espectral (MAT2820)}
+\author{Benjamín Mateluna Medina}
+\institute{
+	Pontificia Universidad Católica de Chile \\ \smallskip \textit{bmateluna@uc.cl}
+}
+\date{\today}
+
+%% Inicio del código...
+\begin{document}
+
+%% Diapositiva --- Presentación
+\begin{frame}
+	\titlepage
+\end{frame}
+
+%% Resumen del trabajo/tesis
+\begin{frame}
+	\frametitle{Resumen}
+	
+	Estudiaremos las Algebras de Banach, que resultarán ser una generalización de $\B(\H)$, el 
+	espacio de operadores lineales acotados con dominio $\H$. Muchos de los resultados vistos en 
+	clases se extenderán a estos espacios, adicionalmente, estudiaremos la transformada de Gelfand 
+	y como coincide con la transformada de Fourier en $L^{1}(\R)$. \pause
+
+	\vspace{1mm}
+	\noindent Por último, exploraremos las $\C^{*}-$algebras y el teorema de Gelfand-Naimark, que 
+	relaciona las $\C^{*}-$algebras con las funciones continuas de un espacio compacto.
+\end{frame}
+
+%% Diapositiva --- Estructura de la Disertación
+\begin{frame}
+	\frametitle{Esquema de la Presentación}
+	
+	\tableofcontents
+\end{frame}
+
+\section{Algebras de Banach}
+
+%% Se tratará la definición de álgebra de Banach y se verán ejemplos
+\subsection{Definición y ejemplos} %% Esta parte esta lista
+
+%% Definición de álgebra de Banach
+\begin{frame}
+	\frametitle{Algebras de Banach}
+
+	\begin{dfn}
+		Un álgebra de Banach es un álgebra $\A$ sobre $\C$ que posee una norma, $\norm{\cdot}$, 
+		como espacio vectorial con la cual es un espacio de Banach tal que para todo $a,b\in\A$ se
+		cumple
+		\[
+			\norm{ab}\leq\norm{a}\cdot\norm{b}
+		\]
+		Decimos que la norma es multiplicativa. Si $\A$ tiene una unidad, $e$, entonces 
+		$\norm{e}=1$.
+	\end{dfn}
+
+	\noindent Que la norma sea multiplicativa nos permite concluir que la función 
+	$(x,y)\mapsto xy$ es continua.
+\end{frame}
+
+%% Ejemplos de algebras de Banach, los más importantes
+\begin{frame}
+	\frametitle{Ejemplos}
+
+	\begin{itemize}
+		\item Sea $X$ un espacio compacto, entonces $\A=\c(X)$ es un álgebra de Banach con la 
+		multiplicación dada por $(fg)(x)=f(x)g(x)$ para todo $f,g\in\A$ y $x\in X$. El álgebra 
+		$\A$ es abelina y posee una unidad, que corresponde a la función constante $1$. \pause
+
+		\item Sea $\H$ un espacio de Hilbert, entonces $\A=\B(\H)$ es un álgebra de Banach, donde 
+		la multiplicación corresponde a la composición de operadores y tiene una unidad que es el 
+		operador identidad. Para $dim_{\C}(\H)\geq2$ el espacio no es conmutativo.
+
+		\vspace{1mm}
+		\noindent El espacio $\K(\H)\subseteq\B(\H)$, el conjunto de operadores compactos, es un 
+		álgebra de Banach sin unidad si $\H$ es un espacio de dimensión infinita.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item Consideremos el espacio $L^{1}(\R)$. Definimos la multiplicación en $L^{1}$ como
+		\[
+			(f*g)(x)=\int_{\R}f(t)g(x-t)\hspace{1mm}dt
+		\]
+		para $f,g\in L^{1}$. Sabemos que $L^{1}$ es un espacio de Banach y que la convolución 
+		cumple con las propiedades de un álgebra conmutativa, también recordemos que 
+		\[
+			\norm{f*g}_{L^{1}}\leq\norm{f}_{L^{1}}\norm{g}_{L^{1}}
+		\]
+		es decir, $L^{1}$ es un álgebra de Banach conmutativa.
+	\end{itemize}
+\end{frame}
+
+%% Se verá como las algebras de Banach se asemejan a \B(\H)
+\subsection{Propiedades de un álgebra de Banach} %% Esta parte esta lista
+
+%% Sobre elementos invertibles y el espectro
+\begin{frame}
+	\begin{exampleblock}{Lema}
+		Sea $\A$ un álgebra de Banach con unidad y $a\in\A$ tal que $\norm{a}<1$, entonces $1-a$ 
+		es invertible.
+	\end{exampleblock}
+	Donde $(1-a)^{-1}=\sum_{n\in\N}a^{n}$. El conjunto de los elementos invertibles,
+	denotado por $G$ es un conjunto abierto y el mapa $a\mapsto a^{-1}$ es continuo. \pause
+
+	\begin{dfn}
+		Sea $\A$ un álgebra de Banach y $a\in\A$, el espectro de $a$, denotado por $\sigma(a)$, 
+		esta definido por
+		\[
+			\sigma(a):=\{\alpha\in\C:a-\alpha \text{ no es invertible}\}
+		\]
+
+		\vspace{2mm}
+		El conjunto resolvente de $a$ se define como $\rho(a)=\C\setminus\sigma(a)$.
+	\end{dfn}
+
+	El mapa $\alpha\mapsto a-\alpha$ es una función continua y notemos que $\rho(a)$ es la 
+    preimagen de $G$ bajo esta función.
+\end{frame}
+
+%% Más resultados sobre el espectro
+\begin{frame}
+	\begin{itemize}
+		\itemsep1em
+
+		\item Sea $X$ un espacio compacto. Consideremos $f\in\c(X)$, luego $\sigma(f)=f(X)$.
+		
+		\item Sea $\H$ un espacio de Hilbert. Dado $T\in\B(\H)$, sabemos que
+		\[
+			\rho(T)=\{\alpha:T-\alpha \text{ es biyección}\}
+		\]
+		Ambas nociones de espectro y conjunto resolvente coinciden.
+	\end{itemize} \pause
+
+	El espectro de un elemento es un conjunto compacto y no vacío.
+	\begin{dfn}
+		Sea $\A$ un álgebra de Banach y $a\in\A$, el radio espectral de $a$, denotado por $r(a)$, 
+		se define por
+		\[
+			r(a):=\sup\{\abs{\alpha}:\alpha\in\sigma(a)\}
+			=\lim\norm{a^{n}}^{1/n}
+		\]
+	\end{dfn}
+\end{frame}
+
+%% Introducir la transformada de Gelfand
+\subsection{Algebras de Banach conmutativas}
+
+%% Resultados previos
+\begin{frame}
+	\frametitle{Algebras de Banach conmutativas}
+
+	\begin{alertblock}{Proposición}
+		Sea $\A$ es un álgebra de Banach y $h:\A\to\C$ un morfismo no trivial, entonces 
+		$\norm{h}=1$.
+	\end{alertblock}
+
+	Vemos que todo morfismo es un funcional lineal continuo. Podemos definir lo siguiente. \pause
+
+	\begin{dfn}
+		Sea $\A$ un álgebra de Banach conmutativa. Denotamos por $\Sigma$ a la colección de 
+		morfismos no triviales. Dotamos a este conjunto con la topología débil$-^{*}$, como 
+		subconjunto de $\A^{*}$. Este espacio se llama el espacio ideal maximal de $\A$.
+	\end{dfn}
+
+	Por Banach-Alaoglu este espacio es compacto y Hausdorff.
+\end{frame}
+
+%% La transformada de Gelfand
+\begin{frame}
+	\frametitle{La transformada de Gelfand}
+
+	\begin{dfn}
+		Sea $\A$ un álgebra de Banach con espacio ideal maximal $\Sigma$. Dado $a\in\A$, la 
+		transformada de Gelfand de $a$ es la función $\hat{a}:\Sigma\to\C$ definida por 
+		$\hat{a}(h)=h(a)$.
+	\end{dfn}
+
+	Se tiene que $\hat{a}\in\c(\Sigma)$ para todo $a\in\A$ y además, la asignación $a\mapsto
+	\hat{a}$ es un morfismo de algebras continuo con norma $1$.
+\end{frame}
+
+%% La transformada de Fourier como caso particular
+\begin{frame}
+	\frametitle{La transformada de Fourier}
+
+	Buscamos los morfismo $h:L^{1}(\R)\to\C$. Por teorema de representación de Riesz, existe un
+	único $\phi\in L^{\infty}(\R)$ tal que
+	\[
+		h(f)=\int_{\R}f(x)\phi(x)\hspace{1mm}dx
+	\]
+	Usando que $h(f*g)=h(f)h(g)$ se tiene que $\phi(x+y)=\phi(x)\phi(y)$ $\lambda-$c.t.p. Luego,
+	se tiene la igualdad
+	\[
+		\int_{\R}f(x)\phi(x+y)\hspace{1mm}dx=\phi(y)\int_{\R}f(x)\phi(x)\hspace{1mm}dx
+		=\phi(y)h(f)
+	\]
+	existe $f$ tal que $h(f)\neq0$ y por lo tanto
+\end{frame}
+
+\begin{frame}
+	\[
+		\phi(y)=\frac{1}{h(f)}\int_{\R}f(x)\phi(x+y)\hspace{1mm}dx
+		=\frac{1}{h(f)}\int_{\R}f(x-y)\phi(x)\hspace{1mm}dx
+	\]
+	lo que implica que $\phi$ es continua. Así, $\phi(0)=1$, además, $\norm{\phi}_{\infty}
+	=\norm{h}\leq1$, es decir, $\abs{\beta(x)}\leq1$. Por continuidad y $\phi(0)=1$, existe 
+	$\delta>0$ tal que
+	\[
+		\int_{0}^{\delta}\phi(x)\hspace{1mm}dx=a\neq0
+	\]
+	Entonces
+	\[
+		a\phi(x)=\phi(x)\int_{0}^{\delta}\phi(t)\hspace{1mm}dt
+		=\int_{x}^{x+\delta}\phi(t)\hspace{1mm}dt
+		\qquad \text{entonces } \phi(x)=a^{-1}\int_{x}^{x+\delta}\phi(t)\hspace{1mm}dt
+	\]
+\end{frame}
+
+\begin{frame}
+	Por teorema fundamental del cálculo, la función $\phi$ es diferenciable, más aún,
+	\[
+		\frac{\phi(x+s)-\phi(x)}{s}=\phi(x)\cdot\frac{\phi(s)-1}{s}
+	\]
+	Tenemos una EDO $\phi'(x)=\phi'(0)\phi(x)$ con condiciones iniciales $\phi(0)=1$, cuya 
+	solución es $\phi(x)=e^{-ix\xi}$. De este modo,
+	\[
+		\hat{f}(h)=\int_{\R}f(x)e^{-ix\xi}\hspace{1mm}dx=\F(f)(\xi)
+	\]
+
+\end{frame}
+
+%% Cambiamos a C^{*}-algebras, para hablar del teorema de Gelfand
+\section{\texorpdfstring{$\C^{*}$}{}-Algebras}
+
+%% Definiciones previas y ejemplos
+\begin{frame}
+	\frametitle{$\C^{*}-$Algebras}
+
+	\begin{dfn}
+		Sea $\A$ un álgebra de Banach, una involución es un mapa $a\mapsto a^{*}$ de $\A$ en 
+		$\A$ tal que las siguientes propiedades se cumplen para todo $a,b\in\A$ y $\alpha\in\C$
+		\begin{enumerate}
+			\item $(a^{*})^{*}=a$
+			\item $(ab)^{*}=b^{*}a^{*}$
+			\item $(\alpha a+b)^{*}=\overline{\alpha}a^{*}+b^{*}$
+		\end{enumerate}
+		Notemos que $1^{*}a=(1^{*}a)^{**}=(a^{*}1)^{*}=a$ y análogamente $a1^{*}=a$, por unicidad, 
+		concluimos que $1^{*}=1$.
+	\end{dfn}
+\end{frame}
+
+\begin{frame}
+	\begin{dfn}
+		Una $\C^{*}-$álgebra es un álgebra de Banach $\A$, con una involución tal que para todo 
+		$a\in\A$
+		\[
+		\norm{a^{*}a}=\norm{a}^{2}
+		\]
+	\end{dfn} \pause
+
+	\begin{itemize}
+		\item Sea $X$ un espacio compacto, luego, $\c(X)$ es una $\C^{*}-$álgebra donde $f^{*}(x)
+    	=\overline{f(x)}$ para $f\in\c(X)$ y $x\in X$.
+
+		\item Sea $\H$ un espacio de Hilbert, entonces $\B(\H)$ es una $\C^{*}-$álgebra donde para 
+		cada $A\in\B(\H)$, $A^{*}$ es el operador adjunto de $A$.
+	\end{itemize} \pause
+
+	Un morfismo de $\C^{*}-$algebras es un morfimo de algebras tal que $f(a^{*})=f(a)^{*}$. Todo
+	morfismo $h:\A\to\C$ es un $^{*}-$morfismo.
+\end{frame}
+
+%% Teorema de Gelfand Naimark
+\begin{frame}
+	\begin{alertblock}{Teorema}
+		Sea $\A$ una $\C^{*}-$álgebra conmutativa y $\Sigma$ su espacio ideal maximal, entonces la 
+    	transformada de Gelfand $\gamma:\A\to\c(\Sigma)$ es un $^{*}-$isomorfismo isométrico.
+	\end{alertblock}
+
+	Es válido para $\C^{*}-$álgebras en general, es decir, no necesariamente deben ser unitarias
+	o ser conmmutativas, en el primer caso el conjunto es $\c_{0}(\Sigma)$ y en el segundo caso
+	el isomorfismo es a una $\C^{*}-$subálgebra de operadores acotados en un espacio de Hilbert.
+\end{frame}
+
+\end{document} 

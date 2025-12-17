@@ -1,0 +1,2029 @@
+\documentclass[aop]{imsart2}
+
+%% Packages
+\RequirePackage{amsthm,amsmath,amsfonts,amssymb}
+\RequirePackage[numbers]{natbib}
+\RequirePackage[colorlinks, citecolor=blue, urlcolor=blue]{hyperref}
+\RequirePackage{graphicx}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+%% Arregla error al intentar usar un tamaño de font no disponible
+\usepackage{anyfontsize}
+
+\usepackage{tikz} %% Se utiliza para hacer gráficos
+\usepackage[all]{xy} %% Para los diagramas conmutativos
+\usetikzlibrary{calc}
+
+\usepackage{graphicx} %% Requerido para insertar imagenes
+
+\startlocaldefs
+
+\theoremstyle{plain}
+\newtheorem{axioma}{Axioma}
+\newtheorem{af}[axioma]{Afirmación}
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{lema}[teo]{Lema}
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{cor}[teo]{Corolario}
+
+\theoremstyle{remark}
+\newtheorem{dfn}[teo]{Definición}
+\newtheorem*{ej}{Ejemplo}
+\newtheorem*{obs}{Observación}
+
+%% Nuevos comandos específicos, necesarios para simplificar la escritura
+
+%% Norma y valor absoluto
+\newcommand{\norm}[1]{\left \lVert #1\right \rVert}
+\newcommand{\abs}[1]{\left|#1 \right|}
+
+%% Derivada y derivada parcial
+\newcommand{\dv}[2]{\frac{d#1}{d#2}}
+\newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}
+
+%% Producto interno y conjunto generador
+\newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\gen}[1]{\left\langle{#1}\right\rangle}
+
+%% Otros
+\newcommand{\htext}[1]{\hspace{4mm}\text{#1 }}
+\newcommand{\hhtext}[1]{\hspace{4mm}\text{#1}\hspace{4mm}}
+\newcommand{\im}[1]{im\hspace{1mm}#1}
+\newcommand{\kr}[1]{ker\hspace{1mm}#1}
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+
+%% Simplificar comandos
+
+\def \ds {\displaystyle}
+\def \C {\mathbb{C}}
+\def \R {\mathbb{R}}
+\def \Q {\mathbb{Q}}
+\def \Z {\mathbb{Z}}
+\def \N {\mathbb{N}}
+\def \S {\mathbb{S}}
+\def \H {\mathbb{H}}
+\def \P {\mathbb{P}}
+\def \T {\mathbb{T}}
+
+\def \U {\mathcal{U}}
+
+\endlocaldefs
+
+\begin{document}
+
+\begin{titlepage}
+    \hspace*{-3cm}
+    \raisebox{-1cm}[0pt][0pt]{
+        \includegraphics[width=0.4\textwidth]{logo_universidad2.png}
+    }
+
+    \vspace{2cm}
+    \begin{center}
+        {\Large Pontificia Universidad Católica de Chile}
+        
+        \vspace{2cm}
+        {\Huge \bfseries 
+        Obstrucciones homotópicas a la existencia de estructuras de grupo topológico
+        }
+        
+        \vspace{1.5cm}
+        {\Large Benjamín Mateluna}
+        
+        \vspace{1.5cm}
+        {\Large Docente Guía: Mauricio Bustamante}
+        \vfill
+        
+        {\large \today \par}
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+\section*{Resumen} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent En este trabajo estudiamos la noción de grupo topológico y analizamos obstrucciones
+topológicas para que un espacio admita esta estructura. Empleamos herramientas de la topología
+algebraica, entre ellas la cohomología, los espacios cubrientes y el grupo fundamental. Entre los 
+resultados principales está la única superficie compacta y conexa que puede ser un grupo 
+topológico es el $2-$toro, y que ninguna esfera de dimensión par admite una estructura de grupo 
+topológico.
+
+
+\section{Introducción} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent El objetivo de esta tesis es estudiar los grupos topológicos y las obstrucciones que 
+impiden que un espacio lo sea. Un \emph{grupo topológico} es un espacio topológico $X$ equipado 
+con una aplicación continua
+\begin{equation*}
+    m:X\times X\to X
+\end{equation*}
+y un elemento $e\in X$ que actúa como identidad, de modo que $(X,m,e)$ es un grupo. Además 
+exigimos que el mapa de inversión
+\begin{equation*}
+    \varphi:X\to X,\qquad \varphi(x)=x^{-1},
+\end{equation*}
+sea continuo. A continuación presentamos algunos ejemplos para introducir esta noción y mostrar 
+que aparece de manera natural en distintos contextos.
+
+\begin{ej}
+    Los primeros espacios que surgen como grupos topológicos son $\R$ y $\C$. Con la norma
+    usual en $\R$ y $\C$, la suma y multiplicar por $-1$ son aplicaciones continuas; además,
+    $(\R,+,0)$ y $(\C,+,0)$ son grupos.
+\end{ej}
+
+\begin{ej}
+    Consideremos $GL_{n}(\R)$, el grupo general lineal de orden $n$, es decir, el subconjunto de
+    las matrices $n\times n$ con coeficientes en $\R$ que son invertibles. Equipado con la norma
+    euclidiana en $\R^{n^2}$, la multiplicación de matrices es continua porque cada entrada es
+    un polinomio en las entradas de las matrices; de forma similar, la aplicación 
+    $A\mapsto A^{-1}$ es continua. Análogamente, $GL_{n}(\C)$ es un grupo topológico.
+\end{ej}
+
+\noindent Como mencionamos, los ejemplos anteriores surgen de forma natural y son fundamentales.
+No obstante, no es obvio qué estructura de grupo asignar a un espacio topológico dado; por 
+ejemplo, más adelante se demostrará que $\S^{2}$ no admite tal estructura. Para caracterizar los 
+espacios que pueden ser grupos topológicos estudiaremos obstrucciones para serlo: es decir, 
+encontraremos condiciones necesarias que debe cumplir un espacio para poder ser un grupo 
+topológico. El siguiente teorema proporciona una primera restricción.
+
+\begin{teo}
+    Sea $X$ un grupo topológico arcoconexo. Entonces $\pi_{1}(X,e)$ es abeliano.
+\end{teo}
+
+\noindent De este resultado se desprende que $\S^{1}\vee\S^{1}$, el producto \emph{wedge}, no 
+admite estructura de grupo topológico, ya que $\pi_{1}(\S^{1}\vee\S^{1},1)\cong F_{2}$, el grupo 
+libre en dos generadores. Este cálculo se obtiene mediante el teorema de Seifert--van Kampen. 
+Combinando ambos resultados descartamos que espacios como $\#^{n}\T^{2}$ o $\#^{n}\R\P^{2}$, para 
+$n>1$, sean grupos topológicos.
+
+\vspace{1mm}
+\noindent Por otro lado, $\pi_{1}(\S^{1},1)=\Z$ y $\pi_{1}(\S^{n},x_{0})=0$ para $n>1$, de modo 
+que estos espacios cumplen la primera restricción. En el caso de $\S^{1}$ se utiliza la 
+multiplicación en $\C$: la multiplicación es continua y $\S^{1}\subset\C^{*}$ es un subgrupo 
+multiplicativo, por lo que $\S^{1}$ es un grupo topológico. Como corolario, $\T^{2}
+=\S^{1}\times\S^{1}$ es un grupo topológico.
+
+\newpage
+\noindent Para $n=3$ consideramos los cuaterniones $\H$. El conjunto de cuaterniones unitarios se 
+identifica con $\S^{3}$ y, bajo la multiplicación, forman un grupo topológico; por tanto $\S^{3}$
+es un grupo topológico. Dado que $\R\P^{3}=\S^{3}/\{\pm1\}$ y $\{\pm1\}$ es un subgrupo central,
+la multiplicación desciende al cociente, de modo que $\R\P^{3}$ también es un grupo topológico
+(de hecho, es isomorfo a $SO(3)$).
+
+\vspace{1mm}
+\noindent Las esferas $\S^{1}$ y $\S^{3}$ aparecen como subconjuntos de álgebras de división que 
+son, además, espacios topológicos; esto facilita la construcción de sus estructuras de grupo 
+topológico. En cambio, $\S^{2}$ no admite tal estructura. Nos interesa entonces determinar para 
+qué valores de $n\in\N$ la esfera $\S^{n}$ puede ser grupo topológico. Existen restricciones 
+fuertes sobre $n$, el siguiente teorema nos brinda una respuesta
+
+\begin{teo}\label{teo:esferas}
+    Sea $n\in\N$. Si $\S^{n}$ es grupo topológico entonces $n$ es impar.
+\end{teo}
+
+\noindent Es más, en la literatura clásica se conoce que los casos posibles son excepcionales 
+(los casos de Hopf: $n=1,3$), y la tesis entra en las condiciones que conducen a dichas 
+restricciones. Hasta ahora sabemos que el toro es un grupo topológico, que $\S^{2}$ no lo es, y 
+que los espacios homeomorfos a $\#^{n}\T^{2}$ y $\#^{n}\R\P^{2}$ con $n>1$ tampoco lo son. El 
+siguiente teorema permite además descartar a $\R\P^{2}$ como grupo topológico.
+
+\begin{teo}
+    El cubriente universal de un grupo topológico es grupo topológico.
+\end{teo}
+
+\noindent Como $\S^{2}$ es el cubriente universal de $\R\P^{2}$, el teorema de clasificación de
+superficies permite concluir lo siguiente:
+
+\begin{teo}
+    La única superficie compacta y conexa que es grupo topológico es $\T^{2}$.
+\end{teo}
+
+\noindent Veremos más adelante que estos resultados se pueden generalizar a una clase más amplia de
+espacios, los llamados $H$-espacios. Esto ocurre porque los invariantes que utilizaremos son
+invariantes homotópicos. En este sentido, un $H$-espacio puede verse como un grupo topológico “hasta
+homotopía”. La definición formal es la siguiente:
+
+\begin{dfn}
+    Sea $X$ un espacio topológico. Decimos que $X$ es un $H$-espacio si existe una aplicación
+    continua $\mu: X\times X \to X$ y un elemento $e\in X$ (identidad) tales que los mapeos
+    \begin{equation*}
+        \phi(x)=\mu(x,e), \qquad \psi(x)=\mu(e,x)
+    \end{equation*}
+    son homotópicos a la identidad, relativos a $\{e\}$.
+\end{dfn}
+
+\noindent Observemos que la definición implica $\mu(e,e)=e$. También podemos añadir más 
+estructura a un $H$-espacio:
+
+\begin{enumerate}
+    \itemsep0.5em
+
+    \item Si $\mu$ es tal que $\mu(x,\mu(y,z))$ y $\mu(\mu(x,y),z)$ son homotópicas relativo a 
+    $\{e,e,e\}$, decimos que $X$ es \emph{homotópicamente asociativo}.
+    
+    \item Si existe $\varphi:X\to X$ con $\varphi(e)=e$ tal que los mapas
+    \begin{equation*}
+        x\longmapsto \mu(x,\varphi(x))\qquad\text{y}\qquad x\longmapsto \mu(\varphi(x),x)
+    \end{equation*}
+    son homotópicos a la función constante $e$, relativos a $\{e\}$, entonces decimos que $X$ 
+    tiene \emph{inversa homotópica}.
+\end{enumerate}
+
+\noindent Un $H$-grupo es un $H$-espacio que es homotópicamente asociativo y posee inversa 
+homotópica. En particular, todo grupo topológico es un $H$-grupo.
+
+\vspace{1mm}
+\noindent Estas consideraciones motivan el presente trabajo. El objetivo es analizar, mediante
+herramientas de topología algebraica, las obstrucciones que impiden a un espacio admitir una
+estructura de grupo topológico. Para ello introduciremos los fundamentos algebraicos necesarios,
+en particular nociones básicas de álgebra homológica; a continuación estudiaremos con detalle los
+ejemplos mencionados, revisaremos el papel del grupo fundamental y construiremos los grupos de
+cohomología singulares. De manera central examinaremos el anillo de cohomología, que será la 
+herramienta principal para descartar a las $n$-esferas como posibles grupos topológicos.
+
+\vspace{1mm}
+\noindent En esta tesis se asumen definiciones y resultados básicos de topología (entre ellos la
+construcción del grupo fundamental). También se emplearán nociones de álgebra conmutativa y teoría
+de grupos: grupos libres, presentaciones, productos libres y amalgamados, tensores y sumas 
+directas. Algunos resultados se enunciarán sin demostración; en esos casos se remite al lector a 
+la bibliografía indicada.
+
+\newpage
+
+\section{Preliminares: Álgebra Homológica} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent Para dar comienzo a la búsqueda de nuestro objetivo necesitamos herramientas algebraicas 
+para trabajar con las cuales tendremos una noción formal de las siguientes secciones. Comenzaremos 
+con la homología y cohomología, para luego revisar resultados que serán importantes más adelante.
+
+\begin{dfn}
+    Un complejo de cadenas es una sucesión de grupos abelianos y homomorfismos
+    
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & C_{3} \ar[r]^{\partial_{3}} & C_{2} \ar[r]^{\partial_{2}} & 
+            C_{1} \ar[r]^{\partial_{1}} & C_{0} \ar[r] & 0
+        }
+    }
+    \vspace{2mm}
+    \noindent tal que $\partial_{i}\circ \partial_{i+1}=0$ para todo $i$. Se denota por 
+    $(C_{\sbullet},\partial_{\sbullet})$.
+\end{dfn}
+
+\begin{obs}
+    Notemos que $\im{\partial_{i+1}}\subseteq\kr{\partial_{i}}\subseteq C_{i}$. Dado que los 
+    grupos son abelianos, esta observación permite definir los siguientes grupos.
+\end{obs}
+
+\begin{dfn}
+    El $i-$ésimo grupo de homología de $(C_{\sbullet},\partial_{\sbullet})$ se define por
+    \begin{equation*}
+        H_{i}(C_{\sbullet}):=\frac{\kr{\partial_{i}}}{\im{\partial_{i+1}}}
+    \end{equation*}
+\end{dfn}
+
+\begin{ej}
+    Veamos que
+    
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & 0 \ar[r]^{\cdot0} & \Z \ar[r]^{\cdot2} & \Z \ar[r]^{\cdot0} 
+            & \Z \ar[r] & 0
+        }
+    }
+    \vspace{2mm}
+
+    \noindent es un complejo de cadenas, donde los grupos de homología asociados son
+    $H_{0}(C_{\sbullet})=\Z$, $H_{1}(C_{\sbullet})=\Z_{2}$ y $H_{k}(C_{\sbullet})=0$ para 
+    $k\neq0,1$.
+\end{ej}
+
+\noindent Por otro lado, para la cohomología damos la siguiente definición
+
+\begin{dfn}
+    Un complejo de cocadenas es una secuencia de grupos de abelianos y homomorfismos
+    
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & C^{0} \ar[r]^{\partial^{0}} & C^{1} \ar[r]^{\partial^{1}} 
+            & C^{2} \ar[r]^{\partial^{2}} & C^{3} \ar[r]^{\partial^{3}} & \cdots
+        }
+    }
+    \vspace{1mm}
+    \noindent tales que $\partial^{i+1}\circ\partial^{i}=0$. Se denota por 
+    $(C^{\sbullet},\partial^{\sbullet})$.
+\end{dfn}
+
+\begin{dfn}
+    El $i-$ésimo grupo de cohomología de $(C^{\sbullet},\partial^{\sbullet})$ se define por 
+    \begin{equation*}
+        H^{i}(C^{\sbullet}):=\frac{\kr{\partial^{i}}}{\im{\partial^{i-1}}}
+    \end{equation*}
+    Un elemento en $H^{i}(C^{\sbullet})$ se conoce como clase de cohomología.
+\end{dfn}
+
+\begin{ej}
+    Vimos el complejo de cadenas
+
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & 0 \ar[r] & \Z \ar[r]^{\cdot2} & \Z \ar[r]^{\cdot0} & \Z \ar[r] & 0
+        }
+    }
+
+    \vspace{1mm}
+    \noindent Donde $H_{0}(C_{\sbullet})=\Z$, $H_{1}(C_{\sbullet})=\Z_{2}$ y 
+    $H_{k}(C_{\sbullet})=0$. Definimos $C^{i}:=Hom(C_{i},\Z)$ y los diferenciales 
+    $\partial^{i}(\varphi):=\varphi\circ\partial_{i+1}$, notemos que 
+    $\partial^{i+1}\circ\partial^{i}(\varphi)=\varphi\circ\partial_{i+1}\circ\partial_{i+2}=0$. 
+    Así, tenemos el complejo de cocadenas
+
+    \vspace{1mm}
+        \centerline{
+            \xymatrix{
+                0 \ar[r] & C^{0} \ar[r]^{\cdot0} & C^{1} \ar[r]^{\cdot{2}} & C^{2} \ar[r]^{\cdot0} 
+                & 0 \ar[r] & \cdots
+            }
+        }
+
+    \vspace{1mm}
+    \noindent Como $C^{i}\cong\Z$ para $i=0,1,2$, entonces $H^{0}(C^{\sbullet})=\Z$, 
+    $H^{1}(C^{\sbullet})=0$ y $H^{2}(C^{\sbullet})=\Z_{2}$.
+\end{ej}
+
+\noindent Los elementos en $\kr{\partial_{i}}$ e $\im{\partial_{i}}$ se llaman ciclos 
+(resp. cociclos) y fronteras (resp. cofronteras) respectivamente. Un elemento en 
+$H_{i}(C_{\sbullet})$ se dice clase de homología (resp. clase de cohomología). Los elementos en
+los grupos abelianos $C_{i}$ se conocen como cadenas (resp. cocadenas) y los morfismos 
+$\partial_{i}$ como diferenciales.
+
+\vspace{1mm}
+\noindent Nos gustaría estudiar como interactúan estos objetos enter sí, buscamos una noción de 
+morfismo de cadenas (resp. cocadenas) que además induzca uno entre los grupos de homología 
+(resp. cohomología), esto motiva la siguiente definición
+
+\begin{dfn}
+    Sean $(C_{\sbullet},\partial_{\sbullet})$ y $(D_{\sbullet},\partial_{\sbullet})$ dos complejos 
+    de cadenas. Un mapeo de cadenas es una colección de homomorfismos $f_{n}:C_{n}\to D_{n}$ 
+    tal que $\partial_{n}f_{n}=f_{n-1}\partial_{n}$ para todo $n$, es decir, el siguiente diagrama 
+    conmuta
+
+    \centerline{
+        \xymatrix{
+            C_{n} \ar[r]^{\partial_{n}} \ar[d]^{f_{n}} & C_{n-1} \ar[d]^{f_{n-1}} \\
+            D_{n} \ar[r]^{\partial_{n}} & D_{n-1}
+        }
+    }
+    \noindent y se denota por $f_{\sbullet}:C_{\sbullet}\to D_{\sbullet}$.
+\end{dfn}
+
+\begin{prop}
+    Si $f_{\sbullet}:C_{\sbullet}\to D_{\sbullet}$ es un mapeo de cadenas, entonces la asignación 
+    $f_{*}:H_{n}(C_{\sbullet})\to H_{n}(D_{\sbullet})$ dada por
+    \begin{equation*}
+        f_{*}([x])=[f_{n}(x)]
+    \end{equation*}
+    esta bien definida y es un homomorfismo de grupos.
+\end{prop}
+
+\begin{proof}
+    Sea $x\in ker\partial_{n}$ entonces $\partial_{n}f_{n}(x)=f_{n-1}\partial_{n}(x)
+    =f_{n-1}(0)=0$. Así, $f_{n}(x)\in\kr{\partial_{n}}$ y por lo tanto la expresión tiene sentido. 
+    
+    \vspace{1mm}
+    \noindent Si $[x]=[y]$ entonces $x-y=\partial_{n+1}(z)$ para $z\in C_{n+1}$, se sigue que 
+    $f_{n}(x)-f_{n}(y)=f_{n}\partial_{n+1}(z)=\partial_{n+1}f_{n+1}(z)$. Concluimos que 
+    $[f_{n}(x)]=[f_{n}(y)]$. Que sea homomorfismo es directo de la definición.
+\end{proof}
+
+\begin{ej}
+    Consideremos la siguiente situación
+
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & 0 \ar[r]^{0} \ar[d] & \Z \ar[r]^{3} \ar[d]^{id} & 
+            \Z \ar[r]^{0} \ar[d]^{\pi} & \Z \ar[r] \ar[d]^{id} & 0 
+            & C_{\sbullet} \ar[d]^{f_{\sbullet}} \\
+            \cdots \ar[r] & 0 \ar[r]^{0} & \Z \ar[r]^{3} & \Z_{3} \ar[r]^{0} & \Z \ar[r] & 0 
+            & D_{\sbullet}
+        }
+    }
+    \vspace{2mm}
+    \noindent Con $f_{\sbullet}$ un mapeo de cadenas. Entonces $f_{*}:H_{2}(C_{\sbullet})\to 
+    H_{2}(D_{\sbullet})$ es el morfismo trivial, ya que $H_{2}(C_{\sbullet})=0$. Mientras que 
+    $\pi_{*}:H_{1}(C_{\sbullet})=\Z_{3}\to H_{1}(D_{\sbullet})=\Z_{3}$ es la identidad.
+\end{ej}
+
+\begin{obs}
+    Notemos que si $g_{\sbullet}:D_{\sbullet}\to G_{\sbullet}$ es un mapeo de cadenas, entonces la 
+    colección de morfimos $(g\circ f)_{\sbullet}:C_{\sbullet}\to G_{\sbullet}$ es un mapeo de 
+    cadenas y el siguiente diagrama conmuta
+    
+        \centerline{
+            \xymatrix{
+                H_{n}(C_{\sbullet}) \ar[rr]^{(g\circ f)_{*}} \ar[rd]^{f_{*}} & 
+                & H_{n}(G_{\sbullet}) \\
+                & H_{n}(D_{\sbullet}) \ar[ru]^{g_{*}}
+            }
+        }
+    \noindent En efecto, $\partial_{n}g_{n} f_{n}=g_{n-1}\partial_{n}f_{n}=g_{n-1}f_{n-1}
+    \partial_{n}$. Por otro lado, tenemos que $(g\circ f)_{*}([x])=[(g\circ f)(x)]=g_{*}([f(x)])=
+    (g_{*}\circ f_{*})([x])$, lo que prueba la afirmación.
+\end{obs}
+
+\noindent La definición de mapeo de cocadena para cohomología es análoga, es decir, se debe 
+cumplir que $f^{n+1}\partial^{n}=\partial^{n}f^{n}$ y los resultados son similares.
+
+\vspace{1mm}
+\noindent Los resultados vistos en esta parte serán vitales para más adelante. A partir de este
+momento los índices para indicar los morfismos $\partial_{i}$ entre complejos de cadenas no se
+escribirán, esto para mayor comodidad.
+
+\begin{dfn}
+    Sean $f_{\sbullet},g_{\sbullet}:C_{\sbullet}\to D_{\sbullet}$ mapeos de cadenas. Una 
+    homotopía de cadenas es una colección de morfismos
+    \begin{align*}
+        h_{n}:C_{n}\to C_{n+1}\htext{tales que} \\
+        f_{n}-g_{n}=\partial h_{n}+h_{n-1}\partial
+    \end{align*}
+    Lo denotamos como $f_{\sbullet}\sim g_{\sbullet}$.
+\end{dfn}
+
+\begin{prop}
+    Sea $f_{\sbullet}\sim g_{\sbullet}$ entonces $f_{*}=g_{*}$.
+\end{prop}
+
+\begin{proof}
+    Sea $[x]\in H_{n}(C_{\bullet})$, por definición, sabemos que $\partial x=0$, luego
+    \begin{equation*}
+        (f_{*}-g_{*})([x])=[(f-g)(x)]=[(\partial h+h\partial)(x)]=[\partial hx]=0
+    \end{equation*}
+    lo que prueba la afirmación.
+\end{proof}
+
+\noindent Para cohomología, una homotopía de cocadena se define como la colección de morfismos 
+$h^{n}:C^{n}\to C^{n-1}$ tales que $f^{n}-g^{n}=\partial h^{n}+h^{n+1}\partial$, los resultados de
+homología se extienden a cohomología.
+
+\begin{dfn}
+    Sean $i_{\sbullet}:A_{\sbullet}\to B_{\sbullet}$ y $j_{\sbullet}:B_{\sbullet}\to C_{\sbullet}$
+    dos mapeos de cadenas. Decimos que forman una secuencia exacta corta si la secuencia
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & A_{n} \ar[r]^{i_{n}} & B_{n} \ar[r]^{j_{n}} & C_{n} \ar[r] & 0
+        }
+    }
+    \vspace{2mm}
+    \noindent es una secuencia exacta y corta de grupos abelianos libres para todo $n\in\N$. Lo 
+    denotamos como $0\xrightarrow[]{} A_{\sbullet}\xrightarrow[]{i_{\sbullet}} 
+    B_{\sbullet}\xrightarrow[]{j_{\sbullet}} C_{\sbullet}\xrightarrow[]{}0$.
+\end{dfn}
+
+\begin{teo}[Lema de la serpiente]
+    Sea $0\to A_{\sbullet}\xrightarrow[]{i_{\sbullet}} B_{\sbullet}\xrightarrow[]{j_{\sbullet}} 
+    C_{\sbullet}\to0$ una secuencia exacta corta de complejos de cadenas, entonces existen 
+    morfismos
+    \begin{equation*}
+        \delta_{n}:H_{n}(C_{\sbullet})\to H_{n-1}(A_{\sbullet})
+    \end{equation*}
+    tales que la siguiente secuencia es exacta
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            \ar[r]^-{\delta_{n+1}} & H_{n}(A_{\sbullet}) \ar[r]^{i_{*}} 
+            & H_{n}(B_{\sbullet}) \ar[r]^{j_{*}} & H_{n}(C_{\sbullet}) 
+            \ar `[dl] `[l] `[llld]_{\delta_{n}} `[d] [dll] \\
+            & H_{n-1}(A_{\sbullet}) \ar[r]^{i_{*}} & H_{n-1}(B_{\sbullet}) \ar[r]^{j_{*}} 
+            & H_{n-1}(C_{\sbullet}) \ar[r] & \cdots \\
+            & \cdots \ar[r] & H_{0}(B_{\sbullet}) \ar[r] & H_{0}(C_{\sbullet}) \ar[r] & 0 
+        }
+    }
+\end{teo}
+
+\noindent La demostración de este resultado se encuentra en \cite{Hatcher} (\textit{Hatcher, 
+Teorema 2.16}) y la construcción del morfismo $\delta$, el morfismo conector, se encuentra un poco 
+antes. Se puede aplicar también para cocadenas.
+
+\newpage
+
+\section{Grupos topológicos y superficies} \hspace{1mm}
+
+\subsection{Ejemplos} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent Queremos familiarizarnos con la noción de grupo topológico, por lo que trabajaremos con 
+algunos de los ejemplos mencionados durante la introducción. Comenzamos con el mas sencillo,
+
+\begin{ej}
+    El espacio $\S^{1}$ es grupo topológico, pensamos el espacio en $\C$, luego la operación de 
+    grupo viene dada por la multiplicación en $\C$, recordemos que
+    \begin{equation*}
+        \abs{z\cdot\omega}=\abs{z}\cdot\abs{\omega}
+        \htext{para todo }z,\omega\in\C
+    \end{equation*}
+    lo que implica que $z\cdot\omega\in\S^{1}$. Por otro lado, como 
+    $\S^{1}\subseteq\C\setminus\{0\}$, la función que mapea $z$ en $\frac{1}{z}$ es continua.
+    Concluimos que $\S^{1}$ es grupo topológico.
+\end{ej}
+
+\noindent A partir de este ejemplo daremos estructura de grupo topológico a $\T^{2}$, aprovechando
+el hecho de que $\T^{2}=\S^{1}\times\S^{1}$.
+
+\begin{ej}
+    Definimos la operación de grupo en $\T^{2}=\S^{1}\times\S^{1}$ como
+    \begin{equation*}
+        (a,b)\cdot(c,d)=(ac,bd)
+    \end{equation*}
+    que esta bien definida por el ejemplo anterior, tiene neutro $(e,e)$, es asociativa y 
+    multiplicar es continuo por la topología producto. Además, el inverso, esta dado por
+    \begin{equation*}
+        (z,\omega)^{-1}:=\left(\frac{1}{z},\frac{1}{\omega}\right)
+    \end{equation*}
+    nuevamente, el mapa es continuo por la topología producto. Por lo tanto, $\T^{2}$ es un grupo
+    topológico.
+\end{ej}
+
+\noindent Pasando a ejemplos mas sofisticados, en primer lugar, debemos definir los cuaterniones,
+un cuaternión es un elemento de la forma
+\begin{equation*}
+    q=a+bi+cj+dk
+    \htext{con }a,b,c,d\in\R
+\end{equation*}
+y $i,j,k$ son unidades imaginarias tales que $i^{2}=j^{2}=k^{2}=ijk=-1$, son una $\R-$álgebra de
+división no conmutativa, es decir, cada elemento tiene un inverso, la multiplicación es 
+asociativa, pero no es conmutativa. El conjunto de los cuaterniones se denota como $\H$ y esta 
+dotado de la norma
+\begin{equation*}
+    \abs{q}=\sqrt{q\cdot\overline{q}}
+    \hhtext{donde}
+    \overline{q}:=a-bi-cj-dk
+\end{equation*}
+es un cálculo directo que $q\cdot\overline{q}=a^{2}+b^{2}+c^{2}+d^{2}$, que corresponde a la norma
+en $\R^{4}$, por lo que la identificación
+\begin{equation*}
+    (a,b,c,d)\mapsto q=a+bi+cj+dk
+\end{equation*}
+en realidad es una isometría.
+
+\begin{ej}
+    Pensamos $\S^{3}$ en $\H$, se verifica facilmente que $\overline{q\cdot h}
+    =\overline{q}\cdot\overline{h}$, lo que implica que
+    \begin{equation*}
+        \abs{q\cdot h}=\abs{q}\cdot\abs{h}
+    \end{equation*}
+    es decir, $q\cdot h\in\S^{3}$ para todo $q,h\in\S^{3}$, por lo que la operación de grupo esta
+    bien definida, por otro lado, si multiplicamos dos cuaterniones, nos damos cuenta de que es 
+    polinomial en cada entrada, por ende, es continua. El inverso viene dado por
+    \begin{equation*}
+        q^{-1}=1-bi-cj-dk
+    \end{equation*}
+    que nuevamente es continuo y esta bien definido. Concluimos que $\S^{3}$ es grupo topológico.
+\end{ej}
+
+\newpage
+\begin{ej}
+    Por último, veamos que $\R\P^{3}$ tambíen es grupo topológico, tenemos el diagrama
+    
+    \centerline{
+    \xymatrix{
+            \S^{3}\times\S^{3} \ar[d]_{\pi\times\pi} 
+            \ar[rd]^{\pi\circ m} \\
+            \R\P^{3}\times\R\P^{3} \ar@{-->}[r] & \R\P^{3}
+        }
+    }
+    \vspace{2mm}
+    \noindent Donde $\pi:\S^{3}\to\R\P^{3}$ es la proyección y $m$ la multiplicación en $\S^{3}$.
+    En primer lugar, notamos que $\pi\times\pi$ es cociente, luego, para definir un producto basta
+    probar que $\pi\circ m$ es constante en las fibras de $\pi\times\pi$. En efecto,
+    \begin{equation*}
+        [(\lambda q)(\mu h)]=[(\lambda\mu)(qh)]=[qh]
+    \end{equation*}
+    la multiplicación hereda las propiedades de la multiplicación en $\S^{3}$ y con lo anterior,
+    es continua. De manera análoga, la función
+    \begin{equation*}
+        [q]\mapsto [q]^{-1}:=[q^{-1}]
+    \end{equation*}
+    esta bien definida y es continua.
+\end{ej}
+
+\begin{obs}
+    Los dos ejemplos en realidad se deben a que $\H$ es un álgebra de división y la 
+    multiplicación es continua bajo la norma euclideana, al igual que el mapa que manda un 
+    elemento a su inverso multiplicativo y que $\{\pm1\}$ esta en el centro de $\H$.
+\end{obs}
+
+\subsection{Superficies} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent Hablaremos un poco sobre superficies y las consecuencias a las que llegaremos durante el
+desarrollo de la tesis.
+
+\begin{dfn}
+    Sea $X$ un espacio, decimos que es una superficie si es una $2-$variedad, es decir, un espacio
+    Hausdorff, segundo contable y localmente euclideano de dimensión 2.
+\end{dfn}
+
+\noindent Hasta ahora, conocemos tres espacios que cumplen esta definición, que son $\S^{2}$, 
+$\T^{2}$ y $\R\P^{2}$, todas compactas y conexas. Lo sorpresivo, es que estas superficies junto
+con las sumas conexas (que pronto definiremos) son las únicas superficies, salvo homeomorfismo.
+
+\begin{teo}[Teorema de clasificación de superficies]
+    Toda superficie, no vacía, compacta y conexa es homeomorfa a una de las siguientes
+    \begin{enumerate}
+        \item La $2-$esfera, es decir, $\S^{2}$
+        \item La suma conexa de $n$ copias de $\T^{2}$.
+        \item La suma conexa de $n$ copias de $\R\P^{2}$.
+    \end{enumerate}
+\end{teo}
+
+\noindent La demostración se puede encontrar en \cite{Lee} (\textit{Lee, Teorema 6.15}). Como 
+consecuencia inmediata del teorema, resulta que $\T^{2}$ es la única superficie, compacta y conexa 
+que es $H-$espacio, porque como veremos más adelante, ninguna de las otras superficies cumplen lo 
+necesario.
+
+\begin{teo}
+    La única superficie compacta y conexa que es $H-$espacio es $\T^{2}$.
+\end{teo}
+
+\noindent La demostración se irá desmenuzando durante la tesis, pero en resumen, la $2-$esfera
+presenta una obstrucción en el anillo de cohomología, el plano proyectivo en el hecho de que su
+cubriente universal es $\S^{2}$ y por lo tanto no puede ser $H-$espacio y los espacios 
+$\#^{n}\T^{2}$ (suma conexa de toros) y $\#^{n}\R\P^{2}$ (suma conexa de planos proyectivos) 
+tienen grupo fundamental no abeliano para $n>1$.
+
+\newpage
+
+\vspace{1mm}
+\noindent La manera usual de definir la suma conexa de superficies es eliminando un abierto 
+homeomorfo a una bola abierta de $\R^{2}$ a ambos espacios y ``pegandolos'' en la frontera que 
+produce esta eliminación, sin embargo, daremos una definición equivalente que resultará más útil 
+para calcular el grupo fundamental de estas superficies.
+
+\begin{dfn}
+    Sea $n>1$. Consideremos el espacio obtenido de un $4n-$polígono regular con la siguiente 
+    identificación en sus aristas
+    \[
+        (a_{1}b_{1}a_{1}^{-1}b_{1}^{-1})(a_{2}b_{2}a_{2}^{-1}b_{2}^{-1})
+        \cdots(a_{n}b_{n}a_{n}^{-1}b_{n}^{-1})
+    \]
+    Este espacio se conoce como la suma conexa de $n-$copias del toro y se denota por 
+    $\#^{n}\T^{2}$.
+\end{dfn}
+
+\begin{ej}
+    Para $n=2$, se representa en la figura \ref{figura1}. Si trazamos el segmento indicado, que 
+    divide al polígono a la mitad, cada parte representa un espacio homeomorfo a un toro, si 
+    las ``pegamos'' a lo largo del segmento se obtiene la suma conexa usual de dos toros.
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[scale=0.28]{suma_conexa_toros.png}
+        \caption{Suma conexa de dos toros.}
+        \label{figura1}
+    \end{figure}
+
+    \vspace{1mm}
+    \noindent La identificación siempre empieza desde el polo norte y la dirección positiva es en
+    sentido antihorario y la dirección negativa en sentido horario. Siempre consideramos el 
+    interior del polígono.
+\end{ej}
+
+\begin{dfn}
+    Sea $n>1$. Consideremos el espacio obtenido de un $2n-$polígono regular con la siguiente 
+    identificación en sus aristas
+    \[
+        (a_{1}a_{1})(a_{2}a_{2})\cdots(a_{n}a_{n})
+    \]
+    Se conoce como la suma conexa de $n-$copias del plano proyectivo y se denota por 
+    $\#^{n}\R\P^{2}$.
+\end{dfn}
+
+\begin{ej}
+    La suma conexa de dos planos proyectivos se representa en la figura \ref{figura2}, el 
+    argumento para visualizarlo es similar al toro y vemos que la definición coincide con la 
+    construcción mencionada al inicio, es decir, quitar un abierto y pegar los espacios en la 
+    frontera.
+    
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[scale=0.15]{suma_conexa_planos_proyectivos.png}
+        \caption{Suma conexa de dos planos proyectivos.}
+        \label{figura2}
+    \end{figure}
+\end{ej}
+
+\noindent Los ejemplos, definiciones y argumentos para la suma conexa de toros y planos 
+proyectivos fueron extraidos de \cite{Munkres} (\textit{Munkres, sección 74}).
+
+\newpage
+
+\section{Grupo fundamental} \hspace{1mm}
+
+\vspace{1mm}
+\noindent Sea $X$ un espacio topológico y $x_{0}\in X$, recordemos que el grupo fundamental, 
+$\pi_{1}(X,x_{0})$, consiste en las clases de equivalencias de lazos basados en $x_{0}$, donde la 
+relación esta dada por los lazos que son homotópicos relativo a $\{0,1\}$. La operación de grupo 
+es la concatenación de caminos y el neutro, que consiste en el camino constante $x_{0}$, se 
+denotan por $*$ y $ct_{x_{0}}$, respectivamente. Esta construcción resulta ser un invariante 
+homotópico.
+
+\vspace{1mm}
+\noindent Comenzaremos con el resultado más accesible.
+
+\begin{teo}\label{teo:grupo fundamental}
+    Sea $X$ un $H-$espacio arcoconexo, entonces $\pi_{1}(X,e)$ es abeliano.
+\end{teo}
+
+\begin{proof}
+    Sean $\alpha,\beta$ lazos basados en $e$, definimos el lazo
+    \[
+        \alpha\beta(t):=\mu(\alpha(t),\beta(t))
+    \]
+    que es un lazo basado en $e$, como los mapas $x\mapsto \mu(x,e),\mu(e,x)$, son homotópicos 
+    a la identidad relativo a $e$ resulta que $[\alpha]=[ct_{e}\alpha]=[\alpha ct_{e}]$.
+    
+    \vspace{1mm}
+    \noindent Además, si $\alpha\sim\hat{\alpha}$ y $\beta\sim\hat{\beta}$ entonces 
+    $\alpha\beta\sim\hat{\alpha}\hat{\beta}$. En efecto, sean $H_{\alpha}$ y $H_{\beta}$ las 
+    homotopías respectivas, definimos la función continua
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrixcolsep{3pc}\xymatrix{
+            [0,1]\times[0,1] \ar[r]^-{(H_{\alpha},H_{\beta})} \ar@/_1.5pc/[rr]_-{H}
+            & X\times X \ar[r]^-{\mu} & X
+        }
+    }
+    \noindent que corresponde a una homotopía entre los caminos $\alpha\beta$ y 
+    $\hat{\alpha}\hat{\beta}$ relativa a $\{0,1\}$. Afirmamos que 
+    $(\alpha*\beta)(\gamma*\delta)=\alpha\gamma*\beta\delta$. Sea $t\in[0,\frac{1}{2}]$, entonces
+    \begin{align*}
+        (\alpha*\beta)(\gamma*\delta)(t) &= \mu((\alpha*\beta)(t),(\gamma*\delta)(t)) \\
+        &= \mu(\alpha(2t),\gamma(2t))=\alpha\gamma(2t)
+    \end{align*}
+    similarmente se tiene para $t\in[\frac{1}{2},1]$. Notemos lo siguiente
+    \begin{equation*}
+        [\alpha]*[\beta]=[ct_{e}\alpha]*[\beta ct_{e}]=[ct_{e}\alpha*\beta ct_{e}]
+        =[(ct_{e}*\beta)(\alpha*ct_{e})]=[\beta\alpha]
+    \end{equation*}
+    y en el otro lado vemos que
+    \begin{equation*}
+            [\beta]*[\alpha]=[\beta ct_{e}]*[ct_{e}\alpha]=[(\beta*ct_{e})(ct_{e}*\alpha)]
+            =[\beta\alpha]
+    \end{equation*}
+    lo que concluye la demostración.
+\end{proof}
+
+\noindent Encontramos la primera obstrucción para ser $H-$espacio, para la siguiente necesitamos 
+desarrollar la teoría de cubrientes y un resultado útil es el siguiente lema
+
+\begin{lema}
+    Sean $X$ e $Y$ espacios, entonces $\pi_{1}(X\times Y,(x_{0},y_{0}))\cong\pi_{1}(X,x_{0})
+    \times\pi_{1}(Y,y_{0})$.
+\end{lema}
+
+\begin{proof}
+    Sean $\pi_{X}:X\times Y\to X$ y $\pi_{Y}:X\times Y\to Y$ las proyecciones, dado $\gamma$ un 
+    lazo en $X\times Y$ denotamos por $\gamma_{1}:=\pi_{X}\circ\gamma$ y $\gamma_{2}
+    :=\pi_{Y}\circ\gamma$, notar que $\gamma=(\gamma_{1},\gamma_{2})$. Definimos el mapa
+    \begin{equation*}
+        \phi([\gamma]):=([\gamma_{1}],[\gamma_{2}])
+    \end{equation*}
+    que es morfismo y esta bien definido porque $\pi_{X*}$ y $\pi_{Y*}$ son morfismos y están bien 
+    definidos. Tiene inversa dada por $\psi([\alpha],[\beta]):=[(\alpha,\beta)]$.
+
+    \vspace{1mm}
+    \noindent El argumento para ver que la inversa esta bien definida es idéntico al usado en el 
+    teorema anterior cuando probamos que $\alpha\beta\sim\hat{\alpha}\hat{\beta}$.
+\end{proof}
+
+\begin{cor}
+    El producto de espacios simplemente conexos es simplemente conexo.
+\end{cor}
+
+\noindent No hay nada que probar, es consecuencia inmediata del lema.
+
+\subsection{Espacios cubrientes} \hspace{1mm} %% Esta parte está lista
+
+\vspace{1mm}
+\noindent El espacio cubriente, al igual que el teorema de Seifert-van Kampen, permite calcular
+el grupo fundamental de un espacio, sin embargo, esta no es la razón por la cual queremos estudiar
+espacios cubrientes, nuestro interés radica en un resultado en particular de la teoría que nos
+permitirá obtener más obstrucciones para ser $H-$espacio.
+
+\begin{dfn}
+    El par $(\hat{X},p)$ es un espacio cubriente si $p:\hat{X}\to X$ es continua tal que para todo
+    $x\in X$, existe una vecindad $U\subseteq X$ de $x$ tal que
+    \begin{itemize}
+        \item $p^{-1}(U)=\bigsqcup_{\lambda\in A}V_{\lambda}$ con $V_{\lambda}$ abiertos 
+        disjuntos.
+
+        \item $p\big|_{V_{\lambda}}:V_{\lambda}\to U$ es homeomorfismo.
+    \end{itemize}
+\end{dfn}
+
+\noindent Dos consecuencias importantes de la teoría de espacios cubrientes, que también lo son 
+para nuestro propósito, son el lema del levantamiento de homotopía y el teorema del levantamiento 
+y los enunciamos a continuación
+
+\begin{lema}[Levantamiento de Homotopía]
+    Sean $W$ un espacio y $p:\hat{X}\to X$ un espacio cubriente. Sea $H:W\times[0,1]\to X$ una 
+    homotopía y $h:W\times\{0\}\to \hat{X}$ tal que $ph=H|_{W\times\{0\}}$. Entonces, existe una
+    única homotopía $\hat{H}:W\times[0,1]\to\hat{X}$ de modo que el siguiente diagrama conmuta
+    
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            W\times\{0\} \ar@{^{(}->}[d] \ar[r]^-{h} & \hat{X} \ar[d]^{p} \\
+            W\times[0,1] \ar[r]^-{H} \ar@{-->}[ru]^{\hat{H}} & X
+        }
+    }
+    \vspace{1mm}
+    \noindent Más aún, si $H$ es una homotopía relativa, también lo es $\hat{H}$.
+\end{lema}
+
+\begin{teo}[Teorema del Levantamiento]
+    Supongamos que $p:\hat{X}\to X$ es un espacio cubriente con $p(\hat{x}_{0})=x_{0}$. Dado $W$ 
+    un espacio arcoconexo y localmente arcoconexo con una función $f:W\to X$ tal que 
+    $f(w_{0})=x_{0}$. Entonces existe una única
+    \begin{equation*}
+        g:W\to \hat{X}
+        \hhtext{continua de modo que }g(w_{0})=\hat{x}_{0}
+        \hhtext{y}p\circ g=f
+    \end{equation*}
+    si y solo si $f_{*}(\pi_{1}(W,w_{0}))\subseteq p_{*}(\pi_{1}(\hat{X},\hat{x}_{0}))$.
+\end{teo}
+
+\noindent En otras palabras, la función $g:W\to\hat{X}$ es la única función que hace que el 
+siguiente diagrama conmute
+
+\centerline{
+    \xymatrix{
+        w_{0} \ar@{^{(}->}[d] \ar[r]^{x_{0}} & \hat{X} \ar[d]^{p} \\
+        W \ar[r]^{f} \ar@{-->}[ru]^{g} & X
+    }
+}
+\noindent Notar que si $W=\hat{X}$, $f=p$ y $w_{0}=x_{0}$, entonces $id_{\hat{X}}$ hace que el 
+diagrama conmute y por teorema del levantamiento es la única que lo hace. La demostración de ambos 
+resultados se encuentra en \cite{Bredon} (\textit{Bredon, Teorema 3.4}) y 
+(\textit{Bredon, Teorema 4.1}), respectivamente.
+
+\begin{dfn}
+    Sea $\tilde{X}\xrightarrow[]{p}X$ un espacio cubriente arcoconexo, localmente arcoconexo y 
+    simplemente conexo, decimos que $\tilde{X}$ es el cubriente universal de $X$.
+\end{dfn}
+
+\noindent El siguiente corolario nos asegura que el cubriente universal de un espacio está bien
+definido.
+
+\newpage
+\begin{cor}
+    El cubriente universal de un espacio es único, salvo homeomorfismo.
+\end{cor}
+
+\begin{proof}
+    Sean $(Y,p)$ y $(W,q)$ espacios cubrientes de $X$ arcoconexos, localmente arcoconexos y 
+    simplemente conexos, por el teorema de levantamiento, existen $\hat{p}$ y $\hat{q}$ tales 
+    que los diagramas conmutan
+    
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            y_{0} \ar[r] \ar@{^{(}->}[d] & W \ar[d]^{q} \\ Y \ar[r]_{p} \ar@{-->}[ru]_{\hat{p}} 
+            & X
+        }
+        \hspace{2cm}
+        \xymatrix{
+            w_{0} \ar[r] \ar@{^{(}->}[d] & Y \ar[d]^{p} \\ W \ar[r]_{q} \ar@{-->}[ru]_{\hat{q}} 
+            & X
+        }
+    }
+    \noindent Veamos que $\hat{p}\circ\hat{q}=id_{W}$. En efecto, notemos que 
+    $\hat{p}\circ\hat{q}(w_{0})=w_{0}$ y que $q\circ\hat{p}\circ\hat{q}=p\circ\hat{q}=q$ y por 
+    unicidad del levantamiento se tiene la igualdad, la otra es análoga.
+\end{proof}
+
+\begin{obs}
+    Como ambos espacios son simplemente conexos, por definición se tiene que $\pi_{1}(Y,y_{0})=0$ 
+    y $\pi_{1}(W,w_{0})=0$, lo que permite utilizar el teorema del levantamiento. Por otro lado,
+    el cubrimiento universal no siempre existe, pero en caso de hacerlo, es único.
+\end{obs}
+
+\begin{teo}
+    El cubriente universal de un $H-$espacio es $H-$espacio.
+\end{teo}
+
+\begin{proof}
+    Sea $X$ un $H-$espacio y $(\hat{X},p)$ su cubrimiento universal. En primer lugar, notemos 
+    que el espacio $\hat{X}\times\hat{X}$ es simplemente conexo, por que el producto de espacios 
+    simplemente conexos es simplemente conexo y por la misma razón, también es arcoconexo y 
+    localmente arcoconexo.
+
+    \vspace{1mm}
+    \noindent Por teorema del levantamiento, existe una única función 
+    $\hat{\mu}:\hat{X}\times\hat{X}\to\hat{X}$ tal que el siguiente diagrama conmuta
+
+    \centerline{
+        \xymatrixcolsep{3pc}\xymatrix{
+            (\hat{e},\hat{e}) \ar[r]^{\hat{e}} \ar@{^{(}->}[d] & \hat{X} \ar[d]^-{p} \\
+            \hat{X}\times\hat{X} \ar[r]^-{\mu'} \ar@{-->}[ru]^-{\hat{\mu}} 
+            & X
+        }
+    }
+    \noindent donde $p(\hat{e})=e$ y $\mu'=\mu\circ p\times p$. Veamos que $\hat{\mu}$ y $\hat{e}$ 
+    le dan estructura de $H-$espacio a $\hat{X}$, para ello, debemos probar que los mapas
+    $\hat{\mu}(\hat{x},\hat{e})$ y $\hat{\mu}(\hat{e},\hat{x})$ son homotópicos a la identidad
+    relativo a $\hat{e}$. Demostraremos la homotopía para $\hat{\mu}(\hat{x},\hat{e})$ y la otra
+    homotopía es análoga.
+
+    \vspace{1mm}
+    \noindent Sea $H$ la homotopía relativa a $e$ entre el mapa $\mu(x,e)$ y la identidad, 
+    definimos
+    \begin{equation*}
+        H'(\hat{x},t):=H(p(\hat{x}),t)
+        \htext{para todo}\hat{x}\in\hat{X}
+    \end{equation*}
+    que es una homotopía relativa a $\hat{e}$ entre $\mu'(\hat{x},\hat{e})$ y $p$. Como 
+    $p\hat{\mu}=\mu'$, por el lema del levantamiento de homotopía, existe 
+    $\hat{H}:\hat{X}\times[0,1]\to\hat{X}$ una homotopía relativa a $\hat{e}$ tal que el siguiente
+    diagrama conmuta
+
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            \hat{X}\times\{0\} \ar@{^{(}->}[d] \ar[r]^-{\hat{\mu}} & \hat{X} \ar[d]^{p} \\
+            \hat{X}\times[0,1] \ar[r]^-{H'} \ar@{-->}[ru]^{\hat{H}} & X
+        }
+    }
+    \vspace{1mm}
+    \noindent Veamos que es la homotopía buscada, en efecto, por conmutatividad del diagrama se 
+    tiene que $\hat{H}(\hat{x},0)=\hat{\mu}(\hat{x},\hat{e})$ y por otro lado, la función 
+    $\hat{H}(\hat{x},1)$ cumple que $p\hat{H}(\hat{x},1)=p(\hat{x})$ y $\hat{H}(\hat{e},1)
+    =\hat{\mu}(\hat{e},\hat{e})=\hat{e}$, es decir, es un levantamiento de $p$ y por ende es la 
+    identidad en $\hat{X}$.
+\end{proof}
+
+\begin{lema}
+    El cubriente universal de $\R\P^{2}$ es $\S^{2}$. Luego, $\R\P^{2}$ no es $H-$espacio.
+\end{lema}
+
+\begin{proof}
+    Sabemos que $\S^{2}$ es arcoconexo, localmente arcoconexo y simplemente conexo, afirmamos que 
+    $(\S^{2},\pi)$ cubre a $\R\P^{2}$, donde $\pi:\S^{2}\to\R\P^{2}$ es la proyección. En $\S^{2}$
+    consideramos los abiertos
+    \begin{equation*}
+        V_{1}=\{(x,y,z)\in\S^{3}:z>0\}
+        \hhtext{y}
+        V_{2}=\{(x,y,z)\in\S^{3}:z<0\}
+    \end{equation*}
+    Además, el abierto $V_{1}\sqcup V_{2}$ es saturado, lo que implica que 
+    $U=\pi(V_{1}\sqcup V_{2})$ es abierto en $\R\P^{2}$ y además $\pi^{-1}(U)
+    =\pi^{-1}(\pi(V_{1}\sqcup V_{2}))=V_{1}\sqcup V_{2}$.
+
+    \vspace{1mm}
+    \noindent Debemos probar que $\pi|_{V_{i}}:V_{i}\to U$ es homeomorfismo, en efecto, sea 
+    $O\subseteq V_{i}$ un abierto, consideramos el abierto $-O=\{-x:x\in O\}$, luego, el abierto 
+    $O\cup-O$ es saturado y por lo tanto $\pi(O\cup-O)=\pi(O)\cup\pi(-O)=\pi(O)$ es abierto, 
+    además se tiene que $\pi(x)=[x]$ tiene inversa $i([x])=x\in V_{i}$, es decir, $\pi|_{V_{i}}$ 
+    es homeomorfismo. Repitiendo el mismo argumento en las otras coordenadas se tiene el 
+    resultado.
+\end{proof}
+
+\subsection{Teorema de Seifert-van Kampen} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent Un teorema importante de esta sección es el teorema de Seifert-van Kampen, con él,
+podemos calcular el grupo fundamental de un espacio topológico mediante presentaciones de grupos.
+Probaremos que el producto wedge y más espacios topológicos no admiten estructura de $H-$espacio
+usando este teorema para calcular su grupo fundamental y viendo que no es abeliano, lo que entra
+en contradicción con el teorema inicial de esta sección.
+
+\begin{teo}[Teorema de Seifert-van Kampen]
+    Sea $X=A\cup B$ con $A$ y $B$ conjuntos abiertos tales que $A\cap B$ es arcoconexo. Sea 
+    $x_{0}\in A\cap B$ un punto base, se tienen las inclusiones
+    
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            A\cap B \ar[r]^-{i_{A}} \ar[d]^-{i_{B}} & A \ar[d]^-{j_{A}} \\
+            B \ar[r]^-{j_{B}} & X
+        }
+    }
+    \vspace{1mm}
+    \noindent y el diagrama conmuta. Entonces estos mapas inducen un isomorfismo
+    \begin{equation*}
+        \pi_{1}(X,x_{0})\cong\pi_{1}(A,x_{0})*_{\pi_{1}(A\cap B,x_{0})}\pi_{1}(B,x_{0})
+        =\frac{\pi_{1}(A,x_{0})*\pi_{1}(B,x_{0})}{N}
+    \end{equation*}
+    donde $N=\gen{\gen{j_{A*}i_{A*}(\gamma)j_{B*}i_{B*}(\gamma^{-1}):
+    \gamma\in\pi_{1}(A\cap B,x_{0})}}$.
+\end{teo}
+
+\noindent La demostración se encuentra en \cite{Bredon} (\textit{Bredon, Teorema 9.4}). La idea es 
+probar que el morfismo inducido por el diagrama conmutativo y la propiedad universal del producto 
+amalgamado es isomorfismo. Veamos los ejemplos.
+
+\begin{ej}
+    El espacio $\S^{1}\vee\S^{1}$, cumple lo siguiente
+    \begin{equation*}
+        \pi_{1}(\S^{1}\vee\S^{1},1)=F_{2}=\gen{a,b \hspace{1mm} | \hspace{1mm}}
+    \end{equation*}
+    inductivamente se tiene que
+    \begin{equation*}
+        \pi_{1}(\vee_{i=1}^{n}\S^{1},1)=F_{n}=\gen{a_{1},\cdots,a_{n} \hspace{1mm}|\hspace{1mm}}
+    \end{equation*}
+    Veamos que los grupos fundamentales no son abelianos, en efecto, los elementos $a_{1}$ y 
+    $a_{2}$ no conmutan, luego, el espacio $\vee_{i=1}^{n}\S^{1}$ no es $H-$espacio para todo 
+    $n>1$ por [\ref{teo:grupo fundamental}]. Haremos el calculo para $X=\S^{1}\vee\S^{1}$, el paso 
+    inductivo es análogo. En $\S^{1}\sqcup\S^{1}$ consideramos los abiertos
+    \[
+        A'=\S^{1}\sqcup\S^{1}\setminus\{-1\} \qquad y \qquad B'=\S^{1}\setminus\{-1\}\sqcup\S^{1}
+    \]
+    que son abiertos saturados y por lo tanto $A=\pi(A')$, $B=\pi(B')$ son abiertos en $X$, por 
+    otro lado, notar que $A'\cap B'$ también es abierto saturado y por ende es abierto en $X$ y en 
+    este caso se tiene que $\pi(A'\cap B')=\pi(A')\cap\pi(B')$, no es díficil ver que
+    \[
+        A\simeq\S^{1}, \qquad B\simeq\S^{1} \qquad y \qquad A\cap B\simeq\{*\}
+    \]
+    donde $\{*\}$ es el espacio que consiste en un punto. Notemos que $A\cap B$ es arcoconexo, 
+    así, por Seifert-van Kampen
+    \[
+        \pi_{1}(X,1)\cong\pi_{1}(A,1)*_{\pi_{1}(A\cap B,1)}\pi_{1}(B,1)
+    \]
+    pero $\pi_{1}(A\cap B,1)=0$, por lo que $\pi_{1}(X,1)\cong\pi_{1}(A,1)*\pi_{1}(B,1)
+    \cong F_{1}*F_{1}=F_{2}$, el grupo libre en dos elementos. Para $n>2$, tomamos los abiertos
+    \[
+        A'=\bigsqcup_{i=1}^{n-1}\S^{1}\sqcup\S^{1}\setminus\{-1\}
+        \qquad y \qquad
+        B'=\bigsqcup_{i=1}^{n-1}(\S^{1}\setminus\{-1\})\sqcup\S^{1}
+    \]
+    y usando inducción el argumento es el mismo.
+\end{ej}
+
+\begin{ej}
+    Diremos que $X=\#^{n}\T^{2}$ y sea $x_{0}\in X$. Afirmamos que
+    \begin{equation*}
+        \pi_{1}(X,x_{0})=\gen{a_{1},b_{1},\cdots,a_{n},b_{n} \hspace{1mm} | \hspace{1mm} 
+            [a_{1},b_{1}]\cdots[a_{n},b_{n}]=1
+        }
+    \end{equation*}
+    donde $[a,b]=aba^{-1}b^{-1}$ y se le dice el conmutador entre $a$ y $b$. Nuevamente, al igual 
+    que en el ejemplo anterior, el grupo fundamental no es abeliano para $n>1$, pero esto no es
+    obvio, definimos el morfismo $\phi:F_{2n}\to F_{2}$ por
+    \[
+        \phi(a_{1})=a \qquad \phi(b_{1})=a^{-1} \qquad \phi(a_{2})=b \qquad \phi(b_{2})=b^{-1}
+    \]
+    y $\phi(a_{i})=\phi(b_{i})=e$ para $i>2$. Este morfismo, por la propiedad fundamental de 
+    presentaciones, desciende a un morfismo $\phi:\pi_{1}(X,x_{0})\to F_{2}$ que claramente es 
+    sobreyectivo, se sigue que $\pi_{1}(X,x_{0})$ es no abeliano, en caso contrario, como el 
+    morfismo $\phi$ es sobreyectivo, se tendría que $F_{2}$ es abeliano. Por lo tanto 
+    $\#^{n}\T^{2}$ no puede ser $H-$espacio [\ref{teo:grupo fundamental}].
+    
+    \vspace{1mm}
+    \noindent Sea $n>1$, recordemos la definición de suma conexa de toros \ref{figura1}, podemos 
+    pensar el polígono en $\R^{2}$ y cada vértice corresponde a una raíz $4n$-ésima de la unidad.
+
+    \vspace{1mm}
+    \noindent Sea $P$ el polígono en $\R^{2}$. Consideremos los abiertos $A=B_{2\varepsilon}(0)$ y 
+    $B=P\setminus B_{\varepsilon}(0)$ con $\varepsilon>0$ tal que $B_{2\varepsilon}(0)
+    \subseteq P$. Notemos que $A\cap B$ es arcoconexo. Además, se verifica que
+    \[
+        A\simeq \{*\}, \qquad B\simeq\partial P/\sim \hspace{2mm} \cong \hspace{2mm} 
+        \vee_{i=1}^{n}\S^{1} \qquad y \qquad A\cap B\simeq\S^{1}
+    \]
+    donde $\sim$ es la realción establecida por las identificaciones. Sean $x_{0}\in A\cap B$ y 
+    $c$ el lazo generador en $\pi_{1}(A\cap B,x_{0})$, este lazo es homotópico a $\partial P$ en 
+    $B$, que en $\pi_{1}(B,x_{0})=F_{n}$ corresponde al elemento
+    \[
+        a_{1}b_{1}a_{1}^{-1}b_{1}^{-1}\cdots a_{n}b_{n}a_{n}^{-1}b_{n}^{-1}
+    \]
+    ver \ref{figura1}. Luego, por Seifert-van Kampen, tenemos que
+    \begin{align*}
+        \pi_{1}(X,x_{0}) &\cong\pi_{1}(A,x_{0})*_{\pi_{1}(A\cap B,x_{0})}\pi_{1}(B,x_{0})
+        =0*_{F_{1}}F_{n} \\
+        &= \gen{a_{1},b_{1},\cdots,a_{n},b_{n} \hspace{1mm}|\hspace{1mm} 
+            [a_{1},b_{1}]\cdots[a_{n},b_{n}]=1
+        }
+    \end{align*}
+\end{ej}
+
+\noindent Haciendo un proceso análogo, podemos ver que
+\begin{equation*}
+    \pi_{1}(\#^{n}\R\P^{2},x_{0})=\gen{
+        a_{1},\cdots,a_{n} \hspace{1mm}|\hspace{1mm} a_{1}^{2}\cdots a_{n}^{2}=1
+    }
+\end{equation*}
+lo que implica que $\#^{n}\R\P^{2}$ no es $H-$espacio para ningún $n>1$ [\ref{teo:grupo 
+fundamental}], el argumento para ver que el grupo fundamental no es abeliano es similar al ejemplo 
+anterior. Cuando $n=1$ sabemos que $\S^{2}$ es el cubrimiento universal de $\R\P^{2}$, y por ende, 
+si este último es $H-$espacio, se tendría que $\S^{2}$ es $H-$espacio, veremos que esto no es así.
+
+\newpage
+
+\section{Cohomología singular} \hspace{1mm}
+
+\vspace{1mm}
+\noindent Antes de cohomología viene homología y una de las principales razones para estudiar 
+homología, es que de cierto modo podemos medir o contar los ``agujeros'' $n-$dimensionales de un
+espacio topológico, dicho de manera informal, ya que después de todo ¿Qué es un agujero 
+$n-$dimensional? Por ejemplo, un loop no será homotópico a un punto en $\S^{1}$.
+
+\vspace{1mm}
+\noindent Sin embargo, para esta tesis, no nos interesan los grupos de homología, más bien
+son relevantes los grupos de cohomología, que se pueden pensar en cierta medida como el dual de
+los grupos de homología, con ellos podemos construir el anillo de cohomología que planteará otra
+restricción para ser $H-$espacio.
+
+\subsection{Grupos de cohomología} %% Esta parte esta lista
+
+\begin{dfn}
+    Un $n-$simplice estándar es
+    \begin{equation*}
+        \Delta^{n}=\left\{
+            (t_{0},\cdots,t_{n})\in\R^{n+1}:t_{i}\geq0,\hspace{1mm}\sum t_{i}=1
+        \right\}
+    \end{equation*}
+\end{dfn}
+
+\begin{obs}
+    La $i-$ésima cara de $\Delta^{n}$ es $\Delta^{n}_{i}
+    =\{(t_{0},\cdots,t_{n})\in\Delta^{n}:t_{i}=0\}$. Notamos que un $n-$simplice estándar tiene
+    $n+1$ caras, donde cada una se parece a un $(n-1)-$simplice estándar. De hecho, mediante el 
+    mapeo
+    \begin{align*}
+        \delta_{i}:\Delta^{n-1} &\to \Delta^{n}_{i} \\
+        (t_{0},\cdots,t_{n-1}) &\to (t_{0},\cdots,t_{i-1},0,t_{i},\cdots,t_{n-1})
+    \end{align*}
+    resulta ser homeomorfa a $\Delta^{n-1}$.
+\end{obs}
+
+\begin{dfn}
+    Sea $X$ un espacio topológico. Un $n-$simplice singular en $X$ es una función continua
+    $\sigma:\Delta^{n}\to X$.
+\end{dfn}
+
+\noindent La aplicación $\sigma\circ\delta_{i}$ usualmente la denotamos como
+\begin{equation*}
+    \sigma\circ\delta_{i}=:\sigma\big|_{[v_{0},\cdots,\hat{v_{i}},\cdots,v_{n}]}
+\end{equation*}
+Podemos restringirnos a más puntos, esto correspondería a la composición de múltiples mapas 
+$\delta_{i}$ y en este caso se omiten las entradas correspondientes, por ejemplo,
+\begin{equation*}
+    \sigma\big|_{[\hat{v_{0}},\cdots,\hat{v_{k-1}},v_{k},\cdots,v_{n}]}
+    =\sigma\circ\delta_{0}^{k-1}=:\sigma\big|_{[v_{k},\cdots,v_{n}]}
+    \htext{con}k\leq n
+\end{equation*}
+que corresponde a una función continua entre $\Delta^{n-k}$ hacia $X$, es decir, un $(n-k)-$
+simplice singular.
+
+\vspace{1mm}
+\noindent Dado un espacio $X$, tenemos una colección de $n-$simplices singulares, vamos a 
+considerar el grupo abeliano libre generado por este conjunto para construir un complejo de 
+cadenas y así los grupos de homología.
+
+\begin{dfn}
+    Definimos los grupos
+    \begin{equation*}
+        C_{n}(X):=\left\{\sum n_{\sigma}\sigma\hspace{1mm}|\hspace{1mm}\sigma:\Delta^{n}\to X
+        \text{ simplice singular y }n_{\sigma}\in\Z\hspace{1mm}
+        \text{ nulo salvo finitos casos}\right\}
+    \end{equation*}
+    junto con los diferenciales $\partial_{n}:C_{n}(X)\to C_{n-1}(X)$ dados por
+    \begin{equation*}
+        \partial_{n}(\sigma)=\sum_{i=0}^{n}(-1)^{i}\sigma\circ\delta_{i}
+    \end{equation*}
+    que se extiende linealmente.
+\end{dfn}
+
+\noindent Al complejo $(C_{\sbullet}(X),\partial_{\sbullet})$ lo llamamos complejo de cadenas 
+singular. Para ver que el complejo esta bien definido debemos verificar que 
+$\partial_{n-1}\circ\partial_{n}=0$, lo que se muestra en el siguiente lema.
+
+\begin{lema}
+    El morfismo $\partial_{n-1}\circ \partial_{n}:C_{n}(X)\to C_{n-2}(X)$ es trivial.
+\end{lema}
+
+\begin{proof}
+    Basta probar para cada elemento en la base, es decir, para $\sigma:\Delta^{n}\to X$. Tenemos 
+    lo siguiente
+    \begin{equation*}
+        \partial_{n-1}\circ \partial_{n}(\sigma)=\sum_{i=0}^{n-1}(-1)^{i}\sum_{j=0}^{n}(-1)^{j}
+        \sigma\circ\delta_{j}\circ\delta_{i}
+    \end{equation*}
+    Usando que $\delta_{j}\circ\delta_{i}=\delta_{i}\circ\delta_{j-1}$ si $i<j$, vemos que
+    \begin{align*}
+        \partial_{n-1}\circ \partial_{n}(\sigma) &= \sum_{i<j}(-1)^{i+j}\sigma\circ\delta_{j}
+        \circ\delta_{i}+\sum_{i\geq j}(-1)^{i+j}\sigma\circ\delta_{j}\circ\delta_{i} \\
+        &= \sum_{i<j}(-1)^{i+j}\sigma\circ\delta_{i}\circ\delta_{j-1}
+        +\sum_{i\geq j}(-1)^{i+j}\sigma\circ\delta_{j}\circ\delta_{i}
+    \end{align*}
+    haciendo un cambio de índice en la primera expresión, resulta que
+    \begin{equation*}
+        \partial_{n-1}\circ \partial_{n}(\sigma)=\sum_{i\leq j}(-1)^{i+j+1}\sigma\circ\delta_{i}
+        \circ\delta_{j}+\sum_{i\geq j}(-1)^{i+j}\sigma\circ\delta_{j}\circ\delta_{i}=0
+    \end{equation*}
+    La última igualdad se debe a que los términos se cancelan de a pares, puesto que cada término
+    en la expresión de la izquierda corresponde a uno de la expresión de la derecha, pero con el
+    signo opuesto.
+\end{proof}
+
+\noindent El grupo de cohomología singular, se obtiene a partir de dualizar el complejo de cadenas
+$(C_{\sbullet}(X),\partial_{\sbullet})$, como se vio en el ejemplo de preliminares, esto induce
+un complejo de cocadenas con sus respectivos grupos de cohomología.
+
+\begin{dfn}
+    Sea $G$ un grupo abeliano y $X$ un espacio topológico, definimos los grupos
+    \begin{equation*}
+        C^{i}(X;G)=Hom(C_{i}(X);G)
+    \end{equation*}
+    con el diferencial $\partial:C^{i}(X;G)\to C^{i+1}(X;G)$ dado por $\partial^{i}(\varphi)
+    =\varphi\circ\partial_{i+1}$. Esto define un complejo de cocadenas con cohomología asociada
+    \begin{equation*}
+        H^{i}(X;G):=H^{i}(C^{\sbullet}(X;G))=\frac{\kr{\partial^{i}}}{\im{\partial^{i-1}}}
+    \end{equation*}
+    y se dice cohomología de $X$ con coeficientes en $G$.
+\end{dfn}
+
+\noindent Hemos cumplido con una parte del objetivo inicial de esta sección, ahora nos gustaría
+obtener un morfismo entre los grupos de cohomología de espacios dada una función continua entre 
+ellos. Para tal fin tenemos la siguiente proposición.
+
+\begin{prop}
+    Sea $f:X\to Y$ una función continua entre espacios topológicos, entonces las funciones
+    \begin{equation*}
+        f_{n}:C_{n}(X)\to C_{n}(Y)\hhtext{dadas en la base por}f_{n}(\sigma)=f\circ\sigma
+    \end{equation*}
+    forman un mapeo de cadenas $f_{\sbullet}:C_{\sbullet}(X)\to C_{\sbullet}(Y)$.
+\end{prop}
+
+\begin{proof}
+    Es directo de la definición que para todo $n\in\N$ la función $f_{n}$ es morfismo de grupos 
+    abelianos, por otro lado
+    \begin{equation*}
+        \partial_{n} f_{n}(\sigma)=\partial_{n}(f\circ\sigma)
+        =\sum_{i}(-1)^{i}f\circ\sigma\circ\delta_{i}
+        =\sum_{i}(-1)^{i}f_{n-1}(\sigma\circ\delta_{i})=f_{n-1}\partial_{n}(\sigma)
+    \end{equation*}
+\end{proof}
+
+\noindent Esto define morfismos de cadenas, para cocadenas, definimos lo siguiente
+\begin{equation*}
+    f^{n}(\varphi)=\varphi\circ f_{n}
+    \htext{donde} \varphi\in C^{n}(Y;G)
+\end{equation*}
+notemos que en este caso $f^{\sbullet}:C^{n}(Y;G)\to C^{n}(X;G)$, que resulta ser un mapa de 
+cocadenas, puesto que $f_{\sbullet}$ es un mapeo de cadenas. Juntando resultados previos se tiene
+el morfismo
+\begin{equation*}
+    f^{*}:H^{n}(Y;G)\to H^{n}(X;G)
+\end{equation*}
+Es directo de la definición verficar que
+\begin{equation*}
+    (f\circ g)^{*}=g^{*}\circ f^{*}
+\end{equation*}
+Además, si $f:X\to Y$ es homeomorfismo, entonces el mapa $f^{*}$ es isomorfismo, es decir, tenemos 
+que $H^{*}(X;G)$ es invariante topológico.
+
+\vspace{1mm}
+\noindent Lo bueno de esta construcción, a diferencia de otras, es que las definiciones dependen 
+únicamente de la topología del espacio, es decir, de los abiertos. Pero esto viene con un costo 
+asociado, es prácticamente imposible calcular los grupos de cohomología usando solo la definición, 
+a pesar de ello, se puede trabajar con ejemplos particulares que serán vitales para más adelante.
+
+\begin{ej}
+    Sea $X=pt=\{*\}$, el espacio que consiste de un punto. Entonces, existe un único $n-$simplice 
+    singular, digamos, $\sigma_{n}:\Delta^{n}\to pt$, lo que implica que 
+    $\sigma_{n}\circ\delta_{i}=\sigma_{n-1}$, luego
+    \begin{equation*}
+        \partial_{n}(\sigma_{n})=\sum_{i=0}^{n}(-1)^{i}\sigma_{n}\circ\delta_{i}
+        =\begin{cases}
+            \sigma_{n-1} &\quad\text{ si }n\text{ es par} \\
+            0 &\quad\text{ si }n\text{ es impar}
+        \end{cases}
+    \end{equation*}
+    dualizando, vemos que
+    \begin{equation*}
+        \partial^{n}(\varphi)(\sigma_{n+1})=\varphi(\partial_{n+1}(\sigma_{n+1}))=\begin{cases}
+            0 &\quad\text{ si }n\text{ es par} \\
+            \varphi(\sigma_{n}) &\quad\text{ si }n\text{ es impar}
+        \end{cases}
+    \end{equation*}
+    para $i>1$ tenemos que
+    
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            \cdots & C^{i+1}(pt;G) \ar[l]_-{\partial^{i+1}} 
+            & C^{i}(pt;G) \ar[l]_-{\partial^{i}} & C^{i-1}(pt;G) \ar[l]_{\partial^{i-1}} 
+            & \cdots \ar[l]
+        }
+    }
+    \noindent entonces si $i$ es impar $H^{i}(pt;G)=0$ por que $\partial^{i}$ es inyectivo. Por
+    otro lado, si $n$ es par, vemos que
+    \begin{equation*}
+        H^{i}(pt;G)=\frac{\kr{\partial^{i}}}{\im{\partial^{i-1}}}\cong\frac{G}{G}=0
+    \end{equation*}
+    esto por que $C^{i}(pt;G)\cong Hom(\Z,G)\cong G$ y el morfismo $\partial^{i-1}$ es 
+    isomorfismo. Para $i=0$, vemos que $H^{0}(pt;G)=\kr{\partial^{0}}=C^{0}(pt;G)\cong G$. Así,
+    \begin{equation*}
+        H^{n}(pt;G)=\begin{cases}
+            G &\quad\text{si }n=0 \\
+            0 &\quad\text{si }n>0
+        \end{cases}
+    \end{equation*}
+    con $G$ un grupo abeliano cualquiera.
+\end{ej}
+
+\begin{lema}
+    Sea $X$ un espacio arcoconexo no vacío, entonces $H^{0}(X;G)=G$.
+\end{lema}
+
+\begin{proof}
+    Nuevamente, por definición, tenemos que $H^{0}(X;G)=\kr{\partial^{0}}$, sea 
+    $\varphi\in\kr{\partial^{0}}$, entonces para todo $\tau\in C_{1}(X)$ vemos que
+    \begin{equation*}
+        0=\partial^{0}(\varphi)(\tau)=\varphi(\partial_{1}(\tau))
+        =\varphi(\tau\circ\delta_{0})-\varphi(\tau\circ\delta_{1})
+    \end{equation*}
+    Sea $x_{0}\in X$, lo vemos como un $0-$simplice singular, dado $\sigma:\Delta^{0}\to X$, como
+    el espacio es arcoconexo, existe $\tau_{\sigma}:\Delta^{1}\to X$ tal que 
+    $\tau_{\sigma}\circ\delta_{0}=\sigma$ y $\tau_{\sigma}\circ\delta_{1}=x_{0}$, así usando la 
+    observación inicial, notamos que
+    \begin{equation*}
+        \varphi(\sigma)=\varphi(x_{0})
+        \htext{para todo}\sigma\in C_{0}(pt)
+    \end{equation*}
+    entonces el morfismo $\varphi$ queda únicamente determinado por la imagen de $x_{0}$ y por lo
+    tanto $H^{0}(X;G)=\kr{\partial^{0}}\cong G$.
+\end{proof}
+
+\noindent Lo anterior da pie a la siguiente proposición.
+
+\begin{prop}
+    Sea $X=\bigsqcup_{\alpha\in A}X_{\alpha}$ la unión disjunta de componentes arcoconexas,
+    entonces si $A$ es finito se tiene el isomorfismo
+    \begin{equation*}
+        H^{n}(X;G)\cong\bigoplus_{\alpha\in A}H^{n}(X_{\alpha};G)
+    \end{equation*}
+\end{prop}
+
+\begin{proof} %% Posible revisión de demostración
+    La inclusión $i_{\alpha}:X_{\alpha}\to X$ es continua para todo $\alpha\in A$, denotamos por 
+    $i_{\alpha,n}$ el mapa inducido a nivel de cadenas. Como $\Delta^{n}$ es arcoconexo, la imagen 
+    de $\sigma$ esta en $X_{\alpha}$ para algún $\alpha\in A$, lo que prueba que el mapa
+    \begin{equation*}
+        i_{n}:\bigoplus_{\alpha\in A} C_{n}(X_{\alpha})\to C_{n}(X)
+    \end{equation*}
+    es isomorfismo, con $i_{n}=\bigoplus_{\alpha\in A} i_{\alpha,n}$, la colección de morfismos
+    $(i_{n})_{n\in\N}$ es mapeo de cadenas, ya que para todo $\alpha\in A$ la colección 
+    $(i_{\alpha,n})_{n\in\N}$ es mapeo de cadena, dualizando y usando que $i_{\alpha}^{\sbullet}$ 
+    es mapeo de cocadena se obtiene el resultado buscado.
+\end{proof}
+
+\subsection{Herramientas y aplicaciones} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent Veremos dos resultados importantes sobre grupos de cohomología singular de un espacio,
+ellos son invarianza homotópica y la secuencia de Mayer-Vietoris, para luego aplicar estas 
+herramientas a ejemplos.
+
+\begin{teo}[Invarianza homotópica]
+    Sean $f,g:X\to Y$ funciones homotópicas. Entonces, inducen el mismo morfismo en cohomología, 
+    es decir,
+    \begin{equation*}
+        f^{*}=g^{*}:H^{*}(Y;G)\to H^{*}(X;G)
+    \end{equation*}
+\end{teo}
+
+\noindent La demostración de este resultado para homología se encuentra en \cite{Hatcher} 
+(\textit{Hatcher, Teorema 2.10}). La idea es construir una homotopía de cadena entre los mapas de 
+cadena inducidos por $f$ y $g$ a partir de la homotopía entre ambas. Para cohomología basta 
+dualizar la homotopía de cadenas y así obtener una homotopía de cocadena, lo que concluye el 
+resultado.
+
+\begin{cor}
+    Sea $f:X\to Y$ una equivalencia homotópica, entonces
+    \begin{equation*}
+        f^{*}:H^{*}(Y;G)\to H^{*}(X;G)
+    \end{equation*}
+    es isomorfismo.
+\end{cor}
+
+\begin{proof}
+    Sea $g:Y\to X$ una inversa homotópica, entonces
+    \begin{equation*}
+        g^{*}\circ f^{*}=(f\circ g)_{*}=(id_{Y})^{*}=id_{H^{*}(Y)}
+    \end{equation*}
+    Igualmente, tenemos que $f^{*}\circ g^{*}=id_{H^{*}(X;G)}$. Entonces $f^{*}$ es isomorfismo 
+    con inversa $g^{*}$.
+\end{proof}
+
+\begin{ej}
+Como $\R^{n}$ es convexo, entonces es homotópico a un punto, se sigue de un ejemplo anterior que
+    \begin{equation*}
+        H^{n}(\R^{n};G)=\begin{cases}
+            G &\quad\text{si }n=0 \\
+            0 &\quad\text{si }n>0
+        \end{cases}
+    \end{equation*}
+\end{ej}
+
+\begin{teo}[Mayer-Vietoris]
+    Sea $X=A\cup B$ con $A$ y $B$ conjuntos abiertos. Se tienen las inclusiones
+    
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            A\cap B \ar[r]^-{i_{A}} \ar[d]^-{i_{B}} & A \ar[d]^-{j_{A}} \\
+            B \ar[r]^-{j_{B}} & X
+        }
+    }
+    \vspace{1mm}
+    \noindent Entonces, existen homomorfismos $\delta:H^{n}(A\cap B;G)\to H^{n+1}(X;G)$ tales 
+    que la siguiente secuencia es exacta
+    
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            \cdots \ar[r] & H^{n}(X;G) \ar[r]^-{j_{A}^{*}\oplus j_{B}^{*}} 
+            & H^{n}(A;G)\oplus H^{n}(B;G) \ar[r]^-{i_{A}^{*}-i_{B}^{*}} & H^{n}(A\cap B;G) 
+            \ar `[ld] `[l] `[llld]^{\delta} `[d] [dll] \\
+            & H^{n+1}(X;G) \ar[r]^-{j_{A}^{*}\oplus j_{B}^{*}} 
+            & H^{n+1}(A;G)\oplus H^{n+1}(B;G) \ar[r]^-{i_{A}^{*}-i_{B}^{*}} 
+            & H^{n+1}(A\cap B;G) \ar[r] & \cdots
+        }
+    }
+    \vspace{1mm}
+\end{teo}
+
+\noindent La demostración de este teorema se encuentra en \cite{Hatcher} (\textit{Hatcher, sección 
+3.1}) y requiere de un resultado previo, el teorema de los simplices pequeños, que se encuentra en 
+\cite{Hatcher} (\textit{Hatcher, Proposición 2.21}).
+
+\vspace{1mm}
+\noindent Nuestra intención ahora es utilizar las herramientas vistas para calcular los grupos de 
+cohomología singular con coeficientes en $\Z$ de las $n-$esferas.
+
+\vspace{1mm}
+\noindent Denotaremos por $H^{i}(X)$ al grupo de cohomología singular de $X$ con coeficientes en 
+$\Z$.
+
+\begin{ej}
+    En $\S^{1}$, consideremos los abiertos $A=\S^{1}\setminus\{N\}$ y $B=\S^{1}\setminus\{S\}$,
+    donde $N$ y $S$ son el polo norte y sur respectivamente. Notemos que $A\cong\R\simeq pt$ y del
+    mismo modo $B\simeq pt$, por otro lado, $A\cap B\cong\R\sqcup\R\simeq pt\sqcup pt$. Por la 
+    secuencia de Mayer-Vietoris, para $i>1$, tenemos la secuencia exacta
+
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            H^{i-1}(A\cap B) \ar[r] & H^{i}(\S^{1}) \ar[r] 
+            & H^{i}(A)\oplus H^{i}(B) \ar[r] & H^{i}(A\cap B)
+        }
+    }
+    \vspace{1mm}
+    \noindent por lo mencionado anteriormente, vemos que $H^{i-1}(A\cap B)=0$, $H^{i}(A)\oplus 
+    H^{i}(B)=0$ y $H^{i}(A\cap B)=0$ cuando $i>1$, lo que implica que $H^{i}(\S^{1})=0$ con $i>1$.
+
+    \vspace{1mm}
+    \noindent Sabemos que $\S^{1}$ es arcoconexo, entonces $H^{0}(\S^{1})=G$. Queda el caso cuando 
+    $i=1$, tenemos la secuencia exacta
+
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            H^{0}(A)\oplus H^{0}(B) \ar[r]^-{i_{A}^{*}-i_{B}^{*}} & H^{0}(A\cap B) 
+            \ar[r]^-{\delta} & H^{1}(\S^{1}) \ar[r] & 0
+        }
+    }
+    \vspace{1mm}
+    \noindent Por primer teorema de isomorfismo basta encontrar $\kr{\delta}
+    =\im{i_{A}^{*}-i_{B}^{*}}$. Sea $\varphi\in H^{0}(A)$, como $A$ es arcoconexo, sabemos que
+    $\varphi$ queda únicamente determinado por la imagen de un único $0-$simplice, como $G=\Z$,
+    el morfismo $\varphi(\sigma)=1$ genera a $H^{0}(A)$, así
+    \begin{equation*}
+        i^{*}_{A}(\varphi)(\sigma)=\varphi(i_{A}\circ\sigma)=1
+        \htext{para todo }\sigma\in C_{0}(A\cap B)
+    \end{equation*}
+    Similarmente $i^{*}_{B}(\psi)(\sigma)=1$ con $\psi$ el generador de $H^{0}(B)$. Como $A\cap B$
+    tiene dos componentes arcoconexas, el grupo $H^{0}(A\cap B)$ está generado por dos elementos,
+    uno de ellos mapea todos los puntos de una componente a $1$ y mapea a $0$ los puntos de la 
+    otra componente, mientras que el otro generador hace lo contrario. Así, el morfismo 
+    $\im{i_{A}^{*}-i_{B}^{*}}$ esta representado por
+    \begin{equation*}
+        \begin{pmatrix}
+            \hspace{1mm} 1 & -1 \hspace{1mm} \\ \hspace{1mm} 1 & -1 \hspace{1mm}
+        \end{pmatrix}
+    \end{equation*}
+    lo que implica que $H^{1}(\S^{1})\cong\Z$. En resumen, tenemos lo siguiente
+    \begin{equation*}
+        H^{i}(\S^{1})=\begin{cases}
+            \Z &\quad\text{ si }i=0,1 \\
+            0 &\quad\text{ si }i>1
+        \end{cases}
+    \end{equation*}
+\end{ej}
+
+\begin{ej}
+    Afirmamos que
+    \begin{equation*}
+        H^{i}(\S^{n})=\begin{cases}
+            \Z &\quad\text{ si }i=0,n \\
+            0 &\quad\text{ si }i\neq0,n
+        \end{cases}
+    \end{equation*}
+    Procederemos por inducción, el caso base fue el ejemplo anterior, supongamos que se cumple
+    para $n-1$. Consideramos los mismos abiertos que antes y se tiene que $A\cong\R^{n}\simeq pt$ 
+    y $B\simeq pt$, sin embargo, para la intersección observamos que $A\cap B\cong
+    \R^{n-1}\times\S^{n-1}\simeq\S^{n-1}$. Así, para $i>1$, tenemos la secuencia exacta
+
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & H^{i-1}(A\cap B) \ar[r] & H^{i}(\S^{1}) \ar[r] & 0
+        }
+    }
+    \vspace{1mm}
+    \noindent Si $i\neq n$, entonces $H^{i}(\S^{n})=0$, de lo contrario, $H^{n}(\S^{n})\cong 
+    H^{n-1}(\S^{n-1})=\Z$. Como $\S^{n}$ es arcoconexo resulta que $H^{0}(\S^{n})=\Z$, queda el 
+    caso cuando $i=1$, tenemos la secuencia exacta
+
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            H^{0}(A)\oplus H^{0}(B) \ar[r]^-{i_{A}^{*}-i_{B}^{*}} & H^{0}(A\cap B) 
+            \ar[r]^-{\delta} & H^{1}(\S^{n}) \ar[r] & 0
+        }
+    }
+    \vspace{1mm}
+    \noindent nuevamente, por primer teorema de isomorfismo, basta estudiar $\kr{\delta}$, para
+    ello, vemos la imagen del morfismo $i_{A}^{*}-i_{B}^{*}$ que, por el mismo argumento que 
+    antes, esta representado por
+    \begin{equation*}
+        \begin{pmatrix}
+            \hspace{1mm} 1 & -1 \hspace{1mm}
+        \end{pmatrix}
+    \end{equation*}
+    Pero esta vez hay un generador en $H^{0}(A\cap B)$, pues es arcoconexo. Por lo tanto 
+    $H^{1}(\S^{n})=0$, lo que concluye la afirmación.
+\end{ej}
+
+\subsection{Anillo de cohomología} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent Introduciremos el anillo de cohomología, que nos permitirá rescatar mayor información
+sobre un espacio topológico. La idea es asignarle un anillo a un espacio, en realidad una 
+$R-$álgebra graduada cuando $R$ es un anillo conmutativo, de modo que una función continua induzca
+un morfismo de algebras graduadas. De ahora en adelante supondremos que $R$ es un anillo 
+conmutativo.
+
+\begin{dfn}
+    Sea $X$ un espacio topológico. Sean $\phi\in C^{k}(X;R)$ y $\psi\in C^{l}(X;R)$. Definimos el
+    producto cup $\phi\smile\psi\in C^{k+l}(X;R)$, por
+    \begin{equation*}
+        (\phi\smile\psi)(\sigma)
+        =\phi(\sigma|_{[v_{0},\cdots,v_{k}]})\psi(\sigma|_{[v_{k},\cdots,v_{k+l}]})
+    \end{equation*}
+    donde $\sigma\in C_{k+l}(X)$ un simplice singular. Este morfismo se extiende linealmente.
+\end{dfn}
+
+\noindent Es directo de la definición, que el producto cup es bilineal y asociativo, pues la
+multiplicación en $R$ lo es. Además, cumple la siguiente relación con el diferencial.
+
+\begin{lema}
+    Sean $\phi\in C^{k}(X;R)$ y $\psi\in C^{l}(X;R)$, entonces
+    \begin{equation*}
+        d(\phi\smile\psi)=d\phi\smile\psi+(-1)^{k}\phi\smile d\psi
+    \end{equation*}
+\end{lema}
+
+\begin{proof}
+    Sea $\sigma:\Delta^{k+l+1}\to X$ un simplice singular. Entonces
+    \begin{align*}
+        (d\phi\smile\psi)(\sigma) &= (d\phi)(\sigma\big|_{[v_{0},\cdots,v_{k+1}]})
+        \cdot\psi(\sigma\big|_{[v_{k+1},\cdots,v_{k+l+1}]}) \\
+        &= \phi\left(
+            \sum_{i=0}^{k+1}(-1)^{i}\sigma\big|_{[v_{0},\cdots,\hat{v_{i}},\cdots,v_{k+1}]}
+        \right)\cdot\psi(\sigma\big|_{[v_{k+1},\cdots,v_{k+l+1}]})
+    \end{align*}
+    y además
+    \begin{align*}
+        (\phi\smile d\psi)(\sigma) &= \phi(\sigma\big|_{[v_{0},\cdots,v_{k}]})
+        \cdot(d\psi)(\sigma\big|_{[v_{k},\cdots,v_{k+l+1}]}) \\
+        &= \phi(\sigma\big|_{[v_{0},\cdots,v_{k}]})\cdot\psi\left(
+            \sum_{i=k}^{k+l+1}(-1)^{i-k}\sigma\big|_{[v_{k},\cdots,\hat{v_{i}},\cdots,v_{k+l+1}]}
+        \right) \\
+        &= (-1)^{k}\phi(\sigma\big|_{[v_{0},\cdots,v_{k}]})\cdot\psi\left(
+            \sum_{i=k}^{k+l+1}(-1)^{i}\sigma\big|_{[v_{k},\cdots,\hat{v_{i}},\cdots,v_{k+l+1}]}
+        \right)
+    \end{align*}
+    notamos que el último término de la primera expresión se cancela con el primer término de la 
+    segunda expresión. Por otro lado, tenemos que
+    \begin{align*}
+        d(\phi\smile\psi)(\sigma) &= (\phi\smile\psi)\left(
+            \sum_{i=0}^{k+l+1}(-1)^{i}\sigma\big|_{[v_{0},\cdots,\hat{v_{i}},\cdots,v_{k+l+1}]}
+        \right) \\
+        &= \sum_{i=0}^{k+l+1}(-1)^{i}(\phi\smile\psi)(
+            \sigma\big|_{[v_{0},\cdots,\hat{v_{i}},\cdots,v_{k+l+1}]}
+        ) 
+    \end{align*}
+    vemos que esta última expresión es igual a la primera más la segunda por $(-1)^{k}$, lo que 
+    prueba la afirmación.
+\end{proof}
+
+\begin{cor}
+    El producto cup induce un morfismo
+    \begin{equation*}
+        \smile:H^{k}(X;R)\times H^{l}(X;R)\to H^{k+l}(X;R) \\
+    \end{equation*}
+    dado por $[\phi]\smile[\psi]=[\phi\smile\psi]$.
+\end{cor}
+
+\begin{proof}
+    Sean $\phi\in C^{k}(X;R)$ y $\psi\in C^{l}(X;R)$ cociclos y dado $\phi'\in C^{k}(X;R)$ un 
+    cociclo tal que $[\phi]=[\phi']$, entonces $\phi'=\phi+d\phi''$. Luego,
+    \begin{align*}
+        \phi'\smile\psi &= (\phi+d\phi'')\smile\psi=\phi\smile\psi+d\phi''\smile\psi \\
+        &= \phi\smile\psi+d(\phi''\smile\psi)-(-1)^{k+1}\phi''\smile d\psi \\
+        &= \phi\smile\psi+d(\phi''\smile\psi)
+    \end{align*}
+    el otro caso es análogo.
+\end{proof}
+
+\noindent Definimos el mapa $1:C_{0}(X)\to R$ tal que $1(\sigma)=1$ para toda $0-$cadena, entonces
+\begin{equation*}
+    [1]\smile[\phi]=[\phi]
+\end{equation*}
+De este modo, definimos $H^{*}(X;R)=\bigoplus_{n\in\N}H^{n}(X;R)$ que junto con el producto cup y
+el elemento $[1]$ forman un anillo con unidad. Aquí el producto cup se extiende linealmente. 
+Este anillo se conoce como el anillo de cohomología de $X$ con coeficientes en $R$.
+
+\vspace{1mm}
+\noindent El producto cup es natural, lo que se expresa en la proposición que sigue.
+
+\begin{lema}
+    Sean $f:X\to Y$ una función continua entre espacios y $\alpha,\beta\in H^{*}(Y;R)$ entonces
+    $f^{*}(\alpha\smile\beta)=f^{*}(\alpha)\smile f^{*}(\beta)$.
+\end{lema}
+
+\begin{proof}
+    Sean $\phi\in C^{k}(Y;R)$, $\psi\in C^{l}(Y;R)$ y $\sigma\in C_{k+l}(Y)$, entonces
+    \begin{align*}
+        (f^{*}(\phi)\smile f^{*}(\psi))(\sigma) &= f^{*}(\phi)(\sigma\big|_{[v_{0},\cdots,v_{k}]})
+        f^{*}(\psi)(\sigma\big|_{[v_{k},\cdots,v_{k+l}]}) \\
+        &= \phi(f\circ\sigma\big|_{[v_{0},\cdots,v_{k}]})
+        \psi(f\circ\sigma\big|_{[v_{k},\cdots,v_{k+l}]}) \\
+        &= (\phi\smile\psi)(f\circ\sigma)=f^{*}(\phi\smile\psi)(\sigma)
+    \end{align*}
+    bajando al cociente y por linealidad, concluimos.
+\end{proof}
+
+\vspace{1mm}
+\noindent El anillo de cohomología no es necesariamente conmutativo, pero el siguiente lema nos 
+entrega una expresión para intercambiar los términos.
+
+\begin{lema}
+    Sean $\alpha\in H^{k}(X;R)$ y $\beta\in H^{l}(X;R)$ entonces
+    \begin{equation*}
+        \alpha\smile\beta=(-1)^{kl}\beta\smile\alpha
+    \end{equation*}
+\end{lema}
+
+\noindent La demostración de este lema se encuentra en \cite{Hatcher} (\textit{Hatcher, Teorema 
+3.11}). La discusión anterior le da estructura de anillo graduado a $H^{*}(X;R)$, más aún, el 
+anillo de cohomología es un $R-$módulo graduado donde la multiplicación es bilineal, en resumen, 
+diremos que es un álgebra graduada. Definimos formalmente estos conceptos a continuación.
+
+\begin{dfn}
+    Sea $A$ un anillo, decimos que es un anillo graduado si $A=\bigoplus_{n\in\N}A_{n}$ con 
+    $A_{n}$ subgrupos aditivos tales que
+    \begin{equation*}
+        A_{n}A_{m}\subseteq A_{n+m}
+        \htext{para todo }n,m\in\N
+    \end{equation*}
+\end{dfn}
+
+\begin{dfn}
+    Sea $A$ un $R-$módulo, decimos que es un $R-$módulo graduado si $A=\bigoplus_{n\in\N}A_{n}$ 
+    con $A_{n}$ submódulos para todo $n\in\N$.
+\end{dfn}
+
+\begin{obs}
+    Es directo de la definición que $R\cdot A_{n}\subseteq A_{n}$.
+\end{obs}
+
+\noindent Un morfismo de anillos graduados (resp. $R-$módulos graduados) $f:A\to B$ es un morfismo
+de anillos ($R-$módulos) tal que $f(A_{n})\subseteq B_{n}$. Un morfismo de álgebras graduadas es
+un morfismo de anillos y $R-$módulos graduados. En ambos casos, dado $\alpha\in A_{n}$, decimos
+que su grado es $\abs{\alpha}=n$.
+
+\vspace{1mm}
+\noindent Es directo de las definiciones y resultados que un mapa continuo induce un morfismo de 
+algebras graduadas en el anillo de cohomología. En conclusión, el anillo de cohomología es un 
+funtor contravariante en la categoría de algebras graduadas.
+
+\begin{ej}
+    Sea $n\in\N$, entonces 
+    \begin{equation*}
+        H^{*}(\S^{n};\Z)=\Z[x]/(x^{2})
+        \htext{con}
+        \abs{x}=n
+    \end{equation*}
+    En efecto, como $\S^{n}$ es arcoconexo, tenemos que $H^{0}(\S^{n};\Z)=\Z$, es decir, $[1]$ es 
+    generador. Por otro lado, sea $x\in H^{n}(\S^{n};\Z)$ un generador del subgrupo, que es el 
+    único subgrupo de dimensión positiva no trivial. Entonces
+    \begin{equation*}
+        x\smile x\in H^{2n}(\S^{n};\Z)=0
+    \end{equation*}
+    lo que prueba la afirmación.
+\end{ej}
+
+\noindent Ahora, dados dos espacios $X$ e $Y$, nos gustaría calcular el anillo de cohomología de
+$X\times Y$ wn función de los anillos de cohomología de $X$ e $Y$, para esto vamos a definir un
+morfismo desde el producto tensorial de los anillos de cohomología de $X$ e $Y$ hacia el anillo de
+cohomología buscado, que será un isomorfismo bajo ciertas condiciones. Primero, debemos dotar de
+estructura de anillo graduado al $R-$módulo $A\otimes B$, donde $A,B$ son algebras graduadas.
+
+\begin{dfn}
+    Sean $\pi_{X}:X\times Y\to X$ y $\pi_{Y}:X\times Y\to Y$ los mapas de proyección. Se define el
+    producto cruz como
+    \begin{align*}
+        \times:H^{k}(X;R)\times H^{l}(Y;R) &\to H^{k+l}(X\times Y;R) \\
+        a\times b:=\times(a,b) &\to \pi_{X}^{*}(a)\smile\pi_{Y}^{*}(b)
+    \end{align*}
+\end{dfn}
+
+\noindent Notemos que el producto cruz es bilineal, por que el producto cup es bilineal y los 
+mapas $\pi_{X}^{*}$ y $\pi_{Y}^{*}$ son morfismos de algebras. Luego, por la propiedad
+fundamental del producto tensorial, induce un morfismo
+\begin{align*}
+    \times:H^{k}(X;R)\otimes_{R} H^{l}(Y;R) &\to H^{k+l}(X\times Y;R) \\
+    a\otimes_{R} b &\mapsto \pi_{X}^{*}(a)\smile\pi_{Y}^{*}(b)
+\end{align*}
+
+\vspace{1mm}
+\noindent Nos gustaría que $\times$ fuese un morfismo de álgebras graduadas, para ello en primer
+lugar debemos definir un produco en $A\otimes B$ con $A,B$ álgebras graduadas. Notemos que
+\begin{align*}
+    \times(a\otimes b)\cdot\times(c\otimes d)
+    &= \pi_{X}^{*}(a)\pi_{Y}^{*}(b)\pi_{X}^{*}(c)\pi_{Y}^{*}(d) \\
+    &= (-1)^{\abs{b}\abs{c}}\pi_{X}^{*}(a)\pi_{X}^{*}(c)\pi_{Y}^{*}(b)\pi_{Y}^{*}(d) \\
+    &= (-1)^{\abs{b}\abs{c}}\pi_{X}^{*}(ac)\pi_{Y}^{*}(bd)
+    =(-1)^{\abs{b}\abs{c}}\times(ac\otimes bd)
+\end{align*}
+
+\noindent Así, el producto en $A\otimes B$ se define por $(a\otimes b)(c\otimes d)
+=(-1)^{\abs{b}\abs{c}}ac\otimes bd$ y se extiende linealmente. Con esta multiplicación, el 
+producto cruz es morfismo de algebras graduadas, es más, el siguiente teorema nos dice bajo que 
+hipotesis es isomorfismo.
+
+\begin{teo}[Fórmula de Künneth]
+    Sean $X$ e $Y$ espacios topológicos. Sea $R$ un dominio de ideales principales y $H^{n}(Y;R)$
+    un $R-$módulo libre finitamente generado para todo $n\in\N$, entonces
+    \begin{equation*}
+        \times:\bigoplus_{i=0}^{n}H^{i}(X;R)\otimes_{R} H^{n-i}(Y;R)\to H^{n}(X\times Y;R)
+    \end{equation*}
+    es isomorfismo.
+\end{teo}
+
+\noindent La demostración de este resultado se encuentra en \cite{Hatcher} (\textit{Hatcher, 
+Teorema 3.15}).
+
+\subsection{Algebras de Hopf} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent En esta parte vamos a probar el resultado que permite concluir el teorema principal de 
+la tesis. Para ello, buscamos una estructura algebraica que restrinja la posibilidad de ser 
+$H-$espacio, necesitaremos una definición previa. Sea $R$ un anillo conmutativo.
+
+\begin{dfn}
+    Sea $A$ un álgebra graduada, se dice álgebra de Hopf si cumple,
+    \begin{enumerate}
+        \itemsep0.5em
+        
+        \item Existe una identidad $1\in A_{0}$ tal que el morfismo $R\to A_{0}$ dado por 
+        $r\to r\cdot1$ es isomorfismo.
+
+        \item Existe un morfismo de álgebras graduadas $\triangle:A\to A\otimes_{R}A$ llamado 
+        coproducto que satisface
+        \begin{equation*}
+            \triangle(\alpha)
+            =\alpha\otimes_{R}1+1\otimes_{R}\alpha+\sum_{i}\alpha'_{i}\otimes_{R}\alpha''_{n-i}
+        \end{equation*}
+        donde $\abs{\alpha'_{i}},\abs{\alpha''_{n-i}}>0$ para todo $\alpha\in A_{n}$ con $n>0$.
+    \end{enumerate}
+\end{dfn}
+
+\noindent Veremos ejemplos de álgebras de Hopf y luego pasaremos al resultado principal. Sea $A$
+un álgebra graduada y $\alpha\in A$.
+
+\begin{ej}
+    Consideramos $R[\alpha]$, la primera condición para ser álgebra de Hopf se cumple 
+    trivialmente. Supongamos que también se cumple la segunda, es decir, existe un coproducto, 
+    luego
+    \begin{equation*}
+        \triangle(\alpha)
+        =\alpha\otimes1+1\otimes\alpha+\sum_{i}\alpha'_{i}\otimes\alpha''_{n-i}
+    \end{equation*}
+    notemos que $\abs{\alpha'_{i}},\abs{\alpha''_{n-i}}<\abs{\alpha}$. Como en $R[\alpha]$ los 
+    únicos elementos de menor grado que $\abs{\alpha}$ son los elementos en $R$ de grado cero, se 
+    sigue que $\triangle(\alpha)=\alpha\otimes1+1\otimes\alpha$.
+    
+    \vspace{1mm}
+    \noindent Nos gustaría determinar $\triangle$ explícitamente, tenemos dos casos:
+    \begin{enumerate}
+        \itemsep0.5em
+        
+        \item El grado de $\alpha$ es par, entonces
+        \begin{align*}
+            \triangle(\alpha^{2}) &= (\triangle(\alpha))^{2}
+            =(\alpha\otimes1+1\otimes\alpha)^{2} \\
+            &= (\alpha\otimes1)^{2}+(\alpha\otimes1)(1\otimes\alpha)
+            +(1\otimes\alpha)(\alpha\otimes1)+(1\otimes\alpha)^{2} \\
+            &= \alpha^{2}\otimes1+2\alpha\otimes\alpha+1\otimes\alpha^{2}
+        \end{align*}
+        inductivamente obtenemos que $\triangle(\alpha^{n})
+        =\sum_{i}\binom{n}{i}\alpha^{i}\otimes\alpha^{n-i}$.
+
+        \item Si $\abs{\alpha}$ es impar, del caso anterior tenemos que
+        \begin{equation*}
+            \triangle(\alpha^{2})=\alpha^{2}\otimes1+1\otimes\alpha^{2}
+        \end{equation*}
+        Buscamos reducir este caso al anterior, digamos que $\beta=\alpha^{2}$, entonces
+        \begin{equation*}
+            \triangle(\alpha^{2n})=\triangle(\beta^{n})
+            =\sum_{i}\binom{n}{i}\beta^{i}\otimes\beta^{n-i}
+            =\sum_{i}\binom{n}{i}\alpha^{2i}\otimes\alpha^{2(n-i)}
+        \end{equation*}
+        y por otro lado,
+        \begin{equation*}
+            \triangle(\alpha^{2n+1})=\triangle(\beta^{n})\triangle(\alpha)
+            =\sum_{i}\binom{n}{i}\alpha\beta^{i}\otimes\beta^{n-i}
+            +\sum_{i}\binom{n}{i}\beta^{i}\otimes\alpha\beta^{n-1}
+        \end{equation*}
+    \end{enumerate}
+\end{ej}
+
+\begin{ej}
+    Tomamos el álgebra exterior $\Lambda_{R}[\alpha]=R[\alpha]/(\alpha^{2})$, al igual que antes
+    la primera condición para ser álgebra de Hopf se cumple facilmente. Si $\Lambda_{R}[\alpha]$
+    tiene un coproducto, entonces por la misma razón que antes
+    \begin{equation*}
+        \triangle(\alpha)=\alpha\otimes1+1\otimes\alpha
+    \end{equation*}
+    sin embargo, hay algo adicional que chequear, esto es $0=\triangle(\alpha^{2})
+    =(\triangle(\alpha))^{2}$. Si $\abs{\alpha}$ es impar entonces se verifica, en cambio, si es
+    par vemos que
+    \begin{equation*}
+        \triangle(\alpha^{2})=\alpha^{2}\otimes1+2\alpha\otimes\alpha+1\otimes\alpha^{2}
+        =2\alpha\otimes\alpha
+    \end{equation*}
+    lo que implica que $2=0$ en $R$.
+\end{ej}
+
+\noindent Dado $X$ un espacio topológico, el anillo $H^{*}(X;R)$ tiene estructura de álgebra 
+graduada sobre $R$. Todo lo anterior da pie al siguiente teorema.
+
+\begin{teo}
+    Sea $X$ un $H-$espacio arcoconexo tal que $H^{n}(X;R)$ es un $R-$módulo libre finitamente 
+    generado para todo $n\in\N$. Entonces $H^{*}(X;R)$ es un álgebra de Hopf.
+\end{teo}
+
+\begin{proof}
+    Como $X$ es arcoconexo, se sigue que $H^{0}(X;R)\cong R$, además, se verifican las condiciones 
+    de Künneth lo que implica que
+    
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            H^{*}(X;R)\otimes H^{*}(X;R) \ar[r]^-{\times} & H^{*}(X\times X;R)
+        }
+    }
+    \vspace{1mm}
+    \noindent es isomorfismo. La multiplicación $\mu$ induce un morfismo 
+    $\mu^{*}:H^{*}(X;R)\to H^{*}(X\times X;R)$ y junto con el producto cruz, definimos el 
+    coproducto
+
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            H^{*}(X;R) \ar[r]^-{\mu^{*}} \ar@/_2pc/[rr]^-{\triangle}
+            & H^{*}(X\times X;R) \ar[r]^-{\times^{-1}} & H^{*}(X;R)\otimes H^{*}(X;R)
+        }
+    }
+    \vspace{2mm}
+    \noindent El mapa $\triangle$ es morfismo de algebras graduadas por que es composición de 
+    morfismos de algebras graduadas. Por otro lado, debemos probar que satisface la condición para 
+    ser coproducto. Sea $i:X\to X\times X$ el mapa dado por $i(x)=(x,e)$ y $j:\{e\}\to X$ el mapa 
+    $j(e)=e$, notar que $i$ se puede restringir en la segunda coordenada a $\{e\}$. Afirmamos que 
+    el siguiente diagrama conmuta
+    
+    \vspace{1mm}
+    \centerline{
+        \xymatrix{
+            H^{*}(X;R) \ar[r]^{\mu^{*}} \ar[rd]^-{\triangle} & H^{*}(X\times X; R) \ar[r]^{i^{*}} 
+            & H^{*}(X;R) \\
+            & H^{*}(X;R)\otimes H^{*}(X;R) \ar[u]^{\times}_{\cong} \ar[ru]^{P} 
+            \ar[r]^{id\otimes j^{*}} 
+            & H^{*}(X;R)\otimes H^{*}(e;R) \ar[u]^-{i^{*}\circ\times}_{\cong}
+        }
+    }
+    \vspace{2mm}
+    \noindent y $P$ es tal que el diagrama conmuta. En efecto, por definición se tiene que 
+    $\mu^{*}=\times\circ\triangle$ y como $P=i^{*}\times$ resulta que $i^{*}\mu^{*}=P\triangle$.
+    Falta probar que $i^{*}\times=i^{*}\times\circ (id\otimes j^{*})$.
+
+    \vspace{1mm}
+    \noindent Sea $a\otimes b\in H^{*}(X;R)\otimes H^{*}(X;R)$, entonces
+    \begin{align*}
+        i^{*}\times(a\otimes b) &= i^{*}(\pi_{X}^{*}(a)\smile\pi_{X}^{*}(b))
+        =i^{*}\pi_{X}^{*}(a)\smile i^{*}\pi_{X}^{*}(b) \\
+        &= (\pi_{X}i)^{*}(a)\smile(\pi_{X}i)^{*}(b)=a\smile ct_{e}^{*}(b)
+    \end{align*}
+    y por otra parte, observamos que
+    \begin{equation*}
+        i^{*}\times\circ (id\otimes j^{*})(a\otimes b)=i^{*}\times(a\otimes j^{*}b)
+        =(\pi_{X}i)^{*}(a)\smile(j\pi_{e}i)^{*}(b)=a\smile ct_{e}^{*}(b)
+    \end{equation*}
+    Sea $\alpha\in H^{n}(X;R)$, luego usando que $r\to r\cdot 1$ es isomorfismo
+    \begin{equation*}
+        \triangle(\alpha)=\sum_{i=0}^{n}\alpha'_{i}\otimes\alpha''_{n-i}
+        =\alpha'_{n}\otimes\alpha''_{0}+\sum_{i<n}\alpha'_{i}\otimes\alpha''_{n-i}
+        =r\alpha'_{n}\otimes1+\sum_{i<n}\alpha'_{i}\otimes\alpha''_{n-i}
+    \end{equation*}
+    Como $H^{n}(e;R)=0$ para todo $n>0$ y $\mu\circ i\sim id_{X}$, vemos que
+    \begin{equation*}
+        \alpha=i^{*}\mu^{*}(\alpha)=P\triangle(\alpha)=r\alpha'_{n}\smile1=r\alpha'_{n}
+    \end{equation*}
+    es decir, $\triangle(\alpha)=\alpha\otimes1+\sum_{i<n}\alpha'_{i}\otimes\alpha''_{n-i}$. 
+    Repitiendo un argumento similar tenemos el mismo resultado para $1\otimes\alpha$.
+\end{proof}
+
+\noindent Con esto podemos demostrar finalmente el Teorema \ref{teo:esferas}, el cual enunciamos 
+nuevamente a continuación.
+
+\begin{cor}
+    Sea $n\in\N$. Si $\S^{n}$ es $H-$espacio entonces $n$ es impar.
+\end{cor}
+
+\begin{proof}
+    Sabemos que $H^{*}(\S^{n},\Z)=\Z[x]/(x^{2})$ con $\abs{x}=n$. Por el teorema anterior sabemos
+    que $H^{*}(\S^{n},\Z)$ es álgebra de Hopf, si $n$ es par entonces por el segundo ejemplo $2=0$
+    en $\Z$, lo que es absurdo. Concluimos que $n$ es impar.
+\end{proof}
+
+\newpage
+
+\section{Conclusiones} \hspace{1mm} %% Esta parte esta lista
+
+\vspace{1mm}
+\noindent Retomando la discusión inicial y sintetizando todo lo visto, en la sección 3, revisamos
+a profundidad los ejemplos de grupos topológicos, vimos que $\S^{1}$, $\T^{2}$, $\S^{3}$ y 
+$\R\P^{3}$ son grupos topológicos y su construcción resulto relativamente sencilla porque vivían
+en espacios con buenas propiedades, sin embargo, dar una estructura de grupo topológico a un 
+espacio dado no es una tarea sencilla, en esa misma sección hablamos un poco de superficies y las 
+consecuencias de las obstrucciones que se presentan para ser $H-$espacio, una noción mas general 
+de grupo topológico. Luego, en la sección 4, se presentan las primeras dos obstrucciones: la 
+primera de ellas es que el grupo fundamental debe ser abeliano, y la segunda es que el cubriente 
+universal de un $H-$espacio es $H-$espacio. Con la restricción del grupo fundamental logramos 
+descartar las superficies que son homeomorfas a sumas conexas de toros y planos proyectivos, 
+también probamos que $\S^{2}$ es el cubriente universal de $\R\P^{2}$ y juntando el segundo 
+resultado de la sección 4 con el resultado de la sección 5, que bajo ciertas hipotesis el anillo 
+de cohomología de un $H-$espacio es un álgebra de Hopf, llegamos a la conclusión de que $\R\P^{2}$ 
+no es un $H-$espacio por que $\S^{2}$ no lo es, más aún, demostramos que ninguna esfera de 
+dimensión par lo es, este resultado se generalizo en la literatura a que las únicas esferas que 
+son $H-$espacios corresponden a $\S^{0}$, $\S^{1}$, $\S^{3}$ y $\S^{7}$, en un futuro sería ideal 
+apuntar en esta dirección. Como resultado extra, usando el teorema de clasificación de 
+superficies, logramos concluir que $\T^{2}$ es la única superficie compacta y conexa que es grupo 
+topológico.
+
+\begin{thebibliography}{4}
+    \bibitem{Hatcher}
+        \textsc{Hatcher, A.} (2001). 
+        \textit{Algebraic Topology}, 1st ed. Cambridge University Press.
+
+    \bibitem{Bredon}
+        \textsc{Bredon, Glen E.} (1993). 
+        \textit{Topology and Geometry}, 1st ed. Springer.
+
+    \bibitem{Lee}
+        \textsc{Lee, John M.} (2011). 
+        \textit{Introduction to Topological Manifolds}, 2nd ed. Springer.
+
+    \bibitem{Munkres}
+        \textsc{Munkres, James R.} (2000)
+        \textit{Topology}, 2nd ed. Pearson
+\end{thebibliography}
+
+\end{document}
