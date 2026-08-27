@@ -1,0 +1,128 @@
+%% Paquetes
+\RequirePackage{amsthm,amsmath,amsfonts,amssymb}
+\RequirePackage[numbers]{natbib}
+\RequirePackage[colorlinks, citecolor=blue, urlcolor=blue, linkcolor=black]{hyperref}
+\RequirePackage{graphicx}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue,
+    linktocpage = true,
+}
+
+%% Idioma, codificación y familia del texto
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+
+\usepackage{tikz} %% Se utiliza para hacer gráficos
+\usepackage[all]{xy} %% Para los diagramas conmutativos
+\usetikzlibrary{calc} %% Complementario a tikz
+
+%% Otros
+\usepackage{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{mathtools, mathrsfs}
+\usepackage{titlesec}
+\usepackage{dsfont}
+
+%% \usepackage{biblatex} % Quitar el comentado si quiero usar bibliografia
+%% \usepackage{csquotes} % Este igual
+
+%% ----- Comandos nuevos -----
+    %% Nuevos comandos específicos, necesarios para simplificar la escritura
+    
+    \newcommand{\ds}{\displaystyle}
+    
+    %% ----- Comandos Matematicos -----
+    \newcommand{\norm}[1]{\left \lVert #1\right \rVert} %% Norma
+    \newcommand{\dv}[2]{\frac{d#1}{d#2}} %% Valor absoluto
+    \newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}} %% Derivada
+    \newcommand{\abs}[1]{\left|#1 \right|} %% Derivada parcial
+    \newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle} %% Producto interno
+    \newcommand{\gen}[1]{\left\langle{#1}\right\rangle} %% Conjunto generador
+    \newcommand{\im}[1]{im\hspace{1mm}#1} %% Conjunto imagen de un morfismo
+    \newcommand{\kr}[1]{ker\hspace{1mm}#1} %% Kernel de un morfismo
+
+    %% ----- Comandos de texto -----
+    \newcommand{\htext}[1]{\hspace{4mm}\text{#1 }}
+    \newcommand{\hhtext}[1]{\hspace{4mm}\text{#1}\hspace{4mm}}
+    \newcommand{\obs}{\textsc{Observación: }}
+    \newcommand{\ex}{\textsc{Ejercicio: }}
+    \newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+
+    %% ----- Comandos para conjuntos -----
+    \def \A {\mathbb{A}}
+    \def \C {\mathbb{C}}
+    \def \R {\mathbb{R}}
+    \def \K {\mathbb{K}}
+    \def \Q {\mathbb{Q}}
+    \def \Z {\mathbb{Z}}
+    \def \N {\mathbb{N}}
+    \def \D {\mathbb{D}}
+    \def \I {\mathbb{I}}
+    \def \S {\mathbb{S}}
+
+    \def \V {\mathcal{V}}
+    \def \B {\mathcal{B}}
+    \def \J {\mathcal{J}}
+    
+    %% --- Teoremas ---
+        \newtheoremstyle{mystyle} %% Nombre
+        {\medskipamount} %% Espacio arriba
+        {\medskipamount} %% Espacio abajo
+        {\itshape} %% Fuente del cuerpo
+        {\parindent} %% Sangría del título
+        {\scshape}
+        {:} %% Puntuación despues del título
+        {.5em} %% Espacio despues del título
+        {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}} %% Estilo del título
+
+        \theoremstyle{mystyle} %% Cambio el estilo de theorem
+        
+        \newtheorem{teo}{Teorema}[section]
+        \newtheorem{prop}{Proposición}[section]
+        \newtheorem{lema}{Lema}[section]
+        \newtheorem{cor}{Corolario}[section]
+        
+        \newtheorem*{dfn}{Definición}
+        \newtheorem*{sol}{Solución}
+        \newtheorem*{ejm}{Ejemplo}
+
+%% ----- Fomato de texto -----
+    \geometry{left=3cm, bottom=2.5cm, top=2cm, right=3cm}
+
+    \renewcommand{\theenumi}{\arabic{enumi}}
+    \renewcommand{\labelenumi}{({\theenumi})}
+    \renewcommand{\theenumii}{\alph{enumii}}
+    \renewcommand{\labelenumii}{({\theenumii})}
+
+    %% Aplicamos scshape al título principal
+    \addto\captionsspanish{%
+    \renewcommand{\contentsname}{\hfill \textnormal{\scshape Índice} \hfill}%
+    }
+
+    %% Modifica el estilo de la subsección
+    \titleformat{\subsection}
+        {\normalfont\large\itshape} %% Formato del texto (fuente, tamaño, estilo, color)
+        {\thesubsection} %% Etiqueta (el número de la subsección)
+        {1em} %% Espacio entre el número y el texto
+        {} %% Código antes del título
+
+    %% Modifica el estilo de la subsección
+    \titleformat{\section}
+        {\normalfont\large\bfseries} %% Formato del texto (fuente, tamaño, estilo, color)
+        {\thesection.} %% Etiqueta (el número de la subsección)
+        {1em} %% Espacio entre el número y el texto
+        {} %% Código antes del título
+
+%% ----- Caja demostración -----
+%% Para enmarcar claramente el ambiente de una demostración
+\tcolorboxenvironment{proof}{
+    blanker,
+    enforce breakable,
+    left=5mm,
+    before skip=10pt,
+    after skip=10pt,
+    borderline west={0.5mm}{0pt}{black}
+}

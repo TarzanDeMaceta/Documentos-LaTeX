@@ -1,0 +1,327 @@
+\documentclass[11pt]{article}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{titlepage} % Portada con información necesaria
+    \hspace*{-2cm}
+    \raisebox{-2cm}[0pt][0pt]{
+        \includegraphics[width=0.4\textwidth]{logo_universidad2.png}
+    }
+
+    \vspace{3.5cm}
+    \begin{center}
+        {\Large Pontificia Universidad Católica de Chile}
+        
+        \vspace{2cm}
+        {\Huge \bfseries 
+        Extensiones de Grupos
+        }
+        
+        \vspace{1.5cm}
+        {\Large Benjamín Maldonado, Benjamín Mateluna, Sergio Peña}
+        
+        \vspace{1.5cm}
+        {\Large Docente: Sebastián Barbieri}
+        \vfill
+        
+        {\large \today \par}
+    \end{center}
+\end{titlepage}
+
+\tableofcontents % Índice de contenidos
+
+\vspace{5cm}
+\section*{Introducción}
+\addcontentsline{toc}{section}{Introducción}
+
+\newpage
+\section{Secuencias Exactas Cortas}
+\noindent En esta sección estudiaremos la noción de secuencia exacta corta, además, veremos que 
+el producto directo y semidirecto se dan cuando la secuencia escinde por izquierda y por derecha 
+respectivamente. La idea es codificar la información de dichas estructuras en un objeto más 
+general como las secuencias exactas cortas. Comenzamos dando la definición formal de 
+esta última %(Modificar)
+
+\begin{dfn}
+    Sean $\varphi:A\to B$ y $\psi:B\to C$ morfismos de grupos, decimos que forman una secuencia 
+    exacta corta si $\varphi$ es inyectivo, $\psi$ sobreyectivo y $\im{\varphi}=\kr{\psi}$ y lo 
+    anotamos
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & A \ar[r]^{\varphi} & B \ar[r]^{\psi} & C \ar[r] & 0
+        }
+    }
+\end{dfn}
+
+\vspace{2mm}
+
+\noindent Este tipo de estruturas son naturales y surgen de estudiar el primer teorema de 
+isomorfismo. En efecto, como $\kr{\psi}=\im{\varphi}$, tenemos que $\varphi(A)\unlhd B$ y como 
+$\psi$ es sobreyectiva concluimos que
+\begin{equation*}
+    B/\varphi(A)\simeq C
+\end{equation*}
+De este modo, dado que $\varphi$ es inyectivo pensamos en $A$ como un subgrupo normal de $B$ y en 
+$C$ como el grupo cociente $B/A$.
+
+\begin{ejm}
+    Dado $n\in\N$, la siguiente secuencia
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & n\Z \ar[r]^{i} & \Z \ar[r]^-{\pi} & \Z/n\Z \ar[r] & 0
+        }
+    } \vspace{2mm}
+
+    es una secuencia exacta corta. 
+\end{ejm}
+
+\obs Notemos que si $B$ es un grupo simple entonces la secuencia es trivial en el siguiente 
+sentido; como $B$ es simple y $\varphi(A)$ un subgrupo normal isomorfo a $A$, resulta que 
+$A\simeq B$ ó $A\simeq1$ y en este último, por exactitud, se tiene que $C\simeq B$.
+
+\vspace{2mm}
+\noindent Sabemos que $B/A\simeq C$, pero la pregunta interesante es ¿Cuándo podemos obtener 
+información sobre la estructura de $B$ a partir de $A$ y $C$? ¿Que propiedades debe cumplir la 
+secuencia exacta? Supongamos que $A\times C\simeq B$, consideremos los morfismos
+
+\centerline{
+    \xymatrix @R=0.5mm @C=2mm{
+        i:A\to A\times C & \hhtext{y} & \pi:A\times C\to C \\
+        \hspace{3mm} a\mapsto(a,1) & & \hspace{6mm} (a,c)\mapsto c
+    }
+} \vspace{2mm}
+
+\noindent Notemos que $\im{i}=\kr{\pi}$. Si $\varphi:A\times C\to B$ es isomorfismo, entonces
+
+\centerline{
+        \xymatrix @C=1cm{
+            0 \ar[r] & A \ar[r]^-{\varphi\circ i} 
+            & B \ar[r]^-{\pi\circ\varphi^{-1}} & C \ar[r] & 0
+        }
+    } \vspace{2mm}
+
+\noindent es una secuencia exacta corta, además, la función $j:A\times C\to A$ dada por $j(a,c)=a$ 
+es un morfismo de grupos tal que $j\circ i=id_{A}$. Lo anterior da pie a la siguiente definición
+
+\begin{dfn}
+    Decimos que una secuencia exacta corta
+
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & A \ar[r]^{\varphi} & B \ar[r]^{\psi} & C \ar[r] & 0
+        }
+    } \vspace{2mm}
+
+    se escinde por izquierda, si existe un morfismo de grupos $\phi:B\to A$ tal que 
+    $\phi\circ\varphi=id_{A}$.
+\end{dfn}
+
+\noindent Con la discusión anterior probamos que si $A\times C\simeq B$ entonces existe una 
+secuencia exacta corta que se escinde por izquierda ¿El reciproco será cierto? Por fortuna, el
+reciproco también es cierto,
+
+\begin{lema}
+    Sean $A, B$ y $C$ grupos. Entonces existe una secuencia exacta corta
+
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & A \ar[r]^{\varphi} & B \ar[r]^{\psi} & C \ar[r] & 0
+        }
+    } \vspace{2mm}
+    que se escinde por izquierda si y solo si $A\times C\simeq B$.
+\end{lema}
+
+\newpage
+\begin{proof}
+    Ya probamos que $A\times C\simeq B$ entonces existe una secuencia exacta corta que se escinde 
+    por izquierda. Por otro lado, supongamos que tal secuencia existe, 
+    \begin{equation*}
+        \phi:B\to A \hhtext{morfismo tal que } \phi\circ\varphi=id_{A}
+    \end{equation*}
+    Puesto que la secuencia es exacta se sigue que $\varphi(A)\unlhd B$. Afirmamos que 
+    $\varphi(A)\cap\kr{\phi}=\{1\}$ y $\varphi(A)\kr{\phi}$ y por lo tanto 
+    $\varphi(A)\times\kr{\phi}\simeq B$. Sea $b\in B$, notemos que
+    \begin{equation*}
+        b=\varphi\phi(b)(\varphi\phi(b)^{-1}b)
+    \end{equation*}
+    Claramente el primer término pertenece a $\varphi(A)$, mientras que 
+    $\varphi\phi(b)^{-1}b\in\kr{\phi}$, pues $\phi(\varphi\phi(b)^{-1}b)=\phi(b)^{-1}\phi(b)=1$. 
+    Supongamos que $b\in \varphi(A)\cap\kr{\phi}$, entonces
+    \begin{equation*}
+        b=\varphi(a) \htext{para algún }a\in A
+    \end{equation*}
+    aplicando $\phi$ observamos que $1=\phi(b)=\phi\varphi(a)=a$, es decir, $b=1$. Hemos probado
+    que $\varphi(A)\times\kr{\phi}\simeq B$, para finalizar notamos que $\varphi(A)\simeq A$, ya 
+    que, $\varphi$ es inyectivo; resta ver que $\kr{\phi}\simeq C$. Veamos que 
+    $\psi:\kr{\phi}\to C$ es isomorfismo. Existe $b\in B$ tal que $\psi(b)=c$, entonces
+    \begin{equation*}
+        c=\psi(b)=\psi(\varphi\phi(b)^{-1}b)
+    \end{equation*}
+    lo que prueba la sobreyectividad. Para la inyectividad observamos lo siguiente
+    $\kr{\phi}\cap\kr{\psi}=\kr{\phi}\cap\im{\varphi}=\{1\}$. Concluimos que $A\times C\simeq B$
+    como queriamos.
+\end{proof}
+
+\noindent Hemos logrado caracterizar cuando un grupo es isomorfo al producto directo de dos 
+grupos; lo que nos permite, por ejemplo, descartar cuando un grupo no corresponde al producto
+directo de dos grupos, veremos un ejemplo de esto más adelante. Nuestro siguiente objetivo es el
+producto semidirecto, para ello definimos lo siguiente
+
+\begin{dfn}
+    Decimos que una secuencia exacta corta
+    
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & A \ar[r]^{\varphi} & B \ar[r]^{\psi} & C \ar[r] & 0
+        }
+    } \vspace{2mm}
+    se escinde por derecha, si existe $\phi:C\to B$ morfismo de grupos tal que 
+    $\psi\circ\phi=id_{C}$.
+\end{dfn}
+
+\noindent Y el siguiente lema nos garantiza un resultado similar en el caso del producto 
+semidirecto,
+
+\begin{lema}[Splitting lemma]
+    Sean $A, B$ y $C$ grupos. Entonces existe una secuencia exacta corta
+
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & A \ar[r]^{\varphi} & B \ar[r]^{\psi} & C \ar[r] & 0
+        }
+    } \vspace{2mm}
+    que se escinde por derecha si y solo si $A\rtimes_{\alpha} C\simeq B$.
+\end{lema}
+
+\begin{proof}
+    Supongamos que $A\rtimes_{\alpha} C\simeq B$, queremos probar que existe una secuencia exacta 
+    corta que se escinde por derecha. Al igual que en el caso del producto directo, consideramos los 
+    morfismos
+    
+    \centerline{
+        \xymatrix @R=0.5mm @C=2mm{
+            i:A\to A\rtimes_{\alpha} C & \hhtext{y} & \pi:A\rtimes_{\alpha} C\to C \\
+            \hspace{3mm} a\mapsto(a,1) & & \hspace{6mm} (a,c)\mapsto c
+        }
+    } \vspace{2mm}
+    Aunque en este hay que tener cuidado con la operación en $A\rtimes_{\alpha} C$. Además, 
+    consideramos la función $\rho:C\to A\rtimes_{\alpha} C$ dada por $\rho(c)=(1,c)$, y para ver
+    es morfismo observamos lo siguiente 
+    $\rho(c)\rho(c')=(1,c)(1,c')=(1\alpha_{c}(1),cc')=\rho(cc')$.
+    
+    \vspace{1mm}
+    Es facil ver que $\pi\circ\rho=id_{C}$. Luego, sea $\varphi:A\rtimes_{\alpha}C\to B$ 
+    isomorfismo, entonces
+
+    \centerline{
+        \xymatrix @C=1cm{
+            0 \ar[r] & A \ar[r]^{\varphi\circ i} & B \ar[r]^{\pi\circ\varphi^{-1}} & C \ar[r] & 0
+        }
+    } \vspace{2mm}
+    es una secuencia exacta corta que se escinde por derecha.
+
+    \newpage
+    \vspace{2mm}
+    Supongamos que la secuencia exacta corta se escinde por derecha, es decir, existe 
+    $\phi:C\to B$ morfismo de grupos tal que $\psi\circ\phi=id_{C}$. Como $\varphi$ es un morfismo 
+    inyectivo, $A\simeq \varphi(A)$, más aún, dado que la secuencia es exacta 
+    $\varphi(A)=\kr{\psi}\unlhd B$ y dado que $\phi$ posee inversa por izquierda se tiene que
+    $C\simeq \phi(C)$.
+
+    \vspace{2mm}
+    Afirmamos que $\varphi(A)\cap\phi(C)=\{1\}$ y $\varphi(A)\phi(C)=B$, en dicho caso, por el 
+    teorema del producto semidirecto concluimos. En efecto, sea $b\in \varphi(A)\cap\phi(C)$, 
+    entonces
+    \begin{equation*}
+        b=\varphi(a) \htext{para algún }a\in A
+    \end{equation*}
+    así, $\psi(b)=\psi(\varphi(a))=1$. Por otro lado, existe $c\in C$ tal que $b=\phi(c)$, usando
+    lo anterior vemos que
+    \begin{equation*}
+        c=\psi(\phi(c))=\psi(b)=1
+    \end{equation*}
+    Concluimos que $b=1$. Sea $b\in B$, digamos $c=\psi(b)$ y notemos que $\psi(b(\phi(c^{-1})))
+    =cc^{-1}=1$, luego, por exactitud existe $a\in A$ tal que $\varphi(a)=b\phi(c^{-1})$. Por lo 
+    tanto,
+    \begin{equation*}
+        b=\varphi(a)\phi(c)
+    \end{equation*}
+\end{proof}
+
+\subsection{Ejemplos}
+
+\noindent Notemos que el producto directo en particular es un producto semidirecto inducido por el
+morfismo trivial de $C$ en $aut(A)$ y por lo tanto toda secuencia exacta que se escinde por 
+izquierda también se escinde por derecha, sin embargo, el recíproco no es cierto, para ello veamos
+el siguiente ejemplo.
+
+\begin{ejm}
+    Sea $D_{6}$ el grupo dihedral de $6$ elementos (el grupo que corresponde a las simetrías del
+    triángulo). Consideremos el sugbrupo normal $A=\{id, r, r^{2}\}$, es normal puesto que su 
+    índice es dos. Además,
+    \begin{equation*}
+        D_{6}/A\simeq\Z_{2}\simeq C:=\{id,s\}
+    \end{equation*}
+    Luego, la siguiente secuencia exacta
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & A \ar[r]^{i} & D_{6} \ar[r]^{\pi} & C \ar[r] & 0
+        }
+    } \vspace{2mm}
+    \noindent no escinde por izquierda, de lo contrario $D_{6}\simeq\Z_{6}$, pero sabemos que el
+    grupo dihedral de $6$ elementos no es abeliano. Por otro lado, por el teorema de producto 
+    semidirecto, resulta que
+    \begin{equation*}
+        D_{6}\simeq A\rtimes C
+    \end{equation*}
+    lo que implica que la secuencia escinde por derecha.
+\end{ejm}
+
+\noindent Otro ejemplo interesante son los cuaterniones un grupo no abeliano, dado por la 
+siguiente presentación
+\begin{equation*}
+    Q_{8}:=\gen{-1,i,j,k|(-1)^{2}=1,i^{2}=j^{2}=k^{2}=ijk=-1}
+\end{equation*}
+
+\begin{ejm}
+    No existe una secuencia exacta
+    
+    \vspace{2mm}
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & A \ar[r]^{\varphi} & Q_{8} \ar[r]^{\psi} & C \ar[r] & 0
+        }
+    } \vspace{2mm}
+    \noindent que se escinda por izquierda o por derecha. En otras palabras, los cuaterniones no
+    corresponden ni a un producto directo ni semidirecto de grupos.
+    (Pendiente)
+\end{ejm}
+
+\newpage
+\section{Grupos Solubles y Residualmente finitos}
+
+\begin{prop}
+    Sea
+
+    \centerline{
+        \xymatrix{
+            0 \ar[r] & A \ar[r]^{\varphi} & B \ar[r]^{\psi} & C \ar[r] & 0
+        }
+    } \vspace{2mm}
+    una secuencia exacta corta tal que $A$ es soluble y $C$ es soluble, entonces $B$ es soluble.
+\end{prop}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}

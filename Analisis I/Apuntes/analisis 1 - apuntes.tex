@@ -1,0 +1,447 @@
+\documentclass[11pt]{article}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{titlepage} % Portada con información necesaria
+    \hspace*{-2cm}
+    \raisebox{-2cm}[0pt][0pt]{
+        \includegraphics[width=0.4\textwidth]{logo_universidad2.png}
+    }
+
+    \vspace{3.5cm}
+    \begin{center}
+        {\Large Pontificia Universidad Católica de Chile}
+        
+        \vspace{2cm}
+        {\Huge \bfseries 
+        Análisis 1 - Apuntes de la Clase
+        }
+        
+        \vspace{1.5cm}
+        {\Large Benjamín Mateluna}
+        
+        \vspace{1.5cm}
+        {\Large Docente: Mariel Saez}
+        \vfill
+        
+        {\large \today \par}
+    \end{center}
+\end{titlepage}
+
+\tableofcontents % Índice de contenidos
+
+\newpage
+\section{Espacios Topológicos}
+
+\subsection{Nociones Fundamentales}
+
+\begin{dfn}
+    Dado un conjunto $X$ y $\tau\subseteq 2^{X}$, decimos que el par $(X,\tau)$ es una topología
+    si se cumple lo siguiente:
+    \begin{enumerate}
+        \item Se tiene que $\emptyset,X\in\tau$.
+        \item Si $U,V\in\tau$ entonces $U\cap V\in\tau$.
+        \item Si $\{U_{\alpha}\}_{\alpha\in A}\subseteq\tau$ entonces 
+        $\bigcup_{\alpha\in A}U_{\alpha}\in\tau$.
+    \end{enumerate}
+\end{dfn}
+
+\noindent Dado $U\in\tau$, decimos que $U$ es un \emph{abierto} de la topología. Si $a\in U$ con 
+$U$ abierto, decimos que $U$ es una vecindad de $a$. Para facilitar notación usualmente diremos
+que $X$ es un espacio topologico, omitiendo la notación de par ordenado y sobrentendiendo que 
+detrás hay una colección de abiertos.
+
+\vspace{2mm}
+\noindent Un abierto $U$ se dice vecindad de $C\subseteq X$ si $C\subseteq U$.
+
+\begin{ejm} \hspace{1mm}
+    \begin{itemize}
+        \item Sea $X$ cualquiera y $\tau=2^{X}$, es facil ver que $(X,\tau)$ es una topología.
+        
+        \item Sea $X$ cualquiera y $\tau=\{\emptyset,X\}$, entonces $(X,\tau)$ es una topología.
+        
+        \item Sea $X$ cualquiera y $\tau=\{U\subseteq X:U^{c}\text{ es finito}\}$, luego 
+        $(X,\tau)$ es una topología.
+        
+        \item Dado $(X,d)$ espacio métrico, consideramos
+        \begin{equation*}
+            \tau=\{U\subseteq X:\forall a\in U,\exists a\in U\text{ tq }B_{r}(a)\subseteq U\}
+        \end{equation*}
+        Así, el par $(X,\tau)$ resulta ser una topología. Este ejemplo incluye a $\R^{n}$, 
+        espacios normados y espacios de Hilbert.
+    \end{itemize}
+\end{ejm}
+
+\begin{prop}
+    Sea $X$ espacio topologico, entonces $U\subseteq X$ es abierto si y solo si para todo $a\in U$
+    existe una vecindad $U_{a}$ de $a$ tal que $U_{a}\subseteq U$.
+\end{prop}
+
+\vspace{2mm}
+\noindent La demostración es directa de la definición.
+
+\begin{dfn}
+    La clausura de un conjunto $E$ está dada por
+    \begin{equation*}
+        \overline{E}:=\{a\in X:\text{Para toda vecindad }U\text{ de }a,U\cap E\neq\emptyset\}
+    \end{equation*}
+    Decimos que un conjunto es cerrado si es igual a su clausura, es decir, $\overline{E}=E$.
+\end{dfn}
+
+\begin{prop}
+    Sea $E\subseteq X$. Entonces $E$ es cerrado si y solo si $E^{c}$ es abierto.
+\end{prop}
+
+\begin{proof}
+    Supongamos que $E^{c}$ no es abierto, entonces existe un punto $x\in E^{c}$ tal que para toda
+    vecindad $U$ de $x$, resulta que $U\cap E\neq\emptyset$, luego $x\in\overline{E}$ pero 
+    $x\not\in E$. El otro lado es análogo.
+\end{proof}
+
+\noindent Alternativamente, podemos definir un conjunto cerrado como el complemento de un conjunto
+abierto, lo que calza con la proposición anterior y la clausura de un conjunto se define como
+
+\begin{equation*}
+    \overline{E}:=\bigcap_{C\supseteq E\text{ cerrado}}C
+\end{equation*}
+
+\noindent Con la anterior definición de cerrado, es facil ver lo siguiente:
+\begin{itemize}
+    \item Los conjuntos $\emptyset,X$ son cerrados.
+    \item Se $C_{1}$ y $C_{2}$ son cerrados, entonces $C_{1}\cup C_{2}$ es cerrado.
+    \item Si $\{C_{\alpha}\}_{\alpha\in A}$ cerrados, entonces $\bigcap_{\alpha\in A}C_{\alpha}$
+    es cerrado.
+\end{itemize}
+Es decir, intuitivamente, la clausura de un conjunto es el cerrado más pequeño que lo contiene. Se
+verifica que ambas definiciones de clausura son equivalentes. Adicionalmente, el interior de un
+conjunto es
+\begin{equation*}
+    int(E):=\bigcup_{U\subseteq E\text{ abierto}}U
+\end{equation*}
+en otras palabras, es el abierto mas grande contenido en $E$. Y la frontera de $E$, denotado por 
+$\partial E$, como $\partial E:=X\setminus{(int(E)\cup int(X\setminus E))}$.
+
+\begin{dfn}
+    Sea $X$ un espacio topológico e $Y\subseteq X$. La topología inducida en $Y$ es
+    \begin{equation*}
+        \tau=\{U\cap Y:U\text{ es abierto en }X\}
+    \end{equation*}
+    Así, $Y$ es un espacio topológico.
+\end{dfn}
+
+\noindent A modo de observación, con la anterior definición, el espacio $Y$ hereda una estructura 
+topológica del espacio ambiente $X$.
+
+\begin{ejm}
+    En $\R$ con la topología usual e $Y=[0,2]$. Notar que $[0,1)$ es abierto en $Y$ con la 
+    topología de subespacio.
+\end{ejm}
+
+\begin{lema}[Propiedad universal de la topología de subespacio]
+    Sea $X$ un espacio topológico e $Y\subseteq X$. La topología de subespacio es la única 
+    topología en $Y$, tal que la incluisión $i:Y\to X$ es continua y para todo $Z$ espacio
+    topológico con $f:Z\to X$ continua de modo que $f(Z)\subseteq Y$, entonces existe una función
+    continua $\hat{f}:Z\to Y$ continua tal que $f=i\circ\hat{f}$.
+
+    \vspace{2mm}
+    \noindent Dicho de otro modo, el siguiente diagrama conmuta:
+
+    \centerline{
+        \xymatrix{
+            Z \ar[d]_{\hat{f}} \ar[rd]^{f} \\
+            Y \ar[r]_{i} & X
+        }
+    }
+\end{lema}
+
+\noindent La demostración se deja para el lector.
+
+\subsection{Bases y Contabilidad}
+
+\begin{dfn}
+    Decimos que $\B_{p}$, con $p\in X$, es una base local de la topología en $p$, si los elementos 
+    en $\B_{p}$ son vecindades de $p$ y para toda vecindad $U$ de $p$, existe $B\in\B_{p}$ tal que 
+    $B\subseteq U$.
+\end{dfn}
+
+\noindent En adición, decimos que que $\B$ es base de la topología si para todo $p\in X$, existe
+$\B_{p}\subseteq\B$ base local de $p$.
+
+\begin{ejm} \hspace{1mm}
+    \begin{itemize}
+        \item Las bolas abiertas en $\R^{n}$ forman una base.
+
+        \item En la topología discreta los singletons, es decir $\{x\}$, forman una base.
+    \end{itemize}
+\end{ejm}
+
+\begin{prop}
+    Sea $X$ espacio topológico no vacío y $\B\subseteq 2^{X}$. Entonces $\B$ es base de alguna 
+    topología si y solo si
+    \begin{enumerate}
+        \item[(i)] El conjunto $\B$ cubre a $X$.
+        
+        \item[(ii)] Dados $B_{1},B_{2}\in\B$ y $x\in\B_{1}\cap\B_{2}$, entonces existe $B\in\B$ 
+        tal que $x\in B\subseteq B_{1}\cap B_{2}$.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    Si $\B$ es base es claro que se cumplen ambas condiciones, supongamos que $\B$ cumple con las
+    propiedades $(i)$ y $(ii)$. Definimos el siguiente conjunto
+    \begin{equation*}
+        \tau:=\left\{\bigcup_{B\in I\subseteq\B}B\right\}
+    \end{equation*}
+    Afirmamos que $\tau$ es topología, en efecto, tomando $I=\B$ e $I=\emptyset$ resulta que
+    $\emptyset,X\in\tau$. Claramente la unión arbitraria de elementos en $\tau$ está en $\tau$.
+    Sean $U,V\in\tau$, luego
+    \begin{equation*}
+        U=\bigcup_{A\in I\subseteq\B}A \hhtext{y} V=\bigcup_{B\in J\subseteq\B}B
+    \end{equation*}
+    entonces,
+    \begin{equation*}
+        U\cap V=\bigcup_{(A,B)\in I\times J}A\cap B
+    \end{equation*}
+    basta ver que el conjunto $A\cap B$ esta en $\tau$. Por la segunda condición vemos que existen
+    elementos en $\B$ tales que
+    \begin{equation*}
+        A\cap B=\bigcup_{O\subseteq A\cap B}O
+    \end{equation*}
+\end{proof}
+
+\begin{dfn}
+    Sean $X$ e $Y$ espacios topológicos. Consideramos el conjunto
+    \begin{equation*}
+        \{U\times B:U\subseteq X,V\subseteq Y \text{ abiertos}\}
+    \end{equation*}
+    Es una base para una topología en $X\times Y$, a dicha topología se le conoce como topología
+    producto.
+\end{dfn}
+
+\begin{lema}[Propiedad universal de la topología producto]
+    La topología producto es la única topología en $X\times Y$ tal que $\pi_{X}$ y $\pi_{Y}$ son 
+    continuas y para todo espacio topológico y toda pareja $f_{X}:Z\to X$, $f_{Y}:Z\to Y$ de 
+    funciones continuas la función
+    \begin{align*}
+        f:Z &\to X\times Y \htext{dada por} \\
+        z &\mapsto (f_{X}(z),f_{Y}(z))
+    \end{align*}
+    es continua. Dicho de otro modo, el siguiente diagrama conmuta
+    
+    \centerline{
+        \xymatrix{
+            Z \ar[ddr]_{f_{X}} \ar[rr]^{f_{Y}} \ar[rd]^{f} & & Y \\
+            & X\times Y \ar[ru]^{\pi_{Y}} \ar[d]^{\pi_{X}} & \\
+            & X
+        }
+    }
+\end{lema}
+
+\noindent\textbf{\underline{Ejercicio}:} Demuestre que la topología producto en $\R^{2}$ es igual 
+a la topología inducida por la norma euclideana. \textbf{Hint:} Ver las bases de cada topología.
+
+\begin{dfn}
+    Sea $X$ un espacio topológico y $(a_{n})_{n}\subseteq X$, decimos que 
+    $\lim_{n\to\infty}a_{n}=a$ si para toda vecindad de $a$, existe $N\in\N$ tal que $a_{n}\in U$
+    para todo $n\in U$.
+\end{dfn}
+
+\noindent\textbf{\underline{Ejercicio}:} Sea $X$ un espacio topológico discreto, las únicas 
+sucesiones convergentes son aquellas que son eventualmente constantes.
+
+\subsection{Axiomas de separación}
+
+\noindent Dado $X$ espacio topológico, decimos que
+\begin{enumerate}
+    \item Es Tychonoff si para todo $x,y\in X$, existen abiertos $U_{x},U_{y}$ tales que 
+    $x\in U_{x}\setminus U_{y}$ e $y\in U_{y}\setminus U_{x}$.
+
+    \item Es Hausdorff si para todo $x,y\in X$, existen $U_{x},U_{y}$ abiertos disjuntos tales que
+    $x\in U_{x}$ e $y\in U_{y}$.
+
+    \item Es regular si es Tychonoff y si dado $F$ cerrado y $x\not\in F$, existen $U,U_{x}$
+    abiertos disjuntos tales que $F\subseteq U$ y $x\in U_{x}$.
+
+    \item Es normal si es Tychonoff y dado $F_{1},F_{2}$ cerrados existen $U_{i}$ vecindades de
+    $F_{i}$ disjuntas.
+\end{enumerate}
+
+\begin{prop}
+    Sea $X$ un espacio topológico, entonces es Tychonoff si y solo si $\{x\}$ es cerrado para 
+    todo $x\in X$.
+\end{prop}
+
+\begin{proof}
+    Supongamos que $X$ es Tychonoff, demostraremos que $X\setminus\{x\}$ es abierto. Sea 
+    $y\in X\setminus\{x\}$, como $X$ es Tychonoff, sabemos que existe $U_{y}$ vecindad de $y$ tal
+    que $x\not\in U_{y}$, entonces $U_{y}\subseteq X\setminus\{x\}$.
+
+    \vspace{2mm}
+    Para el reciproco, sean $x,y\in X$ distintos, notemos que $x\in X\setminus\{y\}$, como este 
+    último es abierto, existe $U_{x}\subseteq X\setminus{y}$ vecindad de $x$, luego 
+    $y\not\in U_{x}$. De la misma manera construimos $U_{y}$ y por lo tanto $X$ es Tychonoff.
+\end{proof}
+
+\begin{cor}
+    Todo espacio normal es regular, este a su vez es Hausdorff y el último implica ser Tychonoff.
+\end{cor}
+
+\begin{teo}
+    Sea $X$ un espacio métrico, entonces es normal
+\end{teo}
+
+\begin{proof}
+    Sean $A,B$ cerrados disjuntos, definimos la función $f:X\to[0,1]$
+    \begin{equation*}
+        f(x)=\frac{d_{A}(x)}{d_{A}(x)+d_{B}(x)}
+    \end{equation*}
+    la función es continua y además $f\big|_{A}\equiv 0$ y $f\big|_{B}\equiv 1$, como $[0,1]$ es
+    Hausdorff, porque es espacio métrico, existen abiertos que separan a $1$ y $0$, digamos $U$ y
+    $V$, luego $f^{-1}(U),f^{-1}(V)$ son los abiertos buscados.
+\end{proof}
+
+\begin{teo}
+    Sea $X$ un espacio, entonces es normal si y solo si para todo cerrado $F$ y $U$ vecindad de 
+    $F$, existe $V$ abierto tal que
+    \begin{equation*}
+        F\subseteq V\subseteq\overline{V}\subseteq U
+    \end{equation*}
+\end{teo}
+
+\begin{proof}
+    Supongamos que $X$ es normal. Sea $F$ cerrado y $U$ vecindad de $F$. Consideramos 
+    $F'=X\setminus U$, como $F\cap F'=\emptyset$, existen $V$ y $V_{1}$ vecindades de $F$ y
+    $F'$ tales que $V\cap V_{1}=\emptyset$.
+
+    \vspace{2mm}
+    Sabemos que $F\subseteq V$. Dado que $V_{1}$ es vecindad de $X\setminus U$, resulta que
+    $X\setminus V_{1}\subseteq U$ y $V$ y además $V\subseteq X\setminus V_{1}$, así
+    \begin{equation*}
+        \overline{V}\subseteq\overline{X\setminus V_{1}}=X\setminus V_{1}\subseteq U
+    \end{equation*}
+    Para la otra implicancia. Sean $F_{1},F_{2}$ cerrados disjuntos. Consideramos 
+    $U=X\setminus F_{2}$, así $F_{1}\subseteq U$. Por propiedad, existe $U_{1}$ abierto tal
+    que
+    \begin{equation*}
+        F_{1}\subseteq U_{1}\subseteq\overline{U_{1}}\subseteq U
+    \end{equation*}
+    Tomamos $U_{2}=X\setminus\overline{U_{1}}$, notar que $U_{1}\cap U_{2}=\emptyset$ y 
+    $F_{i}\subseteq U_{i}$.
+\end{proof}
+
+\begin{dfn}
+    Sea $X$ espacio topológico, se dice primero contable si para todo $p\in X$ existe una base 
+    local numerable.
+\end{dfn}
+
+\obs Todo espacio métrico es primero contable, basta tomar $B_{1/n}(p)$.
+
+\begin{prop}
+    Sea $X$ un espacio topológico primero contable y $A\subseteq X$, entonces $a\in\overline{A}$ 
+    si y solo si existe $(a_{n})_{n}\subseteq A$ tal que $\lim_{n\to\infty}a_{n}=a$.
+\end{prop}
+
+\begin{proof}
+    (Pendiente)
+\end{proof}
+
+\begin{dfn}
+    Sea $X$ espacio topológico, decimos que es segundo contable si existe una base numerable.
+\end{dfn}
+
+\noindent En $\R^{n}$ podemos tomar la colección de abiertos $B_{q}(p)$ donde $q$ es racional y 
+$p$ un punto con entradas racionales, luego, por densidad de $\Q$ en $\R$, resulta que $\R^{n}$ es
+segundo contable para todo $n\in\N$.
+
+\begin{dfn}
+    Un espacio se dice separable si existe un subconjunto denso numerable, es decir, existe 
+    $E\subseteq X$ numerable tal que $\overline{E}=X$.
+\end{dfn}
+
+\begin{teo}
+    Sea $X$ un espacio métrico, luego, es segundo contable si y solo si es separable.
+\end{teo}
+
+\begin{proof}
+    (Pendiente)
+\end{proof}
+
+\subsection{Funciones continuas}
+
+\noindent Recordemos la definición de continuidad en espacios métricos. Sean $X$ e $Y$ espacios
+métricos una función $f:X\to Y$ se dice continua en $a\in X$ si
+\begin{equation*}
+    \forall\varepsilon>0,\exists\delta>0:d(a,b)<0\implies d(f(a),f(b))<\varepsilon
+\end{equation*}
+y se dice continua si es continua para todo $a\in X$. Equivalentemente decimos que
+\begin{equation*}
+    \forall\varepsilon>0,\exists\delta>0:f(B_{\delta(a)})\subseteq B_{\varepsilon}(f(a))
+\end{equation*}
+También, se puede probar que una función es continua si y solo si la preimagen de abierto es 
+abierto. De este modo, tenemos dos definiciones equivalentes
+\begin{enumerate}
+    \item Si $U$ es abierto en $Y$, entonces $f^{-1}(U)$ es abierto.
+    
+    \item La función $f$ es continua si y solo si para toda sucesión $(a_{n})_{n}$ tal que
+    $a_{n}\xrightarrow[n\to\infty]{}a$ se tiene que $f(a_{n})\xrightarrow[n\to\infty]{}f(a)$.
+\end{enumerate}
+
+\begin{dfn}
+    Sean $X$ e $Y$ espacios topológicos y $f:X\to Y$ una función, se dice continua si para todo
+    $U\subseteq Y$ abierto se verifica que $f^{-1}(U)\subseteq X$ es abierto.
+\end{dfn}
+
+\begin{teo}
+    Sea $X$ e $Y$ espacios topológicos y consideremos $f:X\to Y$. Si $X$ es primero contable,
+    entonces $f$ es continua si y solo si para toda sucesión $(a_{n})_{n}$ tal que 
+    $a_{n}\xrightarrow[n\to\infty]{}a$ se tiene que $f(a_{n})\xrightarrow[n\to\infty]{}f(a)$.
+\end{teo}
+
+\begin{proof}
+    (Pendiente)
+\end{proof}
+
+\begin{prop}
+    Sean $X,Y$ y $Z$ espacios topológicos. Consideremos $f:X\to Y$ y $g:Y\to Z$ continuas, entonces
+    $g\circ f$ es continua.
+\end{prop}
+
+\noindent Para la demostración basta notar que $(g\circ f)^{-1}(U)=f^{-1}(g^{-1}(U))$.
+
+\vspace{2mm}
+\noindent Dado un conjunto $\{f_{\alpha}:X\to X_{\alpha}\}_{\alpha\in A}$ con $X_{\alpha}$ espacio
+topológico para todo $\alpha\in A$, surge la pregunta ¿Cuál es la menor topología en $X$ tal que
+$f_{\alpha}$ es continua para todo $\alpha\in A$?
+
+\begin{dfn}
+    Sean $\tau$ y $\sigma$ topologías en $X$, decimos que $\sigma$ es menor que $\tau$ si 
+    $\sigma\subseteq\tau$.
+\end{dfn}
+
+\noindent Si tomamos $S_{\alpha}=\{f_{\alpha}^{-1}(U_{\alpha}):U_{\alpha}\subseteq X_{\alpha} 
+\text{ abierto}\}$, tiene que estar incluido es esa topología. La siguiente proposición nos dice
+como construir la topología buscada
+
+\begin{prop}
+    Cualquier familia de conjuntos que cubre al espacio genera una colección que es base de una 
+    topología. Además, esa es la menor topología que contiene a dicha familia.
+\end{prop}
+
+\begin{proof}
+    (Pendiente)
+\end{proof}
+
+\begin{dfn}
+    Sean $X$ e $Y$ espacios topológicos, una función $f:X\to Y$ continua se dice homeomorfismo si 
+    $f$ es biyectiva con inversa continua.
+\end{dfn}
+
+\noindent Los homeomorfismos definen una relación de equivalencia entre espacios topológicos.
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}

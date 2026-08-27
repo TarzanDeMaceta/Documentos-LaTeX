@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage{Style}
+
+\begin{document}
+
+\begin{center}
+    \Large\textsc{El Teorema de Hurewicz} \\
+    \normalsize Benjamín Mateluna
+\end{center}
+
+\noindent Esta presentación tiene como objetivo hablar sobre el teorema de Hurewicz, cuyo 
+enunciado establece que el primer grupo de homología es isomorfo a la abelianización del grupo 
+fundamental; esto es, al grupo resultante de cocientar este último por su conmutador, que 
+denotaremos por
+\begin{equation*}
+    \widetilde{\pi}_{1}(X,x):=\pi_{1}(X,x)^{ab}=\frac{\pi_{1}(X,x)}{[\pi_{1}(X,x),\pi_{1}(X,x)]}
+\end{equation*}
+\noindent El resultado sirve como puente entre la teoría de homología y de homotopía, lo que 
+permite traducir un problema homotópico en uno esencialmente algebraico al expresarlo en grupos de 
+homología.
+
+\vspace{2mm}
+\noindent Para ello, se supondrá que el espacio topológico es arcoconexo, ya que este segundo 
+invariante homotópico -- el grupo fundamental -- no es capaz de detectar las componentes 
+arcoconexas, a diferencia de los grupos de homología. El morfismo a definir, digamos,
+\begin{equation*}
+    \phi:\pi_{1}(X,x)\to H_{1}(X)
+\end{equation*}
+es natural: dado un lazo basado en un punto, su imagen será el mismo lazo, pero visto ahora como 
+una cadena en el complejo de cadenas de nuestro espacio.
+
+\vspace{2mm}
+\noindent Necesitaremos tres lemas para demostrar que dicha asignación está bien definida, que 
+desciende al primer grupo de homología y que efectivamente es un morfismo de grupos. Una vez 
+definido, dado que el primer grupo de homología es abeliano, este morfismo se factorizará a través 
+de la abelianización del grupo fundamental debido a la propiedad universal del conmutador. Nuestra 
+misión entonces será probar que tal homomorfismo, en realidad, es un isomorfismo.
+
+\vspace{2mm}
+\noindent Con este propósito, definiremos un morfismo auxiliar
+\begin{equation*}
+    \psi_{*}:H_{1}(X)\to\widetilde{\pi}_{1}(X,x)
+\end{equation*}
+\noindent y probaremos que corresponde a la inversa de nuestro candidato a isomorfismo. Se 
+probarán dos lemas -- uno para cada composición a verificar -- y, para finalizar, se verán 
+aplicaciones de este teorema, principalmente para calcular el primer grupo de homología a partir 
+del grupo fundamental y viceversa.
+
+\begin{thebibliography}{1}
+    \bibitem{Bredon}
+        \textsc{Bredon, Glen E.} (1993). 
+        \textit{Topology and Geometry}, 1st ed. Springer.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,196 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{12cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Professor: Jesse Huang -- Student: Benjamín Mateluna}
+\end{minipage}
+\vspace{2ex}
+
+{\centerline{\bf Selected Topics on Complex Algebraic Varieties - MPG3320 III}
+\centerline{\bf Assignment 1}}
+\centerline{\bf August 31, 2026}
+
+\vspace{1cm}
+\noindent\textbf{Problem 1.} Como el ideal $(x,y)$ es maximal, basta probar
+\begin{equation*}
+    I=(x+xy,y+xy,x^{2},y^{2})\supseteq(x,y)
+\end{equation*}
+En efecto, notemos lo siguiente
+\begin{equation*}
+    (x+xy)(y+xy)=xy+x^{2}y+xy^{2}+x^{2}y^{2}
+\end{equation*}
+como $x^{2},y^{2}\in I$ se tiene que $xy\in I$, lo que implica que $x,y\in I$ y por lo tanto 
+$(x,y)\subseteq I$.
+
+\vspace{5mm}
+\noindent\textbf{Problem 2.}
+\begin{enumerate}
+    \item[(a)] El conjunto $S$ no es una variedad algebraica, de lo contrario, sería un cerrado en
+    la topología Zariski y por ende un cerrado en la topología euclideana, lo que es un 
+    contradicción.
+
+    \item[(b)] Consideremos el ideal
+    \begin{equation*}
+        (x^{p-1}-1,x-y)=I\subseteq\mathbb{F}_{q}[x,y]
+    \end{equation*}
+    Veamos que $S=\z(I)$, en efecto, dado $(a,a)\in S$, entonces por pequeño teorema de fermat, 
+    resulta que
+    \begin{equation*}
+        a^{p-1}-1=0 \hhtext{y} a-a=0
+    \end{equation*}
+    en otras palabras, $(a,a)\in\z(I)$. Por otro lado, si $(x,y)\in\z(I)$, vemos que $x=y$ y 
+    además $x^{p-1}=1$, es decir, $x\in\mathbb{F}_{q}^{*}$ y así $(x,y)\in S$.
+
+    \item[(c)] Definimos los conjuntos
+    \begin{equation*}
+        \U:=U_{0}\cap U_{1}\subseteq\mathbb{P}_{\C}^{1} \hhtext{y} 
+        \V=\overline{\z(xy-1)}\cap U_{3}\subseteq\mathbb{P}_{\C}^{2}
+    \end{equation*}
+    donde $U_{i}=\{[x_{0}:\cdots:x_{n}]\in\mathbb{P}_{\C}^{n}:x_{i}\neq0\}$. Puesto que el ideal
+    $(xy-1)$ esta generado por un elemento su homogenización es $(xy-z^{2})$, luego 
+    $\overline{\z(xy-1)}=\z^{p}(xy-z^{2})\subseteq\bigcap_{i=0}^{2}U_{i}$. Notar que tanto $\U$ 
+    como $\V$ son cuasi variedades proyectivas.
+
+    \vspace{1mm}
+    Podemos identificar $\C^{*}$ con $\U$ y $\z(xy-1)$ con $\V$, mediante la identificación obvia.
+    Por otro lado, la asignación
+    \begin{equation*}
+        z\mapsto(z,z^{-1})
+    \end{equation*}
+    es una correspondencia entre los puntos de $\C^{*}$ y $\z(xy-1)$, pero no es morfismo. Sin
+    embargo, dado $[x:y]\in\U$, bajo las identificaciones, tenemos lo siguiente
+    \begin{equation*}
+        [x:y]=[xy^{-1}:1]\mapsto xy^{-1}\mapsto(xy^{-1},x^{-1}y)\mapsto [xy^{-1}:x^{-1}y:1]
+        =[x^{2}:y^{2}:xy]
+    \end{equation*}
+    La función $\varphi:\U\to\V$ dada por
+    \begin{equation*}
+        [x:y]\mapsto[x^{2}:y^{2}:xy]
+    \end{equation*}
+    es morfismo de cuasi variedades proyectivas, ya que es polinomial en cada coordenada, más aún, 
+    es isomorfismo con inversa $\psi([x:y:z])=[x:z]$. Observemos lo siguiente
+    \begin{equation*}
+        \psi\varphi([x:y])=\psi([x^{2}:y^{2}:xy])=[x^{2}:xy]=[x:y]
+    \end{equation*}
+    y
+    \begin{equation*}
+        \varphi\psi([x:y:z])=\varphi([x:z])=[x^{2}:z^{2}:xz]=[x^{2}:xy:xz]=[x:y:z]
+    \end{equation*}
+    Lo que prueba el isomorfismo de cuasi variedades proyectivas.
+\end{enumerate}
+
+\newpage
+\noindent\textbf{Problem 3.}
+\begin{itemize}
+    \item[(a)] En primer lugar, probaremos el siguiente lema
+    
+    \vspace{1mm}
+    \noindent\textbf{Lemma:} \emph{Sea $f\in\C[x_{1},\cdots,x_{n}]$ no nulo, entonces 
+    $f^{-1}(0)$ tiene interior vacío.}
+
+    \begin{proof}
+        Procederemos por inducción en $n\in\N$. Si $n=1$, sabemos que $f$ tiene finitas raíces, en
+        caso de tener interior no vacío tendría infinitas raíces, lo que prueba el caso base. 
+        Supongamos, por contradicción, que existe $U\subseteq\C^{n}$ un abierto tal que 
+        $U\subseteq f^{-1}(0)$. Escribimos
+        \begin{equation*}
+            f=\sum_{k}f_{k}(x_{1},\cdots,x_{n-1})x_{n}^{k}
+            \htext{con} f_{k}\in\C[x_{1},\cdots,x_{n-1}]
+        \end{equation*}
+        Sea $a=(a_{1},\cdots,a_{n})\in U$ y consideremos la función continua
+        \begin{align*}
+            i:\C &\to \C^{n} \\
+            z & \mapsto (a_{1},\cdots,a_{n-1},z)
+        \end{align*}
+        Notemos que $i^{-1}(U)$ es un abierto no vacío de $\C$ y $g(z)=f(a_{1},\cdots,a_{n-1},z)$ 
+        un polinomio que se anula en un conjunto abierto de $\C$, por el caso base, se tiene que
+        $g\equiv0$. Luego, $f_{k}(a_{1},\cdots,a_{n-1})=0$ para todo $k$.
+
+        \vspace{1mm}
+        El argumento anterior vale para todo $a\in U$ y como el mapa 
+        $a\mapsto(a_{1},\cdots,a_{n-1})$ es abierto, el polinomio $f_{k}$ se anula en un conjunto
+        abierto y por hipotesis inductiva $f_{k}\equiv0$. Concluimos que $f^{-1}(0)$ tiene 
+        interior vacío.
+    \end{proof}
+
+    El lema implica inmediatamente que dado $f\in\C[x_{1},\cdots,x_{n}]$ no constante, entonces
+    $f^{-1}(\C\setminus\{0\})$ es denso en $\C^{n}$.
+
+    \vspace{1mm}
+    Sea $V$ una variedad algebraica afín propia, entonces $V=V(I)$ con 
+    $I\subseteq\C[x_{1},\cdots,x_{n}]$ un ideal no nulo. Por el teorema de la base de Hilbert 
+    existen $f_{1},\cdots,f_{m}$ tales que $I=(f_{1},\cdots,f_{m})$, así
+    \begin{equation*}
+        V=V(I)=V(f_{1},\cdots,f_{m})=\bigcap_{i=1}^{m}V(f_{i})\subseteq V(f_{1})
+    \end{equation*}
+    Tomando complemento y luego clausura, se obtiene que $V^{c}$ es denso en $\C^{n}$, es decir, 
+    todo abierto en la topología Zariski es denso según la topología euclideana.
+
+    \item[(b)] Supongamos, por contradicción, que ambas topologias son iguales. Consideremos
+    $V=V(x-y)\subseteq\A^{2}_{\C}$ un cerrado según la topología Zariski y por lo tanto un cerrado 
+    según la topología producto.
+
+    \vspace{1mm}
+    Lo anterior equivale a que la topología Zariski en $\A^{1}_{\C}$ es Hausdorff, es sabido que
+    dicha topología es igual a la topología cofinita en $\C$, la que no es Hausdorff en conjuntos
+    infinitos. Esta contradicción prueba la afirmación.
+\end{itemize}
+
+\vspace{5mm}
+\noindent\textbf{Problem 4.}
+\begin{enumerate}
+    \item[(a)] Consideremos el ideal
+    \begin{equation*}
+        I:=(x_{1}x_{2})\subseteq k[x_{1},\cdots,x_{n}]
+    \end{equation*}
+    El ideal no es primo, en efecto, notar que $x_{1}x_{2}\in I$, pero $x_{i}\not\in I$. Por otro 
+    lado, veamos que el ideal es radical. 
+    
+    \vspace{1mm}
+    Si $f^{n}\in I$, por definición tenemos que 
+    $x_{1}x_{2}|f^{n}$, en particular, $x_{1}|f^{n}$, como este último es primo, resulta que 
+    $x_{1}|f$. El mismo argumento vale para $x_{2}$ y dado que $x_{1}$ y $x_{2}$ son coprimos
+    resulta que $x_{1}x_{2}|f$, lo que concluye la demostración.
+
+    \item[(b)]
+    \begin{itemize}
+        \item $\Rightarrow|$ Supongamos que $I(V)$ no es primo, entonces existen $f_{1},f_{2}$ 
+        polinomios tales que $f_{1}f_{2}\in I(V)$, pero $f_{i}\not\in I(V)$. Notar que
+        \begin{equation*}
+            V=(V\cap V(f_{1}))\cup(V\cap V(f_{2}))
+        \end{equation*}
+        pero $(V\cap V(f_{i}))\neq V$, ya que existe $p_{i}\in V$ tal que $f_{i}(p_{i})\neq0$. 
+        Luego, $V$ es reducible.
+
+        \item $\Leftarrow|$ Supongamos que $V$ es reducible, entonces
+        \begin{equation*}
+            V=V_{1}\cup V_{2}
+        \end{equation*}
+        con $V_{i}\neq V$ variedades afines. Entonces existe un polinomio $f_{i}$ tal que 
+        $f_{i}(p)=0$ para todo $p\in V_{i}$, pero no para todo punto en $V$. Notemos que 
+        $f_{1}f_{2}\in I(V)$, pero $f_{i}\not\in I(V)$. Concluimos que $I(V)$ no es primo.
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+\vspace{5mm}
+\noindent\textbf{Problem 5.}
+
+\vspace{5mm}
+\noindent\textbf{Problem 6.}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}

@@ -1,0 +1,164 @@
+\documentclass[11pt]{article}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+\begin{document}
+
+\begin{titlepage} % Portada con información necesaria
+    \hspace*{-2cm}
+    \raisebox{-2cm}[0pt][0pt]{
+        \includegraphics[width=0.4\textwidth]{logo_universidad2.png}
+    }
+
+    \vspace{3.5cm}
+    \begin{center}
+        {\Large Pontificia Universidad Católica de Chile}
+        
+        \vspace{2cm}
+        {\Huge \bfseries 
+        Apuntes de Geometría Algebraica
+        }
+        
+        \vspace{1.5cm}
+        {\Large Benjamín Mateluna}
+        
+        \vfill
+        {\large \today \par}
+    \end{center}
+\end{titlepage}
+
+\tableofcontents % Índice de contenidos
+
+\newpage
+\section*{Introducción}
+\addcontentsline{toc}{section}{Introducción}
+
+\noindent La intención de estas notas o apuntes, es recopilar lo aprendido de geometría algebraica
+durante la carrera y el magister; buscan servir como un banco de datos al cual le puedo consultar
+cualquier duda que tenga sobre esta rama de las matemáticas. Además, lo utilizare como una manera
+de estudiar el ramo que estoy cursando "Selected Topics on Complex Algebraic Varieties".
+
+\vspace{1mm}
+\noindent El propósito o enfoque inicial serán contenidos introductorios de geometría algebraica,
+a medida que el curso avance, los temas irán evolucionando. Estos últimos también se pueden 
+expandir en un futuro, a medida que vaya aprendiendo mas. Los apuntes están pensados para una
+evolución constante.
+
+\newpage
+\section{Categorías y Funtores}
+\emph{Esta sección se hará cuando tenga mas tiempo...}
+
+\newpage
+\section{Variedades Afines}
+\noindent Empezaremos con la noción mas básica y sencilla de entender en la geometría algebraica, 
+posiblemente la más cercana a la intuición geométrica. Comenzamos fijando un cuerpo $k$ 
+algebraicamente cerrado, usualmente se piensa en $k=\C$.
+
+\begin{dfn}
+    El $n-$espacio afín sobre $k$, denotado por $\A_{k}^{n}$, es el conjunto de las $n-$tuplas de
+    elemento de $k$, es decir, $k^{n}$. Un elemento $p=(a_{1},\cdots,a_{n})\in\A_{k}^{n}$ se dice 
+    punto y $a_{i}$ coordenada de $p$.
+\end{dfn}
+
+\noindent El espacio afín, por ahora, lo pensamos únicamente como un conjunto y no con su 
+estructura usual de espacio vectorial. Más adelante le daremos una estructura geométrica al 
+$n-$espacio afín.
+
+\begin{dfn}
+    Sea $T\subseteq k[x_{1},\cdots,x_{n}]$, se define
+    \begin{equation*}
+        V(T):=\{p\in\A_{k}^{n}:f(p)=0,\forall f\in T\}
+    \end{equation*}
+    el lugar de ceros.
+\end{dfn}
+
+\noindent Cuando $T=\{f_{1},\cdots,f_{n}\}$ simplemente se escribe $V(f_{1},\cdots,f_{n})$.
+
+\vspace{1mm}
+\obs Claramente si $I=(T)$, entonces $V(I)=V(T)$. Más aún, como $k[x_{1},\cdots,x_{n}]$ es un 
+anillo noetheriano, todo ideal es finitamente generado. Así, $V(T)$ se puede expresar como el 
+lugar de ceros de un número finito de polinomios.
+
+\begin{dfn}
+    Un conjunto $V\subseteq\A_{k}^{n}$ se dice variedad algebraica afín si $V=V(T)$ para algún 
+    $T\subseteq k[x_{1},\cdots,x_{n}]$.
+\end{dfn}
+
+\noindent En algunos textos, lo anterior se define simplemente como conjunto algebraico afín y
+reservan el nombre de variedad algebraica afín a conjuntos algebraicos irreducibles, en 
+nuestro caso, variedades algebraicas irreducibles, a saber
+
+\begin{dfn}
+    Una variedad algebraica afín $V$ se dice irreducible si no se puede expresar como la unión
+    $V=V_{1}\cup V_{2}$ de dos subconjuntos propios y cada uno de ellos una variedad algebraica.
+\end{dfn}
+
+\noindent Pensando en teoría categorías, hemos definido nuestros objetos, faltan los morfismos.
+
+\begin{dfn}
+    Sean $V\subseteq\A_{k}^{n}$ y $W\subseteq\A_{k}^{n}$ variedades afines. Una función 
+    $\varphi:V\to W$ es un morfismo de variedades afines si es la restricción de un mapa 
+    polinomial.
+\end{dfn}
+
+\noindent Un mapa polinomial es aquel que en cada coordenada esta dado por polinomios.
+
+\begin{ejm}
+    Consideremos $V=V(x^{2}-y)$, el mapa $\varphi:\C\to V$ dado por
+    \begin{equation*}
+        \varphi(z)=(z,z^{2})
+    \end{equation*}
+    es un morfismo de variedades afines, de hecho, es un isomorfismo.
+\end{ejm}
+
+\noindent De la misma manera que relacionamos un conjunto de polinomios con un conjunto de 
+puntos en el espacio afín, podemos hacer el proceso en reversa
+
+\begin{dfn}
+    Dado $V\subseteq\A_{k}^{n}$, definimos el ideal de $V$ en $k[x_{1},\cdots,x_{n}]$, como
+    \begin{equation*}
+        I(V):=\{f\in k[x_{1},\cdots,x_{n}]:f|_{V}\equiv0\}
+    \end{equation*}
+\end{dfn}
+
+\noindent Es facil ver que $I(V)$ es un ideal, más aún, si $f^{m}\in I(V)$ entonces $f\in I(V)$, 
+en otras palabras, el ideal de un conjunto es radical.
+
+\begin{ejm}
+    Consideremos $V=V(x^{2})=\{0\}\subseteq\A_{k}^{1}$. Notemos que $I(V)=(x)$.
+\end{ejm}
+
+\noindent Surge entonces la pregunta una pregunta natural ¿Cuál es exactamente la correspondencia
+entre conjuntos de polinomios y conjuntos en el espacio afín? Como veremos mas adelante, el 
+Nullstellensatz de Hilbert nos dará una respuesta precisa, por ahora, veamos el siguiente 
+resultado
+
+\newpage
+\begin{prop}
+    Una variedad afín $V\subseteq\A_{k}^{n}$ es irreducible si y solo si $I(V)$ es un ideal primo.
+\end{prop}
+
+\begin{proof}
+    Supongamos que $I(V)$ no es primo, entonces existen $f_{1},f_{2}$ polinomios tales que 
+    $f_{1}f_{2}\in I(V)$, pero $f_{i}\not\in I(V)$. Notar que
+    \begin{equation*}
+        V=(V\cap V(f_{1}))\cup(V\cap V(f_{2}))
+    \end{equation*}
+    pero $(V\cap V(f_{i}))\neq V$, ya que existe $p_{i}\in V$ tal que $f_{i}(p_{i})\neq0$. Luego, 
+    $V$ es reducible.
+
+    \vspace{1mm}
+    Supongamos que $V$ es reducible, entonces
+    \begin{equation*}
+        V=V_{1}\cup V_{2}
+    \end{equation*}
+    con $V_{i}\neq V$ variedades afines. Entonces existe un polinomio $f_{i}$ tal que $f_{i}(p)=0$ 
+    para todo $p\in V_{i}$, pero no para todo punto en $V$. Notemos que $f_{1}f_{2}\in I(V)$, pero 
+    $f_{i}\not\in I(V)$. Concluimos que $I(V)$ no es primo.
+\end{proof}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}
