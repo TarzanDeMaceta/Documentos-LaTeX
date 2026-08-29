@@ -23,7 +23,7 @@
 \centerline{\bf August 31, 2026}
 
 \vspace{1cm}
-\noindent\textbf{Problem 1.} Como el ideal $(x,y)$ es maximal, basta probar
+\noindent\textbf{Problem 1.} Como el ideal $(x,y)$ es maximal, basta probar que
 \begin{equation*}
     I=(x+xy,y+xy,x^{2},y^{2})\supseteq(x,y)
 \end{equation*}
@@ -37,50 +37,46 @@ $(x,y)\subseteq I$.
 \vspace{5mm}
 \noindent\textbf{Problem 2.}
 \begin{enumerate}
-    \item[(a)] El conjunto $S$ no es una variedad algebraica, de lo contrario, sería un cerrado en
-    la topología Zariski y por ende un cerrado en la topología euclideana, lo que es un 
-    contradicción.
+    \item[(a)] El conjunto $S$ no es una variedad afín, de lo contrario, sería un cerrado en
+    la topología Zariski y, por consiguiente, un cerrado bajo la topología euclideana, lo que es 
+    una contradicción.
 
     \item[(b)] Consideremos el ideal
     \begin{equation*}
-        (x^{p-1}-1,x-y)=I\subseteq\mathbb{F}_{q}[x,y]
+        I=(x^{p-1}-1,x-y)\subseteq\mathbb{F}_{q}[x,y]
     \end{equation*}
-    Veamos que $S=\z(I)$, en efecto, dado $(a,a)\in S$, entonces por pequeño teorema de fermat, 
-    resulta que
+    Dado $(a,a)\in S$, por pequeño teorema de fermat resulta que
     \begin{equation*}
         a^{p-1}-1=0 \hhtext{y} a-a=0
     \end{equation*}
-    en otras palabras, $(a,a)\in\z(I)$. Por otro lado, si $(x,y)\in\z(I)$, vemos que $x=y$ y 
-    además $x^{p-1}=1$, es decir, $x\in\mathbb{F}_{q}^{*}$ y así $(x,y)\in S$.
+    se sigue que $(a,a)\in V(I)$. Por otro lado, si $(x,y)\in V(I)$ vemos que $x=y$ y $x^{p-1}=1$,
+    es decir, $x\neq0$ y así $(x,y)\in S$.
 
-    \item[(c)] Definimos los conjuntos
+    \item[(c)] Definimos
     \begin{equation*}
         \U:=U_{0}\cap U_{1}\subseteq\mathbb{P}_{\C}^{1} \hhtext{y} 
-        \V=\overline{\z(xy-1)}\cap U_{3}\subseteq\mathbb{P}_{\C}^{2}
+        \V=\overline{V(xy-1)}\cap U_{2}\subseteq\mathbb{P}_{\C}^{2}
     \end{equation*}
     donde $U_{i}=\{[x_{0}:\cdots:x_{n}]\in\mathbb{P}_{\C}^{n}:x_{i}\neq0\}$. Puesto que el ideal
-    $(xy-1)$ esta generado por un elemento su homogenización es $(xy-z^{2})$, luego 
-    $\overline{\z(xy-1)}=\z^{p}(xy-z^{2})\subseteq\bigcap_{i=0}^{2}U_{i}$. Notar que tanto $\U$ 
-    como $\V$ son cuasi variedades proyectivas.
+    $(xy-1)$ esta generado por un elemento su homogenización es $(xy-z^{2})$, luego
+    $\V=V^{p}(xy-z^{2})\subseteq U_{i}$ para $i=0,1,2$.
 
     \vspace{1mm}
-    Podemos identificar $\C^{*}$ con $\U$ y $\z(xy-1)$ con $\V$, mediante la identificación obvia.
-    Por otro lado, la asignación
+    Notar que tanto $\U$ como $\V$ son cuasi variedades proyectivas, más aún, mediante la 
+    identificación natural, vemos que $\C^{*}$ es homeomorfo a $\U$ y $V(xy-1)$ con $\V$. Por
+    otro lado, la aplicación
     \begin{equation*}
         z\mapsto(z,z^{-1})
     \end{equation*}
-    es una correspondencia entre los puntos de $\C^{*}$ y $\z(xy-1)$, pero no es morfismo. Sin
-    embargo, dado $[x:y]\in\U$, bajo las identificaciones, tenemos lo siguiente
+    es una correspondencia entre los puntos de $\C^{*}$ y $\V(xy-1)$, pero no es aplicación 
+    polinomial. Sin embargo, dado $[x:y]\in\U$ y bajo las identificaciones, tenemos lo siguiente
     \begin{equation*}
         [x:y]=[xy^{-1}:1]\mapsto xy^{-1}\mapsto(xy^{-1},x^{-1}y)\mapsto [xy^{-1}:x^{-1}y:1]
         =[x^{2}:y^{2}:xy]
     \end{equation*}
-    La función $\varphi:\U\to\V$ dada por
-    \begin{equation*}
-        [x:y]\mapsto[x^{2}:y^{2}:xy]
-    \end{equation*}
-    es morfismo de cuasi variedades proyectivas, ya que es polinomial en cada coordenada, más aún, 
-    es isomorfismo con inversa $\psi([x:y:z])=[x:z]$. Observemos lo siguiente
+    El mapa $\varphi:\U\to\V$ dado por $[x:y]\mapsto[x^{2}:y^{2}:xy]$ es morfismo de cuasi 
+    variedades proyectivas, ya que es polinomial en cada coordenada, más aún, es isomorfismo con 
+    inversa $\psi([x:y:z])=[x:z]$. Observemos lo siguiente
     \begin{equation*}
         \psi\varphi([x:y])=\psi([x^{2}:y^{2}:xy])=[x^{2}:xy]=[x:y]
     \end{equation*}
@@ -102,7 +98,7 @@ $(x,y)\subseteq I$.
 
     \begin{proof}
         Procederemos por inducción en $n\in\N$. Si $n=1$, sabemos que $f$ tiene finitas raíces, en
-        caso de tener interior no vacío tendría infinitas raíces, lo que prueba el caso base. 
+        caso de tener interior no vacío tendría infinitas raíces, lo que prueba el caso base.
         Supongamos, por contradicción, que existe $U\subseteq\C^{n}$ un abierto tal que 
         $U\subseteq f^{-1}(0)$. Escribimos
         \begin{equation*}
@@ -121,8 +117,8 @@ $(x,y)\subseteq I$.
         \vspace{1mm}
         El argumento anterior vale para todo $a\in U$ y como el mapa 
         $a\mapsto(a_{1},\cdots,a_{n-1})$ es abierto, el polinomio $f_{k}$ se anula en un conjunto
-        abierto y por hipotesis inductiva $f_{k}\equiv0$. Concluimos que $f^{-1}(0)$ tiene 
-        interior vacío.
+        abierto y por hipotesis inductiva $f_{k}\equiv0$ para todo $k$. Concluimos que $f^{-1}(0)$ 
+        tiene interior vacío.
     \end{proof}
 
     El lema implica inmediatamente que dado $f\in\C[x_{1},\cdots,x_{n}]$ no constante, entonces
@@ -143,26 +139,25 @@ $(x,y)\subseteq I$.
     según la topología producto.
 
     \vspace{1mm}
-    Lo anterior equivale a que la topología Zariski en $\A^{1}_{\C}$ es Hausdorff, es sabido que
-    dicha topología es igual a la topología cofinita en $\C$, la que no es Hausdorff en conjuntos
-    infinitos. Esta contradicción prueba la afirmación.
+    Lo anterior equivale a que la topología Zariski en $\A^{1}_{\C}$ es Hausdorff, pero es sabido 
+    que dicha topología es idéntica a la topología cofinita en $\C$, la que no es Hausdorff en 
+    conjuntos infinitos. Esta contradicción prueba la afirmación.
 \end{itemize}
 
 \vspace{5mm}
 \noindent\textbf{Problem 4.}
 \begin{enumerate}
-    \item[(a)] Consideremos el ideal
+    \item[(a)] Vemos que el ideal
     \begin{equation*}
         I:=(x_{1}x_{2})\subseteq k[x_{1},\cdots,x_{n}]
     \end{equation*}
-    El ideal no es primo, en efecto, notar que $x_{1}x_{2}\in I$, pero $x_{i}\not\in I$. Por otro 
-    lado, veamos que el ideal es radical. 
-    
+    no es primo, en efecto, notar que $x_{1}x_{2}\in I$, pero $x_{i}\not\in I$. No obstante,
+    resulta ser un ideal radical.
+
     \vspace{1mm}
-    Si $f^{n}\in I$, por definición tenemos que 
-    $x_{1}x_{2}|f^{n}$, en particular, $x_{1}|f^{n}$, como este último es primo, resulta que 
-    $x_{1}|f$. El mismo argumento vale para $x_{2}$ y dado que $x_{1}$ y $x_{2}$ son coprimos
-    resulta que $x_{1}x_{2}|f$, lo que concluye la demostración.
+    Si $f^{n}\in I$, por definición tenemos que $x_{1}x_{2}|f^{n}$, en particular, $x_{i}|f^{n}$ y 
+    como este último es primo, se sigue que $x_{i}|f$. Dado que $x_{1}$ y $x_{2}$ son coprimos 
+    se tiene que $x_{1}x_{2}|f$, lo que concluye la demostración.
 
     \item[(b)]
     \begin{itemize}
@@ -178,18 +173,89 @@ $(x,y)\subseteq I$.
         \begin{equation*}
             V=V_{1}\cup V_{2}
         \end{equation*}
-        con $V_{i}\neq V$ variedades afines. Entonces existe un polinomio $f_{i}$ tal que 
-        $f_{i}(p)=0$ para todo $p\in V_{i}$, pero no para todo punto en $V$. Notemos que 
+        con $V_{i}\neq V$ variedades afines. Entonces existen $p_{i}\in V\setminus V_{i}$ y 
+        $f_{i}$ un polinomio tales que $f_{i}|_{V_{i}}\equiv0$ y $f_{i}(p_{i})\neq0$. Notemos que 
         $f_{1}f_{2}\in I(V)$, pero $f_{i}\not\in I(V)$. Concluimos que $I(V)$ no es primo.
     \end{itemize}
 \end{enumerate}
 
 \newpage
-\vspace{5mm}
-\noindent\textbf{Problem 5.}
+\noindent\textbf{Problem 5.} Veamos el siguiente lema
+
+\vspace{1mm}
+\noindent\textbf{Lemma:} \emph{Sea $k$ no algebraicamente cerrado, entonces existe un polinomio 
+$q\in k[x,y]$ tal que $q(x,y)=0$ si y solo si $x=y=0$.}
+
+\begin{proof}
+    Como $k$ no es algebraicamente cerrado, existe $f\in k[x]$ un polinomio no constante sin 
+    raíces en $k$. Escribamos
+    \begin{equation*}
+        f=a_{0}+a_{1}x+\cdots+a_{n}x^{n} \htext{con}a_{0},a_{n}\neq0
+    \end{equation*}
+    Definimos $q(x,y)\in k[x,y]$ como
+    \begin{equation*}
+        q(x,y):=\widetilde{f}=a_{0}y^{n}+a_{1}xy^{n-1}+\cdots+a_{n-1}x^{n-1}y+a_{n}x^{n}
+    \end{equation*}
+    Sea $(x,y)\in k^{2}$ tal que $q(x,y)=0$. Supongamos que $y\neq0$, de lo contrario, 
+    $a_{n}x^{n}=0$ y entonces $x=0$. Luego,
+    \begin{equation*}
+        0=a_{0}+a_{1}\left(\frac{x}{y}\right)+\cdots+a_{n}\left(\frac{x}{y}\right)^{n}
+        =f\left(\frac{x}{y}\right)
+    \end{equation*}
+    Pero la ecuación anterior no tiene solución en $k$ por la elección de $f$. Concluimos que
+    $q(x,y)=0$ si y solo si $x=y=0$.
+\end{proof}
+
+\vspace{1mm}
+\noindent Sea $V=V(f_{1},\cdots,f_{m})\subseteq\A_{k}^{n}$ una variedad algebraica, tomar 
+$q\in k[x,y]$ como en el lema, definimos recursivamente los siguientes polinomios
+\begin{equation*}
+    q_{i}:=q(f_{i},q_{i+1}) \htext{para}1\leq i<m
+\end{equation*}
+y $q_{m}=f_{m}$. Afirmamos que $V(q_{1})=V$, en efecto, se tiene que $q_{1}=q(f_{1},q_{2})=0$ si y 
+solo si $f_{1}=q_{2}=0$, del mismo modo, $q_{2}=0$ equivale a que $f_{2}=q_{3}=0$, inductivamente, 
+tenemos que $q_{1}=0$ si y solo si $f_{i}=0$ para todo $i$, lo que prueba lo pedido.
 
 \vspace{5mm}
 \noindent\textbf{Problem 6.}
+\begin{enumerate}
+    \item[(a)] Sea $p\in C(Y)$ no nulo, por definición $[p]\in Y$, entonces $f(p)=0$ para todo 
+    $f\in I$ homogéneo. Sea $f\in I$, escribimos
+    \begin{equation*}
+        f=\sum_{r}f_{r} \htext{con $f_{r}$ homogéneo}
+    \end{equation*}
+    Como $I$ es ideal homogéneo $f_{r}\in I$, entonces $f_{r}(p)=0$ y por lo tanto $f(p)=0$, luego
+    $p\in V(I)$.
+
+    \vspace{1mm}
+    Sea $p\in V(I)$ no nulo, por lo tanto $f(p)=0$ para todo $f\in I$, en particular, para todo 
+    $f\in I$ homogéneo y por ende $[p]\in Y$, es decir, $p\in C(Y)$.
+
+    \item[(b)] Similar al caso de variedades afines, se verifica que una variedad proyectiva $V$ 
+    es irreducible si y solo si $I^{h}(V)$ es un ideal primo. De este modo, basta probar que
+    $I(C(Y))=I^{h}(Y)$.
+
+    Sea $f\in I(C(Y))$, entonces $f|_{C(Y)}\equiv0$. Digamos que
+    \begin{equation*}
+        f=\sum_{r}f_{r} \htext{con $f_{r}$ homogéneo}
+    \end{equation*}
+    Queremos probar que $f_{r}|_{Y}\equiv0$ para todo $r$. Dado $[p]\in Y$, notamos que 
+    $p\in C(Y)$, lo que implica que $f(p)=0$, más aún, $f(\lambda p)=0$ para todo $\lambda\neq0$.
+    Entonces el polinomio
+    \begin{equation*}
+        g(\lambda)=f(\lambda p)=\sum_{r}f_{r}(p)\lambda^{r}
+    \end{equation*}
+    tiene infinitas raíces, lo que implica que $g$ es el polinomio nulo. Se sigue que $f_{r}(p)=0$
+    para todo $r$. Concluimos que $f\in I^{h}(Y)$.
+
+    Dado $f\in I^{h}(Y)$, digamos que
+    \begin{equation*}
+        f=\sum_{r}f_{r} \htext{con $f_{r}$ homogéneo y}f_{r}|_{Y}\equiv0
+    \end{equation*}
+    Fijemos $p\in C(Y)$ no nulo, nuevamente por definición tenemos que $[p]\in Y$ y se tiene que 
+    $f_{r}(p)=0$ para todo $r$, por lo tanto $f(p)=0$. En resumen, $f\in I(C(Y))$, lo que prueba
+    lo pedido.
+\end{enumerate}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 

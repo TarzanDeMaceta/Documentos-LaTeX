@@ -52,90 +52,114 @@ evolución constante.
 
 \newpage
 \section{Variedades Afines}
-\noindent Empezaremos con la noción mas básica y sencilla de entender en la geometría algebraica, 
-posiblemente la más cercana a la intuición geométrica. Comenzamos fijando un cuerpo $k$ 
-algebraicamente cerrado, usualmente se piensa en $k=\C$.
+\noindent Comenzamos con nociones introductorias de geometría algebraica, aquellas que son más
+cercanas a la intuición geométrica. Fijamos un cuerpo $k$ algebraicamente cerrado, usualmente
+pensamos que $k=\C$.
 
 \begin{dfn}
     El $n-$espacio afín sobre $k$, denotado por $\A_{k}^{n}$, es el conjunto de las $n-$tuplas de
-    elemento de $k$, es decir, $k^{n}$. Un elemento $p=(a_{1},\cdots,a_{n})\in\A_{k}^{n}$ se dice 
-    punto y $a_{i}$ coordenada de $p$.
+    elementos de $k$. Un elemento $p=(a_{1},\dots,a_{n})\in\A_{k}^{n}$ se dice 
+    punto y $a_{i}$ una coordenada de $p$.
 \end{dfn}
 
-\noindent El espacio afín, por ahora, lo pensamos únicamente como un conjunto y no con su 
-estructura usual de espacio vectorial. Más adelante le daremos una estructura geométrica al 
-$n-$espacio afín.
+\noindent Los espacios $\A_{k}^{n}$ y $k^{n}$, como conjuntos, son idénticos, sin embargo el 
+último se piensa como un espacio vectorial sobre $k$. Por ahora, el $n-$espacio afín es un 
+conjunto, que un poco más adelante dotaremos de una estructura de espacio topológico.
 
 \begin{dfn}
-    Sea $T\subseteq k[x_{1},\cdots,x_{n}]$, se define
+    Sea $T\subseteq k[x_{1},\dots,x_{n}]$, se define el lugar de ceros de $T$ como
     \begin{equation*}
         V(T):=\{p\in\A_{k}^{n}:f(p)=0,\forall f\in T\}
     \end{equation*}
-    el lugar de ceros.
 \end{dfn}
 
-\noindent Cuando $T=\{f_{1},\cdots,f_{n}\}$ simplemente se escribe $V(f_{1},\cdots,f_{n})$.
+\noindent Cuando $T=\{f_{1},\dots,f_{n}\}$ simplemente se escribe $V(f_{1},\dots,f_{n})$.
 
 \vspace{1mm}
-\obs Claramente si $I=(T)$, entonces $V(I)=V(T)$. Más aún, como $k[x_{1},\cdots,x_{n}]$ es un 
+\obs Claramente si $I=(T)$, entonces $V(I)=V(T)$. Más aún, como $k[x_{1},\dots,x_{n}]$ es un 
 anillo noetheriano, todo ideal es finitamente generado. Así, $V(T)$ se puede expresar como el 
 lugar de ceros de un número finito de polinomios.
 
 \begin{dfn}
     Un conjunto $V\subseteq\A_{k}^{n}$ se dice variedad algebraica afín si $V=V(T)$ para algún 
-    $T\subseteq k[x_{1},\cdots,x_{n}]$.
+    $T\subseteq k[x_{1},\dots,x_{n}]$.
 \end{dfn}
 
-\noindent En algunos textos, lo anterior se define simplemente como conjunto algebraico afín y
-reservan el nombre de variedad algebraica afín a conjuntos algebraicos irreducibles, en 
-nuestro caso, variedades algebraicas irreducibles, a saber
+\noindent En algunos textos lo anterior se define como conjunto algebraico, y se reserva el nombre
+de variedad algebraica a un conjunto algebraico irreducible. En nuestro caso, los conjuntos 
+algebraicos son variedades algebraicas.
 
-\begin{dfn}
-    Una variedad algebraica afín $V$ se dice irreducible si no se puede expresar como la unión
-    $V=V_{1}\cup V_{2}$ de dos subconjuntos propios y cada uno de ellos una variedad algebraica.
-\end{dfn}
+\noindent Sea $X$ un espacio topológico, un subconjunto $Y\subseteq X$ no vacío se dice 
+\emph{irreducible} si cualquier par de subconjuntos $F_{1}$ y $F_{2}$ cerrados en $Y$ tales que
+\begin{equation*}
+    Y=F_{1}\cup F_{2}, \hhtext{entonces se cumple que} F_{1}=Y \text{ ó } F_{2}=Y
+\end{equation*}
 
-\noindent Pensando en teoría categorías, hemos definido nuestros objetos, faltan los morfismos.
+\noindent Para definir una topología en $\A_{k}^{n}$ primero debemos exhibir los abiertos, el 
+siguiente lema nos ayudará
 
-\begin{dfn}
-    Sean $V\subseteq\A_{k}^{n}$ y $W\subseteq\A_{k}^{n}$ variedades afines. Una función 
-    $\varphi:V\to W$ es un morfismo de variedades afines si es la restricción de un mapa 
-    polinomial.
-\end{dfn}
+\begin{lema}
+    La unión finita de variedades algebraicas es una variedad algebraica. La intersección 
+    arbitraria de variedades algebraicas es una variedad algebraica. El espacio afín y el vacío 
+    son variedades algebraicas.
+\end{lema}
 
-\noindent Un mapa polinomial es aquel que en cada coordenada esta dado por polinomios.
-
-\begin{ejm}
-    Consideremos $V=V(x^{2}-y)$, el mapa $\varphi:\C\to V$ dado por
+\begin{proof}
+    En primer lugar, notar que
     \begin{equation*}
-        \varphi(z)=(z,z^{2})
+        \A_{k}^{n}=V(0) \hhtext{y} \emptyset=V(1)
     \end{equation*}
-    es un morfismo de variedades afines, de hecho, es un isomorfismo.
-\end{ejm}
+    Por otro lado, si $V_{i}=V(T_{i})$ se tiene que $V_{1}\cup V_{2}=V(T_{1}T_{2})$, donde 
+    $T_{1}T_{2}$ denota el conjunto de todos los productos entre elementos de $T_{1}$ y $T_{2}$.
 
-\noindent De la misma manera que relacionamos un conjunto de polinomios con un conjunto de 
-puntos en el espacio afín, podemos hacer el proceso en reversa
-
-\begin{dfn}
-    Dado $V\subseteq\A_{k}^{n}$, definimos el ideal de $V$ en $k[x_{1},\cdots,x_{n}]$, como
+    Sean $V_{\alpha}=V(T_{\alpha})$ una familia de variedades afines, entonces
     \begin{equation*}
-        I(V):=\{f\in k[x_{1},\cdots,x_{n}]:f|_{V}\equiv0\}
+        \bigcap_{\alpha} V_{\alpha}=V\left(\bigcup_{\alpha} T_{\alpha}\right)
+    \end{equation*}
+    Por lo tanto $\bigcap V_{\alpha}$ es una variedad algebraica.
+\end{proof}
+
+\noindent Así, el espacio afín $\A_{k}^{n}$ viene con una topología natural, llamada topología
+Zariski, cuyos abiertos son el complemento de una variedad algebraica en $\A_{k}^{n}$.
+
+\noindent En este contexto, una variedad afín se dice irreducible si lo es como subespacio de 
+$\A_{k}^{n}$. Está noción se puede caracterizar en términos de ideales, para ello veamos la
+siguiente definición
+
+\newpage
+\begin{dfn}
+    Dado $V\subseteq\A_{k}^{n}$, definimos el ideal de $V$ en $k[x_{1},\dots,x_{n}]$, como
+    \begin{equation*}
+        I(V):=\{f\in k[x_{1},\dots,x_{n}]:f|_{V}\equiv0\}
     \end{equation*}
 \end{dfn}
+
+\begin{prop} \hspace{1mm}
+    \begin{enumerate}
+        \setlength{\itemsep}{0pt}
+        \item Si $T_{1}\subseteq T_{2}$ son subconjuntos de $k[x_{1},\dots,x_{n}]$, entonces
+        $V(T_{2})\subseteq V(T_{1})$.
+
+        \item Si $X_{1}\subseteq X_{2}$ son subconjuntos de $\A_{k}^{n}$, entonces 
+        $I(X_{2})\subseteq I(X_{1})$.
+
+        \item Sean $V$ y $W$ dos variedades algebraicas en $\A_{k}^{n}$, entonces $V=W$ si y solo 
+        si $I(V)=I(W)$.
+    \end{enumerate}
+\end{prop}
 
 \noindent Es facil ver que $I(V)$ es un ideal, más aún, si $f^{m}\in I(V)$ entonces $f\in I(V)$, 
-en otras palabras, el ideal de un conjunto es radical.
+en otras palabras, el ideal de un conjunto es radical. No siempre tenemos que $I(V(I))=I$, el
+siguiente ejemplo nos ilustra
 
 \begin{ejm}
     Consideremos $V=V(x^{2})=\{0\}\subseteq\A_{k}^{1}$. Notemos que $I(V)=(x)$.
 \end{ejm}
 
-\noindent Surge entonces la pregunta una pregunta natural ¿Cuál es exactamente la correspondencia
-entre conjuntos de polinomios y conjuntos en el espacio afín? Como veremos mas adelante, el 
-Nullstellensatz de Hilbert nos dará una respuesta precisa, por ahora, veamos el siguiente 
-resultado
+\noindent Surge entonces una pregunta natural: ¿Cuál es exactamente la correspondencia entre 
+conjuntos de polinomios y subespacios en el espacio afín? Como veremos mas adelante, el 
+Nullstellensatz nos dará una respuesta precisa, por ahora, veamos el siguiente resultado
 
-\newpage
 \begin{prop}
     Una variedad afín $V\subseteq\A_{k}^{n}$ es irreducible si y solo si $I(V)$ es un ideal primo.
 \end{prop}
@@ -158,6 +182,261 @@ resultado
     para todo $p\in V_{i}$, pero no para todo punto en $V$. Notemos que $f_{1}f_{2}\in I(V)$, pero 
     $f_{i}\not\in I(V)$. Concluimos que $I(V)$ no es primo.
 \end{proof}
+
+\begin{ejm}
+    Dado que $\A_{k}^{n}=V(0)$ y $(0)$ es un ideal primo, el espacio afín es irreducible. Sin 
+    embargo, la variedad afín $V=V(xy)$ es reducible, ya que $V=V(x)\cup V(y)$.
+\end{ejm}
+
+\noindent Una pregunta interesante es: ¿Por que nos interesan la variedades afines irreducibles? 
+Los siguientes dos resultados nos dicen la respuesta
+
+\begin{lema}
+    Dada $\{V_{\alpha}\}\alpha\in A$ una colección de variedades afines de $\A_{k}^{n}$, entonces
+    tiene un elemento minimal.
+\end{lema}
+
+\begin{proof}
+    Consideremos $\mathcal{C}:=\{I(V_{\alpha})\}_{\alpha\in A}$, una colección de ideales en 
+    $k[x_{1},\dots,x_{n}]$. Como este último es un anillo Noetheriano, existe un elemento maximal, 
+    digamos $I(V_{\beta})$. Afirmamos que $V_{\beta}$ es minimal, de lo contrario, existe 
+    $V_{\alpha}\subset V_{\beta}$, lo que implica que $I(V_{\beta})\subset I(V_{\alpha})$.
+\end{proof}
+
+\begin{teo}
+    Sea $V\subseteq\A_{k}^{n}$ una variedad algebraica. Entonces existen únicas variedades afines
+    irreducibles $V_{1},\dots, V_{m}$ tales que
+    \begin{equation*}
+        V=\bigcup V_{i} \hhtext{y} V_{i}\not\subset V_{j} \htext{para todo}i\neq j
+    \end{equation*}
+\end{teo}
+
+\newpage
+\begin{proof}
+    Definimos
+    \begin{equation*}
+        \mathcal{C}:=\{
+            V\subseteq\A_{k}^{n}\text{ variedad afín}:V\text{ no es unión de irreducibles}
+        \}
+    \end{equation*}
+    Si $\mathcal{C}$ es vacío no hay nada que probar, en caso contrario, existe $V\in\mathcal{C}$
+    minimal y por definición de $\mathcal{C}$ es reducible. Esto contradice que sea minimal.
+
+    Sea $V=\bigcup V_{i}$ con $V_{i}$ irreducibles y supongamos que $V_{i}\not\subset V_{j}$ para
+    todo $i\neq j$. Digamos que
+    \begin{equation*}
+        \bigcup V_{i}=\bigcup W_{j} 
+        \htext{con}W_{i}\not\subset W_{j} \hhtext{y} V_{i},W_{j}\neq\emptyset
+    \end{equation*}
+    Notemos que $V_{1}=V_{1}\cap V=\bigcup(V_{1}\cap W_{j})$, como $V_{1}$ es irreducible, existe
+    único $j$ tal que $V_{1}=V_{1}\cap W_{j}$, es decir, $V_{1}\subseteq W_{j}$. Del mismo modo,
+    existe único $i$ tal que $W_{j}\subseteq V_{i}$, lo que implica que $V_{1}\subseteq V_{i}$,
+    entonces $i=1$ y así $V_{1}=W_{j}$.
+\end{proof}
+
+\noindent Por lo tanto, toda variedad algebraica se puede descomponer como la unión finita de
+variedades algebraicas irreducibles, enfocando el estudio de las variedades afines a aquellas que
+son irreducibles.
+
+\vspace{5mm}
+\noindent Ahora que hemos estudiado las variedades algebraicas irreducibles, nos gustaría volver a
+la definición de topología Zariski y estudiar las propiedades topológicas del $n-$espacio afín.
+
+\vspace{1mm}
+\noindent Notemos que la topología Zariski en $\A_{k}^{1}$ es equivalente a la topología cofinita,
+en efecto, todo ideal en $k[x]$ es principal y por lo tanto toda variedad algebraica corresponde
+con el conjunto de ceros de un polinomio $f\in k[x]$, cuyas raíces son finitas. En particular, el
+espacio $\A_{k}^{1}$ no es Hausdorff.
+
+\vspace{1mm}
+\noindent El resultado anterior es más general,
+
+\begin{prop}
+    El espacio afín $\A_{k}^{n}$ no es Hausdorff.
+\end{prop}
+
+\begin{proof}
+    Sean $x,y\in\A_{k}^{n}$, supongamos, por contradicción, que existen $U$ y $V$ vecindades 
+    disjuntas de $x$ e $y$, respectivamente. Luego, $U^{c}$ y $V^{c}$ son variedades algebraicas
+    distintas de $\A_{k}^{n}$ tales que $U^{c}\cup V^{c}=\A_{k}^{n}$. Sin embargo, el espacio afín
+    es irreducible, esta contradicción prueba la afirmación.
+\end{proof}
+
+\obs Lo anterior vale para cualquier variedad afín irreducible.
+
+\vspace{1mm}
+\noindent Observemos que toda variedad algebraica irreducible $V$ es conexa, en caso contrario,
+existen $U$ y $W$ abiertos disjuntos tales que $U\cup W=V$. Tomando complento tendríamos que
+$V$ se escribe como la unión de dos variedades afines propias.
+
+\begin{prop}
+    Una variedad afín en $\A_{\C}^{n}$ es cerrada según la topología euclideana.
+\end{prop}
+
+\begin{proof}
+    Un polinomio $f:\C^{n}\to\C$ es continua, por lo tanto, $V(f)=f^{-1}(0)\subseteq\C$ es 
+    cerrado. Como la intersección arbitraria de conjuntos cerrados es cerrada, vemos que $V(T)$
+    es un conjunto cerrado en $\C^{n}$.
+\end{proof}
+
+\noindent Lo anterior prueba que la topología Zariski esta contenida en la topología euclideana,
+más aún, esta contención es estricta, pues la primera no es Hausdorff.
+
+\begin{lema}
+    Sea $f\in\C[x_{1},\dots,x_{n}]$ no nulo, entonces $f^{-1}(0)$ tiene interior vacío.
+\end{lema}
+
+\begin{proof}
+    Procederemos por inducción en $n\in\N$. Si $n=1$, sabemos que $f$ tiene finitas raíces, en 
+    caso de tener interior no vacío tendría infinitas raíces, lo que prueba el caso base. 
+    Supongamos, por contradicción, que existe $U\subseteq\C^{n}$ un abierto tal que 
+    $U\subseteq f^{-1}(0)$. Escribimos
+    \begin{equation*}
+        f=\sum_{k}f_{k}(x_{1},\dots,x_{n-1})x_{n}^{k}
+        \htext{con} f_{k}\in\C[x_{1},\dots,x_{n-1}]
+    \end{equation*}
+    Sea $a=(a_{1},\dots,a_{n})\in U$ y consideremos la función continua
+    \begin{align*}
+        i:\C &\to \C^{n} \\
+        z & \mapsto (a_{1},\dots,a_{n-1},z)
+    \end{align*}
+    Notemos que $i^{-1}(U)$ es un abierto no vacío de $\C$ y $g(z)=f(a_{1},\dots,a_{n-1},z)$ un 
+    polinomio que se anula en un conjunto abierto de $\C$, por el caso base, se tiene que 
+    $g\equiv0$. Luego, $f_{k}(a_{1},\dots,a_{n-1})=0$ para todo $k$.
+
+    \vspace{1mm}
+    El argumento anterior vale para todo $a\in U$ y como el mapa $a\mapsto(a_{1},\dots,a_{n-1})$ 
+    es abierto, el polinomio $f_{k}$ se anula en un conjunto abierto y por hipotesis inductiva 
+    $f_{k}\equiv0$ para todo $k$. Concluimos que $f^{-1}(0)$ tiene interior vacío.
+\end{proof}
+
+\noindent El lema implica inmediatamente lo siguiente
+
+\begin{cor}
+    Sea $f\in\C[x_{1},\dots,x_{n}]$ no constante, entonces $f^{-1}(\C\setminus\{0\})$ es denso en 
+    $\C^{n}$.
+\end{cor}
+
+\noindent Dada $V\subseteq\A_{k}^{n}$ una variedad algebraica afín propia, entonces $V=V(I)$ con 
+$I\subseteq\C[x_{1},\dots,x_{n}]$ un ideal no nulo. Por el teorema de la base de Hilbert existen 
+$f_{1},\dots,f_{m}$ tales que $I=(f_{1},\dots,f_{m})$, así 
+\begin{equation*}
+    V=V(I)=V(f_{1},\dots,f_{m})=\bigcap V(f_{i})\subseteq V(f_{1})
+\end{equation*}
+Tomando complemento y luego clausura, se obtiene que $V^{c}$ es denso en $\C^{n}$, es decir, todo 
+abierto en la topología Zariski es denso según la topología euclideana.
+
+\vspace{1mm}
+\noindent Por último, daremos una razón por la cual se pide que $k$ sea algebraicamente cerrado.
+
+\begin{lema}
+    Sea $k$ un cuerpo no algebraicamente cerrado, entonces existe un polinomio $q\in k[x,y]$ tal 
+    que $q(x,y)=0$ si y solo si $x=y=0$.
+\end{lema}
+
+\begin{proof}
+    Como $k$ no es algebraicamente cerrado, existe $f\in k[x]$ un polinomio no constante sin 
+    raíces en $k$. Escribamos
+    \begin{equation*}
+        f=a_{0}+a_{1}x+\cdots+a_{n}x^{n} \htext{con}a_{0},a_{n}\neq0
+    \end{equation*}
+    Definimos $q(x,y)\in k[x,y]$ como
+    \begin{equation*}
+        q(x,y):=\widetilde{f}=a_{0}y^{n}+a_{1}xy^{n-1}+\cdots+a_{n-1}x^{n-1}y+a_{n}x^{n}
+    \end{equation*}
+    Sea $(x,y)\in k^{2}$ tal que $q(x,y)=0$. Supongamos que $y\neq0$, de lo contrario, 
+    $a_{n}x^{n}=0$ y entonces $x=0$. Luego,
+    \begin{equation*}
+        0=a_{0}+a_{1}\left(\frac{x}{y}\right)+\cdots+a_{n}\left(\frac{x}{y}\right)^{n}
+        =f\left(\frac{x}{y}\right)
+    \end{equation*}
+    Pero la ecuación anterior no tiene solución en $k$ por la elección de $f$. Concluimos que
+    $q(x,y)=0$ si y solo si $x=y=0$.
+\end{proof}
+
+\noindent Dado $V=V(f_{1},\cdots,f_{m})\subseteq\A_{k}^{n}$ una variedad algebraica, tomar 
+$q\in k[x,y]$ como en el lema, definimos recursivamente los siguientes polinomios
+\begin{equation*}
+    q_{i}:=q(f_{i},q_{i+1}) \htext{para}1\leq i<m
+\end{equation*}
+y $q_{m}=f_{m}$. Afirmamos que $V(q_{1})=V$, en efecto, se tiene que $q_{1}=q(f_{1},q_{2})=0$ si y 
+solo si $f_{1}=q_{2}=0$, del mismo modo, $q_{2}=0$ equivale a que $f_{2}=q_{3}=0$, inductivamente, 
+tenemos que $q_{1}=0$ si y solo si $f_{i}=0$ para todo $i$. Hemos probado que toda variedad 
+algebraica viene dada por un único elemento en $k[x_{1},\dots,x_{n}]$.
+
+\newpage
+\subsection{Morfismos}
+\noindent Ahora que hemos estudiado las variedades afines, nos gustaría -- pensando en teoría de
+categorías -- definir una noción de morfismo entre variedades algebraicas. Comenzamos dando la 
+siguiente definición auxiliar
+
+\begin{dfn}
+    Un mapa $f:\A_{k}^{n}\to\A_{k}^{m}$ se dice polinomial si viene dado por polinomios en cada
+    coordenada.
+\end{dfn}
+
+\begin{ejm}
+    Considerar $f:\A_{k}^{3}\to\A_{k}^{2}$ dada por
+    \begin{equation*}
+        f(x,y,z)=(xy^{2}+1,xz)
+    \end{equation*}
+\end{ejm}
+
+\begin{prop}
+    Un mapa polinomial $f:\A_{k}^{n}\to\A_{k}^{m}$ es continuo bajo la topología Zariski.
+\end{prop}
+
+\begin{proof}
+    Sea $f=(f_{1},\dots,f_{r}):\A_{k}^{n}\to\A_{k}^{m}$, donde 
+    $f_{1},\dots,f_{r}\in k[x_{1},\dots,x_{n}]$. Basta probar que la preimagen de una variedad 
+    afín es una variedad afín.
+
+    Sea $V$ una variedad algebraica, entonces
+    \begin{equation*}
+        V=V(T) \htext{para algún} T\subseteq k[x_{1},\dots,x_{m}]
+    \end{equation*}
+    Así,
+    \begin{equation*}
+        f^{-1}(V)=\{x\in\A_{k}^{n}:g(f(x))=0\text{ para todo }g\in T\}
+    \end{equation*}
+    Para todo $g\in T$, la composición $g\circ f=g(f_{1},\dots,f_{r})$ es un polinomio. Por lo 
+    tanto
+    \begin{equation*}
+        f^{-1}(V)=V(\{g(f_{1},\dots,f_{r}):g\in T\})
+    \end{equation*}
+    Lo que concluye la demostración.
+\end{proof}
+
+\noindent En general, consideramos la siguiente definición
+
+\begin{dfn}
+    Sean $V\subseteq\A_{k}^{n}$ y $W\subseteq\A_{k}^{n}$ variedades afines. Una función 
+    $\varphi:V\to W$ se dice morfismo de variedades afines si es la restricción de un mapa 
+    polinomial.
+\end{dfn}
+
+\noindent Veamos un ejemplo
+
+\begin{ejm}
+    Consideremos $V=V(x^{2}-y)$, el mapa $\varphi:\C\to V$ dado por
+    \begin{equation*}
+        \varphi(z)=(z,z^{2})
+    \end{equation*}
+    es un morfismo de variedades afines, de hecho, es un isomorfismo.
+\end{ejm}
+
+\noindent Definimos $AffVar$ como la categoría cuyos objetos son las variedades algebraicas y sus
+morfismos, los morfismos de variedades algebraicas.
+
+\vspace{1mm}
+\obs Dado que un mapa polinomial es continuo según la topología Zariski, un morfismo de variedades 
+algebraicas es continuo en el sentido de Zariski. En términos categóricos, tenemos un funtor 
+covariante inyectivo, no sobreyectivo
+\begin{equation*}
+    AffVar\hookrightarrow Top
+\end{equation*}
+
+\subsection{Nullstellensatz} %% Proximamente...
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
