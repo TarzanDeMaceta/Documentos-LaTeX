@@ -143,6 +143,8 @@ siguiente definición
         \item Si $X_{1}\subseteq X_{2}$ son subconjuntos de $\A_{k}^{n}$, entonces 
         $I(X_{2})\subseteq I(X_{1})$.
 
+        \item Sea $V$ una variedad afín, entonces $V(I(V))=V$.
+
         \item Sean $V$ y $W$ dos variedades algebraicas en $\A_{k}^{n}$, entonces $V=W$ si y solo 
         si $I(V)=I(W)$.
     \end{enumerate}
@@ -192,8 +194,8 @@ Nullstellensatz nos dará una respuesta precisa, por ahora, veamos el siguiente 
 Los siguientes dos resultados nos dicen la respuesta
 
 \begin{lema}
-    Dada $\{V_{\alpha}\}\alpha\in A$ una colección de variedades afines de $\A_{k}^{n}$, entonces
-    tiene un elemento minimal.
+    Dada $\{V_{\alpha}\}_{\alpha\in A}$ una colección de variedades afines de $\A_{k}^{n}$, 
+    entonces tiene un elemento minimal.
 \end{lema}
 
 \begin{proof}
@@ -365,7 +367,7 @@ tenemos que $q_{1}=0$ si y solo si $f_{i}=0$ para todo $i$. Hemos probado que to
 algebraica viene dada por un único elemento en $k[x_{1},\dots,x_{n}]$.
 
 \newpage
-\subsection{Morfismos}
+\subsection{Morfismos de Variedades algebraicas}
 \noindent Ahora que hemos estudiado las variedades afines, nos gustaría -- pensando en teoría de
 categorías -- definir una noción de morfismo entre variedades algebraicas. Comenzamos dando la 
 siguiente definición auxiliar
@@ -381,6 +383,14 @@ siguiente definición auxiliar
         f(x,y,z)=(xy^{2}+1,xz)
     \end{equation*}
 \end{ejm}
+
+\begin{dfn}
+    Un cambio de coordenadas afín en $\A_{k}^{n}$ es una aplicación polinomial 
+    \begin{equation*}
+        \varphi=(f_{1},\dots,f_{n}):\A_{k}^{n}\to\A_{k}^{n}
+    \end{equation*}
+    tal que $gr(f_{i})=1$ y $\varphi$ es invertible.
+\end{dfn}
 
 \begin{prop}
     Un mapa polinomial $f:\A_{k}^{n}\to\A_{k}^{m}$ es continuo bajo la topología Zariski.
@@ -430,13 +440,374 @@ morfismos, los morfismos de variedades algebraicas.
 
 \vspace{1mm}
 \obs Dado que un mapa polinomial es continuo según la topología Zariski, un morfismo de variedades 
-algebraicas es continuo en el sentido de Zariski. En términos categóricos, tenemos un funtor 
-covariante inyectivo, no sobreyectivo
+algebraicas es continuo en el sentido Zariski. En términos categóricos, tenemos un funtor 
+covariante, inyectivo y no sobreyectivo
 \begin{equation*}
-    AffVar\hookrightarrow Top
+    \textbf{AffVar}\hookrightarrow \textbf{Top}
 \end{equation*}
 
-\subsection{Nullstellensatz} %% Proximamente...
+\newpage
+
+\subsection{Nullstellensatz}
+
+En esta sección daremos una biyección explícita entre las variedades algebraicas y los ideales
+radicales en $k[x_{1},\dots,x_{n}]$. Empezaremos enunciando, sin demostrar, el siguiente lema que
+no será de gran utilidad
+
+\begin{lema}[Lema de Zariski]
+    Sea $K\subseteq L$ una extensión de cuerpos tal que $L$ es finitamente generado como 
+    $K-$álgebra, entonces $L$ es finitamente generado como $K-$módulo.
+\end{lema}
+
+\noindent Con el lema anterior podemos demostrar el siguiente resultado
+
+\begin{lema}
+    Sea $I\subset k[x_{1},\dots,x_{n}]$ un ideal, entonces $V(I)\neq\emptyset$
+\end{lema}
+
+\begin{proof}
+    Sin perdida de generalidad podemos suponer que $I$ es maximal, en caso contrario, existe un
+    ideal maximal $J$ tal que $I\subseteq J$, y por lo tanto $V(J)\subseteq V(I)$. De este modo,
+    \begin{equation*}
+        L=k[x_{1},\dots,x_{n}]/I
+    \end{equation*}
+    es un cuerpo que contiene a $k$. Por el lema anterior, $L$ es un $k-$módulo finitamente 
+    generado, por ende, es una extensión algebraica de $k$, como este último es algebraicamente
+    cerrado, tenemos que $L=k$.
+
+    Así, para cada $x_{i}$ existe $a_{i}\in k$ tal que $x_{i}-a_{i}\in I$, es decir, 
+    $I=(x_{1}-a_{1},\dots,x_{n}-a_{n})$. Concluimos que $V(I)\neq\emptyset$.
+\end{proof}
+
+\noindent El lema previo, junto con el truco de Rabinowitsch, nos permite demostrar el siguiente
+teorema, también conocido como Nullstellensatz
+
+\begin{teo}[\textbf{Nullstellensatz}]
+    Sea $I\subset k[x_{1},\dots,x_{n}]$ un ideal. Consideremos $V=V(I)\subseteq\A_{k}^{n}$ la
+    variedad afín asociada a $I$. Entonces, $I(V)=\sqrt{I}$. En otras palabras, hay una
+    correspondencia
+    
+    \begin{equation*}
+        \begin{Bmatrix}
+            \textit{Variedades afines} \\
+            \textit{en }\A_{k}^{n}
+        \end{Bmatrix}
+        \longleftrightarrow
+        \begin{Bmatrix}
+            \textit{Ideales radicales} \\
+            \textit{en }k[x_{1},\dots,x_{n}]
+        \end{Bmatrix}
+    \end{equation*}
+\end{teo}
+
+\vspace{2mm}
+\begin{proof}
+    Supongamos que $f\in\sqrt{I}$, por definición existe $n\in\N$ tal que $f^{n}\in I$. Luego,
+    $f^{n}(p)=0$, por ende $f(p)=0$, para todo $p\in V$, lo que implica que $f\in I(V)$.
+
+    \vspace{1mm}
+    Sea $f\in I(V)$ y digamos que $I=(f_{1},\dots,f_{m})$. Definimos el ideal
+    \begin{equation*}
+        J:=(f_{1},\dots,f_{m},x_{n+1}f-1)\subseteq k[x_{1},\dots,x_{n+1}]
+    \end{equation*}
+    Supongamos que existe $a\in V(J)$, en particular, se tiene que $f_{i}(a)=0$ para todo $i$, 
+    entonces $a\in V$ y por lo tanto $f(a)=0$. Sin embargo, notamos lo siguiente
+    \begin{equation*}
+        0=a_{n+1}f(a)-1=-1
+    \end{equation*}
+    Concluimos que $V(J)=\emptyset$. Por lo tanto, tenemos que $J=k[x_{1},\dots,x_{n+1}]$. De este
+    modo $g_{1},\dots,g_{m+1}\in k[x_{1},\dots,x_{n+1}]$ tales que
+    \begin{equation*}
+        g_{1}f_{1}+\cdots,g_{m}f_{m}+g_{m+1}(x_{n+1}f-1)=1
+    \end{equation*}
+    y tomando $x_{n+1}=1/f$ obtenemos que
+    \begin{equation*}
+        g_{1}(x_{1},\dots,x_{n},1/f)f_{1}+\cdots+g_{m}(x_{1},\dots,x_{n},1/f)f_{m}=1
+    \end{equation*}
+    Así, existe $n\in\N$ de modo que $f^{n}\in I$.
+\end{proof}
+
+\noindent Para probar la contención $I(V)\subseteq\sqrt{I}$ usamos lo que se conoce como el truco 
+de Rabinowitsch.
+
+\begin{ejm}
+    Veamos un ejemplo donde el Nullstellensatz puede fallar si no pedimos que $k$ sea 
+    algebraicamente cerrado. Considerar $V=V(x^{3}+x)\subseteq\A_{\R}^{1}$. Notemos que $V=\{0\}$,
+    por lo tanto $I(V)=(x)$, pero $x\not\in\sqrt{(x^{3}+x)}$, ya que $x^{2}+1$ y $x$ son coprimos.
+\end{ejm}
+
+\noindent Hay resultados interesantes derivados del Nullstellensatz.
+
+\begin{cor}
+    Los ideales maximales en $k[x_{1},\dots,x_{n}]$ se corresponden con puntos en $\A_{k}^{n}$, y
+    los ideales primos se corresponden con variedades algebraicas irreducibles.
+\end{cor}
+
+\begin{cor}
+    Sea $f\in k[x_{1},\dots,x_{n}]$ un polinomio irreducible, entonces $I(V(f))=(f)$.
+\end{cor}
+
+\begin{proof}
+    Como $f$ es irreducible, es primo, por lo tanto el ideal $(f)$ también es primo.
+\end{proof}
+
+\noindent Vimos un ejemplo donde Nullstellensatz falla si no pedimos que $k$ sea algebraicamente
+cerrado. Sin embargo, la situación puede ser más catastrófica, ya que toda variedad algebraica es
+el conjunto de ceros de una función en un cuerpo no algebraicamente cerrado. Usaremos el siguiente
+lema
+
+\begin{lema}
+    Sea $k$ no algebraicamente cerrado, entonces existe un polinomio $q\in k[x,y]$ tal que 
+    $q(x,y)=0$ si y solo si $x=y=0$.
+\end{lema}
+
+\begin{proof}
+    Como $k$ no es algebraicamente cerrado, existe $f\in k[x]$ un polinomio no constante sin 
+    raíces en $k$. Escribamos
+    \begin{equation*}
+        f=a_{0}+a_{1}x+\cdots+a_{n}x^{n} \htext{con}a_{0},a_{n}\neq0
+    \end{equation*}
+    Definimos $q(x,y)\in k[x,y]$ como
+    \begin{equation*}
+        q(x,y):=\widetilde{f}=a_{0}y^{n}+a_{1}xy^{n-1}+\cdots+a_{n-1}x^{n-1}y+a_{n}x^{n}
+    \end{equation*}
+    Sea $(x,y)\in k^{2}$ tal que $q(x,y)=0$. Supongamos que $y\neq0$, de lo contrario, 
+    $a_{n}x^{n}=0$ y entonces $x=0$. Luego,
+    \begin{equation*}
+        0=a_{0}+a_{1}\left(\frac{x}{y}\right)+\cdots+a_{n}\left(\frac{x}{y}\right)^{n}
+        =f\left(\frac{x}{y}\right)
+    \end{equation*}
+    Pero la ecuación anterior no tiene solución en $k$ por la elección de $f$. Concluimos que
+    $q(x,y)=0$ si y solo si $x=y=0$.
+\end{proof}
+
+\vspace{1mm}
+\noindent Dada $V=V(f_{1},\cdots,f_{m})\subseteq\A_{k}^{n}$ una variedad algebraica, tomar 
+$q\in k[x,y]$ como en el lema, definimos recursivamente los siguientes polinomios
+\begin{equation*}
+    q_{i}:=q(f_{i},q_{i+1}) \htext{para}1\leq i<m
+\end{equation*}
+y $q_{m}=f_{m}$. Afirmamos que $V(q_{1})=V$, en efecto, se tiene que $q_{1}=q(f_{1},q_{2})=0$ si y 
+solo si $f_{1}=q_{2}=0$, del mismo modo, $q_{2}=0$ equivale a que $f_{2}=q_{3}=0$ e inductivamente 
+tenemos que $q_{1}=0$ si y solo si $f_{i}=0$ para todo $i$, lo que prueba la afirmación.
+
+\newpage
+
+\subsection{Anillo de Coordenadas en Variedades afines}
+
+\noindent Ahora que sabemos que hay una biyección entre variedades afines e ideales radicales, nos
+interesa estudiar la estructura algebraica asociada a una variedad afín.
+
+\begin{dfn}
+    Sea $V\subseteq\A_{k}^{n}$ una variedad afín. Una función $f:V\to k$ se dice regular si existe
+    un polinomio $\tilde{f}\in k[x_{1},\dots,x_{n}]$ tal que $f=\tilde{f}|_{V}$. El conjunto de 
+    funciones regulares sobre $V$ induce una $k-$álgebra denotada por $k[V]$.
+\end{dfn}
+
+\noindent A la $k-$álgebra $k[V]$ se le dice anillo de coordenadas de $V$.
+
+\begin{prop}
+    Existe un isomorfismo de $k-$álgebras
+    \begin{equation*}
+        k[V]\cong k[x_{1},\dots,x_{n}]/I(V)
+    \end{equation*}
+\end{prop}
+
+\begin{proof}
+    Definimos $\varphi:k[V]\to k[x_{1},\dots,x_{n}]/I(V)$ como
+    \begin{equation*}
+        \varphi(f)=[\tilde{f}]
+    \end{equation*}
+    Claramente es un morfismo de $k-$álgebras sobreyectivo. Veamos que es inyectivo. En efecto,
+    sean $f_{1},f_{2}\in k[x_{1},\dots,x_{n}]$ tales que $f=\tilde{f_{i}}|_{V}$, entonces
+    \begin{equation*}
+        \tilde{f_{1}}|_{V}-\tilde{f_{2}}|_{V}\equiv0,
+        \htext{equivalentemente } f_{1}-f_{2}\in I(V)
+    \end{equation*}
+    Lo que concluye la demostración.
+\end{proof}
+
+\obs Una $k-$álgebra se dice reducida, si no posee elementos nilpotentes. La proposición anterior 
+nos dice que el anillo de coordenadas de $V$ es un álgebra reducida. No es díficil verificar lo
+siguiente
+
+\begin{lema}
+    Sea $I\subseteq A$ un ideal, donde $A$ es un anillo conmutativo con unidad. Entonces $I$ es 
+    reducido si y solo si $A/I$ es un anillo reducido.
+\end{lema}
+
+\noindent Este lema nos ayudará para el siguiente teorema
+
+\begin{teo}
+    Sea $R$ una $k-$álgebra reducida y finitamente generada. Entonces $R\cong k[V]$ para alguna
+    variedad afín $V$.
+\end{teo}
+
+\begin{proof}
+    Supongamos que $R$  esta generado por $r_{1},\dots,r_{n}$. Definimos el mapa
+    \begin{align*}
+        f:k[x_{1},\dots,x_{n}] &\to R \\
+        x_{i} &\mapsto r_{i}
+    \end{align*}
+    Que resulta ser un morfismo de $k-$álgebras sobreyectivo, luego 
+    $R\cong k[x_{1},\dots,x_{n}]/\kr{f}$ y como $R$ es reducible tenemos que 
+    $\kr{f}=\sqrt{\kr{f}}=I(V(\kr{f}))$.
+\end{proof}
+
+\noindent Lo anterior nos da una correspondencia entre $k-$álgebras reducidas y finitamente 
+generadas, y variedades afines. Más aún, esta correspondencia es funtorial.
+
+\noindent Sean $V\subseteq \A_{k}^{n}$ y $W\subseteq \A_{k}^{m}$ variedades algebraicas. Dado 
+$\varphi: V\to W$ un morfismo de variedades afines, induce un morfismo de $k-$álgebras dado por
+\begin{align*}
+    \varphi^{*}:k[W] &\to k[V] \\
+    f &\mapsto f\circ\varphi
+\end{align*}
+Por otro lado, dado un morfismo de $k-$álgebras 
+$\sigma:k[x_{1},\dots,x_{m}]/J\to k[x_{1},\dots,x_{n}]/I$ induce un mapa polinomial dado por
+\begin{equation*}
+    \varphi(\sigma)=(f_{1},\dots,f_{m}):V(I)\to V(J)
+\end{equation*}
+donde $f_{i}\in k[x_{1},\dots,x_{n}]$ cumple que $\sigma(x_{i})=f_{i}$ para todo $1\leq i\leq m$.
+Debemos verificar que $\varphi(\sigma)$ esta bien definida. Notemos que, dado $g\in J$, se tiene 
+que $g(f_{1},\dots,f_{m})=\sigma(g)\in I$ porque $\sigma$ es morfismo. Por lo tanto, si 
+$a\in V(I)$, la observación anterior implica que $\varphi(\sigma)(a)\in V(J)$.
+
+\vspace{1mm}
+\noindent Esta definición es independiente de la elección de $f_{i}$. En efecto, si 
+$f_{i}, g_{i}$ son tales que $f_{i}=g_{i}=\sigma(x_{i})$, entonces $f_{i}-g_{i}\in I$ y por ende
+$f_{i}(a)=g_{i}(a)$ para todo $a\in V(I)$. Tenemos una equivalencia de categorías
+\begin{equation*}
+    \textbf{AffVar}_{k}\simeq \textbf{Alg}_{k}^{red,fg}
+\end{equation*}
+
+\begin{ejm}
+    Consideremos la variedad afín $V=V(y-x^{2},z-x^{3})\subseteq\A_{k}^{3}$. El morfismo
+    $\varphi:\A_{k}^{1}\to V$ de variedades algebraicas dado por
+    \begin{equation*}
+        t\mapsto (t,t^{2},t^{3})
+    \end{equation*}
+    induce un morfismo de $k-$álgebras $\varphi^{*}:k[x,y,z]/(y-x^{2},z-x^{3})\to k[t]$ tal que
+    \begin{gather*}
+        x\mapsto t \qquad y\mapsto t^{2} \qquad z\mapsto t^{3}
+    \end{gather*}
+    Luego, $\varphi(\varphi^{*})=(t,t^{2},t^{3})$.
+\end{ejm}
+
+\newpage
+
+\subsection{Producto de Variedades algebraicas} %% Clase 7
+
+\newpage
+
+\section{Variedades Proyectivas} %% Clase 4 y 5
+
+\noindent En la sección anterior exploramos las variedades afines, sus propiedades geométricas y
+algebraicas. Ahora, estudiaremos el principal objeto de estudio en geometría algebraica, las 
+variedades proyectivas. Al igual que antes, fijamos un cuerpo $k$ algebraicamente cerrado.
+
+\begin{dfn}
+    Definimos el $n-$espacio proyectivo sobre $k$, denotado por $\P_{k}^{n}$, como
+    \begin{equation*}
+        \P_{k}^{n}:=\left(\A_{k}^{n+1}\setminus\{0\}\right)/\sim
+    \end{equation*}
+    donde $x\sim y$ si y solo si existe $\lambda\in k^{*}$ tal que $\lambda x=y$. Un elemento en
+    $\P_{k}^{n}$ se dice punto y un representante de la clase se dice coordenada homogénea.
+\end{dfn}
+
+\obs Un punto en $\P_{k}^{n}$ típicamente se escribe por algún representante de la clase y la 
+notación usual es $[x_{0}:\dots:x_{n}]$, donde $x_{i}\neq0$ para algún $i$.
+
+\vspace{1mm}
+\noindent Notemos que $k^{*}$ es un grupo que actúa naturalmente en $\A_{k}^{n+1}$ mediante 
+multiplicación por escalar, donde la órbita un punto corresponde a una recta $\A_{k}^{n+1}$, es
+decir, podemos identificar el espacio proyectivo con el espacio de rectas que pasan por $0$ en el
+espacio afín.
+
+\vspace{1mm}
+\noindent Además, podemos identificar el espacio afín con una carta afín de $\P_{k}^{n}$ mediante 
+la asignación
+\begin{equation*}
+    (x_{1},\dots,x_{n})\mapsto[1:x_{1}:\dots:x_{n}]
+\end{equation*}
+Donde una carta afín de $\P_{k}^{n}$ se define como
+\begin{equation*}
+    U_{i}:=\left\{[x_{0}:\dots:x_{n}]\mid x_{i}=1\right\}
+    =\left\{[x_{0}:\dots:x_{n}]\mid x_{i}\neq0\right\}
+\end{equation*}
+y, por definición, notemos que $\P_{k}^{n}=\bigcup_{i} U_{i}$. La correspondencia anterior no es 
+única; por cada carta afín tenemos un mapa que la identifica con $\A_{k}^{n}$. Y cada una de ellas
+nos da una perspectiva de $\P_{k}^{n}$.
+
+\begin{dfn}
+    Un polinomio $f\in k[x_{0},\dots,x_{n}]$ se dice homogéneo de grado $d$ si todos los términos
+    de $f$ son monomios de grado $d$.
+\end{dfn}
+
+\noindent Equivalentemente, un polinomio $f$ es homogéneo si y solo si para todo 
+$\lambda\in k^{*}$ se tiene que
+\begin{equation*}
+    f(\lambda x_{0},\dots,\lambda x_{n})=\lambda^{d}f(x_{0},\dots,x_{n})
+\end{equation*}
+
+\begin{dfn}
+    Decimos que $p\in\P_{k}^{n}$ es cero de un polinomio homogéneo $f\in k[x_{0},\dots,x_{n}]$ si
+    existen coordenadas homogéneas $[x_{0}:\dots:x_{n}]$ tales que $f(x_{0},\dots,x_{n})=0$. 
+    Escribimos $f(p)=0$.
+\end{dfn}
+
+\obs La propiedad de ser cero no depende del representante.
+
+\begin{dfn}
+    Sea $T\subseteq k[x_{0},\dots,x_{n}]$ un conjunto de polinomios homogéneos, definimos el 
+    lugar de ceros de $T$ como
+    \begin{equation*}
+        V^{p}(T):=\{p\in\P_{k}^{n}:f(p)=0, \forall f\in T\}
+    \end{equation*}
+    Un conjunto $V\subseteq\P_{k}^{n}$ se dice variedad proyectiva si existe $T$ tal que 
+    $V=V^{p}(T)$.
+\end{dfn}
+
+\noindent Como en el espacio afín, el espacio proyectivo también admite una topología Zariski,
+donde cada abierto corresponde al complemento de una variedad proyectiva.
+
+\vspace{1mm}
+\obs La multiplicación de polinomios homogéneos es homogéneo, por lo que la unión de variedades
+proyectivas es, denuevo, una variedad proyectiva.
+
+\begin{prop}
+    Los mapas
+    \begin{align*}
+        \psi_{i}:U_{i} &\to \A_{k}^{n} \\
+        [a_{0}:\dots:a_{i-1}:1:a_{i+1}:\dots:a_{n}] &\mapsto 
+        (a_{0},\dots,a_{i-1},a_{i+1},\dots,a_{n})
+    \end{align*}
+    son homeomorfismos respecto a la topología Zariski.
+\end{prop}
+
+\begin{proof}
+    
+\end{proof}
+
+\newpage
+
+\subsection{Morfismos de Variedades Proyectivas}
+
+\newpage
+
+\subsection{Cuasi Variedades Proyectivas} 
+
+\newpage
+
+\subsection{Productos categóricos y Productos fibrados} %% Clase 8
+
+\newpage
+
+\section{Teoría de la Dimensión} %% Clase 6 y 7
+
+\newpage
+
+\subsection{Lema de normalización de Noether}
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 
