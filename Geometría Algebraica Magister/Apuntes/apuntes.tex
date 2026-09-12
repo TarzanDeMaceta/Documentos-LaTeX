@@ -4,6 +4,9 @@
 \nocite{*} % Comentar si quiero citar
 %\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
 
+%% Comandos especificos del documento
+\def \m {\mathfrak{m}}
+
 \begin{document}
 
 \begin{titlepage} % Portada con información necesaria
@@ -327,44 +330,6 @@ $f_{1},\dots,f_{m}$ tales que $I=(f_{1},\dots,f_{m})$, así
 \end{equation*}
 Tomando complemento y luego clausura, se obtiene que $V^{c}$ es denso en $\C^{n}$, es decir, todo 
 abierto en la topología Zariski es denso según la topología euclideana.
-
-\vspace{1mm}
-\noindent Por último, daremos una razón por la cual se pide que $k$ sea algebraicamente cerrado.
-
-\begin{lema}
-    Sea $k$ un cuerpo no algebraicamente cerrado, entonces existe un polinomio $q\in k[x,y]$ tal 
-    que $q(x,y)=0$ si y solo si $x=y=0$.
-\end{lema}
-
-\begin{proof}
-    Como $k$ no es algebraicamente cerrado, existe $f\in k[x]$ un polinomio no constante sin 
-    raíces en $k$. Escribamos
-    \begin{equation*}
-        f=a_{0}+a_{1}x+\cdots+a_{n}x^{n} \htext{con}a_{0},a_{n}\neq0
-    \end{equation*}
-    Definimos $q(x,y)\in k[x,y]$ como
-    \begin{equation*}
-        q(x,y):=\widetilde{f}=a_{0}y^{n}+a_{1}xy^{n-1}+\cdots+a_{n-1}x^{n-1}y+a_{n}x^{n}
-    \end{equation*}
-    Sea $(x,y)\in k^{2}$ tal que $q(x,y)=0$. Supongamos que $y\neq0$, de lo contrario, 
-    $a_{n}x^{n}=0$ y entonces $x=0$. Luego,
-    \begin{equation*}
-        0=a_{0}+a_{1}\left(\frac{x}{y}\right)+\cdots+a_{n}\left(\frac{x}{y}\right)^{n}
-        =f\left(\frac{x}{y}\right)
-    \end{equation*}
-    Pero la ecuación anterior no tiene solución en $k$ por la elección de $f$. Concluimos que
-    $q(x,y)=0$ si y solo si $x=y=0$.
-\end{proof}
-
-\noindent Dado $V=V(f_{1},\cdots,f_{m})\subseteq\A_{k}^{n}$ una variedad algebraica, tomar 
-$q\in k[x,y]$ como en el lema, definimos recursivamente los siguientes polinomios
-\begin{equation*}
-    q_{i}:=q(f_{i},q_{i+1}) \htext{para}1\leq i<m
-\end{equation*}
-y $q_{m}=f_{m}$. Afirmamos que $V(q_{1})=V$, en efecto, se tiene que $q_{1}=q(f_{1},q_{2})=0$ si y 
-solo si $f_{1}=q_{2}=0$, del mismo modo, $q_{2}=0$ equivale a que $f_{2}=q_{3}=0$, inductivamente, 
-tenemos que $q_{1}=0$ si y solo si $f_{i}=0$ para todo $i$. Hemos probado que toda variedad 
-algebraica viene dada por un único elemento en $k[x_{1},\dots,x_{n}]$.
 
 \newpage
 \subsection{Morfismos de Variedades algebraicas}
@@ -702,12 +667,12 @@ $f_{i}(a)=g_{i}(a)$ para todo $a\in V(I)$. Tenemos una equivalencia de categorí
 
 \section{Variedades Proyectivas} %% Clase 4 y 5
 
-\noindent En la sección anterior exploramos las variedades afines, sus propiedades geométricas y
-algebraicas. Ahora, estudiaremos el principal objeto de estudio en geometría algebraica, las 
-variedades proyectivas. Al igual que antes, fijamos un cuerpo $k$ algebraicamente cerrado.
+\noindent Hemos explorado y discutido propiedades topológicas, geométricas y algebraicas de las
+variedades afines. Ahora, nos gustaría estudiar, con un enfoque similar, las variedades 
+proyectivas. Al igual que antes, comenzamos fijando un cuerpo $k$ algebraicamente cerrado.
 
 \begin{dfn}
-    Definimos el $n-$espacio proyectivo sobre $k$, denotado por $\P_{k}^{n}$, como
+    Definimos el $n-$espacio proyectivo sobre $k$ como
     \begin{equation*}
         \P_{k}^{n}:=\left(\A_{k}^{n+1}\setminus\{0\}\right)/\sim
     \end{equation*}
@@ -720,13 +685,13 @@ notación usual es $[x_{0}:\dots:x_{n}]$, donde $x_{i}\neq0$ para algún $i$.
 
 \vspace{1mm}
 \noindent Notemos que $k^{*}$ es un grupo que actúa naturalmente en $\A_{k}^{n+1}$ mediante 
-multiplicación por escalar, donde la órbita un punto corresponde a una recta $\A_{k}^{n+1}$, es
+multiplicación por escalar. Y la órbita de un punto corresponde a una recta en $\A_{k}^{n+1}$, es
 decir, podemos identificar el espacio proyectivo con el espacio de rectas que pasan por $0$ en el
 espacio afín.
 
 \vspace{1mm}
-\noindent Además, podemos identificar el espacio afín con una carta afín de $\P_{k}^{n}$ mediante 
-la asignación
+\noindent Adicionalmente, es posible identificar el espacio afín con una carta afín de 
+$\P_{k}^{n}$ mediante la asignación
 \begin{equation*}
     (x_{1},\dots,x_{n})\mapsto[1:x_{1}:\dots:x_{n}]
 \end{equation*}
@@ -735,13 +700,17 @@ Donde una carta afín de $\P_{k}^{n}$ se define como
     U_{i}:=\left\{[x_{0}:\dots:x_{n}]\mid x_{i}=1\right\}
     =\left\{[x_{0}:\dots:x_{n}]\mid x_{i}\neq0\right\}
 \end{equation*}
-y, por definición, notemos que $\P_{k}^{n}=\bigcup_{i} U_{i}$. La correspondencia anterior no es 
-única; por cada carta afín tenemos un mapa que la identifica con $\A_{k}^{n}$. Y cada una de ellas
+Por definición, tenemos que $\P_{k}^{n}=\bigcup_{i} U_{i}$. La correspondencia anterior no es 
+única; por cada carta afín tenemos un mapa que la identifica con $\A_{k}^{n}$ y cada una de ellas
 nos da una perspectiva de $\P_{k}^{n}$.
 
+\vspace{1mm}
+\noindent Para definir una variedad proyectiva, primero, debemos darle sentido a la noción de ser 
+cero de un polinomio; y estos últimos, para respetar la estructura, serán homogéneos
+
 \begin{dfn}
-    Un polinomio $f\in k[x_{0},\dots,x_{n}]$ se dice homogéneo de grado $d$ si todos los términos
-    de $f$ son monomios de grado $d$.
+    Un polinomio $f\in k[x_{0},\dots,x_{n}]$ se dice homogéneo de grado $d>0$ si todos los 
+    términos de $f$ son monomios de grado $d$.
 \end{dfn}
 
 \noindent Equivalentemente, un polinomio $f$ es homogéneo si y solo si para todo 
@@ -768,12 +737,25 @@ $\lambda\in k^{*}$ se tiene que
     $V=V^{p}(T)$.
 \end{dfn}
 
-\noindent Como en el espacio afín, el espacio proyectivo también admite una topología Zariski,
-donde cada abierto corresponde al complemento de una variedad proyectiva.
+\begin{ejm}
+    Consideremos la variedad proyectiva $V=V^{p}(x^{2}+y^{2}-z^{2})\subseteq\P_{k}^{2}$. Si 
+    tomamos $[x:y:z]\in V\cap U_{2}$, sin perdida de generalidad, podemos asumir que $z=1$ y como 
+    es cero de $x^{2}+y^{2}-z^{2}$ se cumple que
+    \begin{equation*}
+        x^{2}+y^{2}=1
+    \end{equation*}
+    y bajo la identificación, esta variedad proyectiva se corresponde con $V(x^{2}+y^{2}-1)$ en 
+    $\A_{k}^{2}$. Por el mismo razonamiento, el conjunto $V\cap U_{i}$ se indentifica con 
+    $V(x^{2}-y^{2}+1)$, donde $i=0,1$.
+\end{ejm}
+
+\noindent Como en el caso afín, el espacio proyectivo también admite una topología Zariski, cuyos 
+abiertos corresponden al complemento de una variedad proyectiva.
 
 \vspace{1mm}
-\obs La multiplicación de polinomios homogéneos es homogéneo, por lo que la unión de variedades
-proyectivas es, denuevo, una variedad proyectiva.
+\obs La multiplicación de polinomios homogéneos es un polinomio homogéneo cuyo grado es la suma 
+estos polinomios homogéneos. Luego, la unión finita de variedades proyectivas es, denuevo, una 
+variedad proyectiva.
 
 \begin{prop}
     Los mapas
@@ -786,16 +768,402 @@ proyectivas es, denuevo, una variedad proyectiva.
 \end{prop}
 
 \begin{proof}
+    Veamos que $\psi$ es una biyección, en efecto, su inversa esta dada por
+    \begin{align*}
+        \phi_{i}:\A_{k}^{n} &\to U_{i} \\
+        (a_{0},\dots,a_{n}) &\mapsto [a_{0}:\dots:a_{i-1}:1:a_{i}:\dots:a_{n}]
+    \end{align*}
+    Es inmediato que $\psi_{i}\circ\phi_{i}=id_{\A_{k}^{n}}$ y $\phi_{i}\circ\psi_{i}=id_{U_{i}}$.
+    Resta ver que $\psi_{i}$ y $\phi_{i}$ son continuas.
+
+    \vspace{1mm}
+    Sea $V(f)\subseteq\A_{k}^{n}$ donde $f\in k[x_{0},\dots,\hat{x_{i}},\dots,x_{n}]$ (Un 
+    polinomio en $k[x_{0},\dots,x_{n}]$ que no contiene a la variable $x_{i}$). Sea $d=deg(f)$, 
+    definimos
+    \begin{equation*}
+        F(x_{0},\dots,x_{n})
+        =x_{i}^{d}f\left(\frac{x_{0}}{x_{i}},\dots,\frac{x_{n}}{x_{i}}\right)
+        \in k[x_{0},\dots,x_{n}]
+    \end{equation*}
+    Notar que $F$ es homogéneo de grado $d$ y además
+    \begin{equation*}
+        \psi_{i}^{-1}(V(f))=U_{i}\cap V(F)
+    \end{equation*}
+    Por lo tanto, $\psi_{i}$ es continuo. Por otro lado, sea $U_{i}\cap V(F)$ donde 
+    $F\in k[x_{0},\dots,x_{n}]$ es homogéneo. Entonces
+    \begin{equation*}
+        \phi_{i}^{-1}(U_{i}\cap V(F))=V(f) 
+        \hhtext{donde}
+        f=F(x_{0},\dots,x_{i-1},1,x_{i+1},\dots,x_{n})
+    \end{equation*}
+    Luego, $\phi_{i}$ es continua. Concluimos que $\psi_{i}$ es un homeomorfismo.
+\end{proof}
+
+\obs Dado $p\in U_{i}$ existe un único representante $[x_{0}:\dots:x_{n}]$ tal que $x_{i}=1$, y 
+por ende $\psi_{i}$ está bien definida.
+
+\begin{cor}
+    El $n-$espacio proyectivo $\P_{k}^{n}$ no es Hausdorff.
+\end{cor}
+
+\noindent Nuestro objetivo ahora es el Nullstellensatz proyectivo, comenzamos notando que 
+$k[x_{0},\dots,x_{n}]$ se puede escribir como $\bigoplus S_{d}$, donde $S_{d}$ es el grupo 
+abeliano de polinomios homogéneos de grado $d$.
+
+\begin{dfn}
+    Un ideal $I\subseteq k[x_{0},\dots,x_{n}]$ se dice homogéneo si
+    \begin{equation*}
+        I=\bigoplus (I\cap S_{d})
+    \end{equation*}
+\end{dfn}
+
+\noindent Equivalentemente, $I$ es un ideal homogéneo si y solo si está generado por polinomios
+homogéneos.
+
+\begin{ejm}
+    El ideal $I=(x^{2}+y)\subseteq k[x,y]$ no es homogéneo porque $y\not\in I$. Sin embargo, el 
+    ideal
+    \begin{equation*}
+        I\subseteq (x^{2},y)\subseteq k[x,y]
+    \end{equation*}
+    si es homogéneo. 
+\end{ejm}
+
+\newpage
+\begin{prop}
+    Sea $I\subseteq k[x_{0},\dots,x_{n}]$ un ideal. Entonces $I$ es homogéneo si y solo si 
+    contiene todos los componentes homogéneos de sus elementos.
+\end{prop}
+
+\begin{proof}
+    Supongamos que $I$ es homogéneo, entonces $I$ esta generado por polinomios homogéneos, digamos
+    $I=\gen{\{g_{\alpha}\}_{\alpha\in A}}$, donde $g_{\alpha}$ es homogéneo. Sea $f\in I$, luego
+    \begin{equation*}
+        f=\sum_{\alpha}h_{\alpha}g_{\alpha} \htext{con} h_{\alpha}=0 \text{ salvo finitos}
+    \end{equation*}
+    Escribimos $h_{\alpha}$ como suma de sus componentes homogéneas
+    \begin{equation*}
+        h_{\alpha}=\sum_{j}(h_{\alpha})_{j}
+    \end{equation*}
+    Si $deg(g_{\alpha})=d_{\alpha}$, entonces la componente homogénea de grado $r$ de $f$ esta 
+    dada por
+    \begin{equation*}
+        f_{r}=\sum_{\alpha}(h_{\alpha})_{r-d_{\alpha}}g_{\alpha}
+        \htext{donde} (h_{\alpha})_{j}=0 \text{ si } j<0
+    \end{equation*}
+    Concluimos que $f_{r}\in I$ para todo $r$. Por otro lado, supongamos que $I$ contiene todos
+    los componentes homogéneos de sus elementos. 
     
+    \vspace{1mm}
+    Dado $f\in I$ vemos que $f=f_{0}+\dots+f_{d}$ donde $f_{i}$ es homogéneo de grado $i$, 
+    entonces $f_{i}\in I$. Por lo tanto, $I$ esta generado por polinomios homogéneos.
+\end{proof}
+
+\begin{lema}
+    Sea $I\subseteq k[x_{0},\dots,x_{n}]$ un ideal homogéneo, entonces $\sqrt{I}$ es homogéneo.
+\end{lema}
+
+\begin{proof}
+    Sea $f\in\sqrt{I}$, escribimos
+    \begin{equation*}
+        f=f_{r}+f_{r+1}+\dots+f_{d}
+        \htext{donde}f_{r}\neq0 \text{ y $f_{i}$ homogéneo de grado }i
+    \end{equation*}
+    Por la proposición anterior basta probar que $f_{i}\in\sqrt{I}$ para todo $i$. Como 
+    $f\in\sqrt{I}$, existe $n\in\N$ tal que $f^{n}\in I$. El componente homogéneo de menor grado
+    de $f^{n}$ es $f_{r}^{n}$, y dado que $I$ es homogéneo, se tiene que
+    \begin{equation*}
+        f_{r}^{n}\in I \hhtext{entonces} f_{r}\in\sqrt{I}
+    \end{equation*}
+    Por lo tanto $f-f_{r}=f_{r+1}+\dots+f_{d}\in\sqrt{I}$, inductivamente, vemos que 
+    $f_{i}\in\sqrt{I}$ para todo $i$, lo que prueba lo pedido.
+\end{proof}
+
+\begin{dfn}
+    Sea $I\subseteq k[x_{0},\dots,x_{n}]$ un ideal homogéneo, definimos
+    \begin{equation*}
+        V^{p}(I)=\{p\in\P_{k}^{n}:f(p)=0 \text{ para todo } f\in I \text{ homogéneo}\}
+    \end{equation*}
+\end{dfn}
+
+\obs Como $I$ es homogéneo tenemos que $I=\gen{\{g_{\alpha}\}_{\alpha\in A}}$, donde $g_{\alpha}$ 
+es homogéneo. Si consideramos $T=\{g_{\alpha}\}_{\alpha\in A}$, entonces $V^{p}(I)=V^{p}(T)$.
+
+\vspace{1mm}
+\noindent Consideremos el ideal maximal y homogéneo 
+$\m=(x_{0},\dots,x_{n})\subseteq k[x_{0},\dots,x_{n}]$, como el único punto en $\A_{k}^{n+1}$ que 
+se anula en $\m$ es $0$, tenemos que $V^{p}(\m)=\emptyset$.
+
+\begin{dfn}
+    Sea $V\subseteq\P_{k}^{n}$ una variedad algebraica, se define
+    \begin{equation*}
+        I^{h}(V)=\gen{\{f\in k[x_{0},\dots,x_{n}] \text{ homogéneo}:f|_{V}\equiv0\}}
+    \end{equation*}
+\end{dfn}
+
+\obs Claramente $I^{h}(V)$ es un ideal homogéneo y radical. Además, una variedad proyectiva $V$ es 
+irreducible, como subespacio de $\P_{k}^{n}$, si y solo si $I^{h}(V)$ es un ideal primo.
+
+\newpage
+
+\begin{dfn}
+    Sea $Y\subseteq\P_{k}^{n}$, el cono afín sobre $Y$ es
+    \begin{equation*}
+        C(Y)=\{(x_{0},\dots,x_{n})\in\A_{k}^{n+1}:[x_{0}:\dots:x_{n+1}]\in Y\}\cup\{0\}
+    \end{equation*}
+\end{dfn}
+
+\begin{lema}
+    Sea $I\subseteq k[x_{0},\dots,x_{n}]$ un ideal homogéneo distinto de $\m$. Tomar $Y=V^{p}(I)$, 
+    luego
+    \begin{equation*}
+        C(Y)=V(I)\subseteq\A_{k}^{n+1}
+    \end{equation*}
+\end{lema}
+
+\begin{proof}
+    Sea $p\in C(Y)$ no nulo, por definición $[p]\in Y$, entonces $f(p)=0$ para todo 
+    $f\in I$ homogéneo. Sea $f\in I$, escribimos
+    \begin{equation*}
+        f=\sum_{r}f_{r} \htext{con $f_{r}$ homogéneo}
+    \end{equation*}
+    Como $I$ es ideal homogéneo $f_{r}\in I$, entonces $f_{r}(p)=0$ y por lo tanto $f(p)=0$, luego
+    $p\in V(I)$.
+
+    \vspace{1mm}
+    Sea $p\in V(I)$ no nulo, por lo tanto $f(p)=0$ para todo $f\in I$, en particular, para todo 
+    $f\in I$ homogéneo y por ende $[p]\in Y$, es decir, $p\in C(Y)$.
+\end{proof}
+
+\begin{lema}
+    Sea $I\subseteq k[x_{0},\dots,x_{n}]$ un ideal homogéneo distinto de $\m$. Consideremos 
+    $Y=V^{p}(I)$, entonces $I(C(Y))=I^{h}(Y)$.
+\end{lema}
+
+\begin{proof}
+    Sea $f\in I(C(Y))$, entonces $f|_{C(Y)}\equiv0$. Digamos que
+    \begin{equation*}
+        f=\sum_{r}f_{r} \htext{con $f_{r}$ homogéneo}
+    \end{equation*}
+    Queremos probar que $f_{r}|_{Y}\equiv0$ para todo $r$. Dado $[p]\in Y$ notamos que 
+    $p\in C(Y)$, lo que implica que $f(p)=0$, más aún, $f(\lambda p)=0$ para todo $\lambda\neq0$.
+    Entonces el polinomio
+    \begin{equation*}
+        g(\lambda)=f(\lambda p)=\sum_{r}f_{r}(p)\lambda^{r}
+    \end{equation*}
+    tiene infinitas raíces, lo que implica que $g$ es el polinomio nulo. Luego, $f_{r}(p)=0$ para 
+    todo $r$. Concluimos que $f\in I^{h}(Y)$.
+
+    \vspace{1mm}
+    Dado $f\in I^{h}(Y)$, digamos que
+    \begin{equation*}
+        f=\sum_{r}f_{r} \htext{con $f_{r}$ homogéneo y}f_{r}|_{Y}\equiv0
+    \end{equation*}
+    Fijemos $p\in C(Y)$ no nulo, nuevamente, por definición tenemos que $[p]\in Y$ y se sigue que 
+    $f_{r}(p)=0$ para todo $r$, por lo tanto $f(p)=0$. En resumen, $f\in I(C(Y))$.
+\end{proof}
+
+\begin{cor}
+    Sea $I\subseteq k[x_{0},\dots,x_{n}]$ un ideal homogéneo e $Y=V^{p}(I)$, entonces $Y$ es
+    irreducible si y solo si $C(Y)$ es irreducible.
+\end{cor}
+
+\begin{teo}[\textbf{Nullstellensatz Proyectivo}]
+    Existe una biyección, que invierte inclusiones, entre los conjuntos
+    
+    \begin{equation*}
+        \begin{Bmatrix}
+            \text{Variedades proyectivas} \\
+            \text{en }\P_{k}^{n} \text{ no vacías}
+        \end{Bmatrix}
+        \longleftrightarrow
+        \begin{Bmatrix}
+            \text{Ideales homogéneos radicales} \\
+            \text{en }k[x_{0},\dots,x_{n}] \text{ que no} \\
+            \text{contienen a }\m
+        \end{Bmatrix}
+    \end{equation*}
+    Recordemos que $\m=(x_{0},\dots,x_{n})$.
+\end{teo}
+
+\begin{proof}
+    Sea $I\subseteq k[x_{0},\dots,x_{n}]$ un ideal homogéneo radical que no contiene a $\m$.
+    Consideremos $Y=V^{p}(I)$, luego
+    \begin{equation*}
+        I^{h}(Y)=I(C(Y))=I(V(I))=\sqrt{I}=I
+    \end{equation*}
+    en la penúltima igualdad usamos Nullstellensatz afín. Sea $V\subseteq\P_{k}^{n}$ una variedad 
+    proyectiva. Es inmediato que
+    \begin{equation*}
+        V\subseteq V^{p}(I^{h}(V))
+    \end{equation*}
+    Por otro lado, sea $J\subseteq k[x_{0},\dots,x_{n}]$ un ideal homogéneo tal que $V=V^{p}(J)$,
+    como todo elemento en $J$ se anula en $V$, tenemos que
+    \begin{equation*}
+        J\subseteq I^{h}(V) \hhtext{entonces} V^{p}(I^{h}(V))\subseteq V^{p}(J)=V
+    \end{equation*}
+    Por lo tanto $V=V^{p}(I^{h}(V))$.
+\end{proof}
+
+\noindent Por último definimos las cuasi variedades proyectivas, que revisitaremos más adelante
+
+\begin{dfn}
+    Un conjunto $V\subseteq\P_{k}^{n}$ se dice cuasi variedad proyectiva si existen $U$ abierto y
+    $Z$ cerrado tales que $V=U\cap Z$.
+\end{dfn}
+
+\begin{ejm}
+    Los abiertos y cerrados, esto último equivale a una variedad proyectiva, en $\P_{k}^{n}$ son
+    cuasi variedades proyectivas. El conjunto $V^{p}(x^{2}+y^{2}+z^{2})\cap U_{0}$ es una cuasi 
+    variedad proyectiva.
+\end{ejm}
+
+\newpage
+
+\subsection{Clausura proyectiva y Homogenización} %% Pendiente teorema de homogenización
+
+\noindent Recordemos la inclusión
+\begin{align*}
+    \phi_{0}:\A_{k}^{n} &\to U_{0} \\
+    (a_{1},\dots,a_{n}) &\mapsto [1:a_{1}:\dots:a_{n}]
+\end{align*}
+Para una variedad afín $V\subseteq\A_{k}^{n}$ consideramos $V_{0}:=\phi_{0}(V)$.
+
+\begin{dfn}
+    Sea $V\subseteq\A_{k}^{n}$ una variedad afín. La clausura proyectiva de $V$ se define como
+    \begin{equation*}
+        \overline{V}:=\overline{V_{0}}\subseteq\P_{k}^{n}
+    \end{equation*}
+    donde la clausura es respecto a la topología de Zariski.
+\end{dfn}
+
+\noindent Usualmente se piensa en $V$ bajo la imagen de la inclusión $\phi_{0}$, es decir, como 
+$V_{0}$. Por definición, la clausura proyectiva de $V$ es la variedad proyectiva mas pequeña, en 
+términos de contención, que contiene a $V$.
+
+\begin{ejm}
+    Consideremos $V=V(y-x^{2})\subseteq\A_{k}^{n}$. Si consideramos el polinomio homogéneo 
+    $yz-x^{2}$ vemos que $V\subseteq V^{p}(yz-x^{2})$.
+
+    \vspace{1mm}
+    \noindent Por otro lado, sea $W\subseteq\P_{k}^{n}$ variedad proyectiva tal que 
+    $V\subseteq W$. Tomemos $f\in k[x_{0},\dots,x_{n}]$ homogéneo tal que $f|_{W}\equiv0$. 
+    Consideremos
+    \begin{equation*}
+        g(x,y)=f(1,x,y) \hhtext{y notar que} f(1,p)=0 \text{ para todo } p\in V\subseteq\A_{k}^{n}
+    \end{equation*}
+    Equivalentemente, tenemos que $g\in I(V)=(y-x^{2})$ y por ende $y-x^{2}\mid g$. Entonces
+    \begin{equation*}
+        yz-x^{2}\mid z^{deg(g)}g(x/z,y/z)\mid f
+    \end{equation*}
+    Así, dado $p\in V^{p}(yz-x^{2})$ se tiene que $f(p)=0$ porque $yz-x^{2}\mid f$. Luego,
+    \begin{equation*}
+        I^{h}(W)\subseteq I^{h}(V^{p}(yz-x^{2})) \hhtext{lo que implica que}
+        V^{p}(yz-x^{2})\subseteq W
+    \end{equation*}
+    Concluimos que $\overline{V}=V^{p}(yz-x^{2})$.
+\end{ejm}
+
+\noindent Intuitivamente, el conjunto $V^{p}(yz-x^{2})\setminus V$ consiste de un único punto ``en 
+el infinito`` que corresponde a $[0:0:1]$, por lo que el cerrado más pequeño que contiene a $V$ 
+debe ser $V^{p}(yz-x^{2})$.
+
+\begin{dfn}
+    Sea $f\in k[x_{1},\dots,x_{n}]$ de grado $d$, escribimos
+    \begin{equation*}
+        f=f_{0}+f_{1}+\dots+f_{d} \htext{donde } f_{i} \text{ son homogéneos}
+    \end{equation*}
+    La homogenización de $f$ es
+    \begin{equation*}
+        \widetilde{f}=x_{0}^{d}f_{0}+x_{0}^{d-1}f_{1}+\dots+x_{0}f_{d-1}+f_{d}
+    \end{equation*}
+\end{dfn}
+
+\vspace{1mm}
+\obs En el argumento del ejemplo únicamente utilizamos que $y-x^{2}$ es irreducible para obtener 
+que $I(V)=(y-x^{2})$. Por lo que podemos concluir lo siguiente
+
+\begin{cor}
+    Sea $f\in k[x_{1},\dots,x_{n}]$ un polinomio irreducible y $V=V(f)$. Entonces se cumple que
+    $\overline{V}=V^{p}(\widetilde{f})$.
+\end{cor}
+
+\begin{dfn}
+    Sea $I\subseteq k[x_{1},\dots,x_{n}]$ un ideal, definimos su homogenización como
+    \begin{equation*}
+        \widetilde{I}=\{\widetilde{f}:f\in I\}
+    \end{equation*}
+\end{dfn}
+
+\newpage
+
+\obs La homogenización de un ideal es un ideal homogéneo.
+
+\begin{ejm}
+    No basta como homogenizar los generadores de un ideal. %% Pendiente...
+\end{ejm}
+
+\begin{teo}
+    Sea $I\subseteq k[x_{1},\dots,x_{n}]$ un ideal. Entonces
+    \begin{equation*}
+        V^{p}(\widetilde{I})=\overline{V(I)}
+    \end{equation*}
+\end{teo}
+
+\begin{proof}
+    %% Pendiente...
 \end{proof}
 
 \newpage
 
-\subsection{Morfismos de Variedades Proyectivas}
+\subsection{Morfismos de (Cuasi) Variedades Proyectivas}
 
-\newpage
+\noindent Del mismo modo que en el caso afín, nos gustaría crear la categoría de variedades 
+proyectivas y cuasi variedades proyectivas. Ya tenemos los objetos, faltan los morfismos, y ese es 
+el objetivo de esta parte.
 
-\subsection{Cuasi Variedades Proyectivas} 
+\begin{dfn}
+    Sean $V\subseteq\P_{k}^{n}$ y $W\subseteq\P_{k}^{m}$ variedades proyectivas. Un mapa 
+    $f:V\to W$ es un mapa homogéneo si existen polinomios homogéneos $f_{1},\dots,f_{m}$ del mismo
+    grado tales que
+    \begin{equation*}
+        f([x])=[f_{1}(x):\dots:f_{m}(x)]
+    \end{equation*}
+\end{dfn}
+
+\noindent Bajo esta definición los posibles isomorfismos entre variedades proyectivas son 
+limitados, más aún, se reducen a los siguientes
+
+\begin{dfn}
+    Decimos que $V$ y $W$ son proyectivamente equivalentes si existe un cambio de coordenadas $f$ 
+    en $\P_{k}^{n}$, esto es, un mapa polinomial invertible tal que $deg(f_{i})=1$ para todo $i$.
+\end{dfn}
+
+\begin{prop}
+    Los automorfismos, bajo equivalencia proyectiva, se describen como
+    \begin{equation*}
+        Aut(\P_{k}^{n})\cong PGL(n+1,k)=GL(n+1,k)/Z(GL(n+1,k))
+    \end{equation*}
+\end{prop}
+
+\noindent De este modo obtuvimos una categoría $\textbf{ProyVar}_{naive}$, donde los morfismos son 
+mapas polinomiales globales y los isomorfismos están dados por equivalencias proyectivas. Sin 
+embargo, no es del todo satisfactoria por sus restricciones. Mejoraremos esta definición
+
+\begin{dfn}
+    Sean $V\subseteq\P_{k}^{n}$ y $W\subseteq\P_{k}^{m}$ variedades proyectivas. Decimos que una 
+    aplicación $\varphi:V\to W$ es morfismo de variedades proyectivas si para todo punto 
+    $p\in \P_{k}^{n}$
+    \begin{equation*}
+        \text{existe una vecindad } U\subseteq\P_{k}^{n} 
+        \text{ y polinomios homogéneos del mismo grado }f_{1},\dots,f_{m}\in k[x_{0},\dots,x_{n}]
+    \end{equation*}
+    tales que $f:U\to W$ esta dado por $f([x])=[f_{1}(x):\dots:f_{m}(x)]$
+\end{dfn}
+
+\begin{ejm}
+    %% Pendiente...
+\end{ejm}
 
 \newpage
 
