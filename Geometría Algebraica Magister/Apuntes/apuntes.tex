@@ -1124,10 +1124,10 @@ el objetivo de esta parte.
 
 \begin{dfn}
     Sean $V\subseteq\P_{k}^{n}$ y $W\subseteq\P_{k}^{m}$ variedades proyectivas. Un mapa 
-    $f:V\to W$ es un mapa homogéneo si existen polinomios homogéneos $f_{1},\dots,f_{m}$ del mismo
+    $f:V\to W$ es un mapa homogéneo si existen polinomios homogéneos $f_{0},\dots,f_{m}$ del mismo
     grado tales que
     \begin{equation*}
-        f([x])=[f_{1}(x):\dots:f_{m}(x)]
+        f([x])=[f_{0}(x):\dots:f_{m}(x)]
     \end{equation*}
 \end{dfn}
 
@@ -1155,15 +1155,102 @@ embargo, no es del todo satisfactoria por sus restricciones. Mejoraremos esta de
     aplicación $\varphi:V\to W$ es morfismo de variedades proyectivas si para todo punto 
     $p\in \P_{k}^{n}$
     \begin{equation*}
-        \text{existe una vecindad } U\subseteq\P_{k}^{n} 
-        \text{ y polinomios homogéneos del mismo grado }f_{1},\dots,f_{m}\in k[x_{0},\dots,x_{n}]
+        \text{existe una vecindad } U\subseteq V 
+        \text{ y polinomios homogéneos del mismo grado }f_{0},\dots,f_{m}\in k[x_{0},\dots,x_{n}]
     \end{equation*}
-    tales que $f:U\to W$ esta dado por $f([x])=[f_{1}(x):\dots:f_{m}(x)]$
+    tales que $f:U\to W$ esta dado por $f([x])=[f_{0}(x):\dots:f_{m}(x)]$
 \end{dfn}
 
 \begin{ejm}
-    %% Pendiente...
+    Consideremos el morfismo
+    \begin{equation*}
+        \varphi:\P_{k}^{1} \to V(xz-y^{2})\subseteq\P_{k}^{2}
+        \hhtext{dado por} [s:t] \mapsto [s^{2}:st:t^{2}]
+    \end{equation*}
+    y notemos que si $s\neq0$, entonces proyectando respecto a las primeras dos coordenadas 
+    obtenemos $[s^{2}:st]=[s:t]$. Así, la inversa viene dada por
+    \begin{align*}
+        \psi:V(xz-y^{2}) &\to \P_{k}^{1} \\
+        [x:y:z] &\mapsto 
+        \begin{cases}
+            [x:y] \quad\text{si }x\neq0 \\
+            [y:z] \quad\text{si }z\neq0
+        \end{cases}
+    \end{align*}
+    El mapa esta bien definido, en efecto, si $x\neq0$ y $z\neq0$ tenemos que
+    \begin{equation*}
+        [x:y]=[xz:yz]=[y^{2}:yz]=[y:z]
+    \end{equation*}
+    Luego, sea $[x:y:z]\in V(xz-y^{2})$ y supongamos, sin perdidad de generalidad, que $x\neq0$, 
+    entonces
+    \begin{equation*}
+        \varphi\circ\psi([x:y:z])=\varphi([x:y])=[x^{2}:xy:y^{2}]=[x^{2}:xy:xz]=[x:y:z]
+    \end{equation*}
+    Por otro lado, dado $[s:t]\in\P_{k}^{1}$ tal que $t\neq0$ vemos que
+    \begin{equation*}
+        \psi\circ\varphi([s:t])=\psi([s^{2}:st:t^{2}])=[st:t^{2}]=[s:t]
+    \end{equation*}
+    Concluimos que $\P_{k}^{1}\cong V(xz-y^{2})$ como variedades proyectivas.
 \end{ejm}
+
+\newpage
+\noindent Sea $\varphi:V\to W$ un morfismo de variedades proyectivas, dado $x\in V$ existen 
+$U_{x}\subseteq V$ vecindad de $x$ y polinomios $f_{0},\dots,f_{m}$ tales que
+\begin{equation*}
+    \varphi:U\to W \htext{esta dado por } \varphi(x)=[f_{0}(x):\dots:f_{m}(x)]
+\end{equation*}
+Sea $V'\subseteq W$ una variedad proyectiva, entonces $V'=V^{p}(T)$ para algún conjunto $T$ de 
+polinomios homogéneos. Luego, vemos que
+\begin{equation*}
+    \varphi^{-1}(V')\cap U_{x}=V^{p}(\{g(f_{0},\dots,f_{m}):g\in T\})\cap V\cap U_{x}
+\end{equation*}
+y por lo tanto $\varphi^{-1}(V')\cap U_{x}$ es cerrado en $U_{x}$. Consideremos la colección 
+$\{U_{x}\}_{x\in V}$, que es un cubrimiento abierto de $V$.
+
+\begin{lema}
+    Sea $\varphi:V\to W$ un morfismo de variedades proyectivas, entonces $\varphi$ es continuo
+    en la topología Zariski.
+\end{lema}
+
+\begin{proof}
+    Sea $V'\subseteq W$ una variedad proyectiva. Luego, $\varphi^{-1}(V')$ es cerrado en $V$ si y
+    solo si $\O=V\setminus\varphi^{-1}(V')$ es abierto en $V$. Notamos que
+    \begin{equation*}
+        \O=\O\cap V=\O\cap\left(\bigcup_{x\in V}U_{x}\right)=\bigcup_{x\in V}(\O\cap U_{x})
+    \end{equation*}
+    Basta probar que $\O\cap U_{x}$ es abierto en $U_{x}$, ya que $U_{x}$ es abierto en $V$. Así,
+    \begin{align*}
+        U_{x}\setminus(\O\cap U_{x})=U_{x}\setminus\O=U_{x}\setminus(V\setminus \varphi^{-1}(V'))
+        =\varphi^{-1}(V')\cap U_{x}
+    \end{align*}
+    lo que concluye la demostración, puesto que $\varphi^{-1}(V')\cap U_{x}$ es cerrado en 
+    $U_{x}$.
+\end{proof}
+
+\begin{prop}
+    Sean $\varphi:V\to W$ y $\psi:W\to Z$ morfismos de variedades proyectivas, entonces 
+    $\psi\circ\varphi:V\to Z$ es morfismo de variedades proyectivas.
+\end{prop}
+
+\begin{proof}
+    Sea $x\in V$, existen $U_{x}\subseteq V$ y $U_{f(x)}\subseteq W$ abiertos tales que
+    \begin{equation*}
+        \varphi:U_{x}\to W \htext{esta dado por } \varphi([x])=[f_{0}(x):\dots:f_{m}(x)]
+    \end{equation*}
+    y
+    \begin{equation*}
+        \psi:U_{f(x)}\to W \htext{esta dado por } \psi([x])=[g_{0}(x):\dots:g_{l}(x)]
+    \end{equation*}
+    para algunos polinomios homogéneos. Consideremos $U=U_{x}\cap\varphi^{-1}(U_{f(x)})$ que es
+    abierto no vacío en $V$ porque $\varphi$ es continua. De este modo,
+    \begin{align*}
+        \varphi\circ\psi:U &\to Z \htext{esta dado por } \\
+        x &\mapsto [g_{0}(f_{0}(x),\dots,f_{m}(x)):\dots:g_{l}(f_{0}(x),\dots,f_{m}(x))]
+    \end{align*}
+    Lo que prueba el resultado.
+\end{proof}
+
+%% Pendiente cuasi variedades proyectivas
 
 \newpage
 
@@ -1172,6 +1259,36 @@ embargo, no es del todo satisfactoria por sus restricciones. Mejoraremos esta de
 \newpage
 
 \section{Teoría de la Dimensión} %% Clase 6 y 7
+
+\begin{lema}
+    Sea $f:X\to Y$ un morfismo de variedades sobreyectivo, entonces $dim(Y)\leq dim(X)$.
+\end{lema}
+
+\begin{proof}
+    Sea $Y_{j}$ componente irreducible de dimensión maximal, es decir, $dim(Y_{j})=dim(Y)$. 
+    Tomando la restricción $f:f^{-1}(Y_{j})\to Y_{j}$ podemos asumir que $Y_{j}$ es irreducible.
+    Veamos que
+    \begin{equation*}
+        Y=f\left(\bigcup X_{i}\right)=\overline{\bigcup f(X_{i})}=\bigcup\overline{f(X_{i})}
+    \end{equation*}
+    donde la última igualdad se debe a que la unión es finita. Como $Y$ es irreducible, tenemos 
+    que $Y=\overline{f(X_{j})}$ para algún $j$. 
+    
+    Así, podemos asumir que $f:X\to Y$ es morfismo entre variedades irreducibles tal que 
+    $\overline{f(X)}=Y$. Veamos que
+    \begin{equation*}
+        f^{*}:k[Y]\to k[X]
+    \end{equation*}
+    es inyectivo. Sea $g\in\kr{f^{*}}$, entonces $(g\circ f)(x)=0$ para todo $x\in X$, dicho de 
+    otro modo,
+    \begin{equation*}
+        f(X)\subseteq V(g) \hhtext{entonces} Y=\overline{f(X)}\subseteq V(g)
+    \end{equation*}
+    concluimos que $g|_{Y}\equiv0$. Por lo tanto $k(Y)\subseteq k(X)$ y entonces
+    \begin{equation*}
+        dim(Y)=trdeg_{k}(k(Y))\leq trdeg_{k}(k(X))=dim(X)
+    \end{equation*}
+\end{proof}
 
 \newpage
 

@@ -1,0 +1,195 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+%% ----- Comando especial -----
+\def \P {\mathbb{P}}
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{12cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Professor: Jesse Huang -- Student: Benjamín Mateluna}
+\end{minipage}
+\vspace{2ex}
+
+{\centerline{\bf Selected Topics on Complex Algebraic Varieties - MPG3320 III}
+\centerline{\bf Assignment 2}}
+\centerline{\bf August September 28, 2026}
+
+\vspace{8mm}
+Comenzaré probando dos lemas previos
+
+\vspace{2mm}
+\noindent\textbf{Lemma 1:} \emph{Sea $V\subseteq\A_{k}^{n}$ una variedad algebraica. Entonces 
+existen únicas variedades afines irreducibles $V_{1},\dots, V_{m}$ tales que}
+\begin{equation*}
+    V=\bigcup V_{i} \hhtext{y} V_{i}\not\subset V_{j} \htext{para todo}i\neq j
+\end{equation*}
+
+\begin{proof}
+    Definimos
+    \begin{equation*}
+        \mathcal{C}:=\{
+            V\subseteq\A_{k}^{n}\text{ variedad afín}:V\text{ no es unión de irreducibles}
+        \}
+    \end{equation*}
+    Si $\mathcal{C}$ es vacío no hay nada que probar, en caso contrario, existe $V\in\mathcal{C}$
+    minimal, y por definición de $\mathcal{C}$, es reducible. Esto contradice que sea minimal.
+
+    Sea $V=\bigcup V_{i}$ con $V_{i}$ irreducibles y supongamos que $V_{i}\not\subset V_{j}$ para
+    todo $i\neq j$. Digamos que
+    \begin{equation*}
+        \bigcup V_{i}=\bigcup W_{j} 
+        \htext{con}W_{i}\not\subset W_{j} \hhtext{y} V_{i},W_{j}\neq\emptyset
+    \end{equation*}
+    Notemos que $V_{1}=V_{1}\cap V=\bigcup(V_{1}\cap W_{j})$, como $V_{1}$ es irreducible, existe
+    único $j$ tal que $V_{1}=V_{1}\cap W_{j}$, es decir, $V_{1}\subseteq W_{j}$. Del mismo modo,
+    existe único $i$ tal que $W_{j}\subseteq V_{i}$, lo que implica que $V_{1}\subseteq V_{i}$,
+    entonces $i=1$ y así $V_{1}=W_{j}$.
+\end{proof}
+
+Como $k[x_{1},\dots,x_{n}]$ es noetheriano, toda colección de variedades algebraicas tiene un 
+elemento minimal.
+
+\vspace{2mm}
+\noindent\textbf{Lemma 2:} \emph{Sea $X\subseteq\A_{k}^{n}$ una variedad algebraica y 
+$X=\bigcup X_{i}$ su descomposición en irreducibles, entonces}
+\begin{equation*}
+    dim(X)=max \text{ } dim(X_{i})
+\end{equation*}
+
+\begin{proof}
+    Dada $V\subseteq X$ variedad afín irreducible, vemos que $V=\bigcup(V\cap X_{i})$ y como $V$ 
+    es irreducible se sigue que $V\subseteq X_{j}$ para algún $j$.
+
+    \vspace{2mm}
+    Sean $V_{0}\subset V_{1}\subset\dots\subset V_{r}$ variedades irreducibles en $X$, por la 
+    observación anterior, tenemos que $V_{i}\subseteq X_{j}$ para algún $j$ y para todo $i$. 
+    Luego,
+    \begin{equation*}
+        r\leq dim(X_{j})\leq max \text{ } dim(X_{i})
+        \hhtext{entonces}
+        dim(X)\leq max \text{ } dim(X_{i})
+    \end{equation*}
+    Por otro lado, si $V_{0}\subset V_{1}\subset\dots\subset V_{r}$ son variedades irreducibles en
+    $X_{i}$, en particular, lo son en $X$, entonces
+    \begin{equation*}
+        r\leq dim(X)
+        \hhtext{y por lo tanto}
+        dim(X_{i})\leq dim(X)
+    \end{equation*}
+    lo que implica que $max \text{ } dim(X_{i})\leq dim(X)$.
+\end{proof}
+
+Ambos resultados valen para variedades proyectivas, usando argumentos idénticos.
+
+\vspace{3mm}
+\noindent\textbf{Problema 1.} Veamos el siguiente lema
+
+\vspace{2mm}
+\noindent\textbf{Lemma 1.1:} \emph{Sea $f:X\to Y$ un morfismo sobreyectivo entre variedades 
+algebraicas irreducibles, entonces $dim(Y)\leq dim(X)$}.
+
+\begin{proof}
+    Veamos que el morfismo de $k-$álgebras $f^{*}:k[Y]\to k[X]$ es inyectivo. Sea 
+    $g\in\kr{f^{*}}$, entonces $(g\circ f)(x)=0$ para todo $x\in X$, dicho de otro modo,
+    \begin{equation*}
+        Y=f(X)\subseteq V(g) \hhtext{entonces} g|_{Y}\equiv0
+    \end{equation*}
+    Por lo tanto $k(Y)\subseteq k(X)$ y por ende 
+    $dim(Y)=trdeg_{k}(k(Y))\leq trdeg_{k}(k(X))=dim(X)$.
+\end{proof}
+
+Sean $X=\bigcup X_{i}$ y $Y=\bigcup Y_{j}$ la descomposición en irreducibles de $X$ e $Y$ 
+respectivamente. Notemos que
+\begin{equation*}
+    X\times Y=\bigcup X_{i}\times\bigcup Y_{j}=\bigcup(X_{i}\times Y_{j})
+\end{equation*}
+y dado que el producto de variedades irreducibles es irreducible, se tiene que 
+$\bigcup(X_{i}\times Y_{j})$ es la descomposición en irreducibles de $X\times Y$. Sean $X_{i}$ e
+$Y_{j}$ de dimensión maximal, por el lema de normalización de noether existen morfismos 
+sobreyectivos
+\begin{equation*}
+    f:X_{i}\to\A_{k}^{\dim(X_{i})} \hhtext{y} g:Y_{j}\to\A_{k}^{\dim(Y_{j})}
+\end{equation*}
+Tenemos un morfismo sobreyectivo entre variedades irreducibles
+$\varphi=(f,g):X_{i}\times Y_{j}\to\A_{k}^{\dim(X_{i})+\dim(Y_{j})}$, luego
+\begin{equation*}
+    dim(X)+dim(Y)=dim(X_{i})+dim(Y_{j})\leq dim(X\times Y)
+\end{equation*}
+Por otro lado, sea $X_{i}\times X_{j}$ de dimensión maximal. Por el lema de normalización de 
+Noether, $k[X_{i}]$ esta generado algebraicamente por $dim(X_{i})$ elementos, del mismo modo,
+$k[Y_{j}]$ esta generado algebraicamente por $dim(Y_{j})$ elementos.
+
+\vspace{2mm}
+Por lo tanto, $k[X_{i}\times Y_{j}]\cong k[X_{i}]\otimes_{k} k[Y_{j}]$ esta generado 
+algebraicamente por $dim(X_{i})+dim(Y_{j})$ elementos. Así, vemos que
+\begin{align*}
+    dim(X\times Y) &= dim(X_{i}\times Y_{j})=trdeg_{k}(k(X_{i}\times Y_{j})) \\
+    &= trdeg_{k}(Frac(k[X_{i}]\otimes_{k} k[Y_{j}]))\leq dim(X_{i})+dim(Y_{j})\leq dim(X)+dim(Y)
+\end{align*}
+Lo que finaliza la demostración.
+
+\vspace{5mm}
+\noindent\textbf{Problema 2.} Veamos que $\varphi$ es sobreyectiva. Sea $[a]\in \P_{k}^{n}$, 
+consideremos el hiperplano $V^{p}(h_{a})\in(\P_{k}^{n})^{\lor}$, donde 
+$h_{a}=a_{0}x_{0}+\dots+a_{n}x_{n}$. Sean $[a]=[b]$, entonces existe $\lambda\neq0$ tal que 
+$a=\lambda b$, luego
+\begin{equation*}
+    h_{a}=\sum_{i=0}^{n}a_{i}x_{i}=\sum_{i=0}^{n}\lambda b_{i}x_{i}
+    =\lambda\sum_{i=0}^{n}b_{i}x_{i}=\lambda h_{b}
+\end{equation*}
+entonces $h_{a}$ y $h_{b}$ difieren por un escalar no nulo, por lo tanto definen el mismo
+hiperplano, dicho de otro modo $V^{p}(h_{a})=V^{p}(h_{b})$. Definimos
+\begin{equation*}
+    X=\left\{V^{p}(h_{a}):[1:0:\dots:0]\in V^{p}(h_{a})\right\}
+\end{equation*}
+definimos $V=\varphi(X)$. Afirmamos que $V=V^{p}(a_{0})$. En efecto, si $[a]\in V^{p}(a_{0})$
+entonces $a_{0}=0$ y por ende
+\begin{equation*}
+    h_{a}=\sum_{i=1}^{n}a_{i}x_{i} \hhtext{entonces} h_{a}(1,0,\dots,0)=0
+\end{equation*}
+y así $[a]\in V$. Por otro lado, si $V^{p}(h_{a})\in X$ tenemos que $0=h_{a}(1,0,\dots,0)=a_{0}$, 
+luego $[a]\in V^{p}(a_{0})$. Lo que concluye lo pedido.
+
+\vspace{5mm}
+\noindent\textbf{Problema 3.}
+\begin{enumerate}
+    \item[(a)] 
+    
+    \item[(b)] 
+\end{enumerate}
+
+\vspace{5mm}
+\noindent\textbf{Problema 4.}
+
+\vspace{5mm}
+\noindent\textbf{Problema 5.}
+
+\vspace{5mm}
+\noindent\textbf{Problema 6.}
+\begin{enumerate}
+    \item[(a)] 
+    
+    \item[(b)] 
+    
+    \item[(c)] 
+    
+    \item[(d)] 
+\end{enumerate}
+
+\vspace{5mm}
+\noindent\textbf{Problema 7.}
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}
