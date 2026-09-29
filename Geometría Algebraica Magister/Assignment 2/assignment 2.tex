@@ -52,9 +52,9 @@ existen únicas variedades afines irreducibles $V_{1},\dots, V_{m}$ tales que}
         \htext{con}W_{i}\not\subset W_{j} \hhtext{y} V_{i},W_{j}\neq\emptyset
     \end{equation*}
     Notemos que $V_{1}=V_{1}\cap V=\bigcup(V_{1}\cap W_{j})$, como $V_{1}$ es irreducible, existe
-    único $j$ tal que $V_{1}=V_{1}\cap W_{j}$, es decir, $V_{1}\subseteq W_{j}$. Del mismo modo,
-    existe único $i$ tal que $W_{j}\subseteq V_{i}$, lo que implica que $V_{1}\subseteq V_{i}$,
-    entonces $i=1$ y así $V_{1}=W_{j}$.
+    un único $j$ tal que $V_{1}=V_{1}\cap W_{j}$, es decir, $V_{1}\subseteq W_{j}$. Del mismo 
+    modo, existe único $i$ tal que $W_{j}\subseteq V_{i}$, lo que implica que 
+    $V_{1}\subseteq V_{i}$, entonces $i=1$ y así $V_{1}=W_{j}$.
 \end{proof}
 
 Como $k[x_{1},\dots,x_{n}]$ es noetheriano, toda colección de variedades algebraicas tiene un 
@@ -164,31 +164,205 @@ luego $[a]\in V^{p}(a_{0})$. Lo que concluye lo pedido.
 \vspace{5mm}
 \noindent\textbf{Problema 3.}
 \begin{enumerate}
-    \item[(a)] 
+    \item[(a)] Como el ideal $I=(y^{2}-x^{3}-ax-b)$ esta generado por un elemento, su 
+    homogenización equivale al ideal $(y^{2}z-x^{3}-axz^{2}-bz^{3})$, entonces
+    \begin{equation*}
+        \overline{V(I)}=V^{p}(\widetilde{I})=V^{p}(y^{2}z-x^{3}-axz^{2}-bz^{3})
+    \end{equation*}
+    Luego, si $z=0$ tenemos que $x=0$ y por lo tanto $y=1$. Concluimos que la clausura proyectiva
+    de $V(I)$ añadio un único punto al infinito, que corresponde a $[0:0:1]$.
     
-    \item[(b)] 
+    \item[(b)] Veamos que $\{x_{1}^{2}-x_{2}^{2}-1,x_{3}-x_{1}\}$ es una base de gobner para
+    $I=(x_{1}^{2}-x_{2}^{2}-1,x_{3}-x_{1})$ con el orden monomial lexicográfico dado por 
+    $x_{3}\geq x_{1}\geq x_{2}$. Bajo este orden,
+    \begin{equation*}
+        LM_{\leq}(x_{1}^{2}-x_{2}^{2}-1)=x_{1}^{2} \hhtext{y}
+        LM_{\leq}(x_{3}-x_{1})=x_{3}
+    \end{equation*}
+    Basta probar que, dado $f\in I$, entonces su monomio principal es divisible por $x_{3}$ ó 
+    $x_{1}^{2}$. Como $f\in I$, existen $g,f\in k[x_{1},x_{2},x_{3}]$ tales que
+    \begin{equation*}
+        f=g\sbullet(x_{1}^{2}-x_{2}^{2}-1)+h\sbullet(x_{3}-x_{1})
+    \end{equation*}
+    Tenemos dos casos, si $f$ contiene al menos un factor $x_{3}$ en su monomio principal entonces
+    este es divisible por $x_{3}$. Si no lo contiene, entonces ningún monomio lo tiene como
+    factor, de lo contrario sería principal. Así, $x_{3}$ es una variable libre, entonces
+    \begin{equation*}
+        f(x_{1},x_{2},x_{3})
+        =f(x_{1},x_{2},x_{1})=g(x_{1},x_{2},x_{1})\sbullet(x_{1}^{2}-x_{2}^{2}-1)
+    \end{equation*}
+    Luego, el monomio principal de $f$ es el de $g$ por $x_{1}^{2}$, pues el orden respeta la 
+    multiplicación. Por lo tanto, $\overline{W}=V^{p}(x_{1}^{2}-x_{2}^{2}-x_{0}^{2},x_{3}-x_{1})$.
+    Si $x_{0}=0$, tenemos que
+    \begin{equation*}
+        x_{1}^{2}=x_{2}^{2} \hhtext{entonces} x_{1}=\pm x_{2}
+    \end{equation*}
+    Como $x_{3}=x_{1}$, se sigue que $x_{1}\neq0$. Entonces, los puntos en infinito son
+    \begin{equation*}
+        [0:1:1:1] \hhtext{y} [0:1:-1:1]
+    \end{equation*}
 \end{enumerate}
 
 \vspace{5mm}
-\noindent\textbf{Problema 4.}
+\noindent\textbf{Problema 4.} La cúbica torcida esta dada por el ideal $(y-x^{2},z-x^{3})$, es 
+decir, $Y=V(y-x^{2},z-x^{3})$ y está parametrizada por la expresión $(t,t^{2},t^{3})$. Vemos que
+\begin{equation*}
+    k[x,y,z]/(y-x^{2},z-x^{3})\cong k[x]
+\end{equation*}
+y por lo tanto $(y-x^{2},z-x^{3})$ es un ideal primo, así, por el Nullstellensatz tenemos que
+\begin{equation*}
+    I(Y)=\sqrt{(y-x^{2},z-x^{3})}=(y-x^{2},z-x^{3})=:I
+\end{equation*}
+Sea $J=(yw-x^{2},xz-y^{2},zw-xy)$ y notemos que $J\subseteq\widetilde{I}$, ya que los generadores 
+de $J$ están en $\widetilde{I}$, lo que implica que 
+$\overline{Y}=V^{p}(\widetilde{I})\subseteq V^{p}(J)$, nos gustaría probar que 
+$V^{p}(J)=\overline{Y}$. Consideremos el morfismo
+\begin{align*}
+    \phi:\P_{k}^{1} &\to V^{p}(J) \\
+    [s:t] &\mapsto [s^{3}:s^{2}t:st^{2}:t^{3}]
+\end{align*}
+Evaluando en los generadores de $J$ vemos que $\phi$ esta bien definido, es más, su inversa viene 
+dada por
+\begin{equation*}
+    [w:x:y:z]\mapsto\begin{cases}
+        [w:x] \quad \text{si $w\neq0$ ó $x\neq0$} \\
+        [y:z] \quad \text{si $y\neq0$ ó $z\neq0$}
+    \end{cases}
+\end{equation*}
+Por lo tanto $\phi$ es homeomorfismo, en particular, es un mapa cerrado. Como 
+$\phi(U_{0})\subseteq Y$, tenemos lo siguiente
+\begin{equation*}
+    V^{p}(J)=\phi(\P_{k}^{1})=\phi(\overline{U_{0}})=\overline{\phi(U_{0})}\subseteq\overline{Y}
+\end{equation*}
+Supongamos, por contradicción, que $\widetilde{I}=(yw-x^{2},zw^{2}-x^{3})$, entonces 
+$V^{p}(yw-x^{2},zw^{2}-x^{3})=\overline{Y}=V^{p}(J)$. La parametrización $\phi$ implica que hay un 
+único punto en $\overline{Y}$ tal que $w=0$, a saber, $[0:0:0:1]$; mientras que en la variedad 
+$V^{p}(yw-x^{2},zw^{2}-x^{3})$ tenemos una copia de $\P_{k}^{1}$, ya que $x=0$ e $y,z$ quedan 
+libres. Esta contradicción prueba la afirmación.
 
 \vspace{5mm}
-\noindent\textbf{Problema 5.}
+\noindent\textbf{Problema 5.} Sin respuesta.
 
 \vspace{5mm}
 \noindent\textbf{Problema 6.}
 \begin{enumerate}
-    \item[(a)] 
+    \item[(a)] Claramente la proyección es un morfismo de variedades algebraicas, veamos que es 
+    finito y sobreyectivo. En primer lugar, notemos que $k[\A_{k}^{2}]=k[x,y]$, luego el morfismo 
+    inducido
+    \begin{equation*}
+        \pi^{*}:k[x,y]\to k[X]
+    \end{equation*}
+    es tal que $x\mapsto x$ e $y\mapsto y$. Además, notamos que dado $p\in k[x,y,z]$ se tiene que
+    $deg_{z}(p(z^{3}+xz-y))\geq1$, lo que implica que $\pi^{*}$ es inyectivo. Más aún, el elemento
+    $z$ cumple la ecuación
+    \begin{equation*}
+        z^{3}+xz-y=0
+    \end{equation*}
+    entonces $k[X]$ esta generado por $\{1,z,z^{2}\}$ como $k[x,y]-$módulo, es decir, es 
+    finitamente generado. Por lo tanto, $k[X]$ es una extensión integral de $k[x,y]$. Esto prueba
+    que $\pi$ es un morfismo finito y sobreyectivo.
     
-    \item[(b)] 
+    \item[(c)] Como $k$ es un cuerpo de característica $0$ se tiene que $\Q\subseteq k$. Sea 
+    $(a,b)\in\A_{k}^{2}$, entonces
+    \begin{equation*}
+        \pi^{-1}(a,b)=\{(a,b,z)\in\A_{k}^{3}:z^{3}+az-b\}
+    \end{equation*}
+    Entonces $z$ corresponde a la raíz de una ecuación cúbica, cuyas soluciones vienen dada por la
+    fórmula de Cardano-Tartaglia, a saber
+    \begin{equation*}
+        z_{1}=\sqrt[3]{\frac{b}{2}+\sqrt{\frac{b^{2}}{4}+\frac{a^{3}}{27}}}
+        +\sqrt[3]{\frac{b}{2}-\sqrt{\frac{b^{2}}{4}+\frac{a^{3}}{27}}}=u+v
+    \end{equation*}
+    Las otras dos soluciones son $z_{2}=\omega u+\omega^{2} v$ y $z_{3}=\omega^{2} u+\omega v$, 
+    donde $\omega$ es una raíz cúbica de la unidad distinta de $1$. Si $(a,b)$ son tales que
+    \begin{equation*}
+        \frac{b^{2}}{4}+\frac{a^{3}}{27}\neq0
+    \end{equation*}
+    entonces $\pi^{-1}(a,b)$ consiste de tres elementos distintos entre sí. En efecto, si 
+    $z_{1}=z_{2}$ entonces
+    \begin{equation*}
+        0=z_{1}-z_{2}=(1-\omega)u+(1-\omega^{2})v
+    \end{equation*}
+    lo que implica que
+    \begin{align*}
+        0 &= (1-\omega)^{3}u^{3}+(1-\omega^{2})^{3}v
+        =-3\omega(1-\omega)u^{3}-3\omega^{2}(1-\omega^{2})v^{3} \\
+        &= -3\omega(1-\omega)u^{3}+3\omega(1-\omega)v^{3}=3\omega(1-\omega)(v^{3}-u^{3})
+    \end{align*}
+    Por lo tanto $u^{3}=v^{3}$ y se sigue que $\frac{b^{2}}{4}+\frac{a^{3}}{27}=0$, esto prueba 
+    que $z_{1}\neq z_{2}$. Similarmente se obtienen los otros casos. Así, $\pi$ es un mapa de 
+    cubrimiento de grado $3$ fuera de
+    \begin{equation*}
+        B=V\left(\frac{b^{2}}{4}+\frac{a^{3}}{27}\right)
+    \end{equation*}
+    Así, el lugar de ramificación de $\pi$ corresponde a $B$.
     
-    \item[(c)] 
+    \item[(b)] Como $\Q\subseteq k$, podemos escribir
+    \begin{equation*}
+        \omega=-\frac{1}{2}+\frac{\sqrt{3}}{2}i \hhtext{y} 
+        \omega^{2}=-\frac{1}{2}-\frac{\sqrt{3}}{2}i \htext{donde $i$ es raíz de -1}
+    \end{equation*}
+    En $B$ tenemos dos opciones, $(a,b)=0$ ó $(a,b)\neq0$ en cuyo caso $a\neq0$ y $b\neq0$. En el
+    primero tenemos que
+    \begin{equation*}
+        \pi^{-1}(0,0)=(0,0,0)
+    \end{equation*}
+    y en el segundo caso, reemplazando el valor de $\omega$ en $z_{2}$ y $z_{3}$, obtenemos lo 
+    siguiente
+    \begin{equation*}
+        \pi^{-1}(a,b)=\left\{
+            \left(a,b,2\sqrt[3]{b/2}\right),\left(a,b,-\sqrt[3]{b/2}\right)
+        \right\}
+    \end{equation*}
+    Así,
+    \begin{equation*}
+        R=\pi^{-1}(B)=\{0\}\cup\left\{
+            \left(a,b,2\sqrt[3]{b/2}\right),\left(a,b,-\sqrt[3]{b/2}\right):(a,b)\in B
+        \right\}
+    \end{equation*}
     
-    \item[(d)] 
+    \item[(d)] Fuera de $B$ la fibra de un punto tiene $3$ elementos distintos y cada uno con 
+    multiplicidad $1$. En $B$ tenemos dos casos, el origen, en cuyo caso la fibra consta de un 
+    único punto con multiplicidad $3$. Y en el segundo caso, tenemos dos puntos distintos en la 
+    fibra, uno con multiplicidad $1$ ($z_{1}$) y otro con multiplicidad $2$ ($z_{2}=z_{3}$).
+    
 \end{enumerate}
 
 \vspace{5mm}
-\noindent\textbf{Problema 7.}
+\noindent\textbf{Problema 7.} La incrustación de segre de $\P_{k}^{1}\times\P_{k}^{1}$ en 
+$\P_{k}^{3}$ viene dada por la asignación
+\begin{align*}
+    \sigma_{1,1}:\P_{k}^{1}\times\P_{k}^{1} &\to \P_{k}^{3} \\
+    ([x:y],[a:b]) &\mapsto [xa:xb:ya:yb]
+\end{align*}
+Cuya imagen corresponde a la variedad proyectiva dada por la ecuación $XW-YZ$. Notemos que dicha 
+expresión equivale al lugar de ceros de una forma cuadrática, en efecto,
+\begin{equation*}
+    XW-YZ=[X:Y:Z:W]\begin{pmatrix}
+        0 & 0 & 0 & 1/2 \\
+        0 & 0 & -1/2 & 0 \\
+        0 & -1/2 & 0 & 0 \\
+        1/2 & 0 &  0 & 0
+    \end{pmatrix}[X:Y:Z:W]^{T}
+\end{equation*}
+Sea $B$ la matriz asociada a tal forma cuadrática, vemos que $rank(B)=4$. Como la matriz $A$, que
+define a la forma cuadrática $Q$, tiene rango $4$, por álgebra lineal existe $P$ invertible tal 
+que $P^{T}AP=B$. Definimos
+\begin{align*}
+    \varphi:\P_{k}^{3} &\to \P_{k}^{3} \\
+    [x] &\mapsto [P^{-1}x]
+\end{align*}
+Veamos que $\varphi(X)=\Sigma_{1,1}$. Sea $[x]\in X$, entonces
+\begin{equation*}
+    \varphi(x)^{T}B\varphi(x)=(P^{-1}x)^{T}P^{T}AP(P^{-1}x)=x^{T}(P^{-1})^{T}P^{T}AP(P^{-1}x)
+    =x^{T}Ax=0
+\end{equation*}
+y por lo tanto $\varphi([x])\in\Sigma_{1,1}$. Por otro lado, sea $[y]\in\Sigma_{1,1}$ y 
+consideramos $[x]=[Py]$, tenemos que
+\begin{equation*}
+    x^{T}Ax=(Py)^{T}APy=y^{T}P^{T}APy=y^{T}By=0
+\end{equation*}
+es decir, $[y]\in\varphi(X)$. Lo que concluye la demostración.
 
 %\printbibliography % Quitar el comentado si quiero usar bibliografia
 

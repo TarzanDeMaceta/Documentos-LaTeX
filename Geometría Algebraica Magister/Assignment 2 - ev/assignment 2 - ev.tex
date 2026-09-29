@@ -1,0 +1,366 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{Style}
+
+\nocite{*} % Comentar si quiero citar
+%\addbibresource{bibliografia.bib} % Quitar el comentado si quiero usar bibliografia
+
+%% ----- Comando especial -----
+\def \P {\mathbb{P}}
+
+\begin{document}
+
+\begin{minipage}{2.5cm}
+    \includegraphics[width=2cm]{imagen_puc.jpg}
+\end{minipage}
+\begin{minipage}{12cm}
+    {\sc Pontificia Universidad Católica de Chile\\
+    Facultad de Matemáticas\\
+    Departamento de Matemática\\
+    Professor: Jesse Huang -- Student: Benjamín Mateluna}
+\end{minipage}
+\vspace{2ex}
+
+{\centerline{\bf Selected Topics on Complex Algebraic Varieties - MPG3320 III}
+\centerline{\bf Assignment 2}}
+\centerline{\bf September 28, 2026}
+
+\vspace{8mm}
+
+\vspace{2mm}
+\noindent\textbf{Lemma 1:} \emph{Let $V\subseteq\A_{k}^{n}$ be an algebraic variety. Then there
+exist irreducible affine varieties $V_{1},\dots,V_{m}$ such that}
+\begin{equation*}
+    V=\bigcup V_{i} \hhtext{y} V_{i}\not\subset V_{j} \htext{for all}i\neq j
+\end{equation*}
+
+\begin{proof}
+    We define
+    \begin{equation*}
+        \mathcal{C}:=\{
+            V\subseteq\A_{k}^{n}\text{ affine variety}:V\text{ is not an union of irreducibles}
+        \}
+    \end{equation*}
+    If $\mathcal{C}$ is empty there is nothing to prove, otherwise, there exists a minimal 
+    $V\in\mathcal{C}$, and by definition of $\mathcal{C}$, it is reducible. This contradicts its
+    minimality.
+
+    Let $V=\bigcup V_{i}$ with $V_{i}$ irreducible and suppose that $V_{i}\not\subset V_{j}$ for 
+    all $i\neq j$. Suppose that
+    \begin{equation*}
+        \bigcup V_{i}=\bigcup W_{j} 
+        \htext{where}W_{i}\not\subset W_{j} \hhtext{and} V_{i},W_{j}\neq\emptyset
+    \end{equation*}
+    Notice that $V_{1}=V_{1}\cap V=\bigcup(V_{1}\cap W_{j})$, since $V_{1}$ is irreducible, there
+    exists a unique $j$ such that $V_{1}=V_{1}\cap W_{j}$, that is, $V_{1}\subseteq W_{j}$. In the
+    same way, there exists a unique $i$ such that $W_{j}\subseteq V_{i}$, which implies that
+    $V_{1}\subseteq V_{i}$, then $i=1$ and thus $V_{1}=W_{j}$.
+\end{proof}
+
+Since $k[x_{1},\dots,x_{n}]$ is noetherian, every collection of algebraic varieties has a minimal
+element.
+
+\vspace{2mm}
+\noindent\textbf{Lemma 2:} \emph{Let $X\subseteq\A_{k}^{n}$ be an algebraic variety and 
+$X=\bigcup X_{i}$ its decomposition into irreducibles, then}
+\begin{equation*}
+    dim(X)=max \text{ } dim(X_{i})
+\end{equation*}
+
+\begin{proof}
+    Given $V\subseteq X$ an irreducible affine variety, we see that $V=\bigcup(V\cap X_{i})$ and
+    since $V$ is irreducible it follows that $V\subseteq X_{j}$ for some $j$.
+
+    \vspace{2mm}
+    Let $V_{0}\subset V_{1}\subset\dots\subset V_{r}$ be irreducible varieties in $X$, by the 
+    previous observation, we have that $V_{i}\subseteq X_{j}$ for some $j$ and for all $i$. Then,
+    \begin{equation*}
+        r\leq dim(X_{j})\leq max \text{ } dim(X_{i})
+        \hhtext{hence}
+        dim(X)\leq max \text{ } dim(X_{i})
+    \end{equation*}
+    On the other hand, if $V_{0}\subset V_{1}\subset\dots\subset V_{r}$ are irreducible varieties
+    in $X_{i}$, in particular, they are so in $X$, then
+    \begin{equation*}
+        r\leq dim(X)
+        \hhtext{and therefore}
+        dim(X_{i})\leq dim(X)
+    \end{equation*}
+    which implies that $max \text{ } dim(X_{i})\leq dim(X)$.
+\end{proof}
+
+Both results hold for projective varieties, using identical arguments.
+
+\vspace{3mm}
+\noindent\textbf{Problem 1.} Let us look the following lemma
+
+\vspace{2mm}
+\noindent\textbf{Lemma 1.1:} \emph{Let $f:X\to Y$ be a surjective morphism between irreducible 
+algebraic varieties, then $dim(Y)\leq dim(X)$}.
+
+\begin{proof}
+    Let us see that the $k-$algebra morphism $f^{*}:k[Y]\to k[X]$ is injective. Let 
+    $g\in\kr{f^{*}}$, then $(g\circ f)(x)=0$ for all $x\in X$, in other words,
+    \begin{equation*}
+        Y=f(X)\subseteq V(g) \hhtext{then} g|_{Y}\equiv0
+    \end{equation*}
+    Therefore $k(Y)\subseteq k(X)$ and thus $dim(Y)=trdeg_{k}(k(Y))\leq trdeg_{k}(k(X))=dim(X)$.
+\end{proof}
+
+\newpage
+Let $X=\bigcup X_{i}$ and $Y=\bigcup Y_{j}$ be the decomposition into irreducibles of $X$ and $Y$
+respectively. Notice that
+\begin{equation*}
+    X\times Y=\bigcup X_{i}\times\bigcup Y_{j}=\bigcup(X_{i}\times Y_{j})
+\end{equation*}
+and since the product of irreducible varieties is irreducible, it follows that 
+$\bigcup(X_{i}\times Y_{j})$ is the decomposition into irreducibles of $X\times Y$. Let $X_{i}$ 
+and $Y_{j}$ of maximal dimension, by Noether's normalization lemma there exist surjective 
+morphisms
+\begin{equation*}
+    f:X_{i}\to\A_{k}^{\dim(X_{i})} \hhtext{and} g:Y_{j}\to\A_{k}^{\dim(Y_{j})}
+\end{equation*}
+We have a surjective morphism between irreducible varieties
+$\varphi=(f,g):X_{i}\times Y_{j}\to\A_{k}^{\dim(X_{i})+\dim(Y_{j})}$, then
+\begin{equation*}
+    dim(X)+dim(Y)=dim(X_{i})+dim(Y_{j})\leq dim(X\times Y)
+\end{equation*}
+On the other hand, let $X_{i}\times X_{j}$ be of maximal dimension. By by Noether's normalization 
+lemma, $k[X_{i}]$ is algebraically generated by $dim(X_{i})$ elements, and similarly, $k[Y_{j}]$ 
+is algebraically generated by $dim(Y_{j})$ elements.
+
+\vspace{2mm}
+Therefore, $k[X_{i}\times Y_{j}]\cong k[X_{i}]\otimes_{k} k[Y_{j}]$ is algebraically generated by
+$dim(X_{i})+dim(Y_{j})$ elements. Thus, we see that
+\begin{align*}
+    dim(X\times Y) &= dim(X_{i}\times Y_{j})=trdeg_{k}(k(X_{i}\times Y_{j})) \\
+    &= trdeg_{k}(Frac(k[X_{i}]\otimes_{k} k[Y_{j}]))\leq dim(X_{i})+dim(Y_{j})\leq dim(X)+dim(Y)
+\end{align*}
+Which finalizes the proof.
+
+\vspace{5mm}
+\noindent\textbf{Problem 2.} Let us see $\varphi$ is surjective. Let $[a]\in \P_{k}^{n}$, we 
+consider the hyperplane $V^{p}(h_{a})\in(\P_{k}^{n})^{\lor}$, where 
+$h_{a}=a_{0}x_{0}+\dots+a_{n}x_{n}$, note that $\varphi(V^{p}(h_{a}))=[a]$. Let $[a]=[b]$, then
+there exists $\lambda\neq0$ such that $a=\lambda b$, hence
+\begin{equation*}
+    h_{a}=\sum_{i=0}^{n}a_{i}x_{i}=\sum_{i=0}^{n}\lambda b_{i}x_{i}
+    =\lambda\sum_{i=0}^{n}b_{i}x_{i}=\lambda h_{b}
+\end{equation*}
+so $h_{a}$ and $h_{b}$ differ by a non-zero scalar, therefore they define the same hyperplane, in 
+other words $V^{p}(h_{a})=V^{p}(h_{b})$. We define
+\begin{equation*}
+    X=\left\{V^{p}(h_{a}):[1:0:\dots:0]\in V^{p}(h_{a})\right\}
+\end{equation*}
+and $V=\varphi(X)$. We claim that $V=V^{p}(a_{0})$. Indeed, if $[a]\in V^{p}(a_{0})$ then 
+$a_{0}=0$ and therefore
+\begin{equation*}
+    h_{a}=\sum_{i=1}^{n}a_{i}x_{i} \hhtext{then} h_{a}(1,0,\dots,0)=0
+\end{equation*}
+and thus $[a]\in V$. On the other hand, if $V^{p}(h_{a})\in X$ we have that 
+$0=h_{a}(1,0,\dots,0)=a_{0}$, then $[a]\in V^{p}(a_{0})$. Which concludes what was requested.
+
+\vspace{5mm}
+\noindent\textbf{Problem 3.}
+\begin{enumerate}
+    \item[(a)] Since the ideal $I=(y^{2}-x^{3}-ax-b)$ is generated by a single element, its 
+    homogenization is equal to the ideal $(y^{2}z-x^{3}-axz^{2}-bz^{3})$, then
+    \begin{equation*}
+        \overline{V(I)}=V^{p}(\widetilde{I})=V^{p}(y^{2}z-x^{3}-axz^{2}-bz^{3})
+    \end{equation*}
+    Then, if $z=0$ we have that $x=0$ and therefore $y=1$. We conclude that the projective closure
+    of $V(I)$ added a unique point at infinity, which corresponds to $[0:0:1]$.
+
+    \item [(b)] We want to show that $\{x_{1}^{2}-x_{2}^{2}-1,x_{3}-x_{1}\}$ is a Gröbner basis 
+    for $I=(x_{1}^{2}-x_{2}^{2}-1,x_{3}-x_{1})$ with the lexicographic monomial order given by
+    $x_{3}\geq x_{1}\geq x_{2}$. Under this order,
+    \begin{equation*}
+        LM_{\leq}(x_{1}^{2}-x_{2}^{2}-1)=x_{1}^{2} \hhtext{y}
+        LM_{\leq}(x_{3}-x_{1})=x_{3}
+    \end{equation*}
+    It suffices to show that, given $f\in I$, its leading monomial is divisible by $x_{3}$ or
+    $x_{2}^{2}$. Since $f\in I$, there exist $g,h\in k[x_{1},x_{2},x_{3}]$ such that
+    \begin{equation*}
+        f=g\sbullet(x_{1}^{2}-x_{2}^{2}-1)+h\sbullet(x_{3}-x_{1})
+    \end{equation*}
+    We have two cases: if the leading monomial of $f$ has at least one factor $x_{3}$, then it is
+    divisible by $x_{3}$. If it does not, then no monomial contains it as a factor; otherwise it
+    would be the leading monomial. Thus, $x_{3}$ is a free variable, so
+    \begin{equation*}
+        f(x_{1},x_{2},x_{3})
+        =f(x_{1},x_{2},x_{1})=g(x_{1},x_{2},x_{1})\sbullet(x_{1}^{2}-x_{2}^{2}-1)
+    \end{equation*}
+    Then, the leading monomial of $f$ is the leading monomial of $g$ multiplied by $x_{1}^{2}$, 
+    since the order respects multiplication. Therefore, 
+    $\overline{W}=V^{p}(x_{1}^{2}-x_{2}^{2}-x_{0}^{2},x_{3}-x_{1})$. If $x_{0}=0$, we have
+    \begin{equation*}
+        x_{1}^{2}=x_{2}^{2} \hhtext{then} x_{1}=\pm x_{2}
+    \end{equation*}
+    Since $x_{3}=x_{1}$, it follows that $x_{1}\neq0$. Therefore, the points at infinity are
+    \begin{equation*}
+        [0:1:1:1] \hhtext{and} [0:1:-1:1]
+    \end{equation*}
+\end{enumerate}
+
+\vspace{5mm}
+\noindent\textbf{Problem 4.} The twisted cubic is given by the ideal $(y-x^{2},z-x^{3})$, that is,
+$Y=V(y-x^{2},z-x^{3})$ and it is parameterized by the expression $(t,t^{2},t^{3})$. We see that
+\begin{equation*}
+    k[x,y,z]/(y-x^{2},z-x^{3})\cong k[x]
+\end{equation*}
+and therefore $(y-x^{2},z-x^{3})$ is a prime ideal, so by the Nullstellensatz we have that
+\begin{equation*}
+    I(Y)=\sqrt{(y-x^{2},z-x^{3})}=(y-x^{2},z-x^{3})=:I
+\end{equation*}
+Let $J=(yw-x^{2},xz-y^{2},zw-xy)$ and note that $J\subseteq\widetilde{I}$, since the generators of
+$J$ are in $\widetilde{I}$. It follows that $\overline{Y}=V^{p}(\widetilde{I})\subseteq V^{p}(J)$,
+we would like to prove that $V^{p}(J)=\overline{Y}$. Consider the morphism
+\begin{align*}
+    \phi:\P_{k}^{1} &\to V^{p}(J) \\
+    [s:t] &\mapsto [s^{3}:s^{2}t:st^{2}:t^{3}]
+\end{align*}
+Evaluating at the generators of $J$ we see that $\phi$ is well-defined, moreover, its inverse is 
+given by
+\begin{equation*}
+    [w:x:y:z]\mapsto\begin{cases}
+        [w:x] \quad \text{si $w\neq0$ ó $x\neq0$} \\
+        [y:z] \quad \text{si $y\neq0$ ó $z\neq0$}
+    \end{cases}
+\end{equation*}
+Therefore, $\phi$ is a homeomorphism, in particular, it is a closed map. Since 
+$\phi(U_{0})\subseteq Y$, we have the following
+\begin{equation*}
+    V^{p}(J)=\phi(\P_{k}^{1})=\phi(\overline{U_{0}})=\overline{\phi(U_{0})}\subseteq\overline{Y}
+\end{equation*}
+Suppose, by contradiction, that $\widetilde{I}=(yw-x^{2},zw^{2}-x^{3})$, then 
+$V^{p}(yw-x^{2},zw^{2}-x^{3})=\overline{Y}=V^{p}(J)$. The parameterization $\phi$ tell us that 
+there is a unique point $Y$ such that $w=0$, namely, $[0:0:0:1]$. However, in the variety
+$V^{p}(yw-x^{2},zw^{2}-x^{3})$ we have a copy of $\P_{k}^{1}$, since $x=0$ and $y,z$ remain free.
+This contradiction proves the claim.
+
+\vspace{5mm}
+\noindent\textbf{Problem 5.} No answer.
+
+\vspace{5mm}
+\noindent\textbf{Problem 6.}
+\begin{enumerate}
+    \item[(a)] Clearly the projection is a morphism of algebraic varieties, let us see that it is
+    finite and surjective. In the first place, note that $k[\A_{k}^{2}]=k[x,y]$, then the induced
+    morphism
+    \begin{equation*}
+        \pi^{*}:k[x,y]\to k[X]
+    \end{equation*}
+    is such that $x\mapsto x$ and $y\mapsto y$. Furthermore, given $p\in k[x,y,z]$ we have that
+    $deg_{z}(p(z^{3}+xz-y))\geq1$, which implies that $\pi^{*}$ is injective. Moreover, the 
+    element $z$ satisfies the equation
+    \begin{equation*}
+        z^{3}+xz-y=0
+    \end{equation*}
+    so $k[X]$ is generated by $\{1,z,z^{2}\}$ as a $k[x,y]-$module, that is, it is finitely 
+    generated. Therefore, $k[X]$ is an integral entension of $k[x,y]$. This proves that $\phi$ is
+    a finite, surjective morphism.
+
+    \item[(c)] Since $k$ is a field of characteristic $0$, we have $\Q\subseteq k$. Let 
+    $(a,b)\in\A_{k}^{2}$, then
+    \begin{equation*}
+        \pi^{-1}(a,b)=\{(a,b,z)\in\A_{k}^{3}:z^{3}+az-b\}
+    \end{equation*}
+    Then $z$ corresponds to the root of a cubic equation, whose solutions are given by the 
+    Cardano-Tartaglia formula, namely
+    \begin{equation*}
+        z_{1}=\sqrt[3]{\frac{b}{2}+\sqrt{\frac{b^{2}}{4}+\frac{a^{3}}{27}}}
+        +\sqrt[3]{\frac{b}{2}-\sqrt{\frac{b^{2}}{4}+\frac{a^{3}}{27}}}=u+v
+    \end{equation*}
+    The other two solutions are $z_{2}=\omega u+\omega^{2} v$ and $z_{3}=\omega^{2} u+\omega v$,
+    where $\omega$ is a cube root of unity distinct from $1$. If $(a,b)$ are such that
+    \begin{equation*}
+        \frac{b^{2}}{4}+\frac{a^{3}}{27}\neq0
+    \end{equation*}
+    so $\pi^{-1}(a,b)$ consists of three distinct elements. Indeed, if $z_{1}=z_{2}$ then we have
+    \begin{equation*}
+        0=z_{1}-z_{2}=(1-\omega)u+(1-\omega^{2})v
+    \end{equation*}
+    which implies that
+    \begin{align*}
+        0 &= (1-\omega)^{3}u^{3}+(1-\omega^{2})^{3}v
+        =-3\omega(1-\omega)u^{3}-3\omega^{2}(1-\omega^{2})v^{3} \\
+        &= -3\omega(1-\omega)u^{3}+3\omega(1-\omega)v^{3}=3\omega(1-\omega)(v^{3}-u^{3})
+    \end{align*}
+    Therefore, $u^{3}=v^{3}$, it follows that $\frac{b^{2}}{4}+\frac{a^{3}}{27}=0$, this prove 
+    that $z_{1}\neq z_{2}$. The other cases are obtained similarly. Thus, $\pi$ is a covering map
+    of degree $3$ outside of
+    \begin{equation*}
+        B=V\left(\frac{b^{2}}{4}+\frac{a^{3}}{27}\right)
+    \end{equation*}
+    Then, the branch locus of $\pi$ corresponds to $B$.
+
+    \item[(b)] Since $\Q\subseteq k$, we can write
+    \begin{equation*}
+        \omega=-\frac{1}{2}+\frac{\sqrt{3}}{2}i \hhtext{and} 
+        \omega^{2}=-\frac{1}{2}-\frac{\sqrt{3}}{2}i \htext{where $i$ is a root of -1}
+    \end{equation*}
+    In $B$ we have two options, $(a,b)=0$ ó $(a,b)\neq0$ in which case $a\neq0$ and $b\neq0$. In
+    the first one we have
+    \begin{equation*}
+        \pi^{-1}(0,0)=(0,0,0)
+    \end{equation*}
+    and in the second case, replacing the value of $\omega$ and $\omega^{2}$ into $z_{2}$ and 
+    $z_{3}$, we obtain the following
+    \begin{equation*}
+        \pi^{-1}(a,b)=\left\{
+            \left(a,b,2\sqrt[3]{b/2}\right),\left(a,b,-\sqrt[3]{b/2}\right)
+        \right\}
+    \end{equation*}
+    Thus,
+    \begin{equation*}
+        R=\pi^{-1}(B)=\{0\}\cup\left\{
+            \left(a,b,2\sqrt[3]{b/2}\right),\left(a,b,-\sqrt[3]{b/2}\right):(a,b)\in B
+        \right\}
+    \end{equation*}
+
+    \item[(d)] Outside of $B$, the fiber of a point has $3$ distinct elements and each with 
+    multiplicity $1$. In $B$ we have two cases, the origin, in which case the fiber consists of a 
+    unique point with multiplicity $3$. And in the second case, we have two distinct points in
+    the fiber, one with multiplicity $1$ $(z_{1})$ and another with multiplicity $2$ 
+    $(z_{2}=z_{3})$.
+\end{enumerate}
+
+\vspace{5mm}
+\noindent\textbf{Problem 7.} The segre embedding of $\P_{k}^{1}\times\P_{k}^{1}$ into $\P_{k}^{3}$
+is given by the map
+\begin{align*}
+    \sigma_{1,1}:\P_{k}^{1}\times\P_{k}^{1} &\to \P_{k}^{3} \\
+    ([x:y],[a:b]) &\mapsto [xa:xb:ya:yb]
+\end{align*}
+Whose image corresponds to the projective variety given by the equation $XW-YZ$. Note that the
+expression is equivalent to the zero locus of a quadratic form, indeed,
+\begin{equation*}
+    XW-YZ=[X:Y:Z:W]\begin{pmatrix}
+        0 & 0 & 0 & 1/2 \\
+        0 & 0 & -1/2 & 0 \\
+        0 & -1/2 & 0 & 0 \\
+        1/2 & 0 &  0 & 0
+    \end{pmatrix}[X:Y:Z:W]^{T}
+\end{equation*}
+Let $B$ be the matrix associated with such quadratic form, we see that $rank(B)=4$. As the matrix 
+$A$, which defines the quadratic form $Q$, has rank 4, by linear algebra there exists $P$ 
+invertible such that $P^{T}AP=B$. We define
+\begin{align*}
+    \varphi:\P_{k}^{3} &\to \P_{k}^{3} \\
+    [x] &\mapsto [P^{-1}x]
+\end{align*}
+Let us see that $\varphi(X)=\Sigma_{1,1}$. Let $[x]\in X$, then
+\begin{equation*}
+    \varphi(x)^{T}B\varphi(x)=(P^{-1}x)^{T}P^{T}AP(P^{-1}x)=x^{T}(P^{-1})^{T}P^{T}AP(P^{-1}x)
+    =x^{T}Ax=0
+\end{equation*}
+and therefore $\varphi([x])\in\Sigma_{1,1}$. On the other hand, let $[y]\in\Sigma_{1,1}$ and we 
+consider $[x]=[Py]$, we have
+\begin{equation*}
+    x^{T}Ax=(Py)^{T}APy=y^{T}P^{T}APy=y^{T}By=0
+\end{equation*}
+that is, $[y]\in\varphi(X)$. Which concludes the proof.
+
+%\printbibliography % Quitar el comentado si quiero usar bibliografia
+
+\end{document}
